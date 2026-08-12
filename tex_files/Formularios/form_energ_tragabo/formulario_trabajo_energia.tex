@@ -1,0 +1,272 @@
+
+\documentclass[10pt,landscape]{article}
+\usepackage{mathwizards-formulario}
+
+% ── Comandos propios de este documento ─────────
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\color{primary}\small\textbf{F\'{i}sica I -- Trabajo, Energ\'{i}a y Calor | UDO N\'{u}cleo Monagas}}
+
+\begin{document}
+\pagecolor{white}
+
+% Título principal
+\begin{center}
+{\Huge\bfseries\color{primary} FORMULARIO DE TRABAJO, ENERG\'{I}A Y CALOR}\\[2pt]
+{\large\color{darkbg}\textbf{Gu\'{i}a de Estudio V} | Hoja Carta Horizontal}
+\end{center}
+\vspace{-4pt}
+
+\begin{multicols}{3}
+
+% ======================== COLUMNA 1 ========================
+
+\cajatitulo{1. TRABAJO MEC\'{A}NICO ($W$)}
+
+\subsection*{Trabajo de una Fuerza Constante con \'{A}ngulo}
+\[
+\boxed{W = F \cdot d \cdot \cos(\theta)}
+\]
+\begin{itemize}[leftmargin=*,nosep,topsep=0pt]
+  \item $F$: magnitud de la fuerza (N)
+  \item $d$: desplazamiento (m)
+  \item $\theta$: \'{a}ngulo entre fuerza y desplazamiento
+\end{itemize}
+
+\textbf{Despejes:}
+\[
+F = \frac{W}{d \cdot \cos\theta} \quad d = \frac{W}{F \cdot \cos\theta} \quad \theta = \arccos\!\left(\frac{W}{F \cdot d}\right)
+\]
+\cajainfo{Aplicable a: Ej. 1, 25, 39, 44}
+
+\subsection*{Trabajo de la Fuerza de Gravedad (Peso)}
+\[
+\boxed{W_g = F_g \cdot d \cdot \cos(\theta_g) = m \cdot g \cdot h}
+\]
+Si el cuerpo \textbf{baja}: $W_g > 0$ (positivo). Si \textbf{sube}: $W_g < 0$.
+\cajainfo{Aplicable a: Ej. 4, 5, 10, 14, 24}
+
+\vspace{4pt}
+\cajatitulo{2. POTENCIA MEC\'{A}NICA ($P$)}
+
+\subsection*{Potencia Media}
+\[
+\boxed{P = \frac{W}{t}}
+\]
+\textbf{Despejes:}
+\[
+W = P \cdot t \qquad t = \frac{W}{P}
+\]
+\cajainfo{Aplicable a: Ej. 4, 5, 10, 14, 15, 17, 18}
+
+\subsection*{Potencia Instant\'{a}nea}
+\[
+\boxed{P = F \cdot v}
+\]
+\textbf{Despejes:}
+\[
+F = \frac{P}{v} \qquad v = \frac{P}{F}
+\]
+\cajainfo{Aplicable a: Ej. 14, 43}
+
+\vspace{4pt}
+\cajatitulo{3. ENERG\'{I}AS MEC\'{A}NICAS}
+
+\subsection*{Energ\'{i}a Cin\'{e}tica ($E_c$)}
+\[
+\boxed{E_c = \frac{1}{2} m \cdot v^2}
+\]
+\textbf{Despejes:}
+\[
+m = \frac{2 \cdot E_c}{v^2} \qquad v = \sqrt{\frac{2 \cdot E_c}{m}}
+\]
+\cajainfo{Aplicable a: Ej. 7, 16, 18, 21, 22, 27, 33, 38, 42}
+
+\subsection*{Energ\'{i}a Potencial Gravitatoria ($E_p$)}
+\[
+\boxed{E_p = m \cdot g \cdot h}
+\]
+\textbf{Despejes:}
+\[
+m = \frac{E_p}{g \cdot h} \qquad h = \frac{E_p}{m \cdot g}
+\]
+\cajainfo{Aplicable a: Ej. 11, 19, 22, 33, 36, 38}
+
+\subsection*{Energ\'{i}a Potencial El\'{a}stica ($E_{pe}$)}
+\[
+\boxed{E_{pe} = \frac{1}{2} k \cdot x^2}
+\]
+\begin{itemize}[leftmargin=*,nosep,topsep=0pt]
+  \item $k$: constante el\'{a}stica (N/m)
+  \item $x$: deformaci\'{o}n en metros (m)
+\end{itemize}
+\textbf{Despejes:}
+\[
+k = \frac{2 \cdot E_{pe}}{x^2} \qquad x = \sqrt{\frac{2 \cdot E_{pe}}{k}}
+\]
+\cajainfo{Aplicable a: Ej. 6, 7, 13, 26, 27, 36, 45}
+
+\subsection*{Fuerza El\'{a}stica (Ley de Hooke)}
+\[
+\boxed{F_e = k \cdot x}
+\]
+\cajainfo{Util para hallar $k$ en el Ej. 26 antes de calcular la energ\'{i}a}
+
+% ======================== COLUMNA 2 ========================
+
+\cajatitulo{4. TEOREMAS Y CONSERVACI\'{O}N}
+
+\subsection*{Teorema Trabajo -- Energ\'{i}a Cin\'{e}tica}
+\[
+\boxed{W_{\text{neto}} = \Delta E_c = E_{cf} - E_{ci}}
+\]
+\cajainfo{Aplicable a: Ej. 1, 3, 16, 18}
+
+\subsection*{Conservaci\'{o}n de la Energ\'{i}a Mec\'{a}nica}
+Si solo act\'{u}an fuerzas conservativas:
+\[
+\boxed{E_{mi} = E_{mf}}
+\]
+\[
+E_{ci} + E_{pi} + E_{pei} = E_{cf} + E_{pf} + E_{pef}
+\]
+\cajainfo{Aplicable a: Ej. 7, 13, 22, 33, 38}
+
+\subsection*{Teorema General (Con Rozamiento)}
+\[
+\boxed{W_{nc} = \Delta E_m = E_{mf} - E_{mi}}
+\]
+Si hay disipaci\'{o}n expl\'{i}cita (ej. ``consume 25\%''):
+\[
+E_{mf} = E_{mi} - E_{\text{disipada}}
+\]
+\cajainfo{Aplicable a: Ej. 19, 21, 31, 34, 36, 40, 41, 42, 45}
+
+\subsection*{Choques Inel\'{a}sticos (Momento Lineal)}
+Antes de usar conservaci\'{o}n de energ\'{i}a con resortes tras un impacto:
+\[
+\boxed{m_1 \cdot v_1 = (m_1 + m_2) \cdot v_f}
+\]
+\cajainfo{Aplicable a: Ej. 27 (bala incrustada en bloque)}
+
+\vspace{4pt}
+\cajatitulo{5. DIN\'{A}MICA AUXILIAR}
+
+\subsection*{Segunda Ley de Newton}
+\[
+\boxed{F_{\text{neta}} = m \cdot a} \qquad \boxed{a = \frac{F_{\text{neta}}}{m}}
+\]
+\cajainfo{Necesaria para Ej. 3, 15, 28, 35 donde se dan fuerzas y tiempos}
+
+\subsection*{Cinem\'{a}tica B\'{a}sica}
+\[
+v_f = v_0 + a \cdot t
+\]
+\[
+d = v_0 \cdot t + \frac{1}{2} a \cdot t^2
+\]
+\[
+\boxed{v_f^2 = v_0^2 + 2 \cdot a \cdot d}
+\]
+
+\subsection*{Fricci\'{o}n}
+\[
+f_k = \mu_k \cdot N \qquad f_s \leq \mu_s \cdot N
+\]
+Trabajo de la fricci\'{o}n (dissipativo):
+\[
+W_{\text{fricci\'{o}n}} = -f_k \cdot d = -\mu_k \cdot N \cdot d
+\]
+
+\vspace{4pt}
+\cajatitulo{6. CONVERSIONES DE UNIDADES}
+
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Conversi\'{o}n} & \textbf{F\'{o}rmula} \\
+\midrule
+Temperatura (°F a °C) & $T(°C) = \frac{5}{9}(T(°F) - 32)$ \\
+Volumen a Masa (Agua) & $1\,\text{L} = 1\,\text{kg}$ ($\rho = 1000\,\text{kg/m}^3$) \\
+Volumen a Masa (Gasolina) & $\text{Masa} = V \cdot \rho$ \\
+Longitud & $1\,\text{m} = 100\,\text{cm} = 1000\,\text{mm}$ \\
+Velocidad & $1\,\text{m/s} = 3.6\,\text{km/h}$ \\
+Energ\'{i}a & $1\,\text{kcal} = 1000\,\text{cal} \approx 4184\,\text{J}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\cajainfo{¡Cuidado! La constante $k$ en N/mm (Ej. 27) debe pasarse a N/m}
+
+% ======================== COLUMNA 3 ========================
+
+\cajatitulo{7. RESUMEN DE ESTRATEGIAS}
+
+\subsection*{Toboganes y Monta\~{n}as Rusas (Ej. 21, 22, 33)}
+\begin{enumerate}[leftmargin=*,nosep,topsep=0pt]
+  \item Elegir nivel de referencia ($h=0$): salida, suelo o punto m\'{a}s bajo.
+  \item Aplicar $E_{mi} = E_{mf}$ si no hay rozamiento.
+  \item Si hay rozamiento: $W_{\text{fricci\'{o}n}} = E_{mf} - E_{mi}$.
+  \item La velocidad final es la misma sin importar d\'{o}nde pongas $h=0$.
+\end{enumerate}
+
+\subsection*{Problemas con Resortes (Ej. 6, 7, 13, 26, 27, 36, 45)}
+\begin{enumerate}[leftmargin=*,nosep,topsep=0pt]
+  \item Si se comprime/estira con fuerza conocida: usar $F_e = kx$ para hallar $k$.
+  \item Luego aplicar $E_{pe} = \frac{1}{2}kx^2$.
+  \item En choques con resorte: primero conservaci\'{o}n de momento, luego energ\'{i}a.
+\end{enumerate}
+
+\subsection*{Problemas con P\'{e}rdidas de Energ\'{i}a (Ej. 19, 21, 31, 34, 36, 40--42, 45)}
+\begin{enumerate}[leftmargin=*,nosep,topsep=0pt]
+  \item Calcular $E_{mi}$ completa (cin\'{e}tica + potencial + el\'{a}stica).
+  \item Aplicar el porcentaje de p\'{e}rdida: $E_{\text{disipada}} = \% \times E_{mi}$.
+  \item $E_{mf} = E_{mi} - E_{\text{disipada}}$.
+  \item Despejar la inc\'{o}gnita (velocidad, altura, deformaci\'{o}n, etc.).
+\end{enumerate}
+
+\subsection*{Problemas de Potencia (Ej. 4, 5, 10, 14--18, 43)}
+\begin{enumerate}[leftmargin=*,nosep,topsep=0pt]
+  \item Identificar si piden potencia media ($P = W/t$) o instant\'{a}nea ($P = Fv$).
+  \item Calcular el trabajo primero si es necesario.
+  \item Verificar unidades: W en J, t en s, P en W (J/s).
+\end{enumerate}
+
+\vspace{4pt}
+\cajatitulo{8. CONSTANTES \'{U}TILES}
+
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Constante} & \textbf{Valor} \\
+\midrule
+$g$ (gravedad) & $9.8\,\text{m/s}^2$ \\
+$G$ (gravitacional) & $6.67 \times 10^{-11}\,\text{N}\cdot\text{m}^2/\text{kg}^2$ \\
+Masa Tierra & $5.97 \times 10^{24}\,\text{kg}$ \\
+Radio Tierra & $6.37 \times 10^6\,\text{m}$ \\
+Calor espec\'{i}fico agua & $4186\,\text{J/kg}\cdot°\text{C}$ \\
+Calor latente fusi\'{o}n hielo & $3.34 \times 10^5\,\text{J/kg}$ \\
+Calor latente vaporizaci\'{o}n & $2.26 \times 10^6\,\text{J/kg}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{4pt}
+\cajatitulo{9. CONSEJOS PARA EL EXAMEN}
+
+\begin{enumerate}[leftmargin=*,nosep,topsep=0pt]
+  \item \textbf{DCL siempre:} Dibujar el diagrama de cuerpo libre.
+  \item \textbf{Nivel de referencia:} Elige $h=0$ donde m\'{a}s te convenga; s\'{e} consistente.
+  \item \textbf{Signos de altura:} Por encima de $h=0$ es positiva; por debajo, negativa.
+  \item \textbf{Unidades:} Trabajar en SI: kg, m, s, N, J, W.
+  \item \textbf{Conversiones:} g $\to$ kg, cm $\to$ m, km/h $\to$ m/s, kcal $\to$ J.
+  \item \textbf{Resorte:} La deformaci\'{o}n $x$ siempre en metros, nunca en cm o mm.
+  \item \textbf{Rozamiento:} Trabajo negativo (disipa energ\'{i}a). $W_{\text{fricci\'{o}n}} = -f_k \cdot d$.
+  \item \textbf{Choques:} Primero momento lineal, despu\'{e}s energ\'{i}a (si aplica).
+  \item \textbf{Potencia:} Distinguir entre media e instant\'{a}nea.
+\end{enumerate}
+
+\end{multicols}
+
+\end{document}

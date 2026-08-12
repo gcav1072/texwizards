@@ -1,0 +1,737 @@
+% ============================================================
+%  GUÍA 6: DERIVADAS Y REGLAS DE DERIVACIÓN
+%  Curso de Introducción a la Universidad — Precálculo y Cálculo I
+%  Autor: Gabriel Astudillo
+%  Sesiones cubiertas: 17, 18, 19 y 20
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Guía 6 — Derivadas y Reglas de Derivación}{Gabriel Astudillo $\cdot$ Curso Preuniversitario}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Estudio 6}{Derivadas y Reglas de Derivación}{Definición de Derivada, Rectas Tangentes, Reglas de Derivación y Regla de la Cadena}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} La derivada mide la razón de cambio instantánea de una función. Es la herramienta central del cálculo diferencial y permite analizar pendientes de rectas tangentes, velocidades instantáneas, y (como verás en la siguiente guía) máximos y mínimos de funciones. Cada sección incluye \textbf{ejercicios resueltos} y \textbf{propuestos}.
+  \\[4pt]
+  \textbf{Nivel de Dificultad:}\quad
+  \facil{} Básico / Directo \quad
+  \medio{} Intermedio \quad
+  \dificil{} Desafiante
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Definición de Derivada y Recta Tangente}
+% ============================================================
+
+\subsection{Conceptos fundamentales}
+
+\begin{cuadroteoria}
+  \textbf{Definición de derivada en $x = a$:}
+  $$f'(a) = \lim_{h \to 0} \frac{f(a + h) - f(a)}{h}$$
+  o equivalentemente:
+  $$f'(a) = \lim_{x \to a} \frac{f(x) - f(a)}{x - a}$$
+
+  \textbf{Definición general (función derivada):}
+  $$f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}$$
+
+  \textbf{Interpretación geométrica:} $f'(a)$ es la pendiente de la recta tangente a la gráfica de $f$ en el punto $(a, f(a))$.
+\end{cuadroteoria}
+
+\begin{cuadrosolucion}
+  \textbf{Recta tangente en $(a, f(a))$:}
+  $$y - f(a) = f'(a)(x - a)$$
+
+  \textbf{Notaciones para la derivada:}
+  $$f'(x) \qquad y' \qquad \frac{dy}{dx} \qquad \frac{d}{dx}[f(x)]$$
+\end{cuadrosolucion}
+
+\newpage
+
+\begin{cuadroadvertencia}
+  Si el límite no existe, la función \textbf{no es derivable} en ese punto. La continuidad es necesaria pero no suficiente: por ejemplo, $f(x) = |x|$ es continua en $x = 0$ pero no derivable ahí (pico).
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Usando la definición de derivada, calcula $f'(x)$ para $f(x) = x^2$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{align*}
+    f'(x) & = \lim_{h \to 0} \frac{(x + h)^2 - x^2}{h}       \\
+          & = \lim_{h \to 0} \frac{x^2 + 2xh + h^2 - x^2}{h} \\
+          & = \lim_{h \to 0} \frac{2xh + h^2}{h}             \\
+          & = \lim_{h \to 0} (2x + h) = 2x.
+  \end{align*}
+  Por tanto: $f'(x) = 2x$.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Usando la definición, calcula la derivada de $f(x) = \dfrac{1}{x}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{align*}
+    f'(x) & = \lim_{h \to 0} \frac{\frac{1}{x + h} - \frac{1}{x}}{h} \\
+          & = \lim_{h \to 0} \frac{\frac{x - (x + h)}{x(x + h)}}{h}  \\
+          & = \lim_{h \to 0} \frac{\frac{-h}{x(x + h)}}{h}           \\
+          & = \lim_{h \to 0} \frac{-1}{x(x + h)} = -\frac{1}{x^2}.
+  \end{align*}
+  Por tanto: $f'(x) = -\dfrac{1}{x^2}$.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Encuentra la ecuación de la recta tangente a $f(x) = x^2$ en $x = 3$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{enumerate}
+    \item Punto: $f(3) = 9$, así que el punto es $(3, 9)$.
+    \item Pendiente: $f'(3) = 2(3) = 6$.
+    \item Ecuación: $y - 9 = 6(x - 3) \Rightarrow y = 6x - 18 + 9 \Rightarrow y = 6x - 9$.
+  \end{enumerate}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R4.} Usando la definición, calcula $f'(x)$ para $f(x) = \sqrt{x}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{align*}
+    f'(x) & = \lim_{h \to 0} \frac{\sqrt{x + h} - \sqrt{x}}{h} \cdot \frac{\sqrt{x + h} + \sqrt{x}}{\sqrt{x + h} + \sqrt{x}} \\
+          & = \lim_{h \to 0} \frac{(x + h) - x}{h(\sqrt{x + h} + \sqrt{x})}                                                  \\
+          & = \lim_{h \to 0} \frac{h}{h(\sqrt{x + h} + \sqrt{x})}                                                            \\
+          & = \lim_{h \to 0} \frac{1}{\sqrt{x + h} + \sqrt{x}} = \frac{1}{2\sqrt{x}}.
+  \end{align*}
+  Por tanto: $f'(x) = \dfrac{1}{2\sqrt{x}}$ para $x > 0$.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R5.} Determina si $f(x) = |x|$ es derivable en $x = 0$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Calculamos el límite por la izquierda y por la derecha:
+  \begin{itemize}
+    \item Por la derecha: $\lim_{h \to 0^+} \frac{|0 + h| - |0|}{h} = \lim_{h \to 0^+} \frac{h}{h} = 1$.
+    \item Por la izquierda: $\lim_{h \to 0^-} \frac{|h| - 0}{h} = \lim_{h \to 0^-} \frac{-h}{h} = -1$.
+  \end{itemize}
+  Los límites laterales son distintos, por lo que $f'(0)$ \textbf{no existe}. La función tiene un pico en el origen.
+\end{cuadrosolucion}
+
+\newpage
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*]
+  \item \facil{} Usando la definición, calcula $f'(x)$ para $f(x) = 3x^2$.
+  \item \facil{} Usando la definición, calcula $f'(x)$ para $f(x) = 2x + 1$.
+  \item \facil{} Encuentra la pendiente de la recta tangente a $f(x) = x^2$ en $x = -2$.
+  \item \facil{} Encuentra la ecuación de la recta tangente a $f(x) = x^2$ en $x = 1$.
+  \item \medio{} Usando la definición, calcula $f'(x)$ para $f(x) = x^3$.
+  \item \medio{} Usando la definición, calcula $f'(x)$ para $f(x) = x^2 + 3x$.
+  \item \medio{} Usando la definición, calcula $f'(x)$ para $f(x) = \dfrac{1}{x^2}$.
+  \item \medio{} Determina si $f(x) = \begin{cases} x^2 & \text{si } x \le 0 \\ 2x & \text{si } x > 0 \end{cases}$ es derivable en $x = 0$.
+  \item \dificil{} Usando la definición, calcula $f'(x)$ para $f(x) = \sqrt{x + 2}$.
+  \item \dificil{} Usando la definición, calcula $f'(x)$ para $f(x) = \cos x$. (Pista: usa $\cos(a + b) = \cos a \cos b - \sin a \sin b$ y los límites $\lim_{h \to 0} \frac{\sin h}{h} = 1$ y $\lim_{h \to 0} \frac{1 - \cos h}{h} = 0$.)
+  \item \dificil{} Encuentra los puntos de la gráfica de $f(x) = x^2 - 4x + 3$ donde la recta tangente es horizontal.
+  \item \dificil{} Encuentra la ecuación de la recta tangente a $f(x) = \sqrt{x}$ que sea paralela a la recta $y = \dfrac{x}{4} + 2$.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Reglas Básicas de Derivación}
+% ============================================================
+
+\subsection{Reglas fundamentales}
+
+\begin{cuadroteoria}
+  \textbf{Regla de la constante:} $\dfrac{d}{dx}[c] = 0$
+
+  \textbf{Regla de la potencia:} $\dfrac{d}{dx}[x^n] = n x^{n-1}$
+
+  \textbf{Regla de la constante por función:} $\dfrac{d}{dx}[c \cdot f(x)] = c \cdot f'(x)$
+
+  \textbf{Regla de la suma/resta:} $\dfrac{d}{dx}[f(x) \pm g(x)] = f'(x) \pm g'(x)$
+
+  \textbf{Regla del producto:} $(fg)' = f'g + fg'$
+
+  \textbf{Regla del cociente:} $\left(\dfrac{f}{g}\right)' = \dfrac{f'g - fg'}{g^2}$
+
+  \textbf{Derivada de la función exponencial:} $\dfrac{d}{dx}[e^x] = e^x$
+
+  \textbf{Derivada del logaritmo natural:} $\dfrac{d}{dx}[\ln x] = \dfrac{1}{x}$ (para $x > 0$)
+
+  \textbf{Derivadas de exponenciales y logaritmos generales:}
+  $$\frac{d}{dx}[a^x] = a^x \ln a \qquad\qquad \frac{d}{dx}[\log_a x] = \frac{1}{x \ln a}$$
+\end{cuadroteoria}
+
+\begin{cuadrosolucion}
+  \textbf{Derivadas trigonométricas básicas:}
+  \begin{align*}
+    \frac{d}{dx}[\sin x] & = \cos x        & \frac{d}{dx}[\cos x] & = -\sin x        \\
+    \frac{d}{dx}[\tan x] & = \sec^2 x      & \frac{d}{dx}[\cot x] & = -\csc^2 x      \\
+    \frac{d}{dx}[\sec x] & = \sec x \tan x & \frac{d}{dx}[\csc x] & = -\csc x \cot x
+  \end{align*}
+\end{cuadrosolucion}
+
+\begin{cuadroadvertencia}
+  \textbf{Para no equivocarte:}
+  \begin{itemize}[leftmargin=*]
+    \item $\dfrac{d}{dx}[x^n]$: baja el exponente y resta 1. Ej: $\dfrac{d}{dx}[x^5] = 5x^4$.
+    \item $\dfrac{d}{dx}[e^x]$: ¡es $e^x$! No lo confundas con la regla de la potencia.
+    \item La regla del producto NO es $(fg)' = f' \cdot g'$. Debes usar $f'g + fg'$.
+    \item La regla del cociente: ``abajo al cuadrado, y arriba: la derivada del primero por el segundo, menos el primero por la derivada del segundo''.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Calcula la derivada de $f(x) = 5x^4 - 3x^2 + 2x - 7$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Aplicamos la regla de la potencia término a término:
+  $$f'(x) = 5(4)x^3 - 3(2)x + 2 = 20x^3 - 6x + 2.$$
+  La constante $-7$ se deriva a $0$.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Calcula la derivada de $g(x) = e^x + \ln x + \sin x$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$g'(x) = e^x + \frac{1}{x} + \cos x.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Calcula la derivada de $h(x) = x^2 e^x$ (regla del producto).
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Identificamos $f = x^2$, $g = e^x$. Entonces $f' = 2x$, $g' = e^x$:
+  $$h'(x) = (2x)(e^x) + (x^2)(e^x) = e^x(2x + x^2) = x e^x (2 + x).$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R4.} Calcula la derivada de $r(x) = \dfrac{x^3}{x^2 + 1}$ (regla del cociente).
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} $f = x^3$, $g = x^2 + 1$; $f' = 3x^2$, $g' = 2x$:
+  $$r'(x) = \frac{(3x^2)(x^2 + 1) - (x^3)(2x)}{(x^2 + 1)^2} = \frac{3x^4 + 3x^2 - 2x^4}{(x^2 + 1)^2} = \frac{x^4 + 3x^2}{(x^2 + 1)^2} = \frac{x^2(x^2 + 3)}{(x^2 + 1)^2}.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R5.} Calcula la derivada de $f(x) = \tan x \cdot \ln x$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Por producto con $f = \tan x$, $g = \ln x$:
+  $$f'(x) = \sec^2 x \cdot \ln x + \tan x \cdot \frac{1}{x}.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R6.} Calcula la derivada de $y = \dfrac{\sin x}{x}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Por cociente con $f = \sin x$, $g = x$:
+  $$y' = \frac{\cos x \cdot x - \sin x \cdot 1}{x^2} = \frac{x \cos x - \sin x}{x^2}.$$
+\end{cuadrosolucion}
+
+\newpage
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Calcula: $f'(x)$ si $f(x) = 3x^5 - 4x^3 + x - 9$.
+  \item \facil{} Calcula: $g'(x)$ si $g(x) = \dfrac{1}{x^3}$ (pista: reescribe como $x^{-3}$).
+  \item \facil{} Calcula: $h'(x)$ si $h(x) = 7e^x + 2\ln x$.
+  \item \facil{} Calcula: $y'$ si $y = 2\sin x - \cos x$.
+  \item \medio{} Calcula: $f'(x)$ si $f(x) = x^3 \sin x$.
+  \item \medio{} Calcula: $g'(x)$ si $g(x) = \dfrac{x^2}{x - 1}$.
+  \item \medio{} Calcula: $h'(x)$ si $h(x) = (x^2 + 1) \ln x$.
+  \item \medio{} Calcula: $y'$ si $y = \dfrac{e^x}{x}$.
+  \item \dificil{} Calcula: $f'(x)$ si $f(x) = \dfrac{x^2 + 1}{x^2 - 1}$.
+  \item \dificil{} Calcula: $g'(x)$ si $g(x) = x^2 e^x \sin x$ (aplica producto dos veces).
+  \item \dificil{} Calcula: $h'(x)$ si $h(x) = \dfrac{\tan x}{e^x}$.
+  \item \dificil{} Encuentra todos los puntos donde la recta tangente a $f(x) = x^3 - 3x$ es horizontal.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Regla de la Cadena}
+% ============================================================
+
+\subsection{La regla de la cadena}
+
+\begin{cuadroteoria}
+  \textbf{Regla de la cadena:} Si $y = f(g(x))$, entonces:
+  $$\frac{dy}{dx} = f'(g(x)) \cdot g'(x)$$
+
+  En notación de Leibniz, si $y = f(u)$ con $u = g(x)$:
+  $$\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}$$
+\end{cuadroteoria}
+
+\begin{cuadrosolucion}
+  \textbf{Formas útiles de la regla de la cadena:}
+  \begin{align*}
+    \frac{d}{dx}[(u(x))^n]   & = n(u(x))^{n-1} \cdot u'(x) \\
+    \frac{d}{dx}[e^{u(x)}]   & = e^{u(x)} \cdot u'(x)      \\
+    \frac{d}{dx}[\ln(u(x))]  & = \frac{u'(x)}{u(x)}        \\
+    \frac{d}{dx}[\sin(u(x))] & = \cos(u(x)) \cdot u'(x)    \\
+    \frac{d}{dx}[\cos(u(x))] & = -\sin(u(x)) \cdot u'(x)
+  \end{align*}
+\end{cuadrosolucion}
+
+\begin{cuadroadvertencia}
+  \textbf{Estrategia:} identifica la ``función de afuera'' y la ``función de adentro''. Deriva la de afuera evaluada en la de adentro, y multiplica por la derivada de la de adentro.
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Calcula la derivada de $y = (3x^2 - 1)^5$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Función exterior: $u^5$ (derivada: $5u^4$). Función interior: $u = 3x^2 - 1$ (derivada: $6x$).
+  $$y' = 5(3x^2 - 1)^4 \cdot 6x = 30x(3x^2 - 1)^4.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Calcula la derivada de $y = e^{2x}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} La función exterior es $e^u$ y la interior $u = 2x$:
+  $$y' = e^{2x} \cdot 2 = 2e^{2x}.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Calcula la derivada de $y = \ln(x^2 + 1)$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$y' = \frac{1}{x^2 + 1} \cdot 2x = \frac{2x}{x^2 + 1}.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R4.} Calcula la derivada de $y = \sin(x^3)$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$y' = \cos(x^3) \cdot 3x^2 = 3x^2 \cos(x^3).$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R5.} Calcula la derivada de $y = \sqrt{e^x + 1}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Reescribimos $y = (e^x + 1)^{1/2}$:
+  $$y' = \frac{1}{2}(e^x + 1)^{-1/2} \cdot e^x = \frac{e^x}{2\sqrt{e^x + 1}}.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R6.} Calcula la derivada de $y = \cos^2(3x)$ (es decir, $[\cos(3x)]^2$).
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Aplicamos cadena dos veces (doble cadena):
+  \begin{enumerate}
+    \item Exterior: $u^2$ con $u = \cos(3x)$: $2\cos(3x)$.
+    \item Interior: derivada de $\cos(3x) = -\sin(3x) \cdot 3 = -3\sin(3x)$.
+  \end{enumerate}
+  $$y' = 2\cos(3x) \cdot [-3\sin(3x)] = -6\cos(3x)\sin(3x) = -3\sin(6x).$$
+  (En el último paso usamos $2\sin\theta\cos\theta = \sin(2\theta)$.)
+\end{cuadrosolucion}
+
+\newpage
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Calcula: $y'$ si $y = (2x + 1)^4$.
+  \item \facil{} Calcula: $y'$ si $y = e^{3x}$.
+  \item \facil{} Calcula: $y'$ si $y = \ln(x + 5)$.
+  \item \facil{} Calcula: $y'$ si $y = \sin(4x)$.
+  \item \medio{} Calcula: $y'$ si $y = (x^2 + 3x - 1)^6$.
+  \item \medio{} Calcula: $y'$ si $y = e^{-x^2}$.
+  \item \medio{} Calcula: $y'$ si $y = \ln(2x^3 + 1)$.
+  \item \medio{} Calcula: $y'$ si $y = \cos(e^x)$.
+  \item \dificil{} Calcula: $y'$ si $y = \sqrt{\sin x + 2}$.
+  \item \dificil{} Calcula: $y'$ si $y = \tan(x^2 + 1)$.
+  \item \dificil{} Calcula: $y'$ si $y = \left(\dfrac{e^x}{x}\right)^3$.
+  \item \dificil{} Calcula: $y'$ si $y = \ln\left(\dfrac{x + 1}{x - 1}\right)$.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Derivadas de Orden Superior}
+% ============================================================
+
+\subsection{Notación e interpretación}
+
+\begin{cuadroteoria}
+  \textbf{Segunda derivada:} $f''(x) = \dfrac{d}{dx}[f'(x)] = \dfrac{d^2y}{dx^2}$
+
+  \textbf{Tercera derivada:} $f'''(x) = \dfrac{d^3y}{dx^3}$
+
+  \textbf{$n$-ésima derivada:} $f^{(n)}(x)$
+
+  \textbf{Interpretación física:}
+  \begin{itemize}[leftmargin=*]
+    \item Si $s(t)$ es la posición, entonces $s'(t)$ es la velocidad y $s''(t)$ es la aceleración.
+    \item Si $f''(x) > 0$ en un intervalo, $f$ es cóncava hacia arriba.
+    \item Si $f''(x) < 0$ en un intervalo, $f$ es cóncava hacia abajo.
+  \end{itemize}
+\end{cuadroteoria}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Calcula la segunda derivada de $f(x) = x^3 - 4x^2 + 5$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{align*}
+    f'(x)  & = 3x^2 - 8x \\
+    f''(x) & = 6x - 8.
+  \end{align*}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Calcula la tercera derivada de $y = \sin x$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{align*}
+    y'   & = \cos x   \\
+    y''  & = -\sin x  \\
+    y''' & = -\cos x.
+  \end{align*}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} La posición de un objeto es $s(t) = t^3 - 6t^2 + 9t$ metros ($t$ en segundos). Encuentra velocidad y aceleración en $t = 2$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item Velocidad: $v(t) = s'(t) = 3t^2 - 12t + 9$. En $t = 2$: $v(2) = 12 - 24 + 9 = -3$ m/s.
+    \item Aceleración: $a(t) = v'(t) = s''(t) = 6t - 12$. En $t = 2$: $a(2) = 0$ m/s$^2$.
+  \end{itemize}
+  El objeto se mueve hacia atrás (velocidad negativa) pero la aceleración es cero en ese instante.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R4.} Calcula $f''(x)$ si $f(x) = x^2 e^x$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{enumerate}
+    \item Primera derivada (producto): $f' = 2x e^x + x^2 e^x = e^x(x^2 + 2x)$.
+    \item Segunda derivada: derivamos $e^x(x^2 + 2x)$ con producto:
+          $$f'' = e^x(x^2 + 2x) + e^x(2x + 2) = e^x(x^2 + 4x + 2).$$
+  \end{enumerate}
+\end{cuadrosolucion}
+
+\newpage
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Calcula $f''(x)$ para $f(x) = x^5 - 3x^2 + 1$.
+  \item \facil{} Calcula $y''$ para $y = e^x$.
+  \item \facil{} Calcula $y''$ para $y = \ln x$.
+  \item \facil{} Calcula $y''$ para $y = \sin x$.
+  \item \medio{} Calcula $f''(x)$ para $f(x) = x^3 \ln x$.
+  \item \medio{} Calcula $y''$ para $y = e^{2x}$.
+  \item \medio{} Calcula la tercera derivada de $f(x) = x^4 - 2x^3 + x^2$.
+  \item \medio{} Si $s(t) = t^3 - 9t^2 + 24t$ (posición en metros, t en segundos), encuentra los instantes en que la velocidad es cero.
+  \item \dificil{} Calcula $f'''(x)$ para $f(x) = \sin x \cdot \cos x$. (Pista: usa la identidad $2\sin x\cos x = \sin(2x)$.)
+  \item \dificil{} Calcula la segunda derivada de $f(x) = \ln(x^2 + 1)$.
+  \item \dificil{} Demuestra que $y = e^{2x}$ satisface la ecuación diferencial $y'' - 4y = 0$.
+  \item \dificil{} Para $f(x) = \sqrt{x}$, calcula $f''(x)$ y determina los intervalos de concavidad.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Derivación Implícita}
+% ============================================================
+
+\subsection{Técnica}
+
+\begin{cuadroteoria}
+  \textbf{Derivación implícita:} Se usa cuando $y$ no está despejada explícitamente en función de $x$ (por ejemplo, $x^2 + y^2 = 25$).
+
+  \textbf{Pasos:}
+  \begin{enumerate}[leftmargin=*]
+    \item Deriva ambos lados de la ecuación respecto a $x$.
+    \item Cada vez que derives un término que contiene $y$, aplica la regla de la cadena: multiplica por $\dfrac{dy}{dx}$.
+    \item Despeja $\dfrac{dy}{dx}$.
+  \end{enumerate}
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+  \textbf{Idea clave:} $y$ es una función de $x$, aunque no la conozcas explícitamente. Por tanto, derivar $y^2$ respecto a $x$ da $2y \cdot \frac{dy}{dx}$ (regla de la cadena), no $2y$.
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Encuentra $\dfrac{dy}{dx}$ si $x^2 + y^2 = 25$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{enumerate}
+    \item Derivamos ambos lados: $2x + 2y\dfrac{dy}{dx} = 0$.
+    \item Despejamos: $2y\dfrac{dy}{dx} = -2x \Rightarrow \dfrac{dy}{dx} = -\dfrac{x}{y}$.
+  \end{enumerate}
+  Nota: la pendiente depende del punto $(x, y)$ en la circunferencia.
+\end{cuadrosolucion}
+
+\newpage
+
+\textbf{Ejemplo R2.} Encuentra $\dfrac{dy}{dx}$ si $x^3 + y^3 = 6xy$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{enumerate}
+    \item Derivamos: $3x^2 + 3y^2 \dfrac{dy}{dx} = 6y + 6x\dfrac{dy}{dx}$.
+    \item Agrupamos los términos con $\dfrac{dy}{dx}$: $3y^2 \dfrac{dy}{dx} - 6x\dfrac{dy}{dx} = 6y - 3x^2$.
+    \item Factorizamos: $\dfrac{dy}{dx}(3y^2 - 6x) = 6y - 3x^2$.
+    \item $\dfrac{dy}{dx} = \dfrac{6y - 3x^2}{3y^2 - 6x} = \dfrac{2y - x^2}{y^2 - 2x}$.
+  \end{enumerate}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Encuentra la ecuación de la recta tangente a $x^2 + y^2 = 25$ en el punto $(3, 4)$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{enumerate}
+    \item Del Ejemplo R1: $\dfrac{dy}{dx} = -\dfrac{x}{y}$.
+    \item En $(3, 4)$: $m = -\dfrac{3}{4}$.
+    \item Recta tangente: $y - 4 = -\dfrac{3}{4}(x - 3) \Rightarrow y = -\dfrac{3}{4}x + \dfrac{25}{4}$.
+  \end{enumerate}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R4.} Encuentra $\dfrac{dy}{dx}$ si $\sin(xy) = x + y$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{enumerate}
+    \item Derivamos (con cadena en $\sin(xy)$ y producto en $xy$):
+          $$\cos(xy) \cdot \left(y + x\dfrac{dy}{dx}\right) = 1 + \dfrac{dy}{dx}.$$
+    \item Expandimos: $y\cos(xy) + x\cos(xy)\dfrac{dy}{dx} = 1 + \dfrac{dy}{dx}$.
+    \item Agrupamos: $\dfrac{dy}{dx}\left[x\cos(xy) - 1\right] = 1 - y\cos(xy)$.
+    \item $\dfrac{dy}{dx} = \dfrac{1 - y\cos(xy)}{x\cos(xy) - 1}$.
+  \end{enumerate}
+\end{cuadrosolucion}
+
+\newpage
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Encuentra $\dfrac{dy}{dx}$ si $x^2 + y^2 = 16$.
+  \item \facil{} Encuentra $\dfrac{dy}{dx}$ si $3x + 2y = 10$.
+  \item \facil{} Encuentra $\dfrac{dy}{dx}$ si $xy = 12$.
+  \item \medio{} Encuentra $\dfrac{dy}{dx}$ si $x^2 y + y^3 = 8$.
+  \item \medio{} Encuentra $\dfrac{dy}{dx}$ si $x^2 + xy + y^2 = 7$.
+  \item \medio{} Encuentra la ecuación de la recta tangente a $x^2 + y^2 = 25$ en $(4, -3)$.
+  \item \medio{} Encuentra $\dfrac{dy}{dx}$ si $e^y = x + y$.
+  \item \medio{} Encuentra $\dfrac{dy}{dx}$ si $\ln y + x = y^2$.
+  \item \dificil{} Encuentra $\dfrac{dy}{dx}$ si $\cos(x + y) = xy$.
+  \item \dificil{} Encuentra $\dfrac{dy}{dx}$ si $x^2 y^3 - 2x = y$.
+  \item \dificil{} Encuentra $\dfrac{d^2y}{dx^2}$ (segunda derivada implícita) si $x^2 + y^2 = 25$.
+  \item \dificil{} Una elipse tiene ecuación $\dfrac{x^2}{9} + \dfrac{y^2}{4} = 1$. Encuentra la pendiente de la recta tangente en el punto $\left(\dfrac{3}{\sqrt{2}},\; \sqrt{2}\right)$.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Derivadas de Funciones Trigonométricas Inversas}
+% ============================================================
+
+\subsection{Deducción y fórmulas}
+
+\begin{cuadroteoria}
+  \textbf{Derivada de $\arcsin x$} (deducción por derivación implícita):
+
+  Sea $y = \arcsin x$, es decir, $\sin y = x$ con $-\frac{\pi}{2} \leq y \leq \frac{\pi}{2}$.
+  \begin{enumerate}[leftmargin=*]
+    \item Derivamos implícitamente: $\cos y \cdot \dfrac{dy}{dx} = 1$.
+    \item $\dfrac{dy}{dx} = \dfrac{1}{\cos y}$.
+    \item Como $\sin^2 y + \cos^2 y = 1$, entonces $\cos y = \sqrt{1 - \sin^2 y} = \sqrt{1 - x^2}$ (positivo porque $y \in [-\frac{\pi}{2}, \frac{\pi}{2}]$).
+  \end{enumerate}
+  $$\boxed{\frac{d}{dx}[\arcsin x] = \frac{1}{\sqrt{1 - x^2}}}$$
+
+  \textbf{Derivada de $\arctan x$} (deducción similar):
+
+  Sea $y = \arctan x$, es decir, $\tan y = x$.
+  \begin{enumerate}[leftmargin=*]
+    \item Derivamos: $\sec^2 y \cdot \dfrac{dy}{dx} = 1$.
+    \item $\dfrac{dy}{dx} = \dfrac{1}{\sec^2 y} = \dfrac{1}{1 + \tan^2 y} = \dfrac{1}{1 + x^2}$.
+  \end{enumerate}
+  $$\boxed{\frac{d}{dx}[\arctan x] = \frac{1}{1 + x^2}}$$
+\end{cuadroteoria}
+
+\begin{cuadrosolucion}
+  \textbf{Tabla de derivadas de inversas trigonométricas:}
+  \begin{center}
+    \begin{tabular}{ll}
+      \toprule
+      \textbf{Función} & \textbf{Derivada}            \\
+      \midrule
+      $\arcsin x$      & $\dfrac{1}{\sqrt{1 - x^2}}$  \\
+      $\arccos x$      & $-\dfrac{1}{\sqrt{1 - x^2}}$ \\
+      $\arctan x$      & $\dfrac{1}{1 + x^2}$         \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  Nota: $\dfrac{d}{dx}[\arccos x] = -\dfrac{d}{dx}[\arcsin x]$ porque $\arcsin x + \arccos x = \dfrac{\pi}{2}$.
+\end{cuadrosolucion}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Calcula la derivada de $y = \arcsin(3x)$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Aplicamos cadena con $u = 3x$:
+  $$y' = \frac{1}{\sqrt{1 - (3x)^2}} \cdot 3 = \frac{3}{\sqrt{1 - 9x^2}}.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Calcula la derivada de $y = \arctan(x^2)$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Con $u = x^2$:
+  $$y' = \frac{1}{1 + (x^2)^2} \cdot 2x = \frac{2x}{1 + x^4}.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Calcula la derivada de $y = x \arctan x$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Regla del producto:
+  $$y' = \arctan x + x \cdot \frac{1}{1 + x^2} = \arctan x + \frac{x}{1 + x^2}.$$
+\end{cuadrosolucion}
+
+\newpage
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Calcula: $y'$ si $y = \arcsin(2x)$.
+  \item \facil{} Calcula: $y'$ si $y = \arctan(5x)$.
+  \item \facil{} Calcula: $y'$ si $y = \arccos(x)$.
+  \item \medio{} Calcula: $y'$ si $y = \arcsin(x^2)$.
+  \item \medio{} Calcula: $y'$ si $y = \arctan\left(\dfrac{1}{x}\right)$.
+  \item \medio{} Calcula: $y'$ si $y = \ln(\arctan x)$.
+  \item \medio{} Calcula: $y'$ si $y = e^{\arcsin x}$.
+  \item \dificil{} Calcula: $y'$ si $y = \arctan(\ln x)$.
+  \item \dificil{} Calcula: $y'$ si $y = x^2 \arcsin x + \sqrt{1 - x^2}$. (Pista: la simplificación es elegante.)
+  \item \dificil{} Encuentra la ecuación de la recta tangente a $y = \arctan x$ en $x = 1$.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Clave de Respuestas}
+% ============================================================
+
+\subsection*{Sección 1: Definición (Ejercicios 1--12)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $f'(x) = 6x$
+  \item $f'(x) = 2$
+  \item $f'(-2) = 2(-2) = -4$
+  \item Pendiente: $f'(1) = 2$; punto $(1,1)$; recta: $y - 1 = 2(x - 1) \Rightarrow y = 2x - 1$.
+  \item Usando $(x+h)^3 = x^3 + 3x^2h + 3xh^2 + h^3$: $f'(x) = 3x^2$.
+  \item $f(x+h) - f(x) = (x+h)^2 + 3(x+h) - x^2 - 3x = 2xh + h^2 + 3h$. Dividiendo entre $h$ y tomando límite: $f'(x) = 2x + 3$.
+  \item $\dfrac{1}{(x+h)^2} - \dfrac{1}{x^2} = \dfrac{x^2 - (x+h)^2}{x^2(x+h)^2} = \dfrac{-2xh - h^2}{x^2(x+h)^2}$. Dividiendo entre $h$: $\dfrac{-2x - h}{x^2(x+h)^2} \to \dfrac{-2}{x^3}$. Por tanto $f'(x) = -\dfrac{2}{x^3}$.
+  \item Por izquierda: $\lim_{h\to 0^-} \frac{h^2}{h} = 0$. Por derecha: $\lim_{h\to 0^+} \frac{2h}{h} = 2$. Son distintos: no es derivable en $x=0$.
+  \item Racionalizando: $f'(x) = \dfrac{1}{2\sqrt{x+2}}$.
+  \item $\cos(x+h) = \cos x \cos h - \sin x \sin h$. Entonces $\frac{\cos(x+h) - \cos x}{h} = \cos x \frac{\cos h - 1}{h} - \sin x \frac{\sin h}{h} \to \cos x(0) - \sin x(1) = -\sin x$.
+  \item Tangente horizontal cuando $f'(x) = 0$: $2x - 4 = 0 \Rightarrow x = 2$, $y = 4 - 8 + 3 = -1$. Punto: $(2, -1)$.
+  \item $f'(x) = \frac{1}{2\sqrt{x}}$. La pendiente deseada es $\frac{1}{4}$. $\frac{1}{2\sqrt{x}} = \frac{1}{4} \Rightarrow 2\sqrt{x} = 4 \Rightarrow \sqrt{x} = 2 \Rightarrow x = 4$, $y = 2$. Recta: $y - 2 = \frac{1}{4}(x - 4) \Rightarrow y = \frac{x}{4} + 1$.
+\end{enumerate}
+
+\subsection*{Sección 2: Reglas Básicas (Ejercicios 13--24)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{12}
+  \item $f'(x) = 15x^4 - 12x^2 + 1$
+  \item $g(x) = x^{-3} \Rightarrow g'(x) = -3x^{-4} = -\dfrac{3}{x^4}$
+  \item $h'(x) = 7e^x + \dfrac{2}{x}$
+  \item $y' = 2\cos x + \sin x$
+  \item $f'(x) = 3x^2 \sin x + x^3 \cos x$
+  \item $g'(x) = \dfrac{2x(x - 1) - x^2(1)}{(x - 1)^2} = \dfrac{2x^2 - 2x - x^2}{(x - 1)^2} = \dfrac{x^2 - 2x}{(x - 1)^2} = \dfrac{x(x - 2)}{(x - 1)^2}$
+  \item $h'(x) = 2x \ln x + (x^2 + 1) \cdot \dfrac{1}{x} = 2x\ln x + x + \dfrac{1}{x}$
+  \item $y' = \dfrac{e^x x - e^x}{x^2} = \dfrac{e^x(x - 1)}{x^2}$
+  \item $f'(x) = \dfrac{2x(x^2 - 1) - (x^2 + 1)2x}{(x^2 - 1)^2} = \dfrac{2x^3 - 2x - 2x^3 - 2x}{(x^2 - 1)^2} = \dfrac{-4x}{(x^2 - 1)^2}$
+  \item Derivamos por producto (tres factores). Podemos agrupar: $g = (x^2 e^x) \sin x = (2x e^x + x^2 e^x)\sin x + x^2 e^x \cos x = x e^x(2 + x)\sin x + x^2 e^x \cos x$.
+  \item Por cociente: $h' = \dfrac{\sec^2 x \cdot e^x - \tan x \cdot e^x}{(e^x)^2} = \dfrac{\sec^2 x - \tan x}{e^x}$.
+  \item $f'(x) = 3x^2 - 3 = 3(x^2 - 1) = 3(x - 1)(x + 1)$. Ceros: $x = \pm 1$. Puntos: $(1, -2)$ y $(-1, 2)$.
+\end{enumerate}
+
+\subsection*{Sección 3: Regla de la Cadena (Ejercicios 25--36)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{24}
+  \item $y' = 4(2x + 1)^3 \cdot 2 = 8(2x + 1)^3$
+  \item $y' = 3e^{3x}$
+  \item $y' = \dfrac{1}{x + 5}$
+  \item $y' = 4\cos(4x)$
+  \item $y' = 6(x^2 + 3x - 1)^5(2x + 3)$
+  \item $y' = e^{-x^2}(-2x) = -2x e^{-x^2}$
+  \item $y' = \dfrac{6x^2}{2x^3 + 1}$
+  \item $y' = -\sin(e^x) \cdot e^x = -e^x \sin(e^x)$
+  \item $y' = \dfrac{\cos x}{2\sqrt{\sin x + 2}}$
+  \item $y' = \sec^2(x^2 + 1) \cdot 2x = 2x \sec^2(x^2 + 1)$
+  \item $y' = 3\left(\dfrac{e^x}{x}\right)^2 \cdot \left(\dfrac{e^x x - e^x}{x^2}\right) = 3\left(\dfrac{e^x}{x}\right)^2 \cdot \dfrac{e^x(x - 1)}{x^2} = \dfrac{3e^{3x}(x - 1)}{x^4}$
+  \item $y = \ln(x + 1) - \ln(x - 1) \Rightarrow y' = \dfrac{1}{x + 1} - \dfrac{1}{x - 1} = \dfrac{(x - 1) - (x + 1)}{(x + 1)(x - 1)} = \dfrac{-2}{x^2 - 1}$
+\end{enumerate}
+
+\subsection*{Sección 4: Derivadas de Orden Superior (Ejercicios 37--48)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{36}
+  \item $f'(x) = 5x^4 - 6x$; $f''(x) = 20x^3 - 6$.
+  \item $y' = e^x$; $y'' = e^x$.
+  \item $y' = \dfrac{1}{x}$; $y'' = -\dfrac{1}{x^2}$.
+  \item $y' = \cos x$; $y'' = -\sin x$.
+  \item $f' = 3x^2 \ln x + x^3 \cdot \frac{1}{x} = 3x^2 \ln x + x^2$. $f'' = 6x \ln x + 3x^2 \cdot \frac{1}{x} + 2x = 6x \ln x + 3x + 2x = 6x\ln x + 5x$.
+  \item $y' = 2e^{2x}$; $y'' = 4e^{2x}$.
+  \item $f' = 4x^3 - 6x^2 + 2x$; $f'' = 12x^2 - 12x + 2$; $f''' = 24x - 12$.
+  \item $v(t) = 3t^2 - 18t + 24 = 3(t^2 - 6t + 8) = 3(t - 2)(t - 4) = 0$. Velocidad cero en $t = 2$ y $t = 4$ (segundos).
+  \item Usando la identidad: $f(x) = \frac{1}{2}\sin(2x)$. Entonces $f'(x) = \cos(2x)$, $f''(x) = -2\sin(2x)$, $f'''(x) = -4\cos(2x)$.
+  \item $f'(x) = \dfrac{2x}{x^2 + 1}$; $f''(x) = \dfrac{2(x^2 + 1) - 2x(2x)}{(x^2 + 1)^2} = \dfrac{2 - 2x^2}{(x^2 + 1)^2}$.
+  \item $y = e^{2x} \Rightarrow y' = 2e^{2x} \Rightarrow y'' = 4e^{2x}$. Entonces $y'' - 4y = 4e^{2x} - 4e^{2x} = 0$. Se verifica.
+  \item $f(x) = x^{1/2}$; $f'(x) = \frac{1}{2}x^{-1/2}$; $f''(x) = -\frac{1}{4}x^{-3/2} = -\dfrac{1}{4\sqrt{x^3}} < 0$ para todo $x > 0$. La función es cóncava hacia abajo en $(0, \infty)$.
+\end{enumerate}
+
+\newpage
+
+\subsection*{Sección 5: Derivación Implícita (Ejercicios 49--60)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{48}
+  \item $\dfrac{dy}{dx} = -\dfrac{x}{y}$
+  \item $\dfrac{dy}{dx} = -\dfrac{3}{2}$
+  \item $y + x\dfrac{dy}{dx} = 0 \Rightarrow \dfrac{dy}{dx} = -\dfrac{y}{x}$
+  \item $2xy + x^2\dfrac{dy}{dx} + 3y^2\dfrac{dy}{dx} = 0 \Rightarrow \dfrac{dy}{dx} = -\dfrac{2xy}{x^2 + 3y^2}$
+  \item $2x + y + x\dfrac{dy}{dx} + 2y\dfrac{dy}{dx} = 0 \Rightarrow \dfrac{dy}{dx} = -\dfrac{2x + y}{x + 2y}$
+  \item $\dfrac{dy}{dx} = -\dfrac{x}{y}$; en $(4, -3)$: $m = \dfrac{4}{3}$. Recta: $y + 3 = \dfrac{4}{3}(x - 4) \Rightarrow y = \dfrac{4}{3}x - \dfrac{25}{3}$.
+  \item $e^y \dfrac{dy}{dx} = 1 + \dfrac{dy}{dx} \Rightarrow \dfrac{dy}{dx}(e^y - 1) = 1 \Rightarrow \dfrac{dy}{dx} = \dfrac{1}{e^y - 1}$
+  \item $\dfrac{1}{y}\dfrac{dy}{dx} + 1 = 2y\dfrac{dy}{dx} \Rightarrow \dfrac{dy}{dx}\left(\dfrac{1}{y} - 2y\right) = -1 \Rightarrow \dfrac{dy}{dx} = \dfrac{y}{2y^2 - 1}$
+  \item $-\sin(x+y)\left(1 + \dfrac{dy}{dx}\right) = y + x\dfrac{dy}{dx} \Rightarrow \dfrac{dy}{dx} = \dfrac{-y - \sin(x+y)}{x + \sin(x+y)}$
+  \item $2xy^3 + 3x^2 y^2 \dfrac{dy}{dx} - 2 = \dfrac{dy}{dx} \Rightarrow \dfrac{dy}{dx}(3x^2 y^2 - 1) = 2 - 2xy^3 \Rightarrow \dfrac{dy}{dx} = \dfrac{2 - 2xy^3}{3x^2 y^2 - 1}$
+  \item $\dfrac{dy}{dx} = -\dfrac{x}{y}$. Derivamos de nuevo: $\dfrac{d^2y}{dx^2} = -\dfrac{y - x\frac{dy}{dx}}{y^2} = -\dfrac{y + \frac{x^2}{y}}{y^2} = -\dfrac{y^2 + x^2}{y^3} = -\dfrac{25}{y^3}$.
+  \item $\dfrac{2x}{9} + \dfrac{2y}{4}\dfrac{dy}{dx} = 0 \Rightarrow \dfrac{dy}{dx} = -\dfrac{4x}{9y}$. En $\left(\frac{3}{\sqrt{2}}, \sqrt{2}\right)$: $m = -\dfrac{4 \cdot \frac{3}{\sqrt{2}}}{9\sqrt{2}} = -\dfrac{\frac{12}{\sqrt{2}}}{9\sqrt{2}} = -\dfrac{12}{18} = -\dfrac{2}{3}$.
+\end{enumerate}
+
+\subsection*{Sección 6: Inversas Trigonométricas (Ejercicios 61--70)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{60}
+  \item $y' = \dfrac{2}{\sqrt{1 - 4x^2}}$
+  \item $y' = \dfrac{5}{1 + 25x^2}$
+  \item $y' = -\dfrac{1}{\sqrt{1 - x^2}}$
+  \item $y' = \dfrac{2x}{\sqrt{1 - x^4}}$
+  \item $y' = \dfrac{1}{1 + (1/x)^2} \cdot \left(-\dfrac{1}{x^2}\right) = \dfrac{-1/x^2}{1 + 1/x^2} = -\dfrac{1}{x^2 + 1}$
+  \item $y' = \dfrac{1}{\arctan x} \cdot \dfrac{1}{1 + x^2} = \dfrac{1}{(1 + x^2)\arctan x}$
+  \item $y' = e^{\arcsin x} \cdot \dfrac{1}{\sqrt{1 - x^2}} = \dfrac{e^{\arcsin x}}{\sqrt{1 - x^2}}$
+  \item $y' = \dfrac{1}{1 + (\ln x)^2} \cdot \dfrac{1}{x} = \dfrac{1}{x(1 + \ln^2 x)}$
+  \item $y' = 2x\arcsin x + \dfrac{x^2}{\sqrt{1 - x^2}} + \dfrac{-x}{\sqrt{1-x^2}} = 2x\arcsin x + \dfrac{x^2 - x}{\sqrt{1 - x^2}} = 2x \arcsin x + \dfrac{x(x-1)}{\sqrt{1-x^2}}$.
+  \item En $x = 1$: $y(1) = \arctan 1 = \frac{\pi}{4}$; $y'(1) = \frac{1}{1+1} = \frac{1}{2}$. Recta: $y - \frac{\pi}{4} = \frac{1}{2}(x - 1)$.
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,690 @@
+% ============================================================
+%  GUÍA 4: FÍSICA — MEDICIONES, CINEMÁTICA Y GRÁFICAS
+%  Curso Introductorio — 3er Año
+%  Autor: Gabriel Astudillo
+%  Sesiones cubiertas: 9, 10, 11, 12
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Guía 4 — Física: Mediciones, Cinemática y Gráficas}{Gabriel Astudillo $\cdot$ Curso 3er Año}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Estudio 4}{Física: Mediciones, Cinemática y Gráficas}{Magnitudes, Conversión de Unidades, MRU y Gráficas del Movimiento}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+\small
+\textbf{Presentación:} ¡Bienvenido a la Física! En esta guía entrarás al mundo de las mediciones y el movimiento. Aprenderás a hablar el idioma de la Física: las unidades de medida. Luego te moverás (literalmente) hacia la cinemática, donde descubrirás cómo describir matemáticamente un objeto en movimiento y cómo leer las historias que cuentan las gráficas.
+\\[4pt]
+\textbf{Nivel de Dificultad:}\quad
+\facil{} Básico / Directo \quad
+\medio{} Intermedio \quad
+\dificil{} Desafiante
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Fundamentos de la Medición}
+% ============================================================
+
+\subsection{Magnitudes físicas}
+
+\textbf{Medir} es comparar una cantidad física con una unidad patrón previamente establecida. Por ejemplo, cuando dices «la mesa mide 1,5 metros», estás comparando la longitud de la mesa con el metro.
+
+\begin{cuadroteoria}
+\textbf{Magnitud física:} Es toda propiedad de la naturaleza que puede ser \textbf{medida} y expresada con un número y una unidad. Ejemplo: longitud, masa, tiempo, temperatura, velocidad, fuerza.
+\end{cuadroteoria}
+
+Las magnitudes se clasifican en dos tipos:
+
+\begin{cuadrosolucion}
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Magnitudes escalares:} Se describen completamente con un \textbf{número y una unidad}. Ejemplo: masa ($5\;\text{kg}$), temperatura ($25\;^\circ\text{C}$), tiempo ($3\;\text{s}$).
+
+  \item \textbf{Magnitudes vectoriales:} Además del número y la unidad (\textbf{módulo}), necesitan una \textbf{dirección} y un \textbf{sentido}. Ejemplo: velocidad ($60\;\text{km/h}$ hacia el norte), fuerza ($10\;\text{N}$ hacia arriba).
+\end{itemize}
+\end{cuadrosolucion}
+
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}[x=1.2cm, y=1.2cm]
+    % Column 1: Escalar (Left)
+    \begin{scope}[shift={(-2.8, 0)}]
+      \draw[draw=mwprimario, fill=mwprimario!12, rounded corners, thick] (-2, -1.8) rectangle (1.2, 1.8);
+      \node[text=mwprimario, font=\bfseries\small] at (-0.4, 1.4) {Magnitud Escalar};
+      
+      % Thermometer drawing
+      \draw[thick, gray!80, fill=white] (-0.8, -1.2) -- (-0.8, 0.6) arc(180:0:0.23cm) -- (-0.4, -1.2) arc(45:-225:0.35cm);
+      \fill[mwrojonaranja] (-0.61, -1.4) circle (0.28cm);
+      \fill[mwrojonaranja] (-0.7, -1.2) rectangle (-0.5, -0.1);
+      
+      % Thermometer scale ticks
+      \foreach \y in {-0.9, -0.7, -0.5, -0.3, -0.1, 0.1, 0.3, 0.5} {
+        \draw[gray] (-0.4, \y) -- (-0.5, \y);
+      }
+      
+      % Label node
+      \draw[thick, -Latex, mwrojonaranja] (0.25, -0.1) -- (-0.4, -0.1);
+      \node[right, font=\footnotesize\bfseries, text=mwrojonaranja] at (0.2, -0.1) {$25^\circ\text{C}$};
+      \node[right, font=\tiny, text=gray, align=center] at (-0.25, -0.5) {Solo número\\y unidad};
+    \end{scope}
+
+% Column 2: Vectorial (Right)
+    \begin{scope}[shift={(2.3, 0)}]
+      \draw[draw=mwprimario, fill=mwprimario!12, rounded corners, thick] (-1, -1.8) rectangle (2.8, 1.8);
+      \node[text=mwprimario, font=\bfseries\small] at (0.9, 1.4) {Magnitud Vectorial};
+      
+      % Eje de dirección (dashed line) - pasa por el origen
+      \draw[dashed, gray] (-0.5, -0.275) -- (2.0, 1.0) node[below=5pt, font=\tiny] {Dirección};
+      
+      % Vector principal (verde) - desde origen hasta (1.5, 0.75)
+      % Ángulo = arctan(0.75/1.5) = 26.57°
+      \draw[ultra thick, -{Latex[scale=1.5]}, mwmagenta] (0, 0) -- (1.5, 0.75);
+      \fill[mwmagenta] (0, 0) circle (2pt);
+      \node[above left, font=\footnotesize\bfseries, text=mwmagenta] at (0.75, 0.375) {$\vec{v}$};
+      
+      % === Módulo (doble flecha gris, paralela al vector, desplazada hacia arriba) ===
+      % Desplazamiento perpendicular: (-sin(26.57°), cos(26.57°)) * 0.25
+      % sin(26.57°) ≈ 0.447, cos(26.57°) ≈ 0.894
+      % Offset ≈ (-0.112, 0.224)
+      \draw[thick, <->, gray] (-0.21, 0.42) -- node[above=3pt, font=\tiny\bfseries, text=gray, rotate=26.57] {Módulo} (1.18, 1.1);
+      
+      % === Sentido (flecha roja que indica la dirección del vector) ===
+      \draw[thick, ->, mwrojonaranja] (1.6, 0.8) -- (2.2, 1.1);
+      \node[right, font=\tiny\bfseries, text=mwrojonaranja] at (1.8, 0.85) {Sentido};
+      
+      % === Dirección (Ángulo) - arco desde el eje x hasta el vector ===
+      \draw[thick, draw=mwnaranja] (0.8, 0) arc (0:26.57:0.8cm);
+      \node[right, font=\tiny\bfseries, text=mwnaranja] at (0.4, -0.15) {Dirección (Ángulo)};
+      
+      % Texto inferior
+      \node[below, font=\tiny, text=gray, align=center] at (0.9, -1.1) {Posee módulo, dirección\\y sentido (ej. velocidad)};
+    \end{scope}
+
+  \end{tikzpicture}
+  \caption{Magnitudes escalares vs. vectoriales.}
+  \label{fig:magnitudes}
+\end{figure}
+
+\subsection{El Sistema Internacional de Unidades (SI)}
+
+Para que los científicos de todo el mundo se entiendan, se acordó un sistema estándar de unidades: el \textbf{Sistema Internacional} (SI), también llamado \textbf{MKS} por sus tres unidades base principales:
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Magnitud} & \textbf{Unidad SI} & \textbf{Símbolo} \\
+\midrule
+Longitud & metro & m \\
+Masa & kilogramo & kg \\
+Tiempo & segundo & s \\
+Temperatura & kelvin & K \\
+Corriente eléctrica & amperio & A \\
+Cantidad de sustancia & mol & mol \\
+Intensidad luminosa & candela & cd \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{cuadroadvertencia}
+\textbf{El sistema CGS:} Es un subsistema que usa el \textbf{centímetro} (cm), el \textbf{gramo} (g) y el \textbf{segundo} (s). Aunque oficialmente se usa el SI, el CGS sigue apareciendo en muchos textos de Química (por ejemplo, la densidad en $\text{g/cm}^3$).
+\end{cuadroadvertencia}
+
+\newpage
+
+% ============================================================
+\subsection{Ejercicios: Magnitudes y Unidades}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*]
+  \item \facil{} Clasifica cada magnitud como escalar (E) o vectorial (V):
+  \begin{multicols}{2}
+  \begin{enumerate}[label=\alph*)]
+    \item Masa de un libro
+    \item Velocidad de un avión
+    \item Temperatura del agua
+    \item Fuerza aplicada a una puerta
+    \item Tiempo de una carrera
+    \item Desplazamiento de un atleta
+  \end{enumerate}
+  \end{multicols}
+
+  \item \facil{} Completa la tabla con la unidad del SI y su símbolo:
+  \begin{center}
+  \begin{tabular}{l|c|c}
+  \textbf{Magnitud} & \textbf{Unidad SI} & \textbf{Símbolo} \\
+  \hline
+  Longitud & & \\
+  Masa & & \\
+  Tiempo & & \\
+  Temperatura & & \\
+  \end{tabular}
+  \end{center}
+
+  \item \facil{} ¿En qué se diferencia una magnitud escalar de una vectorial? Escribe un ejemplo de cada una.
+
+  \item \facil{} ¿Cuáles son las tres unidades base del sistema MKS?
+
+  \item \medio{} Un vector de fuerza tiene módulo $50\;\text{N}$, dirección horizontal y sentido hacia la derecha. Dibújalo y explica cada uno de sus tres componentes.
+
+  \item \medio{} ¿Es la rapidez una magnitud escalar o vectorial? ¿Y la velocidad? Explica la diferencia con un ejemplo cotidiano.
+
+  \item \medio{} Un estudiante mide la longitud de su mesa en «cuartas» y obtiene 6 cuartas. ¿Por qué este resultado puede ser diferente al de otro estudiante? ¿Qué ventaja tiene usar unidades del SI?
+
+  \item \medio{} Indica a qué sistema (MKS o CGS) pertenecen las siguientes unidades y cuál es la magnitud que miden:
+  \begin{enumerate}[label=\alph*)]
+    \item $\text{g/cm}^3$
+    \item m/s
+    \item kg
+    \item cm
+  \end{enumerate}
+
+  \item \dificil{} ¿Puede un vector tener módulo cero? Si es así, ¿tiene sentido hablar de su dirección y sentido? Justifica.
+
+  \item \dificil{} El peso de un objeto es la fuerza con que la Tierra lo atrae. Si un objeto tiene una masa de $10\;\text{kg}$ y la aceleración de la gravedad es $g = 9{,}8\;\text{m/s}^2$, ¿cuánto pesa? ¿El peso es escalar o vectorial? Justifica.
+
+  \item \dificil{} Investiga: ¿cómo se define actualmente el metro en el SI? ¿Y el kilogramo? (Pista: las definiciones modernas se basan en constantes universales de la naturaleza.)
+
+  \item \dificil{} Un auto viaja a $100\;\text{km/h}$ hacia el norte y otro viaja a $100\;\text{km/h}$ hacia el sur. ¿Tienen la misma rapidez? ¿Tienen la misma velocidad? Explica con claridad.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Conversión de Unidades}
+% ============================================================
+
+\subsection{El método del factor de conversión}
+
+Convertir unidades significa expresar la misma cantidad en una unidad diferente. El método más seguro y organizado es el de las \textbf{fracciones unitarias} (o factores de conversión).
+
+\begin{cuadroteoria}
+\textbf{Fracción unitaria:} Es una fracción que vale 1, formada por dos cantidades equivalentes. Ejemplo:
+$$\frac{1\;\text{km}}{1\,000\;\text{m}} = 1 \qquad \frac{100\;\text{cm}}{1\;\text{m}} = 1 \qquad \frac{1\;\text{h}}{3\,600\;\text{s}} = 1$$
+Al multiplicar por una fracción unitaria, cambias la unidad sin cambiar la cantidad.
+\end{cuadroteoria}
+
+\begin{cuadrosolucion}
+\textbf{Procedimiento:}
+\begin{enumerate}[leftmargin=*]
+  \item Escribe la cantidad original con su unidad.
+  \item Multiplica por la fracción unitaria apropiada, colocando la unidad que quieres \textbf{eliminar} en el lugar opuesto (si está en el numerador, ponla en el denominador y viceversa).
+  \item Cancela las unidades y realiza la operación aritmética.
+\end{enumerate}
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplo 1 (Simple):} Convierte $5\,400\;\text{m}$ a kilómetros.
+$$5\,400\;\text{m} \times \frac{1\;\text{km}}{1\,000\;\text{m}} = \frac{5\,400}{1\,000}\;\text{km} = 5{,}4\;\text{km}$$
+
+\noindent\textbf{Ejemplo 2 (Unidades compuestas):} Convierte $72\;\text{km/h}$ a $\text{m/s}$.
+$$72\;\frac{\text{km}}{\text{h}} \times \frac{1\,000\;\text{m}}{1\;\text{km}} \times \frac{1\;\text{h}}{3\,600\;\text{s}} = \frac{72 \times 1\,000}{3\,600}\;\frac{\text{m}}{\text{s}} = 20\;\text{m/s}$$
+
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}
+    % Modern math equation node
+    \node at (0, 0) [font=\bfseries\Large, align=center] {
+      $72\ \dfrac{\textcolor{mwrojonaranja}{\cancel{\text{km}}}}{\textcolor{mwmagenta}{\cancel{\text{h}}}} 
+      \times \dfrac{1\,000\text{ m}}{1\ \textcolor{mwrojonaranja}{\cancel{\text{km}}}} 
+      \times \dfrac{1\ \textcolor{mwmagenta}{\cancel{\text{h}}}}{3\,600\text{ s}} 
+      = 20\text{ m/s}$
+    };
+  \end{tikzpicture}
+  \caption{Método de factor de conversión con fracciones unitarias.}
+  \label{fig:conversion}
+\end{figure}
+
+\begin{cuadroadvertencia}
+\textbf{Atajo útil para km/h $\leftrightarrow$ m/s:}
+\begin{itemize}
+  \item De km/h a m/s: \textbf{divide entre 3,6}.
+  \item De m/s a km/h: \textbf{multiplica por 3,6}.
+\end{itemize}
+Esto funciona porque $\frac{1\,000}{3\,600} = \frac{1}{3{,}6}$.
+\end{cuadroadvertencia}
+
+\newpage
+
+% ============================================================
+\subsection{Conversión de unidades de temperatura}
+% ============================================================
+
+A diferencia de las longitudes, masas o tiempos, las unidades de temperatura (Celsius, Kelvin y Fahrenheit) no se pueden convertir multiplicando simplemente por un factor de conversión. Esto se debe a que las escalas tienen puntos de partida («ceros») diferentes y tamaños de grados distintos. 
+
+Por ello, para convertir temperaturas debemos emplear ecuaciones algebraicas específicas:
+
+\begin{cuadroteoria}
+\textbf{Fórmulas de Conversión de Temperatura:}
+\begin{itemize}[leftmargin=*]
+  \item \textbf{De Celsius a Kelvin:} 
+  $$T_{\text{K}} = T_{\text{C}} + 273{,}15$$
+  \item \textbf{De Kelvin a Celsius:} 
+  $$T_{\text{C}} = T_{\text{K}} - 273{,}15$$
+  \item \textbf{De Celsius a Fahrenheit:} 
+  $$T_{\text{F}} = \frac{9}{5}T_{\text{C}} + 32 \qquad \text{o} \qquad T_{\text{F}} = 1{,}8 \cdot T_{\text{C}} + 32$$
+  \item \textbf{De Fahrenheit a Celsius:} 
+  $$T_{\text{C}} = \frac{5}{9}(T_{\text{F}} - 32) \qquad \text{o} \qquad T_{\text{C}} = \frac{T_{\text{F}} - 32}{1{,}8}$$
+\end{itemize}
+\end{cuadroteoria}
+
+\noindent\textbf{Ejemplo 1:} El punto de ebullición del agua a nivel del mar es $100\;^\circ\text{C}$. Expresa esta temperatura en kelvin y en grados Fahrenheit.
+\begin{itemize}[leftmargin=*]
+  \item \textbf{En kelvin:}
+  $$T_{\text{K}} = 100 + 273{,}15 = 373{,}15\;\text{K}$$
+  \item \textbf{En grados Fahrenheit:}
+  $$T_{\text{F}} = \frac{9}{5}(100) + 32 = 180 + 32 = 212\;^\circ\text{F}$$
+\end{itemize}
+
+\noindent\textbf{Ejemplo 2:} Un día frío de invierno en Nueva York registra $41\;^\circ\text{F}$. ¿A cuánto equivale en grados Celsius?
+$$T_{\text{C}} = \frac{5}{9}(41 - 32) = \frac{5}{9}(9) = 5\;^\circ\text{C}$$
+
+\newpage
+
+% ============================================================
+\subsection{Ejercicios: Conversión de Unidades}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Convierte $3{,}5\;\text{km}$ a metros.
+
+  \item \facil{} La temperatura corporal promedio de un ser humano sano es de $37\;^\circ\text{C}$. Convierte este valor a kelvin (K).
+
+  \item \facil{} Convierte $2\;\text{h}$ a segundos.
+
+  \item \facil{} Convierte $90\;\text{km/h}$ a m/s.
+
+  \item \medio{} El nitrógeno líquido se encuentra a una temperatura extremadamente baja de $77\;\text{K}$. Expresa esta temperatura en grados Celsius ($^\circ\text{C}$) y Fahrenheit ($^\circ\text{F}$).
+
+  \item \medio{} Convierte $250\;\text{mL}$ a litros.
+
+  \item \medio{} Convierte $0{,}5\;\text{m}^2$ a $\text{cm}^2$.
+
+  \item \medio{} Un atleta corre $100\;\text{m}$ en $10\;\text{s}$. Expresa su rapidez en km/h.
+
+  \item \dificil{} Convierte $5\;\text{g/cm}^3$ a $\text{kg/m}^3$.
+
+  \item \dificil{} La velocidad de la luz es $3 \times 10^8\;\text{m/s}$. Exprésala en km/h usando notación científica.
+
+  \item \dificil{} Un tanque de gasolina tiene capacidad de $60\;\text{L}$. Si la densidad de la gasolina es $0{,}75\;\text{kg/L}$, ¿cuántos kilogramos de gasolina puede contener? ¿Y cuántos gramos?
+
+  \item \dificil{} ¿Existe alguna temperatura en la que una lectura en la escala Celsius sea numéricamente igual a la lectura en la escala Fahrenheit? Si es así, calcúlala planteando y resolviendo una ecuación algebraica.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Cinemática: Movimiento Rectilíneo Uniforme (MRU)}
+% ============================================================
+
+\subsection{Conceptos fundamentales del movimiento}
+
+Antes de estudiar las ecuaciones, necesitamos definir claramente los conceptos:
+
+\begin{cuadroteoria}
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Marco de referencia:} Es el punto fijo desde el cual observas y mides el movimiento. Sin un marco de referencia, no se puede hablar de movimiento.
+  
+  \item \textbf{Posición ($x$):} Es la ubicación de un objeto respecto al marco de referencia en un instante dado. Se mide en metros (m).
+  
+  \item \textbf{Trayectoria:} Es el camino que sigue el objeto al moverse. Puede ser recta, curva, circular, etc.
+  
+  \item \textbf{Distancia recorrida ($d$):} Es la longitud total del camino recorrido. Siempre es \textbf{positiva}. Es una magnitud escalar.
+  
+  \item \textbf{Desplazamiento ($\Delta x$):} Es el cambio de posición: $\Delta x = x_f - x_0$. Puede ser positivo, negativo o cero. Es una magnitud vectorial.
+\end{itemize}
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+\textbf{Distancia vs. desplazamiento:} Imagina que caminas 3 cuadras al norte y luego 3 cuadras al sur, volviendo al punto de partida. Tu \emph{distancia recorrida} es $6$ cuadras, pero tu \emph{desplazamiento} es $0$ cuadras (terminaste donde empezaste).
+\end{cuadroadvertencia}
+
+\subsection{Rapidez y velocidad}
+
+\begin{cuadrosolucion}
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Rapidez ($|v|$):} Es la distancia recorrida dividida entre el tiempo. Siempre positiva. Escalar.
+  $$\text{rapidez} = \frac{\text{distancia}}{\text{tiempo}}$$
+  
+  \item \textbf{Velocidad ($v$):} Es el desplazamiento dividido entre el tiempo. Puede ser positiva o negativa (indica sentido). Vectorial.
+  $$v = \frac{\Delta x}{\Delta t} = \frac{x_f - x_0}{t_f - t_0}$$
+\end{itemize}
+\end{cuadrosolucion}
+\newpage
+
+\subsection{La ecuación del MRU}
+
+Un objeto se mueve con \textbf{Movimiento Rectilíneo Uniforme (MRU)} cuando se desplaza en línea recta con \textbf{velocidad constante} (sin acelerar ni frenar).
+
+\begin{cuadroteoria}
+\textbf{Ecuación del MRU:}
+$$x_f = x_0 + v \cdot t$$
+Donde:
+\begin{itemize}[leftmargin=*]
+  \item $x_f$ = posición final (m)
+  \item $x_0$ = posición inicial (m)
+  \item $v$ = velocidad constante (m/s)
+  \item $t$ = tiempo transcurrido (s)
+\end{itemize}
+\end{cuadroteoria}
+
+\noindent\textbf{Ejemplo resuelto:} Un auto parte desde $x_0 = 20\;\text{m}$ y viaja a $15\;\text{m/s}$ durante $8\;\text{s}$. ¿Cuál es su posición final?
+$$x_f = 20 + 15 \times 8 = 20 + 120 = 140\;\text{m}$$
+
+\newpage
+
+% ============================================================
+\subsection{Ejercicios: MRU}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Un ciclista viaja a $8\;\text{m/s}$ durante $30\;\text{s}$. ¿Qué distancia recorre?
+
+  \item \facil{} Un auto recorre $150\;\text{km}$ en $2\;\text{h}$. ¿Cuál es su velocidad en km/h?
+
+  \item \facil{} ¿Cuánto tiempo tarda un corredor que va a $5\;\text{m/s}$ en recorrer $400\;\text{m}$?
+
+  \item \facil{} Un tren parte de la posición $x_0 = 0$ y viaja a $25\;\text{m/s}$. ¿Dónde estará después de $1$ minuto?
+
+  \item \medio{} Un auto parte de la posición $x_0 = 50\;\text{m}$ y viaja a $-10\;\text{m/s}$ (sentido negativo). ¿Cuál es su posición después de $12\;\text{s}$? Interpreta el resultado.
+
+  \item \medio{} Dos ciudades están separadas por $270\;\text{km}$. Un auto viaja de una a otra a $90\;\text{km/h}$. ¿A qué hora llega si sale a las 8:00\,a.m.?
+
+  \item \medio{} La velocidad del sonido en el aire es aproximadamente $340\;\text{m/s}$. Si ves un relámpago y el trueno llega $4\;\text{s}$ después, ¿a qué distancia cayó el rayo? Expresa tu respuesta en km.
+
+  \item \medio{} Un auto A sale del punto de partida a $60\;\text{km/h}$. Una hora después, el auto B sale del mismo punto a $80\;\text{km/h}$ en la misma dirección. ¿Después de cuántas horas (desde que salió B) lo alcanza?
+
+  \item \dificil{} Dos trenes parten simultáneamente de dos ciudades separadas por $500\;\text{km}$, viajando uno hacia el otro. El primero va a $80\;\text{km/h}$ y el segundo a $120\;\text{km/h}$. ¿Después de cuántas horas se encuentran? ¿A qué distancia de la primera ciudad?
+
+  \item \dificil{} Un corredor recorre los primeros $200\;\text{m}$ de una carrera a $8\;\text{m/s}$ y los siguientes $300\;\text{m}$ a $6\;\text{m/s}$. ¿Cuál fue su velocidad \emph{media} en toda la carrera? (Cuidado: no es el promedio de las velocidades.)
+
+  \item \dificil{} La Estación Espacial Internacional orbita a $7{,}66\;\text{km/s}$. Si da una vuelta completa a la Tierra ($\approx 40\,000\;\text{km}$ de circunferencia orbital) en MRU, ¿cuánto dura una órbita en minutos?
+
+  \item \dificil{} Un auto parte del reposo y un observador nota que a los $5\;\text{s}$ tiene una velocidad de $20\;\text{m/s}$. Si suponemos que en ese tramo aceleró uniformemente (no es MRU), ¿es correcto usar $x = v \cdot t$ con $v = 20\;\text{m/s}$? Explica qué error se comete y cuál sería la fórmula correcta en ese caso.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Gráficas del Movimiento}
+% ============================================================
+
+\subsection{La gráfica posición vs. tiempo ($x$-$t$)}
+
+En una gráfica $x$-$t$, el eje horizontal (abscisas) representa el \textbf{tiempo} y el eje vertical (ordenadas) la \textbf{posición} del objeto.
+
+\begin{cuadroteoria}
+\textbf{Interpretación de la gráfica $x$-$t$ en MRU:}
+\begin{itemize}[leftmargin=*]
+  \item La gráfica es una \textbf{línea recta} (porque la velocidad es constante).
+  \item La \textbf{pendiente} de la recta representa la \textbf{velocidad}:
+  $$v = \text{pendiente} = \frac{\Delta x}{\Delta t} = \frac{x_2 - x_1}{t_2 - t_1}$$
+  \item Pendiente positiva → el objeto se aleja del origen (velocidad positiva).
+  \item Pendiente negativa → el objeto se acerca al origen (velocidad negativa).
+  \item Pendiente cero (línea horizontal) → el objeto está en \textbf{reposo}.
+  \item Mayor pendiente → mayor rapidez.
+\end{itemize}
+\end{cuadroteoria}
+
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}[x=1.2cm, y=0.8cm]
+    % Grid
+    \draw[very thin, gray!30] (0,0) grid (9,7);
+    
+    % Axes
+    \draw[-Latex, thick] (-0.2,0) -- (9.5,0) node[right, font=\small\bfseries] {$t\text{ (s)}$};
+    \draw[-Latex, thick] (0,-0.2) -- (0,7.5) node[above, font=\small\bfseries] {$x\text{ (m)}$};
+    
+    % Axis tick labels
+    \foreach \t in {1,2,3,4,5,6,7,8,9} {
+      \draw[thick] (\t, 0.08) -- (\t, -0.08) node[below, font=\scriptsize] {\t};
+    }
+    \foreach \x in {1,2,3,4,5,6,7} {
+      \draw[thick] (0.08, \x) -- (-0.08, \x) node[left, font=\scriptsize] {\x};
+    }
+    \node[below left, font=\scriptsize] at (0,0) {0};
+    
+    % Plot lines with sloped labels
+    \draw[ultra thick, mwprimario] 
+      (0,0) -- node[sloped, above, font=\scriptsize\bfseries] {Avanza ($v > 0$)} (3,6) 
+      -- node[above, font=\scriptsize\bfseries] {Reposo ($v = 0$)} (6,6) 
+      -- node[sloped, above, font=\scriptsize\bfseries] {Retrocede ($v < 0$)} (8,2) 
+      -- (9,2);
+    
+    % Slope triangle on Segment 1 (from t=1 to t=3)
+    \draw[thick, dashed, mwrojonaranja] (1,2) -- (3,2) node[midway, below, font=\tiny\bfseries] {$\Delta t = 2\text{ s}$};
+    \draw[thick, dashed, mwrojonaranja] (3,2) -- (3,6) node[midway, right, font=\tiny\bfseries] {$\Delta x = 4\text{ m}$};
+    \filldraw[mwrojonaranja] (1,2) circle (2pt);
+    \filldraw[mwrojonaranja] (3,6) circle (2pt);
+    
+    \node[draw=mwrojonaranja, fill=mwnaranja!12, rounded corners, inner sep=3pt, font=\tiny\bfseries, text=mwrojonaranja] at (4.5, 1.5) 
+      {$v = \frac{\Delta x}{\Delta t} = \frac{4\text{ m}}{2\text{ s}} = 2\text{ m/s}$};
+  \end{tikzpicture}
+  \caption{Gráfica posición-tiempo con diferentes tipos de movimiento.}
+  \label{fig:xt}
+\end{figure}
+\newpage %Salto necesario
+
+\subsection{La gráfica velocidad vs. tiempo ($v$-$t$)}
+
+En una gráfica $v$-$t$, el eje horizontal es el \textbf{tiempo} y el vertical la \textbf{velocidad}.
+
+\begin{cuadrosolucion}
+\textbf{Interpretación de la gráfica $v$-$t$ en MRU:}
+\begin{itemize}[leftmargin=*]
+  \item La gráfica es una \textbf{línea horizontal} (la velocidad no cambia).
+  \item El \textbf{área bajo la curva} (entre la gráfica y el eje del tiempo) representa la \textbf{distancia recorrida} (o el desplazamiento):
+  $$\Delta x = \text{área bajo la curva} = v \cdot \Delta t$$
+  \item Si la velocidad es positiva, el área es positiva (desplazamiento positivo).
+  \item Si la velocidad es negativa, el área se cuenta como negativa (desplazamiento en sentido contrario).
+\end{itemize}
+\end{cuadrosolucion}
+
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}[x=1.5cm, y=1cm]
+    % Grid
+    \draw[very thin, gray!30] (0,0) grid (6,5);
+    
+    % Shaded Area representing Displacement
+    \fill[mwmagenta!12, draw=mwmagenta, thick] (0,0) rectangle (5,4);
+    
+    % Axes
+    \draw[-Latex, thick] (-0.2,0) -- (6.5,0) node[right, font=\small\bfseries] {$t\text{ (s)}$};
+    \draw[-Latex, thick] (0,-0.2) -- (0,5.5) node[above, font=\small\bfseries] {$v\text{ (m/s)}$};
+    
+    % Axis tick labels
+    \foreach \t in {1,2,3,4,5,6} {
+      \draw[thick] (\t, 0.08) -- (\t, -0.08) node[below, font=\scriptsize] {\t};
+    }
+    \foreach \v in {1,2,3,4,5} {
+      \draw[thick] (0.08, \v) -- (-0.08, \v) node[left, font=\scriptsize] {\v};
+    }
+    \node[below left, font=\scriptsize] at (0,0) {0};
+    
+    % Constant velocity line
+    \draw[ultra thick, mwmagenta] (0,4) -- (5,4);
+    \draw[dashed, thick, gray] (5,4) -- (5,0);
+    
+    % Label inside shaded area
+    \node[text=mwmagenta, font=\small\bfseries, align=center] at (2.5, 2) 
+      {Área = Desplazamiento ($\Delta x$)\\$\Delta x = v \cdot \Delta t = 4\text{ m/s} \times 5\text{ s} = 20\text{ m}$};
+  \end{tikzpicture}
+  \caption{Gráfica velocidad-tiempo y su relación con el desplazamiento.}
+  \label{fig:vt}
+\end{figure}
+
+\newpage
+
+% ============================================================
+\subsection{Ejercicios: Gráficas del Movimiento}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Un auto parte de la posición $x_0 = 0$ y viaja a $20\;\text{m/s}$ durante $10\;\text{s}$. Dibuja la gráfica $x$-$t$ correspondiente.
+
+  \item \facil{} Para el mismo auto del ejercicio anterior, dibuja la gráfica $v$-$t$.
+
+  \item \facil{} En una gráfica $x$-$t$, un objeto tiene una línea recta que pasa por los puntos $(0\;\text{s},\; 10\;\text{m})$ y $(5\;\text{s},\; 60\;\text{m})$. ¿Cuál es la velocidad del objeto?
+
+  \item \facil{} En una gráfica $v$-$t$, un objeto mantiene una velocidad constante de $15\;\text{m/s}$ durante $8\;\text{s}$. Calcula el desplazamiento usando el área bajo la curva.
+
+  \item \medio{} Un objeto se mueve según la siguiente tabla de datos:
+  \begin{center}
+  \begin{tabular}{c|c}
+  $t$ (s) & $x$ (m) \\
+  \hline
+  0 & 5 \\
+  2 & 15 \\
+  4 & 25 \\
+  6 & 35 \\
+  8 & 45 \\
+  \end{tabular}
+  \end{center}
+  Dibuja la gráfica $x$-$t$, calcula la velocidad a partir de la pendiente y escribe la ecuación del movimiento.
+
+  \item \medio{} En una gráfica $x$-$t$, un objeto tiene pendiente positiva durante los primeros $5\;\text{s}$, luego la gráfica es horizontal durante $3\;\text{s}$, y finalmente tiene pendiente negativa durante $4\;\text{s}$. Describe con palabras lo que hizo el objeto en cada tramo.
+
+  \item \medio{} Un auto viaja a $25\;\text{m/s}$ durante $4\;\text{s}$, luego se detiene durante $3\;\text{s}$, y finalmente viaja a $-15\;\text{m/s}$ durante $2\;\text{s}$. Dibuja la gráfica $v$-$t$ y calcula el desplazamiento total.
+
+  \item \medio{} A partir de la gráfica $v$-$t$ del ejercicio anterior, dibuja la gráfica $x$-$t$ correspondiente (suponiendo $x_0 = 0$).
+
+  \item \dificil{} Dos móviles parten del mismo punto. El móvil A viaja a $10\;\text{m/s}$ y el B a $15\;\text{m/s}$, pero B parte $2\;\text{s}$ después. Dibuja ambas gráficas $x$-$t$ en el mismo plano y determina gráficamente cuándo y dónde B alcanza a A.
+
+  \item \dificil{} Un auto viaja a $v_1 = 20\;\text{m/s}$ durante un tiempo $t_1$, luego a $v_2 = 10\;\text{m/s}$ durante un tiempo $t_2$. Si la distancia total es $300\;\text{m}$ y el tiempo total es $20\;\text{s}$, plantea el sistema de ecuaciones para hallar $t_1$ y $t_2$. Resuélvelo y dibuja las gráficas $x$-$t$ y $v$-$t$.
+
+  \item \dificil{} La pendiente de una gráfica $x$-$t$ de un objeto en MRU es $-8\;\text{m/s}$ y en $t = 3\;\text{s}$ su posición es $x = 36\;\text{m}$. Escribe la ecuación del movimiento, dibuja la gráfica, y determina en qué instante el objeto pasa por el origen.
+
+  \item \dificil{} Explica por qué el área bajo la curva en una gráfica $v$-$t$ representa el desplazamiento. Usa un razonamiento geométrico y algebraico. (Pista: piensa en la fórmula del MRU y en el área de un rectángulo.)
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Clave de Respuestas}
+% ============================================================
+
+\subsection*{Magnitudes y Unidades (Ejercicios 1--12)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item a) E \quad b) V \quad c) E \quad d) V \quad e) E \quad f) V
+
+  \item Longitud: metro (m). Masa: kilogramo (kg). Tiempo: segundo (s). Temperatura: kelvin (K).
+
+  \item La escalar solo tiene magnitud (número + unidad); la vectorial tiene además dirección y sentido. Escalar: temperatura ($25\;^\circ\text{C}$). Vectorial: velocidad ($60\;\text{km/h}$ hacia el norte).
+
+  \item Metro (m), kilogramo (kg), segundo (s).
+
+  \item La flecha debe tener longitud proporcional a 50\,N, ser horizontal y apuntar hacia la derecha. Módulo: 50\,N. Dirección: horizontal. Sentido: hacia la derecha.
+
+  \item La rapidez es escalar (solo magnitud); la velocidad es vectorial (magnitud + dirección + sentido). Un auto a $60\;\text{km/h}$ tiene esa rapidez, pero su velocidad podría ser $60\;\text{km/h}$ hacia el norte o hacia el sur.
+
+  \item La «cuarta» varía de persona a persona porque depende del tamaño de la mano. El SI ofrece unidades universales e invariables que permiten comunicar medidas sin ambigüedad.
+
+  \item a) CGS, densidad. b) MKS (SI), velocidad. c) MKS (SI), masa. d) CGS, longitud.
+
+  \item Sí, existe el vector nulo ($\vec{0}$). Su módulo es cero y, por convención, no tiene dirección ni sentido definidos.
+
+  \item Peso $= mg = 10 \times 9{,}8 = 98\;\text{N}$. El peso es vectorial: tiene módulo ($98\;\text{N}$), dirección (vertical) y sentido (hacia abajo, hacia el centro de la Tierra).
+
+  \item El metro se define mediante la velocidad de la luz: $1\;\text{m}$ es la distancia que recorre la luz en el vacío en $\frac{1}{299\,792\,458}\;\text{s}$. El kilogramo se define desde 2019 mediante la constante de Planck ($h$).
+
+  \item Sí tienen la misma rapidez ($100\;\text{km/h}$). No tienen la misma velocidad, porque sus sentidos son opuestos (norte vs. sur).
+\end{enumerate}
+
+\subsection*{Conversión de Unidades (Ejercicios 13--24)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{12}
+  \item $3{,}5\;\text{km} \times 1\,000 = 3\,500\;\text{m}$.
+
+  \item $T_{\text{K}} = 37 + 273{,}15 = 310{,}15\;\text{K}$.
+
+  \item $2\;\text{h} \times 3\,600 = 7\,200\;\text{s}$.
+
+  \item $90 \div 3{,}6 = 25\;\text{m/s}$.
+
+  \item En Celsius: $T_{\text{C}} = 77 - 273{,}15 = -196{,}15\;^\circ\text{C}$. En Fahrenheit: $T_{\text{F}} = 1{,}8 \cdot (-196{,}15) + 32 = -353{,}07 + 32 = -321{,}07\;^\circ\text{F}$.
+
+  \item $250\;\text{mL} \div 1\,000 = 0{,}25\;\text{L}$.
+
+  \item $0{,}5\;\text{m}^2 \times 10\,000 = 5\,000\;\text{cm}^2$. (Porque $1\;\text{m}^2 = (100\;\text{cm})^2 = 10\,000\;\text{cm}^2$.)
+
+  \item Rapidez $= \frac{100}{10} = 10\;\text{m/s} = 10 \times 3{,}6 = 36\;\text{km/h}$.
+
+  \item $5\;\text{g/cm}^3 = 5 \times 1\,000 = 5\,000\;\text{kg/m}^3$. (Porque $1\;\text{g/cm}^3 = 1\,000\;\text{kg/m}^3$.)
+
+  \item $3 \times 10^8\;\text{m/s} \times 3{,}6 = 10{,}8 \times 10^8 = 1{,}08 \times 10^9\;\text{km/h}$.
+
+  \item $m = 60 \times 0{,}75 = 45\;\text{kg} = 45\,000\;\text{g}$.
+
+  \item Planteamos $T_{\text{F}} = 1{,}8 \cdot T_{\text{C}} + 32$. Buscamos la temperatura $x$ donde $T_{\text{F}} = T_{\text{C}} = x$. Entonces: $x = 1{,}8x + 32 \Rightarrow x - 1{,}8x = 32 \Rightarrow -0{,}8x = 32 \Rightarrow x = -40$. Por lo tanto, el único valor en el que coinciden ambas escalas es $-40\;^\circ\text{C} = -40\;^\circ\text{F}$.
+\end{enumerate}
+
+\subsection*{MRU (Ejercicios 25--36)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{24}
+  \item $d = 8 \times 30 = 240\;\text{m}$.
+
+  \item $v = \frac{150}{2} = 75\;\text{km/h}$.
+
+  \item $t = \frac{400}{5} = 80\;\text{s}$.
+
+  \item $x_f = 0 + 25 \times 60 = 1\,500\;\text{m}$.
+
+  \item $x_f = 50 + (-10)(12) = 50 - 120 = -70\;\text{m}$. El signo negativo indica que pasó por el origen y se encuentra 70\,m al otro lado.
+
+  \item $t = \frac{270}{90} = 3\;\text{h}$. Llega a las 11:00\,a.m.
+
+  \item $d = 340 \times 4 = 1\,360\;\text{m} = 1{,}36\;\text{km}$.
+
+  \item Cuando B sale, A lleva $60\;\text{km}$ de ventaja. Velocidad de acercamiento: $80 - 60 = 20\;\text{km/h}$. Tiempo: $60/20 = 3\;\text{h}$ (desde que sale B).
+
+  \item Velocidad de acercamiento: $80 + 120 = 200\;\text{km/h}$. Tiempo: $\frac{500}{200} = 2{,}5\;\text{h}$. Distancia desde la primera ciudad: $80 \times 2{,}5 = 200\;\text{km}$.
+
+  \item $t_1 = \frac{200}{8} = 25\;\text{s}$, $t_2 = \frac{300}{6} = 50\;\text{s}$. $v_{\text{media}} = \frac{500}{75} = 6{,}\overline{6}\;\text{m/s} \approx 6{,}67\;\text{m/s}$.
+
+  \item $t = \frac{40\,000}{7{,}66} \approx 5\,222\;\text{s} \approx 87{,}0\;\text{min}$.
+
+  \item No es correcto porque el auto \emph{aceleró}; no mantuvo $20\;\text{m/s}$ todo el tiempo. La velocidad promedio es $\frac{0 + 20}{2} = 10\;\text{m/s}$. La fórmula correcta sería $x = \frac{1}{2}at^2$ con $a = \frac{20}{5} = 4\;\text{m/s}^2$, dando $x = \frac{1}{2}(4)(25) = 50\;\text{m}$ en lugar de $100\;\text{m}$.
+\end{enumerate}
+
+\subsection*{Gráficas del Movimiento (Ejercicios 37--48)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{36}
+  \item Línea recta que parte de $(0, 0)$ hasta $(10, 200)$.
+
+  \item Línea horizontal en $v = 20\;\text{m/s}$ desde $t = 0$ hasta $t = 10\;\text{s}$.
+
+  \item $v = \frac{60 - 10}{5 - 0} = \frac{50}{5} = 10\;\text{m/s}$.
+
+  \item Área $= 15 \times 8 = 120\;\text{m}$.
+
+  \item $v = \frac{45 - 5}{8 - 0} = \frac{40}{8} = 5\;\text{m/s}$. Ecuación: $x = 5 + 5t$.
+
+  \item Primeros 5\,s: el objeto avanza (se aleja del origen). Siguientes 3\,s: está en reposo. Últimos 4\,s: retrocede (se acerca al origen).
+
+  \item Desplazamiento $= (25 \times 4) + (0 \times 3) + (-15 \times 2) = 100 + 0 - 30 = 70\;\text{m}$.
+
+  \item Tramo 1 ($0$–$4\;\text{s}$): recta creciente de $0$ a $100\;\text{m}$. Tramo 2 ($4$–$7\;\text{s}$): línea horizontal en $100\;\text{m}$. Tramo 3 ($7$–$9\;\text{s}$): recta decreciente de $100$ a $70\;\text{m}$.
+
+  \item A: $x_A = 10t$. B (con $2\;\text{s}$ de retraso): $x_B = 15(t - 2)$ para $t \geq 2$. Igualando: $10t = 15t - 30 \Rightarrow 5t = 30 \Rightarrow t = 6\;\text{s}$, $x = 60\;\text{m}$.
+
+  \item Sistema: $20t_1 + 10t_2 = 300$ y $t_1 + t_2 = 20$. De la segunda: $t_2 = 20 - t_1$. Sustituyendo: $20t_1 + 10(20 - t_1) = 300 \Rightarrow 10t_1 = 100 \Rightarrow t_1 = 10\;\text{s}$, $t_2 = 10\;\text{s}$.
+
+  \item Ecuación: $x = x_0 + vt$. En $t = 3$: $36 = x_0 + (-8)(3) = x_0 - 24$, así $x_0 = 60$. Ecuación: $x = 60 - 8t$. Pasa por el origen cuando $0 = 60 - 8t \Rightarrow t = 7{,}5\;\text{s}$.
+
+  \item En MRU, $\Delta x = v \cdot \Delta t$. En la gráfica $v$-$t$, el valor de $v$ es constante (horizontal). El área bajo esa recta horizontal entre $t_1$ y $t_2$ es un rectángulo: base $= \Delta t$, altura $= v$. Área $= v \cdot \Delta t = \Delta x$.
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,628 @@
+% ============================================================
+%  GUÍA 3: DESPEJE DE FÓRMULAS Y APLICACIONES INTEGRADORAS
+%  Curso Introductorio — 3er Año
+%  Autor: Gabriel Astudillo
+%  Sesiones cubiertas: 7, 8, 15, 16
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Guía 3 — Despeje de Fórmulas y Aplicaciones}{Gabriel Astudillo $\cdot$ Curso 3er Año}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Estudio 3}{Despeje de Fórmulas y Aplicaciones Integradoras}{Transposición, Geometría Espacial y Densidad}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+\small
+\textbf{Presentación:} Si las ecuaciones son el lenguaje de la ciencia, el \textbf{despeje} es la habilidad de hacerlas hablar. En esta guía aprenderás a aislar cualquier variable de una fórmula, desde las más sencillas hasta las que involucran raíces y exponentes. Luego aplicarás estas destrezas a problemas reales de geometría y densidad, donde una fórmula bien despejada marca la diferencia entre resolver el problema o quedarse atascado.
+\\[4pt]
+\textbf{Nivel de Dificultad:}\quad
+\facil{} Básico / Directo \quad
+\medio{} Intermedio \quad
+\dificil{} Desafiante
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Despeje de Fórmulas I: Variables Lineales}
+% ============================================================
+
+\subsection{El arte de despejar}
+
+Despejar una variable significa \textbf{aislarla} a un lado de la igualdad, de modo que quede completamente sola. Es exactamente lo mismo que resolver una ecuación, pero en lugar de obtener un número, obtienes una expresión que depende de otras variables.
+
+\begin{cuadroteoria}
+\textbf{Regla de oro del despeje:} Para mover un término al otro lado de la igualdad, aplica la \textbf{operación inversa}:
+\begin{center}
+\begin{tabular}{ll}
+Si está \textbf{sumando} $\longrightarrow$ pasa \textbf{restando} & Si está \textbf{restando} $\longrightarrow$ pasa \textbf{sumando} \\
+Si está \textbf{multiplicando} $\longrightarrow$ pasa \textbf{dividiendo} & Si está \textbf{dividiendo} $\longrightarrow$ pasa \textbf{multiplicando}
+\end{tabular}
+\end{center}
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+\textbf{Estrategia clave:} Siempre trabaja desde \textbf{afuera hacia adentro}. Primero elimina lo que está más lejos de la variable que quieres despejar (sumas y restas), y luego lo que está más cerca (multiplicaciones y divisiones).
+\end{cuadroadvertencia}
+
+\subsection{Ejemplos resueltos}
+
+\noindent\textbf{Ejemplo 1:} En la fórmula de la velocidad $v = \frac{d}{t}$, despeja $d$.
+\begin{itemize}
+  \item La $t$ está dividiendo a $d$. Para despejar $d$, la pasamos multiplicando al otro lado:
+  $$v \cdot t = d \quad \Longrightarrow \quad d = v \cdot t$$
+\end{itemize}
+
+\noindent\textbf{Ejemplo 2:} En la ecuación del MRU $x_f = x_0 + v \cdot t$, despeja $t$.
+\begin{itemize}
+  \item El $x_0$ está sumando; pasa restando: $x_f - x_0 = v \cdot t$.
+  \item La $v$ está multiplicando a $t$; pasa dividiendo: $t = \dfrac{x_f - x_0}{v}$.
+\end{itemize}
+
+\noindent\textbf{Ejemplo 3:} En la fórmula $F = \frac{m_1 \cdot m_2}{r^2}$, despeja $m_1$.
+\begin{itemize}
+  \item El $r^2$ divide al producto; pasa multiplicando: $F \cdot r^2 = m_1 \cdot m_2$.
+  \item La $m_2$ multiplica a $m_1$; pasa dividiendo: $m_1 = \dfrac{F \cdot r^2}{m_2}$.
+\end{itemize}
+
+\noindent\textbf{Ejemplo 4:} Despeja $b$ de la fórmula $P = 2a + 2b$.
+\begin{itemize}
+  \item El $2a$ está sumando; pasa restando: $P - 2a = 2b$.
+  \item El 2 multiplica a $b$; pasa dividiendo: $b = \dfrac{P - 2a}{2}$.
+\end{itemize}
+
+\newpage
+
+% ============================================================
+\subsection{Ejercicios: Despeje Lineal}
+% ============================================================
+Despeja la variable indicada en cada caso.
+
+\begin{enumerate}[leftmargin=*]
+  \item \facil{} $v = \dfrac{d}{t}$, despeja $t$.
+
+  \item \facil{} $A = b \cdot h$, despeja $h$.
+
+  \item \facil{} $P = 2\ell + 2w$, despeja $w$.
+
+  \item \facil{} $F = m \cdot a$, despeja $a$.
+
+  \item \medio{} $C = \dfrac{5}{9}(F - 32)$, despeja $F$. (Conversión Celsius-Fahrenheit)
+
+  \item \medio{} $x_f = x_0 + v \cdot t$, despeja $v$.
+
+  \item \medio{} $Q = m \cdot c \cdot \Delta T$, despeja $\Delta T$.
+
+  \item \medio{} $\dfrac{1}{R_T} = \dfrac{1}{R_1} + \dfrac{1}{R_2}$, despeja $R_T$.
+
+  \item \dificil{} $n = \dfrac{m}{M}$, despeja $M$. Luego sustituye: si $n = 0{,}5\;\text{mol}$ y $m = 9\;\text{g}$, ¿cuánto vale $M$?
+
+  \item \dificil{} $p \cdot V = n \cdot R \cdot T$, despeja $T$.
+
+  \item \dificil{} $v_f = v_0 + a \cdot t$, despeja $a$. Luego despeja $v_0$.
+
+  \item \dificil{} $d = \dfrac{m}{V}$. Despeja $V$. Si la densidad del hierro es $7{,}87\;\text{g/cm}^3$ y tienes una pieza de $500\;\text{g}$, ¿cuál es su volumen?
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Despeje de Fórmulas II: Exponentes y Radicales}
+% ============================================================
+
+\subsection{Despejar variables con exponentes}
+
+Cuando la variable que deseas despejar está elevada a una potencia o dentro de una raíz, necesitas las operaciones inversas correspondientes:
+
+\begin{cuadroteoria}
+\textbf{Operaciones inversas adicionales:}
+\begin{center}
+\begin{tabular}{ll}
+Si la variable está \textbf{al cuadrado} ($x^2$) & $\longrightarrow$ aplica \textbf{raíz cuadrada} ($\sqrt{\phantom{x}}$) \\
+Si la variable está \textbf{bajo raíz cuadrada} ($\sqrt{x}$) & $\longrightarrow$ aplica \textbf{elevar al cuadrado} \\
+Si la variable está \textbf{al cubo} ($x^3$) & $\longrightarrow$ aplica \textbf{raíz cúbica} ($\sqrt[3]{\phantom{x}}$) \\
+Si la variable está \textbf{bajo raíz cúbica} ($\sqrt[3]{x}$) & $\longrightarrow$ aplica \textbf{elevar al cubo}
+\end{tabular}
+\end{center}
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+\textbf{Orden de despejes:} Recuerda la jerarquía inversa. Si la fórmula es $v_f = \sqrt{2 \cdot g \cdot x}$, para despejar $x$ primero debes eliminar la raíz (elevando al cuadrado) y \textbf{luego} dividir por los demás factores.
+\end{cuadroadvertencia}
+
+\subsection{Ejemplos resueltos}
+
+\noindent\textbf{Ejemplo 1:} Despeja $x$ de $v_f = \sqrt{2gx}$.
+\begin{enumerate}
+  \item Elevamos al cuadrado ambos lados: $v_f^2 = 2gx$.
+  \item Dividimos por $2g$: $x = \dfrac{v_f^2}{2g}$.
+\end{enumerate}
+
+\noindent\textbf{Ejemplo 2:} Despeja $v$ de $E_c = \frac{1}{2}mv^2$.
+\begin{enumerate}
+  \item Multiplicamos por 2: $2E_c = mv^2$.
+  \item Dividimos por $m$: $\dfrac{2E_c}{m} = v^2$.
+  \item Aplicamos raíz cuadrada: $v = \sqrt{\dfrac{2E_c}{m}}$.
+\end{enumerate}
+
+\noindent\textbf{Ejemplo 3:} Despeja $t$ de $E = v - kt^2$.
+\begin{enumerate}
+  \item Restamos $v$ a ambos lados: $E - v = -kt^2$.
+  \item Dividimos por $-k$: $\dfrac{E - v}{-k} = t^2$, es decir $t^2 = \dfrac{v - E}{k}$.
+  \item Aplicamos raíz cuadrada: $t = \sqrt{\dfrac{v - E}{k}}$.
+\end{enumerate}
+
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}[
+      box/.style={draw=mwprimario, fill=mwprimario!12, thick, rounded corners, minimum width=4cm, minimum height=1cm, align=center, text=mwprimario, font=\bfseries\small},
+      arrow/.style={-{Latex[scale=1.2]}, ultra thick, draw=mwmagenta, text=mwmagenta, font=\bfseries\small}
+    ]
+    % Column 1: Normal operations (downwards)
+    \node at (-3, 2.5) [font=\bfseries, text=mwprimario, align=center] {Orden de Operaciones\\(Para resolver)};
+    \node (n1) at (-3, 1.2) [box] {1. Potencias y Raíces};
+    \node (n2) at (-3, -0.3) [box] {2. Multiplicaciones y Div.};
+    \node (n3) at (-3, -1.8) [box] {3. Sumas y Restas};
+    \draw[arrow] ($ (n1.west) + (-0.3, 0) $) -- node[midway, left] {Resolver} ($ (n3.west) + (-0.3, 0) $);
+
+    % Column 2: Despeje (upwards)
+    \node at (3, 2.5) [font=\bfseries, text=mwnaranja, align=center] {Orden para Despejar\\(Al revés)};
+    \node (d1) at (3, 1.2) [box, draw=mwnaranja, fill=mwnaranja!12, text=mwnaranja] {3. Potencias y Raíces};
+    \node (d2) at (3, -0.3) [box, draw=mwnaranja, fill=mwnaranja!12, text=mwnaranja] {2. Multiplicaciones y Div.};
+    \node (d3) at (3, -1.8) [box, draw=mwnaranja, fill=mwnaranja!12, text=mwnaranja] {1. Sumas y Restas};
+    \draw[arrow, draw=mwrojonaranja, text=mwrojonaranja] ($ (d3.east) + (0.3, 0) $) -- node[midway, right] {Despejar} ($ (d1.east) + (0.3, 0) $);
+
+    % Connectors showing opposite relation
+    \draw[<->, thick, dashed, gray] (n1) -- (d1);
+    \draw[<->, thick, dashed, gray] (n2) -- (d2);
+    \draw[<->, thick, dashed, gray] (n3) -- (d3);
+  \end{tikzpicture}
+  \caption{Jerarquía de Operaciones vs. Orden de Despeje.}
+  \label{fig:despeje}
+\end{figure}
+
+\newpage
+
+% ============================================================
+\subsection{Ejercicios: Despeje con Exponentes y Radicales}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} $A = \pi r^2$, despeja $r$.
+
+  \item \facil{} $v = \sqrt{2gh}$, despeja $h$.
+
+  \item \facil{} $E_c = \frac{1}{2}mv^2$, despeja $m$.
+
+  \item \facil{} $c^2 = a^2 + b^2$ (Teorema de Pitágoras), despeja $a$.
+
+  \item \medio{} $T = 2\pi\sqrt{\dfrac{L}{g}}$, despeja $L$ (período de un péndulo).
+
+  \item \medio{} $V = \frac{4}{3}\pi r^3$ (volumen de una esfera), despeja $r$.
+
+  \item \medio{} $x = v_0 t + \frac{1}{2}at^2$, despeja $a$.
+
+  \item \medio{} $F = G\dfrac{m_1 m_2}{r^2}$, despeja $r$.
+
+  \item \dificil{} $v_f^2 = v_0^2 + 2a \cdot x$, despeja $x$. Luego despeja $v_0$.
+
+  \item \dificil{} $E = \frac{1}{2}kx^2 + mgh$, despeja $x$.
+
+  \item \dificil{} $T = 2\pi\sqrt{\dfrac{m}{k}}$, despeja $k$.
+
+  \item \dificil{} Dada la fórmula de la velocidad de escape $v_e = \sqrt{\dfrac{2GM}{R}}$, despeja $M$ (masa del planeta). Si $v_e = 11\,200\;\text{m/s}$, $G = 6{,}67 \times 10^{-11}\;\text{N}\cdot\text{m}^2/\text{kg}^2$ y $R = 6{,}37 \times 10^6\;\text{m}$, calcula $M$.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Geometría Espacial Aplicada}
+% ============================================================
+
+\subsection{Midiendo el volumen de los cuerpos}
+
+El \textbf{volumen} es la cantidad de espacio tridimensional que ocupa un cuerpo. Se mide en unidades cúbicas ($\text{m}^3$, $\text{cm}^3$, etc.).
+
+\begin{cuadroteoria}
+\textbf{Fórmulas de volumen para cuerpos regulares:}
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Paralelepípedo} (caja rectangular): $V = \ell \times a \times h$ (largo $\times$ ancho $\times$ alto)
+  \item \textbf{Cubo}: $V = \ell^3$ (caso especial: todos los lados iguales)
+  \item \textbf{Cilindro}: $V = \pi r^2 h$ (área de la base circular $\times$ altura)
+  \item \textbf{Esfera}: $V = \frac{4}{3}\pi r^3$
+  \item \textbf{Cono}: $V = \frac{1}{3}\pi r^2 h$
+\end{itemize}
+\end{cuadroteoria}
+
+\begin{cuadrosolucion}
+\textbf{Equivalencia fundamental:} $1\;\text{mL} = 1\;\text{cm}^3$. Esta equivalencia es crucial en ciencias: un litro ($1\;\text{L}$) equivale a $1\,000\;\text{cm}^3 = 1\;\text{dm}^3$.
+\end{cuadrosolucion}
+
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}[x=1.3cm, y=1.3cm]
+    % Sphere
+    \begin{scope}[shift={(-3, 2.2)}]
+      \draw[thick, draw=mwprimario] (0,0) circle (1.2cm);
+      \draw[dashed, draw=mwprimario] (0,0) ellipse (1.2cm and 0.4cm);
+      \draw[thick, draw=mwprimario] (0.918,0) arc (0:-180:1.2cm and 0.4cm);
+      \draw[thick, -Latex, draw=mwrojonaranja] (0,0) -- node[above, font=\footnotesize, text=mwrojonaranja] {$r$} (0.95,0);
+      \filldraw[mwrojonaranja] (0,0) circle (1.5pt);
+      \node[below=1.3cm, font=\bfseries\small, text=mwprimario] at (0,0) {Esfera};
+      \node[below=1.8cm, font=\small, text=mwprimario] at (0,0) {$V = \frac{4}{3}\pi r^3$};
+    \end{scope}
+    
+    % Cylinder
+    \begin{scope}[shift={(3, 2.2)}]
+      \draw[thick, draw=mwprimario] (-0.56, -1.2) -- (-0.58, 0.8);
+      \draw[thick, draw=mwprimario] (0.98, -1.2) -- (0.98, 0.8);
+      \draw[thick, draw=mwprimario] (0.2, 0.8) ellipse (1.02cm and 0.35cm);
+      \draw[dashed, draw=mwprimario] (0.98, -1.2) arc (0:180:1cm and 0.35cm);
+      \draw[thick, draw=mwprimario] (0.98, -1.2) arc (0:-180:1cm and 0.35cm);
+      \draw[thick, Latex-Latex, draw=mwrojonaranja] (-1, -1.2) -- node[left, font=\footnotesize, text=mwrojonaranja] {$h$} (-1, 0.8);
+      \draw[thick, -Latex, draw=mwrojonaranja] (0.2, 0.8) -- node[above, font=\footnotesize, text=mwrojonaranja] {$r$} (1, 0.8);
+      \filldraw[mwrojonaranja] (0.2, 0.8) circle (1.5pt);
+      \node[below=1.3cm, font=\bfseries\small, text=mwprimario] at (0.2,-0.45) {Cilindro};
+      \node[below=1.8cm, font=\small, text=mwprimario] at (0.2,-0.4) {$V = \pi r^2 h$};
+    \end{scope}
+    
+    % Parallelepiped
+    \begin{scope}[shift={(-3, -2.2)}]
+      \draw[thick, draw=mwprimario] (-0.9,-0.6) rectangle (0.9, 0.6);
+      \draw[thick, draw=mwprimario] (0.9, -0.6) -- (1.4, -0.2) -- (1.4, 1.0) -- (0.9, 0.6);
+      \draw[thick, draw=mwprimario] (-0.9, 0.6) -- (-0.4, 1.0) -- (1.4, 1.0);
+      \draw[dashed, draw=mwprimario] (-0.9,-0.6) -- (-0.4, -0.2) -- (1.4, -0.2);
+      \draw[dashed, draw=mwprimario] (-0.4, -0.2) -- (-0.4, 1.0);
+      
+      \node[below, font=\footnotesize, text=mwrojonaranja] at (0, -0.6) {$\ell$};
+      \node[left, font=\footnotesize, text=mwrojonaranja] at (-0.9, 0) {$h$};
+      \node[below right, font=\footnotesize, text=mwrojonaranja] at (1.05, -0.35) {$a$};
+      
+      \node[below=1.3cm, font=\bfseries\small, text=mwprimario] at (0,0) {Paralelepípedo};
+      \node[below=1.8cm, font=\small, text=mwprimario] at (0,0) {$V = \ell \cdot a \cdot h$};
+    \end{scope}
+    
+    % Cone
+    \begin{scope}[shift={(3, -2.2)}]
+      \draw[thick, draw=mwprimario] (-1, -0.8) -- (0, 1.2) -- (1, -0.8);
+      \draw[dashed, draw=mwprimario] (1, -0.8) arc (0:180:1.3cm and 0.35cm);
+      \draw[thick, draw=mwprimario] (1, -0.8) arc (0:-180:1.3cm and 0.35cm);
+      \draw[thick, dashed, draw=mwrojonaranja] (0, -0.8) -- node[left, font=\footnotesize, text=mwrojonaranja] {$h$} (0, 1.2);
+      \draw[thick, -Latex, draw=mwrojonaranja] (0, -0.8) -- node[below, font=\footnotesize, text=mwrojonaranja] {$r$} (1, -0.8);
+      \filldraw[mwrojonaranja] (0, -0.8) circle (1.5pt);
+      
+      \node[below=1.3cm, font=\bfseries\small, text=mwprimario] at (0,0) {Cono};
+      \node[below=1.8cm, font=\small, text=mwprimario] at (0,0) {$V = \frac{1}{3}\pi r^2 h$};
+    \end{scope}
+  \end{tikzpicture}
+  \caption{Cuerpos geométricos regulares y sus fórmulas de volumen.}
+  \label{fig:cuerpos}
+\end{figure}
+
+\newpage
+
+% ============================================================
+\subsection{Ejercicios: Volúmenes de Cuerpos Geométricos}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Calcula el volumen de una caja rectangular de $10\;\text{cm}$ de largo, $5\;\text{cm}$ de ancho y $8\;\text{cm}$ de alto.
+
+  \item \facil{} ¿Cuántos mililitros de agua caben en un cubo de $6\;\text{cm}$ de lado?
+
+  \item \facil{} Calcula el volumen de un cilindro de radio $3\;\text{cm}$ y altura $10\;\text{cm}$. Usa $\pi \approx 3{,}14$.
+
+  \item \facil{} Calcula el volumen de una esfera de radio $5\;\text{cm}$.
+
+  \item \medio{} Una lata de refresco tiene forma cilíndrica con diámetro $6{,}5\;\text{cm}$ y altura $12\;\text{cm}$. ¿Cuántos mililitros de líquido puede contener?
+
+  \item \medio{} Un acuario tiene forma de paralelepípedo con dimensiones $60\;\text{cm} \times 30\;\text{cm} \times 40\;\text{cm}$. ¿Cuántos litros de agua caben?
+
+  \item \medio{} El volumen de un cilindro es $500\;\text{cm}^3$ y su radio es $4\;\text{cm}$. ¿Cuál es su altura?
+
+  \item \medio{} ¿Cuál es el radio de una esfera cuyo volumen es $904{,}78\;\text{cm}^3$?
+
+  \item \dificil{} Un cono tiene la misma base y la misma altura que un cilindro de radio $5\;\text{cm}$ y altura $12\;\text{cm}$. ¿Cuántas veces cabe el volumen del cono dentro del cilindro?
+
+  \item \dificil{} Un tanque cilíndrico horizontal de radio $1\;\text{m}$ y longitud $3\;\text{m}$ está lleno de agua hasta la mitad. ¿Cuántos litros de agua contiene?
+
+  \item \dificil{} Convierte $2{,}5\;\text{m}^3$ a litros y luego a centímetros cúbicos.
+
+  \item \dificil{} Una pelota de fútbol tiene un diámetro de $22\;\text{cm}$. Viene empacada en una caja cúbica del mismo tamaño. ¿Qué porcentaje del volumen de la caja ocupa la pelota?
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{La Densidad Absoluta}
+% ============================================================
+
+\subsection{Definición y fórmula}
+
+La \textbf{densidad} es una propiedad intensiva de la materia que relaciona la masa de un cuerpo con el volumen que ocupa. En palabras sencillas: te dice qué tan «comprimida» está la materia dentro de un objeto.
+
+\begin{cuadroteoria}
+$$d = \frac{m}{V}$$
+Donde:
+\begin{itemize}[leftmargin=*]
+  \item $d$ = densidad (generalmente en $\text{g/cm}^3$ o $\text{kg/m}^3$)
+  \item $m$ = masa del cuerpo
+  \item $V$ = volumen del cuerpo
+\end{itemize}
+\end{cuadroteoria}
+
+A partir de esta fórmula, podemos despejar las otras dos variables:
+$$m = d \cdot V \qquad\qquad V = \frac{m}{d}$$
+
+\begin{cuadroadvertencia}
+\textbf{Dato importante:} La densidad del agua pura a 4\,°C es exactamente $1\;\text{g/cm}^3$ (o $1\,000\;\text{kg/m}^3$). Esto se usa como referencia: los objetos con densidad mayor que 1\,g/cm$^3$ se \textbf{hunden} en el agua; los que tienen densidad menor, \textbf{flotan}.
+\end{cuadroadvertencia}
+
+\subsection{El principio de Arquímedes para medir volúmenes}
+
+¿Cómo medimos el volumen de un objeto de forma irregular, como una piedra o una llave? No podemos usar fórmulas geométricas porque no tiene una forma regular. La solución es el \textbf{método de desplazamiento de agua}:
+
+\begin{cuadrosolucion}
+\textbf{Procedimiento:}
+\begin{enumerate}[leftmargin=*]
+  \item Llena una probeta graduada con un volumen conocido de agua ($V_{\text{inicial}}$).
+  \item Sumerge completamente el objeto.
+  \item Lee el nuevo nivel del agua ($V_{\text{final}}$).
+  \item El volumen del objeto es: $V_{\text{objeto}} = V_{\text{final}} - V_{\text{inicial}}$.
+\end{enumerate}
+\end{cuadrosolucion}
+
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}[x=1cm, y=1cm]
+    % Cylinder 1 (Antes)
+    \begin{scope}[shift={(-2.5, 0)}]
+      % Water fill
+      \fill[mwprimario!12] (-0.6, 0) rectangle (0.6, 2.0);
+      % Cylinder outline
+      \draw[very thick, gray] (-0.6, 4.0) -- (-0.6, 0) -- (0.6, 0) -- (0.6, 4.0);
+      % Tick marks and labels
+      \foreach \y in {0.4, 0.8, 1.2, 1.6, 2.0, 2.4, 2.8, 3.2, 3.6} {
+        \draw[thick, gray] (0.4, \y) -- (0.6, \y);
+      }
+      \node[left, font=\tiny, text=gray] at (0.4, 0.8) {20};
+      \node[left, font=\tiny, text=gray] at (0.4, 1.6) {40};
+      \node[left, font=\tiny, text=gray] at (0.4, 2.0) {50};
+      \node[left, font=\tiny, text=gray] at (0.4, 2.4) {60};
+      \node[left, font=\tiny, text=gray] at (0.4, 3.2) {80};
+      
+      % Label V_inicial
+      \draw[thick, -Latex, mwprimario] (1.5, 2.0) -- (0.6, 2.0);
+      \node[right, font=\footnotesize\bfseries, text=mwprimario] at (1.5, 2.0) {$V_{\text{inicial}} = 50\text{ mL}$};
+      
+      \node[below=0.4cm, font=\bfseries\small, text=mwprimario] at (0,0) {Antes (Sin objeto)};
+    \end{scope}
+
+    % Transition Arrow with stone
+    \draw[ultra thick, -Latex, gray] (-0.8, 3) -- node[above, font=\scriptsize\bfseries, text=gray] {Sumergir objeto} (0.8, 3);
+    
+    % Cylinder 2 (Después)
+    \begin{scope}[shift={(2.5, 0)}]
+      % Water fill
+      \fill[mwprimario!12] (-0.6, 0) rectangle (0.6, 2.8);
+      
+      % Irregular stone at the bottom
+      \filldraw[gray!60, draw=gray!80, thick, rounded corners=2pt] (-0.4, 0) -- (-0.3, 0.5) -- (0, 0.7) -- (0.4, 0.4) -- (0.3, 0) -- cycle;
+      
+      % Cylinder outline
+      \draw[very thick, gray] (-0.6, 4.0) -- (-0.6, 0) -- (0.6, 0) -- (0.6, 4.0);
+      % Tick marks and labels
+      \foreach \y in {0.4, 0.8, 1.2, 1.6, 2.0, 2.4, 2.8, 3.2, 3.6} {
+        \draw[thick, gray] (0.4, \y) -- (0.6, \y);
+      }
+      \node[left, font=\tiny, text=gray] at (0.4, 0.8) {20};
+      \node[left, font=\tiny, text=gray] at (0.4, 1.6) {40};
+      \node[left, font=\tiny, text=gray] at (0.4, 2.4) {60};
+      \node[left, font=\tiny, text=gray] at (0.4, 2.8) {70};
+      \node[left, font=\tiny, text=gray] at (0.4, 3.2) {80};
+      
+      % Label V_final
+      \draw[thick, -Latex, mwprimario] (1.5, 2.8) -- (0.6, 2.8);
+      \node[right, font=\footnotesize\bfseries, text=mwprimario] at (1.5, 2.8) {$V_{\text{final}} = 70\text{ mL}$};
+      
+      \node[below=0.4cm, font=\bfseries\small, text=mwprimario] at (0,0) {Después (Con objeto)};
+    \end{scope}
+    
+    % Equation Box below
+    \node[draw=mwmagenta, fill=mwmagenta!12, rounded corners, inner sep=6pt, font=\small\bfseries, text=mwmagenta] at (0,-1.5) 
+      {$V_{\text{objeto}} = V_{\text{final}} - V_{\text{inicial}} = 70\text{ mL} - 50\text{ mL} = 20\text{ mL}$};
+  \end{tikzpicture}
+  \caption{Método de desplazamiento de agua para medir volúmenes irregulares.}
+  \label{fig:arquimedes}
+\end{figure}
+
+\noindent\textbf{Ejemplo resuelto aplicando Pólya:}
+
+\textbf{Problema:} Una pieza metálica tiene una masa de $156\;\text{g}$. Al sumergirla en una probeta con $50\;\text{mL}$ de agua, el nivel sube a $70\;\text{mL}$. ¿Cuál es la densidad del metal? ¿De qué metal podría tratarse?
+
+\begin{cuadrosolucion}
+\textbf{Fase 1 (Comprender):} Nos dan masa ($156\;\text{g}$), volumen inicial ($50\;\text{mL}$) y volumen final ($70\;\text{mL}$). Debemos hallar la densidad.
+
+\textbf{Fase 2 (Planificar):} Calcular el volumen por desplazamiento, luego aplicar $d = m/V$.
+
+\textbf{Fase 3 (Ejecutar):} $V = 70 - 50 = 20\;\text{mL} = 20\;\text{cm}^3$. Entonces $d = \frac{156}{20} = 7{,}8\;\text{g/cm}^3$.
+
+\textbf{Fase 4 (Verificar):} $7{,}8\;\text{g/cm}^3$ coincide con la densidad del hierro/acero ($\approx 7{,}87\;\text{g/cm}^3$). El resultado tiene sentido.
+\end{cuadrosolucion}
+
+\newpage
+
+% ============================================================
+\subsection{Ejercicios: Densidad}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Un bloque de madera tiene una masa de $450\;\text{g}$ y un volumen de $600\;\text{cm}^3$. Calcula su densidad. ¿Flotará en el agua?
+
+  \item \facil{} ¿Cuál es la masa de $250\;\text{cm}^3$ de aluminio, si su densidad es $2{,}7\;\text{g/cm}^3$?
+
+  \item \facil{} Una sustancia tiene una densidad de $0{,}8\;\text{g/cm}^3$. ¿Qué volumen ocupan $200\;\text{g}$ de dicha sustancia?
+
+  \item \facil{} Un cubo de metal tiene $3\;\text{cm}$ de lado y una masa de $213{,}3\;\text{g}$. Calcula su densidad e identifica el metal usando la tabla de densidades:
+  \begin{center}
+  \small
+  \begin{tabular}{lc}
+  \toprule
+  \textbf{Metal} & \textbf{Densidad (g/cm$^3$)} \\
+  \midrule
+  Aluminio & 2,7 \\
+  Hierro & 7,87 \\
+  Cobre & 8,96 \\
+  Plata & 10,5 \\
+  Oro & 19,3 \\
+  \bottomrule
+  \end{tabular}
+  \end{center}
+
+  \item \medio{} Una probeta contiene $40\;\text{mL}$ de agua. Al introducir una piedra, el nivel sube a $55\;\text{mL}$. Si la piedra tiene una masa de $37{,}5\;\text{g}$, calcula su densidad.
+
+  \item \medio{} ¿Cuántos litros de mercurio ($d = 13{,}6\;\text{g/cm}^3$) tendrían una masa de $1\;\text{kg}$?
+
+  \item \medio{} Un cilindro de cobre ($d = 8{,}96\;\text{g/cm}^3$) tiene un radio de $2\;\text{cm}$ y una altura de $10\;\text{cm}$. Calcula su masa.
+
+  \item \medio{} Se tiene un recipiente con $500\;\text{mL}$ de aceite ($d = 0{,}92\;\text{g/cm}^3$) y se vierte encima $300\;\text{mL}$ de agua ($d = 1\;\text{g/cm}^3$). ¿Qué líquido queda arriba? ¿Cuál es la masa total del sistema?
+
+  \item \dificil{} Una esfera de oro ($d = 19{,}3\;\text{g/cm}^3$) tiene una masa de $500\;\text{g}$. Calcula su radio.
+
+  \item \dificil{} Se mezclan $200\;\text{cm}^3$ de alcohol ($d = 0{,}79\;\text{g/cm}^3$) con $300\;\text{cm}^3$ de agua ($d = 1\;\text{g/cm}^3$). Calcula la densidad de la mezcla suponiendo que los volúmenes se suman.
+
+  \item \dificil{} Un iceberg de hielo ($d_{\text{hielo}} = 0{,}917\;\text{g/cm}^3$) flota en agua de mar ($d_{\text{mar}} = 1{,}025\;\text{g/cm}^3$). ¿Qué fracción del iceberg queda bajo el agua?
+
+  \item \dificil{} Un objeto misterioso tiene forma de paralelepípedo con dimensiones $5\;\text{cm} \times 4\;\text{cm} \times 10\;\text{cm}$ y una masa de $1\,120\;\text{g}$. Determina su densidad, identifica el posible material, y calcula qué masa tendría un cubo de $1\;\text{m}$ de lado del mismo material (en kilogramos).
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Clave de Respuestas}
+% ============================================================
+
+\subsection*{Despeje Lineal (Ejercicios 1--12)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $t = \dfrac{d}{v}$
+
+  \item $h = \dfrac{A}{b}$
+
+  \item $w = \dfrac{P - 2\ell}{2}$
+
+  \item $a = \dfrac{F}{m}$
+
+  \item $C = \frac{5}{9}(F-32)$. Multiplicamos por $\frac{9}{5}$: $\frac{9C}{5} = F - 32$. Sumamos 32: $F = \dfrac{9C}{5} + 32$.
+
+  \item $v = \dfrac{x_f - x_0}{t}$
+
+  \item $\Delta T = \dfrac{Q}{m \cdot c}$
+
+  \item $\frac{1}{R_T} = \frac{R_1 + R_2}{R_1 R_2}$, entonces $R_T = \dfrac{R_1 \cdot R_2}{R_1 + R_2}$.
+
+  \item $M = \dfrac{m}{n}$. Sustituyendo: $M = \frac{9}{0{,}5} = 18\;\text{g/mol}$ (agua, $\text{H}_2\text{O}$).
+
+  \item $T = \dfrac{pV}{nR}$
+
+  \item $a = \dfrac{v_f - v_0}{t}$; \quad $v_0 = v_f - a \cdot t$.
+
+  \item $V = \dfrac{m}{d} = \frac{500}{7{,}87} \approx 63{,}5\;\text{cm}^3$.
+\end{enumerate}
+
+\subsection*{Despeje con Exponentes y Radicales (Ejercicios 13--24)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{12}
+  \item $r = \sqrt{\dfrac{A}{\pi}}$
+
+  \item $h = \dfrac{v^2}{2g}$
+
+  \item $m = \dfrac{2E_c}{v^2}$
+
+  \item $a = \sqrt{c^2 - b^2}$
+
+  \item $T = 2\pi\sqrt{\frac{L}{g}}$. Dividimos por $2\pi$: $\frac{T}{2\pi} = \sqrt{\frac{L}{g}}$. Elevamos al cuadrado: $\frac{T^2}{4\pi^2} = \frac{L}{g}$. Multiplicamos por $g$: $L = \dfrac{gT^2}{4\pi^2}$.
+
+  \item $V = \frac{4}{3}\pi r^3$. Entonces $r^3 = \frac{3V}{4\pi}$ y $r = \sqrt[3]{\dfrac{3V}{4\pi}}$.
+
+  \item $x = v_0 t + \frac{1}{2}at^2$. Restamos $v_0 t$: $x - v_0 t = \frac{1}{2}at^2$. Multiplicamos por 2 y dividimos por $t^2$: $a = \dfrac{2(x - v_0 t)}{t^2}$.
+
+  \item $F = \frac{Gm_1m_2}{r^2}$. Entonces $r^2 = \frac{Gm_1m_2}{F}$ y $r = \sqrt{\dfrac{Gm_1m_2}{F}}$.
+
+  \item $x = \dfrac{v_f^2 - v_0^2}{2a}$; \quad $v_0 = \sqrt{v_f^2 - 2ax}$.
+
+  \item $E - mgh = \frac{1}{2}kx^2$. Entonces $x^2 = \frac{2(E - mgh)}{k}$ y $x = \sqrt{\dfrac{2(E - mgh)}{k}}$.
+
+  \item $\frac{T}{2\pi} = \sqrt{\frac{m}{k}}$. Elevamos al cuadrado: $\frac{T^2}{4\pi^2} = \frac{m}{k}$. Despejamos: $k = \dfrac{4\pi^2 m}{T^2}$.
+
+  \item $v_e^2 = \frac{2GM}{R}$, entonces $M = \frac{v_e^2 R}{2G} = \frac{(11\,200)^2 \times 6{,}37 \times 10^6}{2 \times 6{,}67 \times 10^{-11}} \approx 5{,}99 \times 10^{24}\;\text{kg}$ (masa de la Tierra).
+\end{enumerate}
+
+\subsection*{Volúmenes (Ejercicios 25--36)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{24}
+  \item $V = 10 \times 5 \times 8 = 400\;\text{cm}^3$.
+
+  \item $V = 6^3 = 216\;\text{cm}^3 = 216\;\text{mL}$.
+
+  \item $V = \pi (3)^2 (10) = 90\pi \approx 282{,}6\;\text{cm}^3$.
+
+  \item $V = \frac{4}{3}\pi (5)^3 = \frac{500\pi}{3} \approx 523{,}6\;\text{cm}^3$.
+
+  \item Radio = $6{,}5/2 = 3{,}25\;\text{cm}$. $V = \pi(3{,}25)^2(12) \approx 397{,}6\;\text{cm}^3 \approx 397{,}6\;\text{mL}$.
+
+  \item $V = 60 \times 30 \times 40 = 72\,000\;\text{cm}^3 = 72\;\text{L}$.
+
+  \item $500 = \pi(4)^2 h \Rightarrow h = \frac{500}{16\pi} \approx 9{,}95\;\text{cm}$.
+
+  \item $904{,}78 = \frac{4}{3}\pi r^3 \Rightarrow r^3 = \frac{3 \times 904{,}78}{4\pi} \approx 216 \Rightarrow r = 6\;\text{cm}$.
+
+  \item El cono tiene $\frac{1}{3}$ del volumen del cilindro. Cabe exactamente 3 veces.
+
+  \item $V_{\text{cilindro}} = \pi(1)^2(3) = 3\pi\;\text{m}^3$. Mitad: $\frac{3\pi}{2} \approx 4{,}712\;\text{m}^3 = 4\,712\;\text{L}$.
+
+  \item $2{,}5\;\text{m}^3 = 2\,500\;\text{L} = 2\,500\,000\;\text{cm}^3$.
+
+  \item Radio = $11\;\text{cm}$. $V_{\text{esfera}} = \frac{4}{3}\pi(11)^3 \approx 5\,575{,}3\;\text{cm}^3$. $V_{\text{cubo}} = 22^3 = 10\,648\;\text{cm}^3$. Porcentaje: $\frac{5\,575{,}3}{10\,648} \times 100 \approx 52{,}4\%$.
+\end{enumerate}
+
+\subsection*{Densidad (Ejercicios 37--48)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{36}
+  \item $d = \frac{450}{600} = 0{,}75\;\text{g/cm}^3$. Sí flota (menor que $1\;\text{g/cm}^3$).
+
+  \item $m = 2{,}7 \times 250 = 675\;\text{g}$.
+
+  \item $V = \frac{200}{0{,}8} = 250\;\text{cm}^3$.
+
+  \item $V = 3^3 = 27\;\text{cm}^3$. $d = \frac{213{,}3}{27} \approx 7{,}9\;\text{g/cm}^3$. Es hierro.
+
+  \item $V = 55 - 40 = 15\;\text{cm}^3$. $d = \frac{37{,}5}{15} = 2{,}5\;\text{g/cm}^3$.
+
+  \item $V = \frac{1\,000}{13{,}6} \approx 73{,}5\;\text{cm}^3 = 0{,}0735\;\text{L} \approx 73{,}5\;\text{mL}$.
+
+  \item $V = \pi(2)^2(10) = 40\pi \approx 125{,}66\;\text{cm}^3$. $m = 8{,}96 \times 125{,}66 \approx 1\,125{,}9\;\text{g}$.
+
+  \item El aceite ($d = 0{,}92$) queda arriba (menos denso). Masa total: $500 \times 0{,}92 + 300 \times 1 = 460 + 300 = 760\;\text{g}$.
+
+  \item $V = \frac{500}{19{,}3} \approx 25{,}91\;\text{cm}^3$. De $V = \frac{4}{3}\pi r^3$: $r = \sqrt[3]{\frac{3 \times 25{,}91}{4\pi}} \approx 1{,}83\;\text{cm}$.
+
+  \item $m_{\text{total}} = 200(0{,}79) + 300(1) = 158 + 300 = 458\;\text{g}$. $V_{\text{total}} = 500\;\text{cm}^3$. $d = \frac{458}{500} = 0{,}916\;\text{g/cm}^3$.
+
+  \item $\text{Fracción sumergida} = \frac{d_{\text{hielo}}}{d_{\text{mar}}} = \frac{0{,}917}{1{,}025} \approx 0{,}895$, es decir, aproximadamente el $89{,}5\%$ del iceberg está bajo el agua.
+
+  \item $V = 5 \times 4 \times 10 = 200\;\text{cm}^3$. $d = \frac{1\,120}{200} = 5{,}6\;\text{g/cm}^3$. Material: posiblemente titanio ($d = 4{,}51$) o hierro gris, aunque $5{,}6$ no coincide exactamente con ningún metal común. Un cubo de $1\;\text{m}$ de lado: $V = 10^6\;\text{cm}^3$, $m = 5{,}6 \times 10^6\;\text{g} = 5\,600\;\text{kg}$.
+\end{enumerate}
+
+\end{document}

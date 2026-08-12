@@ -1,0 +1,486 @@
+% ============================================================
+%  GUÍA 2: ARITMÉTICA, ÁLGEBRA Y ECUACIONES
+%  Curso Introductorio — 3er Año
+%  Autor: Gabriel Astudillo
+%  Sesiones cubiertas: 4, 5, 6
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Guía 2 — Aritmética, Álgebra y Ecuaciones}{Gabriel Astudillo $\cdot$ Curso 3er Año}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Estudio 2}{Aritmética, Álgebra y Ecuaciones}{Números Reales, Exponentes, Notación Científica y Ecuaciones Lineales}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+\small
+\textbf{Presentación:} En esta segunda guía pondremos a punto las herramientas matemáticas fundamentales. Dominar las operaciones con fracciones, entender las leyes de los exponentes y resolver ecuaciones son habilidades que usarás \emph{todo el tiempo} en Física y Química. Piensa en esta guía como el taller donde afilas tus instrumentos antes de la verdadera aventura científica.
+\\[4pt]
+\textbf{Nivel de Dificultad:}\quad
+\facil{} Básico / Directo \quad
+\medio{} Intermedio \quad
+\dificil{} Desafiante
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{El Conjunto de los Números Reales ($\mathbb{R}$)}
+% ============================================================
+
+\subsection{La gran familia de los números}
+
+Los números que usamos a diario forman parte de una gran familia organizada en subconjuntos. Cada subconjunto más grande contiene al anterior:
+
+\begin{cuadroteoria}
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Números Naturales} ($\mathbb{N}$): Los que usamos para contar: $\{1, 2, 3, 4, \ldots\}$. Algunos autores incluyen el cero.
+  \item \textbf{Números Enteros} ($\mathbb{Z}$): Naturales más sus negativos y el cero: $\{\ldots, -3, -2, -1, 0, 1, 2, 3, \ldots\}$.
+  \item \textbf{Números Racionales} ($\mathbb{Q}$): Todo número que se puede escribir como fracción $\frac{a}{b}$ con $a, b \in \mathbb{Z}$ y $b \neq 0$. Incluye decimales exactos ($0{,}5 = \frac{1}{2}$) y periódicos ($0{,}333\ldots = \frac{1}{3}$).
+  \item \textbf{Números Irracionales} ($\mathbb{I}$): Números que \textbf{no} se pueden expresar como fracción. Su expansión decimal es infinita y no periódica. Ejemplos: $\pi \approx 3{,}14159\ldots$, $\sqrt{2} \approx 1{,}41421\ldots$, el número de oro $\Phi \approx 1{,}61803\ldots$
+  \item \textbf{Números Reales} ($\mathbb{R}$): La unión de racionales e irracionales. Cubre toda la recta numérica sin huecos.
+\end{itemize}
+\end{cuadroteoria}
+
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}[x=1.5cm, y=1cm]
+    % Draw the real line
+    \draw[Latex-Latex, thick] (-4.5,0) -- (4.5,0) node[right] {$\mathbb{R}$};
+    
+    % Draw integer ticks
+    \foreach \x in {-4,-3,-2,-1,0,1,2,3,4} {
+      \draw[thick] (\x, 0.1) -- (\x, -0.1) node[below, font=\small] {$\x$};
+    }
+    
+    % Draw marked numbers
+    % -3
+    \filldraw[mwrojonaranja] (-3,0) circle (3pt) node[above=4pt, font=\small\bfseries] {$-3$};
+    
+    % 1/2
+    \filldraw[mwprimario] (0.5,0) circle (3pt) node[above=4pt, font=\small\bfseries] {$\frac{1}{2}$};
+    
+    % \sqrt{2} ~ 1.414
+    \filldraw[mwmagenta] (1.414,0) circle (3pt) node[above=4pt, font=\small\bfseries] {$\sqrt{2}$};
+    
+    % \pi ~ 3.1416
+    \filldraw[mwnaranja] (3.1416,0) circle (3pt) node[above=4pt, font=\small\bfseries] {$\pi$};
+    
+    % Lines pointing to set labels
+    \draw[dashed, thin, gray] (-3,-0.1) -- (-3,-0.7);
+    \draw[dashed, thin, gray] (0.5,-0.1) -- (0.5,-0.7);
+    \draw[dashed, thin, gray] (1.414,-0.1) -- (1.414,-0.7);
+    \draw[dashed, thin, gray] (3.1416,-0.1) -- (3.1416,-0.7);
+
+    % Label sets below
+    \node[anchor=north, text=mwprimario, font=\footnotesize] at (0.5,-0.8) {$\frac{1}{2} \in \mathbb{Q}$};
+    \node[anchor=north, text=mwrojonaranja, font=\footnotesize] at (-3,-0.8) {$-3 \in \mathbb{Z}$};
+    \node[anchor=north, text=mwmagenta, font=\footnotesize] at (1.414,-0.8) {$\sqrt{2} \in \mathbb{I}$};
+    \node[anchor=north, text=mwnaranja, font=\footnotesize] at (3.1416,-0.8) {$\pi \in \mathbb{I}$};
+    
+    % General subset relation label
+    \node[draw=mwprimario, fill=mwprimario!12, rounded corners, inner sep=4pt, font=\footnotesize\bfseries, text=mwprimario] at (0,1.5) {$\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}$};
+  \end{tikzpicture}
+  \caption{La recta numérica y los conjuntos numéricos.}
+  \label{fig:recta}
+\end{figure}
+
+\begin{cuadroadvertencia}
+\textbf{Dato curioso — El número de oro ($\Phi$):} Se define como $\Phi = \frac{1 + \sqrt{5}}{2} \approx 1{,}618$. Aparece en la naturaleza con sorprendente frecuencia: en la disposición de los pétalos de las flores, en la espiral de las conchas marinas e incluso en las proporciones del cuerpo humano. Los griegos lo llamaban «la proporción divina».
+\end{cuadroadvertencia}
+
+\subsection{Repaso intensivo de fracciones}
+
+Las fracciones son la base de todo el álgebra. Si dominas las cuatro operaciones con fracciones, el despeje de fórmulas en Física será pan comido. Repasemos:
+
+\begin{cuadrosolucion}
+\textbf{Operaciones fundamentales con fracciones:}
+\begin{enumerate}[leftmargin=*, label=\arabic*.]
+  \item \textbf{Suma y resta} (mismo denominador): $\dfrac{a}{c} \pm \dfrac{b}{c} = \dfrac{a \pm b}{c}$
+  
+  \item \textbf{Suma y resta} (distinto denominador): Se busca el mínimo común múltiplo (mcm) de los denominadores.
+  $$\frac{a}{b} + \frac{c}{d} = \frac{a \cdot d + c \cdot b}{b \cdot d}$$
+  
+  \item \textbf{Multiplicación}: Se multiplican numeradores entre sí y denominadores entre sí.
+  $$\frac{a}{b} \cdot \frac{c}{d} = \frac{a \cdot c}{b \cdot d}$$
+  
+  \item \textbf{División}: Se multiplica por el recíproco de la segunda fracción.
+  $$\frac{a}{b} \div \frac{c}{d} = \frac{a}{b} \cdot \frac{d}{c} = \frac{a \cdot d}{b \cdot c}$$
+\end{enumerate}
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplo resuelto:} Simplifica $\dfrac{3}{4} + \dfrac{2}{5} - \dfrac{1}{10}$.
+\begin{itemize}
+  \item mcm$(4, 5, 10) = 20$.
+  \item $\dfrac{3}{4} = \dfrac{15}{20}$, \quad $\dfrac{2}{5} = \dfrac{8}{20}$, \quad $\dfrac{1}{10} = \dfrac{2}{20}$.
+  \item Resultado: $\dfrac{15 + 8 - 2}{20} = \dfrac{21}{20}$.
+\end{itemize}
+
+\newpage
+
+% ============================================================
+\subsection{Ejercicios: Números Reales y Fracciones}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*]
+  \item \facil{} Clasifica cada número en el conjunto más pequeño al que pertenece ($\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$ o $\mathbb{I}$):
+  \begin{multicols}{3}
+  \begin{enumerate}[label=\alph*)]
+    \item $-7$
+    \item $\frac{5}{3}$
+    \item $\sqrt{9}$
+    \item $0{,}1\overline{6}$
+    \item $\pi$
+    \item $0$
+  \end{enumerate}
+  \end{multicols}
+
+  \item \facil{} Calcula: $\dfrac{2}{3} + \dfrac{5}{6}$
+
+  \item \facil{} Calcula: $\dfrac{7}{8} - \dfrac{3}{4}$
+
+  \item \facil{} Calcula: $\dfrac{4}{9} \times \dfrac{3}{2}$
+
+  \item \facil{} Calcula: $\dfrac{5}{6} \div \dfrac{10}{3}$
+
+  \item \medio{} Simplifica: $\dfrac{3}{4} + \dfrac{2}{5} - \dfrac{1}{2}$
+
+  \item \medio{} Resuelve: $\dfrac{2}{3} \times \left(\dfrac{5}{4} - \dfrac{1}{2}\right)$
+
+  \item \medio{} Un tanque está lleno hasta $\frac{3}{5}$ de su capacidad. Si se vacía $\frac{1}{4}$ del tanque completo, ¿qué fracción del tanque queda con agua?
+
+  \item \medio{} Ordena de menor a mayor: $\dfrac{3}{5}$, $\dfrac{7}{10}$, $\dfrac{2}{3}$, $\dfrac{5}{8}$.
+
+  \item \dificil{} Simplifica: $\dfrac{\frac{2}{3} + \frac{1}{4}}{\frac{5}{6} - \frac{1}{3}}$
+
+  \item \dificil{} Si $\frac{2}{7}$ de un número es igual a 18, ¿cuál es el número? ¿Y cuál es $\frac{3}{7}$ de ese mismo número?
+
+  \item \dificil{} Demuestra que $0{,}999\ldots = 1$ usando álgebra. (Pista: sea $x = 0{,}999\ldots$, multiplica por 10 y resta.)
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Exponentes y Notación Científica}
+% ============================================================
+
+\subsection{Potenciación y sus propiedades}
+
+La potenciación es una forma abreviada de escribir multiplicaciones repetidas. Si multiplicamos la base $a$ por sí misma $n$ veces:
+$$a^n = \underbrace{a \times a \times a \times \cdots \times a}_{n \text{ veces}}$$
+
+\begin{cuadroteoria}
+\textbf{Propiedades fundamentales de los exponentes} (con $a, b \neq 0$):
+\begin{enumerate}[leftmargin=*, label=\arabic*.]
+  \item $a^m \cdot a^n = a^{m+n}$ \hfill (Producto de potencias de igual base)
+  \item $\dfrac{a^m}{a^n} = a^{m-n}$ \hfill (Cociente de potencias de igual base)
+  \item $(a^m)^n = a^{m \cdot n}$ \hfill (Potencia de una potencia)
+  \item $(a \cdot b)^n = a^n \cdot b^n$ \hfill (Potencia de un producto)
+  \item $\left(\dfrac{a}{b}\right)^n = \dfrac{a^n}{b^n}$ \hfill (Potencia de un cociente)
+  \item $a^0 = 1$ \hfill (Todo número no nulo elevado a cero es 1)
+  \item $a^{-n} = \dfrac{1}{a^n}$ \hfill (Exponente negativo $=$ recíproco)
+\end{enumerate}
+\end{cuadroteoria}
+
+\noindent\textbf{Ejemplo:} Simplifica $\dfrac{2^5 \cdot 2^3}{2^4}$.
+\begin{itemize}
+  \item Numerador: $2^5 \cdot 2^3 = 2^{5+3} = 2^8$ (propiedad 1).
+  \item Cociente: $\dfrac{2^8}{2^4} = 2^{8-4} = 2^4 = 16$ (propiedad 2).
+\end{itemize}
+
+\subsection{Notación Científica}
+
+En ciencias, trabajamos con números extremadamente grandes o extremadamente pequeños. La \textbf{notación científica} nos permite expresarlos de forma compacta:
+
+\begin{cuadrosolucion}
+$$N = a \times 10^n$$
+Donde:
+\begin{itemize}[leftmargin=*]
+  \item $a$ es un número tal que $1 \leq |a| < 10$ (tiene \textbf{un solo dígito} antes del punto decimal).
+  \item $n$ es un número entero que indica cuántas posiciones se «movió» el punto decimal.
+  \item Si $n > 0$: el número original es \textbf{grande}.
+  \item Si $n < 0$: el número original es \textbf{pequeño}.
+\end{itemize}
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplos:}
+\begin{itemize}
+  \item Distancia de la Tierra al Sol: $149\,600\,000\,\text{km} = 1{,}496 \times 10^8\,\text{km}$
+  \item Diámetro de un átomo de hidrógeno: $0{,}000\,000\,000\,106\,\text{m} = 1{,}06 \times 10^{-10}\,\text{m}$
+  \item Velocidad de la luz: $300\,000\,000\,\text{m/s} \approx 3 \times 10^8\,\text{m/s}$
+\end{itemize}
+
+\begin{cuadroadvertencia}
+\textbf{Truco para recordar:} Si mueves el punto decimal hacia la \emph{izquierda}, el exponente es \textbf{positivo}. Si lo mueves hacia la \emph{derecha}, es \textbf{negativo}. Cuenta la cantidad de saltos y ese es el valor de $n$.
+\end{cuadroadvertencia}
+
+\newpage
+
+% ============================================================
+\subsection{Ejercicios: Exponentes y Notación Científica}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Simplifica usando las propiedades de los exponentes: $3^4 \cdot 3^2$
+
+  \item \facil{} Simplifica: $\dfrac{5^7}{5^3}$
+
+  \item \facil{} Calcula: $(2^3)^2$
+
+  \item \facil{} Expresa en notación científica: $47\,000\,000$
+
+  \item \medio{} Simplifica: $\dfrac{4^3 \cdot 4^{-1}}{4^2}$
+
+  \item \medio{} Expresa en notación científica: $0{,}000\,032$
+
+  \item \medio{} Calcula y expresa en notación científica: $(3 \times 10^4) \times (2 \times 10^5)$
+
+  \item \medio{} Calcula y expresa en notación científica: $\dfrac{8 \times 10^9}{4 \times 10^3}$
+
+  \item \medio{} Simplifica completamente: $\dfrac{(2^3)^2 \cdot 3^4}{2^4 \cdot 3^2}$
+
+  \item \dificil{} La masa de la Tierra es aproximadamente $5{,}97 \times 10^{24}$\,kg y la masa de la Luna es $7{,}35 \times 10^{22}$\,kg. ¿Cuántas veces más masiva es la Tierra que la Luna?
+
+  \item \dificil{} Simplifica: $\left(\dfrac{2^{-3} \cdot 4^2}{8}\right)^{-1}$. (Pista: escribe todo en base 2.)
+
+  \item \dificil{} Una bacteria mide $2 \times 10^{-6}$\,m. Si se colocaran $5 \times 10^3$ bacterias en fila, ¿qué longitud total tendrían en metros y en milímetros?
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Ecuaciones Lineales y Sistemas de Ecuaciones}
+% ============================================================
+
+\subsection{La igualdad como balanza}
+
+Una \textbf{ecuación} es una igualdad que contiene una o más incógnitas. Resolverla significa encontrar el valor de la incógnita que hace que ambos lados de la igualdad tengan el mismo valor.
+
+Piensa en una ecuación como una balanza en equilibrio: lo que haces de un lado, debes hacerlo también del otro para mantener el equilibrio.
+
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}[x=1cm, y=1cm]
+    % Central Support
+    \draw[thick, fill=gray!30] (0,-1) -- (0.3,-2.5) -- (-0.3,-2.5) -- cycle; % Base stand
+    \draw[ultra thick, gray!80] (0,-1) -- (0,-0.3); % Stand post
+    \filldraw[gray] (0,-0.3) circle (3pt); % Pivot point
+    
+    % Main Beam (balanced)
+    \draw[ultra thick, mwprimario] (-3,-0.3) -- (3,-0.3);
+    
+    % Hanger strings (left side)
+    \draw[thick] (-3,-0.3) -- (-3.5,-1.3);
+    \draw[thick] (-3,-0.3) -- (-2.5,-1.3);
+    % Plate (left side)
+    \draw[very thick, fill=mwprimario!12, draw=mwprimario] (-3.7,-1.3) -- (-2.3,-1.3) -- (-2.5,-1.4) -- (-3.5,-1.4) -- cycle;
+    \node[text=mwprimario, font=\bfseries] at (-3,-1.15) {$3x + 2$};
+    
+    % Hanger strings (right side)
+    \draw[thick] (3,-0.3) -- (2.5,-1.3);
+    \draw[thick] (3,-0.3) -- (3.5,-1.3);
+    % Plate (right side)
+    \draw[very thick, fill=mwprimario!12, draw=mwprimario] (2.3,-1.3) -- (3.7,-1.3) -- (3.5,-1.4) -- (2.5,-1.4) -- cycle;
+    \node[text=mwprimario, font=\bfseries] at (3,-1.15) {$14$};
+    
+    % Equal sign in the middle
+    \node[text=mwmagenta, font=\Huge\bfseries] at (0,-1.3) {$=$};
+  \end{tikzpicture}
+  \caption{La ecuación como balanza: lo que haces de un lado, lo haces del otro.}
+  \label{fig:balanza}
+\end{figure}
+
+\begin{cuadroteoria}
+\textbf{Principios fundamentales para resolver ecuaciones:}
+\begin{enumerate}[leftmargin=*, label=\arabic*.]
+  \item \textbf{Principio de adición:} Si $a = b$, entonces $a + c = b + c$ y $a - c = b - c$.
+  
+  \textit{Puedes sumar o restar la misma cantidad a ambos lados.}
+  
+  \item \textbf{Principio de multiplicación:} Si $a = b$, entonces $a \cdot c = b \cdot c$ y $\frac{a}{c} = \frac{b}{c}$ (con $c \neq 0$).
+  
+  \textit{Puedes multiplicar o dividir ambos lados por la misma cantidad (distinta de cero).}
+\end{enumerate}
+\end{cuadroteoria}
+
+\subsection{Resolución de ecuaciones lineales}
+
+Una ecuación lineal tiene la forma $ax + b = c$, donde la incógnita $x$ aparece con exponente 1.
+
+\noindent\textbf{Ejemplo resuelto:} Resuelve $5x - 3 = 2x + 9$.
+\begin{enumerate}
+  \item Agrupar términos con $x$ a un lado: $5x - 2x = 9 + 3$
+  \item Simplificar: $3x = 12$
+  \item Dividir por el coeficiente: $x = \frac{12}{3} = 4$
+  \item \textbf{Verificación:} $5(4) - 3 = 17$ y $2(4) + 9 = 17$ $\checkmark$
+\end{enumerate}
+
+\subsection{Sistemas de ecuaciones lineales}
+
+Cuando tenemos \textbf{dos incógnitas}, necesitamos \textbf{dos ecuaciones} para encontrar una solución única. Los dos métodos principales son:
+
+\begin{cuadrosolucion}
+\textbf{Método de sustitución:}
+\begin{enumerate}[leftmargin=*]
+  \item Despeja una variable de una ecuación.
+  \item Sustituye esa expresión en la otra ecuación.
+  \item Resuelve la ecuación resultante (tiene una sola incógnita).
+  \item Sustituye el valor hallado para encontrar la segunda variable.
+\end{enumerate}
+\end{cuadrosolucion}
+
+\begin{cuadroextra}
+\textbf{Método de reducción (eliminación):}
+\begin{enumerate}[leftmargin=*]
+  \item Multiplica una o ambas ecuaciones por constantes para que una variable tenga coeficientes opuestos.
+  \item Suma las ecuaciones para eliminar esa variable.
+  \item Resuelve la ecuación resultante.
+  \item Sustituye para hallar la otra variable.
+\end{enumerate}
+\end{cuadroextra}
+
+\noindent\textbf{Ejemplo resuelto (Sustitución):}
+$$\begin{cases} x + y = 10 \\ 2x - y = 5 \end{cases}$$
+
+\begin{itemize}
+  \item De la primera: $y = 10 - x$.
+  \item Sustituimos en la segunda: $2x - (10 - x) = 5 \Rightarrow 3x - 10 = 5 \Rightarrow 3x = 15 \Rightarrow x = 5$.
+  \item Entonces $y = 10 - 5 = 5$.
+  \item \textbf{Verificación:} $5 + 5 = 10$ $\checkmark$ y $2(5) - 5 = 5$ $\checkmark$.
+\end{itemize}
+
+\newpage
+
+% ============================================================
+\subsection{Ejercicios: Ecuaciones Lineales y Sistemas}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Resuelve: $3x + 7 = 22$
+
+  \item \facil{} Resuelve: $4x - 5 = 2x + 9$
+
+  \item \facil{} Resuelve: $\dfrac{x}{3} = 8$
+
+  \item \facil{} Resuelve: $2(x + 3) = 18$
+
+  \item \medio{} Resuelve: $\dfrac{2x - 1}{3} = \dfrac{x + 4}{2}$
+
+  \item \medio{} Resuelve el sistema por sustitución:
+  $\begin{cases} x + y = 15 \\ x - y = 3 \end{cases}$
+
+  \item \medio{} Resuelve el sistema por reducción:
+  $\begin{cases} 2x + 3y = 12 \\ 4x - 3y = 6 \end{cases}$
+
+  \item \medio{} Resuelve: $5(x - 2) + 3 = 2(x + 4) - 1$
+
+  \item \dificil{} Un número y su tercera parte suman 20. Plantea la ecuación y resuélvela.
+
+  \item \dificil{} Resuelve el sistema:
+  $\begin{cases} 3x + 2y = 16 \\ 5x - 4y = -2 \end{cases}$
+
+  \item \dificil{} En una tienda, 3 cuadernos y 2 lápices cuestan 28\,Bs, mientras que 5 cuadernos y 3 lápices cuestan 45\,Bs. Plantea el sistema de ecuaciones y halla el precio de cada artículo.
+
+  \item \dificil{} Resuelve: $\dfrac{x + 2}{4} - \dfrac{x - 1}{3} = \dfrac{5}{6}$
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Clave de Respuestas}
+% ============================================================
+
+\subsection*{Números Reales y Fracciones (Ejercicios 1--12)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item a) $-7 \in \mathbb{Z}$. \quad b) $\frac{5}{3} \in \mathbb{Q}$. \quad c) $\sqrt{9} = 3 \in \mathbb{N}$. \quad d) $0{,}1\overline{6} = \frac{1}{6} \in \mathbb{Q}$. \quad e) $\pi \in \mathbb{I}$. \quad f) $0 \in \mathbb{Z}$ (o $\mathbb{N}$ según convención).
+
+  \item $\frac{2}{3} + \frac{5}{6} = \frac{4}{6} + \frac{5}{6} = \frac{9}{6} = \frac{3}{2}$
+
+  \item $\frac{7}{8} - \frac{3}{4} = \frac{7}{8} - \frac{6}{8} = \frac{1}{8}$
+
+  \item $\frac{4}{9} \times \frac{3}{2} = \frac{12}{18} = \frac{2}{3}$
+
+  \item $\frac{5}{6} \div \frac{10}{3} = \frac{5}{6} \times \frac{3}{10} = \frac{15}{60} = \frac{1}{4}$
+
+  \item $\frac{3}{4} + \frac{2}{5} - \frac{1}{2} = \frac{15}{20} + \frac{8}{20} - \frac{10}{20} = \frac{13}{20}$
+
+  \item $\frac{2}{3} \times \left(\frac{5}{4} - \frac{1}{2}\right) = \frac{2}{3} \times \left(\frac{5}{4} - \frac{2}{4}\right) = \frac{2}{3} \times \frac{3}{4} = \frac{6}{12} = \frac{1}{2}$
+
+  \item $\frac{3}{5} - \frac{1}{4} = \frac{12}{20} - \frac{5}{20} = \frac{7}{20}$ del tanque.
+
+  \item Convertimos a denominador común (40): $\frac{3}{5} = \frac{24}{40}$, $\frac{5}{8} = \frac{25}{40}$, $\frac{2}{3} = \frac{26{,}\overline{6}}{40}$... Mejor con 30: $\frac{3}{5} = \frac{18}{30}$, $\frac{7}{10} = \frac{21}{30}$, $\frac{2}{3} = \frac{20}{30}$, $\frac{5}{8} = \frac{18{,}75}{30}$. Orden: $\frac{3}{5} < \frac{5}{8} < \frac{2}{3} < \frac{7}{10}$.
+
+  \item $\frac{\frac{2}{3} + \frac{1}{4}}{\frac{5}{6} - \frac{1}{3}} = \frac{\frac{8+3}{12}}{\frac{5-2}{6}} = \frac{\frac{11}{12}}{\frac{3}{6}} = \frac{11}{12} \times \frac{6}{3} = \frac{11}{12} \times 2 = \frac{11}{6}$
+
+  \item $\frac{2}{7}x = 18 \Rightarrow x = 18 \times \frac{7}{2} = 63$. Entonces $\frac{3}{7} \times 63 = 27$.
+
+  \item Sea $x = 0{,}999\ldots$ Entonces $10x = 9{,}999\ldots$ Restando: $10x - x = 9{,}999\ldots - 0{,}999\ldots \Rightarrow 9x = 9 \Rightarrow x = 1$.
+\end{enumerate}
+
+\subsection*{Exponentes y Notación Científica (Ejercicios 13--24)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{12}
+  \item $3^4 \cdot 3^2 = 3^{4+2} = 3^6 = 729$
+
+  \item $\frac{5^7}{5^3} = 5^{7-3} = 5^4 = 625$
+
+  \item $(2^3)^2 = 2^{3 \times 2} = 2^6 = 64$
+
+  \item $47\,000\,000 = 4{,}7 \times 10^7$
+
+  \item $\frac{4^3 \cdot 4^{-1}}{4^2} = \frac{4^{3-1}}{4^2} = \frac{4^2}{4^2} = 4^0 = 1$
+
+  \item $0{,}000\,032 = 3{,}2 \times 10^{-5}$
+
+  \item $(3 \times 10^4)(2 \times 10^5) = 6 \times 10^{4+5} = 6 \times 10^9$
+
+  \item $\frac{8 \times 10^9}{4 \times 10^3} = 2 \times 10^{9-3} = 2 \times 10^6$
+
+  \item $\frac{(2^3)^2 \cdot 3^4}{2^4 \cdot 3^2} = \frac{2^6 \cdot 3^4}{2^4 \cdot 3^2} = 2^{6-4} \cdot 3^{4-2} = 2^2 \cdot 3^2 = 4 \cdot 9 = 36$
+
+  \item $\frac{5{,}97 \times 10^{24}}{7{,}35 \times 10^{22}} = \frac{5{,}97}{7{,}35} \times 10^{24-22} = 0{,}8122 \times 10^2 \approx 81{,}2$ veces.
+
+  \item En base 2: $2^{-3} = 2^{-3}$, $4^2 = (2^2)^2 = 2^4$, $8 = 2^3$. Interior: $\frac{2^{-3} \cdot 2^4}{2^3} = \frac{2^1}{2^3} = 2^{-2}$. Con exponente $-1$: $(2^{-2})^{-1} = 2^2 = 4$.
+
+  \item $2 \times 10^{-6} \times 5 \times 10^3 = 10 \times 10^{-3} = 1 \times 10^{-2}\,\text{m} = 0{,}01\,\text{m} = 10\,\text{mm}$.
+\end{enumerate}
+
+\subsection*{Ecuaciones Lineales y Sistemas (Ejercicios 25--36)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{24}
+  \item $3x + 7 = 22 \Rightarrow 3x = 15 \Rightarrow x = 5$.
+
+  \item $4x - 5 = 2x + 9 \Rightarrow 2x = 14 \Rightarrow x = 7$.
+
+  \item $\frac{x}{3} = 8 \Rightarrow x = 24$.
+
+  \item $2(x+3) = 18 \Rightarrow 2x + 6 = 18 \Rightarrow 2x = 12 \Rightarrow x = 6$.
+
+  \item $\frac{2x-1}{3} = \frac{x+4}{2}$. Multiplicamos por 6: $2(2x-1) = 3(x+4) \Rightarrow 4x - 2 = 3x + 12 \Rightarrow x = 14$.
+
+  \item Sumando: $2x = 18 \Rightarrow x = 9$, $y = 15 - 9 = 6$.
+
+  \item Sumando: $6x = 18 \Rightarrow x = 3$. En la primera: $6 + 3y = 12 \Rightarrow y = 2$.
+
+  \item $5x - 10 + 3 = 2x + 8 - 1 \Rightarrow 5x - 7 = 2x + 7 \Rightarrow 3x = 14 \Rightarrow x = \frac{14}{3}$.
+
+  \item $x + \frac{x}{3} = 20 \Rightarrow \frac{4x}{3} = 20 \Rightarrow x = 15$.
+
+  \item Multiplicamos la primera por 2: $6x + 4y = 32$. Sumamos con la segunda: $11x = 30 \Rightarrow x = \frac{30}{11}$. Sustituyendo: $y = \frac{16 - 3 \cdot \frac{30}{11}}{2} = \frac{16 - \frac{90}{11}}{2} = \frac{\frac{176 - 90}{11}}{2} = \frac{86}{22} = \frac{43}{11}$.
+
+  \item Sea $c$ el precio del cuaderno y $l$ el del lápiz. Sistema: $3c + 2l = 28$ y $5c + 3l = 45$. Multiplicamos la primera por 3 y la segunda por $-2$: $9c + 6l = 84$, $-10c - 6l = -90$. Sumando: $-c = -6 \Rightarrow c = 6$. Sustituyendo: $18 + 2l = 28 \Rightarrow l = 5$. Cuaderno: 6\,Bs, lápiz: 5\,Bs.
+
+  \item Multiplicamos por 12: $3(x+2) - 4(x-1) = 10 \Rightarrow 3x + 6 - 4x + 4 = 10 \Rightarrow -x + 10 = 10 \Rightarrow x = 0$.
+\end{enumerate}
+
+\end{document}

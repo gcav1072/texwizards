@@ -1,0 +1,78 @@
+% ============================================================
+%  mathwizards-formulario.sty
+%  Estilo de formularios de referencia — Mathwizards Consultoría Educativa STEM
+%
+%  Requisitos:
+%    * Compilar con XeLaTeX  →  latexmk -xelatex formulario.tex
+%    * mathwizards-palette.sty en la ruta TEXINPUTS
+%
+%  Nota: el documento debe declarar su propio \documentclass
+%  (p. ej. [9pt,landscape,a4paper] o [10pt,landscape,letterpaper])
+%  y su propia geometría si la necesita distinta a la estándar.
+% ============================================================
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mathwizards-formulario}[2026/08/11 v1.0 Formularios Mathwizards]
+
+% ── Paquetes ─────────────────────────────────────────────────
+\RequirePackage{fontspec}
+\RequirePackage[spanish]{babel}
+\AtBeginDocument{\shorthandoff{"}}
+\RequirePackage{amsmath, amssymb, amsfonts}
+\RequirePackage{xcolor}
+\RequirePackage{multicol}
+\RequirePackage{enumitem}
+\RequirePackage{fancyhdr}
+\RequirePackage{titlesec}
+\RequirePackage{booktabs}
+\RequirePackage{array}
+\RequirePackage{tikz}
+\RequirePackage{tcolorbox}
+\RequirePackage{graphicx}
+\RequirePackage{mathwizards-palette}
+
+% ── Fuentes (marca) ──────────────────────────────────────────
+\setmainfont{Cabin}[
+  Extension      = .otf,
+  UprightFont    = Cabin-Regular,
+  BoldFont       = Cabin-Bold,
+  ItalicFont     = Cabin-Italic,
+  BoldItalicFont = Cabin-BoldItalic
+]
+\newfontfamily\nxheav{Nexa Heavy}[NFSSFamily=nexaheavy]
+\newfontfamily\nxlight{Nexa Extra Light}[NFSSFamily=nexaextralight]
+
+% ── Alias de colores (versión anterior → marca) ──────────────
+\colorlet{primary}{mwprimario}
+\colorlet{primarylight}{mwprimario!12}
+\colorlet{secondary}{mwnaranja}
+\colorlet{darkbg}{mwgrisoscuro}
+\colorlet{resultcolor}{mwmagenta}
+\colorlet{divcolor}{mwrojonaranja}
+
+% ── Secciones (estilo formulario) ────────────────────────────
+\titleformat{\section}
+  {\nxheav\large\color{mwprimario}}
+  {}
+  {0em}
+  {}
+  [\color{mwprimario}\titlerule]
+\titlespacing*{\section}{0pt}{6pt}{4pt}
+
+\titleformat{\subsection}
+  {\nxheav\normalsize\color{mwprimario}}
+  {}
+  {0em}
+  {}
+  []
+\titlespacing*{\subsection}{0pt}{4pt}{2pt}
+
+% ── Cajas de bloque ──────────────────────────────────────────
+\newcommand{\cajatitulo}[1]{%
+  \noindent\colorbox{mwprimario}{\parbox{\dimexpr\linewidth-2\fboxsep}%
+    {\color{white}\nxheav\centering #1}}\par\vspace{2pt}
+}
+
+\newcommand{\cajainfo}[1]{%
+  \noindent\colorbox{mwprimario!12}{\parbox{\dimexpr\linewidth-2\fboxsep}%
+    {\small #1}}\par\vspace{2pt}
+}

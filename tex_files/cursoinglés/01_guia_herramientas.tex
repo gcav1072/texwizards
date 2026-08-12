@@ -1,0 +1,266 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{mathwizards-ingles}
+\title{%
+  \vspace{-1cm}
+  {\Huge\bfseries Guía de Herramientas Técnicas}\\[0.3cm]
+  {\Large Semana 0 — Configuración del Ecosistema de Estudio}\\[0.2cm]
+  {\large\color{grissuave} Anki · FSRS · AnkiConnect · Language Reactor · Yomitan}\\[0.5cm]
+  \rule{\textwidth}{1.5pt}
+}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\vspace{-0.5cm}
+
+\begin{cajaalerta}[\textcolor{white}{Importante: Completar ANTES de la Sesión 1}]
+Esta guía se trabaja durante la \textbf{sesión técnica preparatoria} (Semana 0), guiada paso a paso por el moderador en videollamada. Todos los estudiantes deben tener estas herramientas instaladas y configuradas \textbf{antes} de comenzar el Mes 1 del curso.
+\end{cajaalerta}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Anki — Sistema de Repetición Espaciada}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\begin{cajaherramienta}[¿Qué es Anki?]
+Anki es un software de tarjetas de memoria (\textit{flashcards}) que utiliza algoritmos de repetición espaciada para optimizar la retención a largo plazo. Es la columna vertebral del estudio deliberado en este curso.
+
+\medskip
+\textbf{Plataformas:} Windows, macOS, Linux (gratuito) · Android (gratuito) · iOS (de pago).\\
+\textbf{Descarga:} \url{https://apps.ankiweb.net/}
+\end{cajaherramienta}
+
+\subsection{Instalación}
+
+\begin{cajapaso}[Paso 1: Descargar e Instalar]
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Visitar \url{https://apps.ankiweb.net/}
+  \item Descargar la versión para tu sistema operativo
+  \item Instalar siguiendo las instrucciones del instalador
+  \item Crear una cuenta gratuita en \url{https://ankiweb.net/} (para sincronización)
+  \item Abrir Anki e iniciar sesión con tu cuenta
+\end{enumerate}
+\end{cajapaso}
+
+\begin{cajapaso}[Paso 2: Importar el Mazo Base del Grupo]
+El profesor compartirá un archivo \texttt{.apkg} con el mazo base de vocabulario de alta frecuencia.
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Descargar el archivo \texttt{.apkg} proporcionado
+  \item En Anki: \texttt{Archivo} $\rightarrow$ \texttt{Importar}
+  \item Seleccionar el archivo descargado
+  \item Verificar que el mazo aparezca en la pantalla principal
+\end{enumerate}
+\end{cajapaso}
+
+\subsection{Configuración del Algoritmo FSRS}
+
+\begin{cajaalerta}[Configuración Crítica — No Omitir]
+El algoritmo FSRS (\textit{Free Spaced Repetition Scheduler}) reemplaza el algoritmo clásico de Anki (SM-2) y es significativamente más eficiente. Esta configuración es \textbf{obligatoria} para el curso.
+\end{cajaalerta}
+
+\begin{cajapaso}[Paso 3: Activar FSRS]
+\begin{enumerate}[leftmargin=1.2cm]
+  \item En Anki, ir a \texttt{Herramientas} $\rightarrow$ \texttt{Preferencias}
+  \item Seleccionar la pestaña \texttt{Programación} (\textit{Scheduling})
+  \item Activar la casilla \textbf{``Activar el programador FSRS''} (\textit{Enable FSRS scheduler})
+  \item Hacer clic en \texttt{Aceptar}
+\end{enumerate}
+\end{cajapaso}
+
+\begin{cajapaso}[Paso 4: Parámetros del Mazo]
+Ir a la rueda de configuración del mazo $\rightarrow$ \texttt{Opciones}:
+
+\medskip
+\begin{tabularx}{\textwidth}{@{} l X @{}}
+\toprule
+\textbf{Parámetro} & \textbf{Valor Recomendado} \\
+\midrule
+Tarjetas nuevas por día & \textbf{5--10} (nunca más de 10) \\
+Repasos máximos por día & \textbf{9999} (sin límite artificial) \\
+Intervalo de graduación & \textbf{1 día, 3 días} \\
+Intervalo fácil & \textbf{4 días} \\
+Retención deseada & \textbf{0.90} (90\%) \\
+Umbral de sanguijuela & \textbf{5 fallos} (luego suspender la tarjeta) \\
+\bottomrule
+\end{tabularx}
+\end{cajapaso}
+
+\begin{cajaalerta}[Regla de las ``Sanguijuelas'' (\textit{Leeches})]
+Si una tarjeta falla más de 5 veces, Anki la suspenderá automáticamente. Esto es \textbf{intencional}: las sanguijuelas drenan energía cognitiva. El estudiante debe:
+\begin{enumerate}[leftmargin=1.2cm, nosep]
+  \item Revisar si la tarjeta está mal diseñada (¿tiene más de un elemento desconocido?)
+  \item Reformularla o reemplazarla por una oración mejor (\textit{i+1})
+  \item Si no logra retenerla, eliminarla sin culpa
+\end{enumerate}
+\end{cajaalerta}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{AnkiConnect — Puente de Automatización}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\begin{cajaherramienta}[¿Qué es AnkiConnect?]
+AnkiConnect es un complemento (\textit{add-on}) de Anki que permite a otras aplicaciones y extensiones de navegador crear tarjetas automáticamente. Es el puente que conecta las herramientas de minería con Anki.
+\end{cajaherramienta}
+
+\begin{cajapaso}[Paso 5: Instalar AnkiConnect]
+\begin{enumerate}[leftmargin=1.2cm]
+  \item En Anki, ir a \texttt{Herramientas} $\rightarrow$ \texttt{Complementos} $\rightarrow$ \texttt{Obtener complementos}
+  \item Ingresar el código: \textbf{2055492159}
+  \item Hacer clic en \texttt{OK} y reiniciar Anki
+  \item Verificar que AnkiConnect aparezca en la lista de complementos activos
+\end{enumerate}
+\end{cajapaso}
+
+\begin{cajaexito}[Verificación]
+Para confirmar que funciona, con Anki abierto, abrir un navegador y visitar:
+
+\begin{cajacodigo}
+http://localhost:8765
+\end{cajacodigo}
+
+Deberías ver una respuesta como: \texttt{AnkiConnect v.6}. Si aparece un error de conexión, verifica que Anki esté ejecutándose.
+\end{cajaexito}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Language Reactor — Inmersión con Video}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\begin{cajaherramienta}[¿Qué es Language Reactor?]
+Es una extensión de navegador (Chrome/Edge) que potencia el aprendizaje de idiomas al ver contenido en YouTube y Netflix. Muestra subtítulos duales, permite pausar por oración, y facilita la exportación de vocabulario.
+\end{cajaherramienta}
+
+\begin{cajapaso}[Paso 6: Instalar Language Reactor]
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Abrir la Chrome Web Store (o Edge Add-ons)
+  \item Buscar ``Language Reactor''
+  \item Instalar la extensión
+  \item Abrir un video de YouTube en inglés
+  \item Verificar que aparezca el panel de Language Reactor debajo del video
+\end{enumerate}
+\end{cajapaso}
+
+\begin{cajapaso}[Configuración Recomendada]
+\begin{tabularx}{\textwidth}{@{} l X @{}}
+\toprule
+\textbf{Opción} & \textbf{Configuración} \\
+\midrule
+Idioma de aprendizaje & English \\
+Idioma nativo & \textbf{Ocultar} (no mostrar subtítulos en español) \\
+Modo de reproducción & ``Auto-pause'' desactivado (para flujo natural) \\
+Guardar palabras & Activar exportación a CSV (para importar a Anki) \\
+\bottomrule
+\end{tabularx}
+\end{cajapaso}
+
+\begin{cajaalerta}[Advertencia sobre Subtítulos]
+\textbf{NO} activar subtítulos en español. El objetivo es tolerar la ambigüedad. Si necesitas apoyo, usa subtítulos en \textbf{inglés} solamente, y solo a partir del Mes 2 durante la lectura asistida.
+\end{cajaalerta}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Yomitan — Diccionario Emergente de Minería}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\begin{cajaherramienta}[¿Qué es Yomitan?]
+Yomitan (anteriormente Yomichan) es una extensión de navegador que muestra definiciones emergentes (\textit{pop-up}) al pasar el cursor sobre palabras en inglés. Conectada con AnkiConnect, permite crear tarjetas Anki con un solo clic directamente desde cualquier página web.
+\end{cajaherramienta}
+
+\begin{cajapaso}[Paso 7: Instalar Yomitan]
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Ir a la página oficial: \url{https://yomitan.wiki/}
+  \item Instalar la extensión para Chrome/Edge/Firefox
+  \item Abrir las opciones de Yomitan (clic derecho en el ícono $\rightarrow$ \textit{Options})
+\end{enumerate}
+\end{cajapaso}
+
+\begin{cajapaso}[Paso 8: Cargar Diccionarios]
+Yomitan necesita diccionarios descargados para funcionar:
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Descargar diccionarios desde: \url{https://github.com/MarvNC/yomitan-dictionaries}
+  \item Diccionarios recomendados para inglés:
+    \begin{itemize}[nosep]
+      \item \textbf{Mes 1--2:} Diccionario bilingüe Inglés$\rightarrow$Español
+      \item \textbf{Mes 2--3:} \textit{Oxford Learner's Dictionary} (monolingüe simplificado)
+      \item \textbf{Frecuencia:} Diccionario de frecuencia (para saber qué tan común es una palabra)
+    \end{itemize}
+  \item En Yomitan: \texttt{Opciones} $\rightarrow$ \texttt{Diccionarios} $\rightarrow$ \texttt{Importar}
+  \item Seleccionar los archivos \texttt{.zip} descargados
+\end{enumerate}
+\end{cajapaso}
+
+\begin{cajapaso}[Paso 9: Conectar Yomitan con AnkiConnect]
+\begin{enumerate}[leftmargin=1.2cm]
+  \item En las opciones de Yomitan, ir a la sección \texttt{Anki}
+  \item Activar \textbf{``Enable Anki integration''}
+  \item Configurar el tipo de nota (\textit{Note Type}) para que coincida con el formato del curso:
+    \begin{itemize}[nosep]
+      \item \textbf{Front:} \texttt{\{sentence\}} (la oración completa con la palabra resaltada)
+      \item \textbf{Back:} \texttt{\{glossary\}} + \texttt{\{audio\}} + \texttt{\{pitch-accent\}}
+    \end{itemize}
+  \item Seleccionar el mazo de destino (tu mazo personal de minería)
+  \item Probar: pasar el cursor sobre una palabra en una web en inglés, clic en el botón ``+'' del pop-up
+  \item Verificar que la tarjeta aparezca en Anki
+\end{enumerate}
+\end{cajapaso}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Flujo de Trabajo Integrado}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\begin{cajaexito}[Flujo Completo de Minería de Oraciones]
+Una vez configuradas todas las herramientas, el flujo de minería será:
+
+\begin{center}
+\begin{tikzpicture}[
+  node distance=0.6cm,
+  every node/.style={
+    draw, rounded corners=3pt, minimum height=1cm,
+    text width=4.5cm, align=center, font=\small
+  }
+]
+  \node[fill=herramienta!10] (a) {Leer/Ver contenido en inglés\\(YouTube, web, e-reader)};
+  \node[fill=paso!10, below=of a] (b) {Encontrar una oración con\\UNA sola palabra nueva (\textit{i+1})};
+  \node[fill=herramienta!10, below=of b] (c) {Yomitan: hover sobre la\\palabra $\rightarrow$ ver definición};
+  \node[fill=paso!10, below=of c] (d) {Clic en ``+'' $\rightarrow$ AnkiConnect\\crea la tarjeta automáticamente};
+  \node[fill=herramienta!10, below=of d] (e) {Compartir la oración en el\\canal grupal (Discord/Slack)};
+  \node[fill=exito!10, below=of e] (f) {Profesor valida $\rightarrow$\\Repasar en Anki diariamente};
+
+  \draw[->, thick] (a) -- (b);
+  \draw[->, thick] (b) -- (c);
+  \draw[->, thick] (c) -- (d);
+  \draw[->, thick] (d) -- (e);
+  \draw[->, thick] (e) -- (f);
+\end{tikzpicture}
+\end{center}
+\end{cajaexito}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Lista de Verificación Final}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\begin{cajaexito}[Checklist de la Semana 0]
+Marcar cada ítem al completarlo:
+
+\begin{enumerate}[leftmargin=1.2cm, label=$\square$]
+  \item Anki instalado y cuenta creada en AnkiWeb
+  \item Mazo base del grupo importado correctamente
+  \item Algoritmo FSRS activado con los parámetros recomendados
+  \item AnkiConnect instalado y verificado (localhost:8765)
+  \item Language Reactor instalado y configurado (sin subtítulos en español)
+  \item Yomitan instalado con diccionarios cargados
+  \item Yomitan conectado a AnkiConnect (tarjeta de prueba creada)
+  \item Discord/Slack del grupo configurado y accesible
+  \item Prueba completa: minar una oración desde una web $\rightarrow$ tarjeta en Anki
+\end{enumerate}
+\end{cajaexito}
+
+\vfill
+\begin{center}
+\rule{0.5\textwidth}{0.5pt}\\[0.3cm]
+{\small\color{grissuave} Guía preparada para el curso de Inmersión en Inglés · Semana 0 · Ecosistema Refold}
+\end{center}
+
+\end{document}

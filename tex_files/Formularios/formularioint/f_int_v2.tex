@@ -1,0 +1,143 @@
+\documentclass[9pt,landscape,a4paper]{article}
+\usepackage{mathwizards-formulario}
+
+% ── Comandos propios de este documento ─────────
+\setlength{\columnsep}{0.8cm}
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+\newcommand{\deriv}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}}
+\DeclareMathOperator{\sen}{sen}
+\DeclareMathOperator{\arcsen}{arc\,sen}
+\renewcommand{\arccos}{\operatorname{arc\,cos}}
+\renewcommand{\arctan}{\operatorname{arc\,tan}}
+\DeclareMathOperator{\arccot}{arc\,cot}
+\DeclareMathOperator{\arcsec}{arc\,sec}
+\DeclareMathOperator{\arccsc}{arc\,csc}
+\renewcommand{\sin}{\sen}
+\setlist[enumerate]{itemsep=3pt, parsep=0pt, leftmargin=*, label=\textbf{\arabic*.}}
+
+\begin{document}
+\begin{center}
+{\Large \textbf{\textcolor{primary}{Tabla de Derivadas, Integrales e Identidades Trigonométricas}}}
+\vspace{0.2cm}
+\end{center}
+
+\begin{multicols}{3}
+
+% --- COLUMNA 1: DERIVADAS ---
+\begin{tcolorbox}[colback=primary!3,colframe=primary,fonttitle=\bfseries,title=Tabla de Derivadas]
+\begin{enumerate}
+\item $\deriv{}{x} c = 0$
+\item $\deriv{}{x} x = 1$
+\item $\deriv{}{x} x^n = n \cdot x^{n-1}$
+\item $\deriv{}{x} u^n = n \cdot u^{n-1} \deriv{u}{x}$
+\item $\deriv{}{x} c \cdot u = c \cdot \deriv{u}{x}$
+\item $\deriv{}{x} (u+v) = \deriv{u}{x} + \deriv{v}{x}$
+\item $\deriv{}{x} (u \cdot v) = u \deriv{v}{x} + v \deriv{u}{x}$
+\item $\deriv{}{x} \left(\frac{u}{v}\right) = \frac{v \cdot u' - u \cdot v'}{v^2}$
+\item $\deriv{}{x} a^u = a^u \cdot \ln a \cdot \deriv{u}{x}$
+\item $\deriv{}{x} e^u = e^u \cdot \deriv{u}{x}$
+\item $\deriv{}{x} u^v = v \cdot u^{v-1} \deriv{u}{x} + u^v \cdot \ln u \deriv{v}{x}$
+\item $\deriv{}{x} \log_a u = \frac{\log_a e}{u} \cdot \deriv{u}{x}$
+\item $\deriv{}{x} \ln u = \frac{u'}{u}$
+\item $\deriv{}{x} \sen u = \cos u \deriv{u}{x}$
+\item $\deriv{}{x} \cos u = -\sen u \deriv{u}{x}$
+\item $\deriv{}{x} \tan u = \sec^2 u \deriv{u}{x}$
+\item $\deriv{}{x} \cot u = -\csc^2 u \deriv{u}{x}$
+\item $\deriv{}{x} \sec u = \sec u \cdot \tan u \deriv{u}{x}$
+\item $\deriv{}{x} \csc u = -\csc u \cdot \cot u \deriv{u}{x}$
+\item $\deriv{}{x} \arcsen u = \frac{u'}{\sqrt{1-u^2}}$
+\item $\deriv{}{x} \arccos u = \frac{-u'}{\sqrt{1-u^2}}$
+\item $\deriv{}{x} \arctan u = \frac{u'}{u^2+1}$
+\item $\deriv{}{x} \arccot u = \frac{-u'}{u^2+1}$
+\item $\deriv{}{x} \arcsec u = \frac{u'}{u\sqrt{u^2-1}}$
+\item $\deriv{}{x} \arccsc u = \frac{-u'}{u\sqrt{u^2-1}}$
+\end{enumerate}
+\end{tcolorbox}
+
+\columnbreak
+
+% --- COLUMNA 2: INTEGRALES ---
+\begin{tcolorbox}[colback=primary!3,colframe=primary,fonttitle=\bfseries,title=Tabla de Integrales]
+\begin{enumerate}
+\item $\int \dd x = x + C$
+\item $\int a \dd x = ax + C$
+\item $\int x^n \dd x = \frac{x^{n+1}}{n+1} + C$
+\item $\int u^n \dd u = \frac{u^{n+1}}{n+1} + C \quad {\scriptstyle (n \neq -1)}$
+\item $\int (u \pm v \pm w) \dd x = \int u\dd x \pm \int v\dd x \dots$
+\item $\int \frac{\dd u}{u} = \ln|u| + C$
+\item $\int a^u \dd u = \frac{a^u}{\ln a} + C$
+\item $\int e^u \dd u = e^u + C$
+\item $\int \sen u \dd u = -\cos u + C$
+\item $\int \cos u \dd u = \sen u + C$
+\item $\int \tan u \dd u = \ln|\sec u| + C$
+\item $\int \cot u \dd u = \ln|\sen u| + C$
+\item $\int \sec u \dd u = \ln|\sec u + \tan u| + C$
+\item $\int \csc u \dd u = \ln|\csc u - \cot u| + C$
+\item $\int \sec^2 u \dd u = \tan u + C$
+\item $\int \csc^2 u \dd u = -\cot u + C$
+\item $\int \sec u \tan u \dd u = \sec u + C$
+\item $\int \csc u \cot u \dd u = -\csc u + C$
+\item $\int \frac{\dd u}{u^2 + a^2} = \frac{1}{a} \arctan \frac{u}{a} + C$
+\item $\int \frac{\dd u}{u^2 - a^2} = \frac{1}{2a} \ln\left|\frac{u-a}{u+a}\right| + C$
+\item $\int \frac{\dd u}{a^2 - u^2} = \frac{1}{2a} \ln\left|\frac{a+u}{a-u}\right| + C$
+\item $\int \sqrt{u^2 \pm a^2} \dd u = \frac{u}{2}\sqrt{u^2 \pm a^2}$ \\ $\phantom{=} \pm \frac{a^2}{2}\ln|u + \sqrt{u^2 \pm a^2}| + C$
+\item $\int \sqrt{a^2 - u^2} \dd u = \frac{u}{2}\sqrt{a^2 - u^2}$ \\ $\phantom{=} + \frac{a^2}{2}\arcsen \frac{u}{a} + C$
+\item $\int \frac{\dd u}{\sqrt{a^2 - u^2}} = \arcsen \frac{u}{a} + C$
+\item $\int \frac{\dd u}{\sqrt{u^2 \pm a^2}} = \ln|u + \sqrt{u^2 \pm a^2}| + C$
+\item $\int \frac{\dd u}{u\sqrt{u^2 - a^2}} = \frac{1}{a} \arcsec \frac{u}{a} + C$
+\item $\int \sec^3 u \dd u = \frac{1}{2}\sec u \tan u$ \\ $\phantom{=} + \frac{1}{2}\ln|\sec u + \tan u| + C$
+\end{enumerate}
+\end{tcolorbox}
+
+\columnbreak
+
+% --- COLUMNA 3: EXTRAS ---
+\begin{tcolorbox}[colback=primary!3,colframe=primary,fonttitle=\bfseries,title=Integración por partes]
+\textbf{Fórmula Clásica:} \\
+$\int u \dd v = uv - \int v \dd u$ \\
+\textit{{\footnotesize "\textbf{U}n \textbf{D}ía \textbf{V}i \textbf{U}na \textbf{V}aca sin cola $-\int$ \textbf{V}estida \textbf{d}e \textbf{u}niforme"}}
+
+\vspace{0.2cm}
+\textbf{Prioridad de elección de $u$ (ILATE):}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item \textbf{I}nversas trig: $\arcsen u, \arccos u, \dots$
+\item \textbf{L}ogarítmicas: $\ln u, \log u, \dots$
+\item \textbf{A}lgebraicas: $x^n, \sqrt{x}, \frac{1}{x}, \dots$
+\item \textbf{T}rigonométricas: $\sen u, \cos u, \tan u, \dots$
+\item \textbf{E}xponenciales: $e^u, a^u, \dots$
+\end{itemize}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=primary!3,colframe=primary,fonttitle=\bfseries,title=Identidades Trigonométricas]
+\textbf{Fundamentales (Pitagóricas):}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item $\sen^2 u + \cos^2 u = 1$
+\item $1 + \tan^2 u = \sec^2 u$
+\item $1 + \cot^2 u = \csc^2 u$
+\end{itemize}
+
+\textbf{Reductoras de Potencia:}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item $\sen^2 u = \frac{1 - \cos(2u)}{2}$
+\item $\cos^2 u = \frac{1 + \cos(2u)}{2}$
+\end{itemize}
+
+\textbf{Ángulo Doble:}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item $\sen(2u) = 2\sen u \cos u$
+\end{itemize}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=primary!3,colframe=primary,fonttitle=\bfseries,title=Sustitución Trigonométrica]
+1) Si aparece $\sqrt{x^2+a^2}$: \\
+$x = a \text{ Tan } \theta$, $\dd x = a \text{ Sec}^2 \theta \dd\theta$, $\sqrt{x^2+a^2} = a \text{ Sec}\theta$ \\
+\vspace{0.1cm}
+2) Si aparece $\sqrt{x^2-a^2}$: \\
+$x = a \text{ Sec } \theta$, $\dd x = a \text{ Sec}\theta \text{ Tan}\theta \dd\theta$, $\sqrt{x^2-a^2} = a \text{ Tan}\theta$ \\
+\vspace{0.1cm}
+3) Si aparece $\sqrt{a^2-x^2}$: \\
+$x = a \text{ Sen } \theta$, $\dd x = a \text{ Cos}\theta \dd\theta$, $\sqrt{a^2-x^2} = a \text{ Cos}\theta$
+\end{tcolorbox}
+
+\end{multicols}
+\end{document}

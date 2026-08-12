@@ -1,0 +1,337 @@
+% ============================================================
+%  GUÍA 7: TALLER INTEGRADOR Y EVALUACIÓN
+%  Curso Introductorio — 3er Año
+%  Autor: Gabriel Astudillo
+%  Sesiones cubiertas: 23, 24
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Guía 7 — Taller Integrador y Evaluación}{Gabriel Astudillo $\cdot$ Curso 3er Año}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Estudio 7}{Taller Integrador y Evaluación Final}{Problemas Complejos que Entrelazan Todas las Disciplinas}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+\small
+\textbf{Presentación:} Esta es la guía final del curso. Aquí no hay temas nuevos: lo que hay son \textbf{problemas que combinan todo lo aprendido}. Densidad con conversión de unidades, cinemática con despeje de fórmulas, lógica con análisis de situaciones científicas. El objetivo es que demuestres que puedes integrar el pensamiento lógico, la manipulación algebraica y el conocimiento científico para resolver problemas complejos usando el Método de Pólya.
+\\[4pt]
+\textbf{Instrucción:} Para \textbf{cada problema} de esta guía, aplica explícitamente las cuatro fases del Método de Pólya: \textbf{Comprender}, \textbf{Planificar}, \textbf{Ejecutar} y \textbf{Verificar}.
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Taller Avanzado de Resolución de Problemas}
+% ============================================================
+
+\begin{cuadroadvertencia}
+\textbf{Recordatorio — El Método de Pólya:}
+\begin{enumerate}[label=\textbf{Fase \arabic*:}, leftmargin=*]
+  \item \textbf{Comprender:} \textquestiondown Qué datos tengo? \textquestiondown Qué me piden? \textquestiondown Qué unidades necesito?
+  \item \textbf{Planificar:} \textquestiondown Qué fórmulas aplico? \textquestiondown Necesito convertir unidades? \textquestiondown Necesito despejar?
+  \item \textbf{Ejecutar:} Desarrollo paso a paso, con unidades en cada línea.
+  \item \textbf{Verificar:} \textquestiondown El resultado tiene sentido? \textquestiondown Las unidades son coherentes? \textquestiondown Puedo comprobarlo de otra forma?
+\end{enumerate}
+\end{cuadroadvertencia}
+
+\subsection{Bloque I: Densidad + Conversiones + Geometría}
+
+\begin{enumerate}[leftmargin=*]
+  \item \medio{} Un cilindro de aluminio ($d = 2{,}7\;\text{g/cm}^3$) tiene un radio de $5\;\text{cm}$ y una altura de $20\;\text{cm}$.
+  \begin{enumerate}[label=\alph*)]
+    \item Calcula su volumen en cm$^3$ y en litros.
+    \item Calcula su masa en gramos y en kilogramos.
+    \item Si lo sumerges completamente en un recipiente con agua, \textquestiondown cuántos mililitros de agua desplaza?
+  \end{enumerate}
+
+  \item \medio{} Una esfera metálica tiene una masa de $2{,}5\;\text{kg}$ y una densidad de $7{,}87\;\text{g/cm}^3$.
+  \begin{enumerate}[label=\alph*)]
+    \item Convierte la masa a gramos.
+    \item Calcula el volumen en cm$^3$.
+    \item Calcula el radio de la esfera.
+    \item \textquestiondown De qué metal podría tratarse?
+  \end{enumerate}
+
+  \item \dificil{} En un laboratorio se tiene un bloque de un material desconocido cuyas dimensiones son $4\;\text{in} \times 3\;\text{in} \times 2\;\text{in}$ (pulgadas) y una masa de $1{,}2\;\text{lb}$ (libras). Sabiendo que $1\;\text{in} = 2{,}54\;\text{cm}$ y $1\;\text{lb} = 453{,}6\;\text{g}$:
+  \begin{enumerate}[label=\alph*)]
+    \item Convierte las dimensiones a centímetros.
+    \item Calcula el volumen en cm$^3$.
+    \item Convierte la masa a gramos.
+    \item Calcula la densidad en g/cm$^3$ e identifica el posible material.
+  \end{enumerate}
+
+  \item \dificil{} Se quiere fabricar una esfera de oro ($d = 19{,}3\;\text{g/cm}^3$) que pese exactamente $1\;\text{kg}$.
+  \begin{enumerate}[label=\alph*)]
+    \item \textquestiondown Qué volumen debe tener la esfera?
+    \item \textquestiondown Cuál debe ser su radio?
+    \item Si el oro cuesta $\$\,60\;\text{USD/g}$, \textquestiondown cuánto costaría esta esfera?
+  \end{enumerate}
+\end{enumerate}
+
+\subsection{Bloque II: Cinemática + Conversiones + Despeje}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \medio{} Un auto viaja a $120\;\text{km/h}$.
+  \begin{enumerate}[label=\alph*)]
+    \item Convierte su velocidad a m/s.
+    \item Si parte de la posición $x_0 = 500\;\text{m}$, \textquestiondown cuál será su posición después de $2\;\text{min}$?
+    \item \textquestiondown Cuánto tiempo (en segundos y en minutos) tardará en llegar a la posición $x = 10\;\text{km}$?
+  \end{enumerate}
+
+  \item \medio{} La velocidad del sonido en el agua es $1\,480\;\text{m/s}$ y en el aire es $340\;\text{m/s}$.
+  \begin{enumerate}[label=\alph*)]
+    \item Expresa ambas velocidades en km/h.
+    \item \textquestiondown Cuántas veces más rápido viaja el sonido en el agua que en el aire?
+    \item Si un buzo bajo el agua escucha una explosión que ocurrió a $3\;\text{km}$ de distancia, \textquestiondown cuántos segundos tardó el sonido en llegarle?
+  \end{enumerate}
+
+  \item \dificil{} Un tren de carga viaja a $45\;\text{mph}$ (millas por hora). Sabiendo que $1\;\text{mi} = 1{,}609\;\text{km}$:
+  \begin{enumerate}[label=\alph*)]
+    \item Convierte su velocidad a km/h y luego a m/s.
+    \item Si el tren debe recorrer $200\;\text{km}$, \textquestiondown cuántas horas y minutos tardará?
+    \item Si el tren parte de la posición $x_0 = 0$ a las 6:00\,a.m., \textquestiondown a qué hora pasará por el kilómetro 100?
+  \end{enumerate}
+
+  \item \dificil{} Un corredor olímpico recorre $100\;\text{m}$ en $9{,}58\;\text{s}$ (récord mundial de Usain Bolt). Un guepardo puede correr a $120\;\text{km/h}$.
+  \begin{enumerate}[label=\alph*)]
+    \item Calcula la velocidad media de Bolt en m/s y en km/h.
+    \item Convierte la velocidad del guepardo a m/s.
+    \item Si Bolt y el guepardo partieran al mismo tiempo, \textquestiondown cuántos metros de ventaja le sacaría el guepardo a Bolt al finalizar los $100\;\text{m}$?
+  \end{enumerate}
+\end{enumerate}
+
+\subsection{Bloque III: Problemas Interdisciplinarios}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \medio{} Un químico tiene $500\;\text{mL}$ de una sustancia líquida de densidad desconocida. La coloca en una balanza y obtiene una masa de $650\;\text{g}$.
+  \begin{enumerate}[label=\alph*)]
+    \item Calcula la densidad de la sustancia.
+    \item \textquestiondown Esta sustancia flotaría en el agua? \textquestiondown Y en el mercurio ($d = 13{,}6\;\text{g/cm}^3$)?
+    \item Usando la tabla: $d_{\text{glicerina}} = 1{,}26\;\text{g/cm}^3$, $d_{\text{aceite}} = 0{,}92\;\text{g/cm}^3$, $d_{\text{ácido sulfúrico}} = 1{,}84\;\text{g/cm}^3$. \textquestiondown De qué sustancia podría tratarse?
+  \end{enumerate}
+
+  \item \dificil{} Un estudiante diseña un experimento para medir la velocidad del sonido. Desde un punto A, golpea una campana. Un compañero en el punto B, a $680\;\text{m}$ de distancia, cronometra $2\;\text{s}$ desde que ve el golpe hasta que escucha el sonido.
+  \begin{enumerate}[label=\alph*)]
+    \item Calcula la velocidad del sonido medida en este experimento.
+    \item Convierte el resultado a km/h.
+    \item \textquestiondown Por qué se puede ignorar el tiempo que tarda la luz en viajar de A a B? (Pista: calcula ese tiempo sabiendo que la luz viaja a $3 \times 10^8\;\text{m/s}$.)
+    \item El valor aceptado es $340\;\text{m/s}$. Calcula el porcentaje de error del experimento.
+  \end{enumerate}
+
+  \item \dificil{} Un tanque esférico de radio $0{,}5\;\text{m}$ se llena completamente con un líquido cuya densidad es $0{,}85\;\text{kg/L}$.
+  \begin{enumerate}[label=\alph*)]
+    \item Calcula el volumen del tanque en m$^3$ y luego conviértelo a litros.
+    \item Calcula la masa total del líquido en kilogramos.
+    \item Si un camión puede transportar como máximo $3\,000\;\text{kg}$, \textquestiondown cuántos tanques llenos puede llevar?
+    \item Expresa la masa de un tanque lleno en libras ($1\;\text{kg} = 2{,}205\;\text{lb}$).
+  \end{enumerate}
+
+  \item \dificil{} Un laboratorio de química necesita preparar una experiencia. Tienen una muestra metálica que:
+  \begin{itemize}
+    \item Pesa $392\;\text{N}$ en la Tierra ($g = 9{,}8\;\text{m/s}^2$).
+    \item Al sumergirla en una probeta con $2\;\text{L}$ de agua, el nivel sube a $7\;\text{L}$.
+  \end{itemize}
+  \begin{enumerate}[label=\alph*)]
+    \item Calcula la masa de la muestra.
+    \item Calcula su volumen (en litros y en cm$^3$).
+    \item Calcula su densidad y determina si podría ser hierro, cobre u oro.
+    \item Si la muestra se cortara exactamente por la mitad, \textquestiondown cambiarían su masa, volumen y densidad? Identifica cuáles son extensivas y cuál intensiva.
+  \end{enumerate}
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Modelo de Prueba Sumativa}
+% ============================================================
+
+\begin{cuadroextra}
+\textbf{Instrucciones:} Esta sección simula una prueba final del curso. Responde cada pregunta de forma clara, mostrando todos los procedimientos. Tiempo sugerido: 90 minutos.
+\end{cuadroextra}
+
+\subsection{Parte I: Preguntas Conceptuales (2 puntos c/u)}
+
+\begin{enumerate}[leftmargin=*]
+  \item Define \textbf{proposición} en lógica y da un ejemplo de un enunciado que NO sea proposición. Justifica.
+
+  \item Enumera las cuatro fases del Método de Pólya.
+
+  \item \textquestiondown Cuál es la diferencia entre \textbf{distancia recorrida} y \textbf{desplazamiento}?
+
+  \item Clasifica como propiedad intensiva o extensiva: masa, densidad, temperatura de fusión, volumen.
+
+  \item \textquestiondown Cuál es la diferencia entre una mezcla homogénea y una heterogénea? Da un ejemplo de cada una.
+
+  \item Explica la Tercera Ley de Newton con un ejemplo cotidiano.
+
+  \item \textquestiondown Cuál es la diferencia entre calor y temperatura?
+
+  \item \textquestiondown Qué es una transformación química? Menciona dos indicios que la delaten.
+\end{enumerate}
+
+\subsection{Parte II: Problemas de Desarrollo (5 puntos c/u)}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item Resuelve la ecuación: $\dfrac{3x - 1}{2} = \dfrac{x + 5}{4}$
+
+  \item Simplifica usando las propiedades de los exponentes y expresa en notación científica:
+  $$\frac{(3 \times 10^5)^2 \times (2 \times 10^{-3})}{6 \times 10^4}$$
+
+  \item Despeja $v_0$ de la fórmula $x = v_0 t + \frac{1}{2}at^2$.
+
+  \item Convierte $250\;\text{km/h}$ a m/s. Luego calcula cuánto recorre un auto a esa velocidad en $45\;\text{s}$.
+
+  \item Un cubo metálico tiene $4\;\text{cm}$ de lado y una masa de $172{,}5\;\text{g}$.
+  \begin{enumerate}[label=\alph*)]
+    \item Calcula su volumen.
+    \item Calcula su densidad.
+    \item \textquestiondown Flotaría en mercurio ($d = 13{,}6\;\text{g/cm}^3$)?
+  \end{enumerate}
+
+  \item Resuelve el sistema de ecuaciones:
+  $\begin{cases} 2x + 3y = 19 \\ 4x - y = 3 \end{cases}$
+
+  \item Un tren parte de una estación a las 7:30\,a.m. a una velocidad constante de $80\;\text{km/h}$. La siguiente estación está a $340\;\text{km}$. \textquestiondown A qué hora llega?
+
+  \item Se mezclan $400\;\text{g}$ de agua a $90\;\text{°C}$ con $600\;\text{g}$ de agua a $20\text{°C}$. Calcula la temperatura de equilibrio. ($c_{\text{agua}} = 1\;\text{cal/(g$\cdot$°C)}$)
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Clave de Respuestas}
+% ============================================================
+
+\subsection*{Taller Integrador (Problemas 1--12)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item \begin{enumerate}[label=\alph*)]
+    \item $V = \pi r^2 h = \pi(5)^2(20) = 500\pi \approx 1\,570{,}8\;\text{cm}^3 = 1{,}571\;\text{L}$.
+    \item $m = d \times V = 2{,}7 \times 1\,570{,}8 \approx 4\,241{,}2\;\text{g} = 4{,}241\;\text{kg}$.
+    \item Desplaza $1\,570{,}8\;\text{mL}$ de agua (el volumen del cilindro).
+  \end{enumerate}
+
+  \item \begin{enumerate}[label=\alph*)]
+    \item $m = 2\,500\;\text{g}$.
+    \item $V = m/d = 2\,500/7{,}87 \approx 317{,}7\;\text{cm}^3$.
+    \item $V = \frac{4}{3}\pi r^3 \Rightarrow r = \sqrt[3]{\frac{3V}{4\pi}} = \sqrt[3]{\frac{3(317{,}7)}{4\pi}} \approx \sqrt[3]{75{,}8} \approx 4{,}23\;\text{cm}$.
+    \item Densidad $7{,}87\;\text{g/cm}^3$ corresponde al hierro.
+  \end{enumerate}
+
+  \item \begin{enumerate}[label=\alph*)]
+    \item $4 \times 2{,}54 = 10{,}16\;\text{cm}$; $3 \times 2{,}54 = 7{,}62\;\text{cm}$; $2 \times 2{,}54 = 5{,}08\;\text{cm}$.
+    \item $V = 10{,}16 \times 7{,}62 \times 5{,}08 \approx 393{,}3\;\text{cm}^3$.
+    \item $m = 1{,}2 \times 453{,}6 = 544{,}3\;\text{g}$.
+    \item $d = 544{,}3 / 393{,}3 \approx 1{,}38\;\text{g/cm}^3$. Podría ser algún tipo de plástico denso o magnesio.
+  \end{enumerate}
+
+  \item \begin{enumerate}[label=\alph*)]
+    \item $V = m/d = 1\,000/19{,}3 \approx 51{,}8\;\text{cm}^3$.
+    \item $r = \sqrt[3]{\frac{3(51{,}8)}{4\pi}} \approx \sqrt[3]{12{,}37} \approx 2{,}31\;\text{cm}$.
+    \item Costo $= 1\,000 \times 60 = \$\,60\,000\;\text{USD}$.
+  \end{enumerate}
+
+  \item \begin{enumerate}[label=\alph*)]
+    \item $v = 120/3{,}6 = 33{,}\overline{3}\;\text{m/s}$.
+    \item $t = 2\;\text{min} = 120\;\text{s}$. $x_f = 500 + 33{,}33 \times 120 = 500 + 4\,000 = 4\,500\;\text{m}$.
+    \item $10\,000 = 500 + 33{,}33 \times t \Rightarrow t = 9\,500/33{,}33 = 285\;\text{s} = 4\;\text{min}\;45\;\text{s}$.
+  \end{enumerate}
+
+  \item \begin{enumerate}[label=\alph*)]
+    \item Agua: $1\,480 \times 3{,}6 = 5\,328\;\text{km/h}$. Aire: $340 \times 3{,}6 = 1\,224\;\text{km/h}$.
+    \item $1\,480/340 \approx 4{,}35$ veces.
+    \item $t = 3\,000/1\,480 \approx 2{,}03\;\text{s}$.
+  \end{enumerate}
+
+  \item \begin{enumerate}[label=\alph*)]
+    \item $45 \times 1{,}609 = 72{,}4\;\text{km/h}$. En m/s: $72{,}4/3{,}6 \approx 20{,}1\;\text{m/s}$.
+    \item $t = 200/72{,}4 \approx 2{,}76\;\text{h} = 2\;\text{h}\;45\;\text{min}$ (aprox.).
+    \item $t_{100} = 100/72{,}4 \approx 1{,}38\;\text{h} \approx 1\;\text{h}\;23\;\text{min}$. Hora: $\approx$ 7:23\,a.m.
+  \end{enumerate}
+
+  \item \begin{enumerate}[label=\alph*)]
+    \item $v_{\text{Bolt}} = 100/9{,}58 \approx 10{,}44\;\text{m/s} = 37{,}58\;\text{km/h}$.
+    \item $v_{\text{guepardo}} = 120/3{,}6 = 33{,}33\;\text{m/s}$.
+    \item Bolt tarda $9{,}58\;\text{s}$. En ese tiempo el guepardo recorre: $33{,}33 \times 9{,}58 \approx 319{,}3\;\text{m}$. Ventaja: $319{,}3 - 100 = 219{,}3\;\text{m}$.
+  \end{enumerate}
+
+  \item \begin{enumerate}[label=\alph*)]
+    \item $d = 650/500 = 1{,}3\;\text{g/cm}^3$.
+    \item Se hunde en agua ($d > 1$). Flota en mercurio ($1{,}3 < 13{,}6$).
+    \item $d \approx 1{,}3\;\text{g/cm}^3$ se acerca a la glicerina ($1{,}26$).
+  \end{enumerate}
+
+  \item \begin{enumerate}[label=\alph*)]
+    \item $v = 680/2 = 340\;\text{m/s}$.
+    \item $340 \times 3{,}6 = 1\,224\;\text{km/h}$.
+    \item $t_{\text{luz}} = 680/(3 \times 10^8) \approx 2{,}27 \times 10^{-6}\;\text{s}$. Es despreciable frente a $2\;\text{s}$.
+    \item Error $= \frac{|340 - 340|}{340} \times 100 = 0\%$. El resultado coincide con el valor aceptado.
+  \end{enumerate}
+
+  \item \begin{enumerate}[label=\alph*)]
+    \item $V = \frac{4}{3}\pi(0{,}5)^3 = \frac{4}{3}\pi(0{,}125) \approx 0{,}5236\;\text{m}^3$. En litros: $0{,}5236 \times 1\,000 = 523{,}6\;\text{L}$.
+    \item $m = d \times V = 0{,}85 \times 523{,}6 = 445{,}1\;\text{kg}$.
+    \item $3\,000/445{,}1 \approx 6{,}74$, es decir, 6 tanques.
+    \item $445{,}1 \times 2{,}205 \approx 981{,}4\;\text{lb}$.
+  \end{enumerate}
+
+  \item \begin{enumerate}[label=\alph*)]
+    \item $m = W/g = 392/9{,}8 = 40\;\text{kg}$.
+    \item $V = 7 - 2 = 5\;\text{L} = 5\,000\;\text{cm}^3$.
+    \item $d = 40\,000\;\text{g}/5\,000\;\text{cm}^3 = 8\;\text{g/cm}^3$. Cercano al cobre ($8{,}96$), pero también cercano al hierro ($7{,}87$). Más probablemente hierro o acero.
+    \item Masa y volumen se reducen a la mitad (extensivas). La densidad permanece igual (intensiva).
+  \end{enumerate}
+\end{enumerate}
+
+\subsection*{Modelo de Prueba Sumativa}
+
+\subsubsection*{Parte I: Conceptuales}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item Una proposición es un enunciado declarativo al que se le asigna V o F. «\textquestiondown Qué hora es?» no es proposición porque es una pregunta, no afirma nada.
+
+  \item Comprender, Planificar, Ejecutar, Verificar.
+
+  \item La distancia recorrida es la longitud total del camino (escalar, siempre $\geq 0$). El desplazamiento es el cambio de posición (vectorial, puede ser negativo o cero).
+
+  \item Masa: extensiva. Densidad: intensiva. Temperatura de fusión: intensiva. Volumen: extensiva.
+
+  \item Homogénea: una sola fase, no se distinguen componentes (ej. agua con sal). Heterogénea: dos o más fases visibles (ej. agua con aceite).
+
+  \item Al caminar, tus pies empujan el suelo hacia atrás (acción) y el suelo te empuja hacia adelante (reacción), permitiéndote avanzar.
+
+  \item Temperatura: grado de agitación de las partículas. Calor: transferencia de energía entre cuerpos a diferente temperatura.
+
+  \item Es un cambio que altera la composición de la materia, formando sustancias nuevas. Indicios: cambio de color permanente y producción de gas.
+\end{enumerate}
+
+\subsubsection*{Parte II: Problemas de Desarrollo}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{8}
+  \item Multiplicamos por 4: $2(3x - 1) = x + 5 \Rightarrow 6x - 2 = x + 5 \Rightarrow 5x = 7 \Rightarrow x = \frac{7}{5} = 1{,}4$.
+
+  \item $\frac{(3)^2 \times (10^5)^2 \times 2 \times 10^{-3}}{6 \times 10^4} = \frac{9 \times 10^{10} \times 2 \times 10^{-3}}{6 \times 10^4} = \frac{18 \times 10^7}{6 \times 10^4} = 3 \times 10^3$.
+
+  \item $x - \frac{1}{2}at^2 = v_0 t \Rightarrow v_0 = \dfrac{x - \frac{1}{2}at^2}{t} = \dfrac{2x - at^2}{2t}$.
+
+  \item $v = 250/3{,}6 \approx 69{,}44\;\text{m/s}$. Distancia $= 69{,}44 \times 45 \approx 3\,125\;\text{m} = 3{,}125\;\text{km}$.
+
+  \item a) $V = 4^3 = 64\;\text{cm}^3$. b) $d = 172{,}5/64 \approx 2{,}7\;\text{g/cm}^3$. c) Sí flotaría ($2{,}7 < 13{,}6$).
+
+  \item De la segunda: $y = 4x - 3$. Sustituimos: $2x + 3(4x - 3) = 19 \Rightarrow 14x - 9 = 19 \Rightarrow 14x = 28 \Rightarrow x = 2$. $y = 4(2) - 3 = 5$.
+
+  \item $t = 340/80 = 4{,}25\;\text{h} = 4\;\text{h}\;15\;\text{min}$. Hora de llegada: 7:30 + 4:15 = 11:45\,a.m.
+
+  \item $Q_{\text{cedido}} = Q_{\text{absorbido}}$: $400(90 - T_f) = 600(T_f - 20)$. $36\,000 - 400T_f = 600T_f - 12\,000$. $48\,000 = 1\,000T_f$. $T_f = 48\;$.
+\end{enumerate}
+
+\end{document}

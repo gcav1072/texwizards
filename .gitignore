@@ -1,0 +1,25 @@
+# ── Auxiliares LaTeX que podrían aparecer ──
+*.toc          # índice de contenidos
+*.lof          # lista de figuras
+*.lot          # lista de tablas
+*.dvi          # compilación clásica latex+dvips
+*.bbl          # bibliografía (bibtex)
+*.blg          # log de bibtex
+*.bcf          # biblatex
+*.run.xml      # biblatex
+*.fls
+*.fdb_latexmk
+*.log
+*.out
+*.xdv
+*.aux
+
+# ── Python (hay extract_columns.py en Formularios) ──
+__pycache__/
+*.pyc
+
+# ── Basura de editores / sistema ──
+*~
+*.swp
+.DS_Store
+Thumbs.db

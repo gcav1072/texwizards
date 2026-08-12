@@ -1,0 +1,469 @@
+% ============================================================
+%  GUÍA DE ESTUDIO: INTEGRACIÓN POR CAMBIO DE VARIABLE Y PARTES
+%  Autor: Gabriel Astudillo
+%  Estructura según estructura.md
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Cambio de Variable y Por Partes}{Gabriel Astudillo $\cdot$ Guía de Estudio}
+
+% ── Comandos propios de esta guía ───────────────────
+\newcommand{\dx}{\,dx}
+\newcommand{\du}{\,du}
+\newcommand{\dt}{\,dt}
+\newcommand{\dv}{\,dv}
+\newcommand{\dw}{\,dw}
+\newcommand{\dtheta}{\,d\theta}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\CC}{\,+\,C}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Estudio y Ejercicios}{Integración por Cambio de Variable y Por Partes}{Teoría, Métodos y 70 Problemas Progresivos con Respuestas}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+\small
+\textbf{Presentación:} Esta guía está diseñada para llevarte desde los conceptos fundamentales de la integración no directa hasta la resolución de problemas desafiantes de cálculo integral.
+Consta de explicaciones conceptuales detalladas basadas en las reglas de derivación, estrategias paso a paso para la selección de variables y 70 ejercicios organizados progresivamente por nivel de complejidad, finalizando con su respectiva clave de respuestas.
+\\[4pt]
+\textbf{Nivel de Dificultad:}\quad
+\facil{} Básico / Directo \quad
+\medio{} Intermedio \quad
+\dificil{} Desafiante / Avanzado
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{El Método de Cambio de Variable (Sustitución)}
+% ============================================================
+
+\subsection{\textquestiondown Qué es un cambio de variable?}
+El método de integración por \textbf{cambio de variable} (o sustitución) es la herramienta fundamental que nos permite deshacer la \textbf{Regla de la Cadena} de la derivación.
+
+Recordemos que si tenemos una función compuesta $y = F(g(x))$, su derivada respecto a $x$ se expresa como:
+$$\frac{d}{dx} \big[ F(g(x)) \big] = F'(g(x)) \cdot g'(x)$$
+
+Si integramos en ambos lados con respecto a $x$, obtenemos:
+$$\int F'(g(x)) \cdot g'(x) \dx = F(g(x)) \CC$$
+
+Si definimos una nueva variable independiente $u = g(x)$, su diferencial asociado será $du = g'(x)\dx$. Al sustituir directamente estos términos en la integral original, la transformamos en una expresión mucho más sencilla de resolver:
+\begin{cuadroteoria}
+$$\int f(g(x)) \cdot g'(x) \dx = \int f(u) \du = F(u) \CC$$
+Donde $f(u) = F'(u)$.
+\end{cuadroteoria}
+Este proceso reduce una integral compleja en una integral de tipo elemental o directa sobre la variable auxiliar $u$.
+
+\subsection{\textquestiondown Cuándo usar el cambio de variable?}
+Debes considerar el cambio de variable cuando en la integral reconozcas:
+\begin{enumerate}[label=\alph*)]
+  \item Una \textbf{función compuesta} $f(g(x))$ donde la derivada del argumento interno, $g'(x)$ (o un factor proporcional a ella), se encuentra multiplicando al resto del integrando.
+  \item Una estructura algebraica fraccionaria o irracional complicada donde al realizar una asignación del tipo $u = g(x)$ se logre linealizar o simplificar el integrando, permitiendo cancelar términos en $x$ mediante despejes directos.
+\end{enumerate}
+
+\subsection{\textquestiondown Cómo elegir el cambio de variable correcto?}
+La elección del cambio de variable óptimo suele seguir estas recomendaciones prácticas:
+\begin{cuadrosolucion}
+\begin{itemize}[leftmargin=*, label=\checkmark]
+  \item \textbf{El argumento interno:} Si tienes expresiones como $\sin(g(x))$, $e^{g(x)}$, o $\sqrt{g(x)}$, intenta con $u = g(x)$.
+  \item \textbf{El denominador:} En funciones racionales $\int \frac{h(x)}{g(x)} \dx$, prueba haciendo $u = g(x)$ (el denominador completo), ya que su derivada podría estar en el numerador.
+  \item \textbf{La base de una potencia:} Si observas $[g(x)]^n$, asigna $u = g(x)$.
+\end{itemize}
+\end{cuadrosolucion}
+
+\noindent\textbf{Procedimiento general en 5 pasos:}
+\begin{enumerate}
+  \item \textbf{Identificar} y proponer la sustitución $u = g(x)$.
+  \item \textbf{Calcular el diferencial} $du = g'(x) \dx$. Despejar $\dx$ si te resulta más cómodo para sustituir.
+  \item \textbf{Reescribir la integral} en términos de $u$. Asegúrate de que no quede ninguna variable $x$. Si quedan términos en $x$, intenta despejar $x$ a partir de la ecuación original $u = g(x)$.
+  \item \textbf{Resolver} la integral resultante con respecto a $u$.
+  \item \textbf{Volver a la variable original} reemplazarizando $u$ por su definición original $g(x)$.
+\end{enumerate}
+
+\noindent\textbf{Ejemplo Guiado 1 (Sustitución Directa):} Evaluar $\int x^2 e^{x^3} \dx$.
+\begin{itemize}
+  \item Identificamos la función interna $g(x) = x^3$, cuya derivada es $3x^2$ (proporcional al factor $x^2$ del integrando).
+  \item Definimos $u = x^3 \implies du = 3x^2 \dx \implies x^2 \dx = \frac{1}{3} \du$.
+  \item Reemplazamos en la integral:
+    $$\int x^2 e^{x^3} \dx = \int e^{u} \left(\frac{1}{3}\du\right) = \frac{1}{3}\int e^u \du = \frac{1}{3}e^u \CC$$
+  \item Volviendo a la variable $x$: $\frac{1}{3}e^{x^3} \CC$.
+\end{itemize}
+
+\noindent\textbf{Ejemplo Guiado 2 (Sustitución con Despeje):} Evaluar $\int x\sqrt{x-1}\dx$.
+\begin{itemize}
+  \item Definimos $u = x-1 \implies du = \dx$.
+  \item Notamos que queda una $x$ libre. La despejamos a partir del cambio: $x = u+1$.
+  \item Sustituimos todo en la integral:
+    $$\int x\sqrt{x-1}\dx = \int (u+1)\sqrt{u}\du = \int (u^{3/2} + u^{1/2})\du$$
+  \item Integramos: $\frac{2}{5}u^{5/2} + \frac{2}{3}u^{3/2} \CC$.
+  \item Volvemos a $x$: $\frac{2}{5}(x-1)^{5/2} + \frac{2}{3}(x-1)^{3/2} \CC$.
+\end{itemize}
+
+\newpage
+
+% ============================================================
+\subsection{Ejercicios Progresivos: Cambio de Variable}
+% ============================================================
+Resuelve las siguientes integrales indefinidas utilizando el método de cambio de variable.
+
+\begin{multicols}{2}
+\begin{enumerate}[leftmargin=*]
+  \item \facil{} $\int (3x - 5)^7 \dx$
+  \item \facil{} $\int \cos(4x + 1) \dx$
+  \item \facil{} $\int e^{-2x} \dx$
+  \item \facil{} $\int \frac{1}{2x + 7} \dx$
+  \item \facil{} $\int \sec^2(5x) \dx$
+  \item \medio{} $\int 2x(x^2 + 3)^5 \dx$
+  \item \medio{} $\int x^2 e^{x^3} \dx$
+  \item \medio{} $\int \frac{\ln x}{x} \dx$
+  \item \medio{} $\int \sin^4 x \cos x \dx$
+  \item \medio{} $\int \frac{x}{\sqrt{x^2 + 9}} \dx$
+  \item \medio{} $\int \frac{e^x}{1 + e^{2x}} \dx$
+  \item \medio{} $\int \frac{\sec^2 x}{\tan x} \dx$
+  \item \medio{} $\int \cos x \sqrt{\sin x} \dx$
+  \item \dificil{} $\int x \sqrt{x - 1} \dx$
+  \item \dificil{} $\int \frac{x^2}{x - 2} \dx$
+  \item \dificil{} $\int \frac{\sin(1/x)}{x^2} \dx$
+  \item \dificil{} $\int e^{\cos x} \sin x \dx$
+  \item \dificil{} $\int \frac{x^3}{\sqrt{x^2 + 1}} \dx$
+  \item \dificil{} $\int \frac{1}{x \ln x \ln(\ln x)} \dx$
+  \item \dificil{} $\int \frac{\cos(\ln x)}{x} \dx$
+\end{enumerate}
+\end{multicols}
+
+\vspace{10pt}
+
+% ============================================================
+\section{El Método de Integración por Partes}
+% ============================================================
+
+\subsection{\textquestiondown Qué es la integración por partes?}
+El método de \textbf{integración por partes} permite integrar funciones que se expresan como el producto de dos términos algebraicos o trascendentes que no están relacionados por sus derivadas directas. Nace de revertir la \textbf{Regla del Producto} de la diferenciación.
+
+Si tenemos dos funciones derivables $u(x)$ y $v(x)$, la regla para la derivada de su producto es:
+$$\frac{d}{dx} \big[ u(x)v(x) \big] = u'(x)v(x) + u(x)v'(x)$$
+
+Al integrar ambos miembros de esta ecuación con respecto a $x$:
+$$u(x)v(x) = \int u'(x)v(x) \dx + \int u(x)v'(x) \dx$$
+
+Reorganizando e introduciendo los diferenciales $du = u'(x)\dx$ y $dv = v'(x)\dx$, obtenemos la célebre fórmula de integración por partes:
+\begin{cuadroadvertencia}
+$$\int u \dv = u \cdot v - \int v \du$$
+\end{cuadroadvertencia}
+
+\subsection{\textquestiondown Cuándo usar la integración por partes?}
+Este método es ideal cuando el integrando presenta alguna de las siguientes características:
+\begin{itemize}
+  \item Es el producto de dos funciones de distinta clase (por ejemplo, el producto de un polinomio por una función exponencial o trigonométrica).
+  \item Consiste en una única función cuya derivada conocemos perfectamente, pero cuya antiderivada directa no está tabulada (como $\ln x$, $\arctan x$, $\arcsin x$, etc.).
+\end{itemize}
+
+\subsection{\textquestiondown Cómo elegir la integración por partes correcta?}
+Para asignar con éxito las expresiones correspondientes a $u$ y a $dv$, se suele emplear la regla mnemotécnica \textbf{ILATE}, la cual indica el orden de prioridad para elegir la función $u$ de izquierda a derecha:
+\begin{cuadroinfo}
+\begin{description}
+  \item[\textbf{I} - Inversas trigonométricas] ($\arcsin x$, $\arccos x$, $\arctan x$, \dots)
+  \item[\textbf{L} - Logarítmicas] ($\ln x$, $\log_a x$, \dots)
+  \item[\textbf{A} - Algebráicas / Polinomiales] ($x^n$, $\sqrt{x}$, $x^2 + 3$, \dots)
+  \item[\textbf{T} - Trigonométricas] ($\sin x$, $\cos x$, $\sec x$, \dots)
+  \item[\textbf{E} - Exponenciales] ($e^x$, $2^x$, \dots)
+\end{description}
+\end{cuadroinfo}
+La función elegida como $u$ será diferenciada para obtener $du$, mientras que el resto del integrando (que obligatoriamente incluye al diferencial $dx$) se define como $dv$ y debe ser integrada para hallar $v$.
+
+\noindent\textbf{Ejemplo Guiado:} Evaluar $\int x \cos x \dx$.
+\begin{itemize}
+  \item Analizamos el integrando: $x$ es una función algebraica (A), y $\cos x$ es trigonométrica (T). Según \textbf{ILATE}, la algebraica tiene prioridad para $u$.
+  \item Definimos:
+    \begin{align*}
+      u &= x \implies du = \dx \\
+      dv &= \cos x \dx \implies v = \sin x
+    \end{align*}
+  \item Aplicamos la fórmula:
+    $$\int x\cos x\dx = x\sin x - \int \sin x \dx$$
+  \item Resolvemos la integral restante:
+    $$\int x\cos x\dx = x\sin x - (-\cos x) \CC = x\sin x + \cos x \CC$$
+\end{itemize}
+
+\newpage
+
+% ============================================================
+\subsection{Ejercicios Progresivos: Integración por Partes}
+% ============================================================
+Resuelve las siguientes integrales indefinidas utilizando el método de integración por partes. En este bloque no se incluyen integrales que requieran partes sucesivas o cíclicas, aunque algunas pueden requerir un cambio de variable auxiliar.
+
+\begin{multicols}{2}
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} $\int x e^x \dx$
+  \item \facil{} $\int x \cos x \dx$
+  \item \facil{} $\int x \sin(2x) \dx$
+  \item \facil{} $\int (2x - 3) e^{-x} \dx$
+  \item \medio{} $\int x \sec^2 x \dx$
+  \item \medio{} $\int (x + 2) \sin(3x) \dx$
+  \item \medio{} $\int x 3^x \dx$
+  \item \medio{} $\int (5x + 1) \cos(4x) \dx$
+  \item \medio{} $\int \ln x \dx$
+  \item \medio{} $\int x \ln x \dx$
+  \item \medio{} $\int \arcsin x \dx$
+  \item \medio{} $\int \arctan x \dx$
+  \item \medio{} $\int x^2 \ln x \dx$
+  \item \dificil{} $\int \frac{\ln x}{x^2} \dx$
+  \item \dificil{} $\int x \arctan x \dx$
+  \item \dificil{} $\int \ln(2x + 1) \dx$
+  \item \dificil{} $\int e^{\sqrt{x}} \dx$
+  \item \dificil{} $\int x^3 e^{x^2} \dx$
+  \item \dificil{} $\int \frac{x \arcsin x}{\sqrt{1-x^2}} \dx$
+  \item \dificil{} $\int \cos(\sqrt{x}) \dx$
+\end{enumerate}
+\end{multicols}
+
+\vspace{10pt}
+
+% ============================================================
+\section{Integración por Partes Sucesiva y Cíclicas}
+% ============================================================
+
+\subsection{Definiciones y Fundamentos}
+Al aplicar el método por partes, es frecuente toparse con escenarios que requieren consideraciones especiales:
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Integración por Partes Sucesiva:}
+    Ocurre cuando el polinomio $u = x^n$ tiene un grado $n \ge 2$. Para poder anular el polinomio a través de sus sucesivas derivadas, debemos aplicar la fórmula por partes de manera reiterada $n$ veces consecutivas.
+    
+  \item \textbf{Integración por Partes Cíclica:}
+    Se presenta cuando integramos productos de funciones trascendentes cuyas derivadas son periódicas (como exponenciales combinadas con senos o cosenos, o la integral de $\sec^3 x$). Al aplicar el método dos veces, volvemos a obtener un término equivalente a la integral original con signo opuesto. En lugar de continuar infinitamente, resolvemos el problema de forma \textbf{algebraica}, despejando la integral de la ecuación resultante.
+\end{enumerate}
+
+\noindent\textbf{Ejemplo Guiado (Partes Sucesivas):} Evaluar $\int x^2 e^x \dx$.
+\begin{itemize}
+  \item Tomamos $u_1 = x^2 \implies du_1 = 2x\dx$, y $dv_1 = e^x\dx \implies v_1 = e^x$.
+  \item Primera aplicación:
+    $$\int x^2 e^x \dx = x^2 e^x - 2\int x e^x \dx$$
+  \item Para la nueva integral $\int x e^x \dx$, aplicamos partes nuevamente:
+    $$u_2 = x \implies du_2 = \dx, \quad dv_2 = e^x\dx \implies v_2 = e^x$$
+  \item Segunda aplicación:
+    $$\int x^2 e^x \dx = x^2 e^x - 2\left(x e^x - \int e^x \dx\right) = x^2 e^x - 2x e^x + 2e^x \CC$$
+  \item Factorizando: $(x^2 - 2x + 2)e^x \CC$.
+\end{itemize}
+
+\noindent\textbf{Ejemplo Guiado (Partes Cíclicas):} Evaluar $I = \int e^x \sin x \dx$.
+\begin{itemize}
+  \item Elegimos $u_1 = \sin x \implies du_1 = \cos x \dx$, y $dv_1 = e^x \dx \implies v_1 = e^x$.
+  \item Primera aplicación:
+    $$I = e^x \sin x - \int e^x \cos x \dx$$
+  \item Aplicamos partes a $\int e^x \cos x \dx$ con $u_2 = \cos x \implies du_2 = -\sin x \dx$, y $dv_2 = e^x \dx \implies v_2 = e^x$:
+    $$\int e^x \cos x \dx = e^x \cos x - \int e^x (-\sin x)\dx = e^x \cos x + \int e^x \sin x \dx$$
+  \item Sustituimos de vuelta en $I$:
+    $$I = e^x \sin x - \left(e^x \cos x + I\right) = e^x \sin x - e^x \cos x - I$$
+  \item Sumamos $I$ a ambos lados de la ecuación:
+    $$2I = e^x(\sin x - \cos x) \implies I = \frac{1}{2}e^x(\sin x - \cos x) \CC$$
+\end{itemize}
+
+\newpage
+
+% ============================================================
+\subsection{Ejercicios Progresivos: Sucesivas y Cíclicas}
+% ============================================================
+Resuelve las siguientes integrales indefinidas utilizando integración por partes sucesiva o cíclica.
+
+\begin{multicols}{2}
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} $\int x^2 e^x \dx$
+  \item \facil{} $\int x^2 \sin x \dx$
+  \item \facil{} $\int x^2 \cos(2x) \dx$
+  \item \medio{} $\int x^3 e^{-x} \dx$
+  \item \medio{} $\int (\ln x)^2 \dx$
+  \item \medio{} $\int x(\ln x)^2 \dx$
+  \item \medio{} $\int x^2 e^{3x} \dx$
+  \item \medio{} $\int x^3 \cos x \dx$
+  \item \medio{} $\int e^x \sin x \dx$
+  \item \medio{} $\int e^x \cos x \dx$
+  \item \dificil{} $\int e^{2x} \sin(3x) \dx$
+  \item \dificil{} $\int e^{-x} \cos(2x) \dx$
+  \item \dificil{} $\int \sin(\ln x) \dx$
+  \item \dificil{} $\int \cos(\ln x) \dx$
+  \item \dificil{} $\int \sec^3 x \dx$
+\end{enumerate}
+\end{multicols}
+
+\vspace{10pt}
+
+% ============================================================
+\section{Combinación de Técnicas de Integración}
+% ============================================================
+
+\subsection{Estrategia General y Ejemplos}
+En la práctica, las integrales reales rara vez vienen clasificadas con la técnica que deben resolverse. A menudo requieren combinar varios métodos para su resolución definitiva.
+Para enfrentarte a estas situaciones, te sugerimos seguir esta hoja de ruta mental:
+
+\begin{cuadroextra}
+\begin{enumerate}[leftmargin=*, label=\arabic*.]
+  \item \textbf{Simplificación Algebraica:} \textquestiondown Puedo reescribir la expresión utilizando propiedades algebraicas o identidades trigonométricas? (por ejemplo, expandir binomios, dividir polinomios, identidades de ángulos dobles).
+  \item \textbf{Sustitución Inicial:} \textquestiondown Existe alguna función interna molesta o un argumento no lineal (como $\sqrt{x}$, $e^x$, $\ln x$, $\arctan x$) cuya eliminación mediante cambio de variable reduzca la integral a una forma conocida?
+  \item \textbf{Por Partes:} Si después de sustituir nos queda un producto de funciones de diferente índole, aplicamos la regla de integración por partes.
+\end{enumerate}
+\end{cuadroextra}
+
+\noindent\textbf{Ejemplo Guiado:} Evaluar $\int \frac{\arctan e^x}{e^x} \dx$.
+\begin{itemize}
+  \item Vemos que el argumento de la arcotangente es $e^x$ y hay términos exponenciales en el denominador.
+  \item Aplicamos un cambio de variable inicial: $u = e^x \implies du = e^x \dx \implies \dx = \frac{\du}{u}$.
+  \item Sustituimos en la integral:
+    $$\int \frac{\arctan e^x}{e^x} \dx = \int \frac{\arctan u}{u} \cdot \frac{\du}{u} = \int \frac{\arctan u}{u^2} \du = \int u^{-2} \arctan u \du$$
+  \item Esta integral requiere ahora el método de integración por partes:
+    \begin{align*}
+      y &= \arctan u \implies dy = \frac{1}{1+u^2} \du \\
+      dz &= u^{-2} \du \implies z = -\frac{1}{u}
+    \end{align*}
+  \item Aplicamos partes:
+    $$\int u^{-2} \arctan u \du = -\frac{\arctan u}{u} + \int \frac{1}{u(1+u^2)} \du$$
+  \item Resolvemos la integral racional restante por fracciones parciales:
+    $$\frac{1}{u(1+u^2)} = \frac{1}{u} - \frac{u}{1+u^2}$$
+    $$\int \left(\frac{1}{u} - \frac{u}{1+u^2}\right) \du = \ln|u| - \frac{1}{2}\ln(1+u^2) \CC$$
+  \item Reagrupamos y volvemos a la variable $x$ original sabiendo que $u = e^x$ e $1+u^2 = 1+e^{2x}$:
+    $$\int \frac{\arctan e^x}{e^x} \dx = -\frac{\arctan e^x}{e^x} + \ln(e^x) - \frac{1}{2}\ln(1+e^{2x}) \CC$$
+    $$= x - e^{-x}\arctan e^x - \frac{1}{2}\ln(1+e^{2x}) \CC$$
+\end{itemize}
+
+\newpage
+
+% ============================================================
+\subsection{Ejercicios Progresivos: Combinación de Técnicas}
+% ============================================================
+Resuelve las siguientes integrales utilizando combinaciones de las técnicas estudiadas (simplificación trigonométrica, cambio de variable, integración por partes y álgebra elemental).
+
+\begin{multicols}{2}
+\begin{enumerate}[leftmargin=*, resume]
+  \item \medio{} $\int \frac{e^{2x}}{\sqrt{e^x + 1}} \dx$
+  \item \medio{} $\int \ln(x^2 + 1) \dx$
+  \item \medio{} $\int \frac{\ln(\ln x)}{x} \dx$
+  \item \medio{} $\int \frac{x^5}{x^3 + 1} \dx$
+  \item \medio{} $\int \frac{\arcsin(\sqrt{x})}{\sqrt{x}} \dx$
+  \item \medio{} $\int x^5 e^{x^3} \dx$
+  \item \medio{} $\int \cos^3 x \sqrt{\sin x} \dx$
+  \item \medio{} $\int x^2 \arctan x \dx$
+  \item \dificil{} $\int \frac{x e^{\arctan x}}{(1+x^2)^{3/2}} \dx$
+  \item \dificil{} $\int \frac{\ln(x + \sqrt{x^2+1})}{\sqrt{x^2+1}} \dx$
+  \item \dificil{} $\int x^3 \sin(x^2) \dx$
+  \item \dificil{} $\int \frac{\arctan e^x}{e^x} \dx$
+  \item \dificil{} $\int \sec^3 x \tan^3 x \dx$
+  \item \dificil{} $\int \frac{x \ln(x^2+1)}{x^2+1} \dx$
+  \item \dificil{} $\int \frac{e^x(x-1)}{x^2} \dx$
+\end{enumerate}
+\end{multicols}
+
+\vspace{10pt}
+
+% ============================================================
+\section{Resumen de Criterios y Consejos Útiles}
+% ============================================================
+\begin{table}[h!]
+\centering
+\small
+\begin{tabular}{p{3.5cm} p{5.5cm} p{6.5cm}}
+\toprule
+\textbf{Método} & \textbf{\textquestiondown Cuándo aplicar?} & \textbf{Estrategia / Tip clave} \\
+\midrule
+\textbf{Cambio de Variable (Sustitución)} & Integrales que contienen una función interna $g(x)$ y su derivada $g'(x)$ multiplicando. & Elige $u = g(x)$. El diferencial $du$ debe absorber el resto del integrando. \\
+\midrule
+\textbf{Integración por Partes (ILATE)} & Producto de funciones de distintas familias (algebraicas, trigonométricas, exponenciales, logarítmicas). & Usa la regla mnemotécnica \textbf{ILATE} para elegir $u$. La parte más difícil que se pueda integrar pasa a ser $dv$. \\
+\midrule
+\textbf{Partes Sucesivas} & Polinomios multiplicados por funciones que no se extinguen en la integral ($\sin x$, $e^x$). & Deriva reiteradamente el término algebraico hasta que su grado se reduzca a cero. \\
+\midrule
+\textbf{Partes Cíclicas} & Combinaciones de tipo $e^{ax}\cos(bx)$ o potencias impares de funciones trigonométricas. & Aplica el método 2 veces hasta reaparecer la integral original, y despéjala algebraicamente. \\
+\midrule
+\textbf{Combinación} & Expresiones con argumentos complejos y coeficientes de diferente índole. & Aplica primero una sustitución para simplificar argumentos y luego resuelve el producto resultante por partes. \\
+\bottomrule
+\end{tabular}
+\caption{Criterio de selección de técnicas para la resolución de integrales.}
+\label{tab:resumen}
+\end{table}
+
+\newpage
+
+% ============================================================
+\section{Clave de Respuestas}
+% ============================================================
+A continuación se presenta la solución analítica para cada uno de los 70 ejercicios planteados en esta guía. Todas las respuestas incluyen la constante de integración $C \in \R$.
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $\frac{1}{24}(3x-5)^8 \CC$
+  \item $\frac{1}{4}\sin(4x+1) \CC$
+  \item $-\frac{1}{2}e^{-2x} \CC$
+  \item $\frac{1}{2}\ln|2x+7| \CC$
+  \item $\frac{1}{5}\tan(5x) \CC$
+  \item $\frac{1}{6}(x^2+3)^6 \CC$
+  \item $\frac{1}{3}e^{x^3} \CC$
+  \item $\frac{1}{2}(\ln x)^2 \CC$
+  \item $\frac{1}{5}\sin^5 x \CC$
+  \item $\sqrt{x^2+9} \CC$
+  \item $\arctan(e^x) \CC$
+  \item $\ln|\tan x| \CC$
+  \item $\frac{2}{3}(\sin x)^{3/2} \CC$
+  \item $\frac{2}{15}(x-1)^{3/2}(3x+2) \CC$
+  \item $\frac{1}{2}x^2 + 2x + 4\ln|x-2| \CC$
+  \item $\cos\left(\frac{1}{x}\right) \CC$
+  \item $-e^{\cos x} \CC$
+  \item $\frac{1}{3}\sqrt{x^2+1}(x^2-2) \CC$
+  \item $\ln|\ln(\ln x)| \CC$
+  \item $\sin(\ln x) \CC$
+  \item $(x-1)e^x \CC$
+  \item $x\sin x + \cos x \CC$
+  \item $-\frac{1}{2}x\cos(2x) + \frac{1}{4}\sin(2x) \CC$
+  \item $(1-2x)e^{-x} \CC$
+  \item $x\tan x + \ln|\cos x| \CC$
+  \item $-\frac{1}{3}(x+2)\cos(3x) + \frac{1}{9}\sin(3x) \CC$
+  \item $\frac{3^x}{\ln 3}\left(x - \frac{1}{\ln 3}\right) \CC$
+  \item $\frac{1}{4}(5x+1)\sin(4x) + \frac{5}{16}\cos(4x) \CC$
+  \item $x\ln x - x \CC$
+  \item $\frac{1}{2}x^2\ln x - \frac{1}{4}x^2 \CC$
+  \item $x\arcsin x + \sqrt{1-x^2} \CC$
+  \item $x\arctan x - \frac{1}{2}\ln(1+x^2) \CC$
+  \item $\frac{1}{3}x^3\ln x - \frac{1}{9}x^3 \CC$
+  \item $-\frac{\ln x + 1}{x} \CC$
+  \item $\frac{1}{2}(x^2+1)\arctan x - \frac{1}{2}x \CC$
+  \item $\left(x+\frac{1}{2}\right)\ln(2x+1) - x \CC$
+  \item $2(\sqrt{x}-1)e^{\sqrt{x}} \CC$
+  \item $\frac{1}{2}(x^2-1)e^{x^2} \CC$
+  \item $x - \sqrt{1-x^2}\arcsin x \CC$
+  \item $2\sqrt{x}\sin(\sqrt{x}) + 2\cos(\sqrt{x}) \CC$
+  \item $(x^2 - 2x + 2)e^x \CC$
+  \item $-x^2\cos x + 2x\sin x + 2\cos x \CC$
+  \item $\frac{1}{2}x\cos(2x) + \frac{1}{4}(2x^2-1)\sin(2x) \CC$
+  \item $-(x^3 + 3x^2 + 6x + 6)e^{-x} \CC$
+  \item $x(\ln x)^2 - 2x\ln x + 2x \CC$
+  \item $\frac{1}{4}x^2\left[2(\ln x)^2 - 2\ln x + 1\right] \CC$
+  \item $\frac{1}{27}(9x^2 - 6x + 2)e^{3x} \CC$
+  \item $(x^3 - 6x)\sin x + (3x^2 - 6)\cos x \CC$
+  \item $\frac{1}{2}e^x(\sin x - \cos x) \CC$
+  \item $\frac{1}{2}e^x(\sin x + \cos x) \CC$
+  \item $\frac{1}{13}e^{2x}(2\sin(3x) - 3\cos(3x)) \CC$
+  \item $\frac{1}{5}e^{-x}(2\sin(2x) - \cos(2x)) \CC$
+  \item $\frac{x}{2}(\sin(\ln x) - \cos(\ln x)) \CC$
+  \item $\frac{x}{2}(\sin(\ln x) + \cos(\ln x)) \CC$
+  \item $\frac{1}{2}\sec x\tan x + \frac{1}{2}\ln|\sec x + \tan x| \CC$
+  \item $\frac{2}{3}(e^x-2)\sqrt{e^x+1} \CC$
+  \item $x\ln(x^2+1) - 2x + 2\arctan x \CC$
+  \item $\ln x[\ln(\ln x) - 1] \CC$
+  \item $\frac{1}{3}x^3 - \frac{1}{3}\ln(x^3+1) \CC$
+  \item $2\sqrt{x}\arcsin(\sqrt{x}) + 2\sqrt{1-x} \CC$
+  \item $\frac{1}{3}(x^3-1)e^{x^3} \CC$
+  \item $\frac{2}{3}(\sin x)^{3/2} - \frac{2}{7}(\sin x)^{7/2} \CC$
+  \item $\frac{1}{3}x^3\arctan x - \frac{1}{6}x^2 + \frac{1}{6}\ln(1+x^2) \CC$
+  \item $\frac{(x-1)e^{\arctan x}}{2\sqrt{1+x^2}} \CC$
+  \item $\frac{1}{2}[\ln(x + \sqrt{x^2+1})]^2 \CC$
+  \item $\frac{1}{2}\sin(x^2) - \frac{1}{2}x^2\cos(x^2) \CC$
+  \item $x - e^{-x}\arctan e^x - \frac{1}{2}\ln(1+e^{2x}) \CC$
+  \item $\frac{1}{5}\sec^5 x - \frac{1}{3}\sec^3 x \CC$
+  \item $\frac{1}{4}[\ln(x^2+1)]^2 \CC$
+  \item $\frac{e^x}{x} \CC$
+\end{enumerate}
+
+\end{document}

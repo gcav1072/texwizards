@@ -1,0 +1,428 @@
+% ============================================================
+%  GUÍA 8: EXAMEN FINAL
+%  Curso de Introducción a la Universidad — Precálculo y Cálculo I
+%  Autor: Gabriel Astudillo
+%  Sesiones cubiertas: Todo el contenido del curso (1-23)
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Guía 8 — Examen Final}{Gabriel Astudillo $\cdot$ Curso Preuniversitario}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Estudio 8}{Examen Final Integral}{Repaso y Evaluación de Todo el Curso: Álgebra, Funciones, Límites, Derivadas y Aplicaciones}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} Esta última guía condensa los temas principales del curso como un examen integrador. Está organizada por bloques correspondientes a cada una de las guías anteriores. Te recomiendo resolverla \textbf{sin mirar las soluciones}, como si fuera un examen real. Cada sección incluye ejercicios resueltos (para repasar la técnica) y un conjunto propuesto (para evaluar tu dominio).
+  \\[4pt]
+  \textbf{Nivel de Dificultad:}\quad
+  \facil{} Básico / Directo \quad
+  \medio{} Intermedio \quad
+  \dificil{} Desafiante
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Álgebra, Ecuaciones y Desigualdades}
+% ============================================================
+
+\subsection{Ejercicio resuelto integrador}
+
+\textbf{Ejemplo R1.} Resuelve el sistema combinado de ecuaciones y desigualdades:
+\begin{enumerate}[label=\roman*)]
+  \item $x^2 - 5x + 6 = 0$
+  \item $|x - 3| < 2$
+\end{enumerate}
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item Ecuación: $x^2 - 5x + 6 = (x - 2)(x - 3) = 0 \Rightarrow x = 2$ o $x = 3$.
+    \item Desigualdad: $-2 < x - 3 < 2 \Rightarrow 1 < x < 5$.
+  \end{itemize}
+  Las soluciones de la ecuación que cumplen la desigualdad son $x = 2$ y $x = 3$ (ambas están en $(1, 5)$).
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*]
+  \item \facil{} Simplifica: $\dfrac{(2x^2y)^3 \cdot y^{-2}}{x^{4} y^{2}}$
+
+  \item \facil{} Factoriza completamente: $4x^2 - 12x + 9$.
+
+  \item \facil{} Resuelve: $\dfrac{x + 2}{x - 1} = \dfrac{2x}{x + 3}$.
+
+  \item \medio{} Resuelve la desigualdad: $x^2 - x - 6 \leq 0$.
+
+  \item \medio{} Resuelve: $|2x + 1| \geq 5$.
+
+  \item \dificil{} Racionaliza el numerador de $\dfrac{\sqrt{x + 9} - 3}{x}$ y simplifica.
+
+  \item \dificil{} Resuelve la desigualdad racional: $\dfrac{x^2 - 4}{x - 1} \geq 0$.
+
+  \item \dificil{} Encuentra dos números cuya suma sea 15 y la suma de sus cuadrados sea mínima.
+\end{enumerate}
+
+\vspace{4pt}
+
+% ============================================================
+\section{Funciones, Dominios y Transformaciones}
+% ============================================================
+
+\subsection{Ejercicio resuelto integrador}
+
+\textbf{Ejemplo R1.} Dada $f(x) = x^2 - 2x$, determina: dominio, vértice, interceptos, y la transformación que lleva $y = x^2$ a esta función.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item Dominio: $\mathbb{R}$.
+    \item Completando el cuadrado: $f(x) = (x - 1)^2 - 1$. Vértice: $(1, -1)$.
+    \item Interceptos: $y$: $(0, 0)$; $x$: $x(x - 2) = 0 \Rightarrow x = 0, 2$, así que $(0, 0)$ y $(2, 0)$.
+    \item De $y = x^2$ a $y = (x - 1)^2 - 1$: traslación 1 unidad a la derecha y 1 unidad hacia abajo.
+  \end{itemize}
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Encuentra el dominio de $f(x) = \dfrac{x + 1}{x^2 - 4}$.
+
+  \item \facil{} Encuentra el dominio de $f(x) = \sqrt{2x + 6}$.
+
+  \item \facil{} Dadas $f(x) = x^2$ y $g(x) = x + 2$, calcula $(f \circ g)(x)$ y $(g \circ f)(x)$.
+
+  \item \medio{} Determina si $f(x) = x^2 + 4x$ es inyectiva. Si no lo es, indica una restricción apropiada del dominio.
+
+  \item \medio{} Halla la inversa de $f(x) = \dfrac{2x - 3}{x + 1}$.
+
+  \item \medio{} La gráfica de $f(x) = \sqrt{x}$ se refleja sobre el eje $x$ y se traslada 2 unidades a la derecha y 3 hacia arriba. Escribe la nueva función.
+
+  \item \dificil{} Determina el dominio de $f(x) = \sqrt{\dfrac{x - 1}{x + 2}}$.
+
+  \item \dificil{} Una parábola tiene vértice en $(3, -2)$ y pasa por el punto $(1, 0)$. Encuentra su ecuación.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Polinomiales, Racionales y Composiciones}
+% ============================================================
+
+\subsection{Ejercicio resuelto integrador}
+
+\textbf{Ejemplo R1.} Factoriza $f(x) = x^3 - 2x^2 - 5x + 6$ y determina sus asíntotas si es racional.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{enumerate}
+    \item Probando $x = 1$: $f(1) = 1 - 2 - 5 + 6 = 0$. Es raíz.
+    \item División sintética con 1: cociente $x^2 - x - 6 = (x - 3)(x + 2)$.
+    \item Factorización: $f(x) = (x - 1)(x - 3)(x + 2)$.
+  \end{enumerate}
+  No es racional (es polinomial), así que no tiene asíntotas; su dominio es $\mathbb{R}$.
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Divide $(x^3 - 2x^2 + x - 5)$ entre $(x - 2)$ usando división sintética e indica el residuo.
+
+  \item \facil{} Encuentra las asíntotas de $f(x) = \dfrac{2x}{x - 1}$.
+
+  \item \facil{} Dadas $f(x) = \dfrac{1}{x}$ y $g(x) = x + 1$: calcula $(f \circ g)(x)$ y su dominio.
+
+  \item \medio{} Encuentra el dominio, asíntotas, interceptos y huecos de $f(x) = \dfrac{x^2 - 1}{x^2 + x - 2}$.
+
+  \item \medio{} Un polinomio de grado 3 tiene raíces $x = -2$, $x = 1$, $x = 3$ y pasa por $(0, -6)$. Encuentra $f(x)$.
+
+  \item \medio{} Encuentra la inversa de $f(x) = x^3 + 2$.
+
+  \item \dificil{} Encuentra la asíntota oblicua de $f(x) = \dfrac{x^3 + 2x^2 - x + 1}{x^2 + 1}$.
+
+  \item \dificil{} Determina los valores de $k$ tal que $f(x) = \dfrac{kx^2 + 1}{x - 2}$ tenga una asíntota vertical y una asíntota horizontal a la vez.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Exponenciales, Logaritmos y Trigonometría}
+% ============================================================
+
+\subsection{Ejercicio resuelto integrador}
+
+\textbf{Ejemplo R1.} Resuelve $\log_2 x + \log_2(x - 2) = 3$ y verifica.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$\log_2[x(x - 2)] = 3 \Rightarrow x(x - 2) = 8 \Rightarrow x^2 - 2x - 8 = 0 \Rightarrow (x - 4)(x + 2) = 0.$$
+  $x = 4$ es válida (argumentos positivos); $x = -2$ se descarta.
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Resuelve: $2^x = 32$.
+
+  \item \facil{} Resuelve: $\log_3(x + 1) = 2$.
+
+  \item \facil{} Convierte $135^\circ$ a radianes.
+
+  \item \facil{} Calcula: $\sin\left(\frac{\pi}{3}\right)$ y $\cos\left(\frac{\pi}{6}\right)$.
+
+  \item \medio{} Determina amplitud y período de $y = 3\cos\left(\frac{x}{2}\right)$.
+
+  \item \medio{} Encuentra todos los ángulos en $[0, 2\pi)$ tales que $\cos\theta = \dfrac{\sqrt{2}}{2}$.
+
+  \item \dificil{} Una población crece según $P(t) = 1000e^{0{,}05t}$ con $t$ en años. ¿En cuántos años se duplicará?
+
+  \item \dificil{} Verifica: $\dfrac{\sin^2 x}{\cos x} = \sec x - \cos x$.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Límites y Continuidad}
+% ============================================================
+
+\subsection{Ejercicio resuelto integrador}
+
+\textbf{Ejemplo R1.} Calcula $\lim_{x \to 0} \dfrac{\sin(3x)}{x}$ y clasifica la discontinuidad de $f(x) = \dfrac{\sin(3x)}{x}$ en $x = 0$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$\lim_{x \to 0} \dfrac{\sin(3x)}{x} = 3 \cdot \lim_{x \to 0} \dfrac{\sin(3x)}{3x} = 3 \cdot 1 = 3.$$
+  La función no está definida en $x = 0$ (división entre cero), pero el límite existe. Es una discontinuidad \textbf{evitable}: se puede reparar definiendo $f(0) = 3$.
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Calcula: $\lim_{x \to 2} \dfrac{x^2 - 4}{x - 2}$.
+
+  \item \facil{} Calcula: $\lim_{x \to \infty} \dfrac{3x + 1}{x - 5}$.
+
+  \item \facil{} Determina si $f(x) = x^3 - x$ es continua en $x = 1$.
+
+  \item \medio{} Calcula: $\lim_{x \to 0} \dfrac{1 - \cos x}{x^2}$.
+
+  \item \medio{} Encuentra $k$ para que la función sea continua en $x = 2$:
+        $$f(x) = \begin{cases} kx + 1 & \text{si } x < 2 \\ 3x - 2 & \text{si } x \geq 2 \end{cases}$$
+
+  \item \medio{} Determina las asíntotas de $f(x) = \dfrac{2x^2 + 3x - 1}{x + 2}$.
+
+  \item \dificil{} Calcula: $\lim_{x \to \infty} \left(\sqrt{x^2 + 1} - x\right)$ (pista: racionaliza).
+
+  \item \dificil{} Usa el TVI para demostrar que $f(x) = x^3 - x - 1$ tiene una raíz en $(1, 2)$.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Derivadas}
+% ============================================================
+
+\subsection{Ejercicio resuelto integrador}
+
+\textbf{Ejemplo R1.} Calcula $f'(x)$ para $f(x) = x^2 e^{2x} \sin x$ (aplicando regla del producto y cadena).
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Agrupamos $u = x^2 e^{2x}$, $v = \sin x$:
+  \begin{itemize}
+    \item $u' = 2x e^{2x} + x^2 \cdot 2e^{2x} = e^{2x}(2x + 2x^2)$.
+    \item $v' = \cos x$.
+  \end{itemize}
+  $$f'(x) = u'v + uv' = e^{2x}(2x + 2x^2)\sin x + x^2 e^{2x} \cos x = e^{2x}\left[(2x + 2x^2)\sin x + x^2 \cos x\right].$$
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Calcula la derivada de $f(x) = 3x^4 - 2x^3 + x^2 - 5$.
+
+  \item \facil{} Calcula la derivada de $f(x) = e^x + \ln x + \sin x$.
+
+  \item \facil{} Calcula la derivada de $f(x) = (x^2 + 3x)^5$.
+
+  \item \facil{} Calcula $f''(x)$ para $f(x) = e^{2x}$.
+
+  \item \medio{} Calcula la derivada de $f(x) = \dfrac{x^2}{x^2 + 1}$.
+
+  \item \medio{} Calcula la derivada de $f(x) = \ln(x^2 + 1)$.
+
+  \item \medio{} Usando la definición de derivada, calcula $f'(x)$ para $f(x) = \dfrac{1}{x + 1}$.
+
+  \item \dificil{} Calcula la derivada de $f(x) = \sqrt{\sin x + e^x}$.
+
+  \item \dificil{} Encuentra la ecuación de la recta tangente a $f(x) = x^3$ en $x = 2$.
+
+  \item \dificil{} Determina los valores de $x$ donde la recta tangente a $f(x) = x^3 - 6x^2 + 5$ es horizontal.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Aplicaciones de la Derivada}
+% ============================================================
+
+\subsection{Ejercicio resuelto integrador}
+
+\textbf{Ejemplo R1.} Encuentra los extremos absolutos de $f(x) = x^3 - 3x^2 + 1$ en $[-1, 4]$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item $f'(x) = 3x^2 - 6x = 3x(x - 2)$. Puntos críticos: $x = 0$, $x = 2$ (ambos en el intervalo).
+    \item Evaluamos: $f(-1) = -1 - 3 + 1 = -3$; $f(0) = 1$; $f(2) = 8 - 12 + 1 = -3$; $f(4) = 64 - 48 + 1 = 17$.
+  \end{itemize}
+  Máximo absoluto: $17$ en $x = 4$. Mínimo absoluto: $-3$ (en $x = -1$ y $x = 2$).
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Encuentra los puntos críticos de $f(x) = x^2 - 8x + 12$.
+
+  \item \facil{} Determina los intervalos de crecimiento de $f(x) = x^2 - 4x$.
+
+  \item \facil{} Aplica el TVM a $f(x) = x^2$ en $[1, 3]$ y encuentra $c$.
+
+  \item \medio{} Encuentra las dimensiones del rectángulo de área máxima con perímetro $24$ m.
+
+  \item \medio{} Se lanza una pelota con altura $h(t) = -5t^2 + 20t + 2$ metros. ¿Cuál es la altura máxima?
+
+  \item \medio{} Determina intervalos de concavidad de $f(x) = x^3 - 3x^2$.
+
+  \item \dificil{} Un tanque cilíndrico con tapa tiene volumen fijo $V = 1000$ cm$^3$. Encuentra las dimensiones que minimizan el material (área total).
+
+  \item \dificil{} Una escalera de $5$ m está apoyada contra una pared. La base se desliza a $1$ m/s. ¿Qué tan rápido cae la parte superior cuando la base está a $3$ m de la pared?
+
+  \item \dificil{} Encuentra los extremos absolutos de $f(x) = x \ln x$ en $[1, e]$.
+
+  \item \dificil{} Determina los puntos de inflexión de $f(x) = x^4 - 6x^2 + 4x$.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Solucionario del Examen Final}
+% ============================================================
+
+\subsection*{Sección 1: Álgebra, Ecuaciones y Desigualdades}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $\dfrac{(2x^2y)^3 \cdot y^{-2}}{x^4 y^2} = \dfrac{8x^6 y^3 \cdot y^{-2}}{x^4 y^2} = \dfrac{8x^6 y}{x^4 y^2} = \dfrac{8x^2}{y}$
+  \item $(2x - 3)^2$
+  \item $(x + 2)(x + 3) = 2x(x - 1) \Rightarrow x^2 + 5x + 6 = 2x^2 - 2x \Rightarrow 0 = x^2 - 7x - 6 \Rightarrow x = \dfrac{7 \pm \sqrt{73}}{2}$
+  \item $x^2 - x - 6 = (x - 3)(x + 2) \leq 0.$ Solución: $[-2, 3]$
+  \item $2x + 1 \leq -5$ o $2x + 1 \geq 5$: $x \leq -3$ o $x \geq 2$: $(-\infty, -3] \cup [2, \infty)$
+  \item $\dfrac{1}{\sqrt{x + 9} + 3}$ (para $x \neq 0$)
+  \item Puntos clave: $x = \pm 2$ y $x = 1$ (denominador). Tabla: solución $[-2, 1) \cup [2, \infty)$
+  \item Los números son $x$ y $15 - x$. Minimizar $S = x^2 + (15 - x)^2$. $S' = 2x - 2(15 - x) = 4x - 30 = 0 \Rightarrow x = 7{,}5$. Ambos números son $7{,}5$ y $7{,}5$.
+\end{enumerate}
+
+\subsection*{Sección 2: Funciones, Dominios y Transformaciones}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{8}
+  \item $(-\infty, -2) \cup (-2, 2) \cup (2, \infty)$
+  \item $[-3, \infty)$
+  \item $(f \circ g)(x) = (x + 2)^2 = x^2 + 4x + 4$; $(g \circ f)(x) = x^2 + 2$
+  \item No es inyectiva en $\mathbb{R}$; se puede restringir a $[-2, \infty)$ o $(-\infty, -2]$.
+  \item $y = \frac{2x - 3}{x + 1}$. Intercambiando: $x(y + 1) = 2y - 3 \Rightarrow xy + x = 2y - 3 \Rightarrow xy - 2y = -x - 3 \Rightarrow y(x - 2) = -x - 3 \Rightarrow f^{-1}(x) = \dfrac{-x - 3}{x - 2} = \dfrac{x + 3}{2 - x}$.
+  \item $g(x) = -\sqrt{x - 2} + 3$
+  \item Resolvemos $\dfrac{x - 1}{x + 2} \geq 0$ con puntos clave $-2$ y $1$: dominio $(-\infty, -2) \cup [1, \infty)$
+  \item $f(x) = a(x - 3)^2 - 2$; con $(1, 0)$: $0 = a(4) - 2 \Rightarrow a = \frac{1}{2}$. Ecuación: $f(x) = \frac{1}{2}(x - 3)^2 - 2$.
+\end{enumerate}
+
+\subsection*{Sección 3: Polinomiales, Racionales y Composiciones}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{16}
+  \item División sintética con 2: cociente $x^2 + x + 3$, residuo $-11$.
+  \item A.V.: $x = 1$; A.H.: $y = 2$.
+  \item $(f \circ g)(x) = \frac{1}{x + 1}$, dominio: $x \neq -1$.
+  \item Factorizamos: $f(x) = \dfrac{(x - 1)(x + 1)}{(x + 2)(x - 1)} = \dfrac{x + 1}{x + 2}$ para $x \neq 1$. Hueco en $(1, \frac{2}{3})$. Dominio: $x \neq -2, 1$. A.V.: $x = -2$; A.H.: $y = 1$; intercepto $y$: $(0, \frac{1}{2})$; intercepto $x$: $(-1, 0)$.
+  \item $f(x) = a(x + 2)(x - 1)(x - 3)$. Con $f(0) = a(2)(-1)(-3) = 6a = -6 \Rightarrow a = -1$. Así: $f(x) = -(x + 2)(x - 1)(x - 3)$.
+  \item $f^{-1}(x) = \sqrt[3]{x - 2}$.
+  \item Cociente: $x + 2$ (asíntota oblicua $y = x + 2$).
+  \item Para A.V. en $x = 2$: necesitamos $k(2)^2 + 1 \neq 0$, que siempre se cumple. Para A.H.: grado numerador > grado denominador siempre, así que no hay A.H. Nunca hay ambas simultáneamente (la condición no tiene solución).
+\end{enumerate}
+
+\subsection*{Sección 4: Exponenciales, Logaritmos y Trigonometría}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{24}
+  \item $x = 5$
+  \item $x + 1 = 9 \Rightarrow x = 8$
+  \item $\dfrac{3\pi}{4}$
+  \item $\sin\frac{\pi}{3} = \frac{\sqrt{3}}{2}$; $\cos\frac{\pi}{6} = \frac{\sqrt{3}}{2}$
+  \item Amplitud $3$; período $\dfrac{2\pi}{1/2} = 4\pi$.
+  \item $\theta = \dfrac{\pi}{4}$ y $\theta = \dfrac{7\pi}{4}$
+  \item $2000 = 1000e^{0{,}05t} \Rightarrow 2 = e^{0{,}05t} \Rightarrow t = \dfrac{\ln 2}{0{,}05} \approx 13{,}86$ años.
+  \item $\sec x - \cos x = \dfrac{1}{\cos x} - \cos x = \dfrac{1 - \cos^2 x}{\cos x} = \dfrac{\sin^2 x}{\cos x}$. Se verifica.
+\end{enumerate}
+
+\subsection*{Sección 5: Límites y Continuidad}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{32}
+  \item $\lim_{x \to 2} (x + 2) = 4$
+  \item $\dfrac{3 + \frac{1}{x}}{1 - \frac{5}{x}} \to 3$
+  \item Sí: $f(1) = 0$; $\lim_{x \to 1} = 0$; coinciden.
+  \item $\dfrac{1 - \cos x}{x^2} \cdot \dfrac{1 + \cos x}{1 + \cos x} = \dfrac{\sin^2 x}{x^2(1 + \cos x)} \to \dfrac{1}{2}$.
+  \item $\lim_{x \to 2^-} (kx + 1) = 2k + 1$; $f(2) = 4$. $2k + 1 = 4 \Rightarrow k = \frac{3}{2}$.
+  \item A.V.: $x = -2$. A.O.: dividiendo: $2x - 1 - \frac{3}{x + 2}$, así que $y = 2x - 1$.
+  \item Racionalizamos: $\dfrac{(\sqrt{x^2+1} - x)(\sqrt{x^2+1} + x)}{\sqrt{x^2+1} + x} = \dfrac{1}{\sqrt{x^2+1} + x} \to 0$.
+  \item $f(1) = -1 < 0$; $f(2) = 5 > 0$. TVI garantiza una raíz en $(1, 2)$.
+\end{enumerate}
+
+\subsection*{Sección 6: Derivadas}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{40}
+  \item $f'(x) = 12x^3 - 6x^2 + 2x$
+  \item $f'(x) = e^x + \frac{1}{x} + \cos x$
+  \item $f'(x) = 5(x^2 + 3x)^4(2x + 3)$
+  \item $f'(x) = 2e^{2x}$, $f''(x) = 4e^{2x}$
+  \item $f'(x) = \dfrac{2x(x^2 + 1) - x^2(2x)}{(x^2 + 1)^2} = \dfrac{2x}{(x^2 + 1)^2}$
+  \item $f'(x) = \dfrac{2x}{x^2 + 1}$
+  \item Con la definición: $f'(x) = \lim_{h \to 0} \frac{\frac{1}{x+h+1} - \frac{1}{x+1}}{h} = \lim_{h \to 0} \frac{-h}{(x+h+1)(x+1)h} = \dfrac{-1}{(x+1)^2}$
+  \item $f'(x) = \dfrac{\cos x + e^x}{2\sqrt{\sin x + e^x}}$
+  \item $f'(x) = 3x^2$, en $x = 2$: $m = 12$, punto $(2, 8)$. Recta: $y - 8 = 12(x - 2)$, $y = 12x - 16$.
+  \item $f'(x) = 3x^2 - 12x = 3x(x - 4) = 0 \Rightarrow x = 0$ o $x = 4$. Puntos: $(0, 5)$ y $(4, -27)$.
+\end{enumerate}
+
+\subsection*{Sección 7: Aplicaciones de la Derivada}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{50}
+  \item $f'(x) = 2x - 8 = 0 \Rightarrow x = 4$
+  \item Creciente en $(2, \infty)$, decreciente en $(-\infty, 2)$.
+  \item Pendiente secante: $\frac{9 - 1}{3 - 1} = 4$. $f'(x) = 2x = 4 \Rightarrow c = 2$.
+  \item Sea $x$ el ancho: $2x + 2y = 24 \Rightarrow y = 12 - x$. Área $= x(12 - x) = 12x - x^2$. $A' = 12 - 2x = 0 \Rightarrow x = 6$, $y = 6$: cuadrado de $6 \times 6$ m.
+  \item $h'(t) = -10t + 20 = 0 \Rightarrow t = 2$ s. $h(2) = -20 + 40 + 2 = 22$ m.
+  \item $f'(x) = 3x^2 - 6x$; $f''(x) = 6x - 6$. Cóncava abajo en $(-\infty, 1)$; cóncava arriba en $(1, \infty)$; punto de inflexión en $x = 1$.
+  \item Radio $r$, altura $h$. $V = \pi r^2 h = 1000 \Rightarrow h = \frac{1000}{\pi r^2}$. Área: $A = 2\pi r^2 + 2\pi r h = 2\pi r^2 + \frac{2000}{r}$. $A' = 4\pi r - \frac{2000}{r^2} = 0 \Rightarrow r^3 = \frac{500}{\pi} \Rightarrow r = \sqrt[3]{\frac{500}{\pi}} \approx 5{,}42$ cm. $h = \frac{1000}{\pi r^2} = 2r \approx 10{,}84$ cm.
+  \item $x^2 + y^2 = 25$, con $x$ base, $y$ altura. Derivamos: $2x\frac{dx}{dt} + 2y\frac{dy}{dt} = 0$. En $x = 3$, $y = 4$, $\frac{dx}{dt} = 1$: $2(3)(1) + 2(4)\frac{dy}{dt} = 0 \Rightarrow \frac{dy}{dt} = -\frac{3}{4}$ m/s (baja a 0,75 m/s).
+  \item $f'(x) = \ln x + 1 = 0 \Rightarrow x = e^{-1}$ (no está en $[1, e]$). Evaluamos: $f(1) = 0$; $f(e) = e$. Mínimo: $0$ en $x = 1$; máximo: $e$ en $x = e$.
+  \item $f'(x) = 4x^3 - 12x + 4$; $f''(x) = 12x^2 - 12 = 12(x^2 - 1)$. Puntos de inflexión: $x = \pm 1$.
+\end{enumerate}
+
+\vspace{12pt}
+
+\begin{cuadrosolucion}
+  \textbf{¡Felicitaciones por completar el curso de Precálculo y Cálculo I!}\\
+  Has recorrido las bases del álgebra, las funciones y el cálculo diferencial. Este examen final integrador es el último paso: repasa las áreas donde sientas dudas, y recuerda que la práctica es la clave del dominio.
+\end{cuadrosolucion}
+
+\end{document}

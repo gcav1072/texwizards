@@ -1,0 +1,286 @@
+% ============================================================
+%  mathwizards-ingles.sty
+%  Estilo del curso de inglés — Mathwizards Consultoría Educativa STEM
+%
+%  Requisitos:
+%    * Compilar con XeLaTeX  →  latexmk -xelatex archivo.tex
+%    * mathwizards-palette.sty en la ruta TEXINPUTS
+%
+%  Cajas disponibles (tcolorbox, todas con título opcional):
+%    cajachunk, cajagrammar, cajaejemplo, cajamineria, cajanivel,
+%    cajatransicion, cajaconsolidacion, cajabueno, cajamalo,
+%    cajaprincipio, cajatarjeta, cajafilosofia, cajames, cajanota,
+%    cajaherramienta, cajapaso, cajaalerta, cajaexito, cajacodigo,
+%    cajasesion, cajasemana, cajaseccion
+%
+%  Los colores de la versión anterior (mes1, mes2, mes3, chunk,
+%  grammar, ejemplo, mineria, transicion, consolidacion, bueno,
+%  malo, acento, grissuave, fondo, herramienta, paso, alerta,
+%  exito, codefondo) apuntan a la paleta de la marca.
+% ============================================================
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mathwizards-ingles}[2026/08/11 v1.0 Curso de inglés Mathwizards]
+
+% ── Paquetes ─────────────────────────────────────────────────
+\RequirePackage{fontspec}
+\RequirePackage[spanish]{babel}
+\AtBeginDocument{\shorthandoff{"}}
+\RequirePackage{geometry}
+\RequirePackage{enumitem}
+\RequirePackage{xcolor}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+\RequirePackage{tabularx}
+\RequirePackage{booktabs}
+\RequirePackage{hyperref}
+\RequirePackage{multicol}
+\RequirePackage{amssymb}
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, calc, babel}
+\RequirePackage{mathwizards-palette}
+
+\geometry{margin=2.5cm}
+
+% ── Fuentes (marca) ──────────────────────────────────────────
+\setmainfont{Cabin}[
+  Extension      = .otf,
+  UprightFont    = Cabin-Regular,
+  BoldFont       = Cabin-Bold,
+  ItalicFont     = Cabin-Italic,
+  BoldItalicFont = Cabin-BoldItalic
+]
+\newfontfamily\nxheav{Nexa Heavy}[NFSSFamily=nexaheavy]
+\newfontfamily\nxlight{Nexa Extra Light}[NFSSFamily=nexaextralight]
+
+% ── Búsqueda del logo ────────────────────────────────────────
+\graphicspath{
+  {assets/img/}{../assets/img/}{../../assets/img/}
+  {../../../assets/img/}{../../../../assets/img/}
+}
+
+% ── Colores del curso → paleta de la marca ───────────────────
+\colorlet{mes1}{mwprimario}      % Mes 1 (antes verde bosque)
+\colorlet{mes2}{mwnaranja}       % Mes 2 (antes ámbar)
+\colorlet{mes3}{mwvioleta}       % Mes 3 (antes naranja tostado)
+\colorlet{acento}{mwprimario}
+\colorlet{chunk}{mwprimario}
+\colorlet{grammar}{mwvioleta}
+\colorlet{ejemplo}{mwgrisoscuro}
+\colorlet{mineria}{mwrojonaranja}
+\colorlet{transicion}{mwmagenta}
+\colorlet{consolidacion}{mwmagenta}
+\colorlet{bueno}{mwmagenta}
+\colorlet{malo}{mwrojonaranja}
+\colorlet{grissuave}{mwgris}
+\colorlet{fondo}{mwgrisclaro}
+\colorlet{herramienta}{mwprimario}
+\colorlet{paso}{mwnaranja}
+\colorlet{alerta}{mwrojonaranja}
+\colorlet{exito}{mwmagenta}
+\colorlet{codefondo}{mwgrisclaro}
+
+% ── Estilo común de cajas grandes ────────────────────────────
+% (se usa como base para las cajas con título)
+\newtcolorbox{cajagrande}[2][]{%
+  enhanced, breakable,
+  colback=#2!5, colframe=#2,
+  fonttitle=\nxheav\large, title={#1},
+  arc=3mm, boxrule=1pt,
+  left=6pt, right=6pt, top=6pt, bottom=6pt
+}
+
+\newtcolorbox{cajamediana}[2][]{%
+  enhanced, breakable,
+  colback=#2!5, colframe=#2,
+  fonttitle=\nxheav, title={#1},
+  arc=2mm, boxrule=0.8pt,
+  left=5pt, right=5pt, top=4pt, bottom=4pt
+}
+
+% ── Cajas del curso ──────────────────────────────────────────
+\newtcolorbox{cajachunk}[1][]{%
+  enhanced, breakable,
+  colback=chunk!5, colframe=chunk,
+  fonttitle=\nxheav\large, title={#1},
+  arc=3mm, boxrule=1pt,
+  left=6pt, right=6pt, top=6pt, bottom=6pt
+}
+
+\newtcolorbox{cajagrammar}[1][]{%
+  enhanced, breakable,
+  colback=grammar!5, colframe=grammar,
+  fonttitle=\nxheav\large, title={#1},
+  arc=3mm, boxrule=1pt,
+  left=6pt, right=6pt, top=6pt, bottom=6pt
+}
+
+\newtcolorbox{cajaejemplo}[1][]{%
+  enhanced,
+  colback=ejemplo!5, colframe=ejemplo!40,
+  fonttitle=\nxheav, title={#1},
+  arc=2mm, boxrule=0.5pt,
+  left=5pt, right=5pt, top=4pt, bottom=4pt
+}
+
+\newtcolorbox{cajamineria}[1][]{%
+  enhanced, breakable,
+  colback=mineria!5, colframe=mineria,
+  fonttitle=\nxheav, title={#1},
+  arc=2mm, boxrule=0.8pt,
+  left=5pt, right=5pt, top=4pt, bottom=4pt
+}
+
+% Nivel/objetivo: color por argumento (por defecto, primario)
+\newtcolorbox{cajanivel}[1][mwprimario]{%
+  enhanced,
+  colback=#1!8, colframe=#1,
+  arc=3mm, boxrule=1.2pt,
+  left=8pt, right=8pt, top=8pt, bottom=8pt
+}
+
+\newtcolorbox{cajatransicion}[1][]{%
+  enhanced, breakable,
+  colback=transicion!5, colframe=transicion,
+  fonttitle=\nxheav\large, title={#1},
+  arc=3mm, boxrule=1pt,
+  left=6pt, right=6pt, top=6pt, bottom=6pt
+}
+
+\newtcolorbox{cajaconsolidacion}[1][]{%
+  enhanced, breakable,
+  colback=consolidacion!5, colframe=consolidacion,
+  fonttitle=\nxheav\large, title={#1},
+  arc=3mm, boxrule=1pt,
+  left=6pt, right=6pt, top=6pt, bottom=6pt
+}
+
+\newtcolorbox{cajabueno}[1][]{%
+  enhanced, breakable,
+  colback=bueno!5, colframe=bueno,
+  fonttitle=\nxheav\large, title={#1},
+  arc=3mm, boxrule=1pt,
+  left=6pt, right=6pt, top=6pt, bottom=6pt
+}
+
+\newtcolorbox{cajamalo}[1][]{%
+  enhanced, breakable,
+  colback=malo!5, colframe=malo,
+  fonttitle=\nxheav\large, title={#1},
+  arc=3mm, boxrule=1pt,
+  left=6pt, right=6pt, top=6pt, bottom=6pt
+}
+
+\newtcolorbox{cajaprincipio}[1][]{%
+  enhanced, breakable,
+  colback=acento!5, colframe=acento,
+  fonttitle=\nxheav\large, title={#1},
+  arc=3mm, boxrule=1pt,
+  left=6pt, right=6pt, top=6pt, bottom=6pt
+}
+
+\newtcolorbox{cajatarjeta}[1][]{%
+  enhanced,
+  colback=white, colframe=ejemplo,
+  fonttitle=\nxheav, title={#1},
+  arc=2mm, boxrule=1pt,
+  left=8pt, right=8pt, top=6pt, bottom=6pt
+}
+
+\newtcolorbox{cajafilosofia}[1][]{%
+  enhanced, breakable,
+  colback=acento!5, colframe=acento,
+  fonttitle=\nxheav\large, title={#1},
+  arc=3mm, boxrule=1pt,
+  left=6pt, right=6pt, top=6pt, bottom=6pt
+}
+
+\newtcolorbox{cajames}[2][]{%
+  enhanced, breakable,
+  colback=#2!5, colframe=#2,
+  fonttitle=\nxheav\large, title={#1},
+  arc=3mm, boxrule=1pt,
+  left=6pt, right=6pt, top=6pt, bottom=6pt
+}
+
+\newtcolorbox{cajanota}[1][]{%
+  enhanced,
+  colback=grissuave!8, colframe=grissuave!50,
+  fonttitle=\nxheav, title={#1},
+  arc=2mm, boxrule=0.5pt,
+  left=5pt, right=5pt, top=4pt, bottom=4pt
+}
+
+\newtcolorbox{cajaherramienta}[1][]{%
+  enhanced, breakable,
+  colback=herramienta!5, colframe=herramienta,
+  fonttitle=\nxheav\large, title={#1},
+  arc=3mm, boxrule=1pt,
+  left=6pt, right=6pt, top=6pt, bottom=6pt
+}
+
+\newtcolorbox{cajapaso}[1][]{%
+  enhanced, breakable,
+  colback=paso!5, colframe=paso,
+  fonttitle=\nxheav, title={#1},
+  arc=2mm, boxrule=0.8pt,
+  left=5pt, right=5pt, top=4pt, bottom=4pt
+}
+
+\newtcolorbox{cajaalerta}[1][]{%
+  enhanced,
+  colback=alerta!5, colframe=alerta!70,
+  fonttitle=\nxheav, title={#1},
+  arc=2mm, boxrule=0.8pt,
+  left=5pt, right=5pt, top=4pt, bottom=4pt
+}
+
+\newtcolorbox{cajaexito}[1][]{%
+  enhanced,
+  colback=exito!5, colframe=exito!70,
+  fonttitle=\nxheav, title={#1},
+  arc=2mm, boxrule=0.8pt,
+  left=5pt, right=5pt, top=4pt, bottom=4pt
+}
+
+\newtcolorbox{cajacodigo}{%
+  enhanced,
+  colback=codefondo, colframe=grissuave!50,
+  arc=2mm, boxrule=0.5pt,
+  left=8pt, right=8pt, top=6pt, bottom=6pt,
+  fontupper=\ttfamily\small
+}
+
+\newtcolorbox{cajasesion}[2][]{%
+  enhanced,
+  colback=#2!3, colframe=#2!80,
+  fonttitle=\nxheav, title={#1},
+  arc=2mm, boxrule=0.8pt,
+  left=5pt, right=5pt, top=3pt, bottom=3pt
+}
+
+\newtcolorbox{cajasemana}[2][]{%
+  enhanced, breakable,
+  colback=#2!5, colframe=#2,
+  fonttitle=\nxheav\large, title={#1},
+  arc=3mm, boxrule=1pt,
+  left=6pt, right=6pt, top=6pt, bottom=6pt
+}
+
+\newtcolorbox{cajaseccion}[2][]{%
+  enhanced, breakable,
+  colback=#2!5, colframe=#2,
+  fonttitle=\nxheav\large, title={#1},
+  arc=3mm, boxrule=1pt,
+  left=6pt, right=6pt, top=6pt, bottom=6pt
+}
+
+% ── Comandos de apoyo ────────────────────────────────────────
+\newcommand{\eng}[1]{\textbf{\textcolor{mwprimario}{\textit{#1}}}}
+\newcommand{\esp}[1]{{\small\color{mwgris}(#1)}}
+
+\newcommand{\sesion}[3]{%
+  $\square$ \textbf{Sesión #1} — \textbf{#2}\\
+  {\small #3}
+  \medskip
+}

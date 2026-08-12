@@ -1,0 +1,220 @@
+% ============================================================
+%  mathwizards-guia.sty
+%  Estilo de guías de estudio — Mathwizards Consultoría Educativa STEM
+%
+%  Requisitos:
+%    * Compilar con XeLaTeX  →  latexmk -xelatex guia.tex
+%    * Fuentes: Cabin (cuerpo) y Nexa (títulos) instaladas en el sistema
+%    * El paquete mathwizards-palette.sty debe estar en la ruta TEXINPUTS
+%
+%  Uso en cada guía:
+%    \documentclass[12pt, a4paper]{article}
+%    \usepackage{mathwizards-guia}
+%    \mwguia{Guía 1 — Título corto}{Autor $\cdot$ Curso}
+%    \begin{document}
+%    \mwportada{Título grande}{Subtítulo}{Lema opcional}
+%
+%  Cuadros disponibles:
+%    cuadroteoria        (rojo)      definiciones, leyes, fórmulas
+%    cuadrosolucion      (magenta)   ejemplos resueltos, soluciones
+%    cuadropasos         (naranja)   procedimientos paso a paso
+%    cuadroadvertencia   (rojo-naranja) errores clásicos, «ojo con esto»
+%    cuadroextra         (violeta)   notas, curiosidades, desafíos
+%    cuadroinfo          (gris)      presentación, información general
+%    (Los nombres viejos cuadroazul, cuadroverde, cuadronaranja,
+%     cuadromorado y cuadrogris siguen funcionando como alias.)
+% ============================================================
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mathwizards-guia}[2026/08/11 v1.0 Guías Mathwizards]
+
+% ── Paquetes ─────────────────────────────────────────────────
+\RequirePackage{fontspec}
+\RequirePackage[spanish]{babel}
+\AtBeginDocument{\shorthandoff{"}}
+\RequirePackage{amsmath, amssymb, amsthm}
+\RequirePackage{geometry}
+\RequirePackage{enumitem}
+\RequirePackage{multicol}
+\RequirePackage{booktabs}
+\RequirePackage{array}
+\RequirePackage{mdframed}
+\RequirePackage{titlesec}
+\RequirePackage{fancyhdr}
+\RequirePackage{microtype}
+\RequirePackage{graphicx}
+\RequirePackage{cancel}
+\RequirePackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, calc,
+  decorations.pathmorphing, babel}
+\RequirePackage{mathwizards-palette}
+
+% ── Geometría ────────────────────────────────────────────────
+\geometry{
+  top    = 2.5cm,
+  bottom = 2.5cm,
+  left   = 2.2cm,
+  right  = 2.2cm
+}
+\setlength{\headheight}{30pt}
+
+% ── Fuentes ──────────────────────────────────────────────────
+% Cuerpo: Cabin · Títulos: Nexa · Matemáticas: Latin Modern (por defecto)
+\setmainfont{Cabin}[
+  Extension      = .otf,
+  UprightFont    = Cabin-Regular,
+  BoldFont       = Cabin-Bold,
+  ItalicFont     = Cabin-Italic,
+  BoldItalicFont = Cabin-BoldItalic
+]
+\newfontfamily\nxheav{Nexa Heavy}[NFSSFamily=nexaheavy]
+\newfontfamily\nxlight{Nexa Extra Light}[NFSSFamily=nexaextralight]
+
+% ── Búsqueda del logo (según la profundidad de cada carpeta) ──
+\graphicspath{
+  {assets/img/}{../assets/img/}{../../assets/img/}
+  {../../../assets/img/}{../../../../assets/img/}
+}
+
+% ── Datos de cada guía ───────────────────────────────────────
+\newcommand{\mwguiaheader}{}
+\newcommand{\mwautorcurso}{}
+\newcommand{\mwguia}[2]{%
+  \renewcommand{\mwguiaheader}{#1}%
+  \renewcommand{\mwautorcurso}{#2}%
+}
+
+% ── Encabezados y pies de página ─────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{%
+  \includegraphics[height=0.8cm]{l.png}\hspace{8pt}%
+  \small\color{mwprimario}\textbf{\mwguiaheader}%
+}
+\fancyhead[R]{\small\color{mwgris}\mwautorcurso}
+\fancyfoot[L]{\footnotesize\color{mwgris}Mathwizards Consultoría Educativa STEM}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\headrule}{\color{mwprimario}\hrule width\headwidth height\headrulewidth}
+
+% ── Portada ──────────────────────────────────────────────────
+\newcommand{\mwportada}[3]{%
+  \begin{center}
+    \includegraphics[height=2.2cm]{l_hires.png}\\[12pt]
+    {\Huge\nxheav\color{mwprimario}#1}\\[8pt]
+    {\Large\nxlight\color{mwgrisoscuro}#2}\\[6pt]
+    {\large\color{mwgris}#3}\\[12pt]
+    \color{mwprimario}\rule{0.65\linewidth}{1.2pt}
+  \end{center}
+}
+
+% ── Títulos de secciones ─────────────────────────────────────
+\titleformat{\section}[block]
+  {\nxheav\Large\color{mwprimario}}
+  {\thesection.}{0.5em}{}
+  [\color{mwprimario}\titlerule]
+
+\titleformat{\subsection}[block]
+  {\nxheav\large\color{mwnaranja}}
+  {\thesubsection.}{0.5em}{}
+
+\titleformat{\subsubsection}[block]
+  {\nxheav\normalsize\color{mwmagenta}}
+  {\thesubsubsection.}{0.5em}{}
+
+% ── Número de ejercicio personalizado ────────────────────────
+\newcounter{ejercicio}
+\newcommand{\ejercicio}{%
+  \refstepcounter{ejercicio}%
+  \noindent\textbf{\theejercicio.}\quad
+}
+
+% ── Estrellitas de dificultad (paleta de la marca) ───────────
+\newcommand{\facil}{{\color{mwnaranja}$\bigstar\!\!$}}
+\newcommand{\medio}{{\color{mwrojonaranja}$\bigstar\!\bigstar\!\!$}}
+\newcommand{\dificil}{{\color{mwprimario}$\bigstar\!\bigstar\!\bigstar\!\!$}}
+
+% ── Cuadros decorativos (mdframed) ───────────────────────────
+\newmdenv[
+  backgroundcolor = mwprimario!12,
+  linecolor       = mwprimario,
+  linewidth       = 1.5pt,
+  roundcorner     = 6pt,
+  innertopmargin  = 8pt,
+  innerbottommargin = 8pt,
+  innerleftmargin = 12pt,
+  innerrightmargin = 12pt,
+  skipabove       = 8pt,
+  skipbelow       = 8pt
+]{cuadroteoria}
+
+\newmdenv[
+  backgroundcolor = mwmagenta!12,
+  linecolor       = mwmagenta,
+  linewidth       = 1.5pt,
+  roundcorner     = 6pt,
+  innertopmargin  = 8pt,
+  innerbottommargin = 8pt,
+  innerleftmargin = 12pt,
+  innerrightmargin = 12pt,
+  skipabove       = 8pt,
+  skipbelow       = 8pt
+]{cuadrosolucion}
+
+\newmdenv[
+  backgroundcolor = mwnaranja!12,
+  linecolor       = mwnaranja,
+  linewidth       = 1.5pt,
+  roundcorner     = 6pt,
+  innertopmargin  = 8pt,
+  innerbottommargin = 8pt,
+  innerleftmargin = 12pt,
+  innerrightmargin = 12pt,
+  skipabove       = 8pt,
+  skipbelow       = 8pt
+]{cuadropasos}
+
+\newmdenv[
+  backgroundcolor = mwrojonaranja!12,
+  linecolor       = mwrojonaranja,
+  linewidth       = 1.5pt,
+  roundcorner     = 6pt,
+  innertopmargin  = 8pt,
+  innerbottommargin = 8pt,
+  innerleftmargin = 12pt,
+  innerrightmargin = 12pt,
+  skipabove       = 8pt,
+  skipbelow       = 8pt
+]{cuadroadvertencia}
+
+\newmdenv[
+  backgroundcolor = mwvioleta!12,
+  linecolor       = mwvioleta,
+  linewidth       = 1.5pt,
+  roundcorner     = 6pt,
+  innertopmargin  = 8pt,
+  innerbottommargin = 8pt,
+  innerleftmargin = 12pt,
+  innerrightmargin = 12pt,
+  skipabove       = 8pt,
+  skipbelow       = 8pt
+]{cuadroextra}
+
+\newmdenv[
+  backgroundcolor = mwgrisclaro,
+  linecolor       = mwgris,
+  linewidth       = 0.8pt,
+  roundcorner     = 4pt,
+  innertopmargin  = 6pt,
+  innerbottommargin = 6pt,
+  innerleftmargin = 10pt,
+  innerrightmargin = 10pt,
+  skipabove       = 6pt,
+  skipbelow       = 6pt
+]{cuadroinfo}
+
+% ── Alias de compatibilidad (nombres antiguos) ───────────────
+\newenvironment{cuadroazul}{\begin{cuadroteoria}}{\end{cuadroteoria}}
+\newenvironment{cuadroverde}{\begin{cuadrosolucion}}{\end{cuadrosolucion}}
+\newenvironment{cuadronaranja}{\begin{cuadroadvertencia}}{\end{cuadroadvertencia}}
+\newenvironment{cuadromorado}{\begin{cuadroextra}}{\end{cuadroextra}}
+\newenvironment{cuadrogris}{\begin{cuadroinfo}}{\end{cuadroinfo}}

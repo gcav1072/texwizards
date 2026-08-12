@@ -1,0 +1,251 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{mathwizards-ingles}
+\title{%
+  \vspace{-1cm}
+  {\Huge\bfseries\textcolor{mineria}{Guía de Minería de Oraciones}}\\[0.3cm]
+  {\Large Sentence Mining · La Columna Vertebral del Estudio Deliberado}\\[0.2cm]
+  {\large\color{grissuave} Regla \textit{i+1} · Anatomía de la Tarjeta · Errores Comunes · Crowdsourcing}\\[0.5cm]
+  \rule{\textwidth}{1.5pt}
+}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{¿Qué es la Minería de Oraciones?}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\begin{cajaprincipio}[Definición]
+\textbf{Sentence Mining} (Minería de Oraciones) es el proceso de extraer oraciones del contenido que consumes (videos, podcasts, libros, páginas web) para crear tarjetas de memoria en Anki.
+
+\medskip
+A diferencia de memorizar listas de vocabulario aislado, la minería preserva el \textbf{contexto natural} de la palabra, lo que facilita su adquisición inconsciente y su uso posterior en producción.
+\end{cajaprincipio}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{La Regla Fundamental: \textit{i+1} (Una Sola Incógnita)}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\begin{cajamineria}[El Principio de Aislamiento Cognitivo: La Regla ``1T'']
+Cada oración minada debe contener \textbf{exactamente un elemento desconocido}. Todo lo demás en la oración debe ser comprensible.
+
+\medskip
+\begin{itemize}[leftmargin=1.2cm]
+  \item \textbf{``i''} = tu nivel actual (lo que ya sabes)
+  \item \textbf{``+1''} = un solo elemento nuevo (la incógnita)
+\end{itemize}
+
+\medskip
+El cerebro puede deducir el significado del ``+1'' a partir del contexto conocido. Si hay \textbf{dos o más incógnitas}, el contexto se rompe y la adquisición falla.
+
+\medskip
+\begin{cajaejemplo}[Evaluación de una Oración]
+\textbf{Tu nivel:} conoces ``I'', ``went'', ``to'', ``the'', ``yesterday''.
+
+\medskip
+$\checkmark$ \textit{I went to the \underline{supermarket} yesterday.}\\
+{\small Solo una incógnita: ``supermarket''. El contexto permite deducirla.}
+
+\medskip
+$\times$ \textit{I \underline{strolled} to the \underline{quaint} \underline{boutique} yesterday.}\\
+{\small Tres incógnitas. Imposible deducir las tres simultáneamente.}
+\end{cajaejemplo}
+\end{cajamineria}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Anatomía de la Tarjeta Anki Perfecta}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\begin{cajaprincipio}[Estructura Estricta de la Tarjeta]
+La tarjeta tiene \textbf{dos lados}. El diseño es rígido e innegociable para prevenir malas prácticas:
+
+\medskip
+\begin{cajatarjeta}[FRENTE (lo que ves primero)]
+\begin{center}
+\large
+\textit{She has never \underline{\textbf{tried}} sushi, but she wants to.}
+\end{center}
+\begin{itemize}[nosep, leftmargin=0.8cm]
+  \item La oración completa en inglés
+  \item La palabra/expresión objetivo está \textbf{resaltada} (negrita, subrayado o color)
+  \item \textbf{NO} hay traducción al español en este lado
+  \item \textbf{NO} hay definición en este lado
+\end{itemize}
+\end{cajatarjeta}
+
+\medskip
+\begin{cajatarjeta}[REVERSO (lo que ves después de intentar recordar)]
+\textbf{tried} /traɪd/ \quad 🔊 {\small [audio nativo]}
+
+\medskip
+\textbf{Definición (monolingüe):}\\
+\textit{Past tense of ``try''. To taste or use something for the first time to see if you like it.}
+
+\medskip
+\textbf{Definición (bilingüe, solo Mes 1--2):}\\
+\textit{Intentó, probó.}
+
+\medskip
+\textbf{Imagen (opcional):} [foto de alguien probando comida nueva]
+
+\begin{itemize}[nosep, leftmargin=0.8cm]
+  \item Definición clara (monolingüe a partir del Mes 2)
+  \item Audio de un hablante nativo
+  \item Imagen como anclaje visual (opcional pero recomendado)
+\end{itemize}
+\end{cajatarjeta}
+\end{cajaprincipio}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{El Protocolo de Evaluación: ¿Cómo Calificar la Tarjeta?}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\begin{cajamineria}[¿Cuándo presionar cada botón?]
+Al ver el frente de la tarjeta, \textbf{antes} de voltearla, pregúntate: ``¿Puedo entender esta oración \textbf{completamente}, incluyendo la palabra resaltada?''
+
+\medskip
+\begin{tabularx}{\textwidth}{@{} l l X @{}}
+\toprule
+\textbf{Botón} & \textbf{Criterio} & \textbf{Cuándo} \\
+\midrule
+\textcolor{bueno}{\textbf{Good}} & Entendí todo inmediatamente & La oración y la palabra objetivo fueron claras al instante \\
+\textcolor{malo}{\textbf{Again}} & No recordé / no entendí & No pude recuperar el significado de la palabra objetivo \\
+\textcolor{acento}{\textbf{Easy}} & Demasiado fácil & Si después de varias semanas la tarjeta es trivial \\
+\textcolor{ejemplo}{\textbf{Hard}} & Difícil pero recordé & Tardé en recordar pero lo logré \\
+\bottomrule
+\end{tabularx}
+
+\medskip
+\begin{cajaejemplo}[Regla de Oro]
+Si necesitas \textbf{traducir mentalmente al español} para entender, presiona \textbf{Again}. El objetivo es la comprensión \textbf{directa} en inglés, sin intermediarios.
+\end{cajaejemplo}
+\end{cajamineria}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Errores Comunes (y Cómo Evitarlos)}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\begin{cajamalo}[Los 7 Pecados Capitales de la Minería]
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item \textbf{Poner la traducción en el FRENTE de la tarjeta.}\\
+    {\small Esto convierte la tarjeta en un ejercicio de traducción, no de comprensión. El frente debe tener \textbf{solo inglés}.}
+
+  \item \textbf{Minar oraciones con 2+ incógnitas.}\\
+    {\small Si no entiendes al menos el 90\% de la oración, no la mines. Busca una más fácil.}
+
+  \item \textbf{Agregar más de 10 tarjetas nuevas por día.}\\
+    {\small Las tarjetas nuevas se acumulan como una bola de nieve. 10 tarjetas/día generan $\sim$70 repasos/día en 2 semanas.}
+
+  \item \textbf{No suspender sanguijuelas (\textit{leeches}).}\\
+    {\small Si fallas una tarjeta 5+ veces, suspéndela. Reformúlala con mejor contexto o elimínala.}
+
+  \item \textbf{Minar palabras aisladas sin contexto.}\\
+    {\small $\times$ Frente: ``\textit{apple}'' Reverso: ``manzana'' \\
+    $\checkmark$ Frente: ``\textit{She always eats an \underline{apple} for breakfast.}''}
+
+  \item \textbf{Minar vocabulario que nunca usarás.}\\
+    {\small Prioriza palabras que aparecen en tu inmersión actual. Si una palabra aparece una sola vez en un libro, probablemente no vale la pena minarla.}
+
+  \item \textbf{No revisar Anki diariamente.}\\
+    {\small La repetición espaciada funciona \textbf{solo} si se respeta el calendario. Un día saltado arruina los intervalos.}
+\end{enumerate}
+\end{cajamalo}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Flujo de Crowdsourcing Grupal}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\begin{cajabueno}[Minería Colaborativa: El Proceso Grupal]
+En este curso, la minería tiene un componente \textbf{social}. El flujo es:
+
+\medskip
+\begin{enumerate}[leftmargin=1.2cm]
+  \item \textbf{El estudiante mina una oración} durante su inmersión individual (video, lectura, podcast).
+  
+  \item \textbf{La publica en el canal grupal} (Discord/Slack) con el formato:
+  \begin{center}
+  \fbox{\parbox{0.8\textwidth}{
+    \textbf{Oración:} \textit{She has never \underline{tried} sushi.}\\
+    \textbf{Fuente:} Video de EnglishSponge, minuto 3:45\\
+    \textbf{Mi definición:} To taste something for the first time.
+  }}
+  \end{center}
+  
+  \item \textbf{El profesor valida} que:
+  \begin{itemize}[nosep, leftmargin=0.8cm]
+    \item La oración tiene exactamente \textbf{una} incógnita (regla \textit{i+1})
+    \item La definición es correcta
+    \item La pronunciación/audio existe
+  \end{itemize}
+  
+  \item \textbf{Otros estudiantes aprovechan} las oraciones validadas:
+  \begin{itemize}[nosep, leftmargin=0.8cm]
+    \item Si la incógnita también es nueva para ellos, la agregan a su mazo
+    \item Si ya la conocen, la saltan
+  \end{itemize}
+  
+  \item \textbf{El profesor detecta patrones:} Si múltiples estudiantes minan la misma palabra, la marca como \textbf{vocabulario de alta frecuencia} del grupo y la incluye en el mazo semanal compartido.
+\end{enumerate}
+\end{cajabueno}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Transición: De Bilingüe a Monolingüe}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\begin{cajatransicion}[Cronograma de Transición a Definiciones Monolingües]
+\begin{tabularx}{\textwidth}{@{} l l X @{}}
+\toprule
+\textbf{Periodo} & \textbf{Tipo de Definición} & \textbf{Detalle} \\
+\midrule
+Mes 1 (Sem 1--4) & 100\% bilingüe & Español $\rightarrow$ Inglés. Mazo compartido del profesor. \\
+Mes 2 (Sem 5--6) & Bilingüe + monolingüe & Definición en inglés simple + traducción como backup. \\
+Mes 2 (Sem 7--8) & Monolingüe prioritario & \textit{Learner's Dictionary}. Traducción solo si no se entiende la def. en inglés. \\
+Mes 3 (Sem 9--12) & 100\% monolingüe & Solo definiciones en inglés. Sin traducción al español. \\
+\bottomrule
+\end{tabularx}
+
+\medskip
+\begin{cajaejemplo}[¿Qué diccionario monolingüe usar?]
+Para aprendices, usar \textbf{Learner's Dictionaries}, que definen palabras con vocabulario controlado ($\sim$2000 palabras):
+\begin{itemize}[nosep, leftmargin=0.8cm]
+  \item Oxford Learner's Dictionary
+  \item Cambridge Learner's Dictionary
+  \item Longman Dictionary of Contemporary English
+  \item Macmillan Dictionary
+\end{itemize}
+\textbf{NO} usar diccionarios nativos (Merriam-Webster, Oxford English Dictionary) hasta nivel B2+.
+\end{cajaejemplo}
+\end{cajatransicion}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Parámetros de Anki (Recordatorio)}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\begin{cajaprincipio}[Configuración Recomendada]
+\begin{tabularx}{\textwidth}{@{} l X @{}}
+\toprule
+\textbf{Parámetro} & \textbf{Valor} \\
+\midrule
+Algoritmo & \textbf{FSRS} (no SM-2) \\
+Tarjetas nuevas/día & \textbf{5--10} (nunca más de 10) \\
+Repasos máximos/día & \textbf{Sin límite} (9999) \\
+Retención deseada & \textbf{0.90} (90\%) \\
+Umbral de sanguijuela & \textbf{5 fallos} $\rightarrow$ suspender automáticamente \\
+\bottomrule
+\end{tabularx}
+
+\medskip
+\textbf{Tiempo diario estimado en Anki:} 10--20 minutos (repasos) + 5--10 minutos (agregar tarjetas nuevas).
+\end{cajaprincipio}
+
+\vfill
+\begin{center}
+\rule{0.5\textwidth}{0.5pt}\\[0.3cm]
+{\small\color{grissuave} Guía de Minería de Oraciones · Metodología Refold · Ecosistema Anki + FSRS}
+\end{center}
+
+\end{document}

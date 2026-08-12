@@ -1,0 +1,636 @@
+% ============================================================
+%  GUÍA 2: PLANO CARTESIANO, FUNCIONES Y TRANSFORMACIONES
+%  Curso de Introducción a la Universidad — Precálculo y Cálculo I
+%  Autor: Gabriel Astudillo
+%  Sesiones cubiertas: 3, 4 y 5
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Guía 2 — Int. a Funciones}{Gabriel Astudillo}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Estudio 2}{Plano Cartesiano, Funciones y Transformaciones}{Distancia, Punto Medio, Dominio, Rango y Transformaciones de Gráficas}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} Las funciones son el lenguaje universal del cálculo. En esta guía aprenderás a localizar puntos en el plano cartesiano, a distinguir funciones de simples relaciones, a calcular dominios y rangos, a graficar las funciones básicas y a transformar esas gráficas mediante traslaciones, reflexiones y estiramientos. Cada sección incluye \textbf{ejercicios resueltos} y \textbf{ejercicios propuestos}.
+  \\[4pt]
+  \textbf{Nivel de Dificultad:}\quad
+  \facil{} Básico / Directo \quad
+  \medio{} Intermedio \quad
+  \dificil{} Desafiante
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Plano Cartesiano: Distancia y Punto Medio}
+% ============================================================
+
+\subsection{Fórmulas fundamentales}
+
+\begin{cuadroteoria}
+  Dados dos puntos $P_1(x_1, y_1)$ y $P_2(x_2, y_2)$ en el plano cartesiano:
+
+  \textbf{Distancia entre dos puntos:}
+  $$d(P_1, P_2) = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$$
+
+  \textbf{Punto medio del segmento:}
+  $$M = \left(\frac{x_1 + x_2}{2}, \; \frac{y_1 + y_2}{2}\right)$$
+\end{cuadroteoria}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Calcula la distancia entre $A(-2, 3)$ y $B(4, -5)$, y el punto medio del segmento $AB$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item Distancia: $d = \sqrt{(4 - (-2))^2 + (-5 - 3)^2} = \sqrt{6^2 + (-8)^2} = \sqrt{36 + 64} = \sqrt{100} = 10$.
+    \item Punto medio: $M = \left(\dfrac{-2 + 4}{2}, \; \dfrac{3 + (-5)}{2}\right) = (1, -1)$.
+  \end{itemize}
+\end{cuadrosolucion}
+
+\newpage %gabo
+
+\textbf{Ejemplo R2.} Los puntos $A(1, 2)$, $B(4, 6)$ y $C(7, 2)$ forman un triángulo. Determina si es isósceles, equilátero o escaleno.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Calculamos las tres distancias:
+  \begin{itemize}
+    \item $AB = \sqrt{(4-1)^2 + (6-2)^2} = \sqrt{9 + 16} = 5$.
+    \item $BC = \sqrt{(7-4)^2 + (2-6)^2} = \sqrt{9 + 16} = 5$.
+    \item $AC = \sqrt{(7-1)^2 + (2-2)^2} = \sqrt{36} = 6$.
+  \end{itemize}
+  Como $AB = BC = 5$ y $AC = 6$, el triángulo es \textbf{isósceles}.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Uno de los extremos de un segmento es $A(2, -1)$ y su punto medio es $M(5, 3)$. Encuentra el otro extremo $B$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Usamos la fórmula del punto medio, donde $M = \left(\dfrac{x_A + x_B}{2}, \dfrac{y_A + y_B}{2}\right)$:
+  \begin{itemize}
+    \item $5 = \dfrac{2 + x_B}{2} \Rightarrow 10 = 2 + x_B \Rightarrow x_B = 8$.
+    \item $3 = \dfrac{-1 + y_B}{2} \Rightarrow 6 = -1 + y_B \Rightarrow y_B = 7$.
+  \end{itemize}
+  Por tanto, $B(8, 7)$.
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*]
+  \item \facil{} Calcula la distancia entre $P(3, 4)$ y $Q(-2, 1)$.
+
+  \item \facil{} Calcula el punto medio del segmento que une $A(-6, 8)$ y $B(4, -2)$.
+
+  \item \facil{} Determina si los puntos $A(0, 0)$, $B(6, 8)$ y $C(12, 0)$ forman un triángulo isósceles.
+
+  \item \medio{} Los puntos $A(-2, 1)$, $B(1, 5)$ y $C(6, -2)$ forman un triángulo. Calcula su perímetro.
+
+  \item \medio{} Encuentra todos los puntos sobre el eje $x$ que están a una distancia de $5$ del punto $P(3, 4)$.
+
+  \item \medio{} El punto medio del segmento $AB$ es $M(-1, 4)$. Si $A = (3, 2)$, encuentra $B$.
+
+  \item \dificil{} Demuestra que los puntos $A(0, 3)$, $B(4, 0)$, $C(8, 3)$ y $D(4, 6)$ forman un rombo (todos sus lados son iguales).
+
+  \item \dificil{} Un triángulo tiene vértices $A(2, 3)$, $B(6, 7)$ y $C(10, 3)$. Calcula la longitud de la mediana que va desde $B$ hasta el punto medio de $AC$.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Relaciones y Funciones}
+% ============================================================
+
+\subsection{Conceptos fundamentales}
+
+\begin{cuadroteoria}
+  \textbf{Relación:} Un conjunto de pares ordenados $(x, y)$. Ejemplo: $R = \{(1, 2), (1, 3), (2, 5)\}$.
+
+  \textbf{Función:} Una relación donde cada $x$ (del dominio) se asocia con \textbf{exactamente un} $y$ (del rango).\\[6pt]
+
+  En otras palabras, para una función no pueden existir dos pares con el mismo $x$ y distintos $y$. Se escribe $y = f(x)$.
+\end{cuadroteoria}
+
+\begin{cuadrosolucion}
+  \textbf{Prueba de la recta vertical:} Una gráfica representa una función si \textbf{toda recta vertical} la intersecta a lo sumo una vez.
+
+  \textbf{Dominio:} Conjunto de todos los valores de entrada $x$ para los cuales la función está definida.
+
+  \textbf{Rango (o imagen):} Conjunto de todos los valores de salida $y = f(x)$ que la función produce.
+\end{cuadrosolucion}
+
+\begin{cuadroadvertencia}
+  \textbf{Reglas para determinar el dominio:}
+  \begin{itemize}[leftmargin=*]
+    \item Denominadores: el denominador nunca puede ser cero.
+    \item Raíces pares ($\sqrt{\phantom{x}}$, $\sqrt[4]{\phantom{x}}$, etc.): el radicando debe ser $\geq 0$.
+    \item Raíces impares ($\sqrt[3]{\phantom{x}}$, $\sqrt[5]{\phantom{x}}$, etc.): sin restricción.
+    \item Logaritmos: el argumento debe ser $> 0$ (aunque esto se verá en la Guía 4).
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Determina cuáles de las siguientes relaciones son funciones:
+\begin{enumerate}[label=\alph*)]
+  \item $R_1 = \{(1, 2), (2, 3), (3, 4), (4, 5)\}$
+  \item $R_2 = \{(1, 2), (1, 3), (2, 4)\}$
+  \item $R_3 = \{(x, y) : y = x^2\}$
+  \item $R_4 = \{(x, y) : x = y^2\}$
+\end{enumerate}
+
+\newpage %gabo
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item $R_1$ es función: cada $x$ tiene un único $y$.
+    \item $R_2$ \textbf{no} es función: el valor $x = 1$ se asocia con dos $y$ distintos ($2$ y $3$).
+    \item $R_3$ es función: para cada $x$, hay un único $x^2$.
+    \item $R_4$ \textbf{no} es función: para $x = 4$ hay dos $y$ posibles, $y = 2$ y $y = -2$.
+  \end{itemize}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Encuentra el dominio de $f(x) = \dfrac{x + 2}{x^2 - 9}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} El denominador debe ser distinto de cero:
+  $$x^2 - 9 \neq 0 \Rightarrow (x - 3)(x + 3) \neq 0 \Rightarrow x \neq 3,\; x \neq -3.$$
+  Dominio: $(-\infty, -3) \cup (-3, 3) \cup (3, \infty)$.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Encuentra el dominio de $f(x) = \sqrt{2x - 6}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} El radicando debe ser no negativo:
+  $$2x - 6 \geq 0 \Rightarrow 2x \geq 6 \Rightarrow x \geq 3.$$
+  Dominio: $[3, \infty)$.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R4.} Encuentra el dominio y el rango de $f(x) = x^2 - 4$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item \textbf{Dominio:} No hay restricciones (no hay denominador ni raíz par). Dominio: $(-\infty, \infty)$.
+    \item \textbf{Rango:} Como $x^2 \geq 0$ para todo $x$, entonces $x^2 - 4 \geq -4$. El valor mínimo se alcanza en $x = 0$. Rango: $[-4, \infty)$.
+  \end{itemize}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R5.} Encuentra el dominio de $f(x) = \dfrac{1}{\sqrt{x - 1}}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Tenemos dos restricciones:
+  \begin{itemize}
+    \item El radicando debe ser $\geq 0$: $x - 1 \geq 0$, es decir, $x \geq 1$.
+    \item El denominador no puede ser cero: $\sqrt{x - 1} \neq 0$, es decir, $x - 1 \neq 0$, o sea $x \neq 1$.
+  \end{itemize}
+  Combinando: Dominio $= (1, \infty)$.
+\end{cuadrosolucion}
+
+\newpage
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Determina cuáles de las siguientes son funciones (justifica):
+        \begin{enumerate}[label=\alph*)]
+          \item $\{(2, 3), (3, 4), (4, 5)\}$
+          \item $\{(2, 3), (2, 4), (5, 6)\}$
+          \item $y = 2x + 1$
+          \item $x^2 + y^2 = 25$ (circunferencia)
+        \end{enumerate}
+
+  \item \facil{} Encuentra el dominio: $f(x) = \dfrac{3}{x - 5}$
+
+  \item \facil{} Encuentra el dominio: $f(x) = \sqrt{x + 7}$
+
+  \item \facil{} Encuentra el dominio: $f(x) = x^3 - 2x + 1$
+
+  \item \medio{} Encuentra el dominio: $f(x) = \dfrac{x}{x^2 - 4}$
+
+  \item \medio{} Encuentra el dominio: $f(x) = \sqrt{9 - x^2}$
+
+  \item \medio{} Encuentra el dominio: $f(x) = \dfrac{2x + 1}{\sqrt{x + 3}}$
+
+  \item \medio{} Encuentra el dominio y el rango de $f(x) = |x| - 2$.
+
+  \item \medio{} Encuentra el dominio y el rango de $f(x) = \sqrt{x - 1} + 3$.
+
+  \item \dificil{} Encuentra el dominio de $f(x) = \dfrac{\sqrt{x + 2}}{x - 1}$.
+
+  \item \dificil{} Encuentra el dominio de $f(x) = \sqrt{\dfrac{x - 2}{x + 3}}$.
+
+  \item \dificil{} El costo de producir $x$ unidades de un producto es $C(x) = 2x^2 + 50x + 100$ dólares. ¿Cuál es el dominio realista de esta función en el contexto del problema? ¿Cuál es el costo de producir 10 unidades?
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Gráficas de Funciones Básicas}
+% ============================================================
+
+\subsection{Las funciones elementales}
+
+\begin{cuadroteoria}
+  \textbf{Funciones básicas que debes dominar:}
+
+  \begin{center}
+    \begin{tabular}{l c p{7.2cm}}
+      \toprule
+      \textbf{Función} & \textbf{Ecuación}      & \textbf{Características}                          \\
+      \midrule
+      Lineal           & $f(x) = mx + b$        & Línea recta; pendiente $m$; intercepto $(0, b)$   \\
+      Cuadrática       & $f(x) = ax^2 + bx + c$ & Parábola; vértice en $x = -\frac{b}{2a}$          \\
+      Cúbica           & $f(x) = x^3$           & Pasa por el origen; punto de inflexión en $(0,0)$ \\
+      Valor absoluto   & $f(x) = |x|$           & Forma de V; vértice en el origen                  \\
+      Raíz cuadrada    & $f(x) = \sqrt{x}$      & Solo para $x \geq 0$; creciente                   \\
+      Recíproca        & $f(x) = \dfrac{1}{x}$  & Hipérbola; asíntotas en $x = 0$ e $y = 0$         \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{cuadroteoria}
+
+\begin{cuadrosolucion}
+  \textbf{Interceptos:}
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Intercepto $y$:} se encuentra evaluando $f(0)$. Es el punto $(0, f(0))$.
+    \item \textbf{Interceptos $x$ (raíces o ceros):} se encuentran resolviendo $f(x) = 0$. Son los puntos $(x, 0)$.
+  \end{itemize}
+\end{cuadrosolucion}
+
+\begin{cuadroadvertencia}
+  \textbf{Vértice de una parábola:} Para $f(x) = ax^2 + bx + c$:
+  $$x_v = -\frac{b}{2a}, \qquad y_v = f(x_v)$$
+  \begin{itemize}
+    \item Si $a > 0$: la parábola abre hacia arriba y el vértice es un mínimo.
+    \item Si $a < 0$: la parábola abre hacia abajo y el vértice es un máximo.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Encuentra los interceptos y el vértice de $f(x) = x^2 - 4x + 3$, y esboza la gráfica.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item \textbf{Intercepto $y$:} $f(0) = 0 - 0 + 3 = 3$. Punto $(0, 3)$.
+    \item \textbf{Interceptos $x$:} $x^2 - 4x + 3 = 0 \Rightarrow (x - 1)(x - 3) = 0 \Rightarrow x = 1$ y $x = 3$. Puntos $(1, 0)$ y $(3, 0)$.
+    \item \textbf{Vértice:} $x_v = -\dfrac{-4}{2(1)} = 2$; $y_v = f(2) = 4 - 8 + 3 = -1$. Vértice: $(2, -1)$.
+  \end{itemize}
+  \begin{center}
+    \begin{tikzpicture}[scale=0.7]
+      \draw[thin, gray!50] (-1,-3) grid (5,5);
+      \draw[thick, -Latex] (-1.5,0) -- (5.5,0) node[right] {$x$};
+      \draw[thick, -Latex] (0,-3.5) -- (0,5.5) node[above] {$y$};
+      \draw[domain=-0.5:4.5, smooth, very thick, mwprimario] plot (\x, {\x*\x - 4*\x + 3});
+      \filldraw[red] (0,3) circle (2.5pt) node[above right] {$(0,3)$};
+      \filldraw[red] (1,0) circle (2.5pt) node[below] {$(1,0)$};
+      \filldraw[red] (3,0) circle (2.5pt) node[below right] {$(3,0)$};
+      \filldraw[red] (2,-1) circle (2.5pt) node[below] {$(2,-1)$};
+      \draw[gray] (0,0) node[below left] {$0$};
+    \end{tikzpicture}
+  \end{center}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Determina el vértice de $f(x) = -x^2 + 6x - 5$ y di si es máximo o mínimo.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} $a = -1$, $b = 6$, $c = -5$.
+  $$x_v = -\frac{6}{2(-1)} = 3; \qquad y_v = f(3) = -(3)^2 + 6(3) - 5 = -9 + 18 - 5 = 4.$$
+  Vértice: $(3, 4)$. Como $a < 0$, el vértice es un \textbf{máximo}.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Encuentra los interceptos de $f(x) = |x + 2| - 1$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item \textbf{Intercepto $y$:} $f(0) = |0 + 2| - 1 = 2 - 1 = 1$. Punto $(0, 1)$.
+    \item \textbf{Interceptos $x$:} $|x + 2| - 1 = 0 \Rightarrow |x + 2| = 1$.
+          \begin{itemize}
+            \item $x + 2 = 1 \Rightarrow x = -1$.
+            \item $x + 2 = -1 \Rightarrow x = -3$.
+          \end{itemize}
+          Puntos $(-1, 0)$ y $(-3, 0)$.
+  \end{itemize}
+\end{cuadrosolucion}
+
+\newpage
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Encuentra los interceptos y el vértice de $f(x) = x^2 - 2x - 8$.
+
+  \item \facil{} Encuentra los interceptos de $f(x) = 2x - 6$.
+
+  \item \facil{} Determina el vértice de $f(x) = x^2 + 6x + 5$ y clasifícalo.
+
+  \item \facil{} Encuentra los interceptos de $f(x) = |x - 3| - 2$.
+
+  \item \medio{} Determina el vértice de $f(x) = -2x^2 + 8x - 3$ y los interceptos.
+
+  \item \medio{} Encuentra los interceptos de $f(x) = 9 - x^2$.
+
+  \item \medio{} Encuentra los interceptos de $f(x) = x^3 - 4x$.
+
+  \item \medio{} Dada $f(x) = x^2 + bx + 4$, encuentra el valor de $b$ sabiendo que el vértice está en $x = 3$.
+
+  \item \dificil{} Una parábola tiene vértice en $(2, 5)$ y pasa por el punto $(4, -3)$. Encuentra su ecuación de la forma $f(x) = a(x - h)^2 + k$.
+
+  \item \dificil{} Encuentra los valores de $k$ para que la parábola $f(x) = kx^2 + 2x + 1$ corte el eje $x$ en dos puntos distintos.
+
+  \item \dificil{} Un rectángulo tiene su base sobre el eje $x$ y sus vértices superiores sobre la parábola $y = 12 - x^2$. Encuentra el área máxima posible del rectángulo.
+
+  \item \dificil{} Determina el conjunto de puntos $(x, y)$ que cumplen $y = |x| - x$ y esboza la gráfica. (Pista: considera casos $x \geq 0$ y $x < 0$.)
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Transformaciones de Gráficas}
+% ============================================================
+
+\subsection{Reglas de transformación}
+
+\begin{cuadroteoria}
+  Dada la función $y = f(x)$, las siguientes transformaciones producen nuevas gráficas:
+
+  \textbf{Traslaciones (desplazamientos):}
+  \begin{center}
+    \begin{tabular}{l p{7.8cm}}
+      \toprule
+      \textbf{Nueva función} & \textbf{Efecto sobre la gráfica}                                                      \\
+      \midrule
+      $y = f(x) + k$         & Desplaza $k$ unidades \textbf{hacia arriba} (si $k > 0$) / abajo (si $k < 0$)         \\
+      $y = f(x - h)$         & Desplaza $h$ unidades \textbf{hacia la derecha} (si $h > 0$) / izquierda (si $h < 0$) \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+
+  \textbf{Reflexiones:}
+  \begin{center}
+    \begin{tabular}{ll}
+      \toprule
+      $y = -f(x)$ & Reflexión \textbf{sobre el eje $x$} (vertical)   \\
+      $y = f(-x)$ & Reflexión \textbf{sobre el eje $y$} (horizontal) \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+
+  \textbf{Alargamientos y compresiones:}
+  \begin{center}
+    \begin{tabular}{ll}
+      \toprule
+      $y = c \cdot f(x)$ con $|c| > 1$     & Alargamiento \textbf{vertical}   \\
+      $y = c \cdot f(x)$ con $0 < |c| < 1$ & Compresión \textbf{vertical}     \\
+      $y = f(c \cdot x)$ con $|c| > 1$     & Compresión \textbf{horizontal}   \\
+      $y = f(c \cdot x)$ con $0 < |c| < 1$ & Alargamiento \textbf{horizontal} \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+  \textbf{Orden de las transformaciones:} Para graficar $y = af\left(b(x - h)\right) + k$, aplica:
+  \begin{enumerate}
+    \item Alargamiento/compresión (por $a$ y $b$).
+    \item Reflexiones (si $a < 0$ o $b < 0$).
+    \item Traslación horizontal ($h$).
+    \item Traslación vertical ($k$).
+  \end{enumerate}
+\end{cuadroadvertencia}
+
+\newpage
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} A partir de $f(x) = |x|$, describe y esboza $g(x) = |x - 2| + 1$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item $|x - 2|$ desplaza la gráfica de $|x|$ \textbf{2 unidades a la derecha}.
+    \item $+\,1$ la desplaza \textbf{1 unidad hacia arriba}.
+  \end{itemize}
+  El vértice original $(0, 0)$ se traslada a $(2, 1)$. La gráfica sigue siendo una ``V''.
+  \begin{center}
+    \begin{tikzpicture}[scale=0.8]
+      \draw[thin, gray!50] (-1,-1) grid (6,5);
+      \draw[thick, -Latex] (-1.5,0) -- (6.5,0) node[right] {$x$};
+      \draw[thick, -Latex] (0,-1.5) -- (0,5.5) node[above] {$y$};
+      \draw[domain=-1:3, smooth, very thick, gray!60, dashed] plot (\x, {abs(\x)}) node[above] {$f(x)=|x|$};
+      \draw[domain=0:5, smooth, very thick, mwprimario] plot (\x, {abs(\x-2)+1}) node[above right] {$g(x)=|x-2|+1$};
+      \filldraw[red] (2,1) circle (2.5pt) node[below right] {$(2,1)$};
+    \end{tikzpicture}
+  \end{center}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Describe las transformaciones que llevan $f(x) = x^2$ a $g(x) = -2(x + 1)^2 + 3$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{enumerate}
+    \item $(x + 1)^2$: traslación 1 unidad a la izquierda.
+    \item $-2(x + 1)^2$: alargamiento vertical por factor 2 y reflexión sobre el eje $x$.
+    \item $-2(x + 1)^2 + 3$: traslación 3 unidades hacia arriba.
+  \end{enumerate}
+  Vértice original $(0, 0)$ → vértice final $(-1, 3)$.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Sea $f(x) = \sqrt{x}$. Escribe la función $g$ que: refleja $f$ sobre el eje $x$, luego la desplaza 3 unidades a la derecha y 2 unidades arriba.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{enumerate}
+    \item Reflexión sobre eje $x$: $-\sqrt{x}$.
+    \item Desplazamiento 3 a la derecha: $-\sqrt{x - 3}$.
+    \item Desplazamiento 2 arriba: $g(x) = -\sqrt{x - 3} + 2$.
+  \end{enumerate}
+\end{cuadrosolucion}
+
+\newpage
+
+\textbf{Ejemplo R4.} La gráfica de $f$ contiene el punto $(4, 9)$. Encuentra el punto correspondiente en la gráfica de $g(x) = f(x - 2) + 5$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item La traslación horizontal cambia $x$: $x - 2 = 4 \Rightarrow x = 6$.
+    \item La traslación vertical cambia $y$: $y = 9 + 5 = 14$.
+  \end{itemize}
+  El punto correspondiente es $(6, 14)$.
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Describe las transformaciones: $f(x) = x^2$ se convierte en $g(x) = (x + 3)^2 - 4$.
+
+  \item \facil{} A partir de $f(x) = \sqrt{x}$, escribe la función que traslada su gráfica 2 unidades a la izquierda y 1 unidad abajo.
+
+  \item \facil{} A partir de $f(x) = |x|$, escribe la función reflejada sobre el eje $x$.
+
+  \item \facil{} Describe las transformaciones: $f(x) = x^3$ se convierte en $g(x) = -(x - 1)^3$.
+
+  \item \medio{} Sea $f(x) = \dfrac{1}{x}$. Escribe la función $g$ cuyas transformaciones son: alargamiento vertical por 3, desplazamiento 2 a la izquierda y 4 hacia abajo.
+
+  \item \medio{} Escribe la función $g(x)$ obtenida al aplicar a $f(x) = x^2$: compresión vertical por $\frac{1}{2}$, reflexión sobre el eje $x$ y traslación 5 unidades a la derecha.
+
+  \item \medio{} El punto $(2, 8)$ está en la gráfica de $f$. Encuentra el punto correspondiente en la gráfica de $g(x) = f(x + 3) - 1$.
+
+  \item \medio{} La gráfica de $f(x) = x^2$ se traslada 3 unidades a la izquierda y 2 hacia abajo. Escribe la nueva función y encuentra su vértice.
+
+  \item \dificil{} Escribe la función que resulta de aplicar a $f(x) = \sqrt{x}$ (en este orden): reflexión sobre el eje $y$, alargamiento horizontal por factor $\frac{1}{2}$, y traslación 4 unidades hacia arriba.
+
+  \item \dificil{} Determina la función $f(x)$ cuya gráfica es una parábola con vértice en $(-2, 6)$ que pasa por el punto $(0, 2)$.
+
+  \item \dificil{} Sea $f(x) = x^3$. Grafica $g(x) = \frac{1}{2}f(x - 1) - 3$ indicando claramente cómo se transforman los puntos clave $(0, 0)$, $(1, 1)$ y $(-1, -1)$.
+
+  \item \dificil{} Una báscula mide el peso real $x$ con un error sistemático: siempre marca 2 kg menos. Además, debido a una falla electrónica, amplifica el peso por 1,5. La lectura es $L(x) = 1{,}5(x - 2)$.
+        \begin{enumerate}[label=\alph*)]
+          \item ¿Cuál es el peso real cuando la báscula marca $L = 30$?
+          \item Describe las transformaciones que sufre $y = x$ para obtener $L(x)$.
+        \end{enumerate}
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Clave de Respuestas}
+% ============================================================
+
+\subsection*{Sección 1: Distancia y Punto Medio (Ejercicios 1--8)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $d = \sqrt{(-2-3)^2 + (1-4)^2} = \sqrt{25 + 9} = \sqrt{34}$
+
+  \item $M = \left(\dfrac{-6+4}{2}, \dfrac{8+(-2)}{2}\right) = (-1, 3)$
+
+  \item $AB = \sqrt{36 + 64} = 10$; $BC = \sqrt{36 + 64} = 10$; $AC = 12$. Sí, es isósceles ($AB = BC$).
+
+  \item $AB = \sqrt{9 + 16} = 5$; $BC = \sqrt{25 + 49} = \sqrt{74}$; $AC = \sqrt{64 + 9} = \sqrt{73}$. Perímetro: $5 + \sqrt{74} + \sqrt{73}$.
+
+  \item Sea $Q(x, 0)$ en el eje $x$: $d(Q, P) = \sqrt{(x - 3)^2 + 16} = 5$. Elevando al cuadrado: $(x-3)^2 = 9$, $x - 3 = \pm 3$, $x = 0$ o $x = 6$. Puntos: $(0, 0)$ y $(6, 0)$.
+
+  \item $B = (2(-1) - 3, \; 2(4) - 2) = (-5, 6)$.
+
+  \item $AB = \sqrt{16 + 9} = 5$; $BC = \sqrt{16 + 9} = 5$; $CD = \sqrt{16 + 9} = 5$; $DA = \sqrt{16 + 9} = 5$. Todos los lados miden 5, es un rombo.
+
+  \item Punto medio de $AC$: $M = \left(\dfrac{2 + 10}{2}, \dfrac{3 + 3}{2}\right) = (6, 3)$. Mediana desde $B(6, 7)$ a $M(6, 3)$: $d = \sqrt{0 + 16} = 4$.
+\end{enumerate}
+
+\newpage
+
+\subsection*{Sección 2: Relaciones y Funciones (Ejercicios 9--20)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{8}
+  \item a) Función. b) No es función (xiembre: $x=2$ con dos $y$). c) Función (recta). d) No es función (para un $x$ hay dos $y$; falla la recta vertical).
+
+  \item $(-\infty, 5) \cup (5, \infty)$
+
+  \item $[-7, \infty)$
+
+  \item $(-\infty, \infty)$
+
+  \item $(-\infty, -2) \cup (-2, 2) \cup (2, \infty)$
+
+  \item $9 - x^2 \geq 0 \Rightarrow x^2 \leq 9 \Rightarrow [-3, 3]$
+
+  \item $x + 3 > 0 \Rightarrow x > -3$ (además el denominador $\sqrt{x+3} \neq 0$ ya está cubierto). Dominio: $(-3, \infty)$.
+
+  \item Dominio: $(-\infty, \infty)$; rango: $[-2, \infty)$.
+
+  \item Dominio: $[1, \infty)$; rango: $[3, \infty)$.
+
+  \item $x + 2 \geq 0 \Rightarrow x \geq -2$, y $x - 1 \neq 0 \Rightarrow x \neq 1$. Dominio: $[-2, 1) \cup (1, \infty)$.
+
+  \item Resolvemos la desigualdad $\dfrac{x-2}{x+3} \geq 0$: puntos clave $x = -3$ y $x = 2$. Dominio: $(-\infty, -3) \cup [2, \infty)$ (excluimos $x = -3$ porque el denominador se anula).
+
+  \item Dominio realista: $x \geq 0$ y $x$ entero (no se pueden producir cantidades negativas o fraccionarias). $C(10) = 2(100) + 50(10) + 100 = 200 + 500 + 100 = 800$ dólares.
+\end{enumerate}
+
+\newpage
+
+\subsection*{Sección 3: Gráficas de Funciones Básicas (Ejercicios 21--32)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{20}
+  \item Intercepto $y$: $(0, -8)$. Interceptos $x$: $x^2 - 2x - 8 = (x - 4)(x + 2) = 0 \Rightarrow x = 4$, $x = -2$. Vértice: $x_v = 1$, $y_v = -9$; vértice $(1, -9)$.
+
+  \item Intercepto $y$: $(0, -6)$. Intercepto $x$: $2x - 6 = 0 \Rightarrow x = 3$; punto $(3, 0)$.
+
+  \item $x_v = -3$, $y_v = f(-3) = 9 - 18 + 5 = -4$. Vértice: $(-3, -4)$; como $a = 1 > 0$, es un mínimo.
+
+  \item Intercepto $y$: $f(0) = 1$, punto $(0, 1)$. Interceptos $x$: $|x - 3| = 2 \Rightarrow x = 5$ o $x = 1$; puntos $(5, 0)$ y $(1, 0)$.
+
+  \item Vértice: $x_v = 2$, $y_v = f(2) = -8 + 16 - 3 = 5$; vértice $(2, 5)$ máximo. Intercepto $y$: $(0, -3)$. Interceptos $x$: $x = \dfrac{-8 \pm \sqrt{64 - 24}}{-4} = \dfrac{-8 \pm \sqrt{40}}{-4} = \dfrac{-8 \pm 2\sqrt{10}}{-4} = \dfrac{4 \mp \sqrt{10}}{2}$. Aproximadamente $x \approx 0{,}42$ y $x \approx 3{,}58$.
+
+  \item Intercepto $y$: $(0, 9)$. Interceptos $x$: $9 - x^2 = 0 \Rightarrow x = \pm 3$; puntos $(3, 0)$ y $(-3, 0)$.
+
+  \item Intercepto $y$: $(0, 0)$. Interceptos $x$: $x^3 - 4x = x(x^2 - 4) = x(x-2)(x+2) = 0$; $x = 0$, $x = 2$, $x = -2$.
+
+  \item Vértice en $x_v = -\frac{b}{2} = 3 \Rightarrow b = -6$.
+
+  \item Vértice $(2, 5)$: $f(x) = a(x - 2)^2 + 5$. Como pasa por $(4, -3)$: $-3 = a(4-2)^2 + 5 \Rightarrow -3 = 4a + 5 \Rightarrow 4a = -8 \Rightarrow a = -2$. Ecuación: $f(x) = -2(x - 2)^2 + 5$.
+
+  \item Discriminante $D = 4 - 4k(1) = 4 - 4k > 0 \Rightarrow k < 1$ (con $k \neq 0$, de lo contrario no es cuadrática).
+
+  \item El rectángulo tiene base $2x$ y altura $12 - x^2$ (con $0 < x < \sqrt{12}$). Área: $A(x) = 2x(12 - x^2) = 24x - 2x^3$. Para maximizar con cálculo próximo, derivamos (esto se verá en la Guía 7): $A'(x) = 24 - 6x^2 = 0 \Rightarrow x = 2$ (positivo). $A_{\max} = 24(2) - 2(8) = 48 - 16 = 32$ unidades cuadradas.
+
+  \item Para $x \geq 0$: $y = x - x = 0$ (el semieje $x$ positivo). Para $x < 0$: $y = -x - x = -2x$ (recta con pendiente $-2$ en la región negativa). La gráfica es: el semieje positivo $x$ más la semi-recta $y = -2x$ para $x < 0$.
+\end{enumerate}
+
+\newpage
+
+\subsection*{Sección 4: Transformaciones (Ejercicios 33--44)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{32}
+  \item Traslación 3 unidades a la izquierda y 4 unidades hacia abajo.
+
+  \item $g(x) = \sqrt{x + 2} - 1$
+
+  \item $g(x) = -|x|$
+
+  \item Reflexión sobre el eje $x$ y traslación 1 unidad a la derecha.
+
+  \item Alargamiento vertical por 3: $3 \cdot \frac{1}{x}$. Desplazamiento 2 a la izquierda: $3 \cdot \frac{1}{x + 2}$. Desplazamiento 4 abajo: $g(x) = \dfrac{3}{x + 2} - 4$.
+
+  \item Compresión vertical por $\frac{1}{2}$: $\frac{1}{2}x^2$. Reflexión sobre eje $x$: $-\frac{1}{2}x^2$. Traslación 5 a la derecha: $g(x) = -\frac{1}{2}(x - 5)^2$.
+
+  \item Para $g(x) = f(x + 3) - 1$: $x + 3 = 2 \Rightarrow x = -1$; $y = 8 - 1 = 7$. Punto: $(-1, 7)$.
+
+  \item Nueva función: $g(x) = (x + 3)^2 - 2$. Vértice: $(-3, -2)$.
+
+  \item Reflexión sobre eje $y$: $\sqrt{-x}$ (requiere $x \leq 0$). Alargamiento horizontal por $\frac{1}{2}$: $\sqrt{-2x}$. Traslación 4 arriba: $g(x) = \sqrt{-2x} + 4$ (con dominio $x \leq 0$).
+
+  \item $f(x) = a(x + 2)^2 + 6$. Con $(0, 2)$: $2 = a(4) + 6 \Rightarrow 4a = -4 \Rightarrow a = -1$. Ecuación: $f(x) = -(x + 2)^2 + 6$.
+
+  \item $g(x) = \frac{1}{2}(x - 1)^3 - 3$. Puntos clave:
+        \begin{itemize}
+          \item $(0, 0)$ → $(1, -3)$
+          \item $(1, 1)$ → $(2, -2{,}5)$
+          \item $(-1, -1)$ → $(0, -3{,}5)$
+        \end{itemize}
+
+  \item a) $30 = 1{,}5(x - 2) \Rightarrow x - 2 = 20 \Rightarrow x = 22$ kg.
+        \begin{enumerate}[label=\alph*)]
+          \setcounter{enumi}{1}
+          \item $y = x$ → $y = x - 2$ (desplazamiento 2 hacia abajo) → $y = 1{,}5(x - 2)$ (alargamiento vertical por 1,5).
+        \end{enumerate}
+\end{enumerate}
+
+\end{document}

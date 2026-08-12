@@ -1,0 +1,211 @@
+\documentclass[10pt, letterpaper, landscape]{article}
+\usepackage{mathwizards-formulario}
+
+% ── Comandos propios de este documento ─────────
+\setlist[itemize]{label=-}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+\setlist{nosep, leftmargin=*}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\deriv}[2]{\frac{\dd#1}{\dd#2}}
+
+\begin{document}
+
+\begin{center}
+    {\large \textbf{FORMULARIO DE CÁLCULO}} \\
+    \footnotesize \textit{Recopilador: Marco Antonio Cervantes Aguilar | Elaborador: Jesus M. Egurrola Zepeda}
+\end{center}
+\vspace{-0.3cm}
+\hrule
+\vspace{0.3cm}
+
+% ==================== PÁGINA 1: DERIVADAS ====================
+\begin{minipage}[t]{8.3cm}
+    \centerline{\textbf{\large DERIVADAS}}
+    \vspace{0.1cm}
+
+    \textbf{Definición:} $\deriv{}{x} f(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$
+
+    \vspace{0.15cm}
+    \textbf{Fórmulas (1-18):}
+    \begin{enumerate}[label=\arabic*., nosep, itemsep=0pt, leftmargin=15pt]
+        \item $\deriv{}{x} c = 0$
+        \item $\deriv{}{x} x = 1$
+        \item $\deriv{}{x} x^n = n \cdot x^{n-1}$
+        \item $\deriv{}{x} u^n = n \cdot u^{n-1} \deriv{u}{x}$
+        \item $\deriv{}{x} c \cdot u = c \cdot \deriv{u}{x}$
+        \item $\deriv{}{x} (u+v) = \deriv{u}{x} + \deriv{v}{x}$
+        \item $\deriv{}{x} (u \cdot v) = u \deriv{v}{x} + v \deriv{u}{x}$
+        \item $\deriv{}{x} \left(\frac{u}{v}\right) = \frac{v \cdot u' - u \cdot v'}{v^2}$ \\ \textit{\scriptsize $u'$ significa derivada.}
+        \item $\deriv{}{x} a^u = a^u \cdot \ln a \cdot \deriv{u}{x}$
+        \item $\deriv{}{x} e^u = e^u \cdot \deriv{u}{x}$
+        \item $\deriv{}{x} u^v = v \cdot u^{v-1} \deriv{u}{x} + u^v \cdot \ln u \deriv{v}{x}$
+        \item $\deriv{}{x} \log_a u = \frac{\log_a e}{u} \cdot \deriv{u}{x}$
+        \item $\deriv{}{x} \ln u = \frac{u'}{u}$
+        \item $\deriv{}{x} \text{Sen } u = \text{Cos } u \deriv{u}{x}$
+        \item $\deriv{}{x} \text{Cos } u = -\text{Sen } u \deriv{u}{x}$
+        \item $\deriv{}{x} \text{Tan } u = \text{Sec}^2 u \deriv{u}{x}$
+        \item $\deriv{}{x} \text{Cot } u = -\text{Csc}^2 u \deriv{u}{x}$
+        \item $\deriv{}{x} \text{Sec } u = \text{Sec } u \cdot \text{Tan } u \deriv{u}{x}$
+    \end{enumerate}
+\end{minipage}%
+\hfill
+\vrule width 0.4pt
+\hfill
+\begin{minipage}[t]{8.3cm}
+    \textbf{Fórmulas (19-25):}
+    \begin{enumerate}[label=\arabic*., start=19, nosep, itemsep=0pt, leftmargin=15pt]
+        \item $\deriv{}{x} \text{Csc } u = -\text{Csc } u \cdot \text{Cot } u \deriv{u}{x}$
+        \item $\deriv{}{x} \text{Arc sen } u = \frac{u'}{\sqrt{1-u^2}}$
+        \item $\deriv{}{x} \text{Arc cos } u = \frac{-u'}{\sqrt{1-u^2}}$
+        \item $\deriv{}{x} \text{Arc tan } u = \frac{u'}{u^2+1}$
+        \item $\deriv{}{x} \text{Arc cot } u = \frac{-u'}{u^2+1}$
+        \item $\deriv{}{x} \text{Arc sec } u = \frac{u'}{u\sqrt{u^2-1}}$
+        \item $\deriv{}{x} \text{Arc csc } u = \frac{-u'}{u\sqrt{u^2-1}}$
+    \end{enumerate}
+
+    \vspace{0.2cm}
+    \begin{tcolorbox}[colback=white, colframe=black, boxrule=0.5pt, arc=0pt, auto outer arc, left=2pt, right=2pt, top=2pt, bottom=2pt, boxsep=1pt, before=\vspace{4pt}, after=\vspace{4pt}]
+        \textbf{\normalsize Aplicación de Derivada:}
+        \begin{enumerate}[label=\arabic*., itemsep=2pt, leftmargin=12pt]
+            \item $\frac{\dd y}{\dd x} = m$ \scriptsize{Derivada = Pendiente}
+            \item $y = y_1 + m(x-x_1)$ \scriptsize{Ecuación de la Recta Tangente}
+            \item $y = y_1 - \frac{1}{m}(x-x_1)$ \scriptsize{Ecuación de la Recta Normal}
+            \item $e = e_0 + v_0t + \frac{1}{2}at^2$
+            \item $\frac{\dd e}{\dd t} = Vel$ \quad 6. $\frac{\dd v}{\dd t} = Acel$
+            \item $\frac{\dd a}{\dd t} = Sacudida$
+            \item \textbf{Newton Raphson} \\
+            $x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}$
+        \end{enumerate}
+    \end{tcolorbox}
+\end{minipage}%
+\hfill
+\vrule width 0.4pt
+\hfill
+\begin{minipage}[t]{8.3cm}
+    \begin{tcolorbox}[colback=white, colframe=black, boxrule=0.5pt, arc=0pt, auto outer arc, left=2pt, right=2pt, top=2pt, bottom=2pt, boxsep=1pt, before=\vspace{4pt}, after=\vspace{4pt}]
+        \textbf{\normalsize Interpretación de Derivadas:}
+        \begin{enumerate}[label=\arabic*., itemsep=1pt, leftmargin=12pt]
+            \item Si $f'(a) = 0$, en $x=a$ hay un máximo o mínimo o punto inflexión.
+            \item Si $f'(a) > 0$, la función es creciente en $x=a$.
+            \item Si $f'(a) < 0$, la función es decreciente en $x=a$.
+            \item Si $f''(a) = 0$, en $x=a$ está el punto de inflexión.
+            \item Si $f''(a) > 0$, la función tiene concavidad positiva en $x=a$.
+            \item Si $f''(a) < 0$, la función tiene concavidad negativa en $x=a$.
+        \end{enumerate}
+    \end{tcolorbox}
+
+    \vspace{0.2cm}
+    \begin{tcolorbox}[colback=white, colframe=black, boxrule=0.5pt, arc=0pt, auto outer arc, left=2pt, right=2pt, top=2pt, bottom=2pt, boxsep=1pt, before=\vspace{4pt}, after=\vspace{4pt}]
+        \textbf{\normalsize DIFERENCIALES:}
+        \begin{enumerate}[label=\arabic*., itemsep=1pt, leftmargin=12pt]
+            \item $\dd y \neq \Delta y$ \quad 2. $\dd x = \Delta x$
+            \item $\Delta y = y_2 - y_1$ de la función original
+            \item $\dd y = y_2 - y_1$ de la recta Tangente
+            \item $\dd y = f'(x) \dd x$
+            \item \textbf{Linealización} de $f(x)$ en $(a, f(a))$: $y = f(a) + f'(a) \cdot (x - a)$
+        \end{enumerate}
+    \end{tcolorbox}
+\end{minipage}
+
+\newpage
+
+% ==================== PÁGINA 2: INTEGRALES ====================
+\begin{minipage}[t]{8.3cm}
+    \centerline{\textbf{\large INTEGRALES}}
+    \vspace{0.1cm}
+
+    \textbf{Fórmulas (1-18):}
+    \begin{enumerate}[label=\arabic*., nosep, itemsep=1pt, leftmargin=15pt]
+        \item $\int \dd x = x + C$
+        \item $\int a \dd x = ax + C$
+        \item $\int x^n \dd x = \frac{x^{n+1}}{n+1} + C$
+        \item $\int u^n \dd u = \frac{u^{n+1}}{n+1} + C$ \\ \textit{\scriptsize Siendo $n \neq -1$}
+        \item $\int (u \pm v \pm w) \dd x = \int u\dd x \pm \int v\dd x \pm \int w\dd x$
+        \item $\int \frac{\dd u}{u} = \ln|u| + C$
+        \item $\int a^u \dd u = \frac{a^u}{\ln a} + C$
+        \item $\int e^u \dd u = e^u + C$
+        \item $\int \text{Sen } u \dd u = -\text{Cos } u + C$
+        \item $\int \text{Cos } u \dd u = \text{Sen } u + C$
+        \item $\int \text{Tan } u \dd u = \ln|\text{Sec } u| + C$
+        \item $\int \text{Cot } u \dd u = \ln|\text{Sen } u| + C$
+        \item $\int \text{Sec } u \dd u = \ln|\text{Sec } u + \text{Tan } u| + C$
+        \item $\int \text{Csc } u \dd u = \ln|\text{Csc } u - \text{Cot } u| + C$
+        \item $\int \text{Sec}^2 u \dd u = \text{Tan } u + C$
+        \item $\int \text{Csc}^2 u \dd u = -\text{Cot } u + C$
+        \item $\int \text{Sec } u \text{Tan } u \dd u = \text{Sec } u + C$
+        \item $\int \text{Csc } u \text{Cot } u \dd u = -\text{Csc } u + C$
+    \end{enumerate}
+\end{minipage}%
+\hfill
+\vrule width 0.4pt
+\hfill
+\begin{minipage}[t]{8.3cm}
+    \textbf{Fórmulas (19-27):}
+    \begin{enumerate}[label=\arabic*., start=19, nosep, itemsep=1pt, leftmargin=15pt]
+        \item $\int \frac{\dd u}{u^2 + a^2} = \frac{1}{a} \text{Arc Tan } \frac{u}{a} + C$
+        \item $\int \frac{\dd u}{u^2 - a^2} = \frac{1}{2a} \ln\left|\frac{u-a}{u+a}\right| + C$
+        \item $\int \frac{\dd u}{a^2 - u^2} = \frac{1}{2a} \ln\left|\frac{a+u}{a-u}\right| + C$
+        \item $\int \sqrt{u^2 \pm a^2} \dd u = \frac{u}{2}\sqrt{u^2 \pm a^2} \pm \frac{a^2}{2}\ln|u + \sqrt{u^2 \pm a^2}| + C$
+        \item $\int \sqrt{a^2 - u^2} \dd u = \frac{u}{2}\sqrt{a^2 - u^2} + \frac{a^2}{2}\text{Arc Sen } \frac{u}{a} + C$
+        \item $\int \frac{\dd u}{\sqrt{a^2 - u^2}} = \text{Arc Sen } \frac{u}{a} + C$
+        \item $\int \frac{\dd u}{\sqrt{u^2 \pm a^2}} = \ln|u + \sqrt{u^2 \pm a^2}| + C$
+        \item $\int \frac{\dd u}{u\sqrt{u^2 - a^2}} = \frac{1}{a} \text{Arc Sec } \frac{u}{a} + C$
+        \item $\int \text{Sec}^3 u \dd u = \frac{1}{2}\text{Sec } u \cdot \text{Tan } u + \frac{1}{2}\ln|\text{Sec } u + \text{Tan } u| + C$
+    \end{enumerate}
+
+    \vspace{0.15cm}
+    \textbf{28. Integración por Partes:} $\ds \int u \dd v = uv - \int v \dd u$
+
+    \vspace{0.15cm}
+    \begin{tcolorbox}[colback=white, colframe=black, boxrule=0.5pt, arc=0pt, auto outer arc, left=2pt, right=2pt, top=2pt, bottom=2pt, boxsep=1pt, before=\vspace{4pt}, after=\vspace{4pt}, title=\footnotesize Sustitución Trigonométrica]
+        {\scriptsize
+        1) Si aparece $\sqrt{x^2+a^2}$:
+        $x = a \text{ Tan } \theta$, $\dd x = a \text{ Sec}^2 \theta \dd\theta$, $\sqrt{x^2+a^2} = a \text{ Sec}\theta$ \\
+        2) Si aparece $\sqrt{x^2-a^2}$:
+        $x = a \text{ Sec } \theta$, $\dd x = a \text{ Sec}\theta \text{ Tan}\theta \dd\theta$, $\sqrt{x^2-a^2} = a \text{ Tan}\theta$ \\
+        3) Si aparece $\sqrt{a^2-x^2}$:
+        $x = a \text{ Cos } \theta$, $\dd x = -a \text{ Sen}\theta \dd\theta$, $\sqrt{a^2-x^2} = a \text{ Sen}\theta$
+        }
+    \end{tcolorbox}
+
+    \vspace{0.15cm}
+    \begin{tcolorbox}[colback=white, colframe=black, boxrule=0.5pt, arc=0pt, auto outer arc, left=2pt, right=2pt, top=2pt, bottom=2pt, boxsep=1pt, before=\vspace{4pt}, after=\vspace{4pt}]
+        \textbf{\normalsize SUMA DE RIEMANN:}
+        \begin{enumerate}[label=\arabic*., itemsep=1pt, leftmargin=12pt]
+            \item $\Delta x = \frac{b-a}{n}$
+            \item $x_i^* = a + \Delta x \cdot i$
+            \item $A = \lim_{||P|| \to 0} \sum_{i=1}^n f(x_i^*) \Delta x_i$
+        \end{enumerate}
+        {\scriptsize $P$ es una partición. La norma de $P$, representada por $||P||$, se calcula así: $||P|| = \max\{\Delta x_i\}$. \\ $||P|| \to 0$ es equivalente a: $n \to \infty$}
+    \end{tcolorbox}
+\end{minipage}%
+\hfill
+\vrule width 0.4pt
+\hfill
+\begin{minipage}[t]{8.3cm}
+    \begin{tcolorbox}[colback=white, colframe=black, boxrule=0.5pt, arc=0pt, auto outer arc, left=2pt, right=2pt, top=2pt, bottom=2pt, boxsep=1pt, before=\vspace{4pt}, after=\vspace{4pt}]
+        \textbf{\normalsize Aplicación de la Integral:}
+        \begin{enumerate}[label=\arabic*., itemsep=2pt, leftmargin=12pt]
+            \item \textbf{Área de una Región:} $A = \int_a^b f(x) \dd x$
+            \item \textbf{Altura Promedio $\overline{y}$:} $\overline{y} = \frac{1}{b-a} \int_a^b f(x) \dd x$
+            \item \textbf{Longitud de Arco $S$:} $S = \int_a^b \sqrt{1 + \left(\deriv{y}{x}\right)^2} \dd x$
+        \end{enumerate}
+        \hrule
+        \vspace{0.1cm}
+        \textbf{\normalsize Volumen:}
+        \begin{enumerate}[label=\arabic*., itemsep=2pt, leftmargin=12pt]
+            \item $V = \int_a^b \pi \cdot r^2 \cdot h$ \quad {\scriptsize Método de los Discos}
+            \item $V = \int_a^b \pi \cdot (R^2 - r^2) \cdot h$ \quad {\scriptsize Método de Arandelas}
+            \item $V = \int_a^b 2\pi x \cdot f(x) \cdot \dd x$ \quad {\scriptsize Método de los Casquetes o Capas}
+            \item \textbf{Teorema de Pappus:} $V = 2\pi \cdot \bar{x} \cdot A$ \\ {\scriptsize $Vol = \text{El producto del área por la distancia que}$ $\text{recorre el centroide de la región que gira}$}
+        \end{enumerate}
+    \end{tcolorbox}
+
+    \vspace{0.2cm}
+    \noindent \textbf{1. Valor Futuro:} $VF = \int_0^n A \cdot e^{r(n-t)} \dd t$ \\
+    \textbf{2. Valor Presente:} $VP = \int_0^n A \cdot e^{-rt} \dd t$
+\end{minipage}
+
+\end{document}

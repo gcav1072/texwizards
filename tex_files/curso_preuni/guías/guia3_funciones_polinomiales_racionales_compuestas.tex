@@ -1,0 +1,546 @@
+% ============================================================
+%  GUÍA 3: POLINOMIALES, RACIONALES, COMPOSICIÓN E INVERSAS
+%  Curso de Introducción a la Universidad — Precálculo y Cálculo I
+%  Autor: Gabriel Astudillo
+%  Sesiones cubiertas: 6, 7 y 8
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Guía 3 $\cdot$ Funciones pt. 2}{Gabriel Astudillo}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Estudio 3}{Funciones Polinomiales, Racionales, Compuestas e Inversas}{Teorema del Factor, División Sintética, Asíntotas, Composición e Inversas}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} En esta guía estudiaremos tres familias de funciones que aparecen constantemente en el cálculo: las \textbf{polinomiales} (con sus técnicas de división sintética y el Teorema del Factor), las \textbf{racionales} (con sus asíntotas y huecos) y las \textbf{compuestas} con sus \textbf{inversas} (que te permitirán ``deshacer'' funciones). Cada sección contiene ejercicios resueltos y ejercicios propuestos.
+  \\[4pt]
+  \textbf{Nivel de Dificultad:}\quad
+  \facil{} Básico / Directo \quad
+  \medio{} Intermedio \quad
+  \dificil{} Desafiante
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Funciones Polinomiales y Teorema del Factor}
+% ============================================================
+
+\subsection{Conceptos generales}
+
+\begin{cuadroteoria}
+  \textbf{Función polinomial de grado $n$:}
+  $$f(x) = a_n x^n + a_{n-1}x^{n-1} + \dots + a_1 x + a_0$$
+  donde $a_n \neq 0$, $a_n$ es el \textbf{coeficiente principal} y $a_0$ el término constante.
+
+  El \textbf{grado} de la función es $n$. Su \textbf{dominio} es siempre $\mathbb{R} = (-\infty, \infty)$.
+
+  \textbf{Comportamiento en los extremos} (cuando $x \to \pm\infty$):
+  \begin{center}
+    \begin{tabular}{ccc}
+      \toprule
+      \textbf{Grado} & \textbf{Coef. principal} & \textbf{Extremos}                              \\
+      \midrule
+      Par            & Positivo                 & $f \to +\infty$ en ambos extremos              \\
+      Par            & Negativo                 & $f \to -\infty$ en ambos extremos              \\
+      Impar          & Positivo                 & $f \to -\infty$ (izq.), $f \to +\infty$ (der.) \\
+      Impar          & Negativo                 & $f \to +\infty$ (izq.), $f \to -\infty$ (der.) \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{cuadroteoria}
+
+\begin{cuadrosolucion}
+  \textbf{Teorema del Residuo} (también llamado \textbf{Teorema del Resto})\textbf{:} Si $f$ es un polinomio, el residuo de dividir $f(x)$ entre $(x - c)$ es $f(c)$.
+
+  \textbf{Teorema del Factor:} $(x - c)$ es factor de $f(x)$ si y solo si $f(c) = 0$. Es decir, $c$ es raíz de $f$.
+
+  \textbf{Número máximo de raíces:} Un polinomio de grado $n$ tiene a lo sumo $n$ raíces reales.
+
+  \textbf{Regla de los signos de Descartes:} El número de raíces positivas es igual al número de cambios de signo de $f(x)$ (o menor en un número par). Para raíces negativas, se aplica la misma regla a $f(-x)$.
+\end{cuadrosolucion}
+
+\begin{cuadroextra}
+  \textbf{Teorema del Cero Racional:} Si $f(x) = a_n x^n + a_{n-1}x^{n-1} + \dots + a_1 x + a_0$ es un polinomio con coeficientes enteros, entonces toda raíz racional $\dfrac{p}{q}$ (en forma reducida) satisface:
+  \begin{itemize}[leftmargin=*]
+    \item $p$ divide al término constante $a_0$.
+    \item $q$ divide al coeficiente principal $a_n$.
+  \end{itemize}
+  Esto permite generar una lista finita de \textbf{posibles raíces racionales} para probar con el Teorema del Residuo o división sintética.
+\end{cuadroextra}
+
+\subsection{División sintética}
+
+\begin{cuadroadvertencia}
+  \textbf{División sintética} (para dividir por $x - c$):
+  \begin{enumerate}[leftmargin=*]
+    \item Escribe los coeficientes del polinomio (con ceros para términos faltantes).
+    \item Baja el primer coeficiente.
+    \item Multiplica por $c$ y suma con el siguiente coeficiente; repite.
+    \item El último número es el residuo; los demás son los coeficientes del cociente.
+  \end{enumerate}
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Divide $f(x) = 2x^3 - 7x^2 + 4x + 4$ entre $x - 2$ usando división sintética.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Coeficientes: $2$, $-7$, $4$, $4$. Colocamos $c = 2$:
+  \[
+    \begin{array}{c|cccc}
+      2 & 2 & -7 & 4  & 4  \\
+        &   & 4  & -6 & -4 \\
+      \hline
+        & 2 & -3 & -2 & 0  \\
+    \end{array}
+  \]
+  Cociente: $2x^2 - 3x - 2$; residuo $= 0$. Como el residuo es cero, $x = 2$ es raíz y $(x - 2)$ es factor.
+\end{cuadrosolucion}
+
+\newpage
+
+\textbf{Ejemplo R2.} Factoriza completamente $f(x) = x^3 - 4x^2 + x + 6$ y encuentra sus raíces.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{enumerate}
+    \item Posibles raíces racionales (divisores de 6): $\pm 1, \pm 2, \pm 3, \pm 6$.
+    \item Probamos con $x = -1$: $f(-1) = -1 - 4 - 1 + 6 = 0$. ¡Es raíz!
+    \item División sintética con $c = -1$:
+          \[
+            \begin{array}{c|cccc}
+              -1 & 1 & -4 & 1 & 6  \\
+                 &   & -1 & 5 & -6 \\
+              \hline
+                 & 1 & -5 & 6 & 0  \\
+            \end{array}
+          \]
+    \item El cociente es $x^2 - 5x + 6 = (x - 2)(x - 3)$.
+    \item Factorización completa: $f(x) = (x + 1)(x - 2)(x - 3)$. Raíces: $x = -1$, $x = 2$, $x = 3$.
+  \end{enumerate}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Encuentra el residuo de dividir $f(x) = x^4 - 2x^2 + 5$ entre $x - 3$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Por el Teorema del Residuo, el residuo es $f(3) = 3^4 - 2(3)^2 + 5 = 81 - 18 + 5 = 68$.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R4.} Determina el comportamiento en los extremos de $f(x) = -2x^5 + 3x^3 - x + 7$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Grado 5 (impar), coeficiente principal $-2$ (negativo). Entonces: cuando $x \to +\infty$, $f(x) \to -\infty$; cuando $x \to -\infty$, $f(x) \to +\infty$.
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*]
+  \item \facil{} Determina el grado, el coeficiente principal y el comportamiento en los extremos de:
+        \begin{enumerate}[label=\alph*)]
+          \item $f(x) = 3x^4 - 2x^2 + 1$
+          \item $g(x) = -x^3 + 5x$
+          \item $h(x) = 2x^5 - 3x^3 + x - 8$
+        \end{enumerate}
+
+  \item \facil{} Divide usando división sintética: $(x^3 - 7x + 6) \div (x - 2)$
+
+  \item \facil{} Divide usando división sintética: $(2x^3 + x^2 - 8x - 4) \div (x + 1)$
+
+  \item \facil{} Usa el Teorema del Factor para verificar que $x = 1$ es raíz de $f(x) = x^3 - 3x^2 + 3x - 1$, y factoriza.
+
+  \item \medio{} Encuentra el residuo de dividir $f(x) = x^5 - x^3 + 4$ entre $x - 2$.
+
+  \item \medio{} Factoriza completamente: $f(x) = x^3 - 6x^2 + 11x - 6$.
+
+  \item \medio{} Factoriza completamente: $g(x) = x^3 + 2x^2 - 5x - 6$ (una raíz es $x = -1$).
+
+  \item \medio{} Un polinomio $f$ de grado 3 tiene raíces $x = -2$, $x = 1$ y $x = 4$, y $f(0) = 16$. Encuentra $f(x)$.
+
+  \item \dificil{} Factoriza: $h(x) = 2x^4 - 5x^3 - 5x^2 + 20x - 12$ (pista: prueba $x = 2$ y $x = -2$; luego factoriza el cociente).
+
+  \item \dificil{} Determina cuántas raíces positivas y negativas tiene $f(x) = x^4 - 3x^3 + x^2 + 2x - 1$ usando la regla de los signos de Descartes (no hace falta hallarlas).
+
+  \item \dificil{} El volumen de una caja abierta es $V(x) = 4x^3 - 44x^2 + 120x$ (con $x$ en cm y $0 < x < 6$). Determina los valores de $x$ para los cuales el volumen es cero, e interpreta el resultado geométricamente.
+
+  \item \dificil{} Encuentra $a$ y $b$ sabiendo que $x = 1$ y $x = 3$ son raíces de $f(x) = x^3 + ax^2 + bx + 6$.
+\end{enumerate}
+
+\newpage
+
+% ==============================================================
+\section{Funciones Racionales y Asíntotas}
+% ============================================================
+
+\subsection{Conceptos y técnicas}
+
+\begin{cuadroteoria}
+  \textbf{Función racional:} $f(x) = \dfrac{P(x)}{Q(x)}$, donde $P$ y $Q$ son polinomios y $Q(x) \neq 0$.
+
+  \textbf{Dominio:} Todos los $x$ tales que $Q(x) \neq 0$.
+
+  \textbf{Asíntotas verticales:} En $x = a$ si $Q(a) = 0$ y $P(a) \neq 0$. Si ambos se anulan, hay un \textbf{hueco} (discontinuidad evitable) en $x = a$.
+
+  \textbf{Asíntotas horizontales:}
+  \begin{itemize}[leftmargin=*]
+    \item Si grado$(P) <$ grado$(Q)$: $y = 0$.
+    \item Si grado$(P) =$ grado$(Q)$: $y = \dfrac{\text{coef. principal de } P}{\text{coef. principal de } Q}$.
+    \item Si grado$(P) >$ grado$(Q)$: no hay asíntota horizontal (puede haber oblicua si la diferencia es 1).
+  \end{itemize}
+
+  \textbf{Asíntota oblicua:} Si grado$(P) =$ grado$(Q) + 1$, se obtiene al dividir $P$ entre $Q$; el cociente es la asíntota.
+\end{cuadroteoria}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Encuentra dominio, asíntotas y huecos de $f(x) = \dfrac{x^2 - 1}{x^2 - 3x + 2}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{enumerate}
+    \item Factorizamos: $f(x) = \dfrac{(x - 1)(x + 1)}{(x - 1)(x - 2)} = \dfrac{x + 1}{x - 2}$ (para $x \neq 1$).
+    \item \textbf{Dominio:} $(-\infty, 1) \cup (1, 2) \cup (2, \infty)$.
+    \item \textbf{Hueco:} En $x = 1$, porque el factor $(x - 1)$ se cancela. El valor de $y$ en el hueco: $f(1) = \frac{2}{-1} = -2$. Hueco en $(1, -2)$.
+    \item \textbf{Asíntota vertical:} En $x = 2$ (no se cancela con el numerador).
+    \item \textbf{Asíntota horizontal:} Ambos grados son 2. Cociente de coeficientes principales: $y = \frac{1}{1} = 1$.
+  \end{enumerate}
+\end{cuadrosolucion}
+
+\newpage
+
+\textbf{Ejemplo R2.} Encuentra las asíntotas de $f(x) = \dfrac{2x^2 + 3x - 1}{x - 2}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Grado del numerador (2) es uno más que el del denominador (1), entonces hay asíntota oblicua. Dividimos:
+  $$\dfrac{2x^2 + 3x - 1}{x - 2} = 2x + 7 + \dfrac{13}{x - 2}.$$
+  Asíntota oblicua: $y = 2x + 7$. Asíntota vertical: $x = 2$. No hay horizontal.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Encuentra dominio y asíntotas de $f(x) = \dfrac{3}{x^2 + 1}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} $x^2 + 1$ nunca es cero, así que el dominio es $\mathbb{R}$. No hay asíntotas verticales. Grado numerador (0) $<$ grado denominador (2), así que $y = 0$ es asíntota horizontal.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R4.} Grafica $f(x) = \dfrac{2x + 1}{x - 3}$ indicando asíntotas e interceptos.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item Asíntota vertical: $x = 3$.
+    \item Asíntota horizontal: ambos grados 1, coeficientes $2/1$: $y = 2$.
+    \item Intercepto $y$: $f(0) = \frac{1}{-3} = -\frac{1}{3}$; punto $(0, -\frac{1}{3})$.
+    \item Intercepto $x$: $2x + 1 = 0 \Rightarrow x = -\frac{1}{2}$; punto $(-\frac{1}{2}, 0)$.
+  \end{itemize}
+  \begin{center}
+    \begin{tikzpicture}[scale=0.7]
+      \clip (-6.6,-5.6) rectangle (7.6,6.6);
+      \draw[thin, gray!40] (-6,-5) grid (7,6);
+      \draw[thick, -Latex] (-6.5,0) -- (7.5,0) node[right] {$x$};
+      \draw[thick, -Latex] (0,-5.5) -- (0,6.5) node[above] {$y$};
+      \draw[dashed, red!80, thick] (3,-5.5) -- (3,6.5) node[right] {$x=3$};
+      \draw[dashed, red!80, thick] (-6,2) -- (7,2) node[right] {$y=2$};
+      \draw[smooth, very thick, mwprimario, domain=-6:2.4, samples=100] plot (\x, {(2*\x+1)/(\x-3)});
+      \draw[smooth, very thick, mwprimario, domain=3.6:7, samples=100] plot (\x, {(2*\x+1)/(\x-3)});
+      \filldraw[black] (0,-1/3) circle (2.5pt);
+      \filldraw[black] (-0.5,0) circle (2.5pt);
+    \end{tikzpicture}
+  \end{center}
+\end{cuadrosolucion}
+
+\newpage
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Encuentra el dominio de $f(x) = \dfrac{x + 2}{x - 5}$.
+
+  \item \facil{} Encuentra el dominio de $f(x) = \dfrac{x^2}{x^2 - 9}$.
+
+  \item \facil{} Encuentra las asíntotas de $f(x) = \dfrac{1}{x - 2}$.
+
+  \item \facil{} Encuentra las asíntotas de $f(x) = \dfrac{5x + 1}{x}$.
+
+  \item \medio{} Encuentra dominio, huecos, asíntotas e interceptos de $f(x) = \dfrac{x^2 - 4}{x^2 - 2x - 3}$.
+
+  \item \medio{} Encuentra las asíntotas de $f(x) = \dfrac{2x^2 + 5x + 3}{x - 1}$.
+
+  \item \medio{} Encuentra las asíntotas de $f(x) = \dfrac{x^2}{x^2 + 1}$.
+
+  \item \medio{} Determina si $f(x) = \dfrac{x^3 - 8}{x - 2}$ tiene hueco o asíntota en $x = 2$ y simplifica la función.
+
+  \item \dificil{} Encuentra la asíntota oblicua de $f(x) = \dfrac{3x^3 + 2x^2 - x + 1}{x^2 + 1}$.
+
+  \item \dificil{} Determina los valores de $k$ para que $f(x) = \dfrac{kx + 1}{x - 2}$ tenga asíntota horizontal en $y = 4$.
+
+  \item \dificil{} Una función racional tiene asíntota vertical en $x = -2$, asíntota horizontal en $y = 3$ e intercepto $y$ en $(0, \frac{3}{2})$. Encuentra una posible fórmula para $f(x)$.
+
+  \item \dificil{} Grafica $f(x) = \dfrac{x^2 - 1}{(x - 2)^2}$ indicando todas sus asíntotas, huecos e interceptos.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Composición de Funciones y Función Inversa}
+% ============================================================
+
+\subsection{Operaciones y composición}
+
+\begin{cuadroteoria}
+  Dadas $f$ y $g$:
+  \begin{align*}
+    (f + g)(x)                  & = f(x) + g(x)                          \\
+    (f - g)(x)                  & = f(x) - g(x)                          \\
+    (fg)(x)                     & = f(x) \cdot g(x)                      \\
+    \left(\frac{f}{g}\right)(x) & = \frac{f(x)}{g(x)}, \quad g(x) \neq 0
+  \end{align*}
+\end{cuadroteoria}
+
+\begin{cuadrosolucion}
+  \textbf{Composición de funciones:}
+  $$(f \circ g)(x) = f(g(x))$$
+  Es decir, evaluamos primero $g$ en $x$ y luego evaluamos $f$ en el resultado. \textbf{El orden importa:} en general, $f \circ g \neq g \circ f$.
+
+  El dominio de $f \circ g$ es el conjunto de $x$ en el dominio de $g$ tales que $g(x)$ está en el dominio de $f$.
+\end{cuadrosolucion}
+
+\subsection{Función inversa}
+
+\begin{cuadroteoria}
+  \textbf{Definición:} Una función $f$ con dominio $A$ y rango $B$ tiene inversa $f^{-1}$ si se cumple:
+  $$f^{-1}(f(x)) = x \quad \text{para todo } x \in A, \qquad f(f^{-1}(y)) = y \quad \text{para todo } y \in B.$$
+
+  \textbf{Existencia:} $f$ tiene inversa si y solo si $f$ es \textbf{inyectiva} (uno a uno), es decir, si $f(x_1) = f(x_2) \Rightarrow x_1 = x_2$. Gráficamente: la \textbf{prueba de la recta horizontal} debe pasar.
+
+  \textbf{Método para hallar la inversa:}
+  \begin{enumerate}[leftmargin=*]
+    \item Escribe $y = f(x)$.
+    \item Intercambia $x$ y $y$.
+    \item Despeja $y$: el resultado es $y = f^{-1}(x)$.
+  \end{enumerate}
+
+  \textbf{Propiedad gráfica:} Las gráficas de $f$ y $f^{-1}$ son simétricas respecto a la recta $y = x$.
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+  \textbf{Restricción del dominio:} Si una función no es inyectiva en todo su dominio, se puede \textbf{restringir} el dominio para que lo sea. Por ejemplo, $f(x) = x^2$ no es inyectiva en $\mathbb{R}$, pero sí lo es en $[0, \infty)$ (en ese caso su inversa es $f^{-1}(x) = \sqrt{x}$).
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Dadas $f(x) = 2x + 3$ y $g(x) = x^2$:
+\begin{enumerate}[label=\alph*)]
+  \item $(f \circ g)(x)$
+  \item $(g \circ f)(x)$
+  \item $(f \circ g)(-2)$
+\end{enumerate}
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item $(f \circ g)(x) = f(g(x)) = f(x^2) = 2x^2 + 3$.
+    \item $(g \circ f)(x) = g(f(x)) = g(2x + 3) = (2x + 3)^2 = 4x^2 + 12x + 9$.
+    \item $(f \circ g)(-2) = 2(-2)^2 + 3 = 2(4) + 3 = 11$.
+  \end{itemize}
+  \textbf{Observa que $f \circ g \neq g \circ f$.}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Dadas $f(x) = \dfrac{1}{x - 3}$ y $g(x) = \sqrt{x}$, calcula $(f \circ g)(x)$ y determina su dominio.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{enumerate}
+    \item $(f \circ g)(x) = f(g(x)) = f(\sqrt{x}) = \dfrac{1}{\sqrt{x} - 3}$.
+    \item Para el dominio necesitamos que $x$ esté en el dominio de $g$ \textbf{y} que $g(x)$ esté en el dominio de $f$:
+          \begin{itemize}
+            \item Dominio de $g$: $x \geq 0$ (raíz cuadrada).
+            \item $g(x)$ en el dominio de $f$: $\sqrt{x} \neq 3$, es decir, $x \neq 9$.
+          \end{itemize}
+    \item Dominio de $f \circ g$: $[0, 9) \cup (9, \infty)$.
+  \end{enumerate}
+\end{cuadrosolucion}
+
+\newpage
+
+\textbf{Ejemplo R3.} Halla $f^{-1}(x)$ para $f(x) = \dfrac{2x - 1}{x + 3}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{enumerate}
+    \item $y = \dfrac{2x - 1}{x + 3}$.
+    \item Intercambiamos: $x = \dfrac{2y - 1}{y + 3}$.
+    \item Despejamos $y$: $x(y + 3) = 2y - 1 \Rightarrow xy + 3x = 2y - 1 \Rightarrow xy - 2y = -3x - 1 \Rightarrow y(x - 2) = -3x - 1 \Rightarrow y = \dfrac{-3x - 1}{x - 2} = \dfrac{3x + 1}{2 - x}$.
+  \end{enumerate}
+  Por tanto: $f^{-1}(x) = \dfrac{3x + 1}{2 - x}$, con dominio $x \neq 2$.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R4.} Determina si $f(x) = x^3 + 1$ es inyectiva y halla su inversa.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} $f$ es inyectiva porque es estrictamente creciente (o porque $f(x_1) = f(x_2)$ implica $x_1^3 = x_2^3$, luego $x_1 = x_2$). Para hallar la inversa:
+  \begin{enumerate}
+    \item $y = x^3 + 1$.
+    \item Intercambiamos: $x = y^3 + 1 \Rightarrow y^3 = x - 1$.
+    \item $y = \sqrt[3]{x - 1}$.
+  \end{enumerate}
+  $f^{-1}(x) = \sqrt[3]{x - 1}$.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R5.} Para $f(x) = x^2 + 4x$ con dominio restringido a $[-2, \infty)$, encuentra $f^{-1}(x)$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{enumerate}
+    \item $y = x^2 + 4x$.
+    \item Intercambiamos: $x = y^2 + 4y \Rightarrow y^2 + 4y - x = 0$.
+    \item Resolvemos la cuadrática en $y$: $y = \dfrac{-4 \pm \sqrt{16 + 4x}}{2} = -2 \pm \sqrt{x + 4}$.
+    \item Elegimos el signo $+$ porque el dominio restringido es $x \geq -2$, donde la rama creciente corresponde a $+$:
+          $f^{-1}(x) = -2 + \sqrt{x + 4}$.
+  \end{enumerate}
+\end{cuadrosolucion}
+
+\newpage
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Dadas $f(x) = x + 2$ y $g(x) = 3x$, calcula:
+        \begin{enumerate}[label=\alph*)]
+          \item $(f + g)(x)$
+          \item $(f - g)(x)$
+          \item $(fg)(x)$
+          \item $\left(\frac{f}{g}\right)(x)$
+        \end{enumerate}
+
+  \item \facil{} Dadas $f(x) = x^2$ y $g(x) = x + 1$, calcula $(f \circ g)(x)$ y $(g \circ f)(x)$.
+
+  \item \facil{} Halla la inversa de $f(x) = 3x - 7$.
+
+  \item \facil{} Halla la inversa de $f(x) = x^3 + 5$.
+
+  \item \medio{} Dadas $f(x) = \sqrt{x + 1}$ y $g(x) = x^2$, calcula $(f \circ g)(x)$ y su dominio.
+
+  \item \medio{} Determina si $f(x) = 2x^2 - 8x + 5$ es inyectiva en todo $\mathbb{R}$. Si no lo es, indica una restricción del dominio adecuada para que sea inyectiva.
+
+  \item \medio{} Halla la inversa de $f(x) = \dfrac{x}{x - 2}$.
+
+  \item \medio{} Verifica que $f$ y $g$ son inversas entre sí calculando $f(g(x))$ y $g(f(x))$:
+        $$f(x) = \frac{3x - 1}{2}, \qquad g(x) = \frac{2x + 1}{3}.$$
+
+  \item \dificil{} Sea $f(x) = x^2 - 4x + 3$ con dominio restringido a $[2, \infty)$. Encuentra $f^{-1}(x)$.
+
+  \item \dificil{} Dadas $f(x) = \dfrac{1}{x - 1}$ y $g(x) = x^2$, encuentra el dominio de $(f \circ g)(x)$ y de $(g \circ f)(x)$.
+
+  \item \dificil{} Si $f(g(x)) = 2x - 1$ donde $g(x) = x + 3$, encuentra $f(x)$.
+
+  \item \dificil{} Un impuesto de $20\%$ se aplica al precio de un artículo, y luego se aplica un descuento de \$10. Si el precio final es $P(x) = 0{,}8x - 10$ (donde $x$ es el precio original), encuentra $P^{-1}(x)$ e interpreta su significado en el contexto.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Clave de Respuestas}
+% ============================================================
+
+\subsection*{Sección 1: Polinomiales (Ejercicios 1--12)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item a) Grado 4, coef. principal 3, extremos: $+\infty$ hacia ambos lados.
+        \quad b) Grado 3, coef. principal $-1$, extremos: $+\infty$ (izq.), $-\infty$ (der.).
+        \quad c) Grado 5, coef. principal 2, extremos: $-\infty$ (izq.), $+\infty$ (der.).
+
+  \item División sintética con 2: cociente $x^2 + 2x - 3$, residuo 0.
+
+  \item División sintética con $-1$: cociente $2x^2 - x - 7$, residuo 3.
+
+  \item $f(1) = 1 - 3 + 3 - 1 = 0$. Factorización: $(x - 1)^3$.
+
+  \item $f(2) = 32 - 8 + 4 = 28$.
+
+  \item Raíz $x = 1$ (probando divisores de $-6$): $f(1) = 0$. División sintética: cociente $x^2 - 5x + 6 = (x - 2)(x - 3)$. Factorización: $(x - 1)(x - 2)(x - 3)$.
+
+  \item Con $x = -1$: división sintética da cociente $x^2 + x - 6 = (x + 3)(x - 2)$. Factorización: $g(x) = (x + 1)(x + 3)(x - 2)$.
+
+  \item $f(x) = a(x + 2)(x - 1)(x - 4)$. Como $f(0) = a(2)(-1)(-4) = 8a = 16 \Rightarrow a = 2$. $f(x) = 2(x + 2)(x - 1)(x - 4)$.
+
+  \item Probando $x = 2$: cociente $2x^3 - x^2 - 7x + 6$. Probando $x = -2$ en el cociente: $2(-8) - 4 + 14 + 6 = 0$. Nuevo cociente: $2x^2 - 3x - 2 = (2x + 1)(x - 2)$. Factorización: $h(x) = (x - 2)^2 (x + 2)(2x + 1)$. Raíces: $x = 2$ (doble), $x = -2$, $x = -\frac{1}{2}$.
+
+  \item Cambios de signo en $f(x)$: $+ \to -$ (1), $- \to +$ (2), $+ \to +$ (no), $+ \to -$ (3). Hay 3 cambios: 3 o 1 raíces positivas. En $f(-x) = x^4 + 3x^3 + x^2 - 2x - 1$: $+ \to +$, $+ \to +$, $+ \to -$ (1), $- \to -$ (no). 1 cambio: exactamente 1 raíz negativa.
+
+  \item $V(x) = 4x^3 - 44x^2 + 120x = 4x(x^2 - 11x + 30) = 4x(x - 5)(x - 6)$. Volumen cero en $x = 0$, $x = 5$, $x = 6$. En $x = 0$ y $x = 6$ el corte produce una caja de altura cero (no hay caja); en $x = 5$ también, por la geometría del problema (largo o ancho se anula).
+
+  \item $f(1) = 1 + a + b + 6 = 0 \Rightarrow a + b = -7$. $f(3) = 27 + 9a + 3b + 6 = 0 \Rightarrow 9a + 3b = -33 \Rightarrow 3a + b = -11$. Restando: $2a = -4 \Rightarrow a = -2$, $b = -5$.
+\end{enumerate}
+
+\newpage
+
+\subsection*{Sección 2: Racionales (Ejercicios 13--24)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{12}
+  \item $(-\infty, 5) \cup (5, \infty)$.
+
+  \item $(-\infty, -3) \cup (-3, 3) \cup (3, \infty)$.
+
+  \item A.V.: $x = 2$; A.H.: $y = 0$.
+
+  \item A.V.: $x = 0$; A.H.: $y = 5$.
+
+  \item $f(x) = \dfrac{(x - 2)(x + 2)}{(x - 3)(x + 1)}$ (sin cancelaciones). Dominio: $x \neq 3$, $x \neq -1$. A.V.: $x = 3$ y $x = -1$. A.H.: $y = 1$ (mismos grados). Intercepto $y$: $(0, \frac{4}{-3}) = (0, -\frac{4}{3})$. Interceptos $x$: $x = \pm 2$: $(2, 0)$ y $(-2, 0)$.
+
+  \item División: $2x^2 + 5x + 3$ entre $x - 1$ da $2x + 7 + \frac{10}{x - 1}$. A.O.: $y = 2x + 7$; A.V.: $x = 1$.
+
+  \item No hay A.V. ($x^2 + 1 > 0$ siempre); A.H.: $y = 1$.
+
+  \item $f(x) = \dfrac{(x - 2)(x^2 + 2x + 4)}{x - 2} = x^2 + 2x + 4$ para $x \neq 2$. Tiene un \textbf{hueco} en $(2, 12)$, no asíntota.
+
+  \item Cociente: $3x + 2$ y residuo $-2x - 1$. Asíntota oblicua: $y = 3x + 2$.
+
+  \item Grado numerador = grado denominador = 1. Asíntota horizontal: $y = \frac{k}{1} = k = 4$. Entonces $k = 4$.
+
+  \item $f(x) = \dfrac{3(x + 1)}{x + 2}$ (verificar: A.V. en $x = -2$, A.H. en $y = 3$, intercepto $y$ en $\frac{3}{2}$).
+
+  \item $f(x) = \dfrac{(x - 1)(x + 1)}{(x - 2)^2}$. A.V.: $x = 2$ (doble); A.H.: $y = 1$; intercepto $y$: $(0, -\frac{1}{4})$; interceptos $x$: $(-1, 0)$ y $(1, 0)$. Sin huecos.
+\end{enumerate}
+
+\newpage
+
+\subsection*{Sección 3: Composición e Inversas (Ejercicios 25--36)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{24}
+  \item a) $4x + 2$ \quad b) $-2x + 2$ \quad c) $3x^2 + 6x$ \quad d) $\dfrac{x + 2}{3x}$ (con $x \neq 0$).
+
+  \item $(f \circ g)(x) = (x + 1)^2 = x^2 + 2x + 1$; \quad $(g \circ f)(x) = x^2 + 1$.
+
+  \item $f^{-1}(x) = \dfrac{x + 7}{3}$.
+
+  \item $f^{-1}(x) = \sqrt[3]{x - 5}$.
+
+  \item $(f \circ g)(x) = \sqrt{x^2 + 1}$. Dominio: $\mathbb{R}$ (pues $x^2 + 1 \geq 1 > 0$ para todo $x$).
+
+  \item No es inyectiva en $\mathbb{R}$ (parábola). Se puede restringir a $[2, \infty)$ o $(-\infty, 2]$ para que sea inyectiva.
+
+  \item $y = \frac{x}{x - 2}$. Intercambiamos: $x = \frac{y}{y - 2} \Rightarrow x(y - 2) = y \Rightarrow xy - 2x = y \Rightarrow xy - y = 2x \Rightarrow y(x - 1) = 2x \Rightarrow f^{-1}(x) = \dfrac{2x}{x - 1}$ (con $x \neq 1$).
+
+  \item $f(g(x)) = \frac{3\left(\frac{2x + 1}{3}\right) - 1}{2} = \frac{2x + 1 - 1}{2} = x$. $g(f(x)) = \frac{2\left(\frac{3x - 1}{2}\right) + 1}{3} = \frac{3x - 1 + 1}{3} = x$. Sí son inversas.
+
+  \item Completamos el cuadrado: $y = (x - 2)^2 - 1$. Intercambiamos: $x = (y - 2)^2 - 1 \Rightarrow (y - 2)^2 = x + 1$. Con dominio $y \geq 2$: $y - 2 \geq 0 \Rightarrow y = 2 + \sqrt{x + 1}$. $f^{-1}(x) = 2 + \sqrt{x + 1}$, dominio $x \geq -1$.
+
+  \item Para $(f \circ g)(x) = f(g(x)) = \dfrac{1}{x^2 - 1}$: dominio $x \neq \pm 1$. Para $(g \circ f)(x) = g(f(x)) = \left(\dfrac{1}{x - 1}\right)^2$: dominio $x \neq 1$.
+
+  \item $f(g(x)) = f(x + 3) = 2x - 1$. Sea $u = x + 3$, entonces $x = u - 3$: $f(u) = 2(u - 3) - 1 = 2u - 7$. Por tanto $f(x) = 2x - 7$.
+
+  \item $y = 0{,}8x - 10$. Intercambiamos: $x = 0{,}8y - 10 \Rightarrow 0{,}8y = x + 10 \Rightarrow y = \dfrac{x + 10}{0{,}8} = 1{,}25x + 12{,}5$. $P^{-1}(x) = 1{,}25x + 12{,}5$ da el precio original antes de impuesto y descuento, dado el precio final.
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,1033 @@
+% ============================================================
+%  GUÍA DE EJERCICIOS: INTEGRALES POR CAMBIO DE VARIABLE
+%  Y POR PARTES (Nivel Progresivo)
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Integrales: Cambio de Variable y Por Partes}{Nivel Progresivo}
+
+% ── Comandos propios de esta guía ───────────────────
+\makeatletter\@addtoreset{ejercicio}{section}
+\renewcommand{\theejercicio}{\thesection.\arabic{ejercicio}}\makeatother
+\renewcommand{\ejercicio}{%
+  \refstepcounter{ejercicio}%
+  \textbf{Ejercicio \theejercicio.}\quad
+}
+\newcommand{\dx}{\,dx}
+\newcommand{\du}{\,du}
+\newcommand{\dt}{\,dt}
+\newcommand{\dv}{\,dv}
+\newcommand{\dtheta}{\,d\theta}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\CC}{\,+\,C}
+
+\begin{document}
+% ============================================================
+
+% ── Portada ──────────────────────────────────────────────────
+\mwportada{Guía de Ejercicios}{Integrales Indefinidas}{Cambio de Variable y Por Partes $\cdot$ Nivel Progresivo}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+\small
+\textbf{Alcance de esta guía:} integración mediante las técnicas de \textbf{sustitución}
+(cambio de variable) e \textbf{integración por partes}. Se asume dominio previo de
+las integrales directas (potencias, trigonométricas básicas, exponenciales y logarítmicas).\\[4pt]
+\textbf{Leyenda de dificultad:}\quad
+\facil{} Fácil\quad
+\medio{} Intermedio\quad
+\dificil{} Desafiante
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Fundamentos teóricos}
+% ============================================================
+
+% ────────────────────────────────────────────────────────────
+\subsection{Fórmulas de integración que debes dominar}
+% ────────────────────────────────────────────────────────────
+
+\begin{cuadroteoria}
+\begin{align*}
+  \int x^n \dx &= \frac{x^{n+1}}{n+1} \CC \quad (n \neq -1) &
+  \int \frac{1}{x} \dx &= \ln|x| \CC \\[6pt]
+  \int e^x \dx &= e^x \CC &
+  \int a^x \dx &= \frac{a^x}{\ln a} \CC \quad (a>0,\; a\neq 1) \\[6pt]
+  \int \cos x \dx  &= \sin x \CC  &
+  \int \sin x \dx  &= -\cos x \CC \\[6pt]
+  \int \sec^2 x \dx &= \tan x \CC &
+  \int \csc^2 x \dx &= -\cot x \CC \\[6pt]
+  \int \sec x\tan x \dx &= \sec x \CC &
+  \int \csc x\cot x \dx &= -\csc x \CC \\[6pt]
+  \int \tan x \dx &= -\ln|\cos x| \CC &
+  \int \cot x \dx &= \ln|\sin x| \CC \\[6pt]
+  \int \sec x \dx &= \ln|\sec x + \tan x| \CC &
+  \int \csc x \dx &= -\ln|\csc x + \cot x| \CC \\[6pt]
+  \int \frac{1}{x^2+a^2}\dx &= \frac{1}{a}\arctan\frac{x}{a}\CC &
+  \int \frac{1}{\sqrt{a^2-x^2}}\dx &= \arcsin\frac{x}{a}\CC
+\end{align*}
+\end{cuadroteoria}
+
+\vspace{6pt}
+
+% ────────────────────────────────────────────────────────────
+\subsection{Método de sustitución (cambio de variable)}
+% ────────────────────────────────────────────────────────────
+
+\begin{cuadrosolucion}
+\textbf{Teorema (Regla de sustitución).}\quad
+Si $u = g(x)$ es una función diferenciable cuyo rango está en el dominio de $f$, entonces:
+\[
+  \int f\!\bigl(g(x)\bigr)\,g'(x)\dx \;=\; \int f(u)\du
+  \qquad\text{donde } u = g(x),\;\; du = g'(x)\dx
+\]
+\end{cuadrosolucion}
+
+\vspace{4pt}
+
+\begin{cuadroadvertencia}
+\small\textbf{¿Cuándo usar cambio de variable?}\; Identifica estos patrones:
+\begin{enumerate}[leftmargin=*, itemsep=3pt]
+  \item \textbf{Función compuesta con su derivada presente:} el integrando tiene la forma
+        $f\bigl(g(x)\bigr)\cdot g'(x)$.\\
+        \textit{Ejemplo:} $\int 2x\cos(x^2)\dx$ \;\;$\longrightarrow$\;\; $u = x^2$, $du = 2x\dx$.
+  \item \textbf{La derivada de la ``parte interior'' aparece como factor (quizá con una constante).}\\
+        \textit{Ejemplo:} $\int x^2\sqrt{x^3+1}\dx$ \;\;$\longrightarrow$\;\; $u = x^3+1$, $du = 3x^2\dx$.
+  \item \textbf{Expresiones con raíces o potencias de funciones lineales.}\\
+        \textit{Ejemplo:} $\int (3x+5)^7\dx$ \;\;$\longrightarrow$\;\; $u = 3x+5$, $du = 3\dx$.
+  \item \textbf{Funciones trigonométricas con argumento no trivial.}\\
+        \textit{Ejemplo:} $\int \sec^2(4x)\dx$ \;\;$\longrightarrow$\;\; $u = 4x$, $du = 4\dx$.
+\end{enumerate}
+\end{cuadroadvertencia}
+
+\vspace{4pt}
+
+\begin{cuadroinfo}
+\small\textbf{Paso a paso para la sustitución:}
+\begin{enumerate}[leftmargin=*, itemsep=2pt]
+  \item Identifica la ``parte interior'' $g(x)$ y llámala $u$.
+  \item Calcula $du = g'(x)\dx$.
+  \item Reescribe la integral \textbf{completamente} en términos de $u$ y $du$
+        (no debe quedar ninguna $x$).
+  \item Integra en la variable $u$.
+  \item Sustituye de vuelta $u = g(x)$ para obtener la respuesta en términos de $x$.
+\end{enumerate}
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ────────────────────────────────────────────────────────────
+\subsection{Método de integración por partes}
+% ────────────────────────────────────────────────────────────
+
+\begin{cuadrosolucion}
+\textbf{Teorema (Integración por partes).}\quad
+Si $u$ y $v$ son funciones diferenciables de $x$, entonces:
+\[
+  \boxed{\int u\dv = uv - \int v\du}
+\]
+Equivalentemente, si $u = f(x)$ y $dv = g(x)\dx$:
+\[
+  \int f(x)\,g(x)\dx \;=\; f(x)\,G(x) - \int G(x)\,f'(x)\dx
+  \qquad\text{donde } G(x) = \int g(x)\dx
+\]
+\end{cuadrosolucion}
+
+\vspace{4pt}
+
+\begin{cuadroadvertencia}
+\small\textbf{¿Cuándo usar integración por partes?}\; Úsala cuando:
+\begin{enumerate}[leftmargin=*, itemsep=3pt]
+  \item El integrando es un \textbf{producto de dos funciones} de tipos distintos
+        (polinomio $\times$ exponencial, polinomio $\times$ trigonométrica,
+        exponencial $\times$ trigonométrica, etc.)
+  \item La sustitución directa \textbf{no simplifica} la integral.
+  \item El integrando contiene funciones cuya \textbf{derivada es más simple} que la función
+        misma (como $\ln x$, $\arctan x$, $\arcsin x$).
+\end{enumerate}
+\end{cuadroadvertencia}
+
+\vspace{8pt}
+
+% ────────────────────────────────────────────────────────────
+\subsection{Regla ILATE para elegir $u$}
+% ────────────────────────────────────────────────────────────
+
+\begin{cuadroextra}
+\textbf{Regla ILATE (prioridad para elegir $u$).}\quad
+Al aplicar integración por partes, elige como $u$ la función que aparezca
+\textbf{primero} en la siguiente lista de prioridad:
+
+\vspace{6pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{c l l}
+  \toprule
+  \textbf{Prioridad} & \textbf{Tipo de función} & \textbf{Ejemplos} \\
+  \midrule
+  \textbf{I} & \textbf{I}nversa trigonométrica & $\arcsin x,\;\arccos x,\;\arctan x$ \\
+  \textbf{L} & \textbf{L}ogarítmica & $\ln x,\;\log_2 x,\;\ln(x^2+1)$ \\
+  \textbf{A} & \textbf{A}lgebraica (polinomial) & $x,\;x^2,\;3x^3+1$ \\
+  \textbf{T} & \textbf{T}rigonométrica & $\sin x,\;\cos x,\;\tan x$ \\
+  \textbf{E} & \textbf{E}xponencial & $e^x,\;2^x,\;e^{3x}$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{6pt}
+\small
+\textbf{Razonamiento:} las funciones al inicio de ILATE se \textit{simplifican al derivar}
+(por eso las elegimos como $u$), mientras que las del final se \textit{integran fácilmente}
+(por eso las elegimos como $dv$).
+
+\vspace{4pt}
+\textbf{Ejemplo:} En $\displaystyle\int x\,e^x\dx$, la algebraica ($x$) tiene mayor
+prioridad que la exponencial ($e^x$), así que $u = x$ y $dv = e^x\dx$.
+
+\vspace{4pt}
+\textbf{Ejemplo:} En $\displaystyle\int \ln x\dx$, tomamos $u = \ln x$ y $dv = dx$,
+ya que la logarítmica tiene la mayor prioridad presente.
+\end{cuadroextra}
+
+\vspace{4pt}
+
+\begin{cuadroinfo}
+\small\textbf{Casos especiales a recordar:}
+\begin{itemize}[leftmargin=*, itemsep=3pt]
+  \item \textbf{Integral cíclica:} $\int e^x\sin x\dx$ o $\int e^x\cos x\dx$
+        requieren aplicar por partes \textbf{dos veces} y luego resolver la ecuación
+        resultante para la integral.
+  \item \textbf{Por partes tabulado (método tabular):} cuando $u$ es un polinomio
+        de grado $n$, se puede aplicar por partes repetidamente $n$ veces usando
+        una tabla de derivadas sucesivas de $u$ e integrales sucesivas de $dv$.
+  \item \textbf{Funciones ``solitarias'':} $\int \ln x\dx$, $\int \arctan x\dx$,
+        $\int \arcsin x\dx$ se resuelven con $dv = dx$.
+\end{itemize}
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ────────────────────────────────────────────────────────────
+\subsection{Método de sustitución trigonométrica}
+% ────────────────────────────────────────────────────────────
+
+\begin{cuadrosolucion}
+\textbf{Idea central.}\quad
+Cuando el integrando contiene expresiones de la forma
+$\sqrt{a^2 - x^2}$, $\sqrt{a^2 + x^2}$ o $\sqrt{x^2 - a^2}$,
+se introduce una \textbf{sustitución trigonométrica} que transforma la raíz
+en una expresión trigonométrica sencilla, aprovechando las identidades
+pitagóricas.
+\end{cuadrosolucion}
+
+\vspace{4pt}
+
+\begin{cuadroextra}
+\textbf{Tabla de sustituciones trigonométricas.}
+
+\vspace{6pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{c c c c}
+  \toprule
+  \textbf{Expresión} & \textbf{Sustitución} & \textbf{Identidad usada} & \textbf{Resultado} \\
+  \midrule
+  $\sqrt{a^2 - x^2}$ & $x = a\sin\theta$ &
+    $1-\sin^2\theta = \cos^2\theta$ & $a\cos\theta$ \\[4pt]
+  $\sqrt{a^2 + x^2}$ & $x = a\tan\theta$ &
+    $1+\tan^2\theta = \sec^2\theta$ & $a\sec\theta$ \\[4pt]
+  $\sqrt{x^2 - a^2}$ & $x = a\sec\theta$ &
+    $\sec^2\theta - 1 = \tan^2\theta$ & $a\tan\theta$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{4pt}
+\small
+\textbf{Nota:} en cada caso se restringe $\theta$ para que la sustitución sea invertible:\\[2pt]
+$\bullet$ Si $x = a\sin\theta$: \;$-\tfrac{\pi}{2}\leq\theta\leq\tfrac{\pi}{2}$\qquad
+$\bullet$ Si $x = a\tan\theta$: \;$-\tfrac{\pi}{2}<\theta<\tfrac{\pi}{2}$\qquad
+$\bullet$ Si $x = a\sec\theta$: \;$\theta\in[0,\tfrac{\pi}{2})\cup(\tfrac{\pi}{2},\pi]$
+\end{cuadroextra}
+
+\vspace{4pt}
+
+\begin{cuadroadvertencia}
+\small\textbf{¿Cuándo usar sustitución trigonométrica?}
+\begin{enumerate}[leftmargin=*, itemsep=3pt]
+  \item El integrando contiene $\sqrt{a^2 - x^2}$, $\sqrt{a^2 + x^2}$ o $\sqrt{x^2 - a^2}$
+        (incluso sin la raíz, por ejemplo $\dfrac{1}{(x^2+a^2)^{3/2}}$).
+  \item Aparecen expresiones como $a^2 - x^2$, $a^2 + x^2$ o $x^2 - a^2$ elevadas a
+        potencias fraccionarias.
+  \item Después de completar el cuadrado, el integrando se reduce a alguna de
+        las formas anteriores.
+  \item El cambio de variable algebraico \textbf{no funciona} porque no hay
+        derivada de la función interior como factor.
+\end{enumerate}
+\end{cuadroadvertencia}
+
+\vspace{4pt}
+
+\begin{cuadroinfo}
+\small\textbf{Paso a paso para la sustitución trigonométrica:}
+\begin{enumerate}[leftmargin=*, itemsep=2pt]
+  \item Identifica cuál de las tres formas ($a^2-x^2$, $a^2+x^2$, $x^2-a^2$) aparece
+        y determina el valor de $a$.
+  \item Realiza la sustitución correspondiente: $x = a\sin\theta$, $x = a\tan\theta$
+        o $x = a\sec\theta$.
+  \item Calcula $dx$ en términos de $d\theta$.
+  \item Sustituye todo en la integral (debe quedar solo en función de $\theta$).
+  \item Simplifica usando identidades trigonométricas e integra.
+  \item Regresa a la variable $x$ usando un triángulo rectángulo auxiliar
+        (dibuja el triángulo correspondiente a tu sustitución).
+\end{enumerate}
+\end{cuadroinfo}
+
+\vspace{4pt}
+
+\begin{cuadrosolucion}
+\small\textbf{Identidades útiles para simplificar tras la sustitución:}
+\begin{align*}
+  \sin^2\theta &= \frac{1-\cos 2\theta}{2} &
+  \cos^2\theta &= \frac{1+\cos 2\theta}{2} &
+  \sin\theta\cos\theta &= \frac{\sin 2\theta}{2} \\[4pt]
+  \int \sec\theta\dtheta &= \ln|\sec\theta+\tan\theta|\CC &
+  \int \sec^3\theta\dtheta &= \frac{1}{2}\bigl(\sec\theta\tan\theta + \ln|\sec\theta+\tan\theta|\bigr)\CC
+\end{align*}
+\end{cuadrosolucion}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Bloque 1 — Sustitución: funciones lineales}
+% ============================================================
+
+\begin{cuadroinfo}
+\small\textbf{Objetivo:} aplicar cambio de variable con funciones lineales interiores
+del tipo $u = ax + b$, donde $du = a\dx$.
+\end{cuadroinfo}
+
+\vspace{4pt}
+
+\subsection{Potencias de funciones lineales}
+
+\begin{multicols}{2}
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=10pt]
+
+  \item \facil\quad $\displaystyle\int (2x+1)^5 \dx$
+
+  \item \facil\quad $\displaystyle\int (3x-4)^3 \dx$
+
+  \item \facil\quad $\displaystyle\int \sqrt{5x+2}\dx$
+
+  \item \facil\quad $\displaystyle\int \frac{1}{(4x-1)^2}\dx$
+
+  \item \medio\quad $\displaystyle\int \frac{3}{\sqrt{7x+3}}\dx$
+
+  \item \medio\quad $\displaystyle\int \sqrt[3]{1-2x}\dx$
+
+\end{enumerate}
+\end{multicols}
+
+\subsection{Trigonométricas con argumento lineal}
+
+\begin{multicols}{2}
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=10pt, start=7]
+
+  \item \facil\quad $\displaystyle\int \cos(3x)\dx$
+
+  \item \facil\quad $\displaystyle\int \sin(5x-1)\dx$
+
+  \item \facil\quad $\displaystyle\int \sec^2(2x)\dx$
+
+  \item \medio\quad $\displaystyle\int \csc^2\!\left(\frac{x}{3}\right)\dx$
+
+  \item \medio\quad $\displaystyle\int \sec(4x)\tan(4x)\dx$
+
+  \item \medio\quad $\displaystyle\int \tan(3x)\dx$
+
+\end{enumerate}
+\end{multicols}
+
+\subsection{Exponenciales con argumento lineal}
+
+\begin{multicols}{2}
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=10pt, start=13]
+
+  \item \facil\quad $\displaystyle\int e^{4x}\dx$
+
+  \item \facil\quad $\displaystyle\int e^{-2x}\dx$
+
+  \item \medio\quad $\displaystyle\int 3e^{5x+1}\dx$
+
+  \item \medio\quad $\displaystyle\int 2^{3x}\dx$
+
+\end{enumerate}
+\end{multicols}
+
+\vspace{4pt}
+
+% ============================================================
+\section{Bloque 2 — Sustitución: patrones con derivada presente}
+% ============================================================
+
+\begin{cuadroinfo}
+\small\textbf{Objetivo:} identificar situaciones donde la derivada de la función
+interior aparece multiplicando al integrando (posiblemente con una constante distinta).
+\end{cuadroinfo}
+
+\vspace{4pt}
+
+\subsection{Potencias de funciones con derivada presente}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=12pt, start=17]
+
+  \item \facil\quad
+    $\displaystyle\int 2x(x^2+1)^4\dx$
+    \qquad\textit{Sugerencia: $u = x^2+1$}
+
+  \item \facil\quad
+    $\displaystyle\int 3x^2(x^3-5)^6\dx$
+
+  \item \medio\quad
+    $\displaystyle\int x\sqrt{x^2+9}\dx$
+
+  \item \medio\quad
+    $\displaystyle\int \frac{x}{(x^2+4)^3}\dx$
+
+  \item \medio\quad
+    $\displaystyle\int \frac{x^2}{\sqrt{x^3+1}}\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int \frac{x^3}{(x^4+2)^2}\dx$
+
+\end{enumerate}
+
+\subsection{Cocientes que generan logaritmos}
+
+\begin{cuadroadvertencia}
+\small\textbf{Patrón clave:} $\displaystyle\int \frac{f'(x)}{f(x)}\dx = \ln|f(x)| \CC$
+\end{cuadroadvertencia}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=12pt, start=23]
+
+  \item \facil\quad
+    $\displaystyle\int \frac{2x}{x^2+1}\dx$
+
+  \item \medio\quad
+    $\displaystyle\int \frac{3x^2}{x^3-7}\dx$
+
+  \item \medio\quad
+    $\displaystyle\int \frac{\cos x}{\sin x}\dx$
+    \qquad\textit{(Verifica que obtienes $\ln|\sin x|+C$)}
+
+  \item \medio\quad
+    $\displaystyle\int \frac{e^x}{e^x+1}\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int \frac{x+1}{x^2+2x+5}\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int \frac{\sec^2 x}{\tan x}\dx$
+
+\end{enumerate}
+
+\subsection{Sustituciones trigonométricas y exponenciales}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=12pt, start=29]
+
+  \item \medio\quad
+    $\displaystyle\int \sin^3 x \cos x \dx$
+    \qquad\textit{Sugerencia: $u = \sin x$}
+
+  \item \medio\quad
+    $\displaystyle\int \cos^5 x \sin x \dx$
+
+  \item \medio\quad
+    $\displaystyle\int \tan^3 x \sec^2 x \dx$
+
+  \item \medio\quad
+    $\displaystyle\int e^x\sin(e^x)\dx$
+    \qquad\textit{Sugerencia: $u = e^x$}
+
+  \item \dificil\quad
+    $\displaystyle\int \frac{\sin(\ln x)}{x}\dx$
+    \qquad\textit{Sugerencia: $u = \ln x$}
+
+  \item \dificil\quad
+    $\displaystyle\int \frac{e^{\arctan x}}{1+x^2}\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int \frac{\ln^3 x}{x}\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int x\,e^{x^2}\dx$
+
+\end{enumerate}
+
+\vspace{4pt}
+
+% ============================================================
+\section{Bloque 3 — Sustituciones más elaboradas}
+% ============================================================
+
+\begin{cuadroinfo}
+\small\textbf{Objetivo:} abordar integrales donde la sustitución no es inmediata
+y se requiere manipulación algebraica adicional o sustituciones creativas.
+\end{cuadroinfo}
+
+\vspace{4pt}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=14pt, start=37]
+
+  \item \medio\quad
+    $\displaystyle\int \frac{x}{\sqrt{1-x^2}}\dx$
+
+  \item \medio\quad
+    $\displaystyle\int \frac{x}{x^2+4}\dx$
+
+  \item \medio\quad
+    $\displaystyle\int x\sqrt{1-x^2}\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int \frac{x}{\sqrt{x+1}}\dx$
+    \qquad\textit{Sugerencia: $u = x+1$, luego $x = u-1$}
+
+  \item \dificil\quad
+    $\displaystyle\int \frac{x^2}{\sqrt{x-1}}\dx$
+    \qquad\textit{Sugerencia: $u = x-1$}
+
+  \item \dificil\quad
+    $\displaystyle\int \frac{\sqrt{\ln x}}{x}\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int \frac{1}{x\ln x}\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int \frac{e^{2x}}{e^x+1}\dx$
+    \qquad\textit{Sugerencia: $u = e^x + 1$, nota que $e^{2x} = (u-1)\cdot e^x$}
+
+  \item \dificil\quad
+    $\displaystyle\int \frac{\sin x}{\cos^2 x}\dx$
+    \qquad\textit{(Reconócelo como $\int \sec x\tan x\dx$ o usa $u = \cos x$)}
+
+  \item \dificil\quad
+    $\displaystyle\int \frac{1}{1+e^{-x}}\dx$
+    \qquad\textit{Sugerencia: multiplica numerador y denominador por $e^x$}
+
+\end{enumerate}
+
+\vspace{4pt}
+
+% ============================================================
+\section{Bloque 4 — Integración por partes: nivel básico}
+% ============================================================
+
+\begin{cuadroinfo}
+\small\textbf{Objetivo:} aplicar la fórmula $\int u\dv = uv - \int v\du$ en integrales
+donde el producto es de dos funciones de tipo diferente. Usa la regla
+\textbf{ILATE} para elegir $u$.
+\end{cuadroinfo}
+
+\vspace{4pt}
+
+\subsection{Polinomio $\times$ exponencial}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=12pt, start=47]
+
+  \item \facil\quad
+    $\displaystyle\int x\,e^x\dx$
+    \qquad\textit{ILATE: $u = x$ (A), $dv = e^x\dx$ (E)}
+
+  \item \facil\quad
+    $\displaystyle\int x\,e^{-x}\dx$
+
+  \item \medio\quad
+    $\displaystyle\int x\,e^{2x}\dx$
+
+  \item \medio\quad
+    $\displaystyle\int (x+1)e^x\dx$
+
+  \item \medio\quad
+    $\displaystyle\int x^2\,e^x\dx$
+    \qquad\textit{(Requiere por partes dos veces)}
+
+  \item \dificil\quad
+    $\displaystyle\int x^2\,e^{-x}\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int x^3\,e^x\dx$
+    \qquad\textit{(Usa método tabular o por partes tres veces)}
+
+\end{enumerate}
+
+\subsection{Polinomio $\times$ trigonométrica}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=12pt, start=54]
+
+  \item \facil\quad
+    $\displaystyle\int x\sin x\dx$
+    \qquad\textit{ILATE: $u = x$ (A), $dv = \sin x\dx$ (T)}
+
+  \item \facil\quad
+    $\displaystyle\int x\cos x\dx$
+
+  \item \medio\quad
+    $\displaystyle\int x\cos(2x)\dx$
+
+  \item \medio\quad
+    $\displaystyle\int (x-1)\sin x\dx$
+
+  \item \medio\quad
+    $\displaystyle\int x^2\sin x\dx$
+    \qquad\textit{(Por partes dos veces)}
+
+  \item \dificil\quad
+    $\displaystyle\int x^2\cos x\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int x\sin^2 x\dx$
+    \qquad\textit{Sugerencia: usa la identidad de ángulo doble primero}
+
+\end{enumerate}
+
+\vspace{4pt}
+
+% ============================================================
+\section{Bloque 5 — Por partes: logarítmicas e inversas trigonométricas}
+% ============================================================
+
+\begin{cuadroinfo}
+\small\textbf{Objetivo:} integrar funciones logarítmicas e inversas trigonométricas.
+Estas tienen la \textbf{máxima prioridad} en ILATE, por lo que siempre serán $u$.
+\end{cuadroinfo}
+
+\vspace{4pt}
+
+\subsection{Logarítmicas ($dv = dx$ o combinadas)}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=12pt, start=61]
+
+  \item \facil\quad
+    $\displaystyle\int \ln x\dx$
+    \qquad\textit{ILATE: $u = \ln x$ (L), $dv = dx$}
+
+  \item \medio\quad
+    $\displaystyle\int x\ln x\dx$
+
+  \item \medio\quad
+    $\displaystyle\int x^2\ln x\dx$
+
+  \item \medio\quad
+    $\displaystyle\int \frac{\ln x}{x^2}\dx$
+    \qquad\textit{(Equivale a $\int x^{-2}\ln x\dx$)}
+
+  \item \dificil\quad
+    $\displaystyle\int (\ln x)^2\dx$
+    \qquad\textit{(Por partes dos veces)}
+
+  \item \dificil\quad
+    $\displaystyle\int x(\ln x)^2\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int \ln(x^2+1)\dx$
+    \qquad\textit{Sugerencia: $u = \ln(x^2+1)$, $dv = dx$}
+
+\end{enumerate}
+
+\subsection{Inversas trigonométricas}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=12pt, start=68]
+
+  \item \medio\quad
+    $\displaystyle\int \arctan x\dx$
+    \qquad\textit{ILATE: $u = \arctan x$ (I), $dv = dx$}
+
+  \item \medio\quad
+    $\displaystyle\int \arcsin x\dx$
+
+  \item \medio\quad
+    $\displaystyle\int x\arctan x\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int x\arcsin x\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int x^2\arctan x\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int \arccos x\dx$
+
+\end{enumerate}
+
+\vspace{4pt}
+
+% ============================================================
+\section{Bloque 6 — Por partes: casos especiales}
+% ============================================================
+
+\begin{cuadroinfo}
+\small\textbf{Objetivo:} dominar las integrales cíclicas
+(exponencial $\times$ trigonométrica) y otros casos que requieren
+técnicas ingeniosas.
+\end{cuadroinfo}
+
+\vspace{4pt}
+
+\subsection{Integrales cíclicas: $e^x \times$ trigonométrica}
+
+\begin{cuadroadvertencia}
+\small\textbf{Estrategia:} aplica por partes \textbf{dos veces} manteniendo la misma
+elección de ``tipo'' para $u$. La integral original reaparecerá al otro lado de la
+ecuación; despéjala algebraicamente.
+\end{cuadroadvertencia}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=12pt, start=74]
+
+  \item \medio\quad
+    $\displaystyle\int e^x\sin x\dx$
+
+  \item \medio\quad
+    $\displaystyle\int e^x\cos x\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int e^{2x}\sin(3x)\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int e^{-x}\cos(2x)\dx$
+
+\end{enumerate}
+
+\subsection{Integrales que mezclan técnicas}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=14pt, start=78]
+
+  \item \medio\quad
+    $\displaystyle\int x\sec^2 x\dx$
+    \qquad\textit{ILATE: $u = x$ (A), $dv = \sec^2 x\dx$ (T)}
+
+  \item \medio\quad
+    $\displaystyle\int e^x\cos x\dx - \int e^x\sin x\dx$
+    \qquad\textit{(Simplifícalo)}
+
+  \item \dificil\quad
+    $\displaystyle\int e^{\sqrt{x}}\dx$
+    \qquad\textit{Sugerencia: sustituye $u = \sqrt{x}$ primero, luego por partes}
+
+  \item \dificil\quad
+    $\displaystyle\int \sin(\ln x)\dx$
+    \qquad\textit{Sugerencia: por partes dos veces, integral cíclica}
+
+  \item \dificil\quad
+    $\displaystyle\int x\tan^2 x\dx$
+    \qquad\textit{Sugerencia: $\tan^2 x = \sec^2 x - 1$, luego por partes}
+
+  \item \dificil\quad
+    $\displaystyle\int \frac{x\,e^x}{(x+1)^2}\dx$
+    \qquad\textit{Sugerencia: escribe $x = (x+1)-1$}
+
+\end{enumerate}
+
+\vspace{4pt}
+
+% ============================================================
+\section{Bloque 8 — Sustitución trigonométrica}
+% ============================================================
+
+\begin{cuadroinfo}
+\small\textbf{Objetivo:} aplicar sustituciones trigonométricas para integrar
+expresiones que contienen $\sqrt{a^2-x^2}$, $\sqrt{a^2+x^2}$ o $\sqrt{x^2-a^2}$.
+Consulta la tabla de sustituciones de la Sección 1.
+\end{cuadroinfo}
+
+\vspace{4pt}
+
+\subsection{Forma $\sqrt{a^2 - x^2}$ \;($x = a\sin\theta$)}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=12pt, start=84]
+
+  \item \facil\quad
+    $\displaystyle\int \frac{1}{\sqrt{4-x^2}}\dx$
+    \qquad\textit{Sugerencia: $x = 2\sin\theta$}
+
+  \item \medio\quad
+    $\displaystyle\int \frac{x^2}{\sqrt{9-x^2}}\dx$
+
+  \item \medio\quad
+    $\displaystyle\int \sqrt{1-x^2}\dx$
+
+  \item \medio\quad
+    $\displaystyle\int \frac{x^2}{(4-x^2)^{3/2}}\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int \frac{\sqrt{9-x^2}}{x^2}\dx$
+
+\end{enumerate}
+
+\subsection{Forma $\sqrt{a^2 + x^2}$ \;($x = a\tan\theta$)}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=12pt, start=89]
+
+  \item \facil\quad
+    $\displaystyle\int \frac{1}{\sqrt{x^2+1}}\dx$
+    \qquad\textit{Sugerencia: $x = \tan\theta$}
+
+  \item \medio\quad
+    $\displaystyle\int \frac{1}{(x^2+4)^{3/2}}\dx$
+
+  \item \medio\quad
+    $\displaystyle\int \sqrt{x^2+9}\dx$
+
+  \item \medio\quad
+    $\displaystyle\int \frac{x^2}{\sqrt{x^2+4}}\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int \frac{1}{(x^2+1)^2}\dx$
+
+\end{enumerate}
+
+\subsection{Forma $\sqrt{x^2 - a^2}$ \;($x = a\sec\theta$)}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=12pt, start=94]
+
+  \item \medio\quad
+    $\displaystyle\int \frac{\sqrt{x^2-4}}{x}\dx$
+    \qquad\textit{Sugerencia: $x = 2\sec\theta$}
+
+  \item \medio\quad
+    $\displaystyle\int \frac{1}{x^2\sqrt{x^2-9}}\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int \frac{1}{\sqrt{x^2-1}}\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int \sqrt{x^2-4}\dx$
+
+\end{enumerate}
+
+\subsection{Completar el cuadrado + sustitución trigonométrica}
+
+\begin{cuadroadvertencia}
+\small\textbf{Estrategia:} cuando el integrando contiene $\sqrt{ax^2+bx+c}$,
+completa el cuadrado para reducirlo a una de las tres formas estándar.
+\end{cuadroadvertencia}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=14pt, start=98]
+
+  \item \medio\quad
+    $\displaystyle\int \frac{1}{\sqrt{x^2+6x+13}}\dx$
+    \qquad\textit{Sugerencia: $x^2+6x+13 = (x+3)^2+4$}
+
+  \item \dificil\quad
+    $\displaystyle\int \frac{1}{\sqrt{5-4x-x^2}}\dx$
+    \qquad\textit{Sugerencia: $5-4x-x^2 = 9-(x+2)^2$}
+
+  \item \dificil\quad
+    $\displaystyle\int \frac{x}{\sqrt{x^2-4x+8}}\dx$
+
+\end{enumerate}
+
+\vspace{4pt}
+
+% ============================================================
+\section{Bloque 9 — Ejercicios integradores}
+% ============================================================
+
+\begin{cuadroinfo}
+\small\textbf{Objetivo:} determinar cuál técnica (sustitución, por partes, o una
+combinación) es la adecuada. Estos ejercicios requieren criterio para
+seleccionar el método correcto.
+\end{cuadroinfo}
+
+\vspace{4pt}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=14pt, start=101]
+
+  \item \medio\quad
+    $\displaystyle\int \frac{x\,e^{x^2}}{2}\dx$
+
+  \item \medio\quad
+    $\displaystyle\int x^2\sqrt{x^3+8}\dx$
+
+  \item \medio\quad
+    $\displaystyle\int (2x+1)e^{x^2+x}\dx$
+
+  \item \medio\quad
+    $\displaystyle\int \frac{\arctan x}{1+x^2}\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int x\ln(x^2+1)\dx$
+    \qquad\textit{Sugerencia: ¿sustitución o por partes?}
+
+  \item \dificil\quad
+    $\displaystyle\int xe^x\sin x\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int \frac{x^3}{\sqrt{1+x^2}}\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int x^2 e^x \cos x\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int e^x\left(\frac{1-x}{x^2}\right)\dx$
+    \qquad\textit{Sugerencia: escríbelo como $\int e^x\!\left(\frac{1}{x}-\frac{1}{x^2}\right)\!dx$}
+
+  \item \dificil\quad
+    $\displaystyle\int \sqrt{x}\,\ln x\dx$
+
+\end{enumerate}
+
+\vspace{8pt}
+
+% ============================================================
+\section*{Respuestas seleccionadas}
+% ============================================================
+
+\addcontentsline{toc}{section}{Respuestas seleccionadas}
+
+\begin{cuadrosolucion}
+\small
+\textbf{Nota:} en todos los casos se omite la constante de integración $C$ por brevedad;
+recuerda añadirla en tus resultados.
+\end{cuadrosolucion}
+
+\vspace{4pt}
+
+\begin{multicols}{2}
+\small
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=6pt]
+
+  % Bloque 1 — Sustitución: funciones lineales
+  \item $\dfrac{(2x+1)^6}{12}$
+  \item $\dfrac{(3x-4)^4}{12}$
+  \item $\dfrac{2}{15}(5x+2)^{3/2}$
+  \item $-\dfrac{1}{4(4x-1)}$
+  \item $\dfrac{6}{7}\sqrt{7x+3}$
+  \item $-\dfrac{3}{8}(1-2x)^{4/3}$
+  \item $\dfrac{\sin(3x)}{3}$
+  \item $-\dfrac{\cos(5x-1)}{5}$
+  \item $\dfrac{\tan(2x)}{2}$
+  \item $-3\cot\!\left(\dfrac{x}{3}\right)$
+  \item $\dfrac{\sec(4x)}{4}$
+  \item $-\dfrac{\ln|\cos(3x)|}{3}$
+  \item $\dfrac{e^{4x}}{4}$
+  \item $-\dfrac{e^{-2x}}{2}$
+  \item $\dfrac{3}{5}e^{5x+1}$
+  \item $\dfrac{2^{3x}}{3\ln 2}$
+
+  % Bloque 2 — Sustitución: derivada presente
+  \item $\dfrac{(x^2+1)^5}{5}$
+  \item $\dfrac{(x^3-5)^7}{7}$
+  \item $\dfrac{1}{3}(x^2+9)^{3/2}$
+  \item $-\dfrac{1}{4(x^2+4)^2}$
+  \item $\dfrac{2}{3}\sqrt{x^3+1}$
+  \item $-\dfrac{1}{4(x^4+2)}$
+  \item $\ln(x^2+1)$
+  \item $\ln|x^3-7|$
+  \item $\ln|\sin x|$
+  \item $\ln(e^x+1)$
+  \item $\dfrac{1}{2}\ln(x^2+2x+5)$
+  \item $\ln|\tan x|$
+  \item $\dfrac{\sin^4 x}{4}$
+  \item $-\dfrac{\cos^6 x}{6}$
+  \item $\dfrac{\tan^4 x}{4}$
+  \item $-\cos(e^x)$
+  \item $-\cos(\ln x)$
+  \item $e^{\arctan x}$
+  \item $\dfrac{\ln^4 x}{4}$
+  \item $\dfrac{1}{2}e^{x^2}$
+
+  % Bloque 3 — Sustituciones elaboradas
+  \item $-\sqrt{1-x^2}$
+  \item $\dfrac{1}{2}\ln(x^2+4)$
+  \item $-\dfrac{1}{3}(1-x^2)^{3/2}$
+  \item $\dfrac{2}{3}(x+1)^{3/2}-2\sqrt{x+1}$
+  \setcounter{enumi}{41}
+  \item $\dfrac{2}{3}(\ln x)^{3/2}$
+  \item $\ln|\ln x|$
+  \item $e^x - \ln(e^x+1)$
+  \item $\sec x$
+  \item $\ln(1+e^x)$
+
+  % Bloque 4 — Por partes básico
+  \item $xe^x - e^x$
+  \item $-xe^{-x}-e^{-x}$
+  \item $\dfrac{x}{2}e^{2x}-\dfrac{1}{4}e^{2x}$
+  \item $(x+1)e^x - e^x = xe^x$
+  \item $x^2e^x-2xe^x+2e^x$
+  \item $-x^2e^{-x}-2xe^{-x}-2e^{-x}$
+  \setcounter{enumi}{53}
+  \item $-x\cos x + \sin x$
+  \item $x\sin x + \cos x$
+  \item $\dfrac{x}{2}\sin(2x)+\dfrac{1}{4}\cos(2x)$
+  \setcounter{enumi}{57}
+  \item $-x^2\cos x+2x\sin x+2\cos x$
+  \item $x^2\sin x+2x\cos x-2\sin x$
+
+  % Bloque 5 — Logarítmicas e inversas
+  \setcounter{enumi}{60}
+  \item $x\ln x - x$
+  \item $\dfrac{x^2}{2}\ln x - \dfrac{x^2}{4}$
+  \item $\dfrac{x^3}{3}\ln x - \dfrac{x^3}{9}$
+  \item $-\dfrac{\ln x}{x}-\dfrac{1}{x}$
+  \setcounter{enumi}{67}
+  \item $x\arctan x - \dfrac{1}{2}\ln(1+x^2)$
+  \item $x\arcsin x + \sqrt{1-x^2}$
+
+  % Bloque 6 — Casos especiales
+  \setcounter{enumi}{73}
+  \item $\dfrac{e^x}{2}(\sin x - \cos x)$
+  \item $\dfrac{e^x}{2}(\sin x + \cos x)$
+
+  % Bloque 8 — Sustitución trigonométrica
+  \setcounter{enumi}{83}
+  \item $\arcsin\dfrac{x}{2}$
+  \item $-\dfrac{x}{2}\sqrt{9-x^2}+\dfrac{9}{2}\arcsin\dfrac{x}{3}$
+  \item $\dfrac{x}{2}\sqrt{1-x^2}+\dfrac{1}{2}\arcsin x$
+  \item $\dfrac{-x}{\sqrt{4-x^2}}$
+  \item $-\dfrac{\sqrt{9-x^2}}{x}-\arcsin\dfrac{x}{3}$
+  \setcounter{enumi}{88}
+  \item $\ln\bigl|x+\sqrt{x^2+1}\bigr|$
+  \item $\dfrac{x}{4\sqrt{x^2+4}}$
+  \item $\dfrac{x}{2}\sqrt{x^2+9}+\dfrac{9}{2}\ln\bigl|x+\sqrt{x^2+9}\bigr|$
+  \item $\dfrac{x}{2}\sqrt{x^2+4}-2\ln\bigl|x+\sqrt{x^2+4}\bigr|$
+  \setcounter{enumi}{93}
+  \item $\sqrt{x^2-4}-2\operatorname{arcsec}\dfrac{x}{2}$
+  \item $\dfrac{\sqrt{x^2-9}}{9x}$
+  \item $\ln\bigl|x+\sqrt{x^2-1}\bigr|$
+  \item $\dfrac{x}{2}\sqrt{x^2-4}-2\ln\bigl|x+\sqrt{x^2-4}\bigr|$
+  \setcounter{enumi}{97}
+  \item $\ln\bigl|x+3+\sqrt{x^2+6x+13}\bigr|$
+  \item $\arcsin\dfrac{x+2}{3}$
+  \item $\sqrt{x^2-4x+8}+2\ln\bigl|x-2+\sqrt{x^2-4x+8}\bigr|$
+
+  % Bloque 9 — Integradores
+  \setcounter{enumi}{100}
+  \item $\dfrac{1}{2}e^{x^2}$
+  \item $\dfrac{2}{9}(x^3+8)^{3/2}$
+  \item $e^{x^2+x}$
+  \item $\dfrac{(\arctan x)^2}{2}$
+  \setcounter{enumi}{109}
+  \item $\dfrac{e^x}{x}$
+  \item $\dfrac{2}{3}x^{3/2}\ln x - \dfrac{4}{9}x^{3/2}$
+
+\end{enumerate}
+\end{multicols}
+
+\vspace{8pt}
+
+% ── Pie de guía ──────────────────────────────────────────────
+\begin{center}
+  \color{mwprimario}\rule{0.55\linewidth}{0.8pt}\\[4pt]
+  \small\color{gray}
+  \textit{Recuerda siempre verificar tu resultado derivando la respuesta obtenida.}\\[2pt]
+  \textit{La práctica constante es la clave para dominar estas técnicas.}
+\end{center}
+
+\end{document}

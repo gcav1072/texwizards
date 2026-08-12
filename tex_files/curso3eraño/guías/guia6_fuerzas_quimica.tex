@@ -1,0 +1,778 @@
+% ============================================================
+%  GUÍA 6: FUERZAS, ENERGÍA, TABLA PERIÓDICA Y REACCIONES
+%  Curso Introductorio — 3er Año
+%  Autor: Gabriel Astudillo
+%  Sesiones cubiertas: 19, 20, 21, 22
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Guía 6 — Fuerzas, Energía, Tabla Periódica y Reacciones}{Gabriel Astudillo $\cdot$ Curso 3er Año}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Estudio 6}{Fuerzas, Energía, Tabla Periódica y Reacciones}{Leyes de Newton, Termodinámica, Átomo y Ecuaciones Químicas}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+\small
+\textbf{Presentación:} En esta guía, la Física y la Química van de la mano. Primero explorarás las fuerzas que gobiernan el movimiento (Newton) y la transferencia de energía (calor y temperatura). Después cruzarás al mundo microscópico: la tabla periódica y las reacciones químicas. Al terminar, tendrás una visión panorámica de cómo interactúa la materia tanto a gran escala como a nivel atómico.
+\\[4pt]
+\textbf{Nivel de Dificultad:}\quad
+\facil{} Básico / Directo \quad
+\medio{} Intermedio \quad
+\dificil{} Desafiante
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Leyes de Newton}
+% ============================================================
+
+\subsection{Las tres leyes del movimiento}
+
+Isaac Newton (1643--1727) formuló tres leyes que describen cómo se mueven los objetos cuando actúan fuerzas sobre ellos. Estas leyes son la base de toda la mecánica clásica.
+
+\begin{cuadroteoria}
+\textbf{Primera Ley de Newton (Ley de Inercia):}\\
+Un objeto en reposo permanece en reposo, y un objeto en movimiento continúa moviéndose en línea recta a velocidad constante, \textbf{a menos que una fuerza neta actúe sobre él}.
+
+\textit{En palabras simples:} Los objetos «no quieren» cambiar su estado. Si están quietos, se quedan quietos. Si se mueven, siguen moviéndose. Se necesita una fuerza para cambiar eso.
+\end{cuadroteoria}
+
+\begin{cuadroteoria}
+\textbf{Segunda Ley de Newton (Ley de Fuerza y Aceleración):}
+$$\vec{F}_{\text{neta}} = m \cdot \vec{a}$$
+La aceleración de un objeto es directamente proporcional a la fuerza neta aplicada e inversamente proporcional a su masa.
+
+\textit{En palabras simples:} Cuanta más fuerza aplicas, más acelera. Cuanta más masa tiene, más le cuesta acelerar.
+\end{cuadroteoria}
+
+\begin{cuadroteoria}
+\textbf{Tercera Ley de Newton (Acción y Reacción):}\\
+Si un objeto A ejerce una fuerza sobre un objeto B, entonces B ejerce sobre A una fuerza de \textbf{igual magnitud pero en sentido opuesto}.
+
+\textit{En palabras simples:} Toda acción tiene una reacción igual y contraria. Cuando empujas una pared, la pared te empuja a ti con la misma fuerza.
+\end{cuadroteoria}
+
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}[x=1cm, y=1cm]
+    \tikzset{
+      card/.style={draw=mwprimario, fill=mwprimario!12, thick, rounded corners, minimum width=3.8cm, minimum height=4.2cm, align=center}
+    }
+    
+    % Card 1: Inercia
+    \node[card] at (-4.2, 0) {};
+    \node[font=\bfseries\small, text=mwprimario] at (-4.2, 1.7) {1ª Ley: Inercia};
+    \begin{scope}[shift={(-4.2, -0.3)}]
+      % Floor
+      \draw[thick, gray] (-1.2, -0.8) -- (1.2, -0.8);
+      % Block
+      \draw[thick, draw=mwprimario, fill=white] (-0.5, -0.8) rectangle (0.5, -0.2);
+      \node[font=\tiny] at (0, -0.5) {$m$};
+      % Velocity vector
+      \draw[ultra thick, -Latex, mwmagenta] (0.5, -0.5) -- (1.2, -0.5) node[right, font=\tiny\bfseries] {$\vec{v}$};
+      % Info
+      \node[font=\tiny, align=center] at (0, -1.3) {Un cuerpo mantiene su\\movimiento si la fuerza\\neta es cero.\\$\vec{F}_{\text{net}} = 0 \implies \vec{v} = \text{cte}$};
+    \end{scope}
+
+    % Card 2: Fuerza y Aceleración
+    \node[card] at (0, 0) {};
+    \node[font=\bfseries\small, text=mwprimario] at (0, 1.7) {2ª Ley: Fuerza};
+    \begin{scope}[shift={(0, -0.3)}]
+      % Floor
+      \draw[thick, gray] (-1.2, -0.8) -- (1.2, -0.8);
+      % Block
+      \draw[thick, draw=mwprimario, fill=white] (-0.5, -0.8) rectangle (0.5, -0.2);
+      \node[font=\tiny] at (0, -0.5) {$m$};
+      % Force vector
+      \draw[ultra thick, -Latex, mwrojonaranja] (-1.0, -0.5) -- (-0.5, -0.5) node[midway, above, font=\tiny\bfseries] {$\vec{F}$};
+      % Acceleration vector
+      \draw[thick, -Latex, mwmagenta] (0, 0.1) -- (0.8, 0.1) node[right, font=\tiny\bfseries] {$\vec{a}$};
+      % Info
+      \node[font=\tiny, align=center] at (0, -1.3) {La aceleración es\\proporcional a la fuerza\\ e inversa a la masa.\\$\vec{F} = m\vec{a}$};
+    \end{scope}
+
+    % Card 3: Acción y Reacción
+    \node[card] at (4.2, 0) {};
+    \node[font=\bfseries\small, text=mwprimario] at (4.2, 1.7) {3ª Ley: Reacción};
+    \begin{scope}[shift={(4.2, -0.3)}]
+      % Two blocks/balls in contact
+      \draw[thick, fill=white, draw=mwprimario] (-0.35, -0.5) circle (0.35cm);
+      \node[font=\tiny] at (-0.35, -0.5) {A};
+      \draw[thick, fill=white, draw=mwprimario] (0.35, -0.5) circle (0.35cm);
+      \node[font=\tiny] at (0.35, -0.5) {B};
+      
+      % Contact forces
+      \draw[ultra thick, -Latex, mwrojonaranja] (-0.1, -0.5) -- (-0.9, -0.5) node[left, font=\tiny\bfseries] {$\vec{F}_{BA}$};
+      \draw[ultra thick, -Latex, mwmagenta] (0.1, -0.5) -- (0.9, -0.5) node[right, font=\tiny\bfseries] {$\vec{F}_{AB}$};
+      
+      % Info
+      \node[font=\tiny, align=center] at (0, -1.3) {A toda fuerza de acción\\se opone una de reacción\\de igual valor.\\$\vec{F}_{AB} = -\vec{F}_{BA}$};
+    \end{scope}
+  \end{tikzpicture}
+  \caption{Las tres leyes de Newton resumidas conceptualmente.}
+  \label{fig:newton}
+\end{figure}
+
+\subsection{El diagrama de cuerpo libre (DCL)}
+
+Un \textbf{diagrama de cuerpo libre} es un esquema simplificado donde representamos un objeto como un punto y dibujamos \textbf{todas las fuerzas} que actúan sobre él como flechas (vectores).
+
+\begin{cuadrosolucion}
+\textbf{Fuerzas más comunes:}
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Peso} ($\vec{W}$): Siempre hacia abajo (centro de la Tierra). $W = mg$.
+  \item \textbf{Normal} ($\vec{N}$): Perpendicular a la superficie de contacto, hacia afuera. Impide que el objeto atraviese la superficie.
+  \item \textbf{Fricción} ($\vec{f}$): Paralela a la superficie, opuesta al movimiento o a la tendencia de movimiento.
+  \item \textbf{Tensión} ($\vec{T}$): A lo largo de una cuerda, cable o cadena, alejándose del objeto.
+  \item \textbf{Fuerza aplicada} ($\vec{F}$): Cualquier fuerza externa (empujón, jalón, etc.).
+\end{itemize}
+\end{cuadrosolucion}
+
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}[x=1cm, y=1cm]
+    % Left side: Physical situation
+    \begin{scope}[shift={(-2.5, 0)}]
+      % Table
+      \draw[thick, gray] (-1.5, -0.6) -- (1.5, -0.6); % table top
+      \draw[thick, gray] (-1.2, -0.6) -- (-1.2, -1.5); % table leg left
+      \draw[thick, gray] (1.2, -0.6) -- (1.2, -1.5); % table leg right
+      
+      % Book
+      \draw[thick, draw=mwprimario, fill=mwprimario!12, rounded corners=1pt] (-0.8, -0.6) rectangle (0.8, 0.1);
+      \node[text=mwprimario, font=\bfseries\small] at (0, -0.25) {Libro};
+      
+      \node[below=2.0cm, font=\bfseries\small, text=mwprimario] at (0,0) {Situación Física};
+    \end{scope}
+
+    % Separation dashed line
+    \draw[dashed, gray] (0, 1.2) -- (0, -1.6);
+
+    % Right side: DCL
+    \begin{scope}[shift={(2.5, 0)}]
+      % Axis indicators
+      \draw[gray!30, dashed] (-1, 0) -- (1, 0);
+      \draw[gray!30, dashed] (0, -1.2) -- (0, 1.2);
+      
+      % Center of mass dot
+      \fill[mwprimario] (0,0) circle (3pt) node[right=4pt, font=\scriptsize\bfseries] {Cuerpo (Punto)};
+      
+      % Normal vector (up)
+      \draw[ultra thick, -Latex, mwmagenta] (0,0) -- (0, 1.0) node[right, font=\footnotesize\bfseries] {$\vec{N}$ (Normal)};
+      
+      % Weight vector (down)
+      \draw[ultra thick, -Latex, mwrojonaranja] (0,0) -- (0, -1.0) node[right, font=\footnotesize\bfseries] {$\vec{W}$ (Peso)};
+      
+      \node[below=2.0cm, font=\bfseries\small, text=mwprimario] at (0,0) {Diagrama de Cuerpo Libre};
+    \end{scope}
+  \end{tikzpicture}
+  \caption{Diagrama de cuerpo libre de un objeto en equilibrio sobre una mesa.}
+  \label{fig:dcl}
+\end{figure}
+
+\newpage
+
+% ============================================================
+\subsection{Ejercicios: Leyes de Newton}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*]
+  \item \facil{} ¿Qué ley de Newton explica que un pasajero se incline hacia adelante cuando un autobús frena bruscamente?
+
+  \item \facil{} Si un objeto no tiene fuerzas actuando sobre él, ¿qué sucede según la primera ley?
+
+  \item \facil{} Calcula la fuerza neta necesaria para dar una aceleración de $3\;\text{m/s}^2$ a un objeto de $10\;\text{kg}$.
+
+  \item \facil{} Dibuja el diagrama de cuerpo libre de un libro en reposo sobre una mesa (solo peso y normal).
+
+  \item \medio{} Un carro de $1\,200\;\text{kg}$ acelera a $2\;\text{m/s}^2$. ¿Cuál es la fuerza neta que actúa sobre él? Si la fuerza del motor es $3\,000\;\text{N}$, ¿cuál es la fuerza de fricción?
+
+  \item \medio{} Cuando saltas desde una lancha pequeña hacia el muelle, la lancha se mueve hacia atrás. ¿Qué ley de Newton explica esto? Identifica la acción y la reacción.
+
+  \item \medio{} ¿Por qué es más difícil empujar un auto cargado que uno vacío, aunque les apliques la misma fuerza? Responde usando la segunda ley.
+
+  \item \medio{} Dibuja el DCL de una caja que está siendo empujada hacia la derecha sobre un piso rugoso. Incluye: peso, normal, fuerza aplicada y fricción. Indica la dirección de cada fuerza.
+
+  \item \dificil{} Un objeto de $5\;\text{kg}$ está sobre una mesa. Se le aplica una fuerza horizontal de $20\;\text{N}$ y la fricción es $8\;\text{N}$. Dibuja el DCL, calcula la fuerza neta y la aceleración.
+
+  \item \dificil{} Si un astronauta en el espacio (sin gravedad ni fricción) empuja una pelota, ¿qué le sucede a la pelota y qué le sucede al astronauta? Explica usando la primera y tercera ley.
+
+  \item \dificil{} Una persona de $60\;\text{kg}$ está en un ascensor. Dibuja el DCL y calcula la fuerza normal del piso cuando:
+  \begin{enumerate}[label=\alph*)]
+    \item El ascensor sube con aceleración $2\;\text{m/s}^2$.
+    \item El ascensor baja con aceleración $2\;\text{m/s}^2$.
+  \end{enumerate}
+
+  \item \dificil{} ¿Es posible que un objeto esté en movimiento sin que ninguna fuerza actúe sobre él? ¿Esto contradice nuestra intuición cotidiana? Explica la relación con la primera ley y el papel de la fricción.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Termodinámica Básica}
+% ============================================================
+
+\subsection{Calor y temperatura: dos conceptos distintos}
+
+Es muy común confundir calor con temperatura, pero son cosas fundamentalmente diferentes:
+
+\begin{cuadroteoria}
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Temperatura ($T$):} Es una medida de la \textbf{agitación de las partículas} (átomos, moléculas) de un cuerpo. Cuanto más rápido se mueven, mayor es la temperatura. Se mide en \textbf{grados Celsius (°C)} o \textbf{kelvin (K)}.
+
+  \item \textbf{Calor ($Q$):} Es la \textbf{transferencia de energía} entre dos cuerpos que están a diferente temperatura. El calor siempre fluye del cuerpo más caliente al más frío. Se mide en \textbf{joules (J)} o \textbf{calorías (cal)}.
+\end{itemize}
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+\textbf{Analogía:} Piensa en la temperatura como el «nivel» de energía térmica de un cuerpo y en el calor como el «flujo» de energía entre cuerpos. Es similar a la diferencia entre la altura del agua en un tanque (temperatura) y el agua que fluye por una tubería (calor).
+\end{cuadroadvertencia}
+
+\subsection{Equilibrio térmico y cambios de estado}
+
+\begin{cuadrosolucion}
+\textbf{Equilibrio térmico:} Cuando dos cuerpos a diferente temperatura se ponen en contacto, el calor fluye del más caliente al más frío \textbf{hasta que ambos alcanzan la misma temperatura}. En ese momento se dice que están en equilibrio térmico.
+\end{cuadrosolucion}
+
+La fórmula fundamental para calcular el calor absorbido o cedido por una sustancia es:
+
+\begin{cuadroteoria}
+$$Q = m \cdot c \cdot \Delta T$$
+Donde:
+\begin{itemize}[leftmargin=*]
+  \item $Q$ = calor (J o cal)
+  \item $m$ = masa (kg o g)
+  \item $c$ = calor específico de la sustancia (J/(kg·°C) o cal/(g·°C))
+  \item $\Delta T = T_f - T_i$ = cambio de temperatura
+\end{itemize}
+\end{cuadroteoria}
+
+El \textbf{calor específico} ($c$) es una propiedad intensiva que indica cuánta energía necesita $1\;\text{g}$ de una sustancia para subir su temperatura $1\;°\text{C}$. El agua tiene un calor específico excepcionalmente alto: $c_{\text{agua}} = 1\;\text{cal/(g$\cdot$°C)} = 4\,186\;\text{J/(kg$\cdot$°C)}$.
+
+\subsection{Estados de agregación}
+
+La materia existe en tres estados principales, determinados por la temperatura y la presión:
+
+\begin{cuadrosolucion}
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Sólido:} Partículas muy juntas, con forma y volumen definidos. Vibran pero no se desplazan.
+  \item \textbf{Líquido:} Partículas más separadas. Volumen definido pero sin forma propia (adoptan la del recipiente).
+  \item \textbf{Gas:} Partículas muy separadas y en movimiento rápido. No tienen forma ni volumen definidos.
+\end{itemize}
+\end{cuadrosolucion}
+
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}[x=1.2cm, y=1.2cm]
+    % State 1: Sólido
+    \begin{scope}[shift={(-2.8, 0)}]
+      \draw[thick, draw=mwprimario, fill=mwprimario!12] (0,0) circle (1.0cm);
+      % Grid of particles
+      \foreach \x in {-0.5, -0.15, 0.2, 0.5} {
+        \foreach \y in {-0.5, -0.15, 0.2, 0.5} {
+          \filldraw[mwprimario, draw=white, very thin] (\x,\y) circle (0.13cm);
+        }
+      }
+      \node[below=1.1cm, font=\bfseries\small, text=mwprimario] at (0,0) {Sólido};
+    \end{scope}
+
+    % State 2: Líquido
+    \begin{scope}[shift={(2.8, 0)}]
+      \draw[thick, draw=mwprimario, fill=mwprimario!12] (0,0) circle (1.0cm);
+      % Disordered but close particles
+      \filldraw[mwprimario, draw=white, very thin] (-0.35,-0.6) circle (0.13cm);
+      \filldraw[mwprimario, draw=white, very thin] (0.05,-0.65) circle (0.13cm);
+      \filldraw[mwprimario, draw=white, very thin] (0.45,-0.55) circle (0.13cm);
+      \filldraw[mwprimario, draw=white, very thin] (-0.5,-0.25) circle (0.13cm);
+      \filldraw[mwprimario, draw=white, very thin] (-0.1,-0.3) circle (0.13cm);
+      \filldraw[mwprimario, draw=white, very thin] (0.3,-0.25) circle (0.13cm);
+      \filldraw[mwprimario, draw=white, very thin] (-0.3,0.1) circle (0.13cm);
+      \filldraw[mwprimario, draw=white, very thin] (0.1,0.05) circle (0.13cm);
+      \filldraw[mwprimario, draw=white, very thin] (0.5,0.1) circle (0.13cm);
+      \filldraw[mwprimario, draw=white, very thin] (-0.1,0.4) circle (0.13cm);
+      \filldraw[mwprimario, draw=white, very thin] (0.3,0.45) circle (0.13cm);
+      \node[below=1.1cm, font=\bfseries\small, text=mwprimario] at (0,0) {Líquido};
+    \end{scope}
+
+    % State 3: Gas
+    \begin{scope}[shift={(0, 3.0)}]
+      \draw[thick, draw=mwprimario, fill=mwprimario!12] (0,0) circle (1.0cm);
+      % Sparse particles with velocity vectors
+      \filldraw[mwprimario] (-0.5,0.3) circle (0.1cm);
+      \draw[-Latex, thick, gray] (-0.5,0.3) -- (-0.2,0.5);
+      
+      \filldraw[mwprimario] (0.4,0.2) circle (0.1cm);
+      \draw[-Latex, thick, gray] (0.4,0.2) -- (0.7,0.0);
+      
+      \filldraw[mwprimario] (-0.2,-0.4) circle (0.1cm);
+      \draw[-Latex, thick, gray] (-0.2,-0.4) -- (-0.5,-0.6);
+      
+      \filldraw[mwprimario] (0.3,-0.3) circle (0.1cm);
+      \draw[-Latex, thick, gray] (0.3,-0.3) -- (0.1,-0.6);
+      
+      \node[above=1.1cm, font=\bfseries\small, text=mwprimario] at (0,0) {Gas};
+    \end{scope}
+
+    % Arrows (Transitions)
+    % Sólido <-> Líquido
+    \draw[-Latex, thick, mwmagenta] (-1.5, 0.3) to[bend left=15] node[midway, above, font=\scriptsize\bfseries] {Fusión} (1.5, 0.3);
+    \draw[-Latex, thick, mwrojonaranja] (1.5, -0.3) to[bend left=15] node[midway, below, font=\scriptsize\bfseries] {Solidificación} (-1.5, -0.3);
+    
+    % Líquido <-> Gas
+    \draw[-Latex, thick, mwmagenta] (2.2, 1.0) to[bend right=15] node[midway, right=2pt, font=\scriptsize\bfseries] {Vaporización} (0.8, 2.6);
+    \draw[-Latex, thick, mwrojonaranja] (0.5, 2.3) to[bend right=15] node[midway, left=2pt, font=\scriptsize\bfseries] {Condensación} (1.9, 0.7);
+
+    % Sólido <-> Gas
+    \draw[-Latex, thick, mwmagenta] (-2.2, 1.0) to[bend left=15] node[midway, left=2pt, font=\scriptsize\bfseries] {Sublimación} (-0.8, 2.6);
+    \draw[-Latex, thick, mwrojonaranja] (-0.5, 2.3) to[bend left=15] node[midway, right=2pt, font=\scriptsize\bfseries] {Deposición} (-1.9, 0.7);
+  \end{tikzpicture}
+  \caption{Estados de agregación de la materia y sus cambios de fase.}
+  \label{fig:estados}
+\end{figure}
+
+\newpage
+
+% ============================================================
+\subsection{Ejercicios: Termodinámica}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} ¿Cuál es la diferencia entre calor y temperatura? Da un ejemplo cotidiano.
+
+  \item \facil{} ¿En qué dirección fluye el calor: del cuerpo frío al caliente o del caliente al frío?
+
+  \item \facil{} Nombra los tres estados de la materia y da un ejemplo cotidiano de cada uno.
+
+  \item \facil{} ¿Cómo se llama el cambio de estado de sólido a líquido? ¿Y de líquido a gas?
+
+  \item \medio{} ¿Cuántas calorías se necesitan para calentar $200\;\text{g}$ de agua de $20\;°\text{C}$ a $80\;°\text{C}$? ($c_{\text{agua}} = 1\;\text{cal/(g$\cdot$°C)}$)
+
+  \item \medio{} Se introducen $500\;\text{g}$ de un metal ($c = 0{,}09\;\text{cal/(g$\cdot$°C)}$) a $200\;°\text{C}$ en $300\;\text{g}$ de agua a $25\;°\text{C}$. Si el sistema alcanza el equilibrio, ¿la temperatura final estará más cerca de $25\;°\text{C}$ o de $200\;°\text{C}$? Justifica sin calcular.
+
+  \item \medio{} Explica qué sucede a nivel de partículas cuando un hielo se funde. ¿Las partículas se destruyen?
+
+  \item \medio{} ¿Por qué te quemas más con vapor de agua a $100\;°\text{C}$ que con agua líquida a $100\;°\text{C}$? (Pista: piensa en el calor de vaporización.)
+
+  \item \dificil{} Calcula el calor necesario para elevar $2\;\text{kg}$ de agua de $15\;°\text{C}$ a $75\;°\text{C}$ en julios. ($c_{\text{agua}} = 4\,186\;\text{J/(kg$\cdot$°C)}$)
+
+  \item \dificil{} Un trozo de hierro de $300\;\text{g}$ a $90\;°\text{C}$ se sumerge en $500\;\text{g}$ de agua a $20\;°\text{C}$. Calcula la temperatura final de equilibrio. ($c_{\text{hierro}} = 0{,}11\;\text{cal/(g$\cdot$°C)}$, $c_{\text{agua}} = 1\;\text{cal/(g$\cdot$°C)}$)
+
+  \item \dificil{} ¿Qué nombre recibe el cambio de estado directo de sólido a gas sin pasar por líquido? Da un ejemplo cotidiano.
+
+  \item \dificil{} Explica por qué los climas costeros tienen temperaturas más estables que los climas del interior continental. Relaciona tu respuesta con el calor específico del agua.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{La Tabla Periódica y el Modelo Atómico}
+% ============================================================
+
+\subsection{El átomo: estructura básica}
+
+Toda la materia está formada por \textbf{átomos}, partículas extremadamente pequeñas (del orden de $10^{-10}\;\text{m}$). A su vez, los átomos están compuestos por tres partículas fundamentales:
+
+\begin{cuadroteoria}
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Partícula} & \textbf{Símbolo} & \textbf{Carga} & \textbf{Ubicación} \\
+\midrule
+Protón & $p^+$ & Positiva $(+1)$ & Núcleo \\
+Neutrón & $n^0$ & Neutra $(0)$ & Núcleo \\
+Electrón & $e^-$ & Negativa $(-1)$ & Nube electrónica \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+\textbf{Breve historia del modelo atómico:}
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Demócrito} (siglo V a.C.): Propuso que la materia está hecha de partículas indivisibles («átomos»).
+  \item \textbf{Dalton} (1808): El átomo es una esfera sólida e indivisible. Cada elemento tiene átomos idénticos.
+  \item \textbf{Thomson} (1897): Descubrió el electrón. Modelo del «pudín de pasas».
+  \item \textbf{Rutherford} (1911): Descubrió el núcleo. El átomo es mayormente espacio vacío.
+  \item \textbf{Bohr} (1913): Electrones en órbitas definidas alrededor del núcleo.
+  \item \textbf{Modelo actual} (mecánica cuántica): Electrones en «nubes de probabilidad» (orbitales).
+\end{itemize}
+\end{cuadroadvertencia}
+
+\subsection{La Tabla Periódica}
+
+La \textbf{Tabla Periódica de los Elementos} organiza los 118 elementos conocidos según su \textbf{número atómico} (cantidad de protones). Los elementos se agrupan en:
+
+\begin{cuadrosolucion}
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Metales:} Buenos conductores de calor y electricidad, brillantes, maleables y dúctiles. Ubicados a la izquierda y centro de la tabla. Ej: hierro (Fe), cobre (Cu), aluminio (Al), oro (Au).
+  
+  \item \textbf{No metales:} Malos conductores, frágiles en estado sólido. Ubicados a la derecha de la tabla. Ej: oxígeno (O), nitrógeno (N), carbono (C), azufre (S).
+  
+  \item \textbf{Metaloides} (semimetales): Propiedades intermedias. Se ubican en la «escalera» diagonal entre metales y no metales. Ej: silicio (Si), germanio (Ge), arsénico (As).
+\end{itemize}
+\end{cuadrosolucion}
+
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}[x=1cm, y=1cm]
+    % Loop to draw cells
+    \foreach \r/\c/\type in {
+      1/1/3, 1/18/3,
+      2/1/1, 2/2/1, 2/13/2, 2/14/3, 2/15/3, 2/16/3, 2/17/3, 2/18/3,
+      3/1/1, 3/2/1, 3/13/1, 3/14/2, 3/15/3, 3/16/3, 3/17/3, 3/18/3,
+      4/1/1, 4/2/1, 4/3/1, 4/4/1, 4/5/1, 4/6/1, 4/7/1, 4/8/1, 4/9/1, 4/10/1, 4/11/1, 4/12/1, 4/13/1, 4/14/2, 4/15/2, 4/16/3, 4/17/3, 4/18/3,
+      5/1/1, 5/2/1, 5/3/1, 5/4/1, 5/5/1, 5/6/1, 5/7/1, 5/8/1, 5/9/1, 5/10/1, 5/11/1, 5/12/1, 5/13/1, 5/14/1, 5/15/2, 5/16/2, 5/17/3, 5/18/3,
+      6/1/1, 6/2/1, 6/3/1, 6/4/1, 6/5/1, 6/6/1, 6/7/1, 6/8/1, 6/9/1, 6/10/1, 6/11/1, 6/12/1, 6/13/1, 6/14/1, 6/15/1, 6/16/2, 6/17/3, 6/18/3,
+      7/1/1, 7/2/1, 7/3/1, 7/4/1, 7/5/1, 7/6/1, 7/7/1, 7/8/1, 7/9/1, 7/10/1, 7/11/1, 7/12/1, 7/13/1, 7/14/1, 7/15/1, 7/16/1, 7/17/3, 7/18/3
+    } {
+      \ifnum\type=1
+        \draw[thick, draw=mwprimario, fill=mwprimario!12] (\c*0.45, {3.6 - \r*0.45}) rectangle ({\c*0.45 + 0.38}, {3.6 - \r*0.45 + 0.38});
+      \fi
+      \ifnum\type=2
+        \draw[thick, draw=mwnaranja, fill=mwnaranja!12] (\c*0.45, {3.6 - \r*0.45}) rectangle ({\c*0.45 + 0.38}, {3.6 - \r*0.45 + 0.38});
+      \fi
+      \ifnum\type=3
+        \draw[thick, draw=mwvioleta, fill=mwvioleta!12] (\c*0.45, {3.6 - \r*0.45}) rectangle ({\c*0.45 + 0.38}, {3.6 - \r*0.45 + 0.38});
+      \fi
+    }
+    
+    % Group (column) arrow on top
+    \draw[thick, -Latex, gray] (0.45, 3.8) -- (8.5, 3.8) node[midway, above, font=\scriptsize\bfseries] {Grupos (Columnas)};
+    
+    % Period (row) arrow on left
+    \draw[thick, -Latex, gray] (0.2, 3.1) -- (0.2, 0.4) node[midway, left, font=\scriptsize\bfseries, rotate=90] {Períodos (Filas)};
+
+    % Legend
+    \begin{scope}[shift={(2.5, -1.0)}]
+      \draw[thick, draw=mwprimario, fill=mwprimario!12] (-2.2, 0) rectangle (-1.8, 0.3) node[right=4pt, font=\scriptsize\bfseries, text=mwprimario] {Metales};
+      \draw[thick, draw=mwnaranja, fill=mwnaranja!12] (-0.2, 0) rectangle (0.2, 0.3) node[right=4pt, font=\scriptsize\bfseries, text=mwnaranja] {Metaloides};
+      \draw[thick, draw=mwvioleta, fill=mwvioleta!12] (2.2, 0) rectangle (2.6, 0.3) node[right=4pt, font=\scriptsize\bfseries, text=mwvioleta] {No Metales};
+    \end{scope}
+  \end{tikzpicture}
+  \caption{Tabla periódica simplificada: metales, no metales y metaloides.}
+  \label{fig:tabla}
+\end{figure}
+
+\newpage
+
+% ============================================================
+\subsection{Ejercicios: Tabla Periódica y Modelo Atómico}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Nombra las tres partículas subatómicas, su carga y su ubicación en el átomo.
+
+  \item \facil{} ¿Qué es el número atómico ($Z$)? ¿Cuántos protones tiene el carbono ($Z = 6$)?
+
+  \item \facil{} Clasifica como metal, no metal o metaloide: hierro, oxígeno, silicio, oro, carbono.
+
+  \item \facil{} ¿Cuál es la diferencia principal entre un metal y un no metal en cuanto a conductividad?
+
+  \item \medio{} Un átomo de sodio (Na) tiene $Z = 11$ y un número de masa $A = 23$. ¿Cuántos protones, neutrones y electrones tiene?
+
+  \item \medio{} ¿Qué descubrimiento hizo Rutherford con su famoso experimento de la lámina de oro? ¿Qué modelo atómico propuso?
+
+  \item \medio{} ¿Por qué los metales son buenos conductores de electricidad? Explica a nivel atómico (pista: electrones libres).
+
+  \item \medio{} En la tabla periódica, ¿qué tienen en común los elementos de una misma columna (grupo)? ¿Y los de una misma fila (período)?
+
+  \item \dificil{} ¿Qué son los isótopos? Si el carbono-12 tiene 6 protones y 6 neutrones, ¿cuántos neutrones tiene el carbono-14?
+
+  \item \dificil{} Investiga: ¿Qué elemento es el más abundante en la corteza terrestre? ¿Y en el cuerpo humano? ¿Son metales o no metales?
+
+  \item \dificil{} Explica con tus palabras la diferencia entre el modelo atómico de Bohr y el modelo actual (mecánica cuántica). ¿Por qué se abandonó la idea de «órbitas» definidas?
+
+  \item \dificil{} El silicio (Si) es un metaloide que se usa en la fabricación de chips de computadora. ¿Por qué son útiles los metaloides en electrónica? (Pista: investiga qué es un semiconductor.)
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Transformaciones y Ecuaciones Químicas}
+% ============================================================
+
+\subsection{Transformaciones físicas vs. químicas}
+
+\begin{cuadroteoria}
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Transformación física:} Cambia la forma, el estado o la apariencia de la materia, pero \textbf{no} su composición química. Las sustancias siguen siendo las mismas. Ejemplos: derretir hielo, cortar papel, disolver sal en agua.
+
+  \item \textbf{Transformación química} (reacción química): Cambia la \textbf{composición} de la materia. Se forman sustancias nuevas con propiedades diferentes a las originales. Ejemplos: quemar madera, oxidar un clavo, digerir alimentos.
+\end{itemize}
+\end{cuadroteoria}
+
+\begin{cuadrosolucion}
+\textbf{Indicios de una transformación química:}
+\begin{itemize}[leftmargin=*]
+  \item Cambio de color permanente
+  \item Producción de gas (burbujas)
+  \item Producción o absorción de calor/luz
+  \item Formación de un precipitado (sólido que aparece en una solución)
+  \item Cambio de olor
+\end{itemize}
+\end{cuadrosolucion}
+
+\subsection{La ecuación química}
+
+Una \textbf{ecuación química} es la representación simbólica de una reacción química. Tiene una estructura precisa:
+
+\begin{cuadroteoria}
+$$\underbrace{\text{Reactivos}}_{\text{sustancias iniciales}} \quad \xrightarrow{\text{condiciones}} \quad \underbrace{\text{Productos}}_{\text{sustancias formadas}}$$
+\end{cuadroteoria}
+
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}[
+      node distance = 0.1cm and 0.1cm,
+      every node/.style={inner sep=1pt, font=\large\bfseries},
+      label/.style={font=\tiny\bfseries, color=gray, align=center}
+    ]
+    % Terms
+    \node (coef1) at (0, 0) [text=mwrojonaranja] {2};
+    \node (H) [right=0.01cm of coef1] {H};
+    \node (sub1) [right=0.01cm of H, text=mwprimario, font=\normalsize\bfseries] {$_2$};
+    \node (state1) [right=0.01cm of sub1, text=mwmagenta, font=\normalsize\bfseries] {(g)};
+    
+    \node (plus) [right=0.2cm of state1] {+};
+    
+    \node (O) [right=0.2cm of plus] {O};
+    \node (sub2) [right=0.01cm of O, text=mwprimario, font=\normalsize\bfseries] {$_2$};
+    \node (state2) [right=0.01cm of sub2, text=mwmagenta, font=\normalsize\bfseries] {(g)};
+    
+    \node (arrow) [right=0.3cm of state2] {$\rightarrow$};
+    
+    \node (coef2) [right=0.3cm of arrow, text=mwrojonaranja] {2};
+    \node (H2O) [right=0.01cm of coef2] {H};
+    \node (sub3) [right=0.01cm of H2O, text=mwprimario, font=\normalsize\bfseries] {$_2$};
+    \node (O2) [right=0.01cm of sub3] {O};
+    \node (state3) [right=0.01cm of O2, text=mwmagenta, font=\normalsize\bfseries] {(l)};
+
+    % Boxes around Reactivos and Productos
+    % Reactivos box
+    \draw[thick, dashed, draw=mwprimario!40, rounded corners] ($ (coef1.north west) + (-0.1, 0.15) $) rectangle ($ (state2.south east) + (0.1, -0.15) $);
+    \node[above=0.6cm of plus, label, text=mwprimario] (reactivos_label) {Reactivos\\(sustancias iniciales)};
+    \draw[->, >=stealth, thin, draw=mwprimario] (reactivos_label) -- (plus);
+
+    % Productos box
+    \draw[thick, dashed, draw=mwnaranja!40, rounded corners] ($ (coef2.north west) + (-0.1, 0.15) $) rectangle ($ (state3.south east) + (0.1, -0.15) $);
+    \node[above=0.6cm of H2O, label, text=mwnaranja] (productos_label) {Productos\\(sustancias producidas)};
+    \draw[->, >=stealth, thin, draw=mwnaranja] (productos_label) -- (H2O);
+
+    % Coefficient annotation
+    \node (coef_annot) at (-1.5, -1.2) [label, text=mwrojonaranja] {Coeficiente\\estequiométrico\\(indica cantidad de moléculas)};
+    \draw[->, >=stealth, thin, draw=mwrojonaranja] (coef_annot.north) to[bend left=15] (coef1.south);
+    \draw[->, >=stealth, thin, draw=mwrojonaranja] (coef_annot.north) to[bend right=15] (coef2.south);
+
+    % Subscript annotation
+    \node (sub_annot) at (1.5, -1.2) [label, text=mwprimario] {Subíndice\\(indica cantidad de átomos\\en la molécula)};
+    \draw[->, >=stealth, thin, draw=mwprimario] (sub_annot.north) to[bend right=10] (sub1.south);
+    \draw[->, >=stealth, thin, draw=mwprimario] (sub_annot.north) to[bend left=10] (sub3.south);
+
+    % State of matter annotation
+    \node (state_annot) at (4.5, -1.2) [label, text=mwmagenta] {Estado físico\\(g = gas, l = líquido,\\s = sólido, ac = acuoso)};
+    \draw[->, >=stealth, thin, draw=mwmagenta] (state_annot.north) to[bend right=10] (state2.south);
+    \draw[->, >=stealth, thin, draw=mwmagenta] (state_annot.north) to[bend right=10] (state3.south);
+
+    % Arrow annotation
+    \node (arrow_annot) at (0.2, 1.4) [label, text=gray] {Produce / Reacciona para dar\\(sentido de la reacción)};
+    \draw[->, >=stealth, thin, draw=gray] (arrow_annot.south) -- (arrow.north);
+  \end{tikzpicture}
+  \caption{Anatomía de una ecuación química.}
+  \label{fig:ecuacion}
+\end{figure}
+
+Los \textbf{subíndices de estados físicos} se colocan entre paréntesis después de cada sustancia:
+\begin{center}
+\begin{tabular}{cl}
+\toprule
+\textbf{Símbolo} & \textbf{Estado} \\
+\midrule
+(s) & Sólido \\
+(l) & Líquido \\
+(g) & Gas \\
+(ac) & Acuoso (disuelto en agua) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Ejemplo:} La combustión del metano (gas natural):
+$$\text{CH}_4\text{(g)} + 2\,\text{O}_2\text{(g)} \rightarrow \text{CO}_2\text{(g)} + 2\,\text{H}_2\text{O(g)}$$
+\begin{itemize}
+  \item \textbf{Reactivos:} metano y oxígeno.
+  \item \textbf{Productos:} dióxido de carbono y agua.
+  \item La flecha ($\rightarrow$) indica la \textbf{dirección} de la reacción.
+  \item Los números antes de las fórmulas (2\,O$_2$, 2\,H$_2$O) son los \textbf{coeficientes estequiométricos}.
+\end{itemize}
+
+\newpage
+
+% ============================================================
+\subsection{Ejercicios: Transformaciones y Ecuaciones Químicas}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Clasifica como transformación física (F) o química (Q):
+  \begin{enumerate}[label=\alph*)]
+    \item Hervir agua
+    \item Quemar un fósforo
+    \item Romper un vidrio
+    \item Oxidar un clavo de hierro
+    \item Disolver azúcar en agua
+    \item Cocinar un huevo
+  \end{enumerate}
+
+  \item \facil{} En la ecuación $\text{Fe(s)} + \text{O}_2\text{(g)} \rightarrow \text{Fe}_2\text{O}_3\text{(s)}$, identifica: reactivos, productos y estados físicos de cada sustancia.
+
+  \item \facil{} ¿Qué significan los subíndices (s), (l), (g) y (ac) en una ecuación química?
+
+  \item \facil{} ¿Cuál es la diferencia entre un reactivo y un producto?
+
+  \item \medio{} Menciona tres indicios que te permiten sospechar que ha ocurrido una transformación química.
+
+  \item \medio{} Lee la siguiente ecuación y descríbela en palabras:
+  $$2\,\text{H}_2\text{(g)} + \text{O}_2\text{(g)} \rightarrow 2\,\text{H}_2\text{O(l)}$$
+
+  \item \medio{} ¿Es reversible el proceso de freír un huevo? ¿Y el de congelar agua? ¿Qué tipo de transformación es cada uno?
+
+  \item \medio{} Escribe la ecuación química de la descomposición del agua por electrólisis: el agua líquida produce hidrógeno gaseoso y oxígeno gaseoso. Incluye los estados físicos.
+
+  \item \dificil{} La respiración celular puede representarse como: $\text{C}_6\text{H}_{12}\text{O}_6 + 6\,\text{O}_2 \rightarrow 6\,\text{CO}_2 + 6\,\text{H}_2\text{O}$. Identifica reactivos y productos, y explica qué representa esta ecuación en términos biológicos.
+
+  \item \dificil{} Cuando se mezcla bicarbonato de sodio con vinagre, se produce efervescencia (burbujas). ¿Es una transformación física o química? Justifica mencionando al menos dos indicios.
+
+  \item \dificil{} Explica por qué la Ley de Conservación de la Masa (Lavoisier) implica que los átomos en los reactivos deben ser los mismos que en los productos (solo se reorganizan, no se crean ni se destruyen).
+
+  \item \dificil{} Investiga y escribe la ecuación química balanceada de la fotosíntesis. Identifica reactivos, productos, estados físicos y explica de dónde obtienen las plantas la energía para esta reacción.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Clave de Respuestas}
+% ============================================================
+
+\subsection*{Leyes de Newton (Ejercicios 1--12)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item Primera Ley (Inercia). El pasajero tiende a mantener su estado de movimiento (hacia adelante) mientras el bus desacelera.
+
+  \item Según la primera ley, si no hay fuerzas, el objeto permanece en su estado: si está en reposo, se queda en reposo; si está en movimiento, sigue a velocidad constante en línea recta.
+
+  \item $F = ma = 10 \times 3 = 30\;\text{N}$.
+
+  \item Punto con flecha hacia abajo ($\vec{W}$) y flecha hacia arriba ($\vec{N}$), ambas de igual longitud.
+
+  \item $F_{\text{neta}} = 1\,200 \times 2 = 2\,400\;\text{N}$. Fricción: $f = F_{\text{motor}} - F_{\text{neta}} = 3\,000 - 2\,400 = 600\;\text{N}$.
+
+  \item Tercera Ley. Acción: tus pies empujan la lancha hacia atrás. Reacción: la lancha te empuja a ti hacia adelante (hacia el muelle).
+
+  \item Según $F = ma$, si $F$ es la misma pero $m$ es mayor, entonces $a$ es menor. Más masa $\Rightarrow$ menos aceleración $\Rightarrow$ más difícil de mover.
+
+  \item Peso hacia abajo, normal hacia arriba, fuerza aplicada hacia la derecha, fricción hacia la izquierda.
+
+  \item $F_{\text{neta}} = 20 - 8 = 12\;\text{N}$ (hacia la derecha). $a = F/m = 12/5 = 2{,}4\;\text{m/s}^2$.
+
+  \item La pelota se mueve en la dirección del empujón a velocidad constante (1ra ley: no hay fuerza que la detenga). El astronauta se mueve en sentido opuesto (3ra ley: reacción al empujón).
+
+  \item a) $N - mg = ma \Rightarrow N = m(g + a) = 60(9{,}8 + 2) = 708\;\text{N}$. b) $mg - N = ma \Rightarrow N = m(g - a) = 60(9{,}8 - 2) = 468\;\text{N}$.
+
+  \item Sí, es posible. La primera ley dice que un objeto en movimiento sigue moviéndose si no hay fuerza neta. En la vida cotidiana, la fricción siempre actúa, dando la falsa impresión de que se necesita fuerza para mantener el movimiento.
+\end{enumerate}
+
+\subsection*{Termodinámica (Ejercicios 13--24)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{12}
+  \item Temperatura: grado de agitación de las partículas. Calor: transferencia de energía por diferencia de temperatura. Ejemplo: una taza de café caliente (alta temperatura) cede calor al aire (más frío).
+
+  \item Del cuerpo caliente al frío, nunca al revés (espontáneamente).
+
+  \item Sólido: hielo. Líquido: agua. Gas: vapor de agua (o aire).
+
+  \item Sólido a líquido: fusión. Líquido a gas: evaporación (o ebullición).
+
+  \item $Q = 200 \times 1 \times (80 - 20) = 200 \times 60 = 12\,000\;\text{cal}$.
+
+  \item Más cerca de $25\;°\text{C}$, porque el agua tiene un calor específico mucho mayor que el metal (1 vs. 0,09). El agua «absorbe» gran cantidad de calor con poco cambio de temperatura.
+
+  \item Las partículas ganan energía y se separan un poco más, pasando de una estructura rígida (sólido) a una más libre (líquido). No se destruyen; solo cambian su disposición y libertad de movimiento.
+
+  \item El vapor de agua a $100\;°\text{C}$ al condensarse sobre la piel libera calor de vaporización ($\approx 540\;\text{cal/g}$), una enorme cantidad de energía extra, además del calor por diferencia de temperatura.
+
+  \item $Q = 2 \times 4\,186 \times (75 - 15) = 2 \times 4\,186 \times 60 = 502\,320\;\text{J} \approx 502{,}3\;\text{kJ}$.
+
+  \item Equilibrio: $Q_{\text{cedido}} = Q_{\text{absorbido}}$. $300 \times 0{,}11 \times (90 - T_f) = 500 \times 1 \times (T_f - 20)$. $33(90 - T_f) = 500(T_f - 20)$. $2\,970 - 33T_f = 500T_f - 10\,000$. $12\,970 = 533T_f$. $T_f \approx 24{,}3\;°\text{C}$.
+
+  \item Sublimación. Ejemplo: el hielo seco (CO$_2$ sólido) pasa directamente a gas, o las bolitas de naftalina que se «evaporan» en el armario.
+
+  \item El agua del mar tiene un calor específico alto: absorbe mucho calor durante el día sin calentarse excesivamente y lo libera de noche sin enfriarse mucho. Esto modera las temperaturas costeras. El interior continental, sin grandes masas de agua, sufre cambios de temperatura más extremos.
+\end{enumerate}
+
+\subsection*{Tabla Periódica y Modelo Atómico (Ejercicios 25--36)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{24}
+  \item Protón: carga $+$, en el núcleo. Neutrón: carga $0$, en el núcleo. Electrón: carga $-$, en la nube electrónica.
+
+  \item $Z$ = número de protones de un elemento. El carbono tiene 6 protones.
+
+  \item Hierro: metal. Oxígeno: no metal. Silicio: metaloide. Oro: metal. Carbono: no metal.
+
+  \item Los metales son buenos conductores (de calor y electricidad). Los no metales son malos conductores (aislantes).
+
+  \item Protones: $Z = 11$. Neutrones: $A - Z = 23 - 11 = 12$. Electrones: $11$ (átomo neutro: electrones = protones).
+
+  \item Rutherford disparó partículas alfa contra una lámina de oro. La mayoría pasó sin desviarse (el átomo es mayormente espacio vacío), pero algunas rebotaron (existe un núcleo denso y positivo). Propuso un modelo con núcleo central y electrones alrededor.
+
+  \item Los metales tienen electrones en su última capa que están poco ligados al núcleo y pueden moverse libremente por el material, formando una «nube electrónica» que conduce la corriente.
+
+  \item Misma columna (grupo): igual número de electrones de valencia $\Rightarrow$ propiedades químicas similares. Misma fila (período): igual número de niveles de energía.
+
+  \item Los isótopos son átomos del mismo elemento con diferente número de neutrones. C-14: $14 - 6 = 8$ neutrones.
+
+  \item Corteza terrestre: oxígeno (no metal, $\approx 46\%$). Cuerpo humano: oxígeno ($\approx 65\%$ en masa). Ambos son no metales.
+
+  \item Bohr propuso órbitas circulares definidas. El modelo actual habla de \textbf{orbitales}: zonas de probabilidad donde es más probable encontrar al electrón. Se abandonaron las órbitas porque el principio de incertidumbre de Heisenberg impide conocer simultáneamente la posición y velocidad exactas del electrón.
+
+  \item Los metaloides como el silicio son semiconductores: conducen electricidad bajo ciertas condiciones (temperatura, voltaje, impurezas). Esto permite fabricar transistores y chips que controlan el flujo de corriente, base de toda la electrónica moderna.
+\end{enumerate}
+
+\subsection*{Transformaciones y Ecuaciones Químicas (Ejercicios 37--48)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{36}
+  \item a) F \quad b) Q \quad c) F \quad d) Q \quad e) F \quad f) Q
+
+  \item Reactivos: Fe (sólido) y O$_2$ (gas). Producto: Fe$_2$O$_3$ (sólido, óxido de hierro/herrumbre).
+
+  \item (s) = sólido, (l) = líquido, (g) = gas, (ac) = acuoso (disuelto en agua).
+
+  \item Los reactivos son las sustancias que se transforman (están a la izquierda de la flecha). Los productos son las sustancias que se forman (a la derecha de la flecha).
+
+  \item Cambio de color, producción de gas (burbujas), emisión o absorción de calor/luz.
+
+  \item «Dos moléculas de hidrógeno gaseoso reaccionan con una molécula de oxígeno gaseoso para producir dos moléculas de agua líquida.»
+
+  \item Freír un huevo: no es reversible (transformación química, las proteínas se desnaturalizan). Congelar agua: sí es reversible (transformación física, solo cambia el estado).
+
+  \item $2\,\text{H}_2\text{O(l)} \xrightarrow{\text{electricidad}} 2\,\text{H}_2\text{(g)} + \text{O}_2\text{(g)}$
+
+  \item Reactivos: glucosa (C$_6$H$_{12}$O$_6$) y oxígeno (O$_2$). Productos: dióxido de carbono (CO$_2$) y agua (H$_2$O). Biológicamente, es el proceso por el cual las células obtienen energía a partir de la glucosa.
+
+  \item Transformación química. Indicios: producción de gas (CO$_2$, las burbujas), cambio de temperatura (se enfría ligeramente) y formación de una nueva sustancia (acetato de sodio).
+
+  \item Si la masa se conserva y la materia está hecha de átomos, entonces los átomos no pueden aparecer ni desaparecer durante una reacción. Solo se \textbf{reorganizan}, formando nuevas combinaciones (productos). Por eso, el número de átomos de cada elemento debe ser igual en ambos lados de la ecuación.
+
+  \item $6\,\text{CO}_2\text{(g)} + 6\,\text{H}_2\text{O(l)} \xrightarrow{\text{luz solar}} \text{C}_6\text{H}_{12}\text{O}_6\text{(s)} + 6\,\text{O}_2\text{(g)}$. Reactivos: dióxido de carbono y agua. Productos: glucosa y oxígeno. La energía proviene de la \textbf{luz solar}, captada por la clorofila en las hojas.
+\end{enumerate}
+
+\end{document}

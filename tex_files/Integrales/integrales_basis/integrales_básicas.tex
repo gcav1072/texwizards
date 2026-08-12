@@ -1,0 +1,527 @@
+% ============================================================
+%  GUÍA DE EJERCICIOS: INTEGRALES ALGEBRAICAS Y TRIGONOMÉTRICAS
+%  (Sin cambio de variable ni técnicas avanzadas de integración)
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Integrales Algebraicas y Trigonométricas}{Nivel Básico -- Intermedio}
+
+% ── Comandos propios de esta guía ───────────────────
+\makeatletter\@addtoreset{ejercicio}{section}
+\renewcommand{\theejercicio}{\thesection.\arabic{ejercicio}}\makeatother
+\renewcommand{\ejercicio}{%
+  \refstepcounter{ejercicio}%
+  \textbf{Ejercicio \theejercicio.}\quad
+}
+\newcommand{\dx}{\,dx}
+\newcommand{\dt}{\,dt}
+\newcommand{\dtheta}{\,d\theta}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\,+\,C}
+
+\begin{document}
+% ============================================================
+
+% ── Portada ──────────────────────────────────────────────────
+\mwportada{Guía de Ejercicios}{Integrales Indefinidas}{Álgebra y Trigonometría $\cdot$ Nivel Progresivo}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+\small
+\textbf{Alcance de esta guía:} integración directa usando reglas básicas de potencia,
+constantes, sumas/diferencias y las integrales estándar de funciones trigonométricas.
+\textbf{No} se utiliza cambio de variable, integración por partes ni fracciones parciales.\\[4pt]
+\textbf{Leyenda de dificultad:}\quad
+\facil{} Fácil\quad
+\medio{} Intermedio\quad
+\dificil{} Desafiante
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Formulario de referencia}
+% ============================================================
+
+\subsection{Reglas algebraicas}
+
+\begin{cuadroteoria}
+\begin{align*}
+  \int x^n \dx &= \frac{x^{n+1}}{n+1} \C \qquad (n \neq -1) &
+  \int k \dx   &= kx \C \\[6pt]
+  \int \frac{1}{x} \dx &= \ln|x| \C &
+  \int \left[f(x) \pm g(x)\right] \dx &= \int f(x)\dx \pm \int g(x)\dx \\[6pt]
+  \int k\,f(x) \dx &= k\int f(x)\dx
+\end{align*}
+\end{cuadroteoria}
+
+\subsection{Reglas trigonométricas}
+
+\begin{cuadroteoria}
+\begin{align*}
+  \int \cos x \dx  &= \sin x \C  &
+  \int \sin x \dx  &= -\cos x \C \\[6pt]
+  \int \sec^2 x \dx &= \tan x \C &
+  \int \csc^2 x \dx &= -\cot x \C \\[6pt]
+  \int \sec x\tan x \dx &= \sec x \C &
+  \int \csc x\cot x \dx &= -\csc x \C
+\end{align*}
+\end{cuadroteoria}
+
+\subsection{Identidades trigonométricas útiles}
+
+\begin{cuadrosolucion}
+\begin{align*}
+  \sin^2 x + \cos^2 x &= 1 &
+  \tan^2 x + 1 &= \sec^2 x &
+  1 + \cot^2 x &= \csc^2 x \\[6pt]
+  \sin^2 x &= \frac{1-\cos 2x}{2} &
+  \cos^2 x &= \frac{1+\cos 2x}{2} &
+  \sin x\cos x &= \frac{\sin 2x}{2}
+\end{align*}
+\end{cuadrosolucion}
+
+\vspace{6pt}
+
+% ============================================================
+\section{Bloque 1 — Integrales de potencias}
+% ============================================================
+
+\begin{cuadroinfo}
+\small\textbf{Objetivo:} aplicar la regla de potencia $\int x^n\dx = \dfrac{x^{n+1}}{n+1}+C$
+para exponentes enteros positivos, negativos y fraccionarios.
+\end{cuadroinfo}
+
+\vspace{4pt}
+
+\subsection{Monomios simples}
+
+\begin{multicols}{2}
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=10pt]
+
+  \item \facil\quad $\displaystyle\int 5\dx$
+
+  \item \facil\quad $\displaystyle\int x^3 \dx$
+
+  \item \facil\quad $\displaystyle\int x^7 \dx$
+
+  \item \facil\quad $\displaystyle\int 4x^2 \dx$
+
+  \item \facil\quad $\displaystyle\int -3x^5 \dx$
+
+  \item \facil\quad $\displaystyle\int 6x^{10} \dx$
+
+\end{enumerate}
+\end{multicols}
+
+\subsection{Exponentes fraccionarios y raíces}
+
+\begin{multicols}{2}
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=10pt, start=7]
+
+  \item \facil\quad $\displaystyle\int \sqrt{x}\dx$
+
+  \item \facil\quad $\displaystyle\int \sqrt[3]{x^2}\dx$
+
+  \item \medio\quad $\displaystyle\int \frac{1}{\sqrt{x}}\dx$
+
+  \item \medio\quad $\displaystyle\int x^{-4}\dx$
+
+  \item \medio\quad $\displaystyle\int \frac{3}{\sqrt[4]{x}}\dx$
+
+  \item \medio\quad $\displaystyle\int \sqrt[5]{x^3}\dx$
+
+\end{enumerate}
+\end{multicols}
+
+\subsection{Potencias negativas}
+
+\begin{multicols}{2}
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=10pt, start=13]
+
+  \item \medio\quad $\displaystyle\int \frac{1}{x^2}\dx$
+
+  \item \medio\quad $\displaystyle\int \frac{5}{x^3}\dx$
+
+  \item \medio\quad $\displaystyle\int \frac{2}{x^5}\dx$
+
+  \item \dificil\quad $\displaystyle\int \frac{4}{x^{3/2}}\dx$
+
+\end{enumerate}
+\end{multicols}
+
+\vspace{4pt}
+
+% ============================================================
+\section{Bloque 2 — Polinomios y sumas algebraicas}
+% ============================================================
+
+\begin{cuadroinfo}
+\small\textbf{Objetivo:} integrar término a término expresiones polinomiales y
+racionales que no requieren factorización avanzada.
+\end{cuadroinfo}
+
+\vspace{4pt}
+
+\subsection{Polinomios directos}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=10pt, start=17]
+
+  \item \facil\quad
+    $\displaystyle\int (3x^2 + 2x - 5)\dx$
+
+  \item \facil\quad
+    $\displaystyle\int (x^4 - 7x^2 + 1)\dx$
+
+  \item \facil\quad
+    $\displaystyle\int \left(6x^5 - \frac{x^3}{2} + 4\right)\dx$
+
+  \item \facil\quad
+    $\displaystyle\int \left(2x^3 - 3x^2 + x - 8\right)\dx$
+
+  \item \medio\quad
+    $\displaystyle\int \left(\sqrt{x} + \frac{1}{\sqrt{x}}\right)\dx$
+
+  \item \medio\quad
+    $\displaystyle\int \left(x^2 - \frac{2}{x^3}\right)\dx$
+
+  \item \medio\quad
+    $\displaystyle\int \left(3x^{1/3} + 5x^{-2/3}\right)\dx$
+
+\end{enumerate}
+
+\subsection{Expresiones que requieren simplificación previa}
+
+\begin{cuadroadvertencia}
+\small\textbf{Estrategia:} cuando el integrando es un cociente con denominador
+constante o un producto de factores algebraicos, simplifica antes de integrar.
+\end{cuadroadvertencia}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=12pt, start=24]
+
+  \item \medio\quad
+    $\displaystyle\int \frac{3x^4 - 6x^2 + 9}{3}\dx$
+
+  \item \medio\quad
+    $\displaystyle\int \frac{x^3 + 2x}{x}\dx \qquad (x \neq 0)$
+
+  \item \medio\quad
+    $\displaystyle\int \frac{4x^5 - 8x^3 + 2x}{2x}\dx \qquad (x \neq 0)$
+
+  \item \medio\quad
+    $\displaystyle\int x(x^2 - 3)\dx$
+
+  \item \medio\quad
+    $\displaystyle\int x^2(2x - 1)\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int (x+1)(x-3)\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int (2x-3)^2\dx$\quad
+    \textit{(expande antes de integrar)}
+
+  \item \dificil\quad
+    $\displaystyle\int \frac{(x+1)^2}{\sqrt{x}}\dx \qquad (x>0)$
+
+  \item \dificil\quad
+    $\displaystyle\int \frac{x^3 - 4\sqrt{x}}{x}\dx \qquad (x>0)$
+
+\end{enumerate}
+
+\vspace{4pt}
+
+% ============================================================
+\section{Bloque 3 — Integrales trigonométricas básicas}
+% ============================================================
+
+\begin{cuadroinfo}
+\small\textbf{Objetivo:} aplicar directamente las fórmulas estándar de integración
+de seno, coseno, secante y cosecante.
+\end{cuadroinfo}
+
+\vspace{4pt}
+
+\subsection{Funciones trigonométricas directas}
+
+\begin{multicols}{2}
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=10pt, start=33]
+
+  \item \facil\quad $\displaystyle\int \sin x \dx$
+
+  \item \facil\quad $\displaystyle\int \cos x \dx$
+
+  \item \facil\quad $\displaystyle\int \sec^2 x \dx$
+
+  \item \facil\quad $\displaystyle\int \csc^2 x \dx$
+
+  \item \facil\quad $\displaystyle\int \sec x\tan x \dx$
+
+  \item \facil\quad $\displaystyle\int \csc x\cot x \dx$
+
+  \item \facil\quad $\displaystyle\int 3\cos x \dx$
+
+  \item \facil\quad $\displaystyle\int -2\sin x \dx$
+
+\end{enumerate}
+\end{multicols}
+
+\subsection{Sumas y diferencias trigonométricas}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=12pt, start=41]
+
+  \item \facil\quad
+    $\displaystyle\int (\sin x + \cos x)\dx$
+
+  \item \facil\quad
+    $\displaystyle\int (3\cos x - 2\sin x)\dx$
+
+  \item \medio\quad
+    $\displaystyle\int \left(\sec^2 x - \sin x\right)\dx$
+
+  \item \medio\quad
+    $\displaystyle\int \left(\csc^2 x + \cos x\right)\dx$
+
+  \item \medio\quad
+    $\displaystyle\int \left(2\sec x\tan x - 3\csc x\cot x\right)\dx$
+
+  \item \medio\quad
+    $\displaystyle\int \left(\sin x - 5\cos x + \sec^2 x\right)\dx$
+
+\end{enumerate}
+
+\vspace{4pt}
+
+% ============================================================
+\section{Bloque 4 — Trigonometría con identidades}
+% ============================================================
+
+\begin{cuadroinfo}
+\small\textbf{Objetivo:} reescribir el integrando usando identidades pitagóricas
+o de ángulo doble, y luego integrar directamente.
+\end{cuadroinfo}
+
+\vspace{4pt}
+
+\subsection{Uso de identidades pitagóricas}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=14pt, start=47]
+
+  \item \medio\quad
+    $\displaystyle\int \tan^2 x \dx$\\
+    \textit{Sugerencia: $\tan^2 x = \sec^2 x - 1$}
+
+  \item \medio\quad
+    $\displaystyle\int \cot^2 x \dx$\\
+    \textit{Sugerencia: $\cot^2 x = \csc^2 x - 1$}
+
+  \item \medio\quad
+    $\displaystyle\int (1 + \tan^2 x)\dx$
+
+  \item \medio\quad
+    $\displaystyle\int (1 - \sin^2 x)\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int (\sec^2 x + \tan^2 x)\dx$\\
+    \textit{Sugerencia: reescribe $\tan^2 x$}
+
+  \item \dificil\quad
+    $\displaystyle\int (3\tan^2 x - 2\sec^2 x)\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int (2\cot^2 x + 5\csc^2 x)\dx$
+
+\end{enumerate}
+
+\subsection{Uso de identidades de ángulo doble}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=14pt, start=54]
+
+  \item \medio\quad
+    $\displaystyle\int \cos^2 x \dx$\\
+    \textit{Sugerencia: $\cos^2 x = \dfrac{1+\cos 2x}{2}$}
+
+  \item \medio\quad
+    $\displaystyle\int \sin^2 x \dx$\\
+    \textit{Sugerencia: $\sin^2 x = \dfrac{1-\cos 2x}{2}$}
+
+  \item \dificil\quad
+    $\displaystyle\int \sin^2 x\cos^2 x \dx$\\
+    \textit{Sugerencia: $\sin^2 x\cos^2 x = \dfrac{\sin^2 2x}{4} = \dfrac{1-\cos 4x}{8}$}
+
+  \item \dificil\quad
+    $\displaystyle\int \left(\sin^2 x + \cos^2 x + \sin x\cos x\right)\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int \left(1 + 2\sin^2 x\right)\dx$
+
+\end{enumerate}
+
+\vspace{4pt}
+
+% ============================================================
+\section{Bloque 5 — Mezcla: álgebra y trigonometría}
+% ============================================================
+
+\begin{cuadroinfo}
+\small\textbf{Objetivo:} integrar expresiones que combinan potencias y funciones
+trigonométricas en una sola integral.
+\end{cuadroinfo}
+
+\vspace{4pt}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=14pt, start=59]
+
+  \item \medio\quad
+    $\displaystyle\int (x^2 + \cos x)\dx$
+
+  \item \medio\quad
+    $\displaystyle\int (3x - \sin x + 4)\dx$
+
+  \item \medio\quad
+    $\displaystyle\int \left(\sqrt{x} + \sec^2 x\right)\dx$
+
+  \item \medio\quad
+    $\displaystyle\int \left(2x^3 - 3\cos x + 5\right)\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int \left(x^2 - \tan^2 x\right)\dx$\\
+    \textit{Sugerencia: convierte $\tan^2 x$ primero}
+
+  \item \dificil\quad
+    $\displaystyle\int \left(\frac{1}{\sqrt{x}} - 2\sin x + \csc^2 x\right)\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int \left(x(x-1) + \cos^2 x\right)\dx$
+
+  \item \dificil\quad
+    $\displaystyle\int \left(\frac{x^2 - 1}{x} + \sin^2 x\right)\dx \qquad (x\neq 0)$
+
+\end{enumerate}
+
+\vspace{4pt}
+
+% ============================================================
+\section{Bloque 6 — Ejercicios con condición inicial}
+% ============================================================
+
+\begin{cuadroinfo}
+\small\textbf{Objetivo:} determinar la constante de integración $C$ usando
+una condición inicial dada, obteniendo la función particular $F(x)$.
+\end{cuadroinfo}
+
+\vspace{4pt}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=16pt, start=67]
+
+  \item \facil\quad
+    Si $f'(x) = 2x + 3$ y $f(0) = 5$, halla $f(x)$.
+
+  \item \facil\quad
+    Si $f'(x) = \cos x$ y $f(0) = 1$, halla $f(x)$.
+
+  \item \medio\quad
+    Si $f'(x) = 3x^2 - 4x + 1$ y $f(1) = 2$, halla $f(x)$.
+
+  \item \medio\quad
+    Si $f'(x) = \sqrt{x} - \sin x$ y $f(0) = 0$, halla $f(x)$.
+
+  \item \medio\quad
+    Si $f'(x) = \sec^2 x + 2x$ y $f(0) = -3$, halla $f(x)$.
+
+  \item \dificil\quad
+    Si $f'(x) = \tan^2 x + x^2$ y $f(0) = 4$, halla $f(x)$.
+
+  \item \dificil\quad
+    Si $f''(x) = 6x - 2$, $f'(0) = 1$ y $f(0) = 3$, halla $f(x)$.
+
+  \item \dificil\quad
+    Si $f''(x) = \cos x$, $f'(0) = 0$ y $f(0) = 2$, halla $f(x)$.
+
+\end{enumerate}
+
+\vspace{8pt}
+
+% ============================================================
+\section*{Respuestas seleccionadas}
+% ============================================================
+
+\addcontentsline{toc}{section}{Respuestas seleccionadas}
+
+\begin{cuadrosolucion}
+\small
+\textbf{Nota:} en todos los casos se omite la constante de integración $C$ por brevedad;
+recuerda añadirla en tus resultados.
+\end{cuadrosolucion}
+
+\vspace{4pt}
+
+\begin{multicols}{2}
+\small
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=6pt]
+
+  \item $5x$
+  \item $\dfrac{x^4}{4}$
+  \item $\dfrac{x^8}{8}$
+  \item $\dfrac{4x^3}{3}$
+  \item $-\dfrac{x^6}{2}$
+  \item $\dfrac{6x^{11}}{11}$
+  \item $\dfrac{2}{3}x^{3/2}$
+  \item $\dfrac{3}{5}x^{5/3}$
+  \item $2\sqrt{x}$
+  \item $-\dfrac{1}{3x^3}$
+  \item $4x^{3/4}$
+  \item $\dfrac{5}{8}x^{8/5}$
+  \item $-\dfrac{1}{x}$
+  \item $-\dfrac{5}{2x^2}$
+  \item $-\dfrac{1}{2x^4}$
+  \item $-\dfrac{8}{\sqrt{x}}$
+  \setcounter{enumi}{16}
+  \item $x^3+x^2-5x$
+  \item $\dfrac{x^5}{5}-\dfrac{7x^3}{3}+x$
+  \setcounter{enumi}{20}
+  \item $\dfrac{2}{3}x^{3/2}+2\sqrt{x}$
+  \setcounter{enumi}{26}
+  \item $\dfrac{x^3}{3}-3x$
+  \item $\dfrac{x^4}{2}-\dfrac{x^3}{3}$
+  \item $\dfrac{x^3}{3}-x^2-3x$
+  \item $4x^3-12x^2+9x$
+  \setcounter{enumi}{32}
+  \item $-\cos x$
+  \item $\sin x$
+  \item $\tan x$
+  \item $-\cot x$
+  \item $\sec x$
+  \item $-\csc x$
+  \setcounter{enumi}{40}
+  \item $-\cos x+\sin x$
+  \item $3\sin x+2\cos x$
+  \setcounter{enumi}{46}
+  \item $\tan x - x$
+  \item $-\cot x - x$
+  \setcounter{enumi}{53}
+  \item $\dfrac{x}{2}+\dfrac{\sin 2x}{4}$
+  \item $\dfrac{x}{2}-\dfrac{\sin 2x}{4}$
+  \setcounter{enumi}{66}
+  \item $f(x)=x^2+3x+5$
+  \item $f(x)=\sin x+1$
+  \item $f(x)=x^3-2x^2+x+2$
+  \item $f(x)=\dfrac{2}{3}x^{3/2}+\cos x-1$
+
+\end{enumerate}
+\end{multicols}
+
+\vspace{8pt}
+
+% ── Pie de guía ──────────────────────────────────────────────
+\begin{center}
+  \color{mwprimario}\rule{0.55\linewidth}{0.8pt}\\[4pt]
+  \small\color{gray}
+  \textit{Recuerda siempre verificar tu resultado derivando la respuesta obtenida.}
+\end{center}
+
+\end{document}

@@ -1,0 +1,393 @@
+% ============================================================
+%  GUÍA 3: POTENCIACIÓN DE NÚMEROS ENTEROS
+%  Curso Introductorio de Matemáticas — 1er Año
+%  Autor: Gabriel Astudillo
+%  Sesiones cubiertas: Semana 3 (clases 9 a 12)
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Guía 3 — Potenciación de Números Enteros}{Gabriel Astudillo $\cdot$ Curso 1er Año}
+
+% ── Comandos propios de esta guía ───────────────────
+\newcommand{\Z}{\mathbb{Z}}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Estudio 3}{Potenciación de Números Enteros}{Definición, Propiedades y Primeros Pasos en Álgebra}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} \textquestiondown Alguna vez has escuchado que «una hoja de papel se puede doblar a la mitad tantas veces que su espesor crece rapidísimo»? Eso se explica con las \textbf{potencias}: una forma súper compacta de escribir multiplicaciones repetidas. Si doblas una hoja $5$ veces, aparecen $2^5 = 32$ capas; \textquestiondown increíble, verdad? En esta guía aprenderás qué es una potencia, sus propiedades secretas y, al final, las usaremos con \emph{letras} (eso es el comienzo del \textbf{álgebra}).
+  \\[4pt]
+  \textbf{Nivel de Dificultad:}\quad
+  \facil{} Básico / Directo \quad
+  \medio{} Intermedio \quad
+  \dificil{} Desafiante
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{\textquestiondown Qué es una Potencia?}
+% ============================================================
+
+\subsection{Base, exponente y potencia}
+
+Multiplicar un número por sí mismo varias veces es muy común, así que los matemáticos inventaron una forma corta de escribirlo.
+
+\begin{cuadroteoria}
+  \textbf{Definición:} una \textbf{potencia} es una multiplicación repetida. Se escribe $a^n$ y se lee «$a$ elevado a la $n$».
+  \[
+    a^n = \underbrace{a \times a \times a \times \cdots \times a}_{n \text{ veces}}
+  \]
+  \begin{itemize}
+    \item \textbf{Base} ($a$): el número que se multiplica.
+    \item \textbf{Exponente} ($n$): cuántas veces se multiplica.
+    \item \textbf{Potencia}: el resultado.
+  \end{itemize}
+\end{cuadroteoria}
+
+\noindent\textbf{Ejemplos:}
+\begin{itemize}[leftmargin=*]
+  \item $2^3 = 2 \times 2 \times 2 = 8$ (se lee «dos elevado a la tres» o «dos al cubo»).
+  \item $3^2 = 3 \times 3 = 9$ (se lee «tres elevado al cuadrado» o «tres al cuadrado»).
+  \item $10^3 = 10 \times 10 \times 10 = 1000$ (mil).
+\end{itemize}
+
+\begin{cuadroadvertencia}
+  \textbf{Exponentes especiales:}
+  \begin{itemize}
+    \item Cualquier número elevado a la $1$ es él mismo: $a^1 = a$. Ejemplo: $7^1 = 7$.
+    \item Cualquier número distinto de cero elevado a la $0$ es $1$: $a^0 = 1$. Ejemplo: $5^0 = 1$. (\textquestiondown Por qué? Porque al dividir $5^1 \div 5^1 = 1$ y también $5^{1-1} = 5^0$... ya lo verás en las propiedades.)
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\subsection{El signo del resultado}
+
+\begin{cuadroteoria}
+  \textbf{Regla del signo de una potencia:}
+  \begin{itemize}
+    \item Base \textbf{positiva} $\Rightarrow$ resultado siempre \textbf{positivo}. ($3^2 = 9$, $2^3 = 8$.)
+    \item Base \textbf{negativa} con exponente \textbf{par} $\Rightarrow$ resultado \textbf{positivo}: $(-2)^2 = 4$.
+    \item Base \textbf{negativa} con exponente \textbf{impar} $\Rightarrow$ resultado \textbf{negativo}: $(-2)^3 = -8$.
+  \end{itemize}
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+  \textbf{\textquestiondown Cuidado con la coma!} No es lo mismo $(-2)^2$ que $-2^2$:
+  \begin{itemize}
+    \item $(-2)^2 = (-2) \times (-2) = 4$ (el paréntesis incluye el signo).
+    \item $-2^2 = -(2 \times 2) = -4$ (solo el $2$ está al cuadrado, el signo menos queda afuera).
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\noindent\textbf{Ejemplo resuelto:} \textquestiondown Cuánto es $(-3)^3$?
+
+Como el exponente es impar, el resultado es negativo: $(-3)^3 = (-3) \times (-3) \times (-3) = 9 \times (-3) = -27$.
+
+\subsection{Ejercicios: \textquestiondown Qué es una Potencia?}
+
+\begin{enumerate}[leftmargin=*]
+  \item \facil{} $3^2$
+
+  \item \facil{} $2^3$
+
+  \item \facil{} $5^2$
+
+  \item \facil{} $10^3$
+
+  \item \facil{} $1^5$
+
+  \item \facil{} $4^2$
+
+  \item \medio{} $(-2)^2$
+
+  \item \medio{} $(-3)^2$
+
+  \item \medio{} $(-2)^3$
+
+  \item \medio{} $2^4$
+
+  \item \medio{} $7^2$
+
+  \item \medio{} $3^3$
+
+  \item \medio{} $-2^2$ (sin paréntesis). \textquestiondown En qué se diferencia de $(-2)^2$?
+
+  \item \medio{} $(-1)^{201}$ (el exponente es impar... \textquestiondown qué crees que da?)
+
+  \item \medio{} $(-5)^2$
+
+  \item \dificil{} Encuentra la base: $n^2 = 49$. \textquestiondown Cuáles son las dos posibilidades en $\Z$?
+
+  \item \dificil{} Encuentra el exponente: $2^n = 16$.
+
+  \item \dificil{} Una hoja de papel se dobla a la mitad una y otra vez. Cada doblez duplica las capas. \textquestiondown Cuántas capas hay después de doblarla $5$ veces?
+
+  \item \dificil{} Un cultivo de bacterias se duplica cada hora. Si empezamos con una bacteria, \textquestiondown cuántas habrá después de $6$ horas?
+
+  \item \dificil{} \textbf{El reto de los campeones:} Calcula $(-1)^6 + (-1)^7 + (-1)^8$. (Pista: mira el exponente de cada uno antes de sumar.)
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Propiedades de las Potencias}
+% ============================================================
+
+\subsection{Las cinco propiedades mágicas}
+
+Con estas propiedades puedes \emph{comprimir} y \emph{simplificar} potencias sin calcular todo:
+
+\begin{cuadroteoria}
+  \textbf{Propiedades de las potencias (con $a$, $b$ enteros y $m$, $n$ naturales):}
+  \begin{enumerate}
+    \item \textbf{Producto de potencias de igual base:} $a^m \times a^n = a^{m+n}$. \quad Ejemplo: $2^3 \times 2^4 = 2^{3+4} = 2^7$.
+    \item \textbf{Cociente de potencias de igual base:} $a^m \div a^n = a^{m-n}$ (con $a \neq 0$). \quad Ejemplo: $3^5 \div 3^2 = 3^{5-2} = 3^3$.
+    \item \textbf{Potencia de una potencia:} $(a^m)^n = a^{m \times n}$. \quad Ejemplo: $(2^3)^2 = 2^{3 \times 2} = 2^6$.
+    \item \textbf{Potencia de un producto:} $(a \times b)^n = a^n \times b^n$. \quad Ejemplo: $(2 \times 5)^2 = 2^2 \times 5^2 = 4 \times 25 = 100$.
+    \item \textbf{Potencia de un cociente:} $(a \div b)^n = a^n \div b^n$ (con $b \neq 0$). \quad Ejemplo: $(10 \div 5)^3 = 10^3 \div 5^3 = 1000 \div 125 = 8$.
+  \end{enumerate}
+\end{cuadroteoria}
+
+\noindent\textbf{¿Por qué funciona?} Mira el producto: $2^3 \times 2^2 = (2 \times 2 \times 2) \times (2 \times 2)$. \textquestiondown Cuántos doses hay? ¡$5$! Por eso $2^{3+2}$.
+
+\begin{cuadroadvertencia}
+  \textbf{Recordatorio:} la propiedad 1 dice que las bases deben ser \emph{iguales}. No puedes usar $2^3 \times 5^2$ como si fueran iguales: ahí se aplica la propiedad 4 (potencia de un producto) solo si \emph{también} los exponentes son iguales.
+\end{cuadroadvertencia}
+
+\noindent\textbf{Ejemplo resuelto:} Simplifica $\dfrac{2^5 \times 2^3}{2^4}$.
+
+Arriba: $2^5 \times 2^3 = 2^{5+3} = 2^8$. Luego $2^8 \div 2^4 = 2^{8-4} = 2^4 = 16$.
+
+\subsection{Ejercicios: Propiedades de las Potencias}
+
+\begin{enumerate}[leftmargin=*]
+  \item \facil{} $2^2 \times 2^3$
+
+  \item \facil{} $3^3 \times 3^2$
+
+  \item \facil{} $5^4 \times 5^1$
+
+  \item \facil{} $2^5 \div 2^2$
+
+  \item \facil{} $7^3 \div 7^3$
+
+  \item \facil{} $(2^2)^3$
+
+  \item \medio{} $10^3 \times 10^2$
+
+  \item \medio{} $10^6 \div 10^2$
+
+  \item \medio{} $(3^2)^2$
+
+  \item \medio{} $(2 \times 5)^2$
+
+  \item \medio{} $2^3 \times 2^4 \div 2^2$
+
+  \item \medio{} $(5^2)^3 \div 5^4$
+
+  \item \medio{} $6^5 \div 6^2 \times 6^3$ (escríbelo como una sola potencia)
+
+  \item \medio{} $(3 \times 4)^2$
+
+  \item \medio{} $10^5 \div 10^3 \times 10^2$
+
+  \item \dificil{} Simplifica: $(2^3 \times 2^2) \div (2^2 \times 2)$ y calcula el resultado.
+
+  \item \dificil{} Encuentra el exponente: $3^n \times 3^2 = 3^7$.
+
+  \item \dificil{} $8^2 \div 2^2$. (Pista: usa la propiedad del cociente: $8 \div 2 = 4$.)
+
+  \item \dificil{} Un cubo tiene $10$ cm de lado. \textquestiondown Cuál es su volumen? (Recuerda: volumen $=$ lado$^3$.) \textquestiondown Y cuál es el área de una de sus caras (lado$^2$)?
+
+  \item \dificil{} \textbf{El reto de los campeones:}
+        \begin{enumerate}[label=\alph*)]
+          \item Calcula $2^{10} \times 5^{10}$ (pista: multiplica las bases).
+          \item Simplifica: $\big((2^3)^2 \times 2\big) \div 2^5$ y calcula el resultado.
+        \end{enumerate}
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Potencias con Letras (Mini Álgebra)}
+% ============================================================
+
+\subsection{La base puede ser una letra}
+
+En matemáticas usamos \textbf{letras} para representar números que no conocemos (o que pueden cambiar). Una letra se comporta exactamente como un número.
+
+\begin{cuadroteoria}
+  \textbf{Definición:} si $a$ es un número cualquiera, entonces
+  \[
+    a^3 = a \times a \times a, \qquad a^2 = a \times a, \qquad a^1 = a, \qquad a^0 = 1 \ (a \neq 0).
+  \]
+  Para \textbf{calcular su valor} solo hay que reemplazar la letra por el número que nos digan.
+\end{cuadroteoria}
+
+\noindent\textbf{Ejemplo resuelto 1:} Calcula $a^3$ si $a = 2$.
+
+\[
+  a^3 = 2^3 = 2 \times 2 \times 2 = 8
+\]
+
+\noindent\textbf{Ejemplo resuelto 2:} Calcula $3a^2$ si $a = 2$.
+
+\textquestiondown Ojo! Primero la potencia, después la multiplicación: $3a^2 = 3 \times a^2 = 3 \times 2^2 = 3 \times 4 = 12$. (Si lo hubiéramos hecho mal, $3 \times 2 = 6$ y $6^2 = 36$... \textquestiondown muy diferente, verdad? Por eso el orden importa.)
+
+\begin{cuadroadvertencia}
+  \textbf{No confundir:}
+  \begin{itemize}
+    \item $2a$ significa $2 \times a$ (multiplicar por $2$).
+    \item $a^2$ significa $a \times a$ (multiplicar la letra por sí misma).
+    \item $2a \neq a^2$ en general. Ejemplo con $a = 5$: $2a = 10$ pero $a^2 = 25$.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\noindent\textbf{Ejemplo resuelto 3:} \textquestiondown Cuál es el área de un cuadrado de lado $x$? El área es $x^2$. Si $x = 7$ cm, el área es $7^2 = 49$ cm$^2$.
+
+\subsection{Ejercicios: Potencias con Letras}
+
+\begin{enumerate}[leftmargin=*]
+  \item \facil{} $a^2$ si $a = 4$
+
+  \item \facil{} $b^3$ si $b = 2$
+
+  \item \facil{} $x^2$ si $x = 10$
+
+  \item \facil{} $y^3$ si $y = 1$
+
+  \item \facil{} $2a$ si $a = 5$ \quad (y compáralo con $a^2$)
+
+  \item \facil{} $a^0$ si $a = 7$
+
+  \item \medio{} $3a^2$ si $a = 2$
+
+  \item \medio{} $2b^3$ si $b = 3$
+
+  \item \medio{} $x^2 + x$ si $x = 5$
+
+  \item \medio{} $a^3 - a$ si $a = 3$
+
+  \item \medio{} $10a^2$ si $a = 2$
+
+  \item \medio{} $2x \times x$ si $x = 3$ (pista: $2x \times x = 2x^2$)
+
+  \item \medio{} $y^2 + y^2$ si $y = 4$ (pista: $y^2 + y^2 = 2y^2$)
+
+  \item \medio{} $a^2 \times a$ si $a = 3$ (pista: usa la propiedad del producto)
+
+  \item \medio{} $(2a)^2$ si $a = 3$. \textquestiondown Es igual a $2a^2$? Compruébalo.
+
+  \item \dificil{} $x^3 + x^2 + x$ si $x = 2$
+
+  \item \dificil{} $a^2 b$ si $a = 3$ y $b = 2$
+
+  \item \dificil{} $x^2 y^3$ si $x = 2$ y $y = 3$
+
+  \item \dificil{} Un cuadrado tiene lado $x = 7$ cm. \textquestiondown Cuál es su área ($x^2$)?
+
+  \item \dificil{} \textbf{El reto de los campeones:}
+        \begin{enumerate}[label=\alph*)]
+          \item Calcula $3a^2 - 2a + 1$ si $a = 4$.
+          \item Con $a = 3$ y $b = 2$, calcula $a^2 + b^2$ y también $(a + b)^2$. \textquestiondown Son iguales? \textquestiondown Qué conclusión sacas?
+        \end{enumerate}
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Clave de Respuestas}
+% ============================================================
+
+\subsection*{\textquestiondown Qué es una Potencia? (Ejercicios 1--20)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $9$
+  \item $8$
+  \item $25$
+  \item $1000$
+  \item $1$
+  \item $16$
+  \item $(-2) \times (-2) = 4$
+  \item $(-3) \times (-3) = 9$
+  \item $(-2) \times (-2) \times (-2) = -8$
+  \item $16$
+  \item $49$
+  \item $27$
+  \item $-4$. Diferencia: en $-2^2$ solo el $2$ está al cuadrado y queda $-(4) = -4$; en $(-2)^2$ el signo está dentro del paréntesis y da $+4$.
+  \item $-1$ (exponente impar: negativo)
+  \item $25$
+  \item $n = 7$ o $n = -7$ (ambos cumplen: $7^2 = 49$ y $(-7)^2 = 49$)
+  \item $n = 4$ (porque $2^4 = 16$)
+  \item $2^5 = 32$ capas
+  \item $2^6 = 64$ bacterias
+  \item $(-1)^6 = 1$, $(-1)^7 = -1$, $(-1)^8 = 1$; total: $1 - 1 + 1 = 1$
+\end{enumerate}
+
+\subsection*{Propiedades de las Potencias (Ejercicios 21--40)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{20}
+  \item $2^5 = 32$
+  \item $3^5 = 243$
+  \item $5^5 = 3125$
+  \item $2^3 = 8$
+  \item $7^0 = 1$
+  \item $(2^2)^3 = 2^{2 \times 3} = 2^6 = 64$
+  \item $10^5 = 100\,000$
+  \item $10^4 = 10\,000$
+  \item $(3^2)^2 = 3^4 = 81$
+  \item $(2 \times 5)^2 = 10^2 = 100$
+  \item $2^3 \times 2^4 = 2^7$; luego $2^7 \div 2^2 = 2^5 = 32$
+  \item $(5^2)^3 = 5^6$; luego $5^6 \div 5^4 = 5^2 = 25$
+  \item $6^5 \div 6^2 = 6^3$; luego $6^3 \times 6^3 = 6^6$
+  \item $(3 \times 4)^2 = 12^2 = 144$
+  \item $10^5 \div 10^3 = 10^2$; luego $10^2 \times 10^2 = 10^4 = 10\,000$
+  \item $(2^3 \times 2^2) = 2^5$ y $(2^2 \times 2) = 2^3$; luego $2^5 \div 2^3 = 2^2 = 4$
+  \item $3^n \times 3^2 = 3^{n+2} = 3^7$, así que $n + 2 = 7$ y $n = 5$
+  \item $8^2 \div 2^2 = (8 \div 2)^2 = 4^2 = 16$
+  \item Volumen: $10^3 = 1000$ cm$^3$. Área de una cara: $10^2 = 100$ cm$^2$.
+  \item a) $2^{10} \times 5^{10} = (2 \times 5)^{10} = 10^{10} = 10\,000\,000\,000$. \quad b) $(2^3)^2 = 2^6$; $2^6 \times 2 = 2^7$; $2^7 \div 2^5 = 2^2 = 4$.
+\end{enumerate}
+
+\subsection*{Potencias con Letras (Ejercicios 41--60)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{40}
+  \item $4^2 = 16$
+  \item $2^3 = 8$
+  \item $10^2 = 100$
+  \item $1^3 = 1$
+  \item $2a = 2 \times 5 = 10$; \quad $a^2 = 25$ (no son iguales)
+  \item $7^0 = 1$
+  \item $3 \times 2^2 = 3 \times 4 = 12$
+  \item $2 \times 3^3 = 2 \times 27 = 54$
+  \item $5^2 + 5 = 25 + 5 = 30$
+  \item $3^3 - 3 = 27 - 3 = 24$
+  \item $10 \times 2^2 = 10 \times 4 = 40$
+  \item $2x^2 = 2 \times 3^2 = 2 \times 9 = 18$
+  \item $2y^2 = 2 \times 4^2 = 2 \times 16 = 32$
+  \item $a^2 \times a = a^3 = 3^3 = 27$
+  \item $(2a)^2 = 6^2 = 36$; \quad $2a^2 = 2 \times 3^2 = 18$. \textquestiondown No son iguales! El paréntesis cambia todo.
+  \item $2^3 + 2^2 + 2 = 8 + 4 + 2 = 14$
+  \item $a^2 b = 3^2 \times 2 = 9 \times 2 = 18$
+  \item $x^2 y^3 = 2^2 \times 3^3 = 4 \times 27 = 108$
+  \item $x^2 = 7^2 = 49$ cm$^2$
+  \item a) $3(4^2) - 2(4) + 1 = 48 - 8 + 1 = 41$. \quad b) $a^2 + b^2 = 9 + 4 = 13$; $(a + b)^2 = 5^2 = 25$. \textquestiondown No son iguales! Conclusión: $(a + b)^2 \neq a^2 + b^2$ (ese es un error muy común que ya nunca cometerás).
+\end{enumerate}
+
+\vspace{10pt}
+\begin{cuadrosolucion}
+  \textbf{\textquestiondown Cómo te fue?} Ya dominas las potencias y hasta usaste letras como los algebristas. En la guía 4 daremos el gran salto: las \textbf{ecuaciones}, donde las letras se convierten en misterios que debemos resolver. \textquestiondown Allá nos vemos!
+\end{cuadrosolucion}
+
+\end{document}

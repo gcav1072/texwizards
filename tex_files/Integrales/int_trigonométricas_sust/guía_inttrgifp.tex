@@ -1,0 +1,515 @@
+% ============================================================
+%  GUÍA DE ESTUDIO: INTEGRALES TRIGONOMÉTRICAS, SUSTITUCIÓN 
+%  TRIGONOMÉTRICA Y FRACCIONES PARCIALES
+%  Autor: Gabriel Astudillo
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Int. Trigonométricas, Sustitución y Frac. Parciales}{Gabriel Astudillo}
+
+% ── Comandos propios de esta guía ───────────────────
+\newcommand{\dx}{\,dx}
+\newcommand{\du}{\,du}
+\newcommand{\dt}{\,dt}
+\newcommand{\dv}{\,dv}
+\newcommand{\dw}{\,dw}
+\newcommand{\dtheta}{\,d\theta}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\CC}{\,+\,C}
+\DeclareMathOperator{\sen}{sen}
+\DeclareMathOperator{\tg}{tg}
+\DeclareMathOperator{\ctg}{ctg}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Estudio y Ejercicios}{Integración Trigonométrica, Sustitución Trigonométrica y Fracciones Parciales}{Teoría, Métodos y 96 Problemas Progresivos con Respuestas}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+\small
+\textbf{Presentación:} Esta guía presenta un recorrido riguroso y sistemático por tres de las técnicas avanzadas más importantes del cálculo integral: la integración de funciones trigonométricas combinadas, la transformación de expresiones radicales mediante sustitución trigonométrica y el método de descomposición en fracciones parciales para funciones racionales.
+Consta de explicaciones teóricas estructuradas por casos, estrategias de resolución paso a paso, ejemplos guiados completamente resueltos y 96 problemas propuestos organizados progresivamente con su clave de respuestas analíticas.
+\\[4pt]
+\textbf{Nivel de Dificultad:}\quad
+\facil{} Básico / Directo \quad
+\medio{} Intermedio \quad
+\dificil{} Desafiante / Avanzado
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Integrales Trigonométricas}
+% ============================================================
+
+\subsection{\textquestiondown Qué son las integrales trigonométricas?}
+Las \textbf{integrales trigonométricas} son integrales indefinidas cuyo integrando está compuesto por potencias o productos de funciones trigonométricas ($\sen x, \cos x, \tg x, \sec x, \ctg x, \csc x$). 
+La estrategia fundamental consiste en utilizar las \textbf{identidades trigonométricas fundamentales} para reescribir el integrando de tal forma que se pueda aplicar un cambio de variable estándar $u = g(x)$ o integrar mediante fórmulas elementales directas.
+
+\subsection{Estrategias según el tipo de integrando}
+
+\begin{cuadroteoria}
+\noindent\textbf{1. Potencias de Seno y Coseno: $\int \sen^m x \cos^n x \dx$}
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Si el exponente de $\cos x$ es impar ($n = 2k+1$):} Aislar un factor $\cos x \dx$, expresar $\cos^{2k} x = (1 - \sen^2 x)^k$ y hacer la sustitución $u = \sen x \implies \du = \cos x \dx$.
+  \item \textbf{Si el exponente de $\sen x$ es impar ($m = 2k+1$):} Aislar un factor $\sen x \dx$, expresar $\sen^{2k} x = (1 - \cos^2 x)^k$ y hacer la sustitución $u = \cos x \implies \du = -\sen x \dx$.
+  \item \textbf{Si ambos exponentes $m$ y $n$ son pares no negativos:} Utilizar las identidades de ángulo medio:
+    $$\sen^2 x = \frac{1 - \cos(2x)}{2}, \quad \cos^2 x = \frac{1 + \cos(2x)}{2}, \quad \sen x \cos x = \frac{\sen(2x)}{2}$$
+\end{itemize}
+\end{cuadroteoria}
+\newpage
+
+\begin{cuadrosolucion}
+\noindent\textbf{2. Potencias de Tangente y Secante: $\int \tg^m x \sec^n x \dx$}
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Si el exponente de $\sec x$ es par ($n = 2k$):} Aislar un factor $\sec^2 x \dx$, expresar $\sec^{2k-2} x = (1 + \tg^2 x)^{k-1}$ y hacer la sustitución $u = \tg x \implies \du = \sec^2 x \dx$.
+  \item \textbf{Si el exponente de $\tg x$ es impar ($m = 2k+1$):} Aislar un factor $\sec x \tg x \dx$, expresar $\tg^{2k} x = (\sec^2 x - 1)^k$ y hacer la sustitución $u = \sec x \implies \du = \sec x \tg x \dx$.
+  \item \textbf{Si $\tg x$ tiene exponente par y no hay $\sec x$:} Utilizar $\tg^2 x = \sec^2 x - 1$ para reducir la potencia progresivamente.
+\end{itemize}
+\end{cuadrosolucion}
+
+\begin{cuadroadvertencia}
+\noindent\textbf{3. Productos de Senos y Cosenos con Argumentos Distintos}
+\begin{align*}
+  \sen A \cos B &= \frac{1}{2} \big[ \sen(A-B) + \sen(A+B) \big] \\
+  \sen A \sen B &= \frac{1}{2} \big[ \cos(A-B) - \cos(A+B) \big] \\
+  \cos A \cos B &= \frac{1}{2} \big[ \cos(A-B) + \cos(A+B) \big]
+\end{align*}
+\end{cuadroadvertencia}
+
+\subsection{Ejemplos Guiados paso a paso}
+
+\noindent\textbf{Ejemplo Guiado 1 (Potencia impar de seno):} Evaluar $\int \sen^5 x \dx$.
+\begin{itemize}
+  \item Como el exponente de $\sen x$ es impar ($m=5$), aislamos un factor $\sen x \dx$:
+    $$\int \sen^5 x \dx = \int \sen^4 x \cdot \sen x \dx = \int (\sen^2 x)^2 \cdot \sen x \dx$$
+  \item Aplicamos la identidad $\sen^2 x = 1 - \cos^2 x$:
+    $$\int (1 - \cos^2 x)^2 \sen x \dx$$
+  \item Hacemos la sustitución $u = \cos x \implies \du = -\sen x \dx \implies \sen x \dx = -\du$:
+    $$\int (1 - u^2)^2 (-\du) = -\int (1 - 2u^2 + u^4) \du = -u + \frac{2}{3}u^3 - \frac{1}{5}u^5 \CC$$
+  \item Volvemos a la variable original $x$:
+    $$\int \sen^5 x \dx = -\cos x + \frac{2}{3}\cos^3 x - \frac{1}{5}\cos^5 x \CC$$
+\end{itemize}
+
+\vspace{4pt}
+\noindent\textbf{Ejemplo Guiado 2 (Secante par y Tangente impar):} Evaluar $\int \sec^4 x \tg^3 x \dx$.
+\begin{itemize}
+  \item Como el exponente de la secante es par ($n=4$), aislamos un factor $\sec^2 x \dx$:
+    $$\int \sec^4 x \tg^3 x \dx = \int \sec^2 x \tg^3 x (\sec^2 x \dx)$$
+  \item Reemplazamos el factor restante $\sec^2 x$ por $1 + \tg^2 x$:
+    $$\int (1 + \tg^2 x)\tg^3 x (\sec^2 x \dx)$$
+  \item Sustituimos $u = \tg x \implies \du = \sec^2 x \dx$:
+    $$\int (1 + u^2) u^3 \du = \int (u^3 + u^5) \du = \frac{1}{4}u^4 + \frac{1}{6}u^6 \CC$$
+  \item Sustituyendo de regreso $u = \tg x$: $\frac{1}{4}\tg^4 x + \frac{1}{6}\tg^6 x \CC$.
+\end{itemize}
+
+\newpage
+
+% ============================================================
+\subsection{Ejercicios Progresivos: Integrales Trigonométricas}
+% ============================================================
+Resuelve las siguientes integrales indefinidas aplicando las identidades y estrategias para integrales trigonométricas.
+
+\begin{multicols}{2}
+\begin{enumerate}[leftmargin=*]
+  \item \facil{} $\int \cos^2 x \dx$
+  \item \facil{} $\int \sen^5 x \dx$
+  \item \facil{} $\int \tg^2 x \dx$
+  \item \facil{} $\int \tg^3 x \dx$
+  \item \facil{} $\int \ctg^4 x \dx$
+  \item \medio{} $\int \sen^2 x \cos^2 x \dx$
+  \item \medio{} $\int \sen^2 x \cos^3 x \dx$
+  \item \medio{} $\int \sen^2 x \cos^4 x \dx$
+  \item \medio{} $\int \sen^5(2x)\cos^2(2x) \dx$
+  \item \medio{} $\int \sec^6(3x)\tg^2(3x) \dx$
+  \item \medio{} $\int \ctg^4(2x)\csc^2(2x) \dx$
+  \item \medio{} $\int \sec x \tg^3 x \dx$
+  \item \facil{} $\int \tg^2(4x) \dx$
+  \item \medio{} $\int \frac{\cos^3 x}{\sen^2 x} \dx$
+  \item \medio{} $\int \csc^3 x \ctg x \dx$
+  \item \medio{} $\int \csc^4 x \dx$
+  \item \dificil{} $\int \frac{\sen^4 x}{\cos^2 x} \dx$
+  \item \medio{} $\int \sen^5(3x) \dx$
+  \item \medio{} $\int \sec^4 x \tg^3 x \dx$
+  \item \facil{} $\int \sec^2(3x)\tg^2(3x) \dx$
+  \item \medio{} $\int \sec^6(4x) \dx$
+  \item \medio{} $\int \sen(2x)\cos(3x) \dx$
+  \item \medio{} $\int \tg^4 x \dx$
+  \item \medio{} $\int \sen(5x)\sen(7x) \dx$
+  \item \medio{} $\int \cos(10x)\cos(15x) \dx$
+  \item \dificil{} $\int \tg^6 x \sec^4 x \dx$
+  \item \medio{} $\int [\sen x - 2\cos x]^2 \dx$
+  \item \medio{} $\int (\tg x + 2\ctg x)^2 \dx$
+  \item \facil{} $\int \sec^4(2x) \dx$
+  \item \dificil{} $\int \sec^5 x \dx$
+  \item \facil{} $\int \ctg^3 x \csc^2 x \dx$
+  \item \medio{} $\int \sen^3(3x)\cos^4(3x) \dx$
+  \item \dificil{} $\int \cos^2(4x)\sen^4(4x) \dx$
+  \item \facil{} $\int (\tg x + \ctg x)^2 \dx$
+  \item \dificil{} $\int \ctg^3 x \csc^4 x \dx$
+\end{enumerate}
+\end{multicols}
+
+\vspace{10pt}
+
+% ============================================================
+\section{Integración por Sustitución Trigonométrica}
+% ============================================================
+
+\subsection{\textquestiondown Qué es la sustitución trigonométrica?}
+El método de \textbf{sustitución trigonométrica} es una técnica algebraica y geométrica diseñada para eliminar radicales de la forma $\sqrt{a^2-x^2}$, $\sqrt{a^2+x^2}$ y $\sqrt{x^2-a^2}$ (donde $a > 0$).
+Al realizar un cambio de variable donde $x$ se define como una función trigonométrica de un ángulo auxiliar $\theta$, la expresión del radical se transforma mediante identidades pitagóricas en una potencia entera de una sola función trigonométrica.
+
+\subsection{Los Tres Casos Clásicos}
+
+\begin{cuadroinfo}
+\small
+\centering
+\begin{tabular}{c c c c c}
+\toprule
+\textbf{Caso / Radical} & \textbf{Sustitución} & \textbf{Diferencial } $dx$ & \textbf{Identidad Usada} & \textbf{Resultado Radical} \\
+\midrule
+\textbf{I.} $\sqrt{a^2 - x^2}$ & $x = a\sen\theta$ & $dx = a\cos\theta\dtheta$ & $1 - \sen^2\theta = \cos^2\theta$ & $a\cos\theta$ \\[4pt]
+\textbf{II.} $\sqrt{a^2 + x^2}$ & $x = a\tg\theta$ & $dx = a\sec^2\theta\dtheta$ & $1 + \tg^2\theta = \sec^2\theta$ & $a\sec\theta$ \\[4pt]
+\textbf{III.} $\sqrt{x^2 - a^2}$ & $x = a\sec\theta$ & $dx = a\sec\theta\tg\theta\dtheta$ & $\sec^2\theta - 1 = \tg^2\theta$ & $a\tg\theta$ \\
+\bottomrule
+\end{tabular}
+\end{cuadroinfo}
+
+\noindent\textbf{Procedimiento general en 5 pasos:}
+\begin{enumerate}
+  \item \textbf{Identificar la forma del radical:} Determinar la constante $a$ y el caso pitagórico correspondiente. (Si se presenta un trinomio $ax^2+bx+c$, completar cuadrados primero).
+  \item \textbf{Sustituir $x$ y $dx$:} Reemplazar $x$, $dx$ y el radical en términos de $\theta$.
+  \item \textbf{Simplificar e integrar:} Resolver la integral trigonométrica resultante respecto a $\theta$.
+  \item \textbf{Construir el triángulo rectángulo de referencia:} Dibujar un triángulo rectángulo con ángulo $\theta$ cuyos lados satisfagan la ecuación $x = g(\theta)$.
+  \item \textbf{Regresar a la variable $x$:} Expresar las funciones trigonométricas finales en términos de $x$ utilizando el triángulo rectángulo.
+\end{enumerate}
+
+\subsection{Ejemplos Guiados paso a paso}
+
+\noindent\textbf{Ejemplo Guiado 1 (Caso I: $\sqrt{a^2-x^2}$):} Evaluar $\int \frac{\sqrt{4-x^2}}{x^2} \dx$.
+\begin{itemize}
+  \item Identificamos el Caso I con $a = 2$, por lo que proponemos la sustitución:
+    $$x = 2\sen\theta \implies \dx = 2\cos\theta \dtheta, \quad \sqrt{4-x^2} = \sqrt{4 - 4\sen^2\theta} = 2\cos\theta$$
+  \item Sustituimos en la integral original:
+    $$\int \frac{2\cos\theta}{(2\sen\theta)^2} (2\cos\theta\dtheta) = \int \frac{4\cos^2\theta}{4\sen^2\theta} \dtheta = \int \ctg^2\theta \dtheta$$
+  \item Usamos la identidad $\ctg^2\theta = \csc^2\theta - 1$:
+    $$\int (\csc^2\theta - 1) \dtheta = -\ctg\theta - \theta \CC$$
+  \item Para regresar a la variable $x$, construimos el triángulo rectángulo donde $\sen\theta = \frac{x}{2}$:
+    $$\text{Cateto opuesto} = x, \quad \text{Hipotenusa} = 2, \quad \text{Cateto adyacente} = \sqrt{4-x^2}$$
+    $$\implies \ctg\theta = \frac{\sqrt{4-x^2}}{x}, \quad \theta = \arcsen\left(\frac{x}{2}\right)$$
+  \item Sustituyendo: $-\frac{\sqrt{4-x^2}}{x} - \arcsen\left(\frac{x}{2}\right) \CC$.
+\end{itemize}
+
+\vspace{4pt}
+\noindent\textbf{Ejemplo Guiado 2 (Completación de Cuadrados):} Evaluar $\int \frac{\dx}{\sqrt{x^2-4x+5}}$.
+\begin{itemize}
+  \item Completamos cuadrados en la expresión dentro de la raíz:
+    $$x^2 - 4x + 5 = (x^2 - 4x + 4) + 1 = (x-2)^2 + 1$$
+  \item Definimos la sustitución $u = x-2 \implies \du = \dx$, transformando la integral en $\int \frac{\du}{\sqrt{u^2+1}}$.
+  \item Aplicamos la sustitución trigonométrica del Caso II con $a = 1$:
+    $$u = \tg\theta \implies \du = \sec^2\theta\dtheta, \quad \sqrt{u^2+1} = \sec\theta$$
+  \item Sustituimos:
+    $$\int \frac{\sec^2\theta\dtheta}{\sec\theta} = \int \sec\theta\dtheta = \ln|\sec\theta + \tg\theta| \CC$$
+  \item Del triángulo con $\tg\theta = u/1$, tenemos $\sec\theta = \sqrt{u^2+1}$. Por ende:
+    $$\ln|\sqrt{u^2+1} + u| \CC = \ln|(x-2) + \sqrt{x^2-4x+5}| \CC$$
+\end{itemize}
+
+\newpage
+
+% ============================================================
+\subsection{Ejercicios Progresivos: Sustitución Trigonométrica}
+% ============================================================
+Resuelve las siguientes integrales utilizando el método de sustitución trigonométrica adecuada.
+
+\begin{multicols}{2}
+\begin{enumerate}[leftmargin=*, resume]
+  \item \medio{} $\int \frac{\dx}{x^2\sqrt{a^2-x^2}}$
+  \item \medio{} $\int \frac{\dx}{x^2\sqrt{x^2-25}}$
+  \item \facil{} $\int \frac{\dx}{\sqrt{4+x^2}}$
+  \item \facil{} $\int \frac{x \dx}{\sqrt{4-x^2}}$
+  \item \dificil{} $\int \frac{\dx}{x^3\sqrt{x^2-25}}$
+  \item \facil{} $\int \frac{x \dx}{\sqrt{x^2-9}}$
+  \item \medio{} $\int \frac{\sqrt{x^2+1}}{x} \dx$
+  \item \medio{} $\int \sqrt{9-4x^2} \dx$
+  \item \medio{} $\int \frac{\sqrt{4-x^2}}{x^2} \dx$
+  \item \medio{} $\int \frac{\dx}{x\sqrt{x^2+9}}$
+  \item \facil{} $\int \frac{x \dx}{\sqrt{x^2+9}}$
+  \item \dificil{} $\int \frac{\dx}{(x^2-1)^{3/2}}$
+  \item \medio{} $\int \frac{\dx}{\sqrt{4x^2-25}}$
+  \item \medio{} $\int \frac{\dx}{x^2\sqrt{x^2-9}}$
+  \item \facil{} $\int \frac{\dx}{\sqrt{36+x^2}}$
+  \item \facil{} $\int \frac{x \dx}{\sqrt{16-x^2}}$
+  \item \medio{} $\int x\sqrt{x^2-9} \dx$
+  \item \dificil{} $\int \frac{x^3 \dx}{\sqrt{9x^2-49}}$
+  \item \medio{} $\int \frac{\dx}{x\sqrt{25x^2+16}}$
+  \item \dificil{} $\int \frac{\dx}{x^4\sqrt{x^2-3}}$
+  \item \medio{} $\int \frac{x^2 \dx}{\sqrt{3-2x^2}}$
+  \item \medio{} $\int \frac{x^2 \dx}{\sqrt{1-9x^2}}$
+  \item \medio{} $\int \frac{\dx}{x\sqrt{4x^2-3}}$
+  \item \dificil{} $\int \frac{\dx}{\sqrt{x^2-4x+5}}$
+  \item \medio{} $\int \frac{\sqrt{4+x^2}}{x^2} \dx$
+  \item \medio{} $\int \frac{\dx}{(x^2-4x+5)^{1/2}}$
+  \item \medio{} $\int \frac{\dx}{x^2\sqrt{x^2-7}}$
+  \item \dificil{} $\int \frac{(3x-5) \dx}{\sqrt{2-x^2}}$
+  \item \dificil{} $\int \frac{x^3 \dx}{\sqrt{3x^2-16}}$
+  \item \dificil{} $\int (x+3)\sqrt{x^2+6x+8} \dx$
+\end{enumerate}
+\end{multicols}
+
+\vspace{10pt}
+\newpage 
+
+% ============================================================
+\section{Integración de Funciones Racionales por Fracciones Parciales}
+% ============================================================
+
+\subsection{\textquestiondown Qué es el método de fracciones parciales?}
+El método de \textbf{fracciones parciales} permite descomponer cualquier función racional propia $f(x) = \frac{P(x)}{Q(x)}$ (donde $\text{grado}(P) < \text{grado}(Q)$) en una suma de fracciones más sencillas cuyo denominador está compuesto por factores lineales o cuadráticos irreductibles.
+
+\begin{cuadroextra}
+\noindent\textbf{Nota sobre Funciones Racionales Impropias:}
+Si $\text{grado}(P) \ge \text{grado}(Q)$, se debe realizar primero la \textbf{división polinomial} para obtener:
+$$\frac{P(x)}{Q(x)} = C(x) + \frac{R(x)}{Q(x)}$$
+Donde $C(x)$ es un polinomio directo de integrar y $\frac{R(x)}{Q(x)}$ es una fracción racional propia a la que se le aplica el método.
+\end{cuadroextra}
+
+\subsection{Los Cuatro Casos de Descomposición}
+Dado el polinomio del denominador $Q(x)$ completamente factorizado en los números reales, cada factor contribuye a la suma de fracciones parciales según los siguientes cuatro casos:
+
+\begin{description}[leftmargin=*]
+  \item[\textbf{Caso I: Factores Lineales Distintos:}] 
+    A cada factor lineal de la forma $(ax + b)$ le corresponde una única fracción:
+    $$\frac{A}{ax + b}$$
+
+  \item[\textbf{Caso II: Factores Lineales Repetidos:}] 
+    A cada factor lineal repetido de la forma $(ax + b)^k$ le corresponde una suma de $k$ fracciones:
+    $$\frac{A_1}{ax + b} + \frac{A_2}{(ax + b)^2} + \dots + \frac{A_k}{(ax + b)^k}$$
+
+  \item[\textbf{Caso III: Factores Cuadráticos Irreductibles Distintos:}] 
+    A cada factor cuadrático irreductible $(ax^2 + bx + c)$ (con $b^2 - 4ac < 0$) le corresponde una fracción con numerador lineal:
+    $$\frac{Ax + B}{ax^2 + bx + c}$$
+
+  \item[\textbf{Caso IV: Factores Cuadráticos Irreductibles Repetidos:}] 
+    A cada factor cuadrático repetido $(ax^2 + bx + c)^k$ le corresponde la suma:
+    $$\frac{A_1 x + B_1}{ax^2 + bx + c} + \frac{A_2 x + B_2}{(ax^2 + bx + c)^2} + \dots + \frac{A_k x + B_k}{(ax^2 + bx + c)^k}$$
+\end{description}
+
+\subsection{Ejemplos Guiados paso a paso}
+
+\noindent\textbf{Ejemplo Guiado 1 (División previa y factores lineales simples):} Evaluar $\int \frac{x^3+1}{x^2-x} \dx$.
+\begin{itemize}
+  \item Como $\text{grado}(\text{numerador}) = 3 \ge 2 = \text{grado}(\text{denominador})$, dividimos los polinomios:
+    $$\frac{x^3+1}{x^2-x} = (x + 1) + \frac{x+1}{x^2-x}$$
+  \item Factorizamos el denominador de la parte residuos: $x^2-x = x(x-1)$.
+  \item Proponemos la descomposición en fracciones parciales (Caso I):
+    $$\frac{x+1}{x(x-1)} = \frac{A}{x} + \frac{B}{x-1} \implies x+1 = A(x-1) + Bx$$
+  \item Evaluamos en las raíces del denominador:
+    \begin{align*}
+      \text{Para } x = 0 &\implies 1 = A(-1) \implies A = -1 \\
+      \text{Para } x = 1 &\implies 2 = B(1) \implies B = 2
+    \end{align*}
+  \item Reemplazamos e integramos término a término:
+    $$\int \left( x + 1 - \frac{1}{x} + \frac{2}{x-1} \right) \dx = \frac{x^2}{2} + x - \ln|x| + 2\ln|x-1| \CC$$
+\end{itemize}
+
+\vspace{4pt}
+\noindent\textbf{Ejemplo Guiado 2 (Factor lineal y cuadrático irreductible):} Evaluar $\int \frac{\dx}{x^3+x}$.
+\begin{itemize}
+  \item Factorizamos el denominador: $x^3+x = x(x^2+1)$, donde $x^2+1$ es cuadrático irreductible.
+  \item Proponemos la descomposición (Casos I y III):
+    $$\frac{1}{x(x^2+1)} = \frac{A}{x} + \frac{Bx+C}{x^2+1} \implies 1 = A(x^2+1) + (Bx+C)x$$
+  \item Agrupamos términos para formar un sistema de ecuaciones:
+    $$1 = (A+B)x^2 + Cx + A$$
+    $$\begin{cases} A + B = 0 \implies B = -1 \\ C = 0 \\ A = 1 \end{cases}$$
+  \item Integramos la suma resultante:
+    $$\int \frac{1}{x(x^2+1)} \dx = \int \frac{1}{x} \dx - \int \frac{x}{x^2+1} \dx = \ln|x| - \frac{1}{2}\ln(x^2+1) \CC$$
+\end{itemize}
+
+\newpage
+
+% ============================================================
+\subsection{Ejercicios Progresivos: Fracciones Parciales}
+% ============================================================
+Resuelve las siguientes integrales indefinidas racionales mediante descomposición en fracciones parciales.
+
+\begin{multicols}{2}
+\begin{enumerate}[leftmargin=*, resume]
+  \item \medio{} $\int \frac{(x^3+1) \dx}{x^2-x}$
+  \item \facil{} $\int \frac{x \dx}{x^2+3x+2}$
+  \item \facil{} $\int \frac{(x+2) \dx}{x^2+2x}$
+  \item \facil{} $\int \frac{x \dx}{(x-1)^2}$
+  \item \medio{} $\int \frac{(x^3-2) \dx}{x^3-3x^2+2x}$
+  \item \facil{} $\int \frac{\dx}{(x+1)(x+2)(x+3)}$
+  \item \medio{} $\int \frac{(x-2) \dx}{x(x-1)^2}$
+  \item \facil{} $\int \frac{\dx}{x^3+x}$
+  \item \medio{} $\int \frac{\dx}{(x-1)^2(x+2)^2}$
+  \item \medio{} $\int \frac{(x+2) \dx}{x^4+2x^3-3x^2}$
+  \item \dificil{} $\int \frac{(x-1)^2 \dx}{(x^2+1)^2}$
+  \item \dificil{} $\int \frac{\dx}{(x^2-4)(x-2)^2}$
+  \item \dificil{} $\int \frac{(x^2+2x+2) \dx}{x^2(x^2+2)^2}$
+  \item \medio{} $\int \frac{(4x^2-13x-9) \dx}{x^3+2x^2-3x}$
+  \item \medio{} $\int \frac{x^2 \dx}{x^4-1}$
+  \item \medio{} $\int \frac{(37-11x) \dx}{(x^2-x-2)(x-3)}$
+  \item \medio{} $\int \frac{x \dx}{(x+1)(x^2+1)}$
+  \item \dificil{} $\int \frac{(x^3-6) \dx}{x^4+6x^2+8}$
+  \item \medio{} $\int \frac{(2x^2-12x+4) \dx}{x^3-4x^2}$
+  \item \dificil{} $\int \frac{(x^2+2) \dx}{(x^2+1)^2}$
+  \item \medio{} $\int \frac{(4x^2-3x-4) \dx}{x^3+x^2-2x}$
+  \item \dificil{} $\int \frac{(4x^3-7x) \dx}{x^4-5x^2-4}$
+  \item \facil{} $\int \frac{(x+4) \dx}{x^3+4x}$
+  \item \facil{} $\int \frac{(x^2-x) \dx}{x^3-2x^2-3x}$
+  \item \facil{} $\int \frac{(x^2+1) \dx}{x^3+2x^2+x}$
+  \item \medio{} $\int \frac{(3x^3+x^2-3) \dx}{x^2(x^2+3x+2)}$
+  \item \medio{} $\int \frac{(x^2-2x+21) \dx}{2x^3-x^2-8x+4}$
+  \item \dificil{} $\int \frac{(x^3+3x^2+3x+63) \dx}{(x^2-9)^2}$
+  \item \dificil{} $\int \frac{(x+3) \dx}{x(x+1)^3}$
+  \item \facil{} $\int \frac{x \dx}{(x+1)^2}$
+  \item \dificil{} $\int \frac{(x^2+x-3) \dx}{x^4-6x^2+9}$
+\end{enumerate}
+\end{multicols}
+
+\vspace{10pt}
+\newpage 
+
+% ============================================================
+\section{Resumen de Criterios y Consejos Útiles}
+% ============================================================
+\begin{table}[h!]
+\centering
+\small
+\begin{tabular}{p{3.5cm} p{5.5cm} p{6.5cm}}
+\toprule
+\textbf{Método} & \textbf{\textquestiondown Cuándo aplicar?} & \textbf{Estrategia / Tip clave} \\
+\midrule
+\textbf{Integrales Trigonométricas} & Productos o potencias de $\sen x, \cos x, \tg x, \sec x, \ctg x, \csc x$. & Usa identidades pitagóricas para reservar el diferencial $du$ ($\cos x \dx, \sen x \dx, \sec^2 x \dx$, etc.). \\[6pt]
+\textbf{Sustitución Trigonométrica} & Presencia de radicales $\sqrt{a^2-x^2}$, $\sqrt{a^2+x^2}$, $\sqrt{x^2-a^2}$ o trinomios cuadráticos. & Asigna $x = a\sen\theta$, $x = a\tg\theta$, $x = a\sec\theta$. Usa el triángulo rectángulo para regresar a la variable $x$. \\[6pt]
+\textbf{Fracciones Parciales} & Cocientes racionales $P(x)/Q(x)$ de polinomios algebraicos. & Verifica primero si es impropia ($\text{grado}(P) \ge \text{grado}(Q)$) para dividir. Factoriza $Q(x)$ al máximo en $\R$. \\
+\bottomrule
+\end{tabular}
+\caption{Criterio sintético de selección de técnicas para la resolución de integrales avanzadas.}
+\label{tab:resumen_avanzado}
+\end{table}
+
+\newpage
+
+% ============================================================
+\section{Clave de Respuestas}
+% ============================================================
+A continuación se presentan las respuestas de los 96 ejercicios propuestos en esta guía. Todas las soluciones incluyen la constante de integración $C \in \R$.
+
+\subsection*{Bloque I: Integrales Trigonométricas}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $\frac{x}{2} + \frac{\sen(2x)}{4} \CC$
+  \item $-\cos x + \frac{2}{3}\cos^3 x - \frac{1}{5}\cos^5 x \CC$
+  \item $\tg x - x \CC$
+  \item $\frac{1}{2}\tg^2 x + \ln|\cos x| \CC$
+  \item $-\frac{1}{3}\ctg^3 x + \ctg x + x \CC$
+  \item $\frac{x}{8} - \frac{\sen(4x)}{32} \CC$
+  \item $\frac{1}{3}\sen^3 x - \frac{1}{5}\sen^5 x \CC$
+  \item $\frac{x}{16} + \frac{\sen(2x)}{64} - \frac{\sen(4x)}{64} - \frac{\sen(6x)}{192} \CC$
+  \item $-\frac{1}{6}\cos^3(2x) + \frac{1}{5}\cos^5(2x) - \frac{1}{14}\cos^7(2x) \CC$
+  \item $\frac{1}{9}\tg^3(3x) + \frac{2}{15}\tg^5(3x) + \frac{1}{21}\tg^7(3x) \CC$
+  \item $-\frac{1}{10}\ctg^5(2x) \CC$
+  \item $\frac{1}{3}\sec^3 x - \sec x \CC$
+  \item $\frac{1}{4}\tg(4x) - x \CC$
+  \item $-\csc x - \sen x \CC$
+  \item $-\frac{1}{3}\csc^3 x \CC$
+  \item $-\ctg x - \frac{1}{3}\ctg^3 x \CC$
+  \item $\tg x + \frac{1}{2}\sen(2x) - \frac{3}{2}x \CC$
+  \item $-\frac{1}{3}\cos(3x) + \frac{2}{9}\cos^3(3x) - \frac{1}{15}\cos^5(3x) \CC$
+  \item $\frac{1}{4}\tg^4 x + \frac{1}{6}\tg^6 x \CC$
+  \item $\frac{1}{9}\tg^3(3x) \CC$
+  \item $\frac{1}{4}\tg(4x) + \frac{1}{6}\tg^3(4x) + \frac{1}{20}\tg^5(4x) \CC$
+  \item $-\frac{1}{10}\cos(5x) + \frac{1}{2}\cos x \CC$
+  \item $\frac{1}{3}\tg^3 x - \tg x + x \CC$
+  \item $\frac{1}{4}\sen(2x) - \frac{1}{24}\sen(12x) \CC$
+  \item $\frac{1}{10}\sen(5x) + \frac{1}{50}\sen(25x) \CC$
+  \item $\frac{1}{7}\tg^7 x + \frac{1}{9}\tg^9 x \CC$
+  \item $\frac{5}{2}x + \frac{3}{4}\sen(2x) + \cos(2x) \CC$
+  \item $\tg x - 4\ctg x - 3x \CC$
+  \item $\frac{1}{2}\tg(2x) + \frac{1}{6}\tg^3(2x) \CC$
+  \item $\frac{1}{4}\sec^3 x \tg x + \frac{3}{8}\sec x \tg x + \frac{3}{8}\ln|\sec x + \tg x| \CC$
+  \item $-\frac{1}{4}\ctg^4 x \CC$
+  \item $-\frac{1}{15}\cos^5(3x) + \frac{1}{21}\cos^7(3x) \CC$
+  \item $\frac{x}{16} - \frac{\sen(16x)}{128} + \frac{\sen^3(8x)}{96} \CC$
+  \item $\tg x - \ctg x \CC$
+  \item $-\frac{1}{4}\ctg^4 x - \frac{1}{6}\ctg^6 x \CC$
+\end{enumerate}
+
+\subsection*{Bloque II: Sustitución Trigonométrica}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, resume]
+  \item $-\frac{\sqrt{a^2-x^2}}{a^2 x} \CC$
+  \item $\frac{\sqrt{x^2-25}}{25x} \CC$
+  \item $\ln|x + \sqrt{4+x^2}| \CC$
+  \item $-\sqrt{4-x^2} \CC$
+  \item $\frac{\sqrt{x^2-25}}{50 x^2} + \frac{1}{250}\text{arcsec}\left(\frac{x}{5}\right) \CC$
+  \item $\sqrt{x^2-9} \CC$
+  \item $\sqrt{x^2+1} - \ln\left|\frac{1+\sqrt{x^2+1}}{x}\right| \CC$
+  \item $\frac{x}{2}\sqrt{9-4x^2} + \frac{9}{4}\arcsen\left(\frac{2x}{3}\right) \CC$
+  \item $-\frac{\sqrt{4-x^2}}{x} - \arcsen\left(\frac{x}{2}\right) \CC$
+  \item $-\frac{1}{3}\ln\left|\frac{3+\sqrt{x^2+9}}{x}\right| \CC$
+  \item $\sqrt{x^2+9} \CC$
+  \item $-\frac{x}{\sqrt{x^2-1}} \CC$
+  \item $\frac{1}{2}\ln|2x + \sqrt{4x^2-25}| \CC$
+  \item $\frac{\sqrt{x^2-9}}{9x} \CC$
+  \item $\ln|x + \sqrt{36+x^2}| \CC$
+  \item $-\sqrt{16-x^2} \CC$
+  \item $\frac{1}{3}(x^2-9)^{3/2} \CC$
+  \item $\frac{1}{243}(9x^2+98)\sqrt{9x^2-49} \CC$
+  \item $-\frac{1}{4}\ln\left|\frac{4+\sqrt{25x^2+16}}{5x}\right| \CC$
+  \item $\frac{(4x^2-3)\sqrt{x^2-3}}{27 x^3} \CC$
+  \item $-\frac{x}{4}\sqrt{3-2x^2} + \frac{3\sqrt{2}}{8}\arcsen\left(\frac{\sqrt{2}x}{\sqrt{3}}\right) \CC$
+  \item $-\frac{x}{18}\sqrt{1-9x^2} + \frac{1}{54}\arcsen(3x) \CC$
+  \item $\frac{1}{\sqrt{3}}\text{arcsec}\left(\frac{2x}{\sqrt{3}}\right) \CC$
+  \item $\ln|(x-2) + \sqrt{x^2-4x+5}| \CC$
+  \item $-\frac{\sqrt{4+x^2}}{x} + \ln|x + \sqrt{4+x^2}| \CC$
+  \item $\ln|(x-2) + \sqrt{x^2-4x+5}| \CC$
+  \item $\frac{\sqrt{x^2-7}}{7x} \CC$
+  \item $-3\sqrt{2-x^2} - 5\arcsen\left(\frac{x}{\sqrt{2}}\right) \CC$
+  \item $\frac{1}{27}(3x^2+32)\sqrt{3x^2-16} \CC$
+  \item $\frac{1}{3}(x^2+6x+8)^{3/2} \CC$
+\end{enumerate}
+
+\subsection*{Bloque III: Fracciones Parciales}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, resume]
+  \item $\frac{x^2}{2} + x - \ln|x| + 2\ln|x-1| \CC$
+  \item $2\ln|x+2| - \ln|x+1| \CC$
+  \item $\ln|x| \CC$
+  \item $\ln|x-1| - \frac{1}{x-1} \CC$
+  \item $x - \ln|x| - \ln|x-1| + 3\ln|x-2| \CC$
+  \item $\frac{1}{2}\ln|x+1| - \ln|x+2| + \frac{1}{2}\ln|x+3| \CC$
+  \item $-2\ln|x| + 2\ln|x-1| + \frac{1}{x-1} \CC$
+  \item $\ln|x| - \frac{1}{2}\ln(x^2+1) \CC$
+  \item $\frac{2}{27}\ln\left|\frac{x-1}{x+2}\right| - \frac{1}{9(x-1)} - \frac{1}{9(x+2)} \CC$
+  \item $-\frac{2}{3x} - \frac{7}{9}\ln|x| + \frac{5}{12}\ln|x-1| + \frac{13}{36}\ln|x+3| \CC$
+  \item $\arctg x + \frac{x}{x^2+1} \CC$
+  \item $-\frac{1}{32}\ln|x+2| + \frac{1}{32}\ln|x-2| - \frac{1}{16(x-2)} - \frac{1}{8(x-2)^2} \CC$
+  \item $-\frac{1}{2x} + \frac{1}{4\sqrt{2}}\arctg\left(\frac{x}{\sqrt{2}}\right) + \frac{x}{4(x^2+2)} \CC$
+  \item $3\ln|x| - 3\ln|x-1| + 4\ln|x+3| \CC$
+  \item $\frac{1}{4}\ln\left|\frac{x-1}{x+1}\right| + \frac{1}{2}\arctg x \CC$
+  \item $-9\ln|x+1| + 5\ln|x-2| + 4\ln|x-3| \CC$
+  \item $-\frac{1}{2}\ln|x+1| + \frac{1}{4}\ln(x^2+1) + \frac{1}{2}\arctg x \CC$
+  \item $\frac{1}{2}\ln(x^2+4) - \frac{3}{2}\arctg\left(\frac{x}{2}\right) + 3\arctg\left(\frac{x}{\sqrt{2}}\right) \CC$
+  \item $\frac{1}{x} + 3\ln|x| - \ln|x-4| \CC$
+  \item $\frac{3}{2}\arctg x + \frac{x}{2(x^2+1)} \CC$
+  \item $2\ln|x| + \ln|x-1| + \ln|x+2| \CC$
+  \item $\ln|x^4-5x^2-4| + \frac{3}{\sqrt{41}}\ln\left|\frac{2x^2-5-\sqrt{41}}{2x^2-5+\sqrt{41}}\right| \CC$
+  \item $\ln|x| - \frac{1}{2}\ln(x^2+4) + \frac{1}{2}\arctg\left(\frac{x}{2}\right) \CC$
+  \item $\frac{1}{2}\ln|(x-3)(x+1)| \CC$
+  \item $\ln|x| + \frac{2}{x+1} \CC$
+  \item $\frac{3}{2x} + \frac{1}{4}\ln|x| + 5\ln|x+1| - \frac{9}{4}\ln|x+2| \CC$
+  \item $-3\ln|2x-1| + 2\ln|x-2| + \frac{1}{2}\ln|x+2| \CC$
+  \item $\frac{1}{2}\ln|x^2-9| + \frac{x+6}{x^2-9} + \frac{7}{6}\ln\left|\frac{x-3}{x+3}\right| \CC$
+  \item $3\ln\left|\frac{x}{x+1}\right| + \frac{3x+5}{2(x+1)^2} \CC$
+  \item $\ln|x+1| + \frac{1}{x+1} \CC$
+  \item $\frac{1}{6\sqrt{3}}\ln\left|\frac{x-\sqrt{3}}{x+\sqrt{3}}\right| - \frac{x-1}{2(x^2-3)} \CC$
+\end{enumerate}
+
+\end{document}

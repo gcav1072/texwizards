@@ -18,7 +18,7 @@
 % ── Portada / Título ─────────────────────────────────────────
 \mwportada{Guía de Estudio 7}{Aplicaciones de la Derivada}{Máximos y Mínimos, Optimización, Razones de Cambio, Teorema de Rolle y TVM, Análisis de Gráficas}
 
-\vspace{4pt}
+%\vspace{4pt}
 \begin{cuadroinfo}
   \small
   \textbf{Presentación:} Esta guía muestra el poder de la derivada en situaciones reales. Aprenderás a encontrar valores extremos de funciones, resolver problemas de optimización, calcular razones de cambio relacionadas y analizar la forma de una gráfica. Cada sección incluye \textbf{ejercicios resueltos} y \textbf{propuestos}.
@@ -29,7 +29,7 @@
   \dificil{} Desafiante
 \end{cuadroinfo}
 
-\vspace{8pt}
+\vspace{4pt}
 
 % ============================================================
 \section{Máximos y Mínimos Locales}
@@ -251,7 +251,7 @@
   Se deben producir y vender 150 artículos.
 \end{cuadrosolucion}
 
-\newpage
+%\newpage
 
 \subsection{Ejercicios propuestos}
 
@@ -360,7 +360,7 @@
   \item \dificil{} Explica por qué el TVM no se puede aplicar a $f(x) = |x|$ en $[-1, 1]$.
 \end{enumerate}
 
-\newpage
+%\newpage
 
 % ============================================================
 \section{Razones de Cambio Relacionadas}
@@ -429,7 +429,7 @@
   \item \dificil{} Se vierte arena sobre el suelo a razón de $10$ m$^3$/min formando un montón cónico cuya altura es siempre igual al diámetro de la base. ¿Con qué rapidez aumenta la altura cuando el montón mide $4$ m de alto?
 \end{enumerate}
 
-\newpage
+%\newpage
 
 % ============================================================
 \section{Análisis Completo de una Gráfica}
@@ -450,8 +450,7 @@
 \begin{cuadropasos}
   \textbf{Pasos para graficar una función con análisis:}
   \begin{enumerate}
-    \item Determina el \textbf{dominio}.
-    \item Encuentra las \textbf{intersecciones} con los ejes.
+    \item Determina el \textbf{dominio}, y encuentra las \textbf{intersecciones} con los ejes.
     \item Analiza \textbf{simetrías} (par/impar).
     \item Encuentra las \textbf{asíntotas} (verticales, horizontales, oblicuas).
     \item Calcula $f'$ y determina \textbf{intervalos de crecimiento/decrecimiento} y extremos.
@@ -536,8 +535,6 @@
   \item \dificil{} Determina el valor de $a$ para que $f(x) = x^3 - ax^2 + 3$ tenga un punto de inflexión en $x = 1$.
 
   \item \dificil{} Analiza $f(x) = \ln(x^2 + 1)$: crecimiento, concavidad, extremos y puntos de inflexión.
-
-  \item \dificil{} Una función $f$ es derivable dos veces. Si $f''(x) = 6x - 4$, $f'(1) = 2$ y $f(1) = 3$, determina $f(x)$.
 \end{enumerate}
 
 \newpage
@@ -626,7 +623,6 @@
   \item Dominio: $x \neq \pm 1$. Intercepto $(0, 0)$. Asíntotas verticales: $x = 1$ y $x = -1$. Asíntota horizontal: $y = 0$. $f'(x) = \frac{-2x^2 - 2}{(x^2 - 1)^2} < 0$ siempre: decreciente en cada intervalo. $f''$ analiza concavidad; la información completa se usa para el esbozo.
   \item $f''(x) = 6x - 2a$. En $x = 1$: $6 - 2a = 0 \Rightarrow a = 3$ (y además cambia de signo, así que es punto de inflexión).
   \item $f'(x) = \frac{2x}{x^2 + 1}$: decreciente en $(-\infty, 0)$, creciente en $(0, \infty)$; mínimo en $(0, 0)$. $f''(x) = \frac{-2x^2 + 2}{(x^2 + 1)^2} = \frac{2(1 - x^2)}{(x^2 + 1)^2}$: cóncava arriba en $(-1, 1)$, abajo en $(-\infty, -1) \cup (1, \infty)$; puntos de inflexión en $x = \pm 1$.
-  \item $f(x) = \displaystyle\int (6x - 4)\,dx = 3x^2 - 4x + C$. Con $f'(1) = 2$: $3 - 4 + C = 2 \Rightarrow C = 3$. Entonces $f(x) = 3x^2 - 4x + 3$. Integrando: $\int(3x^2 - 4x + 3)\,dx = x^3 - 2x^2 + 3x + D$. Con $f(1) = 3$: $1 - 2 + 3 + D = 3 \Rightarrow D = 1$. Por tanto $f(x) = x^3 - 2x^2 + 3x + 1$.
 \end{enumerate}
 
 \end{document}

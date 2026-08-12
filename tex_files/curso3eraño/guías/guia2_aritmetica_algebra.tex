@@ -205,8 +205,7 @@ Donde:
 \begin{itemize}[leftmargin=*]
   \item $a$ es un número tal que $1 \leq |a| < 10$ (tiene \textbf{un solo dígito} antes del punto decimal).
   \item $n$ es un número entero que indica cuántas posiciones se «movió» el punto decimal.
-  \item Si $n > 0$: el número original es \textbf{grande}.
-  \item Si $n < 0$: el número original es \textbf{pequeño}.
+  \item Si $n > 0$: el número original es \textbf{grande}, al contrario, si $n < 0$: el número original es \textbf{pequeño}.
 \end{itemize}
 \end{cuadrosolucion}
 
@@ -221,7 +220,7 @@ Donde:
 \textbf{Truco para recordar:} Si mueves el punto decimal hacia la \emph{izquierda}, el exponente es \textbf{positivo}. Si lo mueves hacia la \emph{derecha}, es \textbf{negativo}. Cuenta la cantidad de saltos y ese es el valor de $n$.
 \end{cuadroadvertencia}
 
-\newpage
+%\newpage
 
 % ============================================================
 \subsection{Ejercicios: Exponentes y Notación Científica}
@@ -281,17 +280,17 @@ Piensa en una ecuación como una balanza en equilibrio: lo que haces de un lado,
     \draw[thick] (-3,-0.3) -- (-2.5,-1.3);
     % Plate (left side)
     \draw[very thick, fill=mwprimario!12, draw=mwprimario] (-3.7,-1.3) -- (-2.3,-1.3) -- (-2.5,-1.4) -- (-3.5,-1.4) -- cycle;
-    \node[text=mwprimario, font=\bfseries] at (-3,-1.15) {$3x + 2$};
+    \node[text=mwprimario, font=\bfseries] at (-3,-1.8) {$3x + 2$};
     
     % Hanger strings (right side)
     \draw[thick] (3,-0.3) -- (2.5,-1.3);
     \draw[thick] (3,-0.3) -- (3.5,-1.3);
     % Plate (right side)
     \draw[very thick, fill=mwprimario!12, draw=mwprimario] (2.3,-1.3) -- (3.7,-1.3) -- (3.5,-1.4) -- (2.5,-1.4) -- cycle;
-    \node[text=mwprimario, font=\bfseries] at (3,-1.15) {$14$};
+    \node[text=mwprimario, font=\bfseries] at (3,-1.8) {$14$};
     
     % Equal sign in the middle
-    \node[text=mwmagenta, font=\Huge\bfseries] at (0,-1.3) {$=$};
+    \node[text=mwmagenta, font=\Huge\bfseries] at (0,-1.8) {$=$};
   \end{tikzpicture}
   \caption{La ecuación como balanza: lo que haces de un lado, lo haces del otro.}
   \label{fig:balanza}
@@ -321,6 +320,8 @@ Una ecuación lineal tiene la forma $ax + b = c$, donde la incógnita $x$ aparec
   \item Dividir por el coeficiente: $x = \frac{12}{3} = 4$
   \item \textbf{Verificación:} $5(4) - 3 = 17$ y $2(4) + 9 = 17$ $\checkmark$
 \end{enumerate}
+
+\newpage
 
 \subsection{Sistemas de ecuaciones lineales}
 

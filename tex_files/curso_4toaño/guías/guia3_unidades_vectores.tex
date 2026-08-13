@@ -1,0 +1,590 @@
+% ============================================================
+%  GUÍA 3: TRANSFORMACIÓN DE UNIDADES E INTRODUCCIÓN A LOS VECTORES
+%  Curso 4to Año — Física
+%  Autor: Gabriel Astudillo
+%  Clases cubiertas: 4 a 6
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Guía 3 — Unidades y Vectores}{Gabriel Astudillo $\cdot$ 4to Año}
+
+% ── Comandos propios de esta guía ───────────────────
+\providecommand{\sen}{\sin}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Estudio 3}{Transformación de Unidades e Introducción a los Vectores}{El Sistema Internacional, los factores de conversión y las magnitudes con dirección}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} ¡Hola! La física es la ciencia de \emph{medir}: medimos velocidades, masas, distancias y fuerzas. Pero medir no sirve de nada si no podemos \emph{comparar} nuestras medidas, y para eso necesitamos un idioma común de unidades. En esta guía aprenderás a moverte con soltura en el Sistema Internacional, a transformar unidades (¡como convertir 90 km/h a m/s!) y conocerás la primera gran herramienta de la física: los \textbf{vectores}, que nos permiten trabajar con magnitudes que tienen dirección, como el viento o la velocidad de un avión. ¡Allá vamos!
+  \\[4pt]
+  \textbf{Nivel de Dificultad:}\quad
+  \facil{} Básico / Directo \quad
+  \medio{} Intermedio \quad
+  \dificil{} Desafiante
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Sistema Internacional de Unidades y medición}
+% ============================================================
+
+\subsection{Magnitudes y unidades}
+
+\begin{cuadroteoria}
+  Una \textbf{magnitud física} es toda propiedad que se puede medir (longitud, masa, tiempo, temperatura\ldots).
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Magnitudes fundamentales:} no se definen a partir de otras (longitud, masa, tiempo\ldots).
+    \item \textbf{Magnitudes derivadas:} se obtienen combinando fundamentales (velocidad, fuerza, densidad\ldots).
+  \end{itemize}
+
+  \textbf{Unidades fundamentales del Sistema Internacional (SI):}
+  \begin{center}
+    \begin{tabular}{lll}
+      \toprule
+      Magnitud                & Unidad    & Símbolo \\
+      \midrule
+      Longitud                & metro     & m       \\
+      Masa                    & kilogramo & kg      \\
+      Tiempo                  & segundo   & s       \\
+      Intensidad de corriente & ampere    & A       \\
+      Temperatura             & kelvin    & K       \\
+      Cantidad de sustancia   & mol       & mol     \\
+      Intensidad luminosa     & candela   & cd      \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{cuadroteoria}
+
+\begin{cuadroteoria}
+  \textbf{Prefijos del SI} (multiplicadores de las unidades):
+  \begin{center}
+    \begin{tabular}{llll}
+      \toprule
+      Prefijo & Símbolo & Factor    & Ejemplo                                     \\
+      \midrule
+      kilo    & k       & $10^{3}$  & $1 \text{ km} = 1000 \text{ m}$             \\
+      hecto   & h       & $10^{2}$  & $1 \text{ hm} = 100 \text{ m}$              \\
+      deca    & da      & $10^{1}$  & $1 \text{ dam} = 10 \text{ m}$              \\
+      deci    & d       & $10^{-1}$ & $1 \text{ dm} = 0{,}1 \text{ m}$            \\
+      centi   & c       & $10^{-2}$ & $1 \text{ cm} = 0{,}01 \text{ m}$           \\
+      mili    & m       & $10^{-3}$ & $1 \text{ mm} = 0{,}001 \text{ m}$          \\
+      micro   & $\mu$   & $10^{-6}$ & $1 \text{ }\mu\text{m} = 10^{-6} \text{ m}$ \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{cuadroteoria}
+
+\begin{cuadroteoria}
+  \textbf{Notación científica:} se escribe un número como $a \times 10^{n}$, con $1 \le a < 10$ y $n$ entero.
+  $$4\,500\,000 = 4{,}5 \times 10^{6}, \qquad 0{,}00025 = 2{,}5 \times 10^{-4}$$
+
+  \textbf{Cifras significativas (introducción):} son los dígitos que aportan información real de una medición. Por ejemplo, $2{,}50$ m tiene tres cifras significativas (el cero cuenta).
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos:}
+  \begin{itemize}[leftmargin=*]
+    \item Escribir $0{,}0000001$ en lugar de $10^{-7}$: la notación científica evita errores de ceros.
+    \item Confundir los prefijos: $1 \text{ cm} = 0{,}01 \text{ m}$ (centi es $\frac{1}{100}$), no $0{,}1$.
+    \item Escribir unidades en plural o con mayúscula incorrecta: se escribe \emph{5 m} (no "5 ms", que es milisegundo) y \emph{10 kg} (no "10 Kgs").
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Clasifica cada magnitud en fundamental o derivada e indica su unidad del SI: $a)$ masa \quad $b)$ velocidad \quad $c)$ tiempo.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item $a)$ Masa: fundamental, se mide en kilogramos (kg).
+    \item $b)$ Velocidad: derivada (longitud entre tiempo), se mide en m/s.
+    \item $c)$ Tiempo: fundamental, se mide en segundos (s).
+  \end{itemize}
+\end{cuadrosolucion}
+
+\newpage
+
+\textbf{Ejemplo R2.} Expresa en metros: $a)\ 5 \text{ km} \qquad b)\ 2500 \text{ mm}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item $a)\ 5 \text{ km} = 5 \times 10^{3} \text{ m} = 5000 \text{ m}$.
+    \item $b)\ 2500 \text{ mm} = 2500 \times 10^{-3} \text{ m} = 2{,}5 \text{ m}$.
+  \end{itemize}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Escribe en notación científica: $a)\ 0{,}00025 \qquad b)\ 4\,500\,000$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item $a)\ 0{,}00025 = 2{,}5 \times 10^{-4}$ (la coma corre 4 lugares a la derecha).
+    \item $b)\ 4\,500\,000 = 4{,}5 \times 10^{6}$ (la coma corre 6 lugares a la izquierda).
+  \end{itemize}
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Clasifica en fundamental o derivada: $a)$ longitud \quad $b)$ densidad \quad $c)$ temperatura \quad $d)$ fuerza.
+
+  \item \facil{} Escribe la unidad del SI de: $a)$ masa \quad $b)$ tiempo \quad $c)$ longitud.
+
+  \item \facil{} Completa: $1 \text{ km} =$ \_\_\_\_\_ m \quad ; \quad $1 \text{ cm} =$ \_\_\_\_\_ m \quad ; \quad $1 \text{ mm} =$ \_\_\_\_\_ m.
+
+  \item \facil{} Expresa en metros: $a)\ 3 \text{ km} \qquad b)\ 750 \text{ cm} \qquad c)\ 12 \text{ mm}$.
+
+  \item \facil{} Escribe en notación científica: $a)\ 300\,000 \qquad b)\ 0{,}0005 \qquad c)\ 25\,000\,000$.
+
+  \item \medio{} Expresa en notación científica: $a)\ 0{,}0000002 \qquad b)\ 9\,460\,000\,000\,000$ (distancia de un año luz en km).
+
+  \item \medio{} ¿Cuántos milímetros hay en $2{,}5$ metros? ¿Cuántos centímetros?
+
+  \item \medio{} La velocidad del sonido es aproximadamente $340$ m/s. Exprésala en notación científica.
+
+  \item \medio{} ¿Cuántas cifras significativas tiene cada medida? $a)\ 3{,}50 \text{ m} \qquad b)\ 0{,}0025 \text{ kg} \qquad c)\ 1200 \text{ s}$.
+
+  \item \dificil{} Un átomo de hidrógeno mide aproximadamente $0{,}0000000001$ m. Exprésalo en notación científica y con el prefijo apropiado (angstrom $\AA = 10^{-10}$ m).
+
+  \item \dificil{} La masa de la Tierra es $5{,}97 \times 10^{24}$ kg. Escríbela con todos sus ceros y ordénala comparándola con la masa del Sol ($1{,}99 \times 10^{30}$ kg). ¿Cuántas veces cabe la Tierra en el Sol en masa?
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Transformación de unidades}
+% ============================================================
+
+\subsection{El factor de conversión}
+
+\begin{cuadroteoria}
+  Un \textbf{factor de conversión} es una fracción que vale 1 y que relaciona dos unidades equivalentes. Por ejemplo:
+  $$\frac{1000 \text{ m}}{1 \text{ km}} = 1 \qquad \text{y} \qquad \frac{1 \text{ km}}{1000 \text{ m}} = 1$$
+  Al multiplicar una cantidad por un factor de conversión, la cantidad no cambia: solo cambia su forma de expresarla.
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Cómo transformar unidades:}
+  \begin{enumerate}[leftmargin=*]
+    \item Escribe la cantidad con su unidad.
+    \item Elige el factor de conversión que \emph{cancele} la unidad de partida (la unidad de partida debe quedar en el denominador del factor).
+    \item Multiplica y simplifica: los números se multiplican y las unidades se cancelan.
+  \end{enumerate}
+
+  \textbf{Ejemplo:} convertir $150 \text{ cm}$ a metros:
+  $$150 \text{ cm} \cdot \frac{1 \text{ m}}{100 \text{ cm}} = \frac{150}{100} \text{ m} = 1{,}5 \text{ m}$$
+\end{cuadropasos}
+
+\begin{cuadroteoria}
+  \textbf{Conversión compuesta km/h $\leftrightarrow$ m/s:} como $1 \text{ km} = 1000 \text{ m}$ y $1 \text{ h} = 3600 \text{ s}$:
+  $$1 \frac{\text{km}}{\text{h}} = \frac{1000 \text{ m}}{3600 \text{ s}} = \frac{1}{3{,}6} \frac{\text{m}}{\text{s}}$$
+  \begin{itemize}[leftmargin=*]
+    \item Para pasar de \textbf{km/h a m/s}: se divide entre $3{,}6$.
+    \item Para pasar de \textbf{m/s a km/h}: se multiplica por $3{,}6$.
+  \end{itemize}
+\end{cuadroteoria}
+
+\begin{cuadroteoria}
+  \textbf{Densidad:} es la masa contenida en cada unidad de volumen.
+  $$\rho = \frac{m}{V} \qquad (\text{en } \text{kg/m}^3 \text{ o } \text{g/cm}^3)$$
+  El agua tiene densidad $1000 \text{ kg/m}^3 = 1 \text{ g/cm}^3$.
+\end{cuadroteoria}
+
+\newpage %ajustes pag
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos:}
+  \begin{itemize}[leftmargin=*]
+    \item Multiplicar en lugar de dividir: de km/h a m/s se \emph{divide} entre $3{,}6$ (72 km/h $= 20$ m/s, no $259{,}2$).
+    \item Cancelar unidades que no corresponden: el factor debe colocarse de modo que la unidad de partida quede \emph{abajo}.
+    \item Olvidar las unidades en el resultado final: un número sin unidad no es una medida física.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Convierte $150 \text{ cm}$ a metros.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$150 \text{ cm} \cdot \frac{1 \text{ m}}{100 \text{ cm}} = 1{,}5 \text{ m}.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Convierte $2{,}5$ horas a segundos.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} usamos dos factores (horas a minutos y minutos a segundos):
+  $$2{,}5 \text{ h} \cdot \frac{60 \text{ min}}{1 \text{ h}} \cdot \frac{60 \text{ s}}{1 \text{ min}} = 2{,}5 \cdot 60 \cdot 60 \text{ s} = 9000 \text{ s}.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Un autobús va a $72$ km/h. ¿A cuántos m/s equivale?
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} de km/h a m/s se divide entre $3{,}6$:
+  $$72 \frac{\text{km}}{\text{h}} \div 3{,}6 = 20 \frac{\text{m}}{\text{s}}.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R4.} Un bloque de $2 \text{ kg}$ ocupa un volumen de $0{,}004 \text{ m}^3$. Calcula su densidad.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$\rho = \frac{m}{V} = \frac{2 \text{ kg}}{0{,}004 \text{ m}^3} = 500 \frac{\text{kg}}{\text{m}^3}.$$
+\end{cuadrosolucion}
+
+\newpage %ajuste para pág
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Convierte a metros: $a)\ 250 \text{ cm} \qquad b)\ 4 \text{ km} \qquad c)\ 500 \text{ mm}$.
+
+  \item \facil{} Convierte a kilogramos: $a)\ 3500 \text{ g} \qquad b)\ 0{,}5 \text{ t}$ (1 t $= 1000$ kg).
+
+  \item \facil{} Convierte a segundos: $a)\ 3 \text{ min} \qquad b)\ 1 \text{ h} \qquad c)\ 90 \text{ min}$.
+
+  \item \facil{} Convierte a m/s: $a)\ 36 \text{ km/h} \qquad b)\ 90 \text{ km/h}$.
+
+  \item \medio{} Convierte a km/h: $a)\ 10 \text{ m/s} \qquad b)\ 25 \text{ m/s}$.
+
+  \item \medio{} Una maratón mide $42{,}195$ km. ¿Cuántos metros son? ¿Cuántos centímetros?
+
+  \item \medio{} Un tren viaja a $144$ km/h. ¿Cuántos metros recorre en un segundo?
+
+  \item \medio{} Calcula la densidad de un objeto de $400 \text{ g}$ que ocupa $50 \text{ cm}^3$. Exprésala en g/cm$^3$ y en kg/m$^3$.
+
+  \item \dificil{} Un corredor avanza $100$ m en $9{,}58$ s (récord mundial). ¿Cuál es su rapidez media en m/s y en km/h?
+
+  \item \dificil{} El agua tiene densidad $1 \text{ g/cm}^3$. Demuestra que equivale a $1000 \text{ kg/m}^3$ usando factores de conversión.
+
+  \item \dificil{} Un coche recorre $240$ km en $2{,}5$ horas. ¿Cuál es su rapidez media en km/h y en m/s?
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Vectores}
+% ============================================================
+
+\subsection{Escalares y vectores}
+
+\begin{cuadroteoria}
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Magnitud escalar:} queda definida solo con un número y su unidad. Ejemplos: masa ($5$ kg), tiempo ($10$ s), temperatura ($30^{\circ}$C).
+    \item \textbf{Magnitud vectorial:} necesita módulo, dirección y sentido. Ejemplos: desplazamiento, velocidad, fuerza.
+  \end{itemize}
+
+  Un \textbf{vector} se representa con una flecha y se denota $\vec{v}$:
+  \begin{center}
+    \begin{tikzpicture}[scale=1]
+      \draw[thick, -Latex, mwprimario] (0,0) -- (3.5,1.75);
+      \filldraw (0,0) circle (2pt) node[below left] {origen};
+      \node[mwprimario] at (3.9,1.9) {$\vec{v}$};
+      \draw[mwrojonaranja, thick, -Latex] (4.5,0) -- (4.5,2) node[right] {módulo (longitud)};
+      \draw[gray, dashed] (0,0) -- (3.5,0);
+      \draw[mwvioleta, thick] (0.7,0) arc (0:26.6:0.7);
+      \node[mwvioleta] at (1.05,0.25) {$\theta$};
+    \end{tikzpicture}
+  \end{center}
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Módulo} $|\vec{v}|$: la longitud de la flecha (la "cantidad" del vector).
+    \item \textbf{Dirección}: la recta sobre la que actúa (dada por el ángulo $\theta$).
+    \item \textbf{Sentido}: hacia dónde apunta la flecha.
+  \end{itemize}
+\end{cuadroteoria}
+
+\subsection{Componentes rectangulares}
+
+\begin{cuadroteoria}
+  Todo vector se puede descomponer en dos \textbf{componentes rectangulares} (una sobre el eje $X$ y otra sobre el eje $Y$):
+  $$\vec{v} = (v_x, v_y) \qquad \text{con} \qquad v_x = |\vec{v}| \cos \theta, \quad v_y = |\vec{v}| \sen \theta$$
+  \begin{center}
+    \begin{tikzpicture}[scale=0.95]
+      \draw[thin, gray!40] (-0.5,-0.5) grid (4.5,3.5);
+      \draw[thick, -Latex] (-0.8,0) -- (4.8,0) node[right] {$x$};
+      \draw[thick, -Latex] (0,-0.8) -- (0,3.8) node[above] {$y$};
+      \draw[thick, -Latex, mwprimario] (0,0) -- (3.6,2.4) node[above right] {$\vec{v}$};
+      \draw[mwprimario, thick] (0.7,0) arc (0:33.7:0.7);
+      \node[mwprimario] at (1.0,0.25) {$\theta$};
+      \draw[mwmagenta, thick, -Latex] (0,0) -- (3.6,0) node[midway, below] {$v_x$};
+      \draw[mwmagenta, thick, -Latex] (3.6,0) -- (3.6,2.4) node[midway, right] {$v_y$};
+      \draw[gray, dashed] (0,0) -- (0,2.4);
+      \draw[gray, dashed] (3.6,2.4) -- (0,2.4);
+    \end{tikzpicture}
+  \end{center}
+  Y al revés, conociendo las componentes se puede recuperar el módulo con Pitágoras:
+  $$|\vec{v}| = \sqrt{v_x^2 + v_y^2}$$
+\end{cuadroteoria}
+
+\subsection{Suma de vectores}
+
+\begin{cuadroteoria}
+  \textbf{Método del polígono (gráfico):} se dibujan los vectores uno seguido de otro (el origen de cada uno en la punta del anterior). El vector resultante une el origen del primero con la punta del último.
+  \begin{center}
+    \begin{tikzpicture}[scale=0.9]
+      \draw[thick, -Latex, mwprimario] (0,0) -- (2.5,1.2) node[midway, above] {$\vec{a}$};
+      \draw[thick, -Latex, mwnaranja] (2.5,1.2) -- (4.5,0.4) node[midway, above] {$\vec{b}$};
+      \draw[thick, -Latex, mwmagenta] (0,0) -- (4.5,0.4) node[midway, below] {$\vec{a} + \vec{b}$};
+    \end{tikzpicture}
+  \end{center}
+
+  \textbf{Método analítico (por componentes):} se suman las componentes de cada eje por separado.
+  $$\vec{a} = (a_x, a_y), \quad \vec{b} = (b_x, b_y) \quad \Rightarrow \quad \vec{a} + \vec{b} = (a_x + b_x, a_y + b_y)$$
+
+  \textbf{Multiplicar un vector por un escalar $k$:} cambia el módulo (se alarga o acorta) y, si $k < 0$, invierte el sentido.
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Sumar vectores por componentes:}
+  \begin{enumerate}[leftmargin=*]
+    \item Descompón cada vector en sus componentes con $\cos \theta$ y $\sen \theta$.
+    \item Suma las componentes $x$ entre sí y las $y$ entre sí.
+    \item Calcula el módulo de la resultante con Pitágoras.
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos:}
+  \begin{itemize}[leftmargin=*]
+    \item Sumar vectores como si fueran números: $3$ km al este + $4$ km al norte NO son $7$ km: son $\sqrt{3^2 + 4^2} = 5$ km.
+    \item Confundir dirección con sentido: "norte" es una dirección, "hacia el norte" es un sentido.
+    \item Olvidar el signo de las componentes: un vector que apunta a la izquierda o hacia abajo tiene componentes negativas.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\newpage %ajustes pag
+
+\subsection{Reducción al primer cuadrante}
+
+\begin{cuadroteoria}
+  Cuando un vector forma un ángulo $\theta$ \emph{arbitrario} con el eje $X$ positivo, se habla de su \textbf{ángulo de referencia} $\theta_{\text{ref}}$ (siempre entre $0^{\circ}$ y $90^{\circ}$) y del \textbf{cuadrante} en que se ubica su punta.  El ángulo de referencia es el ángulo agudo formado con el eje $X$ (positivo o negativo, según el cuadrante).
+
+  \begin{center}
+    \begin{tikzpicture}[scale=1.05]
+      % ejes
+      \draw[thick, -Latex] (-3,0) -- (3,0) node[right] {$x$};
+      \draw[thick, -Latex] (0,-3) -- (0,3) node[above] {$y$};
+      % etiquetas de cuadrantes
+      \node[mwprimario!80, font=\small\bfseries] at ( 1.6, 1.6) {I};
+      \node[mwnaranja!90, font=\small\bfseries]  at (-1.6, 1.6) {II};
+      \node[mwmagenta!90, font=\small\bfseries]  at (-1.6,-1.6) {III};
+      \node[mwvioleta!90, font=\small\bfseries]  at ( 1.6,-1.6) {IV};
+      % vectores ejemplo en cada cuadrante
+      \draw[thick,-Latex,mwprimario]  (0,0) -- ( 1.8, 1.2) node[above right,font=\tiny] {$\vec{v}_{\text{I}}$};
+      \draw[thick,-Latex,mwnaranja]   (0,0) -- (-1.8, 1.2) node[above left, font=\tiny] {$\vec{v}_{\text{II}}$};
+      \draw[thick,-Latex,mwmagenta]   (0,0) -- (-1.8,-1.2) node[below left, font=\tiny] {$\vec{v}_{\text{III}}$};
+      \draw[thick,-Latex,mwvioleta]   (0,0) -- ( 1.8,-1.2) node[below right,font=\tiny] {$\vec{v}_{\text{IV}}$};
+    \end{tikzpicture}
+  \end{center}
+
+  \textbf{Signos de las componentes según el cuadrante:}
+  \begin{center}
+    \begin{tabular}{cccc}
+      \toprule
+      Cuadrante & $\theta$ (eje $+x$)              & $v_x$ & $v_y$ \\
+      \midrule
+      I         & $0^\circ < \theta < 90^\circ$    & $+$   & $+$   \\
+      II        & $90^\circ < \theta < 180^\circ$  & $-$   & $+$   \\
+      III       & $180^\circ < \theta < 270^\circ$ & $-$   & $-$   \\
+      IV        & $270^\circ < \theta < 360^\circ$ & $+$   & $-$   \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+
+  Las fórmulas de las componentes \textbf{siempre se aplican con el ángulo de referencia $\theta_{\text{ref}}$}; el signo se asigna según el cuadrante:
+  $$v_x = \pm |\vec{v}|\cos\theta_{\text{ref}}, \qquad v_y = \pm |\vec{v}|\sen\theta_{\text{ref}}$$
+\end{cuadroteoria}
+
+\newpage %ajuste pág
+
+\begin{cuadropasos}
+  \textbf{Cómo descomponer un vector en cualquier cuadrante:}
+  \begin{enumerate}[leftmargin=*]
+    \item Localiza el cuadrante en que está el vector a partir de $\theta$ (medido desde el eje $+x$ en sentido antihorario).
+    \item Calcula el ángulo de referencia $\theta_{\text{ref}}$:
+          \begin{itemize}
+            \item Cuadrante I:   $\theta_{\text{ref}} = \theta$
+            \item Cuadrante II:  $\theta_{\text{ref}} = 180^\circ - \theta$
+            \item Cuadrante III: $\theta_{\text{ref}} = \theta - 180^\circ$
+            \item Cuadrante IV:  $\theta_{\text{ref}} = 360^\circ - \theta$
+          \end{itemize}
+    \item Aplica $v_x = |\vec{v}|\cos\theta_{\text{ref}}$ y $v_y = |\vec{v}|\sen\theta_{\text{ref}}$.
+    \item Asigna el signo correcto según el cuadrante (tabla de arriba).
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos en la reducción al primer cuadrante:}
+  \begin{itemize}[leftmargin=*]
+    \item Usar $\theta$ directamente en $\cos$ y $\sen$ sin reducir: $\cos 150^\circ \neq \cos 150^\circ$ como positivo; hay que reconocer que da $-\cos 30^\circ$.
+    \item Olvidar el signo de la componente: un vector en el III cuadrante tiene \emph{ambas} componentes negativas.
+    \item Confundir el ángulo de referencia con el ángulo desde el eje $+y$: el ángulo de referencia siempre se mide desde el eje $X$ más cercano.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Clasifica cada magnitud como escalar o vectorial: $a)$ $25^{\circ}$C \quad $b)$ $60$ km/h hacia el este \quad $c)$ $5$ kg \quad $d)$ fuerza de $10$ N hacia arriba.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item $a)$ Temperatura: escalar.
+    \item $b)$ Velocidad con dirección: vectorial.
+    \item $c)$ Masa: escalar.
+    \item $d)$ Fuerza con dirección: vectorial.
+  \end{itemize}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Un vector $\vec{v}$ tiene módulo $10$ y forma un ángulo de $60^{\circ}$ con el eje $X$ positivo. Halla sus componentes.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} usando los valores notables ($\cos 60^{\circ} = \tfrac{1}{2}$, $\sen 60^{\circ} = \tfrac{\sqrt{3}}{2}$):
+  $$v_x = 10 \cos 60^{\circ} = 10 \cdot \frac{1}{2} = 5, \qquad v_y = 10 \sen 60^{\circ} = 10 \cdot \frac{\sqrt{3}}{2} = 5\sqrt{3}.$$
+  Entonces $\vec{v} = (5,\, 5\sqrt{3})$.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Suma $\vec{a} = (3, 4)$ y $\vec{b} = (1, 2)$ y calcula el módulo de la resultante.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$\vec{a} + \vec{b} = (3 + 1, 4 + 2) = (4, 6), \qquad |\vec{a} + \vec{b}| = \sqrt{4^2 + 6^2} = \sqrt{16 + 36} = \sqrt{52} = 2\sqrt{13}.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R4.} Un vector $\vec{u}$ tiene módulo $10$ y forma un ángulo de $150^{\circ}$ con el eje $X$ positivo. Halla sus componentes.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} $150^{\circ}$ está en el \textbf{cuadrante II}, así que $v_x < 0$ y $v_y > 0$.
+  \begin{enumerate}[leftmargin=*, label=\arabic*.]
+    \item Ángulo de referencia: $\theta_{\text{ref}} = 180^{\circ} - 150^{\circ} = 30^{\circ}$.
+    \item Componentes (con valores notables $\cos 30^{\circ} = \frac{\sqrt{3}}{2}$, $\sen 30^{\circ} = \frac{1}{2}$):
+          $$v_x = -\,10\cos 30^{\circ} = -\,10 \cdot \frac{\sqrt{3}}{2} = -5\sqrt{3} \approx -8{,}66,$$
+          $$v_y = +\,10\sen 30^{\circ} = +\,10 \cdot \frac{1}{2} = 5.$$
+  \end{enumerate}
+  Resultado: $\vec{u} = (-5\sqrt{3},\; 5)$.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R5.} Un vector $\vec{w}$ tiene módulo $8$ y apunta en la dirección $225^{\circ}$ (cuadrante III). Halla sus componentes.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} $225^{\circ}$ está en el \textbf{cuadrante III}: ambas componentes son negativas.
+  \begin{enumerate}[leftmargin=*, label=\arabic*.]
+    \item Ángulo de referencia: $\theta_{\text{ref}} = 225^{\circ} - 180^{\circ} = 45^{\circ}$.
+    \item Con $\cos 45^{\circ} = \sen 45^{\circ} = \frac{\sqrt{2}}{2}$:
+          $$w_x = -\,8\cos 45^{\circ} = -4\sqrt{2} \approx -5{,}66, \qquad w_y = -\,8\sen 45^{\circ} = -4\sqrt{2} \approx -5{,}66.$$
+  \end{enumerate}
+  Resultado: $\vec{w} = (-4\sqrt{2},\; -4\sqrt{2})$.
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Clasifica como escalar o vectorial: $a)$ $10$ s \quad $b)$ desplazamiento de $20$ m al norte \quad $c)$ $9{,}8$ m/s$^2$ hacia abajo \quad $d)$ $120$ W.
+
+  \item \facil{} Nombra los tres elementos de un vector y dibuja un vector de módulo $4$ en dirección horizontal hacia la derecha.
+
+  \item \facil{} Un vector $\vec{v}$ tiene módulo $8$ y ángulo $0^{\circ}$. ¿Cuáles son sus componentes?
+
+  \item \facil{} Suma: $\vec{a} = (2, 5)$ y $\vec{b} = (3, 1)$. Escribe la resultante como par ordenado.
+
+  \item \facil{} Multiplica el vector $\vec{v} = (2, 3)$ por el escalar $k = 3$. ¿Qué vector obtienes?
+
+  \item \medio{} Un vector tiene módulo $12$ y forma $30^{\circ}$ con el eje $X$. Halla sus componentes (usa $\cos 30^{\circ} = \tfrac{\sqrt{3}}{2}$ y $\sen 30^{\circ} = \tfrac{1}{2}$).
+
+  \item \medio{} Un auto se desplaza $3$ km al este y luego $4$ km al norte. ¿Cuál es el módulo del desplazamiento total? ¿Es lo mismo que recorrer $7$ km? Explica.
+
+  \item \medio{} Suma $\vec{a} = (5, -2)$ y $\vec{b} = (-3, 4)$ y calcula el módulo de la resultante.
+
+  \item \medio{} El viento sopla con un vector $\vec{v} = (3, 4)$. ¿Cuál es su módulo? ¿Qué ángulo forma aproximadamente con el eje $X$?
+
+  \item \dificil{} Un vector tiene componentes $v_x = 4$ y $v_y = 4$. ¿Cuál es su módulo y qué ángulo forma con el eje $X$?
+
+  \item \dificil{} \textbf{El reto de los campeones:} un barco navega $30$ km hacia el este y luego $40$ km en dirección $60^{\circ}$ al norte del este. ¿A qué distancia del punto de partida queda?
+
+        % ── Ejercicios de reducción al primer cuadrante ──────────
+  \item \medio{} Halla las componentes de los siguientes vectores (módulo $20$):
+        $a)$ $\theta = 120^{\circ}$ \quad $b)$ $\theta = 240^{\circ}$ \quad $c)$ $\theta = 315^{\circ}$.\\
+        Indica en cada caso el cuadrante y el ángulo de referencia.
+
+  \item \dificil{} Una fuerza de $50$ N actúa con un ángulo de $210^{\circ}$ respecto al eje $+x$. Halla sus componentes $F_x$ y $F_y$, y verifica que $\sqrt{F_x^2 + F_y^2} = 50$ N.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Clave de Respuestas}
+% ============================================================
+
+\subsection*{Sección 1: Sistema Internacional y medición (Ejercicios 1--11)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{0}
+  \item a) Fundamental. \quad b) Derivada. \quad c) Fundamental. \quad d) Derivada.
+  \item a) kg. \quad b) s. \quad c) m.
+  \item $1000$ m; $0{,}01$ m; $0{,}001$ m.
+  \item a) $3000$ m. \quad b) $7{,}5$ m. \quad c) $0{,}012$ m.
+  \item a) $3 \times 10^{5}$. \quad b) $5 \times 10^{-4}$. \quad c) $2{,}5 \times 10^{7}$.
+  \item a) $2 \times 10^{-7}$. \quad b) $9{,}46 \times 10^{12}$.
+  \item $2500$ mm; $250$ cm.
+  \item $3{,}4 \times 10^{2}$ m/s.
+  \item a) 3. \quad b) 2 (los ceros a la izquierda no cuentan). \quad c) 4 (el cero final cuenta).
+  \item $1 \times 10^{-10}$ m = $1$ \AA.
+  \item $5\,970\,000\,000\,000\,000\,000\,000\,000$ kg; la Tierra cabe $\approx 333\,000$ veces en el Sol (en masa).
+\end{enumerate}
+
+\subsection*{Sección 2: Transformación de unidades (Ejercicios 12--22)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{11}
+  \item a) $2{,}5$ m. \quad b) $4000$ m. \quad c) $0{,}5$ m.
+  \item a) $3{,}5$ kg. \quad b) $500$ kg.
+  \item a) $180$ s. \quad b) $3600$ s. \quad c) $5400$ s.
+  \item a) $36 \div 3{,}6 = 10$ m/s. \quad b) $90 \div 3{,}6 = 25$ m/s.
+  \item a) $10 \cdot 3{,}6 = 36$ km/h. \quad b) $25 \cdot 3{,}6 = 90$ km/h.
+  \item $42\,195$ m; $4\,219\,500$ cm.
+  \item $144 \div 3{,}6 = 40$ m/s, así que recorre $40$ m en 1 s.
+  \item $\rho = \dfrac{400 \text{ g}}{50 \text{ cm}^3} = 8$ g/cm$^3$ $= 8000$ kg/m$^3$.
+  \item $v \approx \dfrac{100}{9{,}58} \approx 10{,}4$ m/s $\approx 37{,}6$ km/h.
+  \item $1 \frac{\text{g}}{\text{cm}^3} = \frac{10^{-3} \text{ kg}}{10^{-6} \text{ m}^3} = 10^{3} \frac{\text{kg}}{\text{m}^3} = 1000$ kg/m$^3$. \checkmark
+  \item $v = \dfrac{240}{2{,}5} = 96$ km/h $= 96 \div 3{,}6 \approx 26{,}7$ m/s.
+\end{enumerate}
+
+\subsection*{Sección 3: Vectores (Ejercicios 23--35)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{22}
+  \item a) Escalar. \quad b) Vectorial. \quad c) Vectorial. \quad d) Escalar.
+  \item Módulo, dirección y sentido.
+  \item $v_x = 8$, $v_y = 0$ (está sobre el eje $X$).
+  \item $(5, 6)$.
+  \item $(6, 9)$ (se triplican las componentes).
+  \item $v_x = 12 \cdot \dfrac{\sqrt{3}}{2} = 6\sqrt{3}$; $v_y = 12 \cdot \dfrac{1}{2} = 6$. $\vec{v} = (6\sqrt{3}, 6)$.
+  \item $|\vec{d}| = \sqrt{3^2 + 4^2} = 5$ km. No es lo mismo: la distancia recorrida es $7$ km, pero el desplazamiento es $5$ km.
+  \item $(2, 2)$; módulo $\sqrt{8} = 2\sqrt{2}$.
+  \item $|\vec{v}| = \sqrt{3^2 + 4^2} = 5$; el ángulo es aproximadamente $53^{\circ}$ (cerca de $60^{\circ}$, pero un poco menos).
+  \item $|\vec{v}| = \sqrt{4^2 + 4^2} = 4\sqrt{2}$; ángulo $45^{\circ}$.
+  \item \textbf{Reto:} segundo tramo: $(40\cos 60^{\circ},\, 40\sen 60^{\circ}) = (20,\, 20\sqrt{3})$. Total: $(30 + 20,\, 20\sqrt{3}) = (50,\, 20\sqrt{3})$. Distancia: $\sqrt{50^2 + (20\sqrt{3})^2} = \sqrt{2500 + 1200} = \sqrt{3700} \approx 60{,}8$ km.
+  \item $a)$ C.II, $\theta_{\text{ref}} = 60^{\circ}$: $\vec{v} = (-10,\; 10\sqrt{3})$. \quad
+        $b)$ C.III, $\theta_{\text{ref}} = 60^{\circ}$: $\vec{v} = (-10,\; -10\sqrt{3})$. \quad
+        $c)$ C.IV, $\theta_{\text{ref}} = 45^{\circ}$: $\vec{v} = (10\sqrt{2},\; -10\sqrt{2})$.
+  \item $\theta_{\text{ref}} = 210^{\circ} - 180^{\circ} = 30^{\circ}$ (C.III): $F_x = -50\cos 30^{\circ} = -25\sqrt{3} \approx -43{,}3$ N; $F_y = -50\sen 30^{\circ} = -25$ N. Verificación: $\sqrt{(-25\sqrt{3})^2 + (-25)^2} = \sqrt{1875 + 625} = \sqrt{2500} = 50$ N. \checkmark
+\end{enumerate}
+
+\vspace{8pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{¿Cómo te fue?} Ya sabes medir, convertir y trabajar con direcciones: eso es media física. En la próxima guía usaremos estas herramientas para describir el \emph{movimiento}: con el MRU y el MRUV aprenderás a predecir dónde estará un auto dentro de 10 segundos. ¡Nos vemos ahí!
+\end{cuadroinfo}
+
+\end{document}

@@ -1,0 +1,403 @@
+% ============================================================
+%  GUÍA 4: CINEMÁTICA — MRU, MRUV, CAÍDA LIBRE Y LANZAMIENTO VERTICAL
+%  Curso 4to Año — Física
+%  Autor: Gabriel Astudillo
+%  Clases cubiertas: 13 a 15
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Guía 4 — Cinemática}{Gabriel Astudillo $\cdot$ 4to Año}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Estudio 4}{Cinemática: el estudio del movimiento}{MRU, MRUV, caída libre y lanzamiento vertical en una dimensión}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} ¡Hola! ¿Alguna vez te has preguntado dónde estará un autobús dentro de 10 segundos, o cuánto tarda una pelota en caer desde el décimo piso? Eso es la \emph{cinemática}: la rama de la física que describe el movimiento sin preguntarse por sus causas. En esta guía aprenderás a describir movimientos rectilíneos uniformes (MRU), movimientos con aceleración (MRUV) y los movimientos verticales bajo la gravedad: la caída libre y el lanzamiento hacia arriba. ¡Vamos a convertirnos en \emph{cronometradores expertos}!
+  \\[4pt]
+  \textbf{Nivel de Dificultad:}\quad
+  \facil{} Básico / Directo \quad
+  \medio{} Intermedio \quad
+  \dificil{} Desafiante
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Movimiento Rectilíneo Uniforme (MRU)}
+% ============================================================
+
+\subsection{Conceptos básicos}
+
+\begin{cuadroteoria}
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Posición} ($x$): el lugar donde está el móvil respecto a un punto de referencia.
+    \item \textbf{Trayectoria}: el camino que recorre el móvil.
+    \item \textbf{Distancia recorrida}: la longitud total del camino recorrido (escalar).
+    \item \textbf{Desplazamiento} ($\Delta x = x_f - x_i$): el cambio de posición, en línea recta desde el inicio hasta el final (vector).
+  \end{itemize}
+  \textbf{Rapidez} es la distancia recorrida por unidad de tiempo; \textbf{velocidad} es el desplazamiento por unidad de tiempo (tiene dirección y sentido).
+  $$v = \frac{\Delta x}{\Delta t} = \frac{x_f - x_i}{t_f - t_i}$$
+\end{cuadroteoria}
+
+\begin{cuadroteoria}
+  \textbf{MRU:} un móvil tiene \textbf{movimiento rectilíneo uniforme} cuando su velocidad es constante (módulo, dirección y sentido no cambian). Su posición en cualquier instante es:
+  $$x = x_0 + v \cdot t$$
+  donde $x_0$ es la posición inicial y $t$ el tiempo transcurrido.
+\end{cuadroteoria}
+
+\begin{cuadroteoria}
+  \textbf{Gráficas del MRU:}
+  \begin{center}
+    \begin{tikzpicture}[scale=0.8]
+      \draw[thick, -Latex] (0,0) -- (4.5,0) node[right] {$t$};
+      \draw[thick, -Latex] (0,0) -- (0,3.5) node[above] {$x$};
+      \draw[thick, mwprimario, -Latex] (0,0.5) -- (4,3) node[midway, above] {$x(t)$};
+      \draw[thick, -Latex] (6,0) -- (10.5,0) node[right] {$t$};
+      \draw[thick, -Latex] (6,0) -- (6,3.5) node[above] {$v$};
+      \draw[thick, mwprimario, -Latex] (6,2) -- (10,2) node[midway, above] {$v = \text{cte}$};
+    \end{tikzpicture}
+  \end{center}
+  En la gráfica $x$-$t$, la pendiente es la velocidad; en la gráfica $v$-$t$, el área bajo la recta es la distancia recorrida.
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Resolver un problema de MRU:}
+  \begin{enumerate}[leftmargin=*]
+    \item Identifica los datos: $x_0$, $v$, $t$ (¡revisa las unidades!).
+    \item Elige la fórmula adecuada: $x = x_0 + v t$ o $v = \dfrac{\Delta x}{\Delta t}$.
+    \item Despeja la incógnita, sustituye y responde con unidad.
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos:}
+  \begin{itemize}[leftmargin=*]
+    \item Confundir distancia con desplazamiento: si caminas en círculos y vuelves al inicio, la distancia es grande pero el desplazamiento es cero.
+    \item Mezclar unidades: si $v$ está en m/s, $t$ debe estar en segundos (no en horas).
+    \item Olvidar la posición inicial $x_0$: el auto no siempre parte de cero.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Un auto parte de la posición $x_0 = 2$ km y viaja en línea recta a $60$ km/h. ¿Qué posición tendrá al cabo de $1{,}5$ horas?
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$x = x_0 + v \cdot t = 2 \text{ km} + 60 \frac{\text{km}}{\text{h}} \cdot 1{,}5 \text{ h} = 2 + 90 = 92 \text{ km}.$$
+  El auto estará en la posición $92$ km.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Un atleta corre $100$ m en $12{,}5$ s a velocidad constante. ¿Cuál es su rapidez en m/s y en km/h?
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$v = \frac{100 \text{ m}}{12{,}5 \text{ s}} = 8 \frac{\text{m}}{\text{s}} = 8 \cdot 3{,}6 = 28{,}8 \frac{\text{km}}{\text{h}}.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Dos autos salen de dos ciudades separadas $300$ km, uno hacia el otro: $A$ a $70$ km/h y $B$ a $80$ km/h. ¿Cuánto tardan en encontrarse y a qué distancia de la ciudad de $A$?
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} se acercan a razón de $70 + 80 = 150$ km/h:
+  $$t = \frac{300 \text{ km}}{150 \text{ km/h}} = 2 \text{ horas}.$$
+  El auto $A$ habrá recorrido $70 \cdot 2 = 140$ km: se encuentran a $140$ km de la ciudad de $A$.
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} ¿Qué es el desplazamiento? ¿En qué se diferencia de la distancia recorrida?
+
+  \item \facil{} Un tren viaja a $80$ km/h durante $3$ horas. ¿Qué distancia recorre?
+
+  \item \facil{} Un ciclista recorre $30$ km en $1{,}5$ horas. ¿Cuál es su rapidez media?
+
+  \item \facil{} Un auto viaja a $20$ m/s. ¿Qué distancia recorre en $10$ segundos?
+
+  \item \facil{} Una persona camina $4$ km al este y luego $3$ km al oeste. ¿Cuál es su distancia recorrida y su desplazamiento?
+
+  \item \medio{} Un auto parte de $x_0 = 15$ km con velocidad constante de $54$ km/h. Convierte la velocidad a m/s y calcula su posición (en metros) a los $90$ s.
+
+  \item \medio{} Un avión comercial vuela $2700$ km en $3{,}75$ horas. Expresa su rapidez en km/h y luego conviértela a m/s.
+
+  \item \medio{} Una lancha navega a $72$ km/h río abajo y una segunda lancha navega en sentido contrario a $48$ km/h. Si parten de puntos separados $360$ km, ¿en cuánto tiempo y a qué distancia del punto de partida de la primera se encuentran?
+
+  \item \medio{} Un corredor parte de la posición $x_0 = 50$ m y corre a $6$ m/s. Al mismo tiempo, otro parte de $x_0 = 200$ m y corre en la misma dirección a $4$ m/s. ¿Cuánto tiempo tarda el primero en alcanzar al segundo? ¿En qué posición ocurre?
+
+  \item \dificil{} Un auto sale de la ciudad $A$ hacia $B$ a $80$ km/h. Exactamente $45$ minutos después, un segundo auto sale de $A$ hacia $B$ a $110$ km/h. (a) ¿Cuánto tiempo tarda el segundo en alcanzar al primero? (b) ¿A qué distancia de $A$ se produce el encuentro?
+
+  \item \dificil{} Un tren de $250$ m de largo debe cruzar un puente de $1{,}1$ km a velocidad máxima de $54$ km/h. ¿Cuánto tiempo tarda la locomotora en cruzar el puente? ¿Y cuánto tarda en que el tren completo haya cruzado?
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Movimiento Rectilíneo Uniformemente Variado (MRUV)}
+% ============================================================
+
+\subsection{La aceleración}
+
+\begin{cuadroteoria}
+  La \textbf{aceleración} mide cuánto cambia la velocidad por unidad de tiempo:
+  $$a = \frac{\Delta v}{\Delta t} = \frac{v_f - v_i}{t_f - t_i} \qquad \left(\text{unidad: } \frac{\text{m}}{\text{s}^2}\right)$$
+  Si la aceleración es \textbf{constante}, el movimiento es \textbf{MRUV}.
+\end{cuadroteoria}
+
+\begin{cuadroteoria}
+  \textbf{Ecuaciones del MRUV:}
+  \begin{align*}
+    v_f      & = v_i + a\, t                    \\
+    \Delta x & = v_i\, t + \tfrac{1}{2} a\, t^2 \\
+    v_f^2    & = v_i^2 + 2\, a\, \Delta x
+  \end{align*}
+  donde $v_i$ es la velocidad inicial, $v_f$ la final, $a$ la aceleración, $t$ el tiempo y $\Delta x$ el desplazamiento.
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Resolver un problema de MRUV:}
+  \begin{enumerate}[leftmargin=*]
+    \item Identifica los datos y la incógnita (señala qué sabes y qué buscas).
+    \item Elige la ecuación que relaciona los datos con la incógnita (¡y que no tenga incógnitas extra!).
+    \item Despeja, sustituye y revisa los signos de $a$.
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos:}
+  \begin{itemize}[leftmargin=*]
+    \item Usar las fórmulas del MRU en un MRUV: si hay aceleración, $x = v t$ ya no vale.
+    \item Confundir el signo de la aceleración: si un móvil frena, la aceleración tiene signo \emph{contrario} a la velocidad.
+    \item Olvidar el $\frac{1}{2}$ en $\Delta x = v_i t + \frac{1}{2} a t^2$.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Un auto pasa de $10$ m/s a $30$ m/s en $5$ s. ¿Cuál es su aceleración media?
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$a = \frac{v_f - v_i}{t} = \frac{30 - 10}{5} = \frac{20}{5} = 4 \ \frac{\text{m}}{\text{s}^2}.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Un auto parte del reposo ($v_i = 0$) y acelera a $3$ m/s$^2$ durante $8$ s. ¿Qué velocidad alcanza?
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$v_f = v_i + a\, t = 0 + 3 \cdot 8 = 24 \ \frac{\text{m}}{\text{s}}.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Un auto que viaja a $25$ m/s frena con aceleración de $-5$ m/s$^2$. ¿Qué distancia recorre hasta detenerse?
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} al detenerse $v_f = 0$. Usamos la ecuación sin tiempo:
+  $$v_f^2 = v_i^2 + 2a\,\Delta x \quad \Rightarrow \quad 0 = 25^2 + 2(-5)\Delta x \quad \Rightarrow \quad 10\,\Delta x = 625$$
+  $$\Delta x = 62{,}5 \text{ m}.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R4.} Un autobús viaja a $20$ m/s durante $10$ s y luego acelera a $2$ m/s$^2$ durante $5$ s. ¿Qué distancia total recorre?
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} primero el tramo MRU y luego el tramo MRUV:
+  \begin{itemize}
+    \item Tramo 1 (MRU): $\Delta x_1 = 20 \cdot 10 = 200$ m.
+    \item Tramo 2 (MRUV): $\Delta x_2 = v_i t + \tfrac{1}{2} a t^2 = 20 \cdot 5 + \tfrac{1}{2} \cdot 2 \cdot 5^2 = 100 + 25 = 125$ m.
+  \end{itemize}
+  Distancia total: $\Delta x = 200 + 125 = 325$ m.
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} ¿Qué mide la aceleración? ¿En qué unidad se expresa?
+
+  \item \facil{} Un motociclista pasa de $5$ m/s a $15$ m/s en $4$ s. Calcula su aceleración media.
+
+  \item \facil{} Un auto parte del reposo y acelera a $4$ m/s$^2$ durante $6$ s. ¿Qué velocidad alcanza?
+
+  \item \facil{} ¿Cuánto tiempo necesita un auto que acelera a $2$ m/s$^2$ para pasar de $10$ m/s a $30$ m/s?
+
+  \item \medio{} Un tren parte del reposo y acelera a $1{,}2$ m/s$^2$ durante $30$ s. Luego mantiene esa velocidad constante. ¿Qué distancia total recorre en $50$ s?
+
+  \item \medio{} Un auto que viaja a $108$ km/h frena uniformemente hasta detenerse en $90$ m. Calcula su aceleración (en m/s$^2$) y el tiempo que tarda en frenar. (Convierte primero a m/s.)
+
+  \item \medio{} Una moto parte de $v_i = 10$ m/s y acelera a $3$ m/s$^2$. ¿Cuánto tiempo tarda en alcanzar $40$ m/s? ¿Qué distancia recorre en ese intervalo?
+
+  \item \medio{} Un avión necesita $75$ m/s para despegar y dispone de una pista de $1{,}2$ km. ¿Cuál es la aceleración mínima necesaria y cuánto tiempo ocupa la pista?
+
+  \item \dificil{} Un auto viaja a $108$ km/h cuando el conductor ve un obstáculo a $70$ m. Reacciona en $0{,}8$ s (MRU) y luego frena con $-8$ m/s$^2$. ¿Se detiene antes del obstáculo? ¿Cuánto margen (o déficit) queda?
+
+  \item \dificil{} Un tren parte del reposo con $a = 0{,}5$ m/s$^2$. Simultáneamente, un auto que está $500$ m más adelante circula en la misma dirección a $20$ m/s con velocidad constante. ¿Alcanza el tren al auto? Si es así, ¿cuándo y dónde?
+
+  \item \dificil{} \textbf{El reto de los campeones:} un vehículo parte del reposo, acelera a $2$ m/s$^2$ durante $15$ s, luego circula a velocidad constante $20$ s, y finalmente frena con $-2{,}5$ m/s$^2$ hasta detenerse. Calcula la distancia total recorrida.
+\end{enumerate}
+
+% ============================================================
+\section{Caída libre y lanzamiento vertical}
+% ============================================================
+
+\subsection{Caída libre}
+
+\begin{cuadroteoria}
+  En la \textbf{caída libre} un cuerpo se deja caer (o cae) sin velocidad inicial ($v_i = 0$) bajo la acción de la gravedad. Todos los cuerpos caen con la misma aceleración:
+  $$g = 9{,}8 \ \frac{\text{m}}{\text{s}^2} \qquad (\text{hacia abajo})$$
+  Ecuaciones (tomando el eje $Y$ positivo hacia abajo):
+  $$v = g\, t, \qquad h = \tfrac{1}{2} g\, t^2, \qquad v^2 = 2\, g\, h$$
+\end{cuadroteoria}
+
+\subsection{Lanzamiento vertical hacia arriba}
+
+\begin{cuadroteoria}
+  Si lanzas un cuerpo \textbf{hacia arriba} con velocidad inicial $v_i$, la gravedad lo frena. Al subir, la velocidad disminuye; al bajar, aumenta.
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Altura máxima:} se alcanza cuando $v = 0$: $\quad h_{\max} = \dfrac{v_i^2}{2g}$.
+    \item \textbf{Tiempo de subida:} $\quad t_{subida} = \dfrac{v_i}{g}$.
+    \item \textbf{Tiempo de vuelo:} el doble del tiempo de subida: $\quad t_{vuelo} = \dfrac{2 v_i}{g}$.
+  \end{itemize}
+  \emph{Mención:} en el lanzamiento vertical \emph{hacia abajo}, el cuerpo ya parte con velocidad inicial y $g$ se suma: $v = v_i + g t$.
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Resolver un problema vertical:}
+  \begin{enumerate}[leftmargin=*]
+    \item Define el sentido positivo (por ejemplo, hacia abajo para caída libre).
+    \item Identifica $v_i$: en caída libre vale $0$; en lanzamiento hacia arriba es la velocidad del lanzamiento.
+    \item Aplica las ecuaciones del MRUV con $a = g = 9{,}8$ m/s$^2$ y el signo correcto.
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos:}
+  \begin{itemize}[leftmargin=*]
+    \item Pensar que los cuerpos más pesados caen más rápido: en caída libre (sin aire), \emph{todos} caen igual.
+    \item Olvidar que en la altura máxima la velocidad es \emph{cero} (aunque la aceleración siga siendo $g$).
+    \item Confundir el signo de $g$: si el eje $Y$ apunta hacia arriba, la gravedad es $-9{,}8$ m/s$^2$.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Una piedra se deja caer desde un puente y tarda $3$ s en llegar al agua. ¿Qué altura tiene el puente? ($g = 9{,}8$ m/s$^2$.)
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$h = \tfrac{1}{2} g t^2 = \tfrac{1}{2} \cdot 9{,}8 \cdot 3^2 = 4{,}9 \cdot 9 = 44{,}1 \text{ m}.$$
+  El puente mide $44{,}1$ m.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Se lanza una pelota verticalmente hacia arriba con $v_i = 19{,}6$ m/s. Calcula la altura máxima y el tiempo de vuelo.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$h_{\max} = \frac{v_i^2}{2g} = \frac{19{,}6^2}{2 \cdot 9{,}8} = \frac{384{,}16}{19{,}6} = 19{,}6 \text{ m}.$$
+  $$t_{vuelo} = \frac{2 v_i}{g} = \frac{2 \cdot 19{,}6}{9{,}8} = 4 \text{ s}.$$
+  Sube durante $2$ s, llega a $19{,}6$ m y baja en otros $2$ s.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Desde un edificio de $20$ m se lanza una pelota hacia abajo con $v_i = 5$ m/s. ¿Con qué velocidad llega al suelo? (Usa $v^2 = v_i^2 + 2gh$.)
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$v^2 = v_i^2 + 2 g h = 5^2 + 2 \cdot 9{,}8 \cdot 20 = 25 + 392 = 417$$
+  $$v = \sqrt{417} \approx 20{,}4 \ \frac{\text{m}}{\text{s}}.$$
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} ¿Cuál es el valor de la aceleración de la gravedad en m/s$^2$? ¿Hacia dónde apunta?
+
+  \item \facil{} Una pelota cae libremente durante $2$ s. ¿Qué velocidad lleva en ese instante?
+
+  \item \facil{} ¿Cuánto tarda en caer un objeto desde el reposo hasta alcanzar $29{,}4$ m/s?
+
+  \item \medio{} Una manzana cae de un árbol de $7{,}2$ m. ¿Cuánto tarda en llegar al suelo y con qué velocidad impacta? (Usa $g = 9{,}8$ m/s$^2$, resultado al décimo.)
+
+  \item \medio{} Una pelota se lanza verticalmente hacia arriba desde la azotea de un edificio de $25$ m con $v_i = 15$ m/s. ¿A qué altura sobre el suelo llega en su punto más alto?
+
+  \item \medio{} Se lanza una pelota hacia arriba con $v_i = 24{,}5$ m/s. ¿Cuánto tiempo pasa la pelota \emph{por encima} de los $20$ m? (Calcula los dos instantes en que $h = 20$ m y réstales.)
+
+  \item \medio{} Desde lo alto de un acantilado se deja caer una piedra y se oye el impacto $3{,}5$ s después. ¿Qué altura tiene el acantilado? (Ignora el tiempo de propagación del sonido.)
+
+  \item \dificil{} Desde el suelo se lanza una pelota hacia arriba con $v_i = 34{,}3$ m/s. Simultáneamente, desde una ventana a $h_0 = 44{,}1$ m se deja caer otra pelota. ¿En qué instante y a qué altura se cruzan?
+
+  \item \dificil{} Un objeto se suelta desde una altura desconocida $h$ y los últimos $2$ s de caída recorre $58{,}8$ m. ¿Desde qué altura se soltó y cuánto tardó en total en caer?
+
+  \item \dificil{} Desde una terraza de $45$ m se lanza una pelota hacia \emph{abajo} con $v_i = 8$ m/s y, en ese mismo instante, desde el suelo se lanza otra hacia \emph{arriba} con $v_i = 20$ m/s. ¿Se cruzan antes de que la primera llegue al suelo? Si es así, ¿a qué altura y en qué instante?
+
+  \item \dificil{} \textbf{El reto de los campeones:} un cohete sube con aceleración $a = 15$ m/s$^2$ durante $6$ s desde el suelo (MRUV hacia arriba). Al apagarse el motor, continúa como proyectil. ¿Cuál es la altura máxima total que alcanza? ¿Con qué velocidad impacta al volver al suelo?
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Clave de Respuestas}
+% ============================================================
+
+\subsection*{Sección 1: MRU (Ejercicios 1--11)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{0}
+  \item El desplazamiento es el cambio de posición en línea recta (vector); la distancia es la longitud del camino recorrido (escalar).
+  \item $d = 80 \cdot 3 = 240$ km.
+  \item $v = \dfrac{30}{1{,}5} = 20$ km/h.
+  \item $d = 20 \cdot 10 = 200$ m.
+  \item Distancia: $7$ km; desplazamiento: $4 - 3 = 1$ km al este.
+  \item $54$ km/h $= 15$ m/s; $x_0 = 15\,000$ m; $x = 15\,000 + 15 \cdot 90 = 16\,350$ m $= 16{,}35$ km.
+  \item $v = \dfrac{2700}{3{,}75} = 720$ km/h $= 200$ m/s.
+  \item Se acercan a $72 + 48 = 120$ km/h; $t = \dfrac{360}{120} = 3$ h; la primera recorre $72 \cdot 3 = 216$ km.
+  \item Posiciones iguales: $50 + 6t = 200 + 4t \Rightarrow 2t = 150 \Rightarrow t = 75$ s; posición $= 50 + 6 \cdot 75 = 500$ m.
+  \item Ventaja inicial: $80 \cdot 0{,}75 = 60$ km; cierre relativo: $110 - 80 = 30$ km/h; $t = 2$ h. Encuentro a $80 \cdot 2{,}75 = 220$ km de $A$.
+  \item La locomotora recorre $1100$ m a $15$ m/s: $t_1 = \frac{1100}{15} \approx 73{,}3$ s. Para el tren completo: $1100 + 250 = 1350$ m; $t_2 = 90$ s.
+\end{enumerate}
+
+\subsection*{Sección 2: MRUV (Ejercicios 12--22)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{11}
+  \item Mide el cambio de velocidad por unidad de tiempo; se expresa en m/s$^2$.
+  \item $a = \dfrac{15 - 5}{4} = 2{,}5$ m/s$^2$.
+  \item $v_f = 0 + 4 \cdot 6 = 24$ m/s.
+  \item $t = \dfrac{30 - 10}{2} = 10$ s.
+  \item Tramo MRUV ($30$ s): $v_f = 1{,}2 \cdot 30 = 36$ m/s; $\Delta x_1 = \tfrac{1}{2} \cdot 1{,}2 \cdot 900 = 540$ m. Tramo MRU ($20$ s): $\Delta x_2 = 36 \cdot 20 = 720$ m. Total: $1260$ m.
+  \item $108$ km/h $= 30$ m/s; $0 = 30^2 + 2a(90) \Rightarrow a = -5$ m/s$^2$; $t = \frac{0 - 30}{-5} = 6$ s.
+  \item $t = \dfrac{40 - 10}{3} = 10$ s; $\Delta x = 10 \cdot 10 + \tfrac{1}{2} \cdot 3 \cdot 100 = 100 + 150 = 250$ m.
+  \item $v_f^2 = 2a\,\Delta x \Rightarrow a = \dfrac{75^2}{2 \cdot 1200} \approx 2{,}34$ m/s$^2$; $t = \dfrac{75}{2{,}34} \approx 32$ s.
+  \item $108$ km/h $= 30$ m/s. Tramo reacción: $\Delta x_1 = 30 \cdot 0{,}8 = 24$ m; $v$ tras reacción $= 30$ m/s. Tramo freno: $\Delta x_2 = \tfrac{30^2}{2 \cdot 8} = 56{,}25$ m. Total $= 80{,}25$ m $> 70$ m: \emph{no se detiene}, déficit de $\approx 10{,}25$ m.
+  \item Posición tren: $x_T = \tfrac{1}{2}(0{,}5)t^2$. Posición auto: $x_A = 500 + 20t$. Igualando: $0{,}25t^2 - 20t - 500 = 0$; discriminante $= 400 + 500 = 900 > 0$; $t = \frac{20 + 30}{0{,}5} = 100$ s; posición $= 500 + 20 \cdot 100 = 2500$ m.
+  \item Tramo 1 ($15$ s, $a=2$): $v_1=30$ m/s, $\Delta x_1 = \tfrac{1}{2}\cdot2\cdot225 = 225$ m. Tramo 2 ($20$ s, cte.): $\Delta x_2 = 600$ m. Tramo 3 (freno, $v_0=30$, $a=-2{,}5$): $\Delta x_3 = \frac{30^2}{2\cdot2{,}5}=180$ m. Total: $\mathbf{1005}$ m.
+\end{enumerate}
+
+\subsection*{Sección 3: Caída libre y lanzamiento vertical (Ejercicios 23--33)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{22}
+  \item $g = 9{,}8$ m/s$^2$, apunta hacia el centro de la Tierra (hacia abajo).
+  \item $v = 9{,}8 \cdot 2 = 19{,}6$ m/s.
+  \item $t = \dfrac{29{,}4}{9{,}8} = 3$ s.
+  \item $7{,}2 = \tfrac{1}{2} \cdot 9{,}8 \cdot t^2 \Rightarrow t = \sqrt{\frac{7{,}2}{4{,}9}} \approx 1{,}2$ s; $v = 9{,}8 \cdot 1{,}2 \approx 11{,}8$ m/s.
+  \item $h_{\max} = 25 + \dfrac{15^2}{2 \cdot 9{,}8} = 25 + 11{,}48 \approx 36{,}5$ m sobre el suelo.
+  \item $h = 24{,}5\,t - 4{,}9\,t^2 = 20 \Rightarrow 4{,}9t^2 - 24{,}5t + 20 = 0$; $t = \frac{24{,}5 \pm \sqrt{600{,}25 - 392}}{9{,}8} = \frac{24{,}5 \pm 14{,}4}{9{,}8}$; $t_1 \approx 1{,}03$ s, $t_2 \approx 3{,}97$ s; tiempo sobre 20 m $\approx 2{,}94$ s.
+  \item $h = \tfrac{1}{2} \cdot 9{,}8 \cdot 3{,}5^2 \approx 60{,}0$ m.
+  \item Pelota lanzada: $y_1 = 34{,}3\,t - 4{,}9\,t^2$. Pelota soltada: $y_2 = 44{,}1 - 4{,}9\,t^2$. Igualando: $34{,}3\,t = 44{,}1 \Rightarrow t \approx 1{,}29$ s; altura $= 44{,}1 - 4{,}9 \cdot 1{,}29^2 \approx 35{,}9$ m.
+  \item Los últimos 2 s: $\Delta x = v_{n-2} \cdot 2 + \tfrac{1}{2}g \cdot 4 = 58{,}8$; $v_{n-2} = g(t-2)$; $2g(t-2) + 2g = 58{,}8 \Rightarrow g(2t-2) = 58{,}8 \Rightarrow t = \frac{58{,}8/9{,}8 + 2}{2} = 4$ s; $h = \tfrac{1}{2} \cdot 9{,}8 \cdot 16 = 78{,}4$ m.
+  \item Pelota A (↓): $y_A = 45 - 8t - 4{,}9t^2$. Pelota B (↑): $y_B = 20t - 4{,}9t^2$. Cruce: $45 - 8t = 20t \Rightarrow t = \frac{45}{28} \approx 1{,}61$ s; $y_B \approx 20 \cdot 1{,}61 - 4{,}9 \cdot 2{,}59 \approx 19{,}5$ m. (La pelota A llega al suelo en $\approx 2{,}5$ s, así que se cruzan antes.)
+  \item \textbf{Reto:} Fase motor ($6$ s, $a=15$): $v_1 = 90$ m/s; $h_1 = \tfrac{1}{2} \cdot 15 \cdot 36 = 270$ m. Fase vuelo libre: $h_2 = \frac{90^2}{2 \cdot 9{,}8} \approx 413{,}3$ m. Altura máxima: $\approx 683{,}3$ m. Velocidad al suelo (desde $h_{\max}$): $v = \sqrt{2 \cdot 9{,}8 \cdot 683{,}3} \approx 115{,}8$ m/s.
+\end{enumerate}
+
+\vspace{8pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{¿Cómo te fue?} Ya puedes predecir el movimiento: sabes dónde estará un auto, cuánto tarda en frenar y qué altura alcanza una pelota. La cinemática es la puerta de entrada a toda la física del movimiento. En las próximas guías pasaremos a la química: la estructura del átomo y la estequiometría. ¡Nos vemos ahí!
+\end{cuadroinfo}
+
+\end{document}

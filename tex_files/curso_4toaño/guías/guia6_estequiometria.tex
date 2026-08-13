@@ -1,0 +1,439 @@
+% ============================================================
+%  GUÍA 6: ESTEQUIOMETRÍA
+%  Curso 4to Año — Química
+%  Autor: Gabriel Astudillo
+%  Clases cubiertas: 16 a 17
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Guía 6 — Estequiometría}{Gabriel Astudillo $\cdot$ 4to Año}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Estudio 6}{Estequiometría}{El mol, el balanceo de ecuaciones y los cálculos de las reacciones químicas}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} ¡Hola! Los átomos son diminutos: en un gramo de agua hay más moléculas que granos de arena en todas las playas del planeta. Entonces, ¿cómo cuentan los químicos la materia? Con una unidad gigante llamada \textbf{mol}. En esta guía aprenderás a usar el mol y el número de Avogadro, a balancear ecuaciones químicas y a calcular cuánta masa participa en una reacción. Con la estequiometría cerramos el curso: ya podrás leer una reacción química como quien lee una receta de cocina y saber exactamente cuánto de cada ingrediente necesitas. ¡Vamos, futuros químicos!
+  \\[4pt]
+  \textbf{Nivel de Dificultad:}\quad
+  \facil{} Básico / Directo \quad
+  \medio{} Intermedio \quad
+  \dificil{} Desafiante
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{El mol y la masa molar}
+% ============================================================
+
+\subsection{El mol y el número de Avogadro}
+
+\begin{cuadroteoria}
+  El \textbf{mol} (mol) es la unidad de cantidad de sustancia del SI. Un mol de cualquier sustancia contiene exactamente $6{,}022 \times 10^{23}$ partículas (átomos, moléculas o iones):
+  $$N_A = 6{,}022 \times 10^{23} \ \text{partículas/mol} \qquad (\text{número de Avogadro})$$
+  \emph{Analogía:} así como una docena siempre son 12 unidades, un mol siempre son $6{,}022 \times 10^{23}$ partículas.
+\end{cuadroteoria}
+
+\subsection{La masa molar}
+
+\begin{cuadroteoria}
+  La \textbf{masa molar} ($M$) es la masa de un mol de sustancia y se mide en g/mol.
+  \begin{itemize}[leftmargin=*]
+    \item Para un \emph{átomo}: su masa molar coincide con la masa atómica. Ej.: $M(\text{C}) = 12$ g/mol.
+    \item Para una \emph{molécula}: se suman las masas atómicas de todos sus átomos. Ej.: $M(\text{H}_2\text{O}) = 2(1) + 16 = 18$ g/mol.
+  \end{itemize}
+  \begin{center}
+    \begin{tabular}{lcccccccc}
+      \toprule
+      Elemento         & H & C  & N  & O  & Na & S  & Cl     & Ca \\
+      \midrule
+      Masa atómica (u) & 1 & 12 & 14 & 16 & 23 & 32 & 35{,}5 & 40 \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Conversiones con el mol:}
+  \begin{center}
+    \begin{tabular}{lccc}
+      \toprule
+      De         & a          & Operación             & Factor               \\
+      \midrule
+      gramos     & moles      & dividir entre $M$     & $n = \dfrac{m}{M}$   \\
+      moles      & gramos     & multiplicar por $M$   & $m = n \cdot M$      \\
+      moles      & partículas & multiplicar por $N_A$ & $N = n \cdot N_A$    \\
+      partículas & moles      & dividir entre $N_A$   & $n = \dfrac{N}{N_A}$ \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos:}
+  \begin{itemize}[leftmargin=*]
+    \item Confundir masa atómica (u) con masa molar (g/mol): son el mismo número pero distintas unidades.
+    \item Olvidar los subíndices al calcular la masa molar: en $\text{H}_2\text{O}$ hay \emph{dos} hidrógenos.
+    \item Dividir cuando hay que multiplicar: de gramos a moles se \emph{divide}; de moles a gramos se \emph{multiplica}.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} ¿Cuántos moles hay en $46$ g de sodio? ($M(\text{Na}) = 23$ g/mol.)
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$n = \frac{m}{M} = \frac{46 \text{ g}}{23 \text{ g/mol}} = 2 \text{ mol de Na}.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} ¿Cuántos gramos pesan $3$ mol de agua? ($M(\text{H}_2\text{O}) = 18$ g/mol.)
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$m = n \cdot M = 3 \text{ mol} \cdot 18 \frac{\text{g}}{\text{mol}} = 54 \text{ g de H}_2\text{O}.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} ¿Cuántas moléculas hay en $2$ mol de $\text{CO}_2$?
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$N = n \cdot N_A = 2 \text{ mol} \cdot 6{,}022 \times 10^{23} = 1{,}2044 \times 10^{24} \text{ moléculas de CO}_2.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R4.} Calcula la masa molar del carbonato de calcio, $\text{CaCO}_3$. ($\text{Ca} = 40$, $\text{C} = 12$, $\text{O} = 16$.)
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$M(\text{CaCO}_3) = 40 + 12 + 3(16) = 40 + 12 + 48 = 100 \ \text{g/mol}.$$
+\end{cuadrosolucion}
+
+\newpage %ajuste para pág
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} ¿Cuántas partículas hay en un mol de cualquier sustancia?
+
+  \item \facil{} ¿Cuántos moles hay en $24$ g de carbono? ($M = 12$ g/mol.)
+
+  \item \facil{} ¿Cuántos gramos pesan $2$ mol de oxígeno atómico, O? ($M = 16$ g/mol.)
+
+  \item \facil{} Calcula la masa molar de: $a)\ \text{NH}_3$ \quad $b)\ \text{CH}_4$.
+
+  \item \facil{} ¿Cuántas moléculas hay en $0{,}5$ mol de $\text{O}_2$?
+
+  \item \medio{} ¿Cuántos moles hay en $80$ g de oxígeno molecular, $\text{O}_2$? ($M = 32$ g/mol.)
+
+  \item \medio{} Calcula la masa molar del ácido sulfúrico, $\text{H}_2\text{SO}_4$. ($\text{H} = 1$, $\text{S} = 32$, $\text{O} = 16$.)
+
+  \item \medio{} ¿Cuántos gramos pesan $1{,}5$ mol de $\text{CO}_2$? ($M = 44$ g/mol.)
+
+  \item \medio{} ¿Cuántos átomos hay en $3$ mol de hierro?
+
+  \item \dificil{} ¿Cuántos moles hay en $100$ g de carbonato de calcio ($\text{CaCO}_3$, $M = 100$ g/mol)? ¿Cuántas moléculas?
+
+  \item \dificil{} ¿Cuántos átomos de oxígeno hay en $1$ mol de $\text{H}_2\text{SO}_4$? (Pista: por cada molécula hay 4 átomos de O.)
+\end{enumerate}
+
+% ============================================================
+\section{Balanceo de ecuaciones químicas}
+% ============================================================
+
+\subsection{La ley de conservación de la masa}
+
+\begin{cuadroteoria}
+  \textbf{Ley de conservación de la masa (Lavoisier):} en una reacción química, la masa total de los reactivos es igual a la masa total de los productos. \emph{La materia ni se crea ni se destruye, solo se transforma.}
+\end{cuadroteoria}
+
+\begin{cuadroteoria}
+  Una \textbf{ecuación química} representa la reacción: los \textbf{reactivos} se transforman en \textbf{productos}.
+  $$\underbrace{\text{CH}_4 + 2\,\text{O}_2}_{\text{reactivos}} \longrightarrow \underbrace{\text{CO}_2 + 2\,\text{H}_2\text{O}}_{\text{productos}}$$
+  \begin{itemize}[leftmargin=*]
+    \item Los \textbf{coeficientes} (los números grandes: 2) indican \emph{cuántas moléculas (o moles)} de cada sustancia participan.
+    \item Los \textbf{subíndices} (el 4 de $\text{CH}_4$) indican cuántos átomos de cada elemento hay \emph{en} la molécula. ¡No se cambian al balancear!
+  \end{itemize}
+\end{cuadroteoria}
+
+\newpage
+
+\begin{cuadropasos}
+  \textbf{Balancear por tanteo:}
+  \begin{enumerate}[leftmargin=*]
+    \item Escribe la ecuación con flecha.
+    \item Cuenta los átomos de cada elemento en reactivos y productos.
+    \item Ajusta los \emph{coeficientes} (nunca los subíndices) hasta igualar cada elemento.
+    \item Verifica contando de nuevo todos los elementos.
+  \end{enumerate}
+  \emph{Truco:} balancea primero los metales, luego los no metales, después el hidrógeno y al final el oxígeno.
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos:}
+  \begin{itemize}[leftmargin=*]
+    \item Cambiar los \emph{subíndices} para balancear: $\text{O}_2$ no puede convertirse en $\text{O}_3$ para "arreglar" el oxígeno.
+    \item Olvidar que los coeficientes multiplican a \emph{toda} la molécula: $2\,\text{H}_2\text{O}$ tiene 4 H y 2 O.
+    \item Balancear y no verificar: siempre cuenta los átomos al final.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Balancea: $\text{H}_2 + \text{O}_2 \rightarrow \text{H}_2\text{O}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} hay 2 O en reactivos y 1 en productos; colocamos coeficiente 2 al agua:
+  $$\text{H}_2 + \text{O}_2 \rightarrow 2\,\text{H}_2\text{O}$$
+  Ahora hay 4 H a la derecha: ajustamos el hidrógeno:
+  $$2\,\text{H}_2 + \text{O}_2 \rightarrow 2\,\text{H}_2\text{O}.$$
+  \emph{Verificación:} H: 4 = 4; O: 2 = 2. \checkmark
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Balancea: $\text{Fe} + \text{O}_2 \rightarrow \text{Fe}_2\text{O}_3$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} balanceamos el hierro con coeficiente 2 y el oxígeno con coeficiente 3/2 (luego multiplicamos todo por 2 para tener enteros):
+  $$2\,\text{Fe} + \tfrac{3}{2}\,\text{O}_2 \rightarrow \text{Fe}_2\text{O}_3 \quad \xrightarrow{\times 2} \quad 4\,\text{Fe} + 3\,\text{O}_2 \rightarrow 2\,\text{Fe}_2\text{O}_3.$$
+  \emph{Verificación:} Fe: 4 = 4; O: 6 = 6. \checkmark
+\end{cuadrosolucion}
+
+\newpage
+
+\textbf{Ejemplo R3.} Balancea: $\text{CH}_4 + \text{O}_2 \rightarrow \text{CO}_2 + \text{H}_2\text{O}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} el carbono ya está balanceado. Hay 4 H a la izquierda: colocamos 2 en el agua. Luego el oxígeno: $2 + 2 = 4$ a la derecha, así que colocamos 2 en el $\text{O}_2$:
+  $$\text{CH}_4 + 2\,\text{O}_2 \rightarrow \text{CO}_2 + 2\,\text{H}_2\text{O}.$$
+  \emph{Verificación:} C: 1 = 1; H: 4 = 4; O: 4 = 4. \checkmark
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R4.} La ecuación balanceada $2\,\text{H}_2 + \text{O}_2 \rightarrow 2\,\text{H}_2\text{O}$: ¿cuántos moles de agua se producen con 4 moles de hidrógeno?
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} la proporción es 2 mol $\text{H}_2$ : 2 mol $\text{H}_2\text{O}$, es decir, 1 : 1. Con 4 mol de $\text{H}_2$ se producen 4 mol de $\text{H}_2\text{O}$.
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} ¿Qué dice la ley de conservación de la masa?
+
+  \item \facil{} ¿Qué diferencia hay entre un coeficiente y un subíndice? ¿Cuál se puede cambiar al balancear?
+
+  \item \facil{} Balancea: $\text{N}_2 + \text{H}_2 \rightarrow \text{NH}_3$.
+
+  \item \facil{} Balancea: $\text{H}_2 + \text{Cl}_2 \rightarrow \text{HCl}$.
+
+  \item \facil{} En $3\,\text{H}_2\text{O}$: ¿cuántos átomos de hidrógeno y de oxígeno hay?
+
+  \item \medio{} Balancea: $\text{Na} + \text{Cl}_2 \rightarrow \text{NaCl}$.
+
+  \item \medio{} Balancea: $\text{Mg} + \text{O}_2 \rightarrow \text{MgO}$.
+
+  \item \medio{} Balancea: $\text{C}_3\text{H}_8 + \text{O}_2 \rightarrow \text{CO}_2 + \text{H}_2\text{O}$. (Ayuda: balancea C, luego H, luego O.)
+
+  \item \medio{} En la ecuación $2\,\text{H}_2 + \text{O}_2 \rightarrow 2\,\text{H}_2\text{O}$: ¿cuántos moles de $\text{O}_2$ reaccionan con 6 mol de $\text{H}_2$?
+
+  \item \dificil{} Balancea: $\text{Al} + \text{O}_2 \rightarrow \text{Al}_2\text{O}_3$.
+
+  \item \dificil{} \textbf{El reto de los campeones:} balancea la combustión del etanol: $\text{C}_2\text{H}_5\text{OH} + \text{O}_2 \rightarrow \text{CO}_2 + \text{H}_2\text{O}$. (Ayuda: el etanol tiene 2 C, 6 H y 1 O; balancea primero C y H.)
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Cálculos estequiométricos, composición porcentual y fórmulas}
+% ============================================================
+
+\subsection{Cálculos mol-mol y masa-masa}
+
+\begin{cuadroteoria}
+  Los \textbf{coeficientes} de una ecuación balanceada dan las proporciones en \textbf{moles} entre reactivos y productos. A partir de ellas se pueden calcular masas.
+  \begin{center}
+    \begin{tabular}{ll}
+      \toprule
+      Relación                & Método                                                             \\
+      \midrule
+      mol $\rightarrow$ mol   & Regla de tres con los coeficientes.                                \\
+      masa $\rightarrow$ mol  & Dividir la masa entre $M$.                                         \\
+      mol $\rightarrow$ masa  & Multiplicar los moles por $M$.                                     \\
+      masa $\rightarrow$ masa & Convertir a moles $\rightarrow$ proporción $\rightarrow$ a gramos. \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \emph{Mención:} el \textbf{reactivo limitante} es el que se consume primero y limita la cantidad de producto.
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Cálculo masa-masa en 3 pasos:}
+  \begin{enumerate}[leftmargin=*]
+    \item Convierte la masa conocida a moles ($n = m/M$).
+    \item Usa la proporción de los coeficientes para hallar los moles de la sustancia buscada.
+    \item Convierte esos moles a gramos ($m = n \cdot M$).
+  \end{enumerate}
+\end{cuadropasos}
+
+\subsection{Composición porcentual y fórmulas}
+
+\begin{cuadroteoria}
+  La \textbf{composición porcentual} indica qué % de la masa de un compuesto corresponde a cada elemento:
+  $$\% \text{elemento} = \frac{\text{masa del elemento en la fórmula}}{M(\text{compuesto})} \times 100$$
+  Ejemplo: en el agua ($M = 18$): $\% \text{H} = \frac{2}{18} \times 100 = 11{,}1\%$ y $\% \text{O} = \frac{16}{18} \times 100 = 88{,}9\%$.
+\end{cuadroteoria}
+
+\begin{cuadroteoria}
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Fórmula empírica:} la proporción más simple de átomos (ej. $\text{CH}_2\text{O}$).
+    \item \textbf{Fórmula molecular:} la cantidad real de átomos (ej. $\text{C}_6\text{H}_{12}\text{O}_6$). Es un múltiplo de la empírica: $M_{\text{molecular}} = k \cdot M_{\text{empírica}}$.
+  \end{itemize}
+\end{cuadroteoria}
+
+\newpage
+
+\begin{cuadropasos}
+  \textbf{Hallar la fórmula empírica a partir de porcentajes:}
+  \begin{enumerate}[leftmargin=*]
+    \item Divide cada porcentaje entre la masa atómica del elemento (asume 100 g de muestra).
+    \item Divide todos los resultados entre el menor de ellos.
+    \item Si quedan fracciones (ej. $1{,}5$), multiplica todo por el número que las convierta en enteros.
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos:}
+  \begin{itemize}[leftmargin=*]
+    \item Usar la proporción de la ecuación sin balancear: los coeficientes deben estar simplificados y correctos.
+    \item Redondear demasiado en los pasos intermedios: en composición porcentual usa al menos 1 decimal.
+    \item Confundir fórmula empírica con molecular: la empírica es la mínima; la molecular es un múltiplo.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} En la reacción $\text{N}_2 + 3\,\text{H}_2 \rightarrow 2\,\text{NH}_3$: ¿cuántos moles de amoniaco se producen con 6 mol de $\text{H}_2$?
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} la proporción es 3 mol $\text{H}_2$ : 2 mol $\text{NH}_3$:
+  $$6 \text{ mol H}_2 \cdot \frac{2 \text{ mol NH}_3}{3 \text{ mol H}_2} = 4 \text{ mol de NH}_3.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} En $2\,\text{H}_2 + \text{O}_2 \rightarrow 2\,\text{H}_2\text{O}$: ¿cuántos gramos de agua se producen a partir de $4$ g de hidrógeno? ($\text{H} = 1$, $\text{O} = 16$.)
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item Moles de $\text{H}_2$: $n = \dfrac{4}{2} = 2$ mol.
+    \item Proporción 2 : 2 (1 : 1): se producen 2 mol de $\text{H}_2\text{O}$.
+    \item Masa de agua: $m = 2 \cdot 18 = 36$ g de $\text{H}_2\text{O}$.
+  \end{itemize}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Calcula la composición porcentual del dióxido de carbono, $\text{CO}_2$. ($M = 44$ g/mol.)
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$\% \text{C} = \frac{12}{44} \times 100 = 27{,}3\%, \qquad \% \text{O} = \frac{32}{44} \times 100 = 72{,}7\%.$$
+  Verificación: $27{,}3 + 72{,}7 = 100\%$. \checkmark
+\end{cuadrosolucion}
+
+\newpage %ajuste para pág
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} ¿Qué representan los coeficientes de una ecuación balanceada?
+
+  \item \facil{} En $\text{N}_2 + 3\,\text{H}_2 \rightarrow 2\,\text{NH}_3$: ¿cuántos moles de $\text{NH}_3$ se producen con 9 mol de $\text{H}_2$?
+
+  \item \facil{} En $2\,\text{H}_2 + \text{O}_2 \rightarrow 2\,\text{H}_2\text{O}$: ¿cuántos moles de agua se producen con 5 mol de $\text{O}_2$?
+
+  \item \facil{} Calcula el porcentaje de oxígeno en el agua ($M = 18$ g/mol).
+
+  \item \facil{} ¿Qué diferencia hay entre fórmula empírica y fórmula molecular?
+
+  \item \medio{} En $2\,\text{H}_2 + \text{O}_2 \rightarrow 2\,\text{H}_2\text{O}$: ¿cuántos gramos de agua se producen con $8$ g de $\text{O}_2$? ($\text{O} = 16$, $\text{H} = 1$.)
+
+  \item \medio{} En $\text{CH}_4 + 2\,\text{O}_2 \rightarrow \text{CO}_2 + 2\,\text{H}_2\text{O}$: ¿cuántos gramos de $\text{CO}_2$ se producen con $16$ g de $\text{CH}_4$? ($\text{C} = 12$, $\text{H} = 1$, $\text{O} = 16$.)
+
+  \item \medio{} Calcula la composición porcentual del metano, $\text{CH}_4$ ($M = 16$ g/mol).
+
+  \item \medio{} Un compuesto tiene fórmula empírica $\text{CH}_2$ y masa molar $28$ g/mol. ¿Cuál es su fórmula molecular? ($\text{C} = 12$, $\text{H} = 1$.)
+
+  \item \dificil{} En $2\,\text{Al} + 3\,\text{Cl}_2 \rightarrow 2\,\text{AlCl}_3$: ¿cuántos gramos de $\text{AlCl}_3$ se producen con $54$ g de aluminio? ($\text{Al} = 27$, $\text{Cl} = 35{,}5$.)
+
+  \item \dificil{} \textbf{El reto de los campeones:} un compuesto contiene $40\%$ de carbono, $6{,}67\%$ de hidrógeno y $53{,}33\%$ de oxígeno. Halla su fórmula empírica. Si su masa molar es $180$ g/mol, ¿cuál es su fórmula molecular? ($\text{C} = 12$, $\text{H} = 1$, $\text{O} = 16$.)
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Clave de Respuestas}
+% ============================================================
+
+\subsection*{Sección 1: El mol y la masa molar (Ejercicios 1--11)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{0}
+  \item $6{,}022 \times 10^{23}$ partículas.
+  \item $n = \dfrac{24}{12} = 2$ mol.
+  \item $m = 2 \cdot 16 = 32$ g.
+  \item a) $M(\text{NH}_3) = 14 + 3(1) = 17$ g/mol. \quad b) $M(\text{CH}_4) = 12 + 4 = 16$ g/mol.
+  \item $0{,}5 \cdot 6{,}022 \times 10^{23} = 3{,}011 \times 10^{23}$ moléculas.
+  \item $n = \dfrac{80}{32} = 2{,}5$ mol.
+  \item $M(\text{H}_2\text{SO}_4) = 2 + 32 + 4(16) = 98$ g/mol.
+  \item $m = 1{,}5 \cdot 44 = 66$ g.
+  \item $3 \cdot 6{,}022 \times 10^{23} = 1{,}8066 \times 10^{24}$ átomos.
+  \item $n = \dfrac{100}{100} = 1$ mol; $N = 6{,}022 \times 10^{23}$ moléculas.
+  \item $4 \cdot 6{,}022 \times 10^{23} = 2{,}4088 \times 10^{24}$ átomos de O.
+\end{enumerate}
+
+\subsection*{Sección 2: Balanceo de ecuaciones (Ejercicios 12--22)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{11}
+  \item La masa total de los reactivos es igual a la masa total de los productos.
+  \item El coeficiente indica cuántas moléculas/moles; el subíndice indica átomos dentro de la molécula. Solo se cambian los coeficientes.
+  \item $\text{N}_2 + 3\,\text{H}_2 \rightarrow 2\,\text{NH}_3$.
+  \item $\text{H}_2 + \text{Cl}_2 \rightarrow 2\,\text{HCl}$.
+  \item 6 átomos de H y 3 átomos de O.
+  \item $2\,\text{Na} + \text{Cl}_2 \rightarrow 2\,\text{NaCl}$.
+  \item $2\,\text{Mg} + \text{O}_2 \rightarrow 2\,\text{MgO}$.
+  \item $\text{C}_3\text{H}_8 + 5\,\text{O}_2 \rightarrow 3\,\text{CO}_2 + 4\,\text{H}_2\text{O}$.
+  \item Proporción 2 : 1: con 6 mol de $\text{H}_2$ reaccionan 3 mol de $\text{O}_2$.
+  \item $4\,\text{Al} + 3\,\text{O}_2 \rightarrow 2\,\text{Al}_2\text{O}_3$.
+  \item \textbf{Reto:} $\text{C}_2\text{H}_5\text{OH} + 3\,\text{O}_2 \rightarrow 2\,\text{CO}_2 + 3\,\text{H}_2\text{O}$.
+\end{enumerate}
+
+\subsection*{Sección 3: Cálculos estequiométricos, composición porcentual y fórmulas (Ejercicios 23--33)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{22}
+  \item Representan las proporciones en moles entre reactivos y productos.
+  \item Proporción 3 : 2: con 9 mol de $\text{H}_2$ se producen 6 mol de $\text{NH}_3$.
+  \item Proporción 1 : 2: con 5 mol de $\text{O}_2$ se producen 10 mol de $\text{H}_2\text{O}$.
+  \item $\% \text{O} = \dfrac{16}{18} \times 100 = 88{,}9\%$.
+  \item La empírica es la proporción mínima; la molecular es un múltiplo de la empírica.
+  \item Moles de $\text{O}_2$: $8/32 = 0{,}25$ mol $\rightarrow$ $0{,}5$ mol de agua $\rightarrow$ $0{,}5 \cdot 18 = 9$ g de $\text{H}_2\text{O}$.
+  \item Moles de $\text{CH}_4$: $16/16 = 1$ mol $\rightarrow$ 1 mol de $\text{CO}_2$ $\rightarrow$ $44$ g de $\text{CO}_2$.
+  \item $\% \text{C} = \dfrac{12}{16} \times 100 = 75\%$; $\% \text{H} = 25\%$.
+  \item $M_{\text{empírica}} = 14$; $k = \dfrac{28}{14} = 2$; fórmula molecular: $\text{C}_2\text{H}_4$.
+  \item Moles de Al: $54/27 = 2$ mol $\rightarrow$ 2 mol de $\text{AlCl}_3$ $\rightarrow$ $2 \cdot 133{,}5 = 267$ g.
+  \item \textbf{Reto:} $\text{C}$: $\frac{40}{12} = 3{,}33$; $\text{H}$: $\frac{6{,}67}{1} = 6{,}67$; $\text{O}$: $\frac{53{,}33}{16} = 3{,}33$. Dividiendo entre $3{,}33$: C : H : O $= 1 : 2 : 1$. Fórmula empírica: $\text{CH}_2\text{O}$ ($M = 30$). Como $k = \frac{180}{30} = 6$: fórmula molecular $\text{C}_6\text{H}_{12}\text{O}_6$.
+\end{enumerate}
+
+\vspace{8pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{¿Cómo te fue?} ¡Felicidades, llegaste al final del curso! Con la estequiometría cerramos el ciclo: ya sabes medir (física), contar átomos (química) y razonar con ángulos y triángulos (matemática). En la próxima clase tendrás tu \textbf{examen final integrador} con las tres materias. Repasa las seis guías: cada una tiene su clave de respuestas. ¡Tú puedes, campeones!
+\end{cuadroinfo}
+
+\end{document}

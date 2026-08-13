@@ -1,0 +1,468 @@
+% ============================================================
+%  GUÍA 2: RAZONES TRIGONOMÉTRICAS
+%  Curso 4to Año — Matemática
+%  Autor: Gabriel Astudillo
+%  Clases cubiertas: 10 a 12
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Guía 2 — Razones Trigonométricas}{Gabriel Astudillo $\cdot$ 4to Año}
+
+% ── Comandos propios de esta guía ───────────────────
+\providecommand{\sen}{\sin}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Estudio 2}{Razones Trigonométricas}{Seno, coseno y tangente: midiendo alturas y distancias con un triángulo}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} ¡Hola! Imagina que quieres saber la altura de un árbol sin subirte a él, o la distancia hasta la otra orilla de un río sin cruzarlo. Con las \emph{razones trigonométricas} eso es posible: son herramientas que relacionan los ángulos de un triángulo rectángulo con sus lados. En esta guía aprenderás a calcular senos, cosenos y tangentes, memorizarás los valores de los ángulos notables ($30^{\circ}$, $45^{\circ}$ y $60^{\circ}$) y resolverás triángulos completos para aplicarlos a problemas reales. ¡Vamos a convertirnos en \emph{exploradores geométricos}!
+  \\[4pt]
+  \textbf{Nivel de Dificultad:}\quad
+  \facil{} Básico / Directo \quad
+  \medio{} Intermedio \quad
+  \dificil{} Desafiante
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Razones trigonométricas en el triángulo rectángulo}
+% ============================================================
+
+\subsection{Repaso: teorema de Pitágoras}
+
+\begin{cuadroteoria}
+  En un \textbf{triángulo rectángulo} (un triángulo con un ángulo de $90^{\circ}$) se cumple el \textbf{teorema de Pitágoras}:
+  $$c^2 = a^2 + b^2$$
+  donde $c$ es la \textbf{hipotenusa} (el lado opuesto al ángulo recto, el más largo) y $a$, $b$ son los \textbf{catetos}.
+
+  \begin{center}
+    \begin{tikzpicture}[scale=0.9]
+      \draw[thick] (0,0) -- (4.5,0) node[midway, below] {$b$};
+      \draw[thick] (0,0) -- (0,3) node[midway, left] {$a$};
+      \draw[thick] (0,3) -- (4.5,0) node[midway, above right] {$c$};
+      \draw[mwprimario, thick] (0.6,0) -- (0.6,0.6) -- (0,0.6);
+      \filldraw (0,0) circle (2pt) node[below left] {$90^{\circ}$};
+    \end{tikzpicture}
+  \end{center}
+\end{cuadroteoria}
+
+\newpage
+
+\subsection{Las razones trigonométricas}
+
+\begin{cuadroteoria}
+  Dado un ángulo agudo $\theta$ de un triángulo rectángulo:
+  \begin{center}
+    \begin{tikzpicture}[scale=0.95]
+      \draw[thick] (0,0) -- (4.5,0) node[midway, below] {adyacente};
+      \draw[thick] (0,0) -- (0,2.6) node[midway, left] {opuesto};
+      \draw[thick] (0,2.6) -- (4.5,0) node[midway, above right] {hipotenusa};
+      \draw[mwprimario, thick] (3.8,0.4) arc (150:180:0.8); %arco
+      \node[mwprimario] at (3.4,0.25) {$\theta$}; %theta
+      \draw[mwprimario, thick] (0.5,0) -- (0.5,0.5) -- (0,0.5);
+    \end{tikzpicture}
+  \end{center}
+  \textbf{Seno, coseno y tangente:}
+  $$\sen \theta = \frac{\text{cateto opuesto}}{\text{hipotenusa}}, \qquad
+    \cos \theta = \frac{\text{cateto adyacente}}{\text{hipotenusa}}, \qquad
+    \tan \theta = \frac{\text{cateto opuesto}}{\text{cateto adyacente}}$$
+
+  \textbf{Razones recíprocas (mención):}
+  $$\csc \theta = \frac{1}{\sen \theta}, \qquad
+    \sec \theta = \frac{1}{\cos \theta}, \qquad
+    \cot \theta = \frac{1}{\tan \theta}$$
+
+  \textbf{Identidad fundamental:}
+  $$\sen^2 \theta + \cos^2 \theta = 1$$
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos:}
+  \begin{itemize}[leftmargin=*]
+    \item Confundir el cateto \emph{opuesto} con el \emph{adyacente}: depende de \emph{cuál} ángulo estés usando. Para el otro ángulo agudo, ¡se intercambian!
+    \item Usar la calculadora en modo radianes cuando el ángulo está en grados (y viceversa).
+    \item Olvidar que $\tan \theta = \dfrac{\sen \theta}{\cos \theta}$ y que la tangente puede ser mayor que 1, mientras que $\sen$ y $\cos$ siempre están entre $-1$ y $1$.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\newpage %ajuste para pág
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} En el triángulo rectángulo con lados $3$, $4$ y $5$, escribe el seno, el coseno y la tangente del ángulo agudo $\alpha$ que se muestra.
+
+\begin{center}
+  \begin{tikzpicture}[scale=0.95]
+    \draw[thick] (0,0) -- (4,0) node[midway, below] {$4$};
+    \draw[thick] (0,0) -- (0,3) node[midway, left] {$3$};
+    \draw[thick] (0,3) -- (4,0) node[midway, above right] {$5$};
+    \draw[mwprimario, thick] (3.36,0.48) arc (143.13:180:0.8);
+    \node[mwprimario] at (2.9,0.22) {$\alpha$};
+    \draw[mwprimario, thick] (0.5,0) -- (0.5,0.5) -- (0,0.5);
+  \end{tikzpicture}
+\end{center}
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} para el ángulo $\alpha$, el cateto opuesto es $3$ y el adyacente es $4$; la hipotenusa es $5$.
+  $$\sen \alpha = \frac{3}{5}, \qquad \cos \alpha = \frac{4}{5}, \qquad \tan \alpha = \frac{3}{4}$$
+  \emph{Comprobación:} $\left(\frac{3}{5}\right)^2 + \left(\frac{4}{5}\right)^2 = \frac{9 + 16}{25} = 1$. \checkmark
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Para el mismo triángulo del ejemplo R1, escribe las razones del otro ángulo agudo $\beta$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} para $\beta$, los catetos se intercambian: el opuesto es $4$ y el adyacente es $3$.
+  $$\sen \beta = \frac{4}{5}, \qquad \cos \beta = \frac{3}{5}, \qquad \tan \beta = \frac{4}{3}$$
+  Nota que $\sen \beta = \cos \alpha$ y $\cos \beta = \sen \alpha$: ¡los ángulos complementarios intercambian seno y coseno!
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Si $\sen \alpha = \dfrac{3}{5}$ y $\alpha$ es un ángulo agudo, calcula $\cos \alpha$ usando la identidad fundamental.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$\sen^2 \alpha + \cos^2 \alpha = 1 \quad \Rightarrow \quad \cos^2 \alpha = 1 - \left(\frac{3}{5}\right)^2 = 1 - \frac{9}{25} = \frac{16}{25}$$
+  Como $\alpha$ es agudo, $\cos \alpha > 0$:
+  $$\cos \alpha = \sqrt{\frac{16}{25}} = \frac{4}{5}.$$
+\end{cuadrosolucion}
+
+\newpage %ajuste para pág
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} En un triángulo rectángulo, la hipotenusa mide $13$ y un cateto mide $5$. ¿Cuánto mide el otro cateto? (Aplica Pitágoras.)
+
+  \item \facil{} Escribe $\sen \alpha$, $\cos \alpha$ y $\tan \alpha$ para un triángulo con opuesto $= 6$, adyacente $= 8$ e hipotenusa $= 10$.
+
+  \item \facil{} En un triángulo rectángulo con catetos $9$ y $12$, ¿cuánto mide la hipotenusa?
+
+  \item \facil{} Calcula $\sen \theta$ si el cateto opuesto mide $7$ y la hipotenusa mide $25$.
+
+  \item \facil{} Completa: $\sen^2 \theta + \cos^2 \theta =$ \_\_\_\_\_\_\_\_. Si $\sen \theta = \dfrac{4}{5}$, entonces $\cos \theta =$ \_\_\_\_\_\_\_\_ (ángulo agudo).
+
+  \item \medio{} Para el ángulo $\theta$ de un triángulo con lados $8$, $15$ y $17$, escribe las seis razones trigonométricas.
+
+  \item \medio{} Si $\cos \alpha = \dfrac{12}{13}$ y $\alpha$ es agudo, halla $\sen \alpha$ y $\tan \alpha$.
+
+  \item \medio{} ¿En qué ángulo agudo se cumple que $\sen \theta = \cos \theta$? (Ayuda: usa la identidad fundamental y el ejemplo R2.)
+
+  \item \medio{} Un triángulo rectángulo tiene hipotenusa $10$ y un ángulo agudo $\alpha$ con $\sen \alpha = 0{,}6$. ¿Cuánto mide el cateto opuesto a $\alpha$?
+
+  \item \dificil{} Verifica que $\tan \alpha = \dfrac{\sen \alpha}{\cos \alpha}$ para un triángulo con catetos $3$ y $4$ (usa las razones del ejemplo R1).
+
+  \item \dificil{} Un triángulo rectángulo isósceles (dos catetos iguales) tiene catetos de $7$. ¿Cuánto mide la hipotenusa? ¿Qué puedes decir de sus ángulos agudos?
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Ángulos notables: $30^{\circ}$, $45^{\circ}$ y $60^{\circ}$}
+% ============================================================
+
+\subsection{De dónde salen los valores exactos}
+
+\begin{cuadroteoria}
+  \textbf{El triángulo $45^{\circ}\text{-}45^{\circ}\text{-}90^{\circ}$} se obtiene cortando un cuadrado por su diagonal. Si el lado del cuadrado es $1$, por Pitágoras la diagonal mide $\sqrt{2}$:
+  \begin{center}
+    \begin{tikzpicture}[scale=0.85]
+      \draw[thick] (0,0) -- (3,0) node[midway, below] {$1$};
+      \draw[thick] (0,0) -- (0,3) node[midway, left] {$1$};
+      \draw[thick, mwprimario] (0,3) -- (3,0) node[midway, above right] {$\sqrt{2}$};
+      \draw[mwprimario, thick] (2.5,0.5) arc (135:180:0.7);
+      \node[mwprimario] at (1.7,0.4) {$45^{\circ}$};
+      \draw[mwprimario, thick] (0.4,0) -- (0.4,0.4) -- (0,0.4);
+    \end{tikzpicture}
+  \end{center}
+  $$\sen 45^{\circ} = \frac{1}{\sqrt{2}} = \frac{\sqrt{2}}{2}, \qquad \cos 45^{\circ} = \frac{\sqrt{2}}{2}, \qquad \tan 45^{\circ} = 1$$
+
+  \textbf{El triángulo $30^{\circ}\text{-}60^{\circ}\text{-}90^{\circ}$} se obtiene partiendo un triángulo equilátero de lado $2$ por la mitad (su altura mide $\sqrt{3}$):
+  \begin{center}
+    \begin{tikzpicture}[scale=0.85]
+      \draw[thick] (0,0) -- (2,0) node[midway, below] {$?$};
+      \draw[thick] (0,0) -- (0,3.464) node[midway, left] {$\sqrt{3}$};
+      \draw[thick, mwprimario] (0,3.464) -- (2,0) node[midway, above right] {$2$};
+      \draw[mwprimario, thick] (1.6,0.693) arc (120:180:0.8);
+      \node[mwprimario] at (1.05,0.55) {$60^{\circ}$};
+      \draw[mwprimario, thick] (0.4,0) -- (0.4,0.4) -- (0,0.4);
+    \end{tikzpicture}
+  \end{center}
+  El lado que falta mide $1$ (la mitad del lado del equilátero). Así:
+  $$\sen 30^{\circ} = \frac{1}{2}, \qquad \cos 30^{\circ} = \frac{\sqrt{3}}{2}, \qquad \tan 30^{\circ} = \frac{1}{\sqrt{3}} = \frac{\sqrt{3}}{3}$$
+  $$\sen 60^{\circ} = \frac{\sqrt{3}}{2}, \qquad \cos 60^{\circ} = \frac{1}{2}, \qquad \tan 60^{\circ} = \sqrt{3}$$
+\end{cuadroteoria}
+
+\newpage %ajustar pag
+
+\begin{cuadroteoria}
+  \textbf{Tabla de ángulos notables:}
+  \begin{center}
+    \renewcommand{\arraystretch}{2.5} % Ajusta el número para más o menos espacio
+    \begin{tabular}{lccc}
+      \toprule
+      Ángulo       & $\sen$                & $\cos$                & $\tan$                \\
+      \midrule
+      $30^{\circ}$ & $\dfrac{1}{2}$        & $\dfrac{\sqrt{3}}{2}$ & $\dfrac{\sqrt{3}}{3}$ \\
+      $45^{\circ}$ & $\dfrac{\sqrt{2}}{2}$ & $\dfrac{\sqrt{2}}{2}$ & $1$                   \\
+      $60^{\circ}$ & $\dfrac{\sqrt{3}}{2}$ & $\dfrac{1}{2}$        & $\sqrt{3}$            \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \emph{Truco:} los senos suben $\frac{1}{2}, \frac{\sqrt{2}}{2}, \frac{\sqrt{3}}{2}$ y los cosenos los recorren al revés.
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Hallar un lado desconocido con un ángulo notable:}
+  \begin{enumerate}[leftmargin=*]
+    \item Identifica cuál lado conoces y cuál buscas (opuesto, adyacente o hipotenusa).
+    \item Elige la razón que relaciona esos dos lados con el ángulo dado.
+    \item Sustituye el valor exacto de la tabla y despeja el lado buscado.
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos:}
+  \begin{itemize}[leftmargin=*]
+    \item Confundir $\sen 30^{\circ} = \dfrac{1}{2}$ con $\dfrac{\sqrt{3}}{2}$ (ese es el $\cos 30^{\circ}$).
+    \item Escribir $\tan 45^{\circ} = \dfrac{\sqrt{2}}{2}$: no, $\tan 45^{\circ} = 1$.
+    \item Olvidar racionalizar: $\dfrac{1}{\sqrt{2}}$ y $\dfrac{\sqrt{2}}{2}$ son lo mismo, pero la forma preferida es $\dfrac{\sqrt{2}}{2}$.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Usa la tabla para calcular: $a)\ \sen 30^{\circ} \qquad b)\ \tan 60^{\circ} \qquad c)\ \cos 45^{\circ}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item $a)\ \sen 30^{\circ} = \dfrac{1}{2}$.
+    \item $b)\ \tan 60^{\circ} = \sqrt{3}$.
+    \item $c)\ \cos 45^{\circ} = \dfrac{\sqrt{2}}{2}$.
+  \end{itemize}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} En un triángulo rectángulo, la hipotenusa mide $10$ y un ángulo agudo mide $30^{\circ}$. ¿Cuánto mide el cateto opuesto a ese ángulo?
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} el cateto opuesto ($x$) y la hipotenusa ($10$) se relacionan con el seno:
+  $$\sen 30^{\circ} = \frac{x}{10} \quad \Rightarrow \quad \frac{1}{2} = \frac{x}{10} \quad \Rightarrow \quad x = 5.$$
+  El cateto opuesto mide $5$.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} En un triángulo rectángulo isósceles la hipotenusa mide $8$. ¿Cuánto mide cada cateto?
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} cada ángulo agudo mide $45^{\circ}$. Usamos $\cos 45^{\circ}$ con la hipotenusa:
+  $$\cos 45^{\circ} = \frac{\text{adyacente}}{8} \quad \Rightarrow \quad \frac{\sqrt{2}}{2} = \frac{x}{8} \quad \Rightarrow \quad x = 8 \cdot \frac{\sqrt{2}}{2} = 4\sqrt{2}.$$
+  Cada cateto mide $4\sqrt{2} \approx 5{,}66$.
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Calcula con la tabla: $a)\ \cos 30^{\circ} \qquad b)\ \tan 45^{\circ} \qquad c)\ \sen 60^{\circ}$
+
+  \item \facil{} ¿Cuánto mide el cateto opuesto a un ángulo de $30^{\circ}$ si la hipotenusa mide $14$?
+
+  \item \facil{} Un triángulo rectángulo isósceles tiene catetos de $6$. ¿Cuánto mide su hipotenusa?
+
+  \item \facil{} Verifica que $\sen^2 30^{\circ} + \cos^2 30^{\circ} = 1$ usando los valores exactos.
+
+  \item \medio{} En un triángulo rectángulo, el cateto adyacente a un ángulo de $60^{\circ}$ mide $4$. ¿Cuánto mide la hipotenusa?
+
+  \item \medio{} Calcula $\tan 30^{\circ} \cdot \tan 60^{\circ}$ y comenta el resultado.
+
+  \item \medio{} La hipotenusa de un triángulo rectángulo mide $12$ y un ángulo agudo mide $45^{\circ}$. Halla ambos catetos.
+
+  \item \medio{} ¿Cuánto mide el cateto opuesto a un ángulo de $60^{\circ}$ si la hipotenusa mide $18$?
+
+  \item \dificil{} Demuestra que $\sen 30^{\circ} = \cos 60^{\circ}$ y que $\tan 30^{\circ} \cdot \tan 60^{\circ} = 1$ usando solo la tabla.
+
+  \item \dificil{} Un triángulo rectángulo tiene un ángulo de $30^{\circ}$ y el cateto \emph{adyacente} a él mide $5$. ¿Cuánto mide el cateto opuesto? (Usa $\tan 30^{\circ}$.)
+
+  \item \dificil{} En un triángulo rectángulo, la hipotenusa mide $20$ y un cateto mide $10\sqrt{3}$. ¿Cuánto miden los ángulos agudos?
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Resolución de triángulos rectángulos y aplicaciones}
+% ============================================================
+
+\subsection{Resolver un triángulo rectángulo}
+
+\begin{cuadroteoria}
+  \textbf{Resolver un triángulo rectángulo} es hallar todos sus lados y ángulos desconocidos a partir de los datos conocidos. Para ello combinamos:
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Pitágoras:} para hallar un lado conociendo los otros dos.
+    \item \textbf{Las razones trigonométricas:} para hallar lados conociendo un ángulo agudo.
+    \item \textbf{La suma de ángulos:} los ángulos agudos de un triángulo rectángulo suman $90^{\circ}$ (son complementarios).
+  \end{itemize}
+\end{cuadroteoria}
+
+\begin{cuadroteoria}
+  \textbf{Ángulos de elevación y depresión:}
+  \begin{center}
+    \begin{tikzpicture}[scale=0.8]
+      % elevación
+      \draw[thick] (0,0) -- (3.5,0) node[midway, below] {\small horizontal};
+      \draw[thick, -Latex, mwprimario] (0,0) -- (2.8,2.4) node[above right] {\small objeto};
+      \draw[mwprimario, thick] (0.7,0) arc (0:40.6:0.7);
+      \node[mwprimario, below] at (-1.15,0.18) {\small elevación};
+      % depresión
+      \draw[thick] (5,3) -- (9,3) node[midway, above] {\small horizontal};
+      \draw[thick, -Latex, mwprimario] (5,3) -- (8.6,0.9) node[right] {\small objeto};
+      \draw[mwprimario, thick] (5.75,3) arc (0:-40:0.75);
+      \node[mwprimario, above] at (7.5,2) {\small depresión};
+    \end{tikzpicture}
+  \end{center}
+  El \textbf{ángulo de elevación} se mide desde la horizontal \emph{hacia arriba}; el de \textbf{depresión}, desde la horizontal \emph{hacia abajo}. Ambos se miden desde el ojo del observador.
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Procedimiento para problemas de aplicación:}
+  \begin{enumerate}[leftmargin=*]
+    \item Dibuja un esquema y marca el triángulo rectángulo que se forma.
+    \item Identifica el ángulo dado, el lado conocido y el lado buscado.
+    \item Elige la razón trigonométrica adecuada y plantea la ecuación.
+    \item Despeja, calcula y responde con la unidad correcta.
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos:}
+  \begin{itemize}[leftmargin=*]
+    \item Dibujar mal el esquema: la altura del edificio es un \emph{cateto}, no la hipotenusa.
+    \item Olvidar que el ángulo de elevación y el de depresión miden lo mismo cuando miran entre dos puntos (son alternos internos).
+    \item Confundir la calculadora en grados/radianes al usar ángulos no notables.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Resuelve el triángulo rectángulo cuyos catetos miden $3$ y $4$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item Hipotenusa por Pitágoras: $c = \sqrt{3^2 + 4^2} = \sqrt{25} = 5$.
+    \item Ángulo $\alpha$ (frente al cateto $3$): $\tan \alpha = \dfrac{3}{4} = 0{,}75$. Como no es notable, con calculadora $\alpha \approx 36{,}9^{\circ}$.
+    \item El otro ángulo: $\beta = 90^{\circ} - 36{,}9^{\circ} = 53{,}1^{\circ}$.
+  \end{itemize}
+  El triángulo queda resuelto: lados $3$, $4$, $5$ y ángulos $36{,}9^{\circ}$, $53{,}1^{\circ}$, $90^{\circ}$.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Desde un punto a $50$ m de la base de un edificio, el ángulo de elevación hacia la azotea es de $60^{\circ}$. ¿Qué altura tiene el edificio?
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} el triángulo tiene ángulo $60^{\circ}$, cateto adyacente $50$ m y cateto opuesto $h$ (la altura):
+  $$\tan 60^{\circ} = \frac{h}{50} \quad \Rightarrow \quad \sqrt{3} = \frac{h}{50} \quad \Rightarrow \quad h = 50\sqrt{3} \approx 86{,}6 \text{ m}.$$
+  El edificio mide aproximadamente $86{,}6$ m.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Un poste de $4$ m proyecta una sombra de $4\sqrt{3}$ m. ¿Cuál es el ángulo de elevación del sol?
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} el cateto opuesto es el poste ($4$) y el adyacente es la sombra ($4\sqrt{3}$):
+  $$\tan \theta = \frac{4}{4\sqrt{3}} = \frac{1}{\sqrt{3}} = \frac{\sqrt{3}}{3} = \tan 30^{\circ}.$$
+  Como $\tan 30^{\circ} = \dfrac{\sqrt{3}}{3}$, el ángulo de elevación del sol es $\theta = 30^{\circ}$.
+\end{cuadrosolucion}
+
+\newpage %ajuste para pág
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Resuelve el triángulo rectángulo con catetos $6$ y $8$ (halla la hipotenusa y los dos ángulos agudos).
+
+  \item \facil{} En un triángulo rectángulo, un ángulo agudo mide $35^{\circ}$ y su cateto opuesto mide $7$. ¿Cuánto mide la hipotenusa? ($\sen 35^{\circ} \approx 0{,}57$.)
+
+  \item \facil{} Un árbol proyecta una sombra de $12$ m cuando el ángulo de elevación del sol es de $45^{\circ}$. ¿Qué altura tiene el árbol?
+
+  \item \medio{} Desde un faro de $30$ m de altura, el ángulo de depresión hacia un bote es de $30^{\circ}$. ¿A qué distancia de la base del faro está el bote?
+
+  \item \medio{} Una escalera de $10$ m apoyada en una pared forma un ángulo de $60^{\circ}$ con el suelo. ¿A qué altura llega la escalera?
+
+  \item \medio{} Un avión vuela a $2000$ m de altura y el ángulo de elevación desde tierra es de $30^{\circ}$. ¿Qué distancia horizontal lo separa del observador?
+
+  \item \medio{} Resuelve el triángulo rectángulo con hipotenusa $13$ y un cateto de $5$ (halla el otro cateto y los ángulos; usa la calculadora para los ángulos).
+
+  \item \dificil{} Una rampa tiene $6$ m de longitud y sube con una inclinación de $20^{\circ}$. ¿Qué altura salva? ($\sen 20^{\circ} \approx 0{,}34$.)
+
+  \item \dificil{} Desde lo alto de un acantilado de $45$ m, se ve un barco con un ángulo de depresión de $45^{\circ}$. ¿A qué distancia del acantilado está el barco? ¿Qué relación observas con la altura?
+
+  \item \dificil{} Dos observadores separados $100$ m ven un globo: uno con ángulo de elevación de $60^{\circ}$ y el otro de $45^{\circ}$. Haz el esquema y calcula la altura del globo usando los valores notables.
+
+  \item \dificil{} \textbf{El reto de los campeones:} una torre de agua está rodeada por un foso. Desde un punto $P$ a nivel del suelo, el ángulo de elevación hacia la cima de la torre es de $45^{\circ}$. Avanzando $40$ m hacia la torre, el ángulo pasa a ser de $60^{\circ}$. ¿Cuál es la altura de la torre? (Pista: plantea dos ecuaciones con $\tan 45^{\circ}$ y $\tan 60^{\circ}$ y resuélvelas como sistema.)
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Clave de Respuestas}
+% ============================================================
+
+\subsection*{Sección 1: Razones trigonométricas en el triángulo rectángulo (Ejercicios 1--11)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{0}
+  \item $b = \sqrt{13^2 - 5^2} = \sqrt{169 - 25} = \sqrt{144} = 12$.
+  \item $\sen \alpha = \dfrac{6}{10} = \dfrac{3}{5}$; $\cos \alpha = \dfrac{8}{10} = \dfrac{4}{5}$; $\tan \alpha = \dfrac{6}{8} = \dfrac{3}{4}$.
+  \item $c = \sqrt{9^2 + 12^2} = \sqrt{81 + 144} = \sqrt{225} = 15$.
+  \item $\sen \theta = \dfrac{7}{25}$.
+  \item $\sen^2 \theta + \cos^2 \theta = 1$; $\cos \theta = \sqrt{1 - \frac{16}{25}} = \dfrac{3}{5}$.
+  \item $\sen \theta = \dfrac{8}{17}$, $\cos \theta = \dfrac{15}{17}$, $\tan \theta = \dfrac{8}{15}$, $\csc \theta = \dfrac{17}{8}$, $\sec \theta = \dfrac{17}{15}$, $\cot \theta = \dfrac{15}{8}$.
+  \item $\sen \alpha = \dfrac{5}{13}$; $\tan \alpha = \dfrac{5}{12}$.
+  \item $\theta = 45^{\circ}$ (pues $\sen 45^{\circ} = \cos 45^{\circ}$).
+  \item El cateto opuesto mide $10 \cdot 0{,}6 = 6$.
+  \item $\tan \alpha = \dfrac{3}{4}$ y $\dfrac{\sen \alpha}{\cos \alpha} = \dfrac{3/5}{4/5} = \dfrac{3}{4}$. \checkmark
+  \item $c = \sqrt{7^2 + 7^2} = 7\sqrt{2}$; los ángulos agudos miden $45^{\circ}$ cada uno.
+\end{enumerate}
+
+\subsection*{Sección 2: Ángulos notables (Ejercicios 12--22)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{11}
+  \item a) $\dfrac{\sqrt{3}}{2}$. \quad b) $1$. \quad c) $\dfrac{\sqrt{3}}{2}$.
+  \item $\sen 30^{\circ} = \dfrac{x}{14} \Rightarrow x = 7$.
+  \item $c = 6\sqrt{2}$.
+  \item $\left(\dfrac{1}{2}\right)^2 + \left(\dfrac{\sqrt{3}}{2}\right)^2 = \dfrac{1 + 3}{4} = 1$. \checkmark
+  \item $\cos 60^{\circ} = \dfrac{4}{x} \Rightarrow \dfrac{1}{2} = \dfrac{4}{x} \Rightarrow x = 8$ (la hipotenusa mide 8).
+  \item $\tan 30^{\circ} \cdot \tan 60^{\circ} = \dfrac{\sqrt{3}}{3} \cdot \sqrt{3} = 1$.
+  \item Cada cateto mide $12 \cdot \dfrac{\sqrt{2}}{2} = 6\sqrt{2}$.
+  \item $\sen 60^{\circ} = \dfrac{x}{18} \Rightarrow x = 18 \cdot \dfrac{\sqrt{3}}{2} = 9\sqrt{3}$.
+  \item $\sen 30^{\circ} = \dfrac{1}{2} = \cos 60^{\circ}$; $\tan 30^{\circ} \cdot \tan 60^{\circ} = \dfrac{\sqrt{3}}{3} \cdot \sqrt{3} = 1$. \checkmark
+  \item $\tan 30^{\circ} = \dfrac{x}{5} \Rightarrow x = \dfrac{5\sqrt{3}}{3}$.
+  \item $\cos \theta = \dfrac{10\sqrt{3}}{20} = \dfrac{\sqrt{3}}{2} \Rightarrow \theta = 30^{\circ}$; el otro ángulo mide $60^{\circ}$.
+\end{enumerate}
+
+\subsection*{Sección 3: Resolución de triángulos rectángulos y aplicaciones (Ejercicios 23--33)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{22}
+  \item Hipotenusa $10$; $\tan \alpha = \dfrac{6}{8} = 0{,}75 \Rightarrow \alpha \approx 36{,}9^{\circ}$; $\beta \approx 53{,}1^{\circ}$.
+  \item $\sen 35^{\circ} = \dfrac{7}{c} \Rightarrow c \approx \dfrac{7}{0{,}57} \approx 12{,}3$.
+  \item $\tan 45^{\circ} = \dfrac{h}{12} \Rightarrow h = 12$ m.
+  \item $\tan 30^{\circ} = \dfrac{30}{d} \Rightarrow d = 30\sqrt{3} \approx 52$ m.
+  \item $\sen 60^{\circ} = \dfrac{h}{10} \Rightarrow h = 5\sqrt{3} \approx 8{,}66$ m.
+  \item $\tan 30^{\circ} = \dfrac{2000}{d} \Rightarrow d = 2000\sqrt{3} \approx 3464$ m.
+  \item El otro cateto mide $12$; $\sen \alpha = \dfrac{5}{13} \approx 0{,}385 \Rightarrow \alpha \approx 22{,}6^{\circ}$; $\beta \approx 67{,}4^{\circ}$.
+  \item $\sen 20^{\circ} = \dfrac{h}{6} \Rightarrow h \approx 6 \cdot 0{,}34 = 2{,}04$ m.
+  \item $\tan 45^{\circ} = \dfrac{45}{d} \Rightarrow d = 45$ m. La distancia es igual a la altura (ángulo de $45^{\circ}$).
+  \item Esquema con dos triángulos: $h = x\sqrt{3}$ (ángulo $60^{\circ}$) y $h = 100 - x$ (ángulo $45^{\circ}$). Igualando: $x\sqrt{3} = 100 - x \Rightarrow x = \dfrac{100}{\sqrt{3}+1} \approx 36{,}6$ m; $h \approx 63{,}4$ m.
+  \item \textbf{Reto:} $\tan 45^{\circ} = \dfrac{h}{x} \Rightarrow h = x$ y $\tan 60^{\circ} = \dfrac{h}{x-40} \Rightarrow \sqrt{3}(x-40) = x \Rightarrow x = \dfrac{40\sqrt{3}}{\sqrt{3}-1} \approx 94{,}6$ m, luego $h \approx 94{,}6$ m.
+\end{enumerate}
+
+\vspace{8pt}
+
+\end{document}

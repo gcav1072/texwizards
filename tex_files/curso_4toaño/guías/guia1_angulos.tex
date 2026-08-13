@@ -1,0 +1,466 @@
+% ============================================================
+%  GUÍA 1: EMPEZANDO A TRABAJAR CON ÁNGULOS
+%  Curso 4to Año — Matemática
+%  Autor: Gabriel Astudillo
+%  Clases cubiertas: 1 a 3
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Guía 1 — Ángulos}{Gabriel Astudillo $\cdot$ 4to Año}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Estudio 1}{Empezando a trabajar con ángulos}{Concepto, clasificación, sistemas de medición y ángulos en el plano cartesiano}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} ¡Hola! Los ángulos están en todas partes: en las manecillas del reloj, en las esquinas de tu cuaderno, en las rampas y hasta en el lanzamiento de una pelota. En esta guía vamos a convertirnos en \emph{cazadores de ángulos}: aprenderemos a reconocerlos, clasificarlos, medirlos en grados y en radianes, y a ubicarlos en el plano cartesiano. Cada sección tiene una explicación sencilla, ejemplos resueltos paso a paso y ejercicios que van de lo más fácil a verdaderos retos. ¡Tú puedes!
+  \\[4pt]
+  \textbf{Nivel de Dificultad:}\quad
+  \facil{} Básico / Directo \quad
+  \medio{} Intermedio \quad
+  \dificil{} Desafiante
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Concepto, clasificación y relaciones entre ángulos}
+% ============================================================
+
+\subsection{¿Qué es un ángulo?}
+
+\begin{cuadroteoria}
+  \textbf{Ángulo:} es la abertura formada por dos \textbf{semirrectas} (los \textbf{lados}) que comparten un punto común llamado \textbf{vértice}.
+  \begin{center}
+    \begin{tikzpicture}[scale=1]
+      \draw[thick, -Latex] (0,0) -- (3.2,0) node[below right] {$B$};
+      \draw[thick, -Latex] (0,0) -- (1.6,2.8) node[above] {$A$};
+      \draw[mwprimario, thick] (0.7,0) arc (0:60:0.7);
+      \node[mwprimario, font=\small] at (1.05,0.28) {$\alpha$};
+      \filldraw (0,0) circle (2pt) node[below left] {$O$};
+    \end{tikzpicture}
+  \end{center}
+  El ángulo de la figura se denota $\angle AOB$ (el vértice va en el medio) o simplemente $\alpha$.
+
+  \textbf{Medida:} los ángulos se miden en \textbf{grados} ($^{\circ}$). Un giro completo mide $360^{\circ}$; un ángulo recto mide $90^{\circ}$.
+\end{cuadroteoria}
+
+\newpage %ajuste pag
+
+\begin{cuadroteoria}
+  \textbf{Clasificación según su medida:}
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Agudo:} mide menos de $90^{\circ}$ (ej. $35^{\circ}$).
+    \item \textbf{Recto:} mide exactamente $90^{\circ}$.
+    \item \textbf{Obtuso:} mide más de $90^{\circ}$ y menos de $180^{\circ}$ (ej. $120^{\circ}$).
+    \item \textbf{Llano:} mide exactamente $180^{\circ}$ (forma una línea recta).
+    \item \textbf{Completo:} mide exactamente $360^{\circ}$ (un giro completo).
+  \end{itemize}
+
+  \textbf{Clasificación según su posición:}
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Adyacentes:} comparten el vértice y un lado (ej. $\angle AOB$ y $\angle BOC$ con lado común $OB$).
+    \item \textbf{Opuestos por el vértice:} los lados de uno son prolongación de los lados del otro. \emph{Los ángulos opuestos por el vértice son iguales.}
+  \end{itemize}
+\end{cuadroteoria}
+
+\begin{cuadroteoria}
+  \textbf{Ángulos complementarios y suplementarios:}
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Complementarios:} dos ángulos cuyas medidas suman $90^{\circ}$.
+          $$\text{complemento de } \alpha = 90^{\circ} - \alpha$$
+    \item \textbf{Suplementarios:} dos ángulos cuyas medidas suman $180^{\circ}$.
+          $$\text{suplemento de } \alpha = 180^{\circ} - \alpha$$
+  \end{itemize}
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos:}
+  \begin{itemize}[leftmargin=*]
+    \item Confundir \emph{complementario} (suma $90^{\circ}$) con \emph{suplementario} (suma $180^{\circ}$). Truco: el \emph{complemento} completa un ángulo \emph{recto}; el \emph{suplemento} completa un ángulo \emph{llano}.
+    \item Pensar que dos ángulos adyacentes siempre suman $180^{\circ}$: solo es cierto si están sobre una misma recta.
+    \item Olvidar que los ángulos opuestos por el vértice son \emph{iguales} y los adyacentes sobre una recta son \emph{suplementarios}.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\newpage %ajuste pag
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Clasifica cada ángulo según su medida: $a)\ 35^{\circ} \quad b)\ 90^{\circ} \quad c)\ 145^{\circ} \quad d)\ 180^{\circ}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item $a)\ 35^{\circ}$: agudo (menos de $90^{\circ}$).
+    \item $b)\ 90^{\circ}$: recto.
+    \item $c)\ 145^{\circ}$: obtuso (entre $90^{\circ}$ y $180^{\circ}$).
+    \item $d)\ 180^{\circ}$: llano.
+  \end{itemize}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Calcula el complemento y el suplemento de $42^{\circ}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item Complemento: $90^{\circ} - 42^{\circ} = 48^{\circ}$.
+    \item Suplemento: $180^{\circ} - 42^{\circ} = 138^{\circ}$.
+  \end{itemize}
+  \emph{Comprobación:} $42^{\circ} + 48^{\circ} = 90^{\circ}$ y $42^{\circ} + 138^{\circ} = 180^{\circ}$. \checkmark
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Dos rectas se cortan formando los ángulos opuestos por el vértice $\alpha = (3x - 10)^{\circ}$ y $\beta = (2x + 15)^{\circ}$. Halla el valor de $x$ y la medida de cada ángulo.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} como son opuestos por el vértice, son iguales:
+  $$3x - 10 = 2x + 15 \quad \Rightarrow \quad 3x - 2x = 15 + 10 \quad \Rightarrow \quad x = 25.$$
+  Sustituimos: $\alpha = 3(25) - 10 = 75 - 10 = 65^{\circ}$ y $\beta = 2(25) + 15 = 65^{\circ}$. \checkmark
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Clasifica según su medida: $a)\ 15^{\circ} \qquad b)\ 90^{\circ} \qquad c)\ 120^{\circ} \qquad d)\ 180^{\circ} \qquad e)\ 360^{\circ}$
+
+  \item \facil{} Clasifica según su posición: dos ángulos que comparten el vértice y un lado se llaman \_\_\_\_\_\_\_\_; dos ángulos cuyos lados son prolongación del otro se llaman \_\_\_\_\_\_\_\_.
+
+  \item \facil{} Calcula el complemento de: $a)\ 30^{\circ} \qquad b)\ 58^{\circ} \qquad c)\ 12^{\circ}$
+
+  \item \facil{} Calcula el suplemento de: $a)\ 70^{\circ} \qquad b)\ 95^{\circ} \qquad c)\ 15^{\circ}$
+
+  \item \facil{} ¿Qué ángulo forman las manecillas del reloj a las 3:00? ¿Y a las 6:00?
+
+  \item \medio{} Dos ángulos son complementarios y uno mide el doble del otro. ¿Cuánto mide cada uno?
+
+  \item \medio{} El suplemento de un ángulo es 4 veces su medida. Halla el ángulo.
+
+  \item \medio{} Dos ángulos opuestos por el vértice miden $(2x + 10)^{\circ}$ y $(3x - 20)^{\circ}$. Halla $x$ y la medida de cada ángulo.
+
+  \item \medio{} Dos ángulos adyacentes sobre una misma recta miden $(x + 15)^{\circ}$ y $(2x - 30)^{\circ}$. Halla $x$ y cada ángulo.
+
+  \item \dificil{} Una transversal corta a dos rectas paralelas. Uno de los ángulos correspondientes mide $55^{\circ}$. ¿Cuánto miden sus alternos internos y los adyacentes a él sobre la misma recta?
+
+  \item \dificil{} Un carpintero necesita cortar una tabla con dos cortes que formen ángulos complementarios, de modo que uno mida $10^{\circ}$ más que el otro. ¿Cuáles son las medidas de los dos cortes?
+\end{enumerate}
+
+% ============================================================
+\section{Sistemas de medición angular}
+% ============================================================
+
+\subsection{El sistema sexagesimal}
+
+\begin{cuadroteoria}
+  En el \textbf{sistema sexagesimal} el grado se divide en 60 partes iguales:
+  $$1^{\circ} = 60' \quad (\text{minutos}) \qquad 1' = 60'' \quad (\text{segundos})$$
+  Por ejemplo, $35^{\circ} 24' 18''$ se lee: 35 grados, 24 minutos y 18 segundos.
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Convertir de grados a minutos (o de minutos a segundos):} se multiplica por 60.
+  \textbf{Convertir de minutos a grados (o de segundos a minutos):} se divide entre 60.
+  \textbf{Pasar de una forma compleja a una simple:} $35^{\circ} 30' = 35^{\circ} + \dfrac{30}{60}^{\circ} = 35{,}5^{\circ}$.
+\end{cuadropasos}
+
+\subsection{El radián}
+
+\begin{cuadroteoria}
+  En el \textbf{sistema circular} los ángulos se miden en \textbf{radianes} (rad). Un radián es el ángulo central que abarca un arco de longitud igual al radio de la circunferencia.
+  \begin{center}
+    \begin{tikzpicture}[scale=0.9]
+      \draw[thick, mwgris] (0,0) circle (2);
+      \draw[thick, -Latex] (0,0) -- (2,0) node[right] {$r$};
+      \draw[thick, -Latex, mwprimario] (0,0) -- (1,1.732);
+      \draw[mwprimario, thick] (0.5,0) arc (0:60:0.5);
+      \node[mwprimario] at (0.85,0.22) {$1 \text{ rad}$};
+      \filldraw (0,0) circle (2pt) node[below left] {$O$};
+    \end{tikzpicture}
+  \end{center}
+  \textbf{Equivalencias fundamentales:}
+  $$180^{\circ} = \pi \text{ rad} \qquad 360^{\circ} = 2\pi \text{ rad} \qquad 90^{\circ} = \frac{\pi}{2} \text{ rad}$$
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Convertir de grados a radianes:} se multiplica por $\dfrac{\pi}{180^{\circ}}$.
+  $$45^{\circ} = 45^{\circ} \cdot \frac{\pi}{180^{\circ}} = \frac{45\pi}{180} = \frac{\pi}{4} \text{ rad}$$
+
+  \textbf{Convertir de radianes a grados:} se multiplica por $\dfrac{180^{\circ}}{\pi}$.
+  $$\frac{2\pi}{3} \text{ rad} = \frac{2\pi}{3} \cdot \frac{180^{\circ}}{\pi} = 120^{\circ}$$
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos:}
+  \begin{itemize}[leftmargin=*]
+    \item Confundir $\pi$ radianes ($180^{\circ}$) con $2\pi$ radianes ($360^{\circ}$).
+    \item Olvidar simplificar la fracción al convertir (ej. $\dfrac{45\pi}{180}$ se simplifica a $\dfrac{\pi}{4}$).
+    \item Sumar grados, minutos y segundos sin agrupar: en $35^{\circ} 24' + 18^{\circ} 45'$, los minutos suman $69' = 1^{\circ} 9'$, así que el resultado es $53^{\circ} + 1^{\circ} 9' = 54^{\circ} 9'$.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Expresa en minutos: $a)\ 4^{\circ} \qquad b)\ 2^{\circ} 15'$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item $a)\ 4^{\circ} = 4 \cdot 60' = 240'$.
+    \item $b)\ 2^{\circ} 15' = 2 \cdot 60' + 15' = 120' + 15' = 135'$.
+  \end{itemize}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Suma: $35^{\circ} 24' + 18^{\circ} 45'$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} sumamos por separado:
+  $$35^{\circ} 24' + 18^{\circ} 45' = (35 + 18)^{\circ} + (24 + 45)' = 53^{\circ} 69'.$$
+  Como $69' = 1^{\circ} 9'$, agrupamos: $53^{\circ} 69' = 54^{\circ} 9'$.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Convierte a radianes: $a)\ 60^{\circ} \qquad b)\ 150^{\circ}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item $a)\ 60^{\circ} = 60^{\circ} \cdot \dfrac{\pi}{180^{\circ}} = \dfrac{60\pi}{180} = \dfrac{\pi}{3}$ rad.
+    \item $b)\ 150^{\circ} = 150^{\circ} \cdot \dfrac{\pi}{180^{\circ}} = \dfrac{150\pi}{180} = \dfrac{5\pi}{6}$ rad.
+  \end{itemize}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R4.} Convierte a grados: $a)\ \dfrac{\pi}{4} \text{ rad} \qquad b)\ \dfrac{5\pi}{3} \text{ rad}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item $a)\ \dfrac{\pi}{4} \cdot \dfrac{180^{\circ}}{\pi} = \dfrac{180^{\circ}}{4} = 45^{\circ}$.
+    \item $b)\ \dfrac{5\pi}{3} \cdot \dfrac{180^{\circ}}{\pi} = \dfrac{5 \cdot 180^{\circ}}{3} = 300^{\circ}$.
+  \end{itemize}
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Expresa en minutos: $a)\ 3^{\circ} \qquad b)\ 8^{\circ} \qquad c)\ 1^{\circ} 30'$
+
+  \item \facil{} Expresa en grados: $a)\ 120' \qquad b)\ 240' \qquad c)\ 45'$
+
+  \item \facil{} Convierte a radianes: $a)\ 180^{\circ} \qquad b)\ 90^{\circ} \qquad c)\ 360^{\circ}$
+
+  \item \facil{} Convierte a grados: $a)\ \dfrac{\pi}{2} \qquad b)\ \pi \qquad c)\ \dfrac{3\pi}{2}$
+
+  \item \medio{} Suma: $35^{\circ} 24' + 18^{\circ} 45'$ (verifica el ejemplo R2) y resta: $90^{\circ} - 43^{\circ} 27'$.
+
+  \item \medio{} Convierte a radianes: $a)\ 45^{\circ} \qquad b)\ 210^{\circ}$ y a grados: $c)\ \dfrac{5\pi}{6}$.
+
+  \item \medio{} Expresa $30^{\circ} 15'$ en grados con decimales.
+
+  \item \medio{} Un ángulo mide $\dfrac{\pi}{5}$ rad. ¿Cuántos grados son?
+
+  \item \dificil{} Convierte $240^{\circ}$ a radianes y $300^{\circ}$ a radianes. ¿Qué observas con los denominadores?
+
+  \item \dificil{} La rueda de una bicicleta gira $3$ vueltas completas. ¿Cuántos grados giró? ¿Y cuántos radianes? (Una vuelta son $360^{\circ}$.)
+
+  \item \dificil{} Un ángulo mide $72^{\circ}$. ¿Cuánto mide en radianes? Expresa la fracción simplificada y verifica que $\dfrac{2\pi}{5}$ rad sea equivalente.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Ángulos en el plano cartesiano}
+% ============================================================
+
+\subsection{Ángulo en posición normal}
+
+\begin{cuadroteoria}
+  Un ángulo está en \textbf{posición normal} cuando su vértice está en el \textbf{origen} del plano cartesiano y su lado inicial coincide con el \textbf{eje $X$ positivo}.
+  \begin{center}
+    \begin{tikzpicture}[scale=0.85]
+      \draw[thin, gray!40] (-3.5,-1.5) grid (3.5,3.5);
+      \draw[thick, -Latex] (-3.8,0) -- (3.8,0) node[right] {$x$};
+      \draw[thick, -Latex] (0,-1.8) -- (0,3.8) node[above] {$y$};
+      \draw[gray] (0,0) node[below left] {$0$};
+      \draw[thick, -Latex, mwprimario] (0,0) -- (2.6,2.6);
+      \draw[mwprimario, thick] (0.8,0) arc (0:45:0.8);
+      \node[mwprimario] at (1.1,0.3) {$\theta$};
+      \node at (-2.7,2.9) {\small I};
+      \node at (2.7,2.9) {\small II};
+      \node at (2.7,-1.1) {\small III};
+      \node at (-2.7,-1.1) {\small IV};
+    \end{tikzpicture}
+  \end{center}
+  \begin{itemize}[leftmargin=*]
+    \item Si gira en \textbf{sentido antihorario} (contrario a las agujas del reloj), el ángulo es \textbf{positivo}.
+    \item Si gira en \textbf{sentido horario}, el ángulo es \textbf{negativo}.
+  \end{itemize}
+\end{cuadroteoria}
+
+\begin{cuadroteoria}
+  \textbf{Ángulos coterminales:} dos ángulos son \textbf{coterminales} cuando comparten el mismo lado terminal. Se obtienen sumando o restando $360^{\circ}$ (o $2\pi$ rad):
+  $$\theta \pm 360^{\circ}, \quad \theta \pm 720^{\circ}, \ldots$$
+  Por ejemplo, $45^{\circ}$ y $405^{\circ}$ son coterminales, y también lo es $-315^{\circ}$.
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Determinar el cuadrante de un ángulo:}
+  \begin{enumerate}[leftmargin=*]
+    \item Si el ángulo es mayor que $360^{\circ}$ o menor que $0^{\circ}$, busca un ángulo coterminal sumando o restando $360^{\circ}$ las veces necesarias.
+    \item Con el ángulo resultante entre $0^{\circ}$ y $360^{\circ}$, ubícalo según el cuadrante:
+          \begin{itemize}[leftmargin=*]
+            \item $0^{\circ} < \theta < 90^{\circ}$: cuadrante I.
+            \item $90^{\circ} < \theta < 180^{\circ}$: cuadrante II.
+            \item $180^{\circ} < \theta < 270^{\circ}$: cuadrante III.
+            \item $270^{\circ} < \theta < 360^{\circ}$: cuadrante IV.
+          \end{itemize}
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos:}
+  \begin{itemize}[leftmargin=*]
+    \item Confundir los cuadrantes: el cuadrante I es \emph{arriba a la derecha} y se avanza en sentido antihorario (I, II, III, IV).
+    \item Olvidar que un ángulo negativo como $-45^{\circ}$ gira \emph{hacia abajo} (equivale a $315^{\circ}$, cuadrante IV).
+    \item Creer que $45^{\circ}$ y $405^{\circ}$ son ángulos distintos: son el \emph{mismo} ángulo (coterminales).
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Determina el cuadrante de: $a)\ 120^{\circ} \qquad b)\ 315^{\circ} \qquad c)\ 730^{\circ}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item $a)\ 120^{\circ}$: está entre $90^{\circ}$ y $180^{\circ}$, cuadrante II.
+    \item $b)\ 315^{\circ}$: está entre $270^{\circ}$ y $360^{\circ}$, cuadrante IV.
+    \item $c)\ 730^{\circ} = 730^{\circ} - 360^{\circ} = 370^{\circ} - 360^{\circ} = 10^{\circ}$ (restamos dos veces $360^{\circ}$): cuadrante I.
+  \end{itemize}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Escribe dos ángulos coterminales de $135^{\circ}$, uno positivo y uno negativo.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item Positivo: $135^{\circ} + 360^{\circ} = 495^{\circ}$.
+    \item Negativo: $135^{\circ} - 360^{\circ} = -225^{\circ}$.
+  \end{itemize}
+  Los tres ángulos comparten el mismo lado terminal.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} El lado terminal de un ángulo en posición normal pasa por el punto $(1, 1)$. ¿Cuánto mide el ángulo?
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} el punto $(1, 1)$ está en la recta $y = x$, que forma exactamente $45^{\circ}$ con el eje $X$ positivo. Además $(1, 1)$ está en el cuadrante I, así que el ángulo mide $45^{\circ}$.
+  \begin{center}
+    \begin{tikzpicture}[scale=0.8]
+      \draw[thin, gray!40] (-1.5,-0.5) grid (3.5,3.5);
+      \draw[thick, -Latex] (-1.8,0) -- (3.8,0) node[right] {$x$};
+      \draw[thick, -Latex] (0,-0.8) -- (0,3.8) node[above] {$y$};
+      \draw[thick, -Latex, mwprimario] (0,0) -- (2.9,2.9);
+      \draw[mwprimario, thick] (0.9,0) arc (0:45:0.9);
+      \node[mwprimario] at (1.2,0.3) {$45^{\circ}$};
+      \filldraw[mwprimario] (1,1) circle (2.5pt) node[above right] {$(1,1)$};
+    \end{tikzpicture}
+  \end{center}
+\end{cuadrosolucion}
+
+\newpage %ajuste para pág
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Determina el cuadrante de: $a)\ 45^{\circ} \qquad b)\ 120^{\circ} \qquad c)\ 240^{\circ} \qquad d)\ 315^{\circ}$
+
+  \item \facil{} ¿En qué cuadrante está $150^{\circ}$? ¿Y $-30^{\circ}$? (Dibuja si te ayuda.)
+
+  \item \facil{} Halla un ángulo coterminal positivo de $380^{\circ}$.
+
+  \item \medio{} Determina el cuadrante de: $a)\ 730^{\circ} \qquad b)\ -200^{\circ} \qquad c)\ 500^{\circ}$
+
+  \item \medio{} El lado terminal de un ángulo en posición normal pasa por el punto $(-2, 2)$. ¿Cuánto mide el ángulo?
+
+  \item \medio{} Escribe dos ángulos coterminales de $135^{\circ}$, uno positivo y uno negativo.
+
+  \item \medio{} Un ángulo mide $-120^{\circ}$. Exprésalo como un ángulo positivo equivalente entre $0^{\circ}$ y $360^{\circ}$ e indica su cuadrante.
+
+  \item \dificil{} El lado terminal de un ángulo en posición normal pasa por el punto $(\sqrt{3}, 1)$. ¿Cuánto mide el ángulo? (Ayuda: compara con el ángulo de $30^{\circ}$.)
+
+  \item \dificil{} ¿Qué ángulo, en radianes, recorre la manecilla de los minutos de un reloj en 15 minutos?
+
+  \item \dificil{} Un dron gira en círculos y su orientación actual es $-270^{\circ}$. Exprésala como ángulo positivo entre $0^{\circ}$ y $360^{\circ}$ e indica su cuadrante.
+
+  \item \dificil{} \textbf{El reto de los campeones:} ¿Qué ángulo forman las manecillas del reloj a las 7:20? (Pista: la manecilla de las horas no apunta exactamente a las 7: a las 7:20 ha avanzado $\frac{20}{60} \cdot 30^{\circ} = 10^{\circ}$ más allá de las 7.)
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Clave de Respuestas}
+% ============================================================
+
+\subsection*{Sección 1: Concepto, clasificación y relaciones (Ejercicios 1--11)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{0}
+  \item a) Agudo. \quad b) Recto. \quad c) Obtuso. \quad d) Llano. \quad e) Completo.
+  \item Adyacentes; opuestos por el vértice.
+  \item a) $60^{\circ}$. \quad b) $32^{\circ}$. \quad c) $78^{\circ}$.
+  \item a) $110^{\circ}$. \quad b) $85^{\circ}$. \quad c) $165^{\circ}$.
+  \item A las 3:00 forman $90^{\circ}$; a las 6:00 forman $180^{\circ}$.
+  \item Si $\alpha + \beta = 90^{\circ}$ y $\beta = 2\alpha$, entonces $3\alpha = 90^{\circ}$: los ángulos son $30^{\circ}$ y $60^{\circ}$.
+  \item $\alpha + 4\alpha = 180^{\circ} \Rightarrow \alpha = 36^{\circ}$.
+  \item $2x + 10 = 3x - 20 \Rightarrow x = 30$; cada ángulo mide $70^{\circ}$.
+  \item $(x+15) + (2x-30) = 180 \Rightarrow x = 65$; los ángulos miden $80^{\circ}$ y $100^{\circ}$.
+  \item Los alternos internos miden $55^{\circ}$; los adyacentes miden $125^{\circ}$.
+  \item Los ángulos miden $40^{\circ}$ y $50^{\circ}$ (pues $x + (x+10) = 90$).
+\end{enumerate}
+
+\subsection*{Sección 2: Sistemas de medición angular (Ejercicios 12--22)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{11}
+  \item a) $180'$. \quad b) $480'$. \quad c) $90'$.
+  \item a) $2^{\circ}$. \quad b) $4^{\circ}$. \quad c) $0{,}75^{\circ}$.
+  \item a) $\pi$ rad. \quad b) $\dfrac{\pi}{2}$ rad. \quad c) $2\pi$ rad.
+  \item a) $90^{\circ}$. \quad b) $180^{\circ}$. \quad c) $270^{\circ}$.
+  \item Suma: $54^{\circ} 9'$. Resta: $90^{\circ} - 43^{\circ} 27' = 46^{\circ} 33'$.
+  \item a) $\dfrac{\pi}{4}$ rad. \quad b) $\dfrac{7\pi}{6}$ rad. \quad c) $150^{\circ}$.
+  \item $30^{\circ} 15' = 30{,}25^{\circ}$.
+  \item $\dfrac{\pi}{5} \cdot \dfrac{180^{\circ}}{\pi} = 36^{\circ}$.
+  \item $240^{\circ} = \dfrac{4\pi}{3}$ rad; $300^{\circ} = \dfrac{5\pi}{3}$ rad. Ambos tienen denominador 3.
+  \item $3$ vueltas $= 1080^{\circ} = 6\pi$ rad.
+  \item $72^{\circ} = \dfrac{72\pi}{180} = \dfrac{2\pi}{5}$ rad. \checkmark
+\end{enumerate}
+
+\subsection*{Sección 3: Ángulos en el plano cartesiano (Ejercicios 23--33)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{22}
+  \item a) I. \quad b) II. \quad c) III. \quad d) IV.
+  \item $150^{\circ}$: cuadrante II. $-30^{\circ}$: equivale a $330^{\circ}$, cuadrante IV.
+  \item $380^{\circ} - 360^{\circ} = 20^{\circ}$.
+  \item a) $730^{\circ} = 10^{\circ}$: I. \quad b) $-200^{\circ} = 160^{\circ}$: II. \quad c) $500^{\circ} = 140^{\circ}$: II.
+  \item El punto $(-2, 2)$ está en la recta $y = -x$ del cuadrante II: el ángulo mide $135^{\circ}$.
+  \item $495^{\circ}$ y $-225^{\circ}$ (cualquier ángulo que difiera en $360^{\circ}$ es válido).
+  \item $-120^{\circ} + 360^{\circ} = 240^{\circ}$: cuadrante III.
+  \item El punto $(\sqrt{3}, 1)$ corresponde a $30^{\circ}$ (cuadrante I).
+  \item $15$ min $= \dfrac{1}{4}$ de vuelta: $\dfrac{2\pi}{4} = \dfrac{\pi}{2}$ rad.
+  \item $-270^{\circ} + 360^{\circ} = 90^{\circ}$: no está en ningún cuadrante, está sobre el eje $Y$ positivo.
+  \item \textbf{Reto:} la manecilla de los minutos está en el 4 ($120^{\circ}$); la de las horas avanza $7 \cdot 30^{\circ} + 10^{\circ} = 220^{\circ}$. El ángulo menor es $220^{\circ} - 120^{\circ} = 100^{\circ}$.
+\end{enumerate}
+
+\vspace{8pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{¿Cómo te fue?} Si lograste resolver hasta el reto de los campeones, ¡ya estás listo para ver los ángulos en acción! En las próximas guías los ángulos aparecerán en la física: en los \emph{vectores}, cuando una fuerza empuje en diagonal, y en el \emph{movimiento} de los cuerpos. ¿Nos vemos ahí?
+\end{cuadroinfo}
+
+\end{document}

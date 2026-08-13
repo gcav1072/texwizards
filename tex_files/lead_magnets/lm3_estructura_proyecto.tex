@@ -1,0 +1,207 @@
+% ============================================================
+%  LEAD MAGNET 3 — ESTRUCTURA DEFINITIVA PARA PROYECTOS
+%  «Plantilla Analítica para Proyectos» (Para Tesistas)
+%  Autor: Gabriel Astudillo — Mathwizards Consultoría Educativa STEM
+%  V1 · 2026-08-12
+%  Compilar: latexmk -xelatex lm3_estructura_proyecto.tex
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{mathwizards-guia}
+\usepackage[hidelinks]{hyperref}
+
+\mwguia{Estructura de Proyectos de Ingeniería}{Gabriel Astudillo $\cdot$ Mathwizards STEM}
+
+% ── Llamado a la acción (CTA) ────────────────────────────────
+\newcommand{\mwcta}[2]{%
+  \begin{center}
+    \begin{minipage}{0.94\linewidth}
+      \begin{cuadroextra}
+        \centering
+        {\nxheav\Large\color{mwprimario}#1}\\[8pt]
+        {\small #2}\\[12pt]
+        {\footnotesize\color{mwgris}
+          \textbf{Instagram:} \texttt{@mathwizards.stem} \quad$\cdot$\quad
+          \textbf{WhatsApp:} \url{https://wa.me/+584148642001}}
+      \end{cuadroextra}
+    \end{minipage}
+  \end{center}
+}
+
+\begin{document}
+
+% ============================================================
+% ── Portada ─────────────────────────────────────────────────
+% ============================================================
+\mwportada{Estructura Definitiva para Proyectos}{de Ingeniería y Ciencias Exactas}{Mathwizards Consultoría Educativa STEM}
+
+\vspace{6pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} estás en la fase de Trabajo Especial de Grado o de tesis. Tienes la idea, tal vez hasta los datos\ldots y sin embargo el documento se siente como un caos. Esta guía te muestra el \textbf{esqueleto lógico} que los jurados esperan ver, capítulo por capítulo, con lo que va dentro de cada uno y los errores que cuestan puntos (y defensas).
+\end{cuadroinfo}
+
+% ============================================================
+\section{El Rigor Metodológico: \textquestiondown Por qué se Rechaza un Proyecto?}
+% ============================================================
+
+Un jurado rara vez rechaza una tesis por «falta de inteligencia». La rechaza por \textbf{estructura}: objetivos vagos, planteamiento que no lleva a ninguna parte, metodología sin sustento, resultados que no se analizan. La buena noticia: la estructura se aprende.
+
+Piensa en tu proyecto como un \textbf{argumento} de cuatro actos. Cada capítulo responde una pregunta y solo una:
+
+\begin{cuadroteoria}
+  \begin{center}
+    \begin{tabular}{ll}
+      \toprule
+      \textbf{Capítulo} & \textbf{La pregunta que responde} \\
+      \midrule
+      Capítulo I   & ¿Qué problema resuelves y por qué importa? \\
+      Capítulo II  & ¿Qué se sabe ya sobre el tema? \\
+      Capítulo III & ¿Cómo lo hiciste, de manera reproducible? \\
+      Capítulo IV  & ¿Qué encontraste y qué significa? \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \textbf{Regla de oro: coherencia transversal.} Todo lo que \emph{prometes} en el planteamiento (objetivos, variables, alcance) debe \emph{aparecer} en la metodología y \emph{responderse} en los resultados. Un jurado lee tu índice y tu planteamiento: si no se corresponden, ya perdiste la primera batalla.
+\end{cuadroteoria}
+
+% ============================================================
+\section{Capítulo I: El Planteamiento del Problema}
+% ============================================================
+
+El planteamiento se redacta de \textbf{lo macro a lo micro}: como un embudo que va de la industria a tu pregunta concreta de investigación.
+
+\begin{center}
+  \begin{tikzpicture}[>=Stealth, scale=0.95]
+    \node[draw=mwprimario, thick, rounded corners, fill=mwprimario!10,
+          minimum width=9.5cm, minimum height=0.95cm] (g) at (0,2.7)
+      {\small \textbf{Contexto global:} el sector, la industria, la sociedad};
+    \node[draw=mwnaranja, thick, rounded corners, fill=mwnaranja!10,
+          minimum width=7.2cm, minimum height=0.95cm] (l) at (0,1.35)
+      {\small \textbf{Contexto local:} la empresa, la región, el caso de estudio};
+    \node[draw=mwrojonaranja, thick, rounded corners, fill=mwrojonaranja!10,
+          minimum width=4.9cm, minimum height=0.95cm] (p) at (0,0)
+      {\small \textbf{El problema concreto} (situación problemática)};
+    \node[draw=mwmagenta, thick, rounded corners, fill=mwmagenta!10,
+          minimum width=3.4cm, minimum height=0.95cm] (q) at (0,-1.35)
+      {\small \textbf{La pregunta de investigación}};
+    \draw[->, thick, mwprimario] (g) -- (l);
+    \draw[->, thick, mwnaranja] (l) -- (p);
+    \draw[->, thick, mwrojonaranja] (p) -- (q);
+  \end{tikzpicture}
+\end{center}
+
+\noindent\textbf{Elementos que no pueden faltar:}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Contextualización} (macro $\rightarrow$ micro), con datos y fuentes.
+  \item \textbf{Situación problemática}: qué está pasando y por qué es un problema.
+  \item \textbf{Problema de investigación}: redactado como \emph{pregunta} clara y delimitada.
+  \item \textbf{Objetivos}: un \textbf{general} (acción + objeto + finalidad) y de 3 a 5 \textbf{específicos}, cada uno medible y verificable.
+  \item \textbf{Justificación}: teórica, práctica y/o metodológica.
+  \item \textbf{Alcance y limitaciones}: qué cubre el proyecto y qué no.
+\end{enumerate}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos:} partir de lo micro sin contexto («el sensor no mide bien»), redactar objetivos que son \emph{actividades} («estudiar la literatura») en vez de resultados verificables, y escribir el planteamiento como un resumen de Wikipedia.
+\end{cuadroadvertencia}
+
+% ============================================================
+\section{Capítulo II: Antecedentes y Bases Teóricas sin Caer en el Plagio}
+% ============================================================
+
+\begin{cuadroteoria}
+  \textbf{Antecedentes:} los estudios previos (nacionales e internacionales). Se presentan ordenados por relevancia, indicando para cada uno: qué hicieron, qué encontraron, y \textbf{qué hueco dejan} que tu proyecto viene a llenar. No es una lista de resúmenes: es un diálogo con la literatura.
+  \\[4pt]
+  \textbf{Bases teóricas:} las definiciones, leyes y modelos que sustentan tu investigación. Cada afirmación que no sea tuya debe llevar su \textbf{cita} (normas APA u otras según tu universidad).
+\end{cuadroteoria}
+
+\noindent\textbf{Cómo citar sin plagiar:}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Parafrasea y cita}: di lo mismo con tus palabras y coloca la referencia. Parafrasear \emph{sin} citar también es plagio.
+  \item \textbf{Citas textuales}: solo cuando la frase es insustituible; entre comillas, con autor, año y página.
+  \item \textbf{Figuras y tablas ajenas}: nunca las copies sin permiso; si las adaptas, cita la fuente y di «adaptado de\ldots».
+  \item \textbf{Construye un mapa mental}: primero las definiciones que necesitas, después las leyes o modelos, después las aplicaciones. El lector debe avanzar sin tropiezos.
+\end{enumerate}
+
+\begin{cuadroextra}
+  \small
+  \textbf{Consejo de oro:} un jurado detecta el plagio por el cambio de estilo. Si de pronto un párrafo «suena» a otro autor, lo sabrán. Escribe todo con tu voz y deja que las citas hagan el trabajo de respaldo.
+\end{cuadroextra}
+
+% ============================================================
+\section{Capítulo III: El Marco Metodológico}
+% ============================================================
+
+\begin{cuadroteoria}
+  \textbf{Contenido mínimo:}
+  \begin{itemize}
+    \item \textbf{Diseño de la investigación}: documental, experimental, de campo o mixto; tipo y nivel (descriptivo, explicativo, correlacional\ldots).
+    \item \textbf{Población y muestra}: quiénes o qué se estudia, y cómo se seleccionó la muestra.
+    \item \textbf{Variables}: independientes, dependientes y controladas, con su \textbf{operacionalización} (cómo se miden).
+    \item \textbf{Técnicas e instrumentos}: encuestas, entrevistas, equipos, software; y cómo se validan (validez de contenido, expertos, confiabilidad).
+    \item \textbf{Procedimiento}: las etapas, idealmente con un cronograma.
+  \end{itemize}
+\end{cuadroteoria}
+
+\noindent\textbf{La tabla de operacionalización de variables} es el corazón de este capítulo: obliga a decir \emph{cómo} se mide cada cosa, y evita los objetivos vagos:
+
+\begin{center}
+  \small
+  \renewcommand{\arraystretch}{1.35}
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{2.9cm}>{\raggedright\arraybackslash}p{4.4cm}>{\raggedright\arraybackslash}p{3.1cm}>{\raggedright\arraybackslash}p{4.9cm}@{}}
+    \toprule
+    \textbf{Variable} & \textbf{Definición} & \textbf{Dimensión} & \textbf{Indicador / Instrumento} \\
+    \midrule
+    Presión de fondo & Presión estática medida en el pozo & Condición de flujo & psi / manómetro calibrado \\
+    Temperatura de operación & Temperatura media del fluido & Régimen térmico & $°\text{C}$ / termopar + registrador \\
+    Eficiencia & Relación salida/entrada de energía & Rendimiento & $\%$ / cálculo con datos de campo \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+
+\newpage
+
+% ============================================================
+\section{Capítulo IV: Presentación de Resultados y Análisis de Error}
+% ============================================================
+
+\noindent Aquí se gana (o se pierde) la defensa. No basta con mostrar datos: hay que \textbf{analizarlos}.
+
+\begin{cuadroteoria}
+  \textbf{Cómo presentar resultados:}
+  \begin{itemize}
+    \item \textbf{Gráficos bien etiquetados}: ejes con nombre \emph{y unidades}, título, leyenda y colores consistentes. Un gráfico sin unidades no dice nada.
+    \item \textbf{Tablas simétricas}: encabezados claros, unidades declaradas y alineación decimal coherente.
+    \item \textbf{Análisis de error}: todo dato medido tiene incertidumbre. Reporta siempre el error asociado:
+  \end{itemize}
+  \[
+    \text{Error absoluto: } \Delta x = |x_{\text{medido}} - x_{\text{referencia}}|
+  \]
+  \[
+    \text{Error relativo: } \epsilon_r = \frac{\Delta x}{x_{\text{referencia}}}
+    \qquad\qquad
+    \text{Error porcentual: } \epsilon_{\%} = \epsilon_r \times 100\%
+  \]
+  Para magnitudes derivadas de un producto $q = a \cdot b$:
+  \[
+    \left(\frac{\Delta q}{q}\right)^2 = \left(\frac{\Delta a}{a}\right)^2 + \left(\frac{\Delta b}{b}\right)^2
+  \]
+  \textbf{Discusión:} compara tus resultados con la teoría y con los antecedentes del Capítulo II. Si hay diferencias, explícalas: no inventes, \emph{argumenta} (sesgos, condiciones, simplificaciones).
+\end{cuadroteoria}
+
+\noindent\textbf{Cierre del capítulo:} conclusiones que respondan \emph{objetivo por objetivo}, y recomendaciones de investigación futura. Si un objetivo específico no se cumplió, dilo y explica por qué: la honestidad metodológica se evalúa más que un resultado «perfecto».
+
+% ============================================================
+% ── Llamado a la Acción ─────────────────────────────────────
+% ============================================================
+\newpage
+\vspace*{\fill}
+
+\mwcta{¿Tienes los datos y la idea, pero el documento es un caos?}{En Mathwizards nos encargamos de la estructuración técnica y metodológica de tu proyecto: planteamiento, marco metodológico y análisis de resultados con rigor de ingeniería. Solicita tu presupuesto por WhatsApp.}
+
+\vspace*{\fill}
+
+\end{document}

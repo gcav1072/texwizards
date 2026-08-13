@@ -1,0 +1,164 @@
+% ============================================================
+%  LEAD MAGNET 4 — EL MÉTODO LÓGICO
+%  «Metodología de Resolución» (Para Bachillerato)
+%  Autor: Gabriel Astudillo — Mathwizards Consultoría Educativa STEM
+%  V1 · 2026-08-12
+%  Compilar: latexmk -xelatex lm4_metodo_logico.tex
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{mathwizards-guia}
+\usepackage[hidelinks]{hyperref}
+
+\mwguia{El Método Lógico}{Gabriel Astudillo $\cdot$ Mathwizards STEM}
+
+% ── Llamado a la acción (CTA) ────────────────────────────────
+\newcommand{\mwcta}[2]{%
+  \begin{center}
+    \begin{minipage}{0.94\linewidth}
+      \begin{cuadroextra}
+        \centering
+        {\nxheav\Large\color{mwprimario}#1}\\[8pt]
+        {\small #2}\\[12pt]
+        {\footnotesize\color{mwgris}
+          \textbf{Instagram:} \texttt{@mathwizards.stem} \quad$\cdot$\quad
+          \textbf{WhatsApp:} \url{https://wa.me/+584148642001}}
+      \end{cuadroextra}
+    \end{minipage}
+  \end{center}
+}
+
+\begin{document}
+
+% ============================================================
+% ── Portada ─────────────────────────────────────────────────
+% ============================================================
+\mwportada{El Método Lógico}{Cómo resolver problemas de Ciencias sin memorizar}{Mathwizards Consultoría Educativa STEM}
+
+\vspace{6pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} esta guía está pensada para estudiantes de bachillerato \emph{y} para sus representantes. Si alguna vez escuchaste la frase «no sirvo para los números», quédate: te vamos a mostrar que el problema casi nunca es la capacidad, sino el \emph{método}. Aprenderás los 4 pasos que usamos en Mathwizards para resolver cualquier problema de ciencias, con un ejemplo completo aplicado.
+\end{cuadroinfo}
+
+% ============================================================
+\section{El Mito del «No Sirvo para los Números»}
+% ============================================================
+
+Cuando a un estudiante le va mal en Matemáticas, Física o Química, la explicación más cómoda es: «no nací para esto». Pero observa lo que pasa en el aula: el que «fracasa» suele estar intentando \textbf{memorizar procedimientos} —diez pasos de memoria para cada tipo de ejercicio— mientras que el que aprueba \textbf{entiende el fenómeno} y deduce el camino.
+
+\begin{cuadroteoria}
+  \textbf{La clave:} la ciencia no es memoria, es \textbf{conexión}. Se trata de leer un problema, identificar el fenómeno y conectar los datos con unos pocos principios. Tu cerebro está diseñado para reconocer patrones, no para almacenar recetas.
+\end{cuadroteoria}
+
+\noindent Cuando entiendes \emph{por qué} funciona una fórmula, ya no necesitas memorizarla: la reconstruyes cada vez que la necesitas. Y cuando un problema sale distinto a los que viste en clase (lo que siempre pasa en un examen), el que entiende sobrevive y el que memorizó se hunde.
+
+% ============================================================
+\section{Los 4 Pasos del Método Mathwizards}
+% ============================================================
+
+\begin{cuadropasos}
+  \textbf{Paso 1 — Extracción y Traducción.} Lee el enunciado con calma y \emph{extrae} los datos. Pregúntate: ¿qué me dan? ¿qué me piden? ¿en qué unidades está cada dato? Traduce todo a unidades del Sistema Internacional antes de operar.
+\end{cuadropasos}
+
+\begin{cuadropasos}
+  \textbf{Paso 2 — Modelado del Fenómeno.} Haz un \emph{esquema}: dibuja el sistema, las fuerzas, las direcciones, lo que se mueve y hacia dónde. Un buen dibujo ya resuelve la mitad del problema, porque te obliga a entender qué está pasando.
+\end{cuadropasos}
+
+\begin{cuadropasos}
+  \textbf{Paso 3 — Planteamiento de la Ecuación.} Conecta los datos con el principio que gobierna el fenómeno: ¿es movimiento rectilíneo uniforme? $d = v\,t$. ¿Conservación de masa en una reacción? $\ldots$ Escribe la ecuación, despeja la incógnita \emph{con letras} y solo al final reemplaza los números.
+\end{cuadropasos}
+
+\begin{cuadropasos}
+  \textbf{Paso 4 — Ejecución y Análisis Dimensional.} Calcula y \emph{verifica}: ¿las unidades del resultado tienen sentido? (metros, no metros por segundo). ¿El orden de magnitud es razonable? ¿El signo es coherente con el dibujo? Este paso te ahorra errores tontos que cuestan puntos.
+\end{cuadropasos}
+
+% ============================================================
+\section{Ejemplo Práctico: Los 4 Pasos en Acción}
+% ============================================================
+
+\noindent\textbf{Problema:} un automóvil viaja a $72\ \text{km/h}$ por una vía recta. \textquestiondown Qué distancia recorre en $15$ segundos?
+
+\subsection{Paso 1: Extracción y Traducción}
+
+\begin{cuadroinfo}
+  \small
+  \textbf{Datos:} velocidad $v = 72\ \text{km/h}$; tiempo $t = 15\ \text{s}$. \quad
+  \textbf{Piden:} distancia $d$ en metros.
+  \\[2pt]
+  La velocidad está en km/h y el tiempo en segundos: \textbf{mezcla de unidades}. Traducimos al SI antes de operar:
+  \[
+    72\ \frac{\text{km}}{\text{h}} = 72 \times \frac{1.000\ \text{m}}{3.600\ \text{s}} = 20\ \frac{\text{m}}{\text{s}}
+  \]
+\end{cuadroinfo}
+
+\subsection{Paso 2: Modelado del Fenómeno}
+
+\noindent Dibujamos una recta, el auto y la distancia que queremos hallar:
+
+\begin{center}
+  \begin{tikzpicture}[>=Stealth, scale=0.95]
+    % Vía
+    \draw[thick, mwgrisoscuro] (-3.4,-0.3) -- (3.4,-0.3);
+    \draw[thick, mwgrisoscuro] (-3.4,0.4) -- (3.4,0.4);
+    % Auto (rectángulo con ruedas)
+    \draw[fill=mwprimario!12, draw=mwprimario, thick]
+      (-0.4,-0.2) rectangle (0.7,0.3);
+    \fill[mwgrisoscuro] (-0.2,-0.2) circle (0.09);
+    \fill[mwgrisoscuro] (0.5,-0.2) circle (0.09);
+    \node[above] at (0.15,0.3) {\small $v = 20\ \text{m/s}$};
+    % Distancia
+    \draw[<->, thick, mwmagenta] (-3.4,-0.85) -- (3.4,-0.85)
+      node[midway, below] {\small $d = \ ?$};
+    % Dirección
+    \draw[->, thick, mwprimario] (-2.5,0.05) -- (-1.2,0.05);
+  \end{tikzpicture}
+\end{center}
+
+\subsection{Paso 3: Planteamiento de la Ecuación}
+
+\noindent Movimiento rectilíneo uniforme (velocidad constante): $d = v \cdot t$. Despejamos con letras y \emph{luego} sustituimos:
+\[
+  d = v\,t = 20\ \frac{\text{m}}{\text{s}} \times 15\ \text{s} = 300\ \text{m}
+\]
+
+\newpage
+
+\subsection{Paso 4: Ejecución y Análisis Dimensional}
+
+\begin{cuadroinfo}
+  \small
+  \textbf{Unidades:} $\dfrac{\text{m}}{\text{s}} \times \text{s} = \text{m}$ \checkmark — da metros, que es lo que pedían.
+  \\[2pt]
+  \textbf{Orden de magnitud:} una cancha de fútbol mide unos $100\ \text{m}$; $300\ \text{m}$ son tres canchas en $15$ segundos a $72\ \text{km/h}$. Suena razonable: a $20\ \text{m/s}$, en $15$ segundos se recorren exactamente $300$ metros. \checkmark
+  \\[2pt]
+  \textbf{El detector de errores:} si hubieras olvidado convertir la velocidad y calculado $72 \times 15 = 1.080$, el resultado «km·s/h» no tendría sentido físico y el paso 4 te habría avisado antes de entregar.
+\end{cuadroinfo}
+
+% ============================================================
+\section{Tu Reto: Aplica el Método}
+% ============================================================
+
+\noindent Ahora te toca a ti. Resuelve con los 4 pasos (en una hoja, sin calculadora si puedes):
+
+\begin{cuadroextra}
+  \small
+  \textbf{Reto:} un objeto se deja caer desde el reposo desde lo alto de un edificio y tarda $3{,}0$ segundos en llegar al suelo. \textquestiondown Desde qué altura cayó? (Usa $g = 9{,}81\ \text{m/s}^2$ y el MRUV: $h = \tfrac{1}{2} g t^2$.)
+  \\[4pt]
+  \textbf{Respuesta:} $h = \tfrac{1}{2} \times 9{,}81 \times (3{,}0)^2 \approx 44\ \text{m}$ (unos 14 pisos). \textquestiondown Coincide con tu resultado? Si no, revisa dónde se cortó la cadena: ahí está el aprendizaje.
+\end{cuadroextra}
+
+\noindent\textbf{La promesa del método:} una vez que los 4 pasos se vuelven un hábito, dejas de depender de «haber visto el ejercicio antes». Cualquier problema nuevo se convierte en un problema conocido.
+
+% ============================================================
+% ── Llamado a la Acción ─────────────────────────────────────
+% ============================================================
+\newpage
+\vspace*{\fill}
+
+\mwcta{Asegura el éxito académico desde el bachillerato}{Con un acompañamiento continuo, tu hijo o representado construye el método —no la memoria— para resolver problemas de Matemáticas, Física y Química. Reserva sus horarios del ciclo escolar con nosotros: cupos limitados por semana.}
+
+\vspace*{\fill}
+
+\end{document}

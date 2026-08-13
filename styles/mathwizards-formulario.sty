@@ -5,20 +5,33 @@
 %  Requisitos:
 %    * Compilar con XeLaTeX  →  latexmk -xelatex formulario.tex
 %    * mathwizards-palette.sty en la ruta TEXINPUTS
+%    * Fuentes Cabin y Nexa instaladas en el sistema
 %
-%  Nota: el documento debe declarar su propio \documentclass
-%  (p. ej. [9pt,landscape,a4paper] o [10pt,landscape,letterpaper])
-%  y su propia geometría si la necesita distinta a la estándar.
+%  Uso en cada formulario:
+%    \documentclass[9pt, landscape, letterpaper]{extarticle}
+%    \usepackage{mathwizards-formulario}
+%    \mwformulario{Título}{Subtítulo · Autor}
+%    \begin{document}
+%    \nuevotema{Nombre del Tema}
+%    ...
+%    \end{document}
+%
+%  Entornos disponibles:
+%    formulabox    — fórmulas principales (rojo primario)
+%    despejesbox   — despejes y derivadas (naranja)
+%    tablabox      — tablas de referencia (gris)
+%    notabox       — notas, principios, tips (magenta)
 % ============================================================
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{mathwizards-formulario}[2026/08/11 v1.0 Formularios Mathwizards]
+\ProvidesPackage{mathwizards-formulario}[2026/08/12 v2.0 Formularios Mathwizards]
 
-% ── Paquetes ─────────────────────────────────────────────────
+% ── Paquetes base ────────────────────────────────────────────
 \RequirePackage{fontspec}
 \RequirePackage[spanish]{babel}
 \AtBeginDocument{\shorthandoff{"}}
 \RequirePackage{amsmath, amssymb, amsfonts}
 \RequirePackage{xcolor}
+\RequirePackage{geometry}
 \RequirePackage{multicol}
 \RequirePackage{enumitem}
 \RequirePackage{fancyhdr}
@@ -26,22 +39,63 @@
 \RequirePackage{booktabs}
 \RequirePackage{array}
 \RequirePackage{tikz}
-\RequirePackage{tcolorbox}
+\RequirePackage[most]{tcolorbox}
 \RequirePackage{graphicx}
+\RequirePackage{microtype}
 \RequirePackage{mathwizards-palette}
 
 % ── Fuentes (marca) ──────────────────────────────────────────
+%  Búsqueda por nombre del sistema (robusto con TTF/OTF).
 \setmainfont{Cabin}[
-  Extension      = .otf,
-  UprightFont    = Cabin-Regular,
-  BoldFont       = Cabin-Bold,
-  ItalicFont     = Cabin-Italic,
-  BoldItalicFont = Cabin-BoldItalic
+  BoldFont       = Cabin Bold,
+  ItalicFont     = Cabin Italic,
+  BoldItalicFont = Cabin Bold Italic
 ]
 \newfontfamily\nxheav{Nexa Heavy}[NFSSFamily=nexaheavy]
 \newfontfamily\nxlight{Nexa Extra Light}[NFSSFamily=nexaextralight]
 
-% ── Alias de colores (versión anterior → marca) ──────────────
+% ── Geometría (landscape compacto) ───────────────────────────
+\geometry{
+  landscape,
+  letterpaper,
+  top      = 14mm,
+  bottom   = 10mm,
+  left     = 10mm,
+  right    = 10mm,
+  headheight = 18pt,
+  headsep  = 6pt,
+  footskip = 10pt
+}
+
+% ── Búsqueda del logo (multinivel) ───────────────────────────
+\graphicspath{
+  {assets/img/}{../assets/img/}{../../assets/img/}
+    {../../../assets/img/}{../../../../assets/img/}
+}
+
+% ── Datos del formulario ─────────────────────────────────────
+\newcommand{\mwformheader}{}
+\newcommand{\mwformsubtitle}{}
+\newcommand{\mwformulario}[2]{%
+  \renewcommand{\mwformheader}{#1}%
+  \renewcommand{\mwformsubtitle}{#2}%
+}
+
+% ── Encabezados y pies de página ─────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{%
+  \raisebox{-4pt}{\includegraphics[height=0.55cm]{l.png}}\hspace{6pt}%
+  \small\color{mwprimario}\nxheav\mwformheader%
+}
+\fancyhead[R]{\footnotesize\color{mwgris}\mwformsubtitle}
+\fancyfoot[L]{\scriptsize\color{mwgris}Mathwizards Consultoría Educativa STEM}
+\fancyfoot[R]{\scriptsize\color{mwgris}\thepage}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\headrule}{\color{mwprimario}\hrule width\headwidth height\headrulewidth}
+\renewcommand{\footrulewidth}{0pt}
+
+% ── Alias de colores (compatibilidad) ────────────────────────
 \colorlet{primary}{mwprimario}
 \colorlet{primarylight}{mwprimario!12}
 \colorlet{secondary}{mwnaranja}
@@ -51,22 +105,124 @@
 
 % ── Secciones (estilo formulario) ────────────────────────────
 \titleformat{\section}
-  {\nxheav\large\color{mwprimario}}
-  {}
-  {0em}
-  {}
-  [\color{mwprimario}\titlerule]
-\titlespacing*{\section}{0pt}{6pt}{4pt}
+{\nxheav\large\color{mwprimario}}
+{}
+{0em}
+{}
+[\color{mwprimario}\titlerule]
+\titlespacing*{\section}{0pt}{4pt}{3pt}
 
 \titleformat{\subsection}
-  {\nxheav\normalsize\color{mwprimario}}
-  {}
-  {0em}
-  {}
-  []
-\titlespacing*{\subsection}{0pt}{4pt}{2pt}
+{\nxheav\normalsize\color{mwprimario}}
+{}
+{0em}
+{}
+[]
+\titlespacing*{\subsection}{0pt}{3pt}{1pt}
 
-% ── Cajas de bloque ──────────────────────────────────────────
+\titleformat{\subsubsection}
+{\nxheav\small\color{mwnaranja}}
+{}
+{0em}
+{}
+[]
+\titlespacing*{\subsubsection}{0pt}{2pt}{1pt}
+
+% ── Macro \nuevotema ─────────────────────────────────────────
+%  Inicia una nueva página con banner de título.
+\newcommand{\nuevotema}[1]{%
+  \newpage
+  \noindent
+  \begin{tcolorbox}[
+      colback    = mwprimario,
+      colframe   = mwprimario,
+      coltext    = white,
+      boxrule    = 0pt,
+      arc        = 3pt,
+      left       = 6pt,
+      right      = 6pt,
+      top        = 3pt,
+      bottom     = 3pt,
+      fontupper  = \nxheav\large,
+      before skip = 0pt,
+      after skip  = 4pt
+    ]
+    #1
+  \end{tcolorbox}
+}
+
+% ── Cajas tcolorbox ──────────────────────────────────────────
+
+% formulabox — fórmulas principales (rojo primario)
+\newtcolorbox{formulabox}[1][]{%
+  colback    = mwprimario!8,
+  colframe   = mwprimario,
+  coltitle   = white,
+  fonttitle  = \nxheav\small,
+  boxrule    = 0.8pt,
+  arc        = 3pt,
+  left       = 4pt,
+  right      = 4pt,
+  top        = 3pt,
+  bottom     = 3pt,
+  before skip = 3pt,
+  after skip  = 3pt,
+  title      = {#1}
+}
+
+% despejesbox — despejes y fórmulas derivadas (naranja)
+\newtcolorbox{despejesbox}[1][]{%
+  colback    = mwnaranja!8,
+  colframe   = mwnaranja,
+  coltitle   = white,
+  fonttitle  = \nxheav\small,
+  boxrule    = 0.6pt,
+  arc        = 3pt,
+  left       = 4pt,
+  right      = 4pt,
+  top        = 2pt,
+  bottom     = 2pt,
+  before skip = 2pt,
+  after skip  = 2pt,
+  title      = {#1}
+}
+
+% tablabox — tablas de referencia (gris)
+\newtcolorbox{tablabox}[1][]{%
+  colback    = mwgrisclaro,
+  colframe   = mwgris,
+  coltitle   = white,
+  colbacktitle = mwgris,
+  fonttitle  = \nxheav\small,
+  boxrule    = 0.5pt,
+  arc        = 3pt,
+  left       = 4pt,
+  right      = 4pt,
+  top        = 2pt,
+  bottom     = 2pt,
+  before skip = 2pt,
+  after skip  = 2pt,
+  title      = {#1}
+}
+
+% notabox — notas, principios, tips (magenta)
+\newtcolorbox{notabox}[1][]{%
+  colback    = mwmagenta!8,
+  colframe   = mwmagenta,
+  coltitle   = white,
+  fonttitle  = \nxheav\small,
+  boxrule    = 0.6pt,
+  arc        = 3pt,
+  left       = 4pt,
+  right      = 4pt,
+  top        = 2pt,
+  bottom     = 2pt,
+  before skip = 2pt,
+  after skip  = 2pt,
+  title      = {#1}
+}
+
+% ── Cajas legacy (compatibilidad v1) ────────────────────────
 \newcommand{\cajatitulo}[1]{%
   \noindent\colorbox{mwprimario}{\parbox{\dimexpr\linewidth-2\fboxsep}%
     {\color{white}\nxheav\centering #1}}\par\vspace{2pt}
@@ -76,3 +232,33 @@
   \noindent\colorbox{mwprimario!12}{\parbox{\dimexpr\linewidth-2\fboxsep}%
     {\small #1}}\par\vspace{2pt}
 }
+
+% ── Utilidades para tablas compactas ─────────────────────────
+%  Tipo de columna C{ancho} — centrada con ancho fijo
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+%  Tipo de columna L{ancho} — izquierda con ancho fijo
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+% Espaciado compacto en tablas de formulario
+\newcommand{\tablacompacta}{%
+  \renewcommand{\arraystretch}{1.1}%
+  \setlength{\tabcolsep}{3pt}%
+  \footnotesize
+}
+
+% ── Listas compactas ─────────────────────────────────────────
+\setlist{nosep, leftmargin=12pt, labelwidth=8pt, labelsep=4pt}
+\setlist[itemize]{label=\textcolor{mwprimario}{\textbullet}}
+
+% ── Espaciado global compacto ────────────────────────────────
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1pt plus 0.5pt}
+\setlength{\columnsep}{8pt}
+\setlength{\columnseprule}{0.3pt}
+\renewcommand{\columnseprulecolor}{\color{mwgrisclaro}}
+
+% Ecuaciones compactas
+\setlength{\abovedisplayskip}{3pt plus 1pt minus 1pt}
+\setlength{\belowdisplayskip}{3pt plus 1pt minus 1pt}
+\setlength{\abovedisplayshortskip}{1pt plus 1pt}
+\setlength{\belowdisplayshortskip}{1pt plus 1pt}

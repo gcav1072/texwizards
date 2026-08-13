@@ -1,0 +1,307 @@
+% ============================================================
+%  LEAD MAGNET 2 — FORMULARIO ESTRUCTURAL Y TABLAS DE CONVERSIÓN
+%  «El Formulario Definitivo» (Física Analítica)
+%  Autor: Gabriel Astudillo — Mathwizards Consultoría Educativa STEM
+%  V1 · 2026-08-12
+%  Compilar: latexmk -xelatex lm2_formulario_fisica.tex
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{mathwizards-guia}
+\usepackage[hidelinks]{hyperref}
+
+\mwguia{Formulario de Física Analítica}{Gabriel Astudillo $\cdot$ Mathwizards STEM}
+
+% ── Llamado a la acción (CTA) ────────────────────────────────
+\newcommand{\mwcta}[2]{%
+  \begin{center}
+    \begin{minipage}{0.94\linewidth}
+      \begin{cuadroextra}
+        \centering
+        {\nxheav\Large\color{mwprimario}#1}\\[8pt]
+        {\small #2}\\[12pt]
+        {\footnotesize\color{mwgris}
+          \textbf{Instagram:} \texttt{@mathwizards.stem} \quad$\cdot$\quad
+          \textbf{WhatsApp:} \url{https://wa.me/+584148642001}}
+      \end{cuadroextra}
+    \end{minipage}
+  \end{center}
+}
+
+\begin{document}
+
+% ============================================================
+% ── Portada ─────────────────────────────────────────────────
+% ============================================================
+\mwportada{Formulario Estructural y Tablas de Conversión}{para Física Analítica}{Mathwizards Consultoría Educativa STEM}
+
+\vspace{6pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} este formulario es tu herramienta de consulta para el día a día: magnitudes, tablas de conversión rigurosas y las fórmulas estructurales de la mecánica, maquetadas con la misma simetría que nuestras guías. Guárdalo, imprímelo y úsalo en cada parcial.
+  \\[4pt]
+  \textbf{Convención de escritura de valores (estándar analítico):} usamos la \textbf{coma} para los decimales y el \textbf{punto} para los miles. Ejemplos: la gravedad $g = 9{,}81\ \text{m/s}^2$; la presión $1\ \text{atm} = 101.325{,}0\ \text{Pa}$.
+\end{cuadroinfo}
+
+% ============================================================
+\section{Las Magnitudes y el Análisis Dimensional}
+% ============================================================
+
+Una \textbf{magnitud} es toda propiedad de la naturaleza que se puede medir: longitud, masa, tiempo, temperatura, corriente eléctrica\ldots El \textbf{Sistema Internacional de Unidades (SI)} es el estándar analítico fundamental: se construye sobre siete magnitudes fundamentales.
+
+\begin{cuadroteoria}
+  \textbf{Tabla 1.} Magnitudes fundamentales del SI:
+  \begin{center}
+    \begin{tabular}{lll}
+      \toprule
+      \textbf{Magnitud}            & \textbf{Unidad SI}   & \textbf{Símbolo} \\
+      \midrule
+      Longitud                     & metro               & m                \\
+      Masa                         & kilogramo           & kg               \\
+      Tiempo                       & segundo             & s                \\
+      Temperatura                  & kelvin              & K                \\
+      Corriente eléctrica          & ampere              & A                \\
+      Cantidad de sustancia        & mol                 & mol              \\
+      Intensidad luminosa          & candela             & cd               \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{cuadroteoria}
+
+\noindent\textbf{El análisis dimensional} es tu primera herramienta de control de calidad: en toda ecuación física, \textbf{cada término debe tener las mismas unidades}. Si al despejar te queda «metros por segundo» pero esperabas «metros», ya sabes que hay un error — sin necesidad de revisar los números.
+
+\newpage
+
+\begin{cuadroteoria}
+  \textbf{Tabla 2.} Prefijos más usados del SI:
+  \begin{center}
+    \begin{tabular}{lll}
+      \toprule
+      \textbf{Prefijo} & \textbf{Símbolo} & \textbf{Factor} \\
+      \midrule
+      giga   & G & $10^{9}$  \\
+      mega   & M & $10^{6}$  \\
+      kilo   & k & $10^{3}$  \\
+      hecto  & h & $10^{2}$  \\
+      deci   & d & $10^{-1}$ \\
+      centi  & c & $10^{-2}$ \\
+      mili   & m & $10^{-3}$ \\
+      micro  & $\mu$ & $10^{-6}$ \\
+      nano   & n & $10^{-9}$ \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{cuadroteoria}
+
+% ============================================================
+\section{Tablas de Conversión Rigurosas}
+% ============================================================
+
+\begin{cuadroteoria}
+  \textbf{Tabla 3.} Longitud, masa y tiempo:
+  \begin{center}
+    \begin{tabular}{lll}
+      \toprule
+      \textbf{Magnitud} & \textbf{Unidad} & \textbf{Equivalencias en SI} \\
+      \midrule
+      Longitud & kilómetro & $1\ \text{km} = 1.000\ \text{m}$          \\
+               & centímetro & $1\ \text{cm} = 0{,}01\ \text{m}$        \\
+               & milímetro  & $1\ \text{mm} = 0{,}001\ \text{m}$       \\
+               & pulgada    & $1\ \text{in} = 2{,}54\ \text{cm}$       \\
+               & pie        & $1\ \text{ft} = 0{,}3048\ \text{m}$      \\
+               & milla      & $1\ \text{mi} = 1.609{,}344\ \text{m}$   \\
+      \midrule
+      Masa     & tonelada   & $1\ \text{t} = 1.000\ \text{kg}$          \\
+               & gramo      & $1\ \text{g} = 0{,}001\ \text{kg}$       \\
+               & libra      & $1\ \text{lb} = 0{,}453592\ \text{kg}$   \\
+      \midrule
+      Tiempo   & minuto     & $1\ \text{min} = 60\ \text{s}$            \\
+               & hora       & $1\ \text{h} = 3.600\ \text{s}$           \\
+               & día        & $1\ \text{día} = 86.400\ \text{s}$        \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{cuadroteoria}
+
+\begin{cuadroteoria}
+  \textbf{Tabla 4.} Presión:
+  \begin{center}
+    \begin{tabular}{lll}
+      \toprule
+      \textbf{Unidad} & \textbf{Símbolo} & \textbf{Equivalencias} \\
+      \midrule
+      atmósfera  & atm & $1\ \text{atm} = 101.325\ \text{Pa} = 1{,}01325\ \text{bar}$        \\
+                  &     & $= 760\ \text{mmHg} = 14{,}696\ \text{psi}$                        \\
+      bar        & bar & $1\ \text{bar} = 100.000\ \text{Pa} = 10^{5}\ \text{Pa}$            \\
+      milímetro de mercurio & mmHg & $1\ \text{mmHg} = 133{,}322\ \text{Pa}$ \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{cuadroteoria}
+
+\begin{cuadroteoria}
+  \textbf{Tabla 5.} Energía y potencia:
+  \begin{center}
+    \begin{tabular}{lll}
+      \toprule
+      \textbf{Magnitud} & \textbf{Unidad} & \textbf{Equivalencias en SI} \\
+      \midrule
+      Energía   & caloría  & $1\ \text{cal} = 4{,}186\ \text{J}$            \\
+                & kilocaloría & $1\ \text{kcal} = 4.186\ \text{J}$          \\
+                & kilovatio-hora & $1\ \text{kWh} = 3{,}6 \times 10^{6}\ \text{J}$ \\
+                & electrón-voltio & $1\ \text{eV} = 1{,}602 \times 10^{-19}\ \text{J}$ \\
+                & BTU      & $1\ \text{BTU} = 1.055{,}06\ \text{J}$        \\
+      \midrule
+      Potencia  & caballo de vapor & $1\ \text{hp} = 745{,}7\ \text{W}$  \\
+                & caballo métrico  & $1\ \text{CV} = 735{,}5\ \text{W}$  \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{cuadroteoria}
+
+% ============================================================
+\section{El Sistema Inglés en Contexto Petrolero}
+% ============================================================
+
+\begin{cuadroextra}
+  \small
+  \textbf{Nota especial:} en la industria petrolera, petrofísica y de fluidos conviven el SI con el Sistema Inglés. Estas son las conversiones que \emph{sí} vas a usar en el campo:
+  \begin{center}
+    \begin{tabular}{lll}
+      \toprule
+      \textbf{Cantidad} & \textbf{Unidad inglesa} & \textbf{Equivalencia en SI} \\
+      \midrule
+      Presión   & psi  & $1\ \text{psi} = 6.894{,}76\ \text{Pa} \approx 6{,}895\ \text{kPa}$ \\
+      Volumen   & barril (bbl) & $1\ \text{bbl} = 42\ \text{gal US} = 158{,}987\ \text{L}$ \\
+                & galón US & $1\ \text{gal} = 3{,}785\ \text{L}$                          \\
+                & pie cúbico & $1\ \text{ft}^{3} = 28{,}317\ \text{L}$                    \\
+      Longitud  & pie   & $1\ \text{ft} = 0{,}3048\ \text{m}$                          \\
+                & pulgada & $1\ \text{in} = 2{,}54\ \text{cm}$                          \\
+      Masa      & libra & $1\ \text{lb} = 0{,}453592\ \text{kg}$                       \\
+      Energía   & BTU   & $1\ \text{BTU} = 1.055{,}06\ \text{J}$                       \\
+                & MMBTU & $1\ \text{MMBTU} = 1{,}05506 \times 10^{9}\ \text{J}$        \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \textbf{Conversión de temperatura:}
+  \[
+    T_{°\text{C}} = \frac{5}{9}\,(T_{°\text{F}} - 32) \qquad\qquad
+    T_{°\text{F}} = \frac{9}{5}\,T_{°\text{C}} + 32
+  \]
+  \textbf{Densidad en grados API} (la escala del crudo): se define a $60\,°\text{F}$ con la gravedad específica (GE) relativa al agua:
+  \[
+    °\text{API} = \frac{141{,}5}{\text{GE}} - 131{,}5
+  \]
+  El agua pura marca $10\,°\text{API}$. Si el crudo tiene más de $10\,°\text{API}$ es más liviano que el agua (flota); si tiene menos, es más pesado (se hunde). \textbf{Regla de bolsillo:} un barril equivalente de petróleo ($1\ \text{boe}$) aporta aproximadamente $5{,}8\ \text{MMBTU}$ de energía.
+\end{cuadroextra}
+
+\newpage
+
+% ============================================================
+\section{Fórmulas Estructurales}
+% ============================================================
+
+% ── Cinemática ──────────────────────────────────────────────
+\subsection{Cinemática}
+
+\begin{cuadroteoria}
+  \textbf{Movimiento rectilíneo uniforme (MRU):} velocidad constante.
+  \[
+    x = x_0 + v\,t
+  \]
+  \textbf{Movimiento rectilíneo uniformemente variado (MRUV):} aceleración constante.
+  \[
+    v = v_0 + a\,t \qquad
+    x = x_0 + v_0 t + \tfrac{1}{2} a t^2 \qquad
+    v^2 = v_0^2 + 2a\,(x - x_0)
+  \]
+  \textbf{Caída libre:} es un MRUV con $a = g = 9{,}81\ \text{m/s}^2$ (hacia el centro de la Tierra). Se suele tomar $x_0 = 0$ y $v_0 = 0$ si parte del reposo.
+\end{cuadroteoria}
+
+% ── Dinámica ────────────────────────────────────────────────
+\subsection{Dinámica: Las Leyes de Newton}
+
+\begin{cuadroteoria}
+  \textbf{1.ª Ley (inercia):} si la fuerza neta es nula, un cuerpo mantiene su estado de reposo o de movimiento rectilíneo uniforme.
+  \[
+    \sum \vec{F} = \vec{0} \;\Rightarrow\; \vec{v} = \text{constante}
+  \]
+  \textbf{2.ª Ley (fundamental):} la fuerza neta es igual al producto de la masa por la aceleración.
+  \[
+    \sum \vec{F} = m\,\vec{a}
+  \]
+  \textbf{3.ª Ley (acción y reacción):} si un cuerpo A ejerce una fuerza sobre B, B ejerce sobre A una fuerza igual y opuesta.
+  \[
+    \vec{F}_{AB} = -\vec{F}_{BA}
+  \]
+  \textbf{Peso:} $\vec{P} = m\,\vec{g}$ \quad·\quad \textbf{Roce:} $f_r = \mu N$ \quad·\quad
+  \textbf{Centrípeta:} $F_c = \dfrac{m v^2}{r}$ \quad·\quad
+  \textbf{Gravitación:} $F = G\,\dfrac{m_1 m_2}{r^2}$, con $G = 6{,}674 \times 10^{-11}\ \text{N·m}^2/\text{kg}^2$.
+\end{cuadroteoria}
+
+\noindent\textbf{Todo problema de dinámica empieza por el diagrama de cuerpo libre (DCL):} aísla el cuerpo, dibuja \emph{todas} las fuerzas que actúan sobre él y recién entonces aplica la 2.ª ley. Ejemplo: un bloque arrastrado sobre una superficie con roce.
+
+\begin{center}
+  \begin{tikzpicture}[>=Stealth, scale=0.95]
+    % Superficie
+    \draw[thick, mwgrisoscuro] (-3,0) -- (3,0);
+    % Bloque
+    \draw[fill=mwprimario!12, draw=mwprimario, thick] (-1,-0.45) rectangle (1,0.55);
+    \node at (0,0.05) {\small bloque};
+    % Peso
+    \draw[->, very thick, mwprimario] (0,-0.45) -- (0,-1.7)
+      node[midway, right] {\small $\vec{P} = m\vec{g}$};
+    % Normal
+    \draw[->, very thick, mwnaranja] (0,0.55) -- (0,1.9)
+      node[midway, right] {\small $\vec{N}$};
+    % Fuerza aplicada
+    \draw[->, very thick, mwmagenta] (-1,0.05) -- (-2.6,0.05)
+      node[midway, above] {\small $\vec{F}$};
+    % Roce
+    \draw[->, very thick, mwrojonaranja] (1,0.05) -- (2.6,0.05)
+      node[midway, above] {\small $f_r$};
+  \end{tikzpicture}
+\end{center}
+
+\noindent\textbf{Reglas del DCL:} (1) el peso siempre apunta hacia el centro de la Tierra; (2) la normal es perpendicular a la superficie \emph{y hacia afuera} de ella; (3) el roce se opone al movimiento (o al movimiento inminente); (4) la fuerza aplicada va en la dirección en que se empuja o jala.
+
+% ── Trabajo y Energía ───────────────────────────────────────
+\subsection{Trabajo y Energía}
+
+\begin{cuadroteoria}
+  \textbf{Trabajo} de una fuerza constante:
+  \[
+    W = F\,d\cos\theta \qquad [W] = \text{J}
+  \]
+  \textbf{Energía cinética} y \textbf{potencial gravitatoria}:
+  \[
+    K = \tfrac{1}{2} m v^2 \qquad\qquad U_g = m g h
+  \]
+  \textbf{Teorema trabajo--energía:} el trabajo neto es el cambio de energía cinética.
+  \[
+    W_{\text{neto}} = \Delta K = K_2 - K_1
+  \]
+  \textbf{Conservación de la energía mecánica} (sin fricción):
+  \[
+    K_1 + U_1 = K_2 + U_2
+  \]
+  \textbf{Potencia:}
+  \[
+    P = \frac{W}{t} \qquad [P] = \text{W} \qquad\qquad P = F\,v \ \ \text{(si } \vec{F} \parallel \vec{v}\text{)}
+  \]
+\end{cuadroteoria}
+
+\noindent\textbf{Truco de análisis dimensional en la práctica:} cuando termines un cálculo, pregunta \emph{«¿qué unidades me dio?»}. Si esperabas joules y te dieron watts, hay un $t$ de más o de menos: el análisis dimensional te avisa antes que el profesor.
+
+% ============================================================
+% ── Llamado a la Acción ─────────────────────────────────────
+% ============================================================
+\newpage
+\vspace*{\fill}
+
+\mwcta{Tener la fórmula es el 10\,\%, saber interpretarla es el 90\,\%}{¿Trancado con tu guía de ejercicios? En Mathwizards te ayudamos a leer los problemas, no solo a copiar fórmulas: asesorías de Física personalizadas, desde bachillerato hasta la universidad. Escríbenos y conversemos.}
+
+\vspace*{\fill}
+
+\end{document}

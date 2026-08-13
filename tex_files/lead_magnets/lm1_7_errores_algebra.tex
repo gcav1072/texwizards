@@ -1,0 +1,283 @@
+% ============================================================
+%  LEAD MAGNET 1 — LOS 7 ERRORES ALGEBRAICOS
+%  «El Salvavidas de Nuevo Ingreso» (Álgebra y Cálculo)
+%  Autor: Gabriel Astudillo — Mathwizards Consultoría Educativa STEM
+%  V1 · 2026-08-12
+%  Compilar: latexmk -xelatex lm1_7_errores_algebra.tex
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{mathwizards-guia}
+\usepackage[hidelinks]{hyperref}
+
+\mwguia{Los 7 Errores Algebraicos}{Gabriel Astudillo $\cdot$ Mathwizards STEM}
+
+% ── Llamado a la acción (CTA) ────────────────────────────────
+\newcommand{\mwcta}[2]{%
+  \begin{center}
+    \begin{minipage}{0.94\linewidth}
+      \begin{cuadroextra}
+        \centering
+        {\nxheav\Large\color{mwprimario}#1}\\[8pt]
+        {\small #2}\\[12pt]
+        {\footnotesize\color{mwgris}
+          \textbf{Instagram:} \texttt{@mathwizards.stem} \quad$\cdot$\quad
+          \textbf{WhatsApp:} \url{https://wa.me/+584148642001}}
+      \end{cuadroextra}
+    \end{minipage}
+  \end{center}
+}
+
+\begin{document}
+
+% ============================================================
+% ── Portada ─────────────────────────────────────────────────
+% ============================================================
+\mwportada{Los 7 Errores Algebraicos}{que te Harán Reprobar Cálculo (y cómo corregirlos)}{Mathwizards Consultoría Educativa STEM}
+
+\vspace{6pt}
+\begin{cuadroinfo}
+  \small
+  Presentaste un parcial de Cálculo, revisaste la nota y el resultado no fue el esperado. Al corregir, descubriste que no fue la derivada la que falló: fue un signo, una simplificación, una raíz mal resuelta. \textquestiondown Te suena? No estás solo: \textbf{la mayoría de los errores en Cálculo no son de Cálculo, sino de álgebra básica}. Este material es tu salvavidas: siete errores clásicos, por qué ocurren y cómo corregirlos. Úsalo antes de cada parcial y conviértelo en tu ritual de revisión.
+\end{cuadroinfo}
+
+% ============================================================
+\section{El Diagnóstico: \textquestiondown Por qué Fallan los Límites?}
+% ============================================================
+
+Cuando un ejercicio de límites, derivadas o integrales sale mal, la tentación es culpar al tema nuevo. Pero en la práctica, al revisar la solución con calma, casi siempre aparece el mismo sospechoso: un paso de álgebra que se hizo «de memoria» y salió mal.
+
+\begin{cuadroteoria}
+  \textbf{Regla del 90\,\%:} si un límite o una derivada te sale mal, en el 90\,\% de los casos el error está \emph{antes} de derivar: está en la simplificación, en el signo o en la factorización.
+\end{cuadroteoria}
+
+\noindent Por eso esta guía no te enseña Cálculo: te enseña a blindar el piso sobre el que se construye. \textbf{Cómo usarla antes de un parcial:}
+
+\begin{enumerate}[leftmargin=*]
+  \item Revisa los 7 errores uno por uno. Sé honesto: \textquestiondown cuál de ellos has cometido alguna vez?
+  \item Haz los mini-ejercicios «Tu turno» sin mirar la solución.
+  \item Si identificas tus «errores favoritos», anótalos en una tarjeta y revísala los 5 minutos previos al examen.
+  \item Al resolver, primero \emph{simplifica el álgebra} y después deriva o integra. Nunca al revés.
+\end{enumerate}
+
+% ============================================================
+\section{7 errores que quizás estés cometiendo sin darte cuenta}
+% ============================================================
+
+Cada error se presenta igual: primero el \textbf{Error Fatal} (lo que jamás debes hacer), luego la \textbf{Justificación Lógica} (por qué es un absurdo) y finalmente la \textbf{Resolución Correcta} (la propiedad bien aplicada).
+
+% ─────────────────────────────────────────────────────────────
+\subsection{Error 1: La Fracción que se «Parte a la Mitad»}
+
+\begin{cuadroadvertencia}
+  \textbf{El Error Fatal:} creer que una suma en el \emph{denominador} se puede repartir:
+  \[
+    \frac{1}{a + b} \;\overset{\text{mal}}{=}\; \frac{1}{a} + \frac{1}{b}
+  \]
+\end{cuadroadvertencia}
+
+La división es la operación inversa de la multiplicación, y la multiplicación se reparte sobre la suma solo cuando multiplica a \emph{toda} la suma. Aquí la suma está «atrapada» dentro del denominador: no hay factor común que sacar. Compruébalo con números:
+\[
+  \frac{1}{1 + 1} = \frac{1}{2} = 0{,}5 \qquad \text{pero} \qquad \frac{1}{1} + \frac{1}{1} = 2
+\]
+\textquestiondown 0{,}5 es igual a 2? Absurdo, claro.
+
+\begin{cuadrosolucion}
+  \textbf{La Resolución Correcta:} la suma solo se puede repartir cuando está en el \emph{numerador}:
+  \[
+    \frac{a + b}{c} = \frac{a}{c} + \frac{b}{c}
+  \]
+  En cambio, $\dfrac{1}{a + b}$ no se puede separar: se deja tal cual (o se racionaliza si el problema lo pide).
+\end{cuadrosolucion}
+
+\noindent\textbf{En Cálculo lo verás en:} combinar fracciones con denominador común, un paso imprescindible en la derivada por definición y en muchos límites.
+
+\noindent\textbf{Tu turno:} dos resistencias en serie, $R_1$ y $R_2$, se combinan como $R_{eq} = R_1 + R_2$. \textquestiondown Puedes escribir $\frac{1}{R_{eq}} = \frac{1}{R_1} + \frac{1}{R_2}$? \textbf{No}: esa fórmula es para resistencias \emph{en paralelo}. La física te está delatando el mismo error.
+
+% ─────────────────────────────────────────────────────────────
+\subsection{Error 2: El Cuadrado que se «Reparte»}
+
+\begin{cuadroadvertencia}
+  \textbf{El Error Fatal:} distribuir el cuadrado como si fuera una multiplicación:
+  \[
+    (a + b)^2 \;\overset{\text{mal}}{=}\; a^2 + b^2
+  \]
+\end{cuadroadvertencia}
+
+Elevar al cuadrado es multiplicar la base por sí misma. Entonces:
+\[
+  (a + b)^2 = (a + b)(a + b) = a^2 + ab + ab + b^2 = a^2 + 2ab + b^2
+\]
+Con números: $(2 + 3)^2 = 25$, mientras que $2^2 + 3^2 = 4 + 9 = 13$. El cuadrado de la suma siempre tiene el término cruzado $2ab$.
+
+\begin{cuadrosolucion}
+  \textbf{La Resolución Correcta:} productos notables bien aplicados:
+  \[
+    (a + b)^2 = a^2 + 2ab + b^2 \qquad (a - b)^2 = a^2 - 2ab + b^2
+  \]
+\end{cuadrosolucion}
+
+\noindent\textbf{En Cálculo lo verás en:} la derivada por definición usa $(x + h)^2 = x^2 + 2xh + h^2$. Si olvidas el $2xh$, el límite te dará $2x$ con un término fantasma que no desaparece.
+
+\noindent\textbf{Tu turno:} expande $(3x - 2)^2$. Resultado: $9x^2 - 12x + 4$.
+
+% ─────────────────────────────────────────────────────────────
+\subsection{Error 3: Potencias que se «Mezclan»}
+
+\begin{cuadroadvertencia}
+  \textbf{El Error Fatal:} confundir la multiplicación de potencias con la potencia de una potencia (o sumar exponentes donde no se multiplica nada):
+  \[
+    a^n \cdot a^m \;\overset{\text{mal}}{=}\; a^{n \cdot m} \qquad\qquad
+    a^n + a^m \;\overset{\text{mal}}{=}\; a^{n + m}
+  \]
+\end{cuadroadvertencia}
+
+Multiplicar potencias de la misma base es \emph{contar cuántas veces se multiplica la base}:
+\[
+  a^2 \cdot a^3 = (a \cdot a)(a \cdot a \cdot a) = a^5
+\]
+Con números: $2^2 \cdot 2^3 = 4 \cdot 8 = 32 = 2^5$, y $2^5 = 32 \neq 2^6 = 64$. Y sumar potencias no las fusiona: $2^2 + 2^3 = 4 + 8 = 12$, que no es ninguna potencia de 2.
+
+\begin{cuadrosolucion}
+  \textbf{La Resolución Correcta:} las tres reglas de oro:
+  \[
+    a^m \cdot a^n = a^{m+n} \qquad \frac{a^m}{a^n} = a^{m-n} \qquad (a^m)^n = a^{m \cdot n}
+  \]
+  Además: $a^{-n} = \dfrac{1}{a^n}$ y $a^0 = 1$ (con $a \neq 0$).
+\end{cuadrosolucion}
+
+\noindent\textbf{En Cálculo lo verás en:} la regla de la potencia para derivar e integrar: $\int x^n \, dx = \frac{x^{n+1}}{n+1}$ (con $n \neq -1$). Un error de exponente aquí arruina toda la integral.
+
+\noindent\textbf{Tu turno:} simplifica $\dfrac{x^5 \cdot x^2}{x^4}$. Resultado: $x^{5+2-4} = x^3$.
+
+% ─────────────────────────────────────────────────────────────
+\subsection{Error 4: La Raíz que «Atraviesa» la Suma}
+
+\begin{cuadroadvertencia}
+  \textbf{El Error Fatal:} creer que la raíz se reparte sobre la suma:
+  \[
+    \sqrt{a^2 + b^2} \;\overset{\text{mal}}{=}\; a + b
+  \]
+\end{cuadroadvertencia}
+
+La raíz cuadrada solo se reparte sobre \emph{productos} y \emph{cocientes}, nunca sobre sumas. El ejemplo clásico es el triángulo rectángulo $3$–$4$–$5$:
+\[
+  \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5 \qquad \text{pero} \qquad 3 + 4 = 7
+\]
+La hipotenusa mide $5$, no $7$. Si fuera válida la regla del error, los catetos sumados serían la hipotenusa y el teorema de Pitágoras sería un chiste.
+
+\begin{cuadrosolucion}
+  \textbf{La Resolución Correcta:} la raíz se reparte solo donde hay productos o cocientes:
+  \[
+    \sqrt{ab} = \sqrt{a}\,\sqrt{b} \ \ (a, b \geq 0) \qquad
+    \sqrt{\frac{a}{b}} = \frac{\sqrt{a}}{\sqrt{b}} \ \ (b > 0)
+  \]
+  La expresión $\sqrt{a^2 + b^2}$ simplemente \textbf{no se simplifica} más.
+\end{cuadrosolucion}
+
+\noindent\textbf{En Cálculo lo verás en:} la distancia entre dos puntos, $d = \sqrt{(\Delta x)^2 + (\Delta y)^2}$, y en el módulo de vectores: $\|\vec{v}\| = \sqrt{v_x^2 + v_y^2}$.
+
+\noindent\textbf{Tu turno:} un triángulo rectángulo tiene catetos de $6$ y $8$. \textquestiondown Cuánto mide la hipotenusa? Resultado: $\sqrt{36 + 64} = \sqrt{100} = 10$ (y no $14$).
+
+% ─────────────────────────────────────────────────────────────
+\subsection{Error 5: La Raíz «Siempre Positiva»}
+
+\begin{cuadroadvertencia}
+  \textbf{El Error Fatal:} olvidar que la raíz cuadrada \emph{por definición} devuelve el valor no negativo:
+  \[
+    \sqrt{x^2} \;\overset{\text{mal}}{=}\; x
+  \]
+\end{cuadroadvertencia}
+
+Si $x = -3$, entonces $x^2 = 9$ y $\sqrt{9} = 3$; es decir, $\sqrt{(-3)^2} = 3 \neq -3$. La raíz «borra» el signo, no lo conserva: por eso el resultado correcto es el \emph{valor absoluto}.
+
+\begin{cuadrosolucion}
+  \textbf{La Resolución Correcta:}
+  \[
+    \sqrt{x^2} = |x| = \begin{cases} x & \text{si } x \geq 0 \\ -x & \text{si } x < 0 \end{cases}
+  \]
+  En general, $\sqrt[n]{x^n} = |x|$ cuando $n$ es par; si $n$ es impar, $\sqrt[n]{x^n} = x$.
+\end{cuadrosolucion}
+
+\noindent\textbf{En Cálculo lo verás en:} el límite $\lim_{x \to 0} \frac{|x|}{x}$: por la derecha da $1$ y por la izquierda da $-1$, por lo que \textbf{no existe}. Ahí mismo falla el que escribe $\sqrt{x^2} = x$ y «demuestra» que el límite es $1$.
+
+\noindent\textbf{Tu turno:} evalúa $\sqrt{(-5)^2}$. Resultado: $5$ (no $-5$).
+
+% ─────────────────────────────────────────────────────────────
+\subsection{Error 6: Dividir por lo que Puede Ser Cero}
+
+\begin{cuadroadvertencia}
+  \textbf{El Error Fatal:} dividir ambos lados de una ecuación entre una expresión con incógnita, asumiendo que nunca es cero. Ejemplo: resolver $x^2 = 3x$ dividiendo entre $x$:
+  \[
+    x^2 = 3x \quad \overset{\text{mal}}{\Rightarrow} \quad x = 3 \quad \text{(se pierde } x = 0\text{)}
+  \]
+\end{cuadroadvertencia}
+
+Dividir entre $x$ solo está permitido si $x \neq 0$. Pero $x = 0$ \emph{sí} cumple la ecuación original ($0^2 = 3 \cdot 0$). Al dividir, «mataste» una solución legítima. Lo mismo pasa al simplificar $\frac{ax}{x} = a$: es válido \textbf{solo si} $x \neq 0$.
+
+\begin{cuadrosolucion}
+  \textbf{La Resolución Correcta:} cuando veas una incógnita en ambos lados, \textbf{factoriza en lugar de dividir}:
+  \[
+    x^2 = 3x \quad \Rightarrow \quad x^2 - 3x = 0 \quad \Rightarrow \quad x(x - 3) = 0 \quad \Rightarrow \quad x = 0 \ \text{o} \ x = 3
+  \]
+\end{cuadrosolucion}
+
+\noindent\textbf{En Cálculo lo verás en:} los límites con indeterminación $0/0$, como $\lim_{x \to 3} \frac{x^2 - 9}{x - 3}$: no puedes «dividir entre $x - 3$» a secas; factorizas, simplificas \emph{para $x \neq 3$} y luego evalúas el límite ($= 6$).
+
+\noindent\textbf{Tu turno:} resuelve $5x^2 = 10x$. Resultado: $x = 0$ o $x = 2$ (¡las dos!).
+
+\newpage
+
+% ─────────────────────────────────────────────────────────────
+\subsection{Error 7: Cancelar Términos que no son Factores}
+
+\begin{cuadroadvertencia}
+  \textbf{El Error Fatal:} cancelar «de ojo» términos que se parecen, sin ser factores de todo el numerador y del todo el denominador:
+  \[
+    \frac{x + 3}{x + 5} \;\overset{\text{mal}}{=}\; \frac{3}{5}
+  \]
+\end{cuadroadvertencia}
+
+Con números queda claro: $\frac{2 + 3}{2 + 5} = \frac{5}{7}$, que no es $\frac{3}{5}$. Cancelar es \emph{quitar un factor común} de arriba y de abajo; si lo que quitas no multiplica a todo, estás cambiando el valor de la fracción.
+
+\begin{cuadrosolucion}
+  \textbf{La Resolución Correcta:} primero \textbf{factoriza}, después cancela:
+  \[
+    \frac{2x + 6}{2x + 4} = \frac{2(x + 3)}{2(x + 2)} = \frac{x + 3}{x + 2}
+    \qquad\qquad
+    \frac{ab + ac}{ad} = \frac{a(b + c)}{ad} = \frac{b + c}{d} \ \ (a \neq 0, \ d \neq 0)
+  \]
+\end{cuadrosolucion}
+
+\noindent\textbf{En Cálculo lo verás en:} los límites racionales, p. ej. $\frac{x^2 - 1}{x - 1} = \frac{(x - 1)(x + 1)}{x - 1} = x + 1$ (para $x \neq 1$). Sin factorizar no hay forma de salir del $0/0$.
+
+\noindent\textbf{Tu turno:} simplifica $\frac{x^2 + 2x}{x^2 - 4}$. Resultado: $\frac{x(x+2)}{(x-2)(x+2)} = \frac{x}{x - 2}$ (con $x \neq \pm 2$).
+
+% ============================================================
+\section{Tu Checklist Antes del Parcial}
+% ============================================================
+
+\begin{cuadroinfo}
+  \small
+  \begin{enumerate}[leftmargin=*]
+    \item \textbf{Repasa los 7 errores} y marca los que hayas cometido alguna vez. Esos son tus enemigos personales.
+    \item \textbf{Haz los «Tu turno»} sin mirar las soluciones, con lápiz y papel.
+    \item \textbf{Orden de trabajo:} simplifica el álgebra \emph{antes} de derivar o integrar.
+    \item \textbf{Autopsia del error:} cuando un ejercicio salga mal, busca el error algebraico \emph{antes} que el conceptual: el 90\,\% de las veces está ahí.
+  \end{enumerate}
+\end{cuadroinfo}
+
+\noindent Si llegaste hasta aquí y corregiste tus errores favoritos, tu álgebra ya está lista para el Cálculo. El siguiente paso es darle estructura y método al tema nuevo.
+
+% ============================================================
+% ── Llamado a la Acción ─────────────────────────────────────
+% ============================================================
+\newpage
+\vspace*{\fill}
+
+\mwcta{Dominar el álgebra es solo el primer paso}{Si necesitas estructura y método para dominar el Cálculo (o cualquier otra materia STEM), en Mathwizards te acompañamos con asesorías personalizadas. Agenda tu clase de diagnóstico por WhatsApp: conversemos sobre tu caso y diseñemos tu plan de estudio.}
+
+\vspace*{\fill}
+
+\end{document}

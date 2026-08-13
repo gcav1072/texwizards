@@ -1,0 +1,308 @@
+% ============================================================
+%  CONVERSIONES — 3.er Año
+%  Tablas de conversión con unidad SI como ancla
+%  Autor: Gabriel Astudillo — Mathwizards Consultoría Educativa STEM
+%  V1 · 2026-08-13
+%  Compilar: latexmk -xelatex conversiones.tex
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{mathwizards-guia}
+\usepackage[hidelinks]{hyperref}
+
+\mwguia{Tablas de Conversión}{3er Año $\cdot$ Mathwizards STEM}
+
+\begin{document}
+
+% ============================================================
+% ── Portada ─────────────────────────────────────────────────
+% ============================================================
+\mwportada{Tablas de Conversión}{Unidades más comunes}{Mathwizards Consultoría Educativa STEM}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+    \small
+    \textbf{Cómo usar estas tablas:} cada tabla usa la \textbf{unidad del SI} como
+    ancla. Por ejemplo, en longitud: $1\ \text{m} = 100\ \text{cm} = 3{,}281\ \text{ft}$,
+    etc. Si necesitas pasar de una unidad no-SI a otra (por ejemplo, de cm a ft),
+    basta con leer los valores que corresponden a un mismo metro: si
+    $100\ \text{cm} \equiv 1\ \text{m}$ y $1\ \text{m} \equiv 3{,}281\ \text{ft}$,
+    entonces $100\ \text{cm} \equiv 3{,}281\ \text{ft}$.\\[4pt]
+    \textbf{Convención decimal:} coma para los decimales, punto para los miles.
+    Ejemplo: $1{,}609\ \text{km} = 1{.}609\ \text{m}$.
+\end{cuadroinfo}
+
+% ============================================================
+\section{Longitud}
+% ============================================================
+
+\begin{cuadroteoria}
+    \textbf{Unidad SI: metro (m).}\quad $1\ \text{m}$ equivale a:
+    \begin{center}
+        \begin{tabular}{lll}
+            \toprule
+            \textbf{Unidad} & \textbf{Símbolo} & \textbf{Equivalencia}                 \\
+            \midrule
+            kilómetro       & km               & $0{,}001\ \text{km}$                  \\
+            centímetro      & cm               & $100\ \text{cm}$                      \\
+            milímetro       & mm               & $1{.}000\ \text{mm}$                  \\
+            micrómetro      & \textmu m        & $1{.}000{.}000\ \text{\textmu m}$     \\
+            nanómetro       & nm               & $10^{9}\ \text{nm}$                   \\
+            pulgada         & in               & $39{,}3701\ \text{in}$                \\
+            pie             & ft               & $3{,}2808\ \text{ft}$                 \\
+            yarda           & yd               & $1{,}0936\ \text{yd}$                 \\
+            milla terrestre & mi               & $6{,}2137 \times 10^{-4}\ \text{mi}$  \\
+            milla náutica   & nmi              & $5{,}3996 \times 10^{-4}\ \text{nmi}$ \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+\end{cuadroteoria}
+
+\newpage %ajsute pag
+% ============================================================
+\section{Masa}
+% ============================================================
+
+\begin{cuadroteoria}
+    \textbf{Unidad SI: kilogramo (kg).}\quad $1\ \text{kg}$ equivale a:
+    \begin{center}
+        \begin{tabular}{lll}
+            \toprule
+            \textbf{Unidad}  & \textbf{Símbolo} & \textbf{Equivalencia}      \\
+            \midrule
+            gramo            & g                & $1{.}000\ \text{g}$        \\
+            miligramo        & mg               & $1{.}000{.}000\ \text{mg}$ \\
+            tonelada métrica & t                & $0{,}001\ \text{t}$        \\
+            libra            & lb               & $2{,}2046\ \text{lb}$      \\
+            onza             & oz               & $35{,}274\ \text{oz}$      \\
+            slug             & slug             & $0{,}06852\ \text{slug}$   \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+\end{cuadroteoria}
+
+% ============================================================
+\section{Tiempo}
+% ============================================================
+
+\begin{cuadroteoria}
+    \textbf{Unidad SI: segundo (s).}\quad $1\ \text{s}$ equivale a:
+    \begin{center}
+        \begin{tabular}{lll}
+            \toprule
+            \textbf{Unidad} & \textbf{Símbolo} & \textbf{Equivalencia}                                                   \\
+            \midrule
+            milisegundo     & ms               & $1{.}000\ \text{ms}$                                                    \\
+            microsegundo    & \textmu s        & $1{.}000{.}000\ \text{\textmu s}$                                       \\
+            minuto          & min              & $\frac{1}{60}\ \text{min} \approx 0{,}01\overline{6}\ \text{min}$       \\[4pt]
+            hora            & h                & $\frac{1}{3{.}600}\ \text{h} \approx 2{,}778 \times 10^{-4}\ \text{h}$  \\[4pt]
+            día             & d                & $\frac{1}{86{.}400}\ \text{d} \approx 1{,}157 \times 10^{-5}\ \text{d}$ \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+\end{cuadroteoria}
+
+
+% ============================================================
+\section{Temperatura}
+% ============================================================
+
+\begin{cuadroteoria}
+    \textbf{Unidad SI: kelvin (K).}\quad Fórmulas directas de conversión (6 relaciones):
+    \begin{center}
+        \begin{tabular}{ll}
+            \toprule
+            \textbf{Conversión}  & \textbf{Fórmula}                                              \\
+            \midrule
+            Celsius a Kelvin     & $T_{\text{K}} = T_{°\text{C}} + 273{,}15$                     \\[4pt]
+            Kelvin a Celsius     & $T_{°\text{C}} = T_{\text{K}} - 273{,}15$                     \\[4pt]
+            Celsius a Fahrenheit & $T_{°\text{F}} = \frac{9}{5}\,T_{°\text{C}} + 32$             \\[4pt]
+            Fahrenheit a Celsius & $T_{°\text{C}} = \frac{5}{9}\,(T_{°\text{F}} - 32)$           \\[4pt]
+            Fahrenheit a Kelvin  & $T_{\text{K}} = \frac{5}{9}\,(T_{°\text{F}} - 32) + 273{,}15$ \\[4pt]
+            Kelvin a Fahrenheit  & $T_{°\text{F}} = \frac{9}{5}\,(T_{\text{K}} - 273{,}15) + 32$ \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+    \begin{center}
+    \end{center}
+    \small\textit{Nota:} la temperatura \textbf{no se convierte por simple
+        multiplicación} (hay desplazamiento de escala). La proporción directa sólo
+    vale para \emph{diferencias}: $\Delta T_{°\text{C}} = \Delta T_{\text{K}}$.
+\end{cuadroteoria}
+
+% ============================================================
+\section{Presión}
+% ============================================================
+
+\begin{cuadroteoria}
+    \textbf{Unidad SI: pascal (Pa = N/m²).}\quad $1\ \text{Pa}$ equivale a:
+    \begin{center}
+        \begin{tabular}{lll}
+            \toprule
+            \textbf{Unidad}       & \textbf{Símbolo} & \textbf{Equivalencia}                  \\
+            \midrule
+            kilopascal            & kPa              & $0{,}001\ \text{kPa}$                  \\
+            bar                   & bar              & $10^{-5}\ \text{bar}$                  \\
+            atmósfera estándar    & atm              & $9{,}8692 \times 10^{-6}\ \text{atm}$  \\
+            milímetro de mercurio & mmHg             & $7{,}5006 \times 10^{-3}\ \text{mmHg}$ \\
+            libra-fuerza/pulg²    & psi              & $1{,}4504 \times 10^{-4}\ \text{psi}$  \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+\end{cuadroteoria}
+
+% ============================================================
+\section{Energía}
+% ============================================================
+
+\begin{cuadroteoria}
+    \textbf{Unidad SI: julio (J = N\,m = kg\,m²/s²).}\quad $1\ \text{J}$ equivale a:
+    \begin{center}
+        \begin{tabular}{lll}
+            \toprule
+            \textbf{Unidad} & \textbf{Símbolo} & \textbf{Equivalencia}                  \\
+            \midrule
+            ergio           & erg              & $10^{7}\ \text{erg}$                   \\
+            caloría         & cal              & $0{,}23885\ \text{cal}$                \\
+            kilocaloría     & kcal             & $2{,}3885 \times 10^{-4}\ \text{kcal}$ \\
+            kilovatio-hora  & kWh              & $2{,}7778 \times 10^{-7}\ \text{kWh}$  \\
+            electrón-voltio & eV               & $6{,}2415 \times 10^{18}\ \text{eV}$   \\
+            BTU             & BTU              & $9{,}4782 \times 10^{-4}\ \text{BTU}$  \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+\end{cuadroteoria}
+
+% ============================================================
+\section{Potencia}
+% ============================================================
+
+\begin{cuadroteoria}
+    \textbf{Unidad SI: vatio (W = J/s).}\quad $1\ \text{W}$ equivale a:
+    \begin{center}
+        \begin{tabular}{lll}
+            \toprule
+            \textbf{Unidad}            & \textbf{Símbolo} & \textbf{Equivalencia}                \\
+            \midrule
+            kilovatio                  & kW               & $0{,}001\ \text{kW}$                 \\
+            megavatio                  & MW               & $10^{-6}\ \text{MW}$                 \\
+            caballo de vapor (inglés)  & hp               & $1{,}3410 \times 10^{-3}\ \text{hp}$ \\
+            caballo de vapor (métrico) & CV               & $1{,}3596 \times 10^{-3}\ \text{CV}$ \\
+            BTU/hora                   & BTU/h            & $3{,}4121\ \text{BTU/h}$             \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+\end{cuadroteoria}
+\newpage
+% ============================================================
+\section{Volumen}
+% ============================================================
+
+\begin{cuadroteoria}
+    \textbf{Unidad SI: metro cúbico (m³).}\quad $1\ \text{m}^{3}$ equivale a:
+    \begin{center}
+        \begin{tabular}{lll}
+            \toprule
+            \textbf{Unidad}     & \textbf{Símbolo}      & \textbf{Equivalencia}               \\
+            \midrule
+            litro               & L                     & $1{.}000\ \text{L}$                 \\
+            mililitro           & mL                    & $1{.}000{.}000\ \text{mL}$          \\
+            centímetro cúbico   & cm³                   & $1{.}000{.}000\ \text{cm}^{3}$      \\
+            galón (US)          & gal                   & $264{,}172\ \text{gal}$             \\
+            galón (imperial UK) & gal\textsubscript{UK} & $219{,}969\ \text{gal}_{\text{UK}}$ \\
+            pie cúbico          & ft³                   & $35{,}3147\ \text{ft}^{3}$          \\
+            pulgada cúbica      & in³                   & $61{.}023{,}7\ \text{in}^{3}$       \\
+            barril (petróleo)   & bbl                   & $6{,}2898\ \text{bbl}$              \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+\end{cuadroteoria}
+
+% ============================================================
+\section{Fuerza}
+% ============================================================
+
+\begin{cuadroteoria}
+    \textbf{Unidad SI: newton (N = kg\,m/s²).}\quad $1\ \text{N}$ equivale a:
+    \begin{center}
+        \begin{tabular}{lll}
+            \toprule
+            \textbf{Unidad}  & \textbf{Símbolo} & \textbf{Equivalencia}   \\
+            \midrule
+            dina             & dyn              & $10^{5}\ \text{dyn}$    \\
+            kilogramo-fuerza & kgf              & $0{,}10197\ \text{kgf}$ \\
+            libra-fuerza     & lbf              & $0{,}22481\ \text{lbf}$ \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+\end{cuadroteoria}
+
+% ============================================================
+\section{Velocidad}
+% ============================================================
+
+\begin{cuadroteoria}
+    \textbf{Unidad SI: metro por segundo (m/s).}\quad $1\ \text{m/s}$ equivale a:
+    \begin{center}
+        \begin{tabular}{lll}
+            \toprule
+            \textbf{Unidad}        & \textbf{Símbolo} & \textbf{Equivalencia}   \\
+            \midrule
+            kilómetro por hora     & km/h             & $3{,}6\ \text{km/h}$    \\
+            pie por segundo        & ft/s             & $3{,}2808\ \text{ft/s}$ \\
+            milla por hora         & mph              & $2{,}2369\ \text{mph}$  \\
+            nudo (milla náutica/h) & kn               & $1{,}9438\ \text{kn}$   \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+\end{cuadroteoria}
+\newpage
+
+% ============================================================
+\section{Ángulos}
+% ============================================================
+
+\begin{cuadroteoria}
+    \textbf{Unidad SI: radián (rad).}\quad $1\ \text{rad}$ equivale a:
+    \begin{center}
+        \begin{tabular}{lll}
+            \toprule
+            \textbf{Unidad}   & \textbf{Símbolo} & \textbf{Equivalencia}                                      \\
+            \midrule
+            grado sexagesimal & °                & $\frac{180°}{\pi} \approx 57{,}296°$                       \\[6pt]
+            grado centesimal  & g                & $\frac{200\ \text{g}}{\pi} \approx 63{,}662\ \text{g}$     \\[6pt]
+            vuelta completa   & rev              & $\frac{1}{2\pi}\ \text{rev} \approx 0{,}15915\ \text{rev}$ \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+\end{cuadroteoria}
+
+% ============================================================
+%  Regla de uso rápido
+% ============================================================
+\begin{cuadropasos}
+    \textbf{Regla de uso rápido:} para convertir de la unidad A a la unidad B usando
+    estas tablas, aplica la proporción general:
+    \[
+        x\ [\text{B}] = \text{valor}\ [\text{A}]
+        \;\times\; \frac{\text{equiv. de B (en la tabla)}}{\text{equiv. de A (en la tabla)}}
+    \]
+    \textbf{Ejemplo:} convertir $5{,}6\ \text{km/h}$ a mph (tabla de Velocidad):
+    \[
+        x = 5{,}6\ \text{km/h} \times \frac{2{,}2369\ \text{mph}}{3{,}6\ \text{km/h}}
+        \approx 3{,}48\ \text{mph}.
+    \]
+\end{cuadropasos}
+
+\vspace*{\fill}
+\begin{center}
+    \footnotesize\color{mwgris}
+    Mathwizards Consultoría Educativa STEM
+    \quad\textbullet\quad
+    \textbf{Instagram:} \texttt{@mathwizards.stem}
+    \quad\textbullet\quad
+    \textbf{WhatsApp:} \url{https://wa.me/+584148642001}
+\end{center}
+
+\end{document}

@@ -1,9 +1,10 @@
 # .latexmkrc — Mathwizards Consultoría Educativa STEM
-# Configura XeLaTeX como motor y agrega styles/ a la ruta de paquetes.
-# Uso:  latexmk -xelatex archivo.tex
+use Cwd qw(abs_path);
+use File::Basename qw(dirname);
 
-$ENV{'TEXINPUTS'} = '/home/gabo/texwizards/styles:' . ($ENV{'TEXINPUTS'} // '');
+my $repo_root = dirname(abs_path(__FILE__));
+$ENV{'TEXINPUTS'} = "$repo_root/styles//:" . ($ENV{'TEXINPUTS'} // '') . ":";
 
-$xelatex = 'xelatex -halt-on-error -file-line-error -synctex=1';
+$xelatex = 'xelatex -halt-on-error -file-line-error -synctex=1 %O %S';
 $pdf_mode = 5;            # 5 = xelatex
 $pdf_previewer = 'zathura';

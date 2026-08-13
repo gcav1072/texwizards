@@ -1,0 +1,701 @@
+% ============================================================
+%  GUÍA 2: FUNCIONES — DEFINICIÓN
+%  Curso de Introducción 2do Año
+%  Autor: Gabriel Astudillo
+%  Clases cubiertas: 6 a 8
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Guía 2 — Funciones: Definición}{Gabriel Astudillo $\cdot$ 2do Año}
+
+% ── Comandos propios de esta guía ───────────────────
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Estudio 2}{Funciones: Definición}{Conjuntos, Relaciones, Dominio y Codominio, Tipos de Función}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} Antes de graficar cualquier función debemos saber exactamente qué es una función. En esta guía repasarás los conjuntos matemáticos, aprenderás a distinguir una relación de una función, a identificar sus partes (dominio, codominio y rango), a representarla de tres formas distintas (diagrama sagital, diagrama tabular y pares ordenados) y a clasificarla en inyectiva, sobreyectiva o biyectiva. Cada sección incluye \textbf{ejercicios resueltos} y \textbf{ejercicios propuestos}, y al final hay una sección de \textbf{ejercicios integradores}.
+  \\[4pt]
+  \textbf{Nivel de Dificultad:}\quad
+  \facil{} Básico / Directo \quad
+  \medio{} Intermedio \quad
+  \dificil{} Desafiante
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Repaso de Conjuntos}
+% ============================================================
+
+\subsection{Definición y notación}
+
+\begin{cuadroteoria}
+  \textbf{Conjunto:} es una colección bien definida de objetos, llamados \textbf{elementos} o \textbf{miembros}.
+
+  \textbf{Formas de escribir un conjunto:}
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Por extensión:} se listan todos sus elementos entre llaves.
+          $$A = \{1, 2, 3, 4, 5\}$$
+    \item \textbf{Por comprensión:} se describe la propiedad que caracteriza a sus elementos.
+          $$A = \{x \in \N \;/\; x \leq 5\}$$
+          (se lee: ``el conjunto de los $x$ naturales tales que $x$ es menor o igual que 5'')
+  \end{itemize}
+
+  \textbf{Notación:}
+  \begin{itemize}[leftmargin=*]
+    \item $a \in A$: el elemento $a$ \emph{pertenece} al conjunto $A$.
+    \item $a \notin A$: el elemento $a$ \emph{no pertenece} a $A$.
+    \item $B \subseteq A$: $B$ es \emph{subconjunto} de $A$ (todos los elementos de $B$ están en $A$).
+    \item $|A|$ (cardinalidad): el \emph{número de elementos} del conjunto $A$.
+  \end{itemize}
+\end{cuadroteoria}
+
+\begin{cuadroextra}
+  \textbf{Conjuntos numéricos que ya conoces:}
+  \begin{itemize}[leftmargin=*]
+    \item $\N = \{1, 2, 3, 4, \ldots\}$: naturales.
+    \item $\Z = \{\ldots, -2, -1, 0, 1, 2, \ldots\}$: enteros.
+    \item $\mathbb{Q}$: racionales (fracciones).
+    \item $\mathbb{R}$: reales (incluye los irracionales como $\sqrt{2}$ o $\pi$).
+  \end{itemize}
+\end{cuadroextra}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Escribe por extensión el conjunto $A = \{x \in \N \;/\; x \text{ es divisor de } 12\}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Los divisores positivos de 12 son $1, 2, 3, 4, 6$ y $12$. Entonces:
+  $$A = \{1, 2, 3, 4, 6, 12\}.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Escribe por extensión el conjunto $B = \{x \in \Z \;/\; -2 \leq x < 4\}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Los enteros desde $-2$ hasta $3$ (el 4 no se incluye porque la desigualdad es estricta):
+  $$B = \{-2, -1, 0, 1, 2, 3\}.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Escribe por comprensión el conjunto $C = \{3, 6, 9, 12, 15, 18\}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Son los múltiplos de 3 desde 3 hasta 18:
+  $$C = \{x \in \N \;/\; x \text{ es múltiplo de } 3 \text{ y } 3 \leq x \leq 18\}.$$
+  También se puede escribir: $C = \{3k \;/\; k \in \N, \; 1 \leq k \leq 6\}$.
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*]
+  \item \facil{} Escribe por extensión: $a) \; A = \{x \in \N \;/\; x \leq 7\} \qquad b) \; B = \{x \in \Z \;/\; -3 < x \leq 2\}$
+
+  \item \facil{} Determina si es verdadero (V) o falso (F): $a) \; 3 \in \{1, 2, 3\} \qquad b) \; 0 \in \N \qquad c) \; 5 \notin \{2, 4, 6\}$
+
+  \item \facil{} Calcula la cardinalidad: $a) \; |\{a, b, c\}| \qquad b) \; |\{2, 4, 6, 8, 10\}|$
+
+  \item \facil{} Escribe por comprensión: $a) \; A = \{1, 2, 3, 4, 5, 6\} \qquad b) \; B = \{-2, -1, 0, 1, 2\}$
+
+  \item \medio{} Escribe por extensión: $a) \; A = \{x \in \N \;/\; x \text{ es divisor de } 18\} \qquad b) \; B = \{x \in \Z \;/\; x \leq 6 \text{ y } x > -3\}$
+
+  \item \medio{} Escribe por extensión: $C = \{x \text{ múltiplos de } 7 \;/\; x \geq 7 \text{ y } x < 55\}$
+
+  \item \medio{} Escribe por comprensión: $a) \; A = \{2, 4, 6, 8, 10, 12, 14\} \qquad b) \; C = \{\pm 1, \pm 3, \pm 9, \pm 27, \pm 81\}$
+
+  \item \dificil{} Escribe por comprensión: $B = \{-3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7\}$ de dos formas distintas.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Relaciones y Funciones}
+% ============================================================
+
+\subsection{Par ordenado y producto cartesiano}
+
+\begin{cuadroteoria}
+  \textbf{Par ordenado:} es un par de elementos $(x, y)$ donde \emph{importa el orden}: $(2, 3) \neq (3, 2)$.
+
+  \textbf{Producto cartesiano} $A \times B$: es el conjunto de \emph{todos} los pares ordenados $(a, b)$ con $a \in A$ y $b \in B$.
+  $$A \times B = \{(a, b) \;/\; a \in A \text{ y } b \in B\}$$
+\end{cuadroteoria}
+
+\subsection{Relación y función}
+
+\begin{cuadroteoria}
+  \textbf{Relación} entre dos conjuntos $A$ y $B$: es cualquier subconjunto de $A \times B$, es decir, cualquier conjunto de pares ordenados $(a, b)$ que cumpla una regla o condición.
+
+  \textbf{Función} $f$ de $A$ en $B$ (se escribe $f: A \rightarrow B$): es una relación especial donde \emph{cada elemento de $A$ se relaciona con exactamente un elemento de $B$}.
+
+  \textbf{Partes de una función:}
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Dominio} ($\operatorname{Dom} f$): el conjunto de todos los elementos de $A$ que tienen imagen.
+    \item \textbf{Codominio} ($\operatorname{Cod} f$): el conjunto de llegada $B$.
+    \item \textbf{Rango} o recorrido ($\operatorname{Rgo} f$): el conjunto de elementos de $B$ que \emph{efectivamente} son imagen de algún elemento del dominio.
+  \end{itemize}
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+  \textbf{¿Cuándo una relación NO es función?} Cuando existe al menos un elemento del dominio que se relaciona con \emph{dos o más} elementos del codominio.
+
+  \textbf{Prueba rápida:} en el diagrama sagital, si de un elemento del conjunto de partida salen \emph{dos o más flechas}, no es función. En un plano cartesiano, si una recta vertical corta la gráfica en más de un punto, no es función (prueba de la recta vertical).
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Dados $A = \{1, 2, 3\}$ y $B = \{a, b\}$, escribe el producto cartesiano $A \times B$ y su cardinalidad.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$A \times B = \{(1,a), (1,b), (2,a), (2,b), (3,a), (3,b)\}.$$
+  Como $|A| = 3$ y $|B| = 2$, entonces $|A \times B| = 3 \cdot 2 = 6$. $\checkmark$
+\end{cuadrosolucion}
+
+\newpage %ajuste pag
+
+\textbf{Ejemplo R2.} Dados $A = \{1, 2, 3, 4, 5\}$ y $B = \{-1, 0, 1, 2, 3, 5, 7\}$, considera la relación $f$ de $A$ en $B$ definida por $y = 2x - 3$. Determina si es función y calcula dominio, codominio y rango.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{enumerate}
+    \item Calculamos la imagen de cada elemento de $A$:
+          \begin{center}
+            \begin{tabular}{c|ccccc}
+              \toprule
+              $x$          & 1    & 2   & 3   & 4   & 5   \\
+              \midrule
+              $y = 2x - 3$ & $-1$ & $1$ & $3$ & $5$ & $7$ \\
+              \bottomrule
+            \end{tabular}
+          \end{center}
+    \item Cada elemento de $A$ tiene \emph{exactamente una} imagen, por lo tanto \textbf{sí es función}.
+    \item $\operatorname{Dom} f = \{1, 2, 3, 4, 5\}$.
+    \item $\operatorname{Cod} f = \{-1, 0, 1, 2, 3, 5, 7\}$ (el conjunto de llegada $B$).
+    \item $\operatorname{Rgo} f = \{-1, 1, 3, 5, 7\}$ (solo las imágenes que efectivamente se usan).
+  \end{enumerate}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} La relación $R = \{(1, 2), (1, 5), (2, 3), (3, 4)\}$ de $A = \{1, 2, 3\}$ en $B = \{2, 3, 4, 5\}$: ¿es una función?
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} No, porque el elemento $1 \in A$ se relaciona con dos elementos distintos de $B$: el $2$ y el $5$. Para ser función, cada elemento del dominio debe tener una única imagen.
+\end{cuadrosolucion}
+
+%\newpage %ajuste pag
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Dados $A = \{1, 2\}$ y $B = \{x, y, z\}$, escribe $A \times B$ y calcula su cardinalidad.
+
+  \item \facil{} Determina si cada relación es una función:
+        \begin{enumerate}[label=\alph*)]
+          \item $R_1 = \{(1, a), (2, b), (3, c)\}$ de $\{1,2,3\}$ en $\{a,b,c\}$.
+          \item $R_2 = \{(1, a), (1, b), (2, c)\}$ de $\{1,2\}$ en $\{a,b,c\}$.
+          \item $R_3 = \{(2, a), (3, a), (4, b)\}$ de $\{2,3,4\}$ en $\{a,b\}$.
+        \end{enumerate}
+
+  \item \facil{} Para la función $f(x) = 2x + 1$ con dominio $\{0, 1, 2, 3\}$, calcula el rango.
+
+  \item \medio{} Dados $A = \{0, 1, 2, 3, 4\}$ y $B = \{-6, -3, 0, 3, 6\}$, considera la relación $f$ de $A$ en $B$ definida por $y = -3x + 6$. Realiza el diagrama tabular y determina dominio, codominio y rango.
+
+  \item \medio{} ¿Es función la relación $\{(2, 4), (3, 6), (2, 8), (4, 8)\}$ de $\{2, 3, 4\}$ en $\{4, 6, 8\}$? Justifica.
+
+  \item \dificil{} Una relación $R$ de $A = \{1, 2, 3, 4\}$ en $B = \{2, 4, 6, 8\}$ está definida por $y = 2x$. ¿Es $R$ una función? ¿Todos los elementos de $B$ son imagen? Escribe $R$ como conjunto de pares ordenados.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Formas de Representar una Función}
+% ============================================================
+
+\subsection{Las tres representaciones}
+
+\begin{cuadroteoria}
+  Una función se puede representar de tres formas equivalentes:
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Diagrama sagital:} dos conjuntos dibujados como elipses o rectángulos y \emph{flechas} que unen cada elemento del dominio con su imagen.
+    \item \textbf{Diagrama tabular:} una tabla con los valores de $x$ (dominio) y sus imágenes $y = f(x)$.
+    \item \textbf{Pares ordenados:} el conjunto $\{(x, f(x)) \;/\; x \in \operatorname{Dom} f\}$.
+  \end{itemize}
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Cómo construir un diagrama sagital:}
+  \begin{enumerate}[leftmargin=*]
+    \item Dibuja el conjunto de partida (dominio) y el de llegada (codominio).
+    \item Escribe los elementos de cada conjunto.
+    \item Traza una flecha desde cada elemento del dominio hasta \emph{su} imagen.
+    \item Verifica que cada elemento del dominio tenga exactamente una flecha (si no, no es función).
+  \end{enumerate}
+\end{cuadropasos}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} La función $f: A \rightarrow B$ está dada por el diagrama sagital:
+
+\begin{center}
+  \begin{tikzpicture}[
+      el/.style={draw, circle, minimum size=7mm, inner sep=0pt, font=\small},
+      flecha/.style={-Latex, thick, mwprimario}
+    ]
+    % Conjunto A
+    \draw[thick, mwprimario, rounded corners] (-1.2,-1.8) rectangle (1.2,2.5);
+    \node[font=\bfseries, mwprimario] at (0,2.9) {$A$};
+    \node[el] (a) at (0,1.6) {$a$};
+    \node[el] (b) at (0,0.6) {$b$};
+    \node[el] (c) at (0,-0.4) {$c$};
+    \node[el] (d) at (0,-1.4) {$d$};
+    % Conjunto B
+    \draw[thick, mwprimario, rounded corners] (4.8,-2.5) rectangle (7.2,3);
+    \node[font=\bfseries, mwprimario] at (6,3.3) {$B$};
+    \node[el] (1) at (6,2.2) {$1$};
+    \node[el] (2) at (6,1.2) {$2$};
+    \node[el] (3) at (6,0.2) {$3$};
+    \node[el] (4) at (6,-0.8) {$4$};
+    \node[el] (5) at (6,-1.8) {$5$};
+    % Flechas
+    \draw[flecha] (a) -- (3);
+    \draw[flecha] (b) -- (1);
+    \draw[flecha] (c) -- (4);
+    \draw[flecha] (d) -- (4);
+  \end{tikzpicture}
+\end{center}
+
+Determina dominio, codominio, rango y el conjunto de pares ordenados.
+
+\newpage %ajuste pag
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item $\operatorname{Dom} f = \{a, b, c, d\}$.
+    \item $\operatorname{Cod} f = \{1, 2, 3, 4, 5\}$.
+    \item $\operatorname{Rgo} f = \{1, 3, 4\}$ (los elementos que reciben flechas).
+    \item Pares ordenados: $f = \{(a, 3), (b, 1), (c, 4), (d, 4)\}$.
+    \item \textbf{Diagrama tabular:}
+          \begin{center}
+            \begin{tabular}{c|cccc}
+              \toprule
+              $x$    & $a$ & $b$ & $c$ & $d$ \\
+              \midrule
+              $f(x)$ & 3   & 1   & 4   & 4   \\
+              \bottomrule
+            \end{tabular}
+          \end{center}
+  \end{itemize}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Representa la función $f(x) = 2x + 3$ con dominio $\{0, 1, 2, 3\}$ mediante un diagrama tabular y pares ordenados, y traza su diagrama sagital.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item Calculamos las imágenes: $f(0) = 3$, $f(1) = 5$, $f(2) = 7$, $f(3) = 9$.
+    \item \textbf{Diagrama tabular:}
+          \begin{center}
+            \begin{tabular}{c|cccc}
+              \toprule
+              $x$             & 0 & 1 & 2 & 3 \\
+              \midrule
+              $f(x) = 2x + 3$ & 3 & 5 & 7 & 9 \\
+              \bottomrule
+            \end{tabular}
+          \end{center}
+    \item \textbf{Pares ordenados:} $\{(0, 3), (1, 5), (2, 7), (3, 9)\}$.
+    \item \textbf{Diagrama sagital:}
+          \begin{center}
+            \begin{tikzpicture}[
+                el/.style={draw, circle, minimum size=7mm, inner sep=0pt, font=\small},
+                flecha/.style={-Latex, thick, mwprimario}
+              ]
+              \draw[thick, mwprimario, rounded corners] (-1.2,-1.7) rectangle (1.2,2.1);
+              \node[font=\bfseries, mwprimario] at (0,2.6) {$\operatorname{Dom} f$};
+              \node[el] (x0) at (0,1.3) {$0$};
+              \node[el] (x1) at (0,0.4) {$1$};
+              \node[el] (x2) at (0,-0.5) {$2$};
+              \node[el] (x3) at (0,-1.4) {$3$};
+              \draw[thick, mwprimario, rounded corners] (4.8,-2.0) rectangle (7.2,2.6);
+              \node[font=\bfseries, mwprimario] at (6,3.1) {$\operatorname{Cod} f$};
+              \node[el] (y3) at (6,1.9) {$3$};
+              \node[el] (y5) at (6,1.0) {$5$};
+              \node[el] (y7) at (6,0.1) {$7$};
+              \node[el] (y9) at (6,-0.8) {$9$};
+              \node[el] (y11) at (6,-1.7) {$11$};
+              \draw[flecha] (x0) -- (y3);
+              \draw[flecha] (x1) -- (y5);
+              \draw[flecha] (x2) -- (y7);
+              \draw[flecha] (x3) -- (y9);
+            \end{tikzpicture}
+          \end{center}
+  \end{itemize}
+\end{cuadrosolucion}
+
+\newpage
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Dada la función $f(x) = x + 2$ con dominio $\{1, 2, 3, 4\}$:
+        \begin{enumerate}[label=\alph*)]
+          \item Escribe el diagrama tabular.
+          \item Escribe el conjunto de pares ordenados.
+          \item Calcula el rango.
+        \end{enumerate}
+
+  \item \facil{} La función $f$ tiene dominio $\{2, 4, 6, 8\}$ y regla $f(x) = x - 1$. Escribe sus pares ordenados.
+
+  \item \medio{} Dada la función $f(x) = 3x$ con dominio $\{0, 1, 2\}$ y codominio $\{0, 3, 6, 9\}$, traza el diagrama sagital y determina el rango.
+
+  \item \medio{} A partir del diagrama sagital del Ejemplo R1, responde: ¿cuál es el rango? ¿Existe algún elemento del codominio que no sea imagen? ¿Cuáles?
+
+  \item \dificil{} Crea un ejemplo de una función con dominio $\{a, b, c\}$ y codominio $\{1, 2, 3, 4\}$ que NO use el 4 como imagen. Escríbela de las tres formas (sagital, tabular y pares ordenados).
+\end{enumerate}
+
+%\newpage %ajuste pag
+
+% ============================================================
+\section{Tipos de Función: Inyectiva, Sobreyectiva y Biyectiva}
+% ============================================================
+
+\subsection{Definiciones}
+
+\begin{cuadroteoria}
+  \textbf{Función inyectiva} (uno a uno): elementos distintos del dominio tienen imágenes distintas. Es decir, si $x_1 \neq x_2$, entonces $f(x_1) \neq f(x_2)$. \emph{En el diagrama sagital: cada elemento del codominio recibe a lo más una flecha.}
+
+  \textbf{Función sobreyectiva} (sobre): todo elemento del codominio es imagen de al menos un elemento del dominio. Es decir, $\operatorname{Rgo} f = \operatorname{Cod} f$. \emph{En el diagrama sagital: todos los elementos del codominio reciben al menos una flecha.}
+
+  \textbf{Función biyectiva}: es \emph{inyectiva y sobreyectiva} a la vez. \emph{En el diagrama sagital: cada elemento del codominio recibe exactamente una flecha.}
+\end{cuadroteoria}
+
+\begin{cuadroextra}
+  \textbf{¿Por qué importa esto?} Las funciones biyectivas son las únicas que tienen \emph{función inversa}: puedes ``deshacer'' la función y volver del codominio al dominio sin ambigüedad. Esto será clave cuando estudies funciones inversas.
+\end{cuadroextra}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Clasifica la función del siguiente diagrama sagital e indica dominio, codominio y rango:
+
+\begin{center}
+  \begin{tikzpicture}[
+      el/.style={draw, circle, minimum size=7mm, inner sep=0pt, font=\small},
+      flecha/.style={-Latex, thick, mwprimario}
+    ]
+    \draw[thick, mwprimario, rounded corners] (-1.2,-2) rectangle (1.2,2);
+    \node[font=\bfseries, mwprimario] at (0,2.6) {$E$};
+    \node[el] (1) at (0,1.3) {$1$};
+    \node[el] (2) at (0,0.4) {$2$};
+    \node[el] (3) at (0,-0.5) {$3$};
+    \node[el] (4) at (0,-1.4) {$4$};
+    \draw[thick, mwprimario, rounded corners] (4.8,-2.1) rectangle (7.2,2.5);
+    \node[font=\bfseries, mwprimario] at (6,3.1) {$F$};
+    \node[el] (a) at (6,1.9) {$a$};
+    \node[el] (b) at (6,1.0) {$b$};
+    \node[el] (c) at (6,0.1) {$c$};
+    \node[el] (d) at (6,-0.8) {$d$};
+    \node[el] (e) at (6,-1.7) {$e$};
+    \draw[flecha] (1) -- (b);
+    \draw[flecha] (2) -- (a);
+    \draw[flecha] (3) -- (c);
+    \draw[flecha] (4) -- (e);
+  \end{tikzpicture}
+\end{center}
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item $\operatorname{Dom} f = \{1, 2, 3, 4\}$; \quad $\operatorname{Cod} f = \{a, b, c, d, e\}$; \quad $\operatorname{Rgo} f = \{a, b, c, e\}$.
+    \item \textbf{Inyectiva:} sí, cada elemento del codominio recibe a lo más una flecha (imágenes todas distintas).
+    \item \textbf{Sobreyectiva:} no, porque el elemento $d$ del codominio no recibe ninguna flecha ($\operatorname{Rgo} f \neq \operatorname{Cod} f$).
+    \item \textbf{Clasificación:} función \textbf{inyectiva} (no sobreyectiva).
+  \end{itemize}
+\end{cuadrosolucion}
+
+%\newpage %ajuste pag
+
+\textbf{Ejemplo R2.} Clasifica la función $f: A \rightarrow B$ con $A = \{1, 2, 3, 4, 5\}$, $B = \{a, b, c, d, e\}$ dada por:
+$$f = \{(1, b), (2, a), (3, c), (4, e), (5, d)\}.$$
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item \textbf{Inyectiva:} sí, todas las imágenes son distintas (cada elemento de $B$ recibe a lo más una flecha).
+    \item \textbf{Sobreyectiva:} sí, $\operatorname{Rgo} f = \{a, b, c, d, e\} = \operatorname{Cod} f$ (todos los elementos de $B$ son imagen).
+    \item \textbf{Clasificación:} función \textbf{biyectiva} (inyectiva y sobreyectiva).
+  \end{itemize}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} La función $f: C \rightarrow D$ con $C = \{2, 4, 6, 8, 10, 12\}$ y $D = \{a, b, c, d, e\}$ está dada por:
+$$2 \mapsto b, \quad 4 \mapsto a, \quad 6 \mapsto c, \quad 8 \mapsto c, \quad 10 \mapsto e, \quad 12 \mapsto e.$$
+Clasifícala.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item \textbf{Inyectiva:} no, porque $6$ y $8$ comparten imagen $c$; también $10$ y $12$ comparten imagen $e$.
+    \item \textbf{Sobreyectiva:} no, porque el elemento $d$ no es imagen de nadie.
+    \item \textbf{Clasificación:} solo es función (ni inyectiva ni sobreyectiva). $\operatorname{Rgo} f = \{a, b, c, e\}$.
+  \end{itemize}
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Determina si la función $f(x) = 2x$ con dominio $\{1, 2, 3, 4\}$ y codominio $\{2, 4, 6, 8\}$ es inyectiva, sobreyectiva o biyectiva. Justifica con el rango.
+
+  \item \facil{} La función $f: \{1, 2, 3\} \rightarrow \{a, b\}$ dada por $f = \{(1, a), (2, b), (3, b)\}$: ¿es inyectiva? ¿Es sobreyectiva? Justifica.
+
+  \item \medio{} Clasifica la función del diagrama:
+        \begin{center}
+          \begin{tikzpicture}[
+              el/.style={draw, circle, minimum size=7mm, inner sep=0pt, font=\small},
+              flecha/.style={-Latex, thick, mwprimario}
+            ]
+            \draw[thick, mwprimario, rounded corners] (-1.2,-1.4) rectangle (1.2,1.8);
+            \node[font=\bfseries, mwprimario] at (0,2.3) {$A$};
+            \node[el] (1) at (0,1.0) {$1$};
+            \node[el] (2) at (0,0.1) {$2$};
+            \node[el] (3) at (0,-0.8) {$3$};
+            \draw[thick, mwprimario, rounded corners] (4.8,-1.6) rectangle (7.2,2.2);
+            \node[font=\bfseries, mwprimario] at (6,2.7) {$B$};
+            \node[el] (a) at (6,1.4) {$a$};
+            \node[el] (b) at (6,0.5) {$b$};
+            \node[el] (c) at (6,-0.4) {$c$};
+            \node[el] (d) at (6,-1.3) {$d$};
+            \draw[flecha] (1) -- (a);
+            \draw[flecha] (2) -- (c);
+            \draw[flecha] (3) -- (c);
+          \end{tikzpicture}
+        \end{center}
+
+  \item \medio{} Escribe el rango de la función anterior y compáralo con el codominio. ¿Qué puedes concluir?
+
+  \item \dificil{} Diseña una función biyectiva de $A = \{2, 4, 6, 8\}$ en $B = \{p, q, r, s\}$ y escríbela como pares ordenados.
+
+  \item \dificil{} La función $f: A \rightarrow B$ con $A = \{0, 1, 2, 3, 4\}$ y $B = \{-6, -3, 0, 3, 6\}$ está definida por $y = -3x + 6$. Realiza el diagrama tabular, clasifica la función y justifica tu respuesta.
+\end{enumerate}
+
+
+%\newpage
+
+% ============================================================
+\section{Ejercicios Integradores}
+% ============================================================
+
+\begin{cuadroinfo}
+  \small
+  \textbf{Instrucciones:} resuelve cada ejercicio aplicando todo lo aprendido en la guía. En los diagramas sagitales, determina \emph{tipo de función}, \emph{dominio}, \emph{rango} y \emph{codominio}, y realiza el \emph{diagrama tabular} correspondiente.
+\end{cuadroinfo}
+
+\textbf{Ejercicio 1.} En cada uno de los siguientes diagramas sagitales, determina el tipo de función, dominio, rango y codominio, y realiza el diagrama tabular.
+
+\textbf{Diagrama 1:} $A = \{a, b, c, d\} \rightarrow B = \{1, 2, 3, 4, 5\}$ con:
+$$a \mapsto 3, \qquad b \mapsto 1, \qquad c \mapsto 4, \qquad d \mapsto 4.$$
+
+\begin{center}
+  \begin{tikzpicture}[
+      el/.style={draw, circle, minimum size=7mm, inner sep=0pt, font=\small},
+      flecha/.style={-Latex, thick, mwprimario}
+    ]
+    \draw[thick, mwprimario, rounded corners] (-1.2,-1.8) rectangle (1.2,2.2);
+    \node[font=\bfseries, mwprimario] at (0,2.9) {$A$};
+    \node[el] (a) at (0,1.6) {$a$};
+    \node[el] (b) at (0,0.6) {$b$};
+    \node[el] (c) at (0,-0.4) {$c$};
+    \node[el] (d) at (0,-1.4) {$d$};
+    \draw[thick, mwprimario, rounded corners] (4.8,-2.2) rectangle (7.2,2.6);
+    \node[font=\bfseries, mwprimario] at (6,3.3) {$B$};
+    \node[el] (1) at (6,2.2) {$1$};
+    \node[el] (2) at (6,1.2) {$2$};
+    \node[el] (3) at (6,0.2) {$3$};
+    \node[el] (4) at (6,-0.8) {$4$};
+    \node[el] (5) at (6,-1.8) {$5$};
+    \draw[flecha] (a) -- (3);
+    \draw[flecha] (b) -- (1);
+    \draw[flecha] (c) -- (4);
+    \draw[flecha] (d) -- (4);
+  \end{tikzpicture}
+\end{center}
+
+\textbf{Diagrama 2:} $C = \{2, 4, 6, 8, 10, 12\} \rightarrow D = \{a, b, c, d, e\}$ con:
+$$2 \mapsto b, \quad 4 \mapsto a, \quad 6 \mapsto c, \quad 8 \mapsto c, \quad 10 \mapsto e, \quad 12 \mapsto e.$$
+
+\begin{center}
+  \begin{tikzpicture}[
+      el/.style={draw, circle, minimum size=7mm, inner sep=0pt, font=\small},
+      flecha/.style={-Latex, thick, mwprimario}
+    ]
+    \draw[thick, mwprimario, rounded corners] (-1.2,-3.2) rectangle (1.2,2.8);
+    \node[font=\bfseries, mwprimario] at (0,3.3) {$C$};
+    \node[el] (a1) at (0,2.0) {$2$};
+    \node[el] (a2) at (0,1.1) {$4$};
+    \node[el] (a3) at (0,0.2) {$6$};
+    \node[el] (a4) at (0,-0.7) {$8$};
+    \node[el] (a5) at (0,-1.6) {$10$};
+    \node[el] (a6) at (0,-2.5) {$12$};
+    \draw[thick, mwprimario, rounded corners] (4.8,-2.2) rectangle (7.2,2.8);
+    \node[font=\bfseries, mwprimario] at (6,3.3) {$D$};
+    \node[el] (b1) at (6,2.0) {$a$};
+    \node[el] (b2) at (6,1.1) {$b$};
+    \node[el] (b3) at (6,0.2) {$c$};
+    \node[el] (b4) at (6,-0.7) {$d$};
+    \node[el] (b5) at (6,-1.6) {$e$};
+    \draw[flecha] (a1) -- (b2);
+    \draw[flecha] (a2) -- (b1);
+    \draw[flecha] (a3) -- (b3);
+    \draw[flecha] (a4) -- (b3);
+    \draw[flecha] (a5) -- (b5);
+    \draw[flecha] (a6) -- (b5);
+  \end{tikzpicture}
+\end{center}
+
+\newpage
+
+\textbf{Diagrama 3:} $E = \{1, 2, 3, 4, 5\} \rightarrow F = \{a, b, c, d, e\}$ con:
+$$1 \mapsto b, \quad 2 \mapsto a, \quad 3 \mapsto c, \quad 4 \mapsto e, \quad 5 \mapsto d.$$
+
+\begin{center}
+  \begin{tikzpicture}[
+      el/.style={draw, circle, minimum size=7mm, inner sep=0pt, font=\small},
+      flecha/.style={-Latex, thick, mwprimario}
+    ]
+    \draw[thick, mwprimario, rounded corners] (-1.2,-1.9) rectangle (1.2,2.3);
+    \node[font=\bfseries, mwprimario] at (0,2.8) {$E$};
+    \node[el] (1) at (0,1.5) {$1$};
+    \node[el] (2) at (0,0.6) {$2$};
+    \node[el] (3) at (0,-0.3) {$3$};
+    \node[el] (4) at (0,-1.2) {$4$};
+    \node[el] (5) at (0,-2.1) {$5$};
+    \draw[thick, mwprimario, rounded corners] (4.8,-2.1) rectangle (7.2,2.7);
+    \node[font=\bfseries, mwprimario] at (6,3.2) {$F$};
+    \node[el] (a) at (6,1.9) {$a$};
+    \node[el] (b) at (6,1.0) {$b$};
+    \node[el] (c) at (6,0.1) {$c$};
+    \node[el] (d) at (6,-0.8) {$d$};
+    \node[el] (e) at (6,-1.7) {$e$};
+    \draw[flecha] (1) -- (b);
+    \draw[flecha] (2) -- (a);
+    \draw[flecha] (3) -- (c);
+    \draw[flecha] (4) -- (e);
+    \draw[flecha] (5) -- (d);
+  \end{tikzpicture}
+\end{center}
+
+\textbf{Ejercicio 2.} Dados $A = \{1, 2, 3, 4, 5\}$ y $B = \{-1, 0, 1, 2, 3, 5, 7\}$ y la relación $f$ de $A$ en $B$ definida por $y = 2x - 3$: realiza el diagrama sagital, describe el tipo de función y escribe $\operatorname{Dom} f$, $\operatorname{Cod} f$ y $\operatorname{Rgo} f$.
+
+\textbf{Ejercicio 3.} Dados $A = \{0, 1, 2, 3, 4\}$ y $B = \{-6, -3, 0, 3, 6\}$ y la relación $f$ de $A$ en $B$ definida por $y = -3x + 6$: realiza el diagrama tabular, describe el tipo de función y escribe $\operatorname{Dom} f$, $\operatorname{Cod} f$ y $\operatorname{Rgo} f$.
+
+\textbf{Ejercicio 4.} Inventa una regla $y = mx + b$ (con $m$ y $b$ enteros) que defina una función biyectiva de $A = \{0, 1, 2, 3\}$ en un conjunto $B$ de 4 elementos. Justifica por qué es biyectiva.
+
+\newpage
+
+% ============================================================
+\section{Clave de Respuestas}
+% ============================================================
+
+\subsection*{Sección 1: Conjuntos (Ejercicios 1--8)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item a) $\{1, 2, 3, 4, 5, 6, 7\}$ \quad b) $\{-2, -1, 0, 1, 2\}$
+
+  \item a) V \quad b) F \quad c) V
+
+  \item a) $3$ \quad b) $5$
+
+  \item a) $A = \{x \in \N \;/\; 1 \leq x \leq 6\}$ \quad b) $B = \{x \in \Z \;/\; -2 \leq x \leq 2\}$
+
+  \item a) $\{1, 2, 3, 6, 9, 18\}$ \quad b) $\{-2, -1, 0, 1, 2, 3, 4, 5, 6\}$
+
+  \item $\{7, 14, 21, 28, 35, 42, 49\}$
+
+  \item a) $A = \{x \text{ múltiplos de } 2 \;/\; 2 \leq x \leq 14\}$ \quad b) $C = \{x \in \Z \;/\; x = \pm 3^k, \; k = 0, 1, 2, 3, 4\}$
+
+  \item $B = \{x \in \Z \;/\; -3 \leq x \leq 7\}$ o bien $B = \{x \in \Z \;/\; x \leq 7 \text{ y } x \geq -3\}$
+\end{enumerate}
+
+\newpage
+
+\subsection*{Sección 2: Relaciones y Funciones (Ejercicios 9--14)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{8}
+  \item $A \times B = \{(1,x), (1,y), (1,z), (2,x), (2,y), (2,z)\}$; $|A \times B| = 6$
+
+  \item a) Sí \quad b) No ($1$ tiene dos imágenes) \quad c) Sí
+
+  \item $f(0)=1$, $f(1)=3$, $f(2)=5$, $f(3)=7$: rango $\{1, 3, 5, 7\}$
+
+  \item $f(0)=6$, $f(1)=3$, $f(2)=0$, $f(3)=-3$, $f(4)=-6$; $\operatorname{Dom} f = \{0,1,2,3,4\}$, $\operatorname{Cod} f = \{-6,-3,0,3,6\}$, $\operatorname{Rgo} f = \{-6,-3,0,3,6\}$.
+
+  \item No es función: el elemento $2$ se relaciona con $4$ y con $8$.
+
+  \item $R = \{(1,2), (2,4), (3,6), (4,8)\}$: sí es función (cada elemento de $A$ tiene una única imagen); además $\operatorname{Rgo} = \{2,4,6,8\} = B$, así que todos los elementos de $B$ son imagen.
+\end{enumerate}
+
+\newpage
+
+\subsection*{Sección 3: Formas de Representación (Ejercicios 15--19)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{14}
+  \item a) Tabla: $x: 1,2,3,4$; $f(x): 3,4,5,6$ \quad b) $\{(1,3), (2,4), (3,5), (4,6)\}$ \quad c) $\operatorname{Rgo} = \{3,4,5,6\}$
+
+  \item $\{(2,1), (4,3), (6,5), (8,7)\}$
+
+  \item Sagital con $f(0)=0$, $f(1)=3$, $f(2)=6$; $\operatorname{Rgo} = \{0,3,6\}$
+
+  \item $\operatorname{Rgo} = \{1,3,4\}$; el elemento que no es imagen es el $2$ (y el $5$).
+
+  \item Ejemplo: $f = \{(a,1), (b,2), (c,3)\}$. Tabular: $x: a,b,c$; $f(x): 1,2,3$. Sagital con flechas $a\to1$, $b\to2$, $c\to3$.
+\end{enumerate}
+
+\newpage
+
+\subsection*{Sección 4: Tipos de Función (Ejercicios 20--25)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{19}
+  \item $f(1)=2$, $f(2)=4$, $f(3)=6$, $f(4)=8$: inyectiva (imágenes distintas) y sobreyectiva ($\operatorname{Rgo} = \{2,4,6,8\} = B$) $\Rightarrow$ \textbf{biyectiva}.
+
+  \item No es inyectiva ($1$ y $3$ comparten imagen $b$); sí es sobreyectiva ($\operatorname{Rgo} = \{a, b\} = B$).
+
+  \item $\operatorname{Dom} = \{1,2,3\}$, $\operatorname{Cod} = \{a,b,c,d\}$, $\operatorname{Rgo} = \{a,c\}$: no inyectiva ($2$ y $3$ comparten imagen $c$), no sobreyectiva ($b$ y $d$ no reciben flechas). Solo función.
+
+  \item $\operatorname{Rgo} = \{a,c\} \neq \operatorname{Cod} = \{a,b,c,d\}$: la función no es sobreyectiva.
+
+  \item Ejemplo: $f = \{(2,p), (4,q), (6,r), (8,s)\}$: cada elemento de $B$ recibe exactamente una flecha, luego es biyectiva.
+
+  \item $f(0)=6$, $f(1)=3$, $f(2)=0$, $f(3)=-3$, $f(4)=-6$: inyectiva (imágenes todas distintas) y sobreyectiva ($\operatorname{Rgo} = B$) $\Rightarrow$ \textbf{biyectiva}.
+\end{enumerate}
+
+\newpage
+
+\subsection*{Sección 5: Ejercicios Integradores}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item \textbf{Diagrama 1:} $\operatorname{Dom} = \{a,b,c,d\}$, $\operatorname{Cod} = \{1,2,3,4,5\}$, $\operatorname{Rgo} = \{1,3,4\}$; no inyectiva ($c$ y $d$ comparten imagen $4$), no sobreyectiva ($2$ y $5$ no reciben flechas). Solo función. Tabular: $a\to3, b\to1, c\to4, d\to4$.
+
+        \textbf{Diagrama 2:} $\operatorname{Dom} = \{2,4,6,8,10,12\}$, $\operatorname{Cod} = \{a,b,c,d,e\}$, $\operatorname{Rgo} = \{a,b,c,e\}$; no inyectiva ($6,8 \to c$ y $10,12 \to e$), no sobreyectiva ($d$ sin flechas). Solo función. Tabular: $2\to b, 4\to a, 6\to c, 8\to c, 10\to e, 12\to e$.
+
+        \textbf{Diagrama 3:} $\operatorname{Dom} = \{1,2,3,4,5\}$, $\operatorname{Cod} = \{a,b,c,d,e\}$, $\operatorname{Rgo} = \{a,b,c,d,e\}$; inyectiva (todas las imágenes distintas) y sobreyectiva ($\operatorname{Rgo} = \operatorname{Cod}$) $\Rightarrow$ \textbf{biyectiva}. Tabular: $1\to b, 2\to a, 3\to c, 4\to e, 5\to d$.
+
+  \item $f(1)=-1$, $f(2)=1$, $f(3)=3$, $f(4)=5$, $f(5)=7$: inyectiva (imágenes distintas); no sobreyectiva ($0$ y $2$ no son imagen); $\operatorname{Dom} = \{1,2,3,4,5\}$, $\operatorname{Cod} = \{-1,0,1,2,3,5,7\}$, $\operatorname{Rgo} = \{-1,1,3,5,7\}$.
+
+  \item $f(0)=6$, $f(1)=3$, $f(2)=0$, $f(3)=-3$, $f(4)=-6$: \textbf{biyectiva}; $\operatorname{Dom} = \{0,1,2,3,4\}$, $\operatorname{Cod} = \{-6,-3,0,3,6\}$, $\operatorname{Rgo} = \{-6,-3,0,3,6\}$.
+
+  \item Ejemplo: $f(x) = 2x + 1$ con $A = \{0,1,2,3\}$ y $B = \{1,3,5,7\}$: imágenes $\{1,3,5,7\}$, todas distintas y $= B$; luego es biyectiva.
+\end{enumerate}
+
+\end{document}

@@ -13,6 +13,7 @@
 *.out
 *.xdv
 *.aux
+*.synctex.gz
 
 # ── Python (hay extract_columns.py en Formularios) ──
 __pycache__/

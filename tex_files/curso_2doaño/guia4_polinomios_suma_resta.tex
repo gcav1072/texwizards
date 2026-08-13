@@ -1,0 +1,819 @@
+% ============================================================
+%  GUÍA 4: INTRODUCCIÓN AL ÁLGEBRA — SUMA Y RESTA DE POLINOMIOS
+%  Curso de Introducción 2do Año
+%  Autor: Gabriel Astudillo
+%  Clases cubiertas: 13 a 15
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Guía 4 — Suma y Resta de Polinomios}{Gabriel Astudillo $\cdot$ 2do Año}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Estudio 4}{Introducción al Álgebra}{Expresiones Algebraicas, Términos Semejantes y Suma/Resta de Polinomios}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} El álgebra es el lenguaje de la matemática: nos permite generalizar patrones y resolver problemas que la aritmética sola no puede. En esta guía aprenderás a reconocer los elementos de una expresión algebraica, a identificar términos semejantes, a ordenar polinomios y a sumarlos y restarlos con los métodos horizontal y vertical. También aprenderás a multiplicar un polinomio por un escalar y a combinar todo en expresiones más complejas. Cada sección incluye \textbf{ejercicios resueltos} y \textbf{ejercicios propuestos}, y al final hay una sección de \textbf{ejercicios progresivos} por niveles.
+  \\[4pt]
+  \textbf{Nivel de Dificultad:}\quad
+  \facil{} Básico / Directo \quad
+  \medio{} Intermedio \quad
+  \dificil{} Desafiante
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Expresiones Algebraicas y sus Elementos}
+% ============================================================
+
+\subsection{Definición}
+
+\begin{cuadroteoria}
+  \textbf{Expresión algebraica:} es una combinación de \emph{números}, \emph{variables} (letras) y \emph{operaciones} (suma, resta, multiplicación, división, potencias).
+
+  \textbf{Ejemplos:} $3x + 2$, \quad $5a^2b - 7ab + 1$, \quad $\dfrac{x}{2} - y$.
+\end{cuadroteoria}
+
+\begin{cuadroteoria}
+  \textbf{Elementos de un término:}
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Coeficiente:} el factor numérico. En $-5x^3$, el coeficiente es $-5$.
+    \item \textbf{Variable (literal):} la letra que representa un valor desconocido. En $-5x^3$, la variable es $x$.
+    \item \textbf{Exponente:} la potencia a la que está elevada la variable. En $-5x^3$, el exponente es $3$.
+    \item \textbf{Signo:} el signo ($+$ o $-$) que precede al término.
+  \end{itemize}
+\end{cuadroteoria}
+
+\begin{cuadroextra}
+  \textbf{Convención:} cuando el coeficiente es $1$ o $-1$ se omite el 1: se escribe $x$ en vez de $1x$, y $-x$ en vez de $-1x$.
+\end{cuadroextra}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Identifica el coeficiente, la variable y el exponente de cada término:
+$$a) \; 7x^4 \qquad b) \; -3a^2b \qquad c) \; \frac{2}{5}y$$
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item $a) \; 7x^4$: coeficiente $7$, variable $x$, exponente $4$.
+    \item $b) \; -3a^2b$: coeficiente $-3$, variables $a$ y $b$, exponentes $2$ y $1$ respectivamente.
+    \item $c) \; \dfrac{2}{5}y$: coeficiente $\dfrac{2}{5}$, variable $y$, exponente $1$.
+  \end{itemize}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} En la expresión $-5x^3 + 4x - 9$, identifica el coeficiente de cada término y el término independiente.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item Término $-5x^3$: coeficiente $-5$.
+    \item Término $4x$: coeficiente $4$ (la variable tiene exponente $1$).
+    \item Término $-9$: es el \textbf{término independiente} (no tiene variable; su coeficiente es $-9$).
+  \end{itemize}
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*]
+  \item \facil{} Indica cuáles de las siguientes son expresiones algebraicas: $a) \; 5x - 3$ \quad $b) \; 7 + 2$ \quad $c) \; 3a^2b$ \quad $d) \; x$
+
+  \item \facil{} Identifica el coeficiente de cada término: $a) \; 9x$ \quad $b) \; -4a^3$ \quad $c) \; \dfrac{3}{7}z$ \quad $d) \; -y$
+
+  \item \facil{} Identifica la variable y el exponente: $a) \; x^5$ \quad $b) \; -2m^3$ \quad $c) \; 6p^2q$
+
+  \item \facil{} En $-7a^3 + 2a - 5$: ¿cuál es el coeficiente del primer término? ¿Cuál es el término independiente?
+
+  \item \medio{} Escribe el término que cumple: coeficiente $-3$, variable $x$, exponente $4$.
+
+  \item \medio{} Escribe tres términos distintos que tengan coeficiente $\dfrac{1}{2}$.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Términos Algebraicos y Términos Semejantes}
+% ============================================================
+
+\subsection{Grado de un término y término independiente}
+
+\begin{cuadroteoria}
+  \textbf{Término algebraico:} cada parte de una expresión separada por los signos $+$ o $-$.
+
+  \textbf{Grado de un término:} la suma de los exponentes de sus variables.
+  \begin{itemize}[leftmargin=*]
+    \item $5x^3$ tiene grado $3$.
+    \item $-2a^2b^3$ tiene grado $2 + 3 = 5$.
+    \item $7x$ tiene grado $1$; $9$ tiene grado $0$ (no tiene variable).
+  \end{itemize}
+
+  \textbf{Término independiente:} el término sin variable (grado cero).
+\end{cuadroteoria}
+
+\subsection{Términos semejantes}
+
+\begin{cuadroteoria}
+  \textbf{Términos semejantes:} son aquellos que tienen \emph{exactamente las mismas variables con los mismos exponentes} (misma parte literal).
+
+  \begin{itemize}[leftmargin=*]
+    \item Semejantes: $3x^2y$ y $-7x^2y$ (misma parte literal $x^2y$).
+    \item No semejantes: $3x^2y$ y $3xy^2$ (diferente exponente de la variable).
+    \item No semejantes: $4a$ y $4b$ (diferente variable).
+  \end{itemize}
+
+  \textbf{Importante:} solo se pueden sumar o restar términos \emph{semejantes}. Los coeficientes se suman o restan y la parte literal se conserva intacta.
+\end{cuadroteoria}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Calcula el grado de cada término: $a) \; 4x^2 \qquad b) \; -3a^3b^2 \qquad c) \; 7 \qquad d) \; \dfrac{1}{2}xy^2z$
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item $a) \; 4x^2$: grado $2$.
+    \item $b) \; -3a^3b^2$: grado $3 + 2 = 5$.
+    \item $c) \; 7$: grado $0$ (término independiente).
+    \item $d) \; \dfrac{1}{2}xy^2z$: grado $1 + 2 + 1 = 4$.
+  \end{itemize}
+\end{cuadrosolucion}
+
+\newpage %ajuste pag
+
+\textbf{Ejemplo R2.} Identifica los términos semejantes en la expresión: $5x^2 + 3x - 2x^2 + 7 + 4x - 1$
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item Semejantes en $x^2$: $5x^2$ y $-2x^2$.
+    \item Semejantes en $x$: $3x$ y $4x$.
+    \item Semejantes (términos independientes): $7$ y $-1$.
+  \end{itemize}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Reduce la expresión del ejemplo anterior.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Sumamos los coeficientes de cada grupo de semejantes conservando la parte literal:
+  $$5x^2 + 3x - 2x^2 + 7 + 4x - 1 = (5 - 2)x^2 + (3 + 4)x + (7 - 1) = 3x^2 + 7x + 6.$$
+\end{cuadrosolucion}
+
+%\newpage
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Calcula el grado de cada término: $a) \; 8x^3 \qquad b) \; -5a^2b^4 \qquad c) \; 12 \qquad d) \; xyz$
+
+  \item \facil{} Marca cuáles de los siguientes pares son términos semejantes: $a) \; 3x^2$ y $7x^2$ \quad $b) \; 2a$ y $2b$ \quad $c) \; -4xy$ y $9xy$ \quad $d) \; x^2y$ y $xy^2$
+
+  \item \facil{} Reduce: $a) \; 3x + 5x \qquad b) \; 7a^2 - 2a^2 \qquad c) \; -4y + 4y \qquad d) \; 2x + 3y + 4x$
+
+  \item \medio{} Reduce: $a) \; 5x^2 + 2x - 3x^2 + x \qquad b) \; 4a^3 - a^3 + 2a^2 + 7$
+
+  \item \medio{} Reduce: $-3m^2n + 5m^2n - mn + 2mn + 8$
+
+  \item \medio{} Escribe dos términos semejantes a $6x^3y^2$ (con coeficientes distintos).
+\end{enumerate}
+
+%\newpage
+
+% ============================================================
+\section{Ordenamiento de Polinomios}
+% ============================================================
+
+\subsection{Polinomio y su orden}
+
+\begin{cuadroteoria}
+  \textbf{Polinomio:} una expresión algebraica con uno o más términos. Ejemplos: $4x - 2x^3 + 7x^2 + 5$ es un polinomio de grado $3$.
+
+  \textbf{Orden descendente:} de mayor a menor grado.
+  $$-2x^3 + 7x^2 + 4x + 5$$
+
+  \textbf{Orden ascendente:} de menor a mayor grado.
+  $$5 + 4x + 7x^2 - 2x^3$$
+\end{cuadroteoria}
+
+\newpage %ajuste pag
+
+\begin{cuadroextra}
+  \textbf{¿Para qué ordenar?} Ordenar facilita sumar y restar polinomios (método vertical) y hace más fácil comparar grados. Cuando hay más de una variable, se ordena según la variable que se elija (generalmente la primera).
+\end{cuadroextra}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Ordena el polinomio $4x - 2x^3 + 7x^2 + 5$ en forma descendente y ascendente.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item \textbf{Descendente:} $-2x^3 + 7x^2 + 4x + 5$.
+    \item \textbf{Ascendente:} $5 + 4x + 7x^2 - 2x^3$.
+  \end{itemize}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Ordena $3a^2 - 5 + 4a^4 + a$ en forma descendente e indica su grado.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Descendente: $4a^4 + 3a^2 + a - 5$. El grado del polinomio es $4$ (el mayor exponente).
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Ordena en forma descendente: $a) \; 5x + 3x^2 - 7 \qquad b) \; 2y^3 + y - 4y^2 + 8$
+
+  \item \facil{} Ordena en forma ascendente: $3x^4 - 2 + x^2 + 5x^3$
+
+  \item \medio{} Indica el grado de cada polinomio: $a) \; 7x^5 - 2x^3 + x \qquad b) \; 4a^2b + 3ab^2 + 9$
+
+  \item \medio{} Ordena $5b - 3b^3 + 2b^2 - 1$ en forma descendente y señala su término independiente.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Suma de Polinomios}
+% ============================================================
+
+\subsection{Regla fundamental}
+
+\begin{cuadroteoria}
+  \textbf{Regla:} solo se suman \textbf{términos semejantes}. Los coeficientes se suman y la parte literal se conserva.
+
+  \textbf{Suma de coeficientes:}
+  \begin{itemize}[leftmargin=*]
+    \item Mismo signo: se suman los valores absolutos y se conserva el signo. Ejemplo: $3x + 5x = 8x$; \quad $-2x - 4x = -6x$.
+    \item Diferente signo: se restan los valores absolutos y se conserva el signo del mayor. Ejemplo: $7x + (-4x) = 3x$; \quad $-7x + 4x = -3x$.
+  \end{itemize}
+\end{cuadroteoria}
+
+\subsection{Método horizontal}
+
+\begin{cuadropasos}
+  \textbf{Pasos:}
+  \begin{enumerate}[leftmargin=*]
+    \item Se escriben ambos polinomios uno a continuación del otro.
+    \item Se agrupan los términos semejantes.
+    \item Se suman los coeficientes de cada grupo conservando la parte literal.
+    \item Se ordena el resultado (opcional pero recomendado).
+  \end{enumerate}
+\end{cuadropasos}
+
+\subsection{Método vertical}
+
+\begin{cuadropasos}
+  \textbf{Pasos:}
+  \begin{enumerate}[leftmargin=*]
+    \item Se ordenan ambos polinomios en el mismo orden (descendente).
+    \item Se alinean los términos semejantes en columnas.
+    \item Se suman los coeficientes columna por columna.
+  \end{enumerate}
+\end{cuadropasos}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Suma por el método horizontal: $(3x^2 + 2x - 5) + (4x^2 - 3x + 2)$
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Agrupamos semejantes:
+  $$(3x^2 + 4x^2) + (2x - 3x) + (-5 + 2) = 7x^2 - x - 3.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Suma por el método vertical: $(5x^3 - 2x^2 + x - 7) + (3x^2 + 4x + 2)$
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Ordenamos y alineamos en columnas:
+  \begin{center}
+    \begin{tabular}{cccccc}
+          & $5x^3$ & $-2x^2$ & $+x$  & $-7$ & \\
+      $+$ &        & $3x^2$  & $+4x$ & $+2$ & \\
+      \cline{2-5}
+          & $5x^3$ & $+x^2$  & $+5x$ & $-5$ &
+    \end{tabular}
+  \end{center}
+  El resultado es $5x^3 + x^2 + 5x - 5$.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Suma: $(2a^2 + 3ab - b^2) + (a^2 - 5ab + 2b^2)$
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$(2a^2 + a^2) + (3ab - 5ab) + (-b^2 + 2b^2) = 3a^2 - 2ab + b^2.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R4.} Suma: $(4x^3 - 2x + 9) + (x^3 + 5x^2 - 7)$
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Agrupamos por grado, notando que el primer polinomio no tiene término en $x^2$:
+  $$(4x^3 + x^3) + (5x^2) + (-2x) + (9 - 7) = 5x^3 + 5x^2 - 2x + 2.$$
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Suma: $a) \; (3x + 5) + (2x - 1) \qquad b) \; (4x^2 + 3x) + (x^2 - 2x)$
+
+  \item \facil{} Suma (horizontal): $(2x^2 + 4x - 1) + (3x^2 - 2x + 7)$
+
+  \item \facil{} Suma (vertical): $(6x^2 - 3x + 4) + (2x^2 + 5x - 1)$
+
+  \item \medio{} Suma: $(3a^2b + 2ab^2 - b^3) + (a^2b - 4ab^2 + 2b^3)$
+
+  \item \medio{} Suma: $(5x^3 + 2x - 8) + (x^3 + 6x^2 - 3x + 1)$
+
+  \item \medio{} Suma los tres polinomios: $(2x - 1) + (x^2 + 3x + 4) + (2x^2 - x + 5)$
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Resta de Polinomios}
+% ============================================================
+
+\subsection{La regla fundamental}
+
+\begin{cuadroteoria}
+  \textbf{Resta de polinomios:} restar es \emph{sumar el opuesto} del sustraendo.
+
+  \textbf{Cambio de signos:} al restar, se cambia el signo de \emph{todos} los términos del segundo polinomio:
+  $$-(a - b + c) = -a + b - c$$
+
+  Después de cambiar los signos, se suma como en la sección anterior.
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores comunes:}
+  \begin{itemize}[leftmargin=*]
+    \item Olvidar cambiar \emph{todos} los signos del sustraendo (¡el más típico!).
+    \item Confundir el signo del término independiente.
+    \item Restar coeficientes en el orden equivocado.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Resta por el método horizontal: $(4x^2 + 3x - 2) - (x^2 - 5x + 1)$
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{enumerate}
+    \item Cambiamos los signos del segundo polinomio: $-(x^2 - 5x + 1) = -x^2 + 5x - 1$.
+    \item Sumamos: $(4x^2 + 3x - 2) + (-x^2 + 5x - 1)$.
+    \item Agrupamos semejantes: $(4x^2 - x^2) + (3x + 5x) + (-2 - 1) = 3x^2 + 8x - 3$.
+  \end{enumerate}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Resta por el método vertical: $(5x^3 + 2x^2 - 6) - (3x^3 - 4x^2 + 2x)$
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Cambiamos los signos del sustraendo y alineamos:
+  \begin{center}
+    \begin{tabular}{cccccc}
+          & $5x^3$ & $+2x^2$ &       & $-6$ & \\
+      $-$ & $3x^3$ & $-4x^2$ & $+2x$ &      & \\
+      \cline{2-5}
+          & $2x^3$ & $+6x^2$ & $-2x$ & $-6$ &
+    \end{tabular}
+  \end{center}
+  El resultado es $2x^3 + 6x^2 - 2x - 6$.
+\end{cuadrosolucion}
+
+\newpage
+
+\textbf{Ejemplo R3.} Resta: $(3a^2 - 5a + 7) - (2a^2 + 3a - 4)$
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Cambiamos signos: $-2a^2 - 3a + 4$. Sumamos:
+  $$(3a^2 - 2a^2) + (-5a - 3a) + (7 + 4) = a^2 - 8a + 11.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R4.} Resta: $(x^3 + 4x - 2) - (2x^3 - 3x^2 + x + 5)$
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Cambiamos signos: $-2x^3 + 3x^2 - x - 5$. Sumamos:
+  $$(x^3 - 2x^3) + (3x^2) + (4x - x) + (-2 - 5) = -x^3 + 3x^2 + 3x - 7.$$
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Resta: $a) \; (5x + 3) - (2x + 1) \qquad b) \; (7x^2 - 4x) - (3x^2 + 2x)$
+
+  \item \facil{} Resta (horizontal): $(6x^2 + 3x - 2) - (4x^2 - x + 5)$
+
+  \item \facil{} Resta (vertical): $(8x^2 - 2x + 9) - (3x^2 + 5x - 4)$
+
+  \item \medio{} Resta: $(5a^2 - 3ab + b^2) - (2a^2 + ab - 4b^2)$
+
+  \item \medio{} Resta: $(4x^3 + x^2 - 6) - (x^3 - 3x^2 + 2x - 1)$
+
+  \item \medio{} Resta el segundo polinomio del primero: $(3m^2 - 2m + 8) - (5m^2 + m - 3)$
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Multiplicación de un Polinomio por un Escalar}
+% ============================================================
+
+\subsection{Definición y regla de signos}
+
+\begin{cuadroteoria}
+  \textbf{Escalar:} un número real (positivo, negativo o fraccionario).
+
+  \textbf{Propiedad distributiva:} se multiplica el escalar por \emph{cada} término del polinomio:
+  $$k \cdot (a + b + c) = k \cdot a + k \cdot b + k \cdot c$$
+
+  \textbf{Regla de signos:}
+  $$(+) \cdot (+) = (+) \qquad (+) \cdot (-) = (-) \qquad (-) \cdot (+) = (-) \qquad (-) \cdot (-) = (+)$$
+
+  Al multiplicar, solo cambia el \textbf{coeficiente}; la parte literal se conserva intacta.
+\end{cuadroteoria}
+
+\begin{cuadroextra}
+  \textbf{¡Ojo con el exponente!} Al multiplicar por un escalar \emph{no} se cambian los exponentes: $3(2x^2) = 6x^2$ (no $6x^4$). La parte literal queda igual.
+\end{cuadroextra}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Escalar positivo: $3(2x^2 - 4x + 1)$
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$3(2x^2 - 4x + 1) = 3 \cdot 2x^2 + 3 \cdot (-4x) + 3 \cdot 1 = 6x^2 - 12x + 3.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Escalar negativo: $-2(x^3 + 3x - 5)$
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Cuidado con los signos:
+  $$-2(x^3 + 3x - 5) = -2x^3 - 6x + 10.$$
+  (El $-2 \cdot (-5) = +10$.)
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Escalar fraccionario: $\dfrac{1}{2}(4x^2 - 6x + 8)$
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$\frac{1}{2}(4x^2 - 6x + 8) = \frac{1}{2} \cdot 4x^2 + \frac{1}{2} \cdot (-6x) + \frac{1}{2} \cdot 8 = 2x^2 - 3x + 4.$$
+\end{cuadrosolucion}
+
+\newpage
+
+\textbf{Ejemplo R4.} Escalar negativo con dos variables: $-5(2a + 3b) - 3(a - 4b)$
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Aplicamos la distributiva a cada paréntesis y luego reducimos:
+  $$-5(2a + 3b) - 3(a - 4b) = -10a - 15b - 3a + 12b = -13a - 3b.$$
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Multiplica: $a) \; 2(3x + 4) \qquad b) \; 5(2x^2 - x)$
+
+  \item \facil{} Multiplica: $a) \; -3(x - 2) \qquad b) \; -1(4x^2 + 3x - 6)$
+
+  \item \facil{} Multiplica: $a) \; \dfrac{1}{2}(6x - 8) \qquad b) \; \dfrac{1}{3}(9x^2 + 3x - 6)$
+
+  \item \medio{} Multiplica: $a) \; 4(-2x^2 + x - 5) \qquad b) \; -2(3x^3 - 2x^2 + x)$
+
+  \item \medio{} Multiplica: $a) \; -\dfrac{1}{4}(8x - 12) \qquad b) \; \dfrac{2}{3}(6x^2 - 9x + 3)$
+
+  \item \medio{} Multiplica y reduce: $3(2a - 5) + 2(4a + 1)$
+\end{enumerate}
+
+% ============================================================
+\section{Suma y Resta de Polinomios con Escalares}
+% ============================================================
+
+\subsection{Procedimiento general}
+
+\begin{cuadropasos}
+  \textbf{Procedimiento en 4 pasos:}
+  \begin{enumerate}[leftmargin=*]
+    \item \textbf{Paso 1:} aplicar la multiplicación por escalar (distributiva) en cada paréntesis.
+    \item \textbf{Paso 2:} resolver los paréntesis (cambio de signos si es resta).
+    \item \textbf{Paso 3:} agrupar términos semejantes.
+    \item \textbf{Paso 4:} reducir los coeficientes.
+  \end{enumerate}
+
+  \textbf{Verificación:} sustituir un valor numérico (por ejemplo, $x = 1$) en la expresión original y en el resultado para comprobar que coinciden.
+\end{cuadropasos}
+
+\subsection{Ejercicios resueltos}
+
+\newpage %ajuste pag
+
+\textbf{Ejemplo R1.} Suma con escalares: $2(3x - 5) + 4(x + 2)$
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{enumerate}
+    \item Distribuimos: $6x - 10 + 4x + 8$.
+    \item Agrupamos y reducimos: $(6x + 4x) + (-10 + 8) = 10x - 2$.
+    \item Verificación con $x = 1$: original: $2(-2) + 4(3) = -4 + 12 = 8$; resultado: $10 - 2 = 8$. $\checkmark$
+  \end{enumerate}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Resta con escalares: $3(x^2 - 2x) - 2(x^2 + x - 1)$
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{enumerate}
+    \item Distribuimos: $3x^2 - 6x - 2x^2 - 2x + 2$.
+    \item Agrupamos: $(3x^2 - 2x^2) + (-6x - 2x) + 2$.
+    \item Reducimos: $x^2 - 8x + 2$.
+    \item \textbf{Verificación con $x = 1$:} original: $3(1 - 2) - 2(1 + 1 - 1) = 3(-1) - 2(1) = -3 - 2 = -5$; resultado: $1 - 8 + 2 = -5$. $\checkmark$
+  \end{enumerate}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Escalares negativos: $-5(2a + 3b) - 3(a - 4b)$
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{enumerate}
+    \item Distribuimos: $-10a - 15b - 3a + 12b$.
+    \item Agrupamos: $(-10a - 3a) + (-15b + 12b)$.
+    \item Reducimos: $-13a - 3b$.
+  \end{enumerate}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R4.} Combinado con fracciones: $\dfrac{1}{2}(4x + 6) - \dfrac{1}{3}(3x - 9)$
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{enumerate}
+    \item Distribuimos: $2x + 3 - x + 3$.
+    \item Reducimos: $(2x - x) + (3 + 3) = x + 6$.
+    \item Verificación con $x = 2$: original: $\dfrac{1}{2}(14) - \dfrac{1}{3}(-3) = 7 + 1 = 8$; resultado: $2 + 6 = 8$. $\checkmark$
+  \end{enumerate}
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Calcula y reduce: $3(2x + 1) + 2(x - 4)$
+
+  \item \facil{} Calcula y reduce: $4(x^2 - x) - 2(x^2 + 3x)$
+
+  \item \medio{} Calcula y reduce: $-2(3x - 1) + 5(x + 2)$
+
+  \item \medio{} Calcula y reduce: $3(x^2 + 2x - 1) - 2(2x^2 - x + 4)$
+
+  \item \medio{} Calcula y reduce: $-\dfrac{1}{2}(4a - 6) + \dfrac{1}{3}(6a + 9)$
+
+  \item \medio{} Calcula y reduce: $5(2m + 3n) - 2(4m - n) + 3(m - 2n)$
+
+  \item \dificil{} Calcula y reduce: $\dfrac{2}{3}(6x^2 - 9x + 12) - \dfrac{1}{4}(8x^2 - 4x - 16)$
+
+  \item \dificil{} Verifica con $x = 1$ la igualdad: $2(3x^2 - x + 4) - 3(x^2 + 2x - 1) = 3x^2 - 8x + 11$
+\end{enumerate}
+
+% ============================================================
+\section{Ejercicios Integradores}
+% ============================================================
+
+\begin{cuadroinfo}
+  \small
+  \textbf{Instrucciones:} los ejercicios están ordenados por nivel de dificultad. Resuélvelos en orden; cada nivel usa lo aprendido en los anteriores.
+\end{cuadroinfo}
+
+\subsection*{Nivel 1: Identificar términos semejantes}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} De la lista $3x^2, \; 5x, \; -2x^2, \; 4x^3, \; 7x, \; x^2$, identifica los términos semejantes a: $a) \; x^2 \qquad b) \; x$
+
+  \item \facil{} Determina si son semejantes: $a) \; 6a^2b$ y $-a^2b$ \quad $b) \; 4xy^2$ y $4x^2y$ \quad $c) \; -3mn$ y $2mn$
+\end{enumerate}
+
+\subsection*{Nivel 2: Ordenar polinomios}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Ordena en forma descendente: $7x - 3 + 5x^2$
+
+  \item \facil{} Ordena en forma descendente: $2x^4 + x - 5x^3 + 8$
+\end{enumerate}
+
+\subsection*{Nivel 3: Sumar polinomios simples}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Suma: $(4x + 7) + (3x - 2)$
+
+  \item \medio{} Suma: $(5x^2 + 3x - 1) + (2x^2 - 4x + 6)$
+\end{enumerate}
+
+\subsection*{Nivel 4: Restar polinomios simples}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Resta: $(8x - 3) - (5x + 2)$
+
+  \item \medio{} Resta: $(4x^2 + 6x - 1) - (3x^2 - 2x + 5)$
+\end{enumerate}
+
+\subsection*{Nivel 5: Multiplicar polinomio por escalar}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Multiplica: $-4(2x^2 - 3x + 1)$
+
+  \item \medio{} Multiplica: $\dfrac{2}{5}(10x^3 - 5x^2 + 15)$
+\end{enumerate}
+
+\subsection*{Nivel 6: Combinar suma/resta con escalares}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \medio{} Calcula y reduce: $2(3x^2 - 2x + 1) - 3(x^2 + x - 4)$
+
+  \item \medio{} Calcula y reduce: $-3(2x - 5) + 4(x + 2) - 2(x - 1)$
+\end{enumerate}
+
+\subsection*{Nivel 7: Polinomios con fracciones y decimales}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \dificil{} Calcula y reduce: $\dfrac{1}{2}x + \dfrac{2}{3}x - \dfrac{1}{6}x$
+
+  \item \dificil{} Calcula y reduce: $0{,}5(2x^2 - 4x + 6) - 0{,}25(4x^2 + 8x - 12)$
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Clave de Respuestas}
+% ============================================================
+
+\subsection*{Sección 1: Expresiones Algebraicas (Ejercicios 1--6)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item a) sí \quad b) no (no tiene variables) \quad c) sí \quad d) sí
+
+  \item a) $9$ \quad b) $-4$ \quad c) $\dfrac{3}{7}$ \quad d) $-1$
+
+  \item a) variable $x$, exponente $5$ \quad b) variable $m$, exponente $3$ \quad c) variables $p$ y $q$, exponentes $2$ y $1$
+
+  \item Coeficiente del primer término: $-7$; término independiente: $-5$.
+
+  \item $-3x^4$
+
+  \item Ejemplos: $\dfrac{1}{2}x^2$, $\dfrac{1}{2}ab$, $\dfrac{1}{2}y$
+\end{enumerate}
+
+\newpage
+
+\subsection*{Sección 2: Términos y Semejantes (Ejercicios 7--12)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{6}
+  \item a) grado $3$ \quad b) grado $2 + 4 = 6$ \quad c) grado $0$ \quad d) grado $3$
+
+  \item a) sí \quad b) no \quad c) sí \quad d) no
+
+  \item a) $8x$ \quad b) $5a^2$ \quad c) $0$ \quad d) $6x + 3y$
+
+  \item a) $(5x^2 - 3x^2) + (2x + x) = 2x^2 + 3x$ \quad b) $3a^3 + 2a^2 + 7$
+
+  \item $(-3 + 5)m^2n + (-1 + 2)mn + 8 = 2m^2n + mn + 8$
+
+  \item Ejemplos: $2x^3y^2$ y $-9x^3y^2$
+\end{enumerate}
+
+\newpage
+
+\subsection*{Sección 3: Ordenamiento (Ejercicios 13--16)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{12}
+  \item a) $3x^2 + 5x - 7$ \quad b) $2y^3 - 4y^2 + y + 8$
+
+  \item $-2 + x^2 + 5x^3 + 3x^4$
+
+  \item a) grado $5$ \quad b) grado $3$ ($2 + 1$)
+
+  \item $-3b^3 + 2b^2 + 5b - 1$; término independiente: $-1$
+\end{enumerate}
+
+\newpage
+
+\subsection*{Sección 4: Suma (Ejercicios 17--22)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{16}
+  \item a) $5x + 4$ \quad b) $5x^2 + x$
+
+  \item $(2x^2 + 3x^2) + (4x - 2x) + (-1 + 7) = 5x^2 + 2x + 6$
+
+  \item $8x^2 + 2x + 3$
+
+  \item $4a^2b - 2ab^2 + b^3$
+
+  \item $6x^3 + 6x^2 - x - 7$
+
+  \item $(2x - 1) + (x^2 + 3x + 4) + (2x^2 - x + 5) = 3x^2 + 4x + 8$
+\end{enumerate}
+
+\newpage
+
+\subsection*{Sección 5: Resta (Ejercicios 23--28)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{22}
+  \item a) $3x + 2$ \quad b) $4x^2 - 6x$
+
+  \item $2x^2 + 4x - 7$
+
+  \item $5x^2 - 7x + 13$
+
+  \item $3a^2 - 4ab + 5b^2$
+
+  \item $3x^3 + 4x^2 - 2x - 5$
+
+  \item $-2m^2 - 3m + 11$
+\end{enumerate}
+
+\newpage
+
+\subsection*{Sección 6: Escalares (Ejercicios 29--34)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{28}
+  \item a) $6x + 8$ \quad b) $10x^2 - 5x$
+
+  \item a) $-3x + 6$ \quad b) $-4x^2 - 3x + 6$
+
+  \item a) $3x - 4$ \quad b) $3x^2 + x - 2$
+
+  \item a) $-8x^2 + 4x - 20$ \quad b) $-6x^3 + 4x^2 - 2x$
+
+  \item a) $-2x + 3$ \quad b) $4x^2 - 6x + 2$
+
+  \item $3(2a - 5) + 2(4a + 1) = 6a - 15 + 8a + 2 = 14a - 13$
+\end{enumerate}
+
+\newpage
+
+\subsection*{Sección 7: Combinadas (Ejercicios 35--42)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{34}
+  \item $6x + 3 + 2x - 8 = 8x - 5$
+
+  \item $4x^2 - 4x - 2x^2 - 6x = 2x^2 - 10x$
+
+  \item $-6x + 2 + 5x + 10 = -x + 12$
+
+  \item $3x^2 + 6x - 3 - 4x^2 + 2x - 8 = -x^2 + 8x - 11$
+
+  \item $-2a + 3 + 2a + 3 = 6$
+
+  \item $10m + 15n - 8m + 2n + 3m - 6n = 5m + 11n$
+
+  \item $\dfrac{2}{3}(6x^2 - 9x + 12) = 4x^2 - 6x + 8$; $\dfrac{1}{4}(8x^2 - 4x - 16) = 2x^2 - x - 4$; resultado: $2x^2 - 5x + 12$
+
+  \item Lado izquierdo: $6x^2 - 2x + 8 - 3x^2 - 6x + 3 = 3x^2 - 8x + 11$: coincide. $\checkmark$
+\end{enumerate}
+
+\newpage
+
+\subsection*{Sección 8: Progresivos (Ejercicios 43--54)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{42}
+  \item a) $3x^2$, $-2x^2$ y $x^2$ \quad b) $5x$ y $7x$
+
+  \item a) sí \quad b) no \quad c) sí
+
+  \item $5x^2 + 7x - 3$
+
+  \item $2x^4 - 5x^3 + x + 8$
+
+  \item $7x + 5$
+
+  \item $7x^2 - x + 5$
+
+  \item $3x - 5$
+
+  \item $x^2 + 8x - 6$
+
+  \item $-8x^2 + 12x - 4$
+
+  \item $4x^3 - 2x^2 + 6$
+
+  \item $6x^2 - 4x + 2 - 3x^2 - 3x + 12 = 3x^2 - 7x + 14$
+
+  \item $-6x + 15 + 4x + 8 - 2x + 2 = -4x + 25$
+
+  \item $\dfrac{3}{6}x + \dfrac{4}{6}x - \dfrac{1}{6}x = \dfrac{6}{6}x = x$
+
+  \item $x^2 - 2x + 3 - (x^2 + 2x - 3) = x^2 - 2x + 3 - x^2 - 2x + 3 = -4x + 6$
+\end{enumerate}
+
+\end{document}

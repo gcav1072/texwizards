@@ -1,249 +1,35 @@
 % ============================================================
-%  GUÍA 4: EXPONENCIALES, LOGARÍTMICAS Y TRIGONOMÉTRICAS
+%  GUÍA 6: Trigonometría Analítica y Gráficas
 %  Curso de Introducción a la Universidad — Precálculo y Cálculo I
-%  Autor: Gabriel Astudillo
-%  Sesiones cubiertas: 9, 10, 11 y 12
+%  Autor: Ing. Gabriel Astudillo
+%  Clase cubierta: 6
 % ============================================================
 
 \documentclass[12pt, a4paper]{article}
 
 % ── Paquetes ─────────────────────────────────────────────────
-
 \usepackage{mathwizards-guia}
-\mwguia{Guía 4 — Exponenciales, Logarítmicas y Trigonométricas}{Gabriel Astudillo $\cdot$ Precálculo y Cálculo I}
+\mwguia{Guía 6 — Trigonometría Analítica y Gráficas}{Ing. Gabriel Astudillo $\cdot$ Curso Preuniversitario}
 
 \begin{document}
-% ============================================================
 
 % ── Portada / Título ─────────────────────────────────────────
-\mwportada{Guía de Estudio 4}{Funciones Exponenciales, Logarítmicas y Trigonométricas}{El número $e$, Logaritmos, Radianes, Circunferencia Unitaria e Identidades}
+\mwportada{Guía de Estudio 6}{Trigonometría Analítica y Gráficas}{Grados, Radianes, Longitud de Arco, Circunferencia Unitaria, Ondas e Identidades}
 
 \vspace{4pt}
 \begin{cuadroinfo}
-  \small
-  \textbf{Presentación:} Esta guía presenta las funciones trascendentes que aparecen constantemente en el cálculo: la exponencial (con su famosa base $e$), el logaritmo (su función inversa) y las funciones trigonométricas (seno, coseno y tangente). Aprenderás a graficarlas, resolver ecuaciones que las involucran y usar identidades básicas. Cada sección incluye \textbf{ejercicios resueltos} y \textbf{propuestos}.
-  \\[4pt]
-  \textbf{Nivel de Dificultad:}\quad
-  \facil{} Básico / Directo \quad
-  \medio{} Intermedio \quad
-  \dificil{} Desafiante
+\small
+\textbf{Presentación:} Esta guía cubre la trigonometría necesaria para el cálculo: medición angular en grados y radianes, longitud de arco, la circunferencia unitaria, los ángulos notables y de referencia, las gráficas de las funciones trigonométricas —amplitud, período y desfase— y las identidades fundamentales. Con teoría, ejemplos resueltos y propuestos con clave.
+\\[4pt]
+\textbf{Nivel de Dificultad:}\quad
+\facil{} Básico / Directo \quad
+\medio{} Intermedio \quad
+\dificil{} Desafiante \quad
+\muyDificil{} Muy Difícil / Reto
 \end{cuadroinfo}
 
 \vspace{8pt}
 
-% ============================================================
-\section{Función Exponencial y el Número $e$}
-% ============================================================
-
-\subsection{Definición y propiedades}
-
-\begin{cuadroteoria}
-  \textbf{Función exponencial de base $a$:}
-  $$f(x) = a^x \qquad (a > 0,\; a \neq 1)$$
-  \begin{itemize}[leftmargin=*]
-    \item Dominio: $\mathbb{R}$.
-    \item Rango: $(0, \infty)$.
-    \item Intercepto $y$: $(0, 1)$ (pues $a^0 = 1$).
-    \item Si $a > 1$: creciente. Si $0 < a < 1$: decreciente.
-    \item Asíntota horizontal: $y = 0$.
-  \end{itemize}
-
-  \textbf{El número de Euler:}
-  $$e \approx 2{,}718281828{\dots}$$
-  Es la base de la exponencial natural $f(x) = e^x$, la más usada en cálculo.
-\end{cuadroteoria}
-\newpage
-\begin{cuadrosolucion}
-  \textbf{Propiedades algebraicas} (para $a > 0$, $a \neq 1$):
-  \begin{align*}
-    a^x a^y & = a^{x+y} & \frac{a^x}{a^y} & = a^{x-y} \\
-    (a^x)^y & = a^{xy}  & (ab)^x          & = a^x b^x
-  \end{align*}
-
-  \textbf{Ecuaciones exponenciales:} si $a^u = a^v$, entonces $u = v$.
-
-  \textbf{Cuando las bases no se pueden igualar,} tomamos logaritmo natural en ambos lados:
-  $$a^x = b \;\Longrightarrow\; x = \frac{\ln b}{\ln a}$$
-\end{cuadrosolucion}
-
-\begin{cuadroadvertencia}
-  \textbf{Modelos de crecimiento/decrecimiento exponencial:}
-  $$P(t) = P_0 e^{kt}$$
-  \begin{itemize}[leftmargin=*]
-    \item $P_0$: cantidad inicial.
-    \item Si $k > 0$: crecimiento (poblaciones, interés compuesto continuo).
-    \item Si $k < 0$: decrecimiento (decaimiento radiactivo, enfriamiento).
-  \end{itemize}
-
-  \textbf{Interés compuesto:}
-  $$A = P\left(1 + \frac{r}{n}\right)^{nt}$$
-  donde $P$ es el capital, $r$ la tasa anual, $n$ las capitalizaciones por año y $t$ los años.
-\end{cuadroadvertencia}
-
-\subsection{Ejercicios resueltos}
-
-\textbf{Ejemplo R1.} Resuelve $2^{x+1} = 16$.
-
-\begin{cuadrosolucion}
-  \textbf{Solución:} Escribimos 16 como potencia de 2: $2^{x+1} = 2^4$. Entonces $x + 1 = 4$, de donde $x = 3$.
-\end{cuadrosolucion}
-
-\textbf{Ejemplo R2.} Resuelve $4^x = 8$.
-
-\begin{cuadrosolucion}
-  \textbf{Solución:} $4^x = (2^2)^x = 2^{2x}$ y $8 = 2^3$. Entonces $2^{2x} = 2^3$, luego $2x = 3$, o sea $x = \dfrac{3}{2}$.
-\end{cuadrosolucion}
-
-\textbf{Ejemplo R3.} Resuelve $3^{x^2} = 9^{x+1}$.
-
-\begin{cuadrosolucion}
-  \textbf{Solución:} $9^{x+1} = (3^2)^{x+1} = 3^{2x+2}$. Entonces $x^2 = 2x + 2$, es decir $x^2 - 2x - 2 = 0$. Por la fórmula general:
-  $$x = \frac{2 \pm \sqrt{4 + 8}}{2} = \frac{2 \pm \sqrt{12}}{2} = 1 \pm \sqrt{3}.$$
-\end{cuadrosolucion}
-
-\textbf{Ejemplo R4.} Una población de bacterias se modela con $P(t) = 500\,e^{0{,}3t}$, donde $t$ está en horas. ¿Cuántas bacterias habrá después de 4 horas?
-
-\begin{cuadrosolucion}
-  \textbf{Solución:} $P(4) = 500\,e^{0{,}3 \cdot 4} = 500\,e^{1{,}2} \approx 500(3{,}3201) \approx 1660$ bacterias.
-\end{cuadrosolucion}
-
-\textbf{Ejemplo R5.} Si inviertes $\$1000$ a una tasa anual del $5\%$ compuesto trimestralmente, ¿cuánto tendrás después de 6 años?
-
-  \begin{cuadrosolucion}
-    \textbf{Solución:} $P = 1000$, $r = 0{,}05$, $n = 4$, $t = 6$:
-    $$A = 1000\left(1 + \frac{0{,}05}{4}\right)^{4 \cdot 6} = 1000(1{,}0125)^{24} \approx 1000(1{,}3474) = \$\,1347{,}40.$$
-  \end{cuadrosolucion}
-
-  \textbf{Ejemplo R6.} Resuelve $5^x = 17$.
-
-  \begin{cuadrosolucion}
-    \textbf{Solución:} Las bases no son igualizables. Tomamos logaritmo natural en ambos lados:
-    $$\ln(5^x) = \ln 17 \Rightarrow x \ln 5 = \ln 17 \Rightarrow x = \frac{\ln 17}{\ln 5} \approx \frac{2{,}833}{1{,}609} \approx 1{,}760.$$
-  \end{cuadrosolucion}
-
-  \textbf{Ejemplo R7.} Resuelve $e^{2x - 1} = 10$.
-
-  \begin{cuadrosolucion}
-    \textbf{Solución:} Tomamos logaritmo natural:
-    $$2x - 1 = \ln 10 \Rightarrow 2x = 1 + \ln 10 \Rightarrow x = \frac{1 + \ln 10}{2} \approx \frac{1 + 2{,}303}{2} \approx 1{,}651.$$
-  \end{cuadrosolucion}
-
-  \subsection{Ejercicios propuestos}
-
-  \begin{enumerate}[leftmargin=*]
-    \item \facil{} Resuelve: $5^x = 125$
-    \item \facil{} Resuelve: $2^{x-3} = 1$
-    \item \facil{} Resuelve: $3^{2x} = 27$
-    \item \facil{} Evalúa $f(2)$ si $f(x) = 4^x$.
-    \item \facil{} Determina si cada función es creciente o decreciente: $f(x) = 2^x$, $g(x) = \left(\frac{1}{3}\right)^x$, $h(x) = e^{-x}$.
-    \item \medio{} Resuelve: $2^{2x+1} = 8^{x-1}$
-    \item \medio{} Resuelve: $e^{x+1} = e^{2x-3}$
-    \item \medio{} Resuelve: $25^x = 125^{x-1}$
-    \item \medio{} El número de bacterias en un cultivo se duplica cada 3 horas. Si inicialmente hay 200 bacterias, escribe la función $P(t)$ (exponencial con base 2) y calcula cuántas habrá después de 12 horas.
-    \item \medio{} Una sustancia radiactiva decae según $A(t) = A_0 e^{-0{,}02t}$ (t en años). Si $A_0 = 100$ g, ¿cuánto queda después de 10 años?
-    \item \dificil{} Resuelve: $4^x - 10 \cdot 2^x + 16 = 0$ (pista: haz $u = 2^x$).
-    \item \dificil{} ¿Cuánto tiempo (en años) se necesita para que una inversión de $\$500$ al $6\%$ anual compuesto mensualmente alcance $\$1000$?
-  \end{enumerate}
-
-  % ============================================================
-  \section{Función Logarítmica y sus Propiedades}
-  % ============================================================
-
-  \subsection{Definición y propiedades}
-
-  \begin{cuadroteoria}
-    \textbf{Definición:} Para $a > 0$, $a \neq 1$ y $x > 0$:
-    $$\boxed{\log_a x = y \iff a^y = x}$$
-
-    La función logarítmica $f(x) = \log_a x$ es la \textbf{inversa} de $f(x) = a^x$.
-
-    \begin{itemize}[leftmargin=*]
-      \item Dominio: $(0, \infty)$.
-      \item Rango: $\mathbb{R}$.
-      \item Intercepto $x$: $(1, 0)$ (pues $\log_a 1 = 0$).
-      \item Asíntota vertical: $x = 0$.
-    \end{itemize}
-
-    \textbf{Logaritmo natural:} $\ln x = \log_e x$. Es el logaritmo de base $e$.
-  \end{cuadroteoria}
-
-  \begin{cuadrosolucion}
-    \textbf{Propiedades de los logaritmos} (para $M, N > 0$):
-    \begin{align*}
-      \log_a (MN)                     & = \log_a M + \log_a N \\
-      \log_a \left(\frac{M}{N}\right) & = \log_a M - \log_a N \\
-      \log_a (M^p)                    & = p \log_a M          \\
-      \log_a 1                        & = 0                   \\
-      \log_a a                        & = 1
-    \end{align*}
-
-    \textbf{Cambio de base:}
-    $$\log_a x = \frac{\log_b x}{\log_b a}$$
-  \end{cuadrosolucion}
-
-  \begin{cuadroadvertencia}
-    \textbf{Ecuaciones logarítmicas:}\\
-    Una estrategia es combinar los logaritmos usando las propiedades y luego aplicar la definición. Verifica siempre que las soluciones no hagan que un logaritmo tenga argumento negativo o cero.
-  \end{cuadroadvertencia}
-
-  \subsection{Ejercicios resueltos}
-
-  \textbf{Ejemplo R1.} Expande $\log_2(8x^3)$ usando las propiedades.
-
-  \begin{cuadrosolucion}
-    \textbf{Solución:}
-    $$\log_2(8x^3) = \log_2 8 + \log_2 x^3 = 3 + 3\log_2 x.$$
-  \end{cuadrosolucion}
-
-  \textbf{Ejemplo R2.} Condensa en un solo logaritmo: $\log_3 x + \log_3 y - 2\log_3 z$.
-
-  \begin{cuadrosolucion}
-    \textbf{Solución:}
-    $$\log_3 x + \log_3 y - 2\log_3 z = \log_3\left(\frac{xy}{z^2}\right).$$
-  \end{cuadrosolucion}
-
-  \textbf{Ejemplo R3.} Resuelve $\log_2 x + \log_2(x - 2) = 3$.
-
-  \begin{cuadrosolucion}
-    \textbf{Solución:}
-    \begin{enumerate}
-      \item Combinamos: $\log_2[x(x - 2)] = 3$.
-      \item Aplicamos la definición: $x(x - 2) = 2^3 = 8$.
-      \item $x^2 - 2x - 8 = 0 \Rightarrow (x - 4)(x + 2) = 0 \Rightarrow x = 4$ o $x = -2$.
-      \item Verificamos: $x = -2$ da argumentos negativos, se descarta. Solución: $x = 4$.
-    \end{enumerate}
-  \end{cuadrosolucion}
-
-  \textbf{Ejemplo R4.} Resuelve $\ln x = 2$.
-
-  \begin{cuadrosolucion}
-    \textbf{Solución:} Por definición: $x = e^2 \approx 7{,}389$.
-  \end{cuadrosolucion}
-
-  \textbf{Ejemplo R5.} Expresa $\log_2 5$ en términos de logaritmos naturales.
-
-  \begin{cuadrosolucion}
-    \textbf{Solución:} Usando cambio de base: $\log_2 5 = \dfrac{\ln 5}{\ln 2} \approx \dfrac{1{,}609}{0{,}693} \approx 2{,}322$.
-  \end{cuadrosolucion}
-
-  \subsection{Ejercicios propuestos}
-
-  \begin{enumerate}[leftmargin=*, resume]
-    \item \facil{} Evalúa: $\log_2 8$, $\log_3 81$, $\log_5 1$, $\log_{10} 1000$.
-    \item \facil{} Evalúa: $\ln e^3$, $\log_7 7$, $\log_{10} 0{,}01$.
-    \item \facil{} Expande: $\log_3(9x^2)$.
-    \item \facil{} Condensa: $\log_2 x + \log_2 y$.
-    \item \facil{} Resuelve: $\log_3 x = 4$.
-    \item \medio{} Expande: $\ln\left(\dfrac{x^2 y}{z}\right)$.
-    \item \medio{} Condensa: $2\log x + 3\log y - \frac{1}{2}\log z$.
-    \item \medio{} Resuelve: $\log_3(x + 1) - \log_3 x = 2$.
-    \item \medio{} Resuelve: $\log_4 x + \log_4(x - 6) = 2$.
-    \item \medio{} Usa cambio de base para calcular $\log_3 7$ con calculadora (expresa usando $\ln$).
-    \item \dificil{} Resuelve: $\log_2(x + 3) + \log_2(x - 1) = 4$.
-    \item \dificil{} Resuelve: $\ln(x + 2) - \ln(x - 1) = \ln 4$.
-  \end{enumerate}
-
-  % ============================================================
   \section{Sistema de Medición Angular y Circunferencia Unitaria}
   % ============================================================
 
@@ -325,7 +111,7 @@
 
   \subsection{Ejercicios propuestos}
 
-  \begin{enumerate}[leftmargin=*, resume]
+  \begin{enumerate}[leftmargin=*]
     \item \facil{} Convierte a radianes: $30^\circ$, $45^\circ$, $90^\circ$, $180^\circ$, $270^\circ$.
     \item \facil{} Convierte a grados: $\dfrac{\pi}{6}$, $\dfrac{\pi}{4}$, $\dfrac{\pi}{3}$, $\dfrac{3\pi}{2}$.
     \item \facil{} Calcula: $\sin\left(\frac{\pi}{6}\right)$, $\cos\left(\frac{\pi}{4}\right)$, $\tan\left(\frac{\pi}{4}\right)$.
@@ -343,6 +129,7 @@
   \newpage
 
   % ============================================================
+
   \section{Gráficas de Funciones Trigonométricas e Identidades Básicas}
   % ============================================================
 
@@ -456,48 +243,86 @@
 \newpage
 
 % ============================================================
+
+% ──────────────────────────────────────────────────────────
+%  NUEVOS EJERCICIOS PROPUESTOS (26) — INSERCIÓN MANUAL
+% ──────────────────────────────────────────────────────────
+\subsection{Ejercicios propuestos: Ángulos, Arcos y Circunferencia Unitaria}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Convierte $120^\circ$ a radianes.
+
+  \item \facil{} Convierte $\dfrac{5\pi}{6}$ a grados.
+
+  \item \medio{} Calcula la longitud del arco subtendido por un ángulo central de $\dfrac{\pi}{4}$ en una circunferencia de radio 8 cm.
+
+  \item \medio{} Evalúa exactamente: $\sin \dfrac{\pi}{6}$, $\cos \dfrac{\pi}{3}$ y $\tan \dfrac{\pi}{4}$.
+
+  \item \medio{} Determina el ángulo de referencia de $225^\circ$ y usa la circunferencia unitaria para hallar $\sin 225^\circ$ y $\cos 225^\circ$.
+
+  \item \dificil{} Evalúa exactamente $\sin \dfrac{5\pi}{3}$ y $\cos \dfrac{5\pi}{3}$.
+
+  \item \dificil{} Un ángulo central de $2{,}5$ rad subtiende un arco de 15 cm. Determina el radio de la circunferencia.
+
+  \item \dificil{} Si $\cos \theta = \dfrac{3}{5}$ y $\theta$ está en el cuarto cuadrante, halla $\sin \theta$ y $\tan \theta$.
+
+  \item \muyDificil{} Una rueda de 30 cm de radio gira un ángulo de $240^\circ$. Determina la distancia recorrida por un punto del borde.
+\end{enumerate}
+
+\subsection{Ejercicios propuestos: Gráficas e Identidades}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Determina el período de $y = \sin(2x)$.
+
+  \item \facil{} Determina la amplitud y el período de $y = 3\cos\left(\dfrac{x}{2}\right)$.
+
+  \item \medio{} Determina el desfase de $y = \sin\left(x - \dfrac{\pi}{3}\right)$ respecto a $y = \sin x$.
+
+  \item \medio{} Escribe la ecuación de una función senoidal con amplitud 2, período $\pi$ y desfase 0.
+
+  \item \medio{} Simplifica las expresiones: $\dfrac{\sin x}{\cos x}$ \quad y \quad $\sin^2 x + \cos^2 x$.
+
+  \item \dificil{} Simplifica usando la identidad pitagórica:
+        $$\frac{1 - \cos^2 x}{\sin x}$$
+
+  \item \dificil{} Simplifica la expresión trigonométrica:
+        $$\tan x \cdot \cos x$$
+
+  \item \dificil{} Determina el valor máximo y el valor mínimo de $y = 2 + 3\sin x$.
+
+  \item \muyDificil{} Demuestra la identidad:
+        $$\frac{\sin x}{1 + \cos x} = \frac{1 - \cos x}{\sin x}$$
+\end{enumerate}
+
+\subsection{Ejercicios propuestos: Retos Integradores}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Convierte $-135^\circ$ a radianes.
+
+  \item \medio{} Evalúa exactamente: $\sec \dfrac{\pi}{3}$ \quad y \quad $\csc \dfrac{\pi}{6}$.
+
+  \item \medio{} Halla todos los ángulos $\theta \in [0, 2\pi)$ tales que $\sin \theta = \dfrac{1}{2}$.
+
+  \item \medio{} Determina el período de $y = \tan(3x)$.
+
+  \item \dificil{} \textbf{Modelado:} La altura del agua en un puerto sigue $h(t) = 5 + 3\cos\left(\dfrac{\pi t}{6}\right)$ con $t$ en horas. Determina la altura máxima, la mínima y el período de la marea.
+
+  \item \dificil{} Simplifica la suma de fracciones trigonométricas:
+        $$\frac{\cos x}{1 - \sin x} + \frac{\cos x}{1 + \sin x}$$
+
+  \item \muyDificil{} Demuestra la identidad:
+        $$\frac{1}{\tan x + \cot x} = \sin x \cos x$$
+
+  \item \muyDificil{} Un péndulo de 1{,}2 m oscila con una amplitud angular de $\dfrac{\pi}{12}$ rad. Determina la longitud del arco que barre su extremo.
+\end{enumerate}
+
+% ============================================================
 \section{Clave de Respuestas}
 % ============================================================
 
-\subsection*{Sección 1: Exponenciales (Ejercicios 1--12)}
+\subsection*{Sección 1: Ángulos y Circunferencia Unitaria (Ejercicios 1--12)}
 
 \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-  \item $x = 3$
-  \item $x - 3 = 0 \Rightarrow x = 3$
-  \item $2x = 3 \Rightarrow x = \dfrac{3}{2}$
-  \item $f(2) = 4^2 = 16$
-  \item $f$ creciente; $g$ decreciente; $h$ decreciente (pues $e^{-x} = (1/e)^x$ con $0 < 1/e < 1$).
-  \item $2^{2x+1} = (2^3)^{x-1} = 2^{3x-3}$. Entonces $2x+1 = 3x-3 \Rightarrow x = 4$.
-  \item $x + 1 = 2x - 3 \Rightarrow x = 4$.
-  \item $25^x = (5^2)^x = 5^{2x}$ y $125^{x-1} = (5^3)^{x-1} = 5^{3x-3}$. Entonces $2x = 3x - 3 \Rightarrow x = 3$.
-  \item $P(t) = 200 \cdot 2^{t/3}$. En $t = 12$: $P(12) = 200 \cdot 2^4 = 3200$ bacterias.
-  \item $A(10) = 100 e^{-0{,}2} \approx 100(0{,}8187) = 81{,}87$ g.
-  \item $u = 2^x$: $u^2 - 10u + 16 = 0 \Rightarrow (u - 2)(u - 8) = 0$. Entonces $2^x = 2 \Rightarrow x = 1$; o $2^x = 8 \Rightarrow x = 3$. Soluciones: $x = 1$, $x = 3$.
-  \item $1000 = 500\left(1 + \frac{0{,}06}{12}\right)^{12t} \Rightarrow 2 = (1{,}005)^{12t} \Rightarrow \ln 2 = 12t \ln(1{,}005) \Rightarrow t = \dfrac{\ln 2}{12\ln(1{,}005)} \approx 11{,}58$ años.
-\end{enumerate}
-
-\subsection*{Sección 2: Logarítmicas (Ejercicios 13--24)}
-
-\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-  \setcounter{enumi}{12}
-  \item $3$, $4$, $0$, $3$
-  \item $3$, $1$, $-2$
-  \item $\log_3 9 + \log_3 x^2 = 2 + 2\log_3 x$
-  \item $\log_2(xy)$
-  \item $x = 3^4 = 81$
-  \item $\ln(x^2 y) - \ln z = 2\ln x + \ln y - \ln z$
-  \item $\log(x^2 y^3) - \log\sqrt{z} = \log\left(\dfrac{x^2 y^3}{\sqrt{z}}\right)$
-  \item $\log_3\left(\dfrac{x+1}{x}\right) = 2 \Rightarrow \dfrac{x+1}{x} = 9 \Rightarrow 9x = x + 1 \Rightarrow 8x = 1 \Rightarrow x = \dfrac{1}{8}$.
-  \item $\log_4[x(x - 6)] = 2 \Rightarrow x(x - 6) = 16 \Rightarrow x^2 - 6x - 16 = 0 \Rightarrow (x - 8)(x + 2) = 0$. $x = 8$ (válida), $x = -2$ (descartada).
-  \item $\log_3 7 = \dfrac{\ln 7}{\ln 3} \approx \dfrac{1{,}946}{1{,}099} \approx 1{,}771$.
-  \item $\log_2[(x + 3)(x - 1)] = 4 \Rightarrow (x + 3)(x - 1) = 16 \Rightarrow x^2 + 2x - 3 = 16 \Rightarrow x^2 + 2x - 19 = 0 \Rightarrow x = -1 \pm 2\sqrt{5}$. La positiva es $-1 + 2\sqrt{5} \approx 3{,}47$ (válida); la negativa se descarta.
-  \item $\ln\left(\dfrac{x+2}{x - 1}\right) = \ln 4 \Rightarrow \dfrac{x + 2}{x - 1} = 4 \Rightarrow x + 2 = 4x - 4 \Rightarrow 6 = 3x \Rightarrow x = 2$ (válida: $x + 2 = 4 > 0$, $x - 1 = 1 > 0$).
-\end{enumerate}
-
-\subsection*{Sección 3: Ángulos y Circunferencia Unitaria (Ejercicios 25--36)}
-
-\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-  \setcounter{enumi}{24}
   \item $\dfrac{\pi}{6}$, $\dfrac{\pi}{4}$, $\dfrac{\pi}{2}$, $\pi$, $\dfrac{3\pi}{2}$
   \item $30^\circ$, $45^\circ$, $60^\circ$, $270^\circ$
   \item $\sin\frac{\pi}{6} = \frac{1}{2}$; $\cos\frac{\pi}{4} = \frac{\sqrt{2}}{2}$; $\tan\frac{\pi}{4} = 1$
@@ -512,10 +337,11 @@
   \item $10^\circ = \dfrac{\pi}{18}$ rad. Ida: $s = 2 \cdot \dfrac{\pi}{18} = \dfrac{\pi}{9} \approx 0{,}349$ m. Oscilación completa (ida y vuelta) $= 2 \cdot \dfrac{\pi}{9} = \dfrac{2\pi}{9} \approx 0{,}698$ m.
 \end{enumerate}
 
-\subsection*{Sección 4: Gráficas Trigonométricas e Identidades (Ejercicios 37--48)}
+
+\subsection*{Sección 2: Gráficas Trigonométricas e Identidades (Ejercicios 13--24)}
 
 \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-  \setcounter{enumi}{36}
+  \setcounter{enumi}{12}
   \item Amplitud $4$; período $\dfrac{2\pi}{2} = \pi$.
   \item Amplitud $\dfrac{1}{2}$; período $\dfrac{2\pi}{3}$.
   \item Desfase $\dfrac{\pi}{2}$ a la derecha; desplazamiento vertical $+3$.
@@ -530,4 +356,48 @@
   \item a) Altura máxima: $3 + 2 = 5$ m; mínima: $3 - 2 = 1$ m. \quad b) Período: $\dfrac{2\pi}{\pi/6} = 12$ horas. \quad c) $h = 3$ cuando $\sin\left(\frac{\pi t}{6}\right) = 0$, es decir $\frac{\pi t}{6} = 0, \pi, 2\pi$ $\Rightarrow$ $t = 0, 6, 12$ (en las primeras 12 horas).
 \end{enumerate}
 
+
+% ──────────────────────────────────────────────────────────
+%  NUEVAS RESPUESTAS (26) — INSERCIÓN MANUAL
+% ──────────────────────────────────────────────────────────
+\subsection*{Sección 4: Ángulos, Arcos y Circunferencia Unitaria (Ejercicios 25--33)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{24}
+  \item $\dfrac{2\pi}{3}$ rad
+  \item $150^\circ$
+  \item $s = 8 \cdot \dfrac{\pi}{4} = 2\pi$ cm $\approx 6{,}28$ cm
+  \item $\dfrac{1}{2}$, $\dfrac{1}{2}$, $1$
+  \item Ángulo de referencia $45^\circ$; tercer cuadrante: $\sin 225^\circ = -\dfrac{\sqrt{2}}{2}$, $\cos 225^\circ = -\dfrac{\sqrt{2}}{2}$
+  \item $\sin \dfrac{5\pi}{3} = -\dfrac{\sqrt{3}}{2}$; \quad $\cos \dfrac{5\pi}{3} = \dfrac{1}{2}$
+  \item $r = \dfrac{s}{\theta} = \dfrac{15}{2{,}5} = 6$ cm
+  \item $\sin \theta = -\dfrac{4}{5}$; \quad $\tan \theta = -\dfrac{4}{3}$
+  \item $240^\circ = \dfrac{4\pi}{3}$ rad; \quad $s = 30 \cdot \dfrac{4\pi}{3} = 40\pi$ cm $\approx 125{,}66$ cm
+\end{enumerate}
+
+\subsection*{Sección 5: Gráficas e Identidades (Ejercicios 34--42)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{33}
+  \item Período $\pi$
+  \item Amplitud 3; período $4\pi$
+  \item Desfase $\dfrac{\pi}{3}$ hacia la derecha
+  \item $y = 2\sin(2x)$
+  \item $\dfrac{\sin x}{\cos x} = \tan x$; \quad $\sin^2 x + \cos^2 x = 1$
+  \item $\dfrac{\sin^2 x}{\sin x} = \sin x$
+  \item $\tan x \cos x = \dfrac{\sin x}{\cos x} \cos x = \sin x$
+  \item Máximo $2 + 3 = 5$; \quad mínimo $2 - 3 = -1$
+  \item Multiplicando por el conjugado: $\dfrac{\sin x}{1 + \cos x} \cdot \dfrac{1 - \cos x}{1 - \cos x} = \dfrac{\sin x(1 - \cos x)}{1 - \cos^2 x} = \dfrac{1 - \cos x}{\sin x}$.
+\end{enumerate}
+
+\subsection*{Sección 6: Retos Integradores (Ejercicios 43--50)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{42}
+  \item $-\dfrac{3\pi}{4}$ rad
+  \item $\sec \dfrac{\pi}{3} = 2$; \quad $\csc \dfrac{\pi}{6} = 2$
+  \item $\theta = \dfrac{\pi}{6}$ o $\theta = \dfrac{5\pi}{6}$
+  \item Período $\dfrac{\pi}{3}$
+  \item Máximo $5 + 3 = 8$ m; \quad mínimo $5 - 3 = 2$ m; \quad período $\dfrac{2\pi}{\pi/6} = 12$ horas
+  \item $\dfrac{\cos x(1 + \sin x) + \cos x(1 - \sin x)}{1 - \sin^2 x} = \dfrac{2\cos x}{\cos^2 x} = 2\sec x$
+  \item $\dfrac{1}{\frac{\sin x}{\cos x} + \frac{\cos x}{\sin x}} = \dfrac{\sin x \cos x}{\sin^2 x + \cos^2 x} = \sin x \cos x$.
+  \item $s = 1{,}2 \cdot \dfrac{\pi}{12} = 0{,}1\pi$ m $\approx 0{,}314$ m
+\end{enumerate}
 \end{document}

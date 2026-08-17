@@ -1,0 +1,261 @@
+% ============================================================
+%  CLASE 09 — DEFINICIÓN DE DERIVADA Y REGLAS BÁSICAS
+%  Curso Preuniversitario · Semana 5 · Clase de 2 horas
+%  (Fusión de las antiguas clases 17 y 18)
+% ============================================================
+\documentclass[aspectratio=169]{beamer}
+\usepackage{mathwizards-beamer}
+\mwbeamer{Clase 9}{Definición de Derivada y Reglas Básicas}{Semana 5}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Parte 1: Definición de Derivada y Recta Tangente}
+% ════════════════════════════════════════════════════════════
+
+
+\begin{frame}{Definición Formal de Derivada}
+  \begin{block}{Derivada como límite del cociente de diferencias}
+    La derivada de una función $f$ en un punto $x$ se define como:
+    $$\boxed{f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}} \qquad\text{o en un punto $a$:}\qquad \boxed{f'(a) = \lim_{x \to a} \frac{f(x) - f(a)}{x - a}}$$
+    siempre que dicho límite exista y sea finito.
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{Interpretación Geométrica y Física}
+    \begin{itemize}
+      \item \textbf{Geométrica:} La pendiente de la recta secante tiende a la \textbf{pendiente de la recta tangente} $m_{\text{tan}} = f'(a)$ en el punto $(a, f(a))$.
+      \item \textbf{Física:} Si $s(t)$ representa la posición de un móvil, la derivada $s'(t) = v(t)$ es su \textbf{velocidad instantánea}.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Rectas Tangente y Normal}
+  \begin{block}{Ecuaciones en el punto de tangencia $(a, f(a))$}
+    \begin{itemize}
+      \item \textbf{Recta Tangente:}
+            $$\boxed{y - f(a) = f'(a)(x - a)}$$
+      \item \textbf{Recta Normal (perpendicular a la tangente, con $f'(a) \neq 0$):}
+            $$\boxed{y - f(a) = -\frac{1}{f'(a)}(x - a)}$$
+    \end{itemize}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{alertblock}{Teorema: Derivabilidad implica Continuidad}
+    Si $f$ es derivable en $x = a$, entonces $f$ es necesariamente continua en $x = a$. \\
+    \textbf{¡El recíproco es falso!} Una función continua puede no ser derivable en puntos donde la gráfica tiene:
+    1) Picos o esquinas angulosas; 2) Cúspides; 3) Tangentes verticales ($f'(a) = \pm\infty$).
+  \end{alertblock}
+\end{frame}
+
+
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase — Parte 1}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 1}
+  \begin{mwejercicio}[Ejercicio 1 \quad \facil]
+    Calcula la derivada de la función lineal aplicando estrictamente la definición de límite del cociente incremental:
+    $$f(x) = 3x + 2$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 2}
+  \begin{mwejercicio}[Ejercicio 2 \quad \facil]
+    Usando la definición formal de derivada, calcula $f'(x)$ para:
+    $$f(x) = x^2$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 3}
+  \begin{mwejercicio}[Ejercicio 3 \quad \facil]
+    Encuentra la ecuación de la recta tangente a la curva $f(x) = x^2$ en el punto donde $x = 2$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 4}
+  \begin{mwejercicio}[Ejercicio 4 \quad \medio]
+    Calcula por definición formal (límite con $h \to 0$) la función derivada de:
+    $$f(x) = 2x^2 - 5x + 3$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 5}
+  \begin{mwejercicio}[Ejercicio 5 \quad \medio]
+    Aplica la definición formal de derivada para calcular $f'(x)$ de la función racional:
+    $$f(x) = \frac{1}{x} \qquad (x \neq 0)$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 6}
+  \begin{mwejercicio}[Ejercicio 6 \quad \medio]
+    Para la función cúbica $f(x) = x^3$:
+    \begin{enumerate}
+      \item Calcula $f'(x)$ por definición.
+      \item Halla las ecuaciones de la recta tangente y de la recta normal en el punto $(1, 1)$.
+    \end{enumerate}
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 7}
+  \begin{mwejercicio}[Ejercicio 7 \quad \medio]
+    Usando la definición de derivada y racionalización de raíces, demuestra que para $x > 0$:
+    $$\frac{d}{dx}[\sqrt{x}] = \frac{1}{2\sqrt{x}}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 8}
+  \begin{mwejercicio}[Ejercicio 8 \quad \dificil]
+    Calcula las derivadas laterales por la izquierda y por la derecha en $x = 3$ para la función $f(x) = |x - 3|$, y demuestra formalmente por qué $f'(3)$ no existe.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 9}
+  \begin{mwejercicio}[Ejercicio 9 \quad \dificil]
+    Determina si la siguiente función a trozos es continua y derivable en el punto de empalme $x = 1$:
+    $$f(x) = \begin{cases} x^2 & \text{si } x \le 1 \\ 2x - 1 & \text{si } x > 1 \end{cases}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 10}
+  \begin{mwejercicio}[Ejercicio 10 \quad \dificil]
+    Encuentra todos los puntos de la curva $f(x) = x^3 - 3x^2 + 2$ donde la recta tangente es paralela a la recta $9x - y + 5 = 0$, y escribe las ecuaciones de dichas rectas tangentes.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+
+% ════════════════════════════════════════════════════════════
+\section{Parte 2: Reglas Básicas de Derivación}
+% ════════════════════════════════════════════════════════════
+
+
+\begin{frame}{Reglas Lineales y Regla de la Potencia}
+  \begin{block}{Reglas fundamentales de derivación}
+    \begin{itemize}
+      \item \textbf{Constante:} $\dfrac{d}{dx}[c] = 0$
+      \item \textbf{Regla de la Potencia ($n \in \mathbb{R}$):} $\dfrac{d}{dx}[x^n] = n x^{n-1}$
+      \item \textbf{Múltiplo constante:} $\dfrac{d}{dx}[c \cdot f(x)] = c \cdot f'(x)$
+      \item \textbf{Suma y Resta:} $\dfrac{d}{dx}[f(x) \pm g(x)] = f'(x) \pm g'(x)$
+    \end{itemize}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{Derivadas Inmediatas de Funciones Trascendentes}
+    \begin{columns}[T]
+      \column{0.48\textwidth}
+      \begin{itemize}
+        \item $\dfrac{d}{dx}[e^x] = e^x$
+        \item $\dfrac{d}{dx}[\ln x] = \dfrac{1}{x} \quad (x > 0)$
+        \item $\dfrac{d}{dx}[\sin x] = \cos x$
+      \end{itemize}
+      \column{0.48\textwidth}
+      \begin{itemize}
+        \item $\dfrac{d}{dx}[\cos x] = -\sin x$
+        \item $\dfrac{d}{dx}[\tan x] = \sec^2 x$
+        \item $\dfrac{d}{dx}[\sec x] = \sec x \tan x$
+      \end{itemize}
+    \end{columns}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Reglas del Producto y del Cociente}
+  \begin{block}{Regla del Producto}
+    $$\boxed{\frac{d}{dx}[f(x) \cdot g(x)] = f'(x) \cdot g(x) + f(x) \cdot g'(x)}$$
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{Regla del Cociente}
+    $$\boxed{\frac{d}{dx}\left[\frac{f(x)}{g(x)}\right] = \frac{f'(x) \cdot g(x) - f(x) \cdot g'(x)}{[g(x)]^2}}$$
+  \end{block}
+
+  \vspace{4pt}
+  \begin{alertblock}{¡Error clásico!}
+    $\frac{d}{dx}[f \cdot g] \neq f' \cdot g'$ \qquad y \qquad $\frac{d}{dx}\left[\frac{f}{g}\right] \neq \frac{f'}{g'}$.
+  \end{alertblock}
+\end{frame}
+
+
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase — Parte 2}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 11}
+  \begin{mwejercicio}[Ejercicio 11 \quad \facil]
+    Calcula la función derivada aplicando reglas de potencias y linealidad:
+    $$f(x) = 4x^5 - 3x^3 + 2x - 7$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 12}
+  \begin{mwejercicio}[Ejercicio 12 \quad \facil]
+    Reescribe con exponentes fraccionarios y negativos antes de derivar:
+    $$f(x) = 3\sqrt{x} - \frac{2}{x^2} + \frac{5}{\sqrt[3]{x}}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 13}
+  \begin{mwejercicio}[Ejercicio 13 \quad \facil]
+    Calcula la derivada de la combinación lineal de funciones trascendentes:
+    $$f(x) = 3e^x - 4\ln x + 2\cos x - \tan x$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 14}
+  \begin{mwejercicio}[Ejercicio 14 \quad \medio]
+    Aplica la Regla del Producto y factoriza el resultado:
+    $$f(x) = (x^2 - 3x + 1) e^x$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 15}
+  \begin{mwejercicio}[Ejercicio 15 \quad \medio]
+    Calcula la derivada del producto algebraico-trigonométrico:
+    $$g(x) = x^3 \sin x$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 16}
+  \begin{mwejercicio}[Ejercicio 16 \quad \medio]
+    Aplica la Regla del Cociente y simplifica el numerador:
+    $$h(x) = \frac{2x^2 + 1}{3x - 2}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 17}
+  \begin{mwejercicio}[Ejercicio 17 \quad \medio]
+    Deriva la función cociente trascendente y halla los puntos donde la tangente es horizontal ($f'(x) = 0$):
+    $$f(x) = \frac{\ln x}{x} \qquad (x > 0)$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 18}
+  \begin{mwejercicio}[Ejercicio 18 \quad \dificil]
+    Calcula y simplifica al máximo la derivada del cociente trigonométrico usando identidades:
+    $$f(x) = \frac{\sin x}{1 + \cos x}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 19}
+  \begin{mwejercicio}[Ejercicio 19 \quad \dificil]
+    Demuestra que $\dfrac{d}{dx}[f(x)g(x)h(x)] = f'gh + fg'h + fgh'$, y aplícala para derivar:
+    $$y = x^2 e^x \cos x$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 20}
+  \begin{mwejercicio}[Ejercicio 20 \quad \dificil]
+    Encuentra las ecuaciones de la recta tangente y de la recta normal a la curva en el punto de abscisa $x = 1$:
+    $$y = \frac{x^2 - 1}{x^2 + 1}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+
+\end{document}

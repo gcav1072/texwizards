@@ -1,0 +1,279 @@
+% ============================================================
+%  CLASE 05 — FUNCIONES EXPONENCIALES Y LOGARÍTMICAS
+%  Curso Preuniversitario · Semana 3 · Clase de 2 horas
+%  (Fusión de las antiguas clases 09 y 10)
+% ============================================================
+\documentclass[aspectratio=169]{beamer}
+\usepackage{mathwizards-beamer}
+\mwbeamer{Clase 5}{Funciones Exponenciales y Logarítmicas}{Semana 3}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Parte 1: Función Exponencial y el Número $e$}
+% ════════════════════════════════════════════════════════════
+
+
+\begin{frame}{Definición y Propiedades de la Función Exponencial}
+  \begin{block}{Función exponencial de base $a$ ($a > 0, \; a \neq 1$)}
+    $$f(x) = a^x$$
+    \begin{columns}[T]
+      \column{0.48\textwidth}
+      \begin{itemize}
+        \item \textbf{Dominio:} $\mathbb{R} = (-\infty, \infty)$
+        \item \textbf{Rango:} $(0, \infty)$ (estrictamente positiva)
+        \item \textbf{Intercepto $y$:} $(0, 1)$ ya que $a^0 = 1$
+        \item \textbf{Asíntota horizontal:} Recta $y = 0$
+      \end{itemize}
+      \column{0.48\textwidth}
+      \begin{itemize}
+        \item Si $a > 1$: Estrictamente \textbf{creciente}.
+        \item Si $0 < a < 1$: Estrictamente \textbf{decreciente}.
+        \item Es una función inyectiva (uno a uno) en todo su dominio.
+      \end{itemize}
+    \end{columns}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{La Base Natural $e$ (Número de Euler $\approx 2{,}71828\dots$)}
+    Definido a través del límite del interés continuo:
+    $$e = \lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^n = \lim_{h \to 0} (1 + h)^{1/h}$$
+    La función $f(x) = e^x$ es la única función exponencial cuya pendiente en $(0, 1)$ es exactamente 1.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Ecuaciones Exponenciales y Modelos Aplicados}
+  \begin{block}{Técnicas de resolución de ecuaciones exponenciales}
+    \begin{itemize}
+      \item \textbf{Igualación de bases:} Si $a^{u(x)} = a^{v(x)} \implies u(x) = v(x)$.
+      \item \textbf{Cambio de variable:} Reducibles a cuadráticas de la forma $A(a^x)^2 + B(a^x) + C = 0$.
+      \item \textbf{Aplicación de logaritmos:} Para bases distintas $a^x = b \implies x = \dfrac{\ln b}{\ln a}$.
+    \end{itemize}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{Modelos continuos de la ciencia y las finanzas}
+    \begin{itemize}
+      \item \textbf{Crecimiento/Decaimiento continuo:} $P(t) = P_0 e^{kt}$ ($k > 0$ crecimiento, $k < 0$ decaimiento).
+      \item \textbf{Interés continuo:} $A(t) = P e^{rt}$ \qquad ($P$: capital inicial, $r$: tasa nominal anual).
+      \item \textbf{Ley de enfriamiento de Newton:} $T(t) = T_a + (T_0 - T_a)e^{-kt}$ ($T_a$: temperatura ambiente).
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase — Parte 1}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 1}
+  \begin{mwejercicio}[Ejercicio 1 \quad \facil]
+    Resuelve la siguiente ecuación exponencial igualando las bases:
+    $$2^{3x - 1} = 16^{x + 2}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 2}
+  \begin{mwejercicio}[Ejercicio 2 \quad \facil]
+    Resuelve la ecuación con base fraccionaria:
+    $$\left(\frac{1}{3}\right)^{2x + 1} = 27^{x - 4}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 3}
+  \begin{mwejercicio}[Ejercicio 3 \quad \facil]
+    Se invierten \$2\,000 a una tasa anual del 6\% compuesto continuamente. Determina la fórmula del monto $A(t)$ acumulado en $t$ años y calcula el capital total al cabo de 5 años ($e^{0{,}3} \approx 1{,}3498$).
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 4}
+  \begin{mwejercicio}[Ejercicio 4 \quad \medio]
+    Resuelve la ecuación exponencial aplicando logaritmos y expresa la solución exacta en términos de $\ln$:
+    $$5^{2x - 1} = 7^{x + 2}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 5}
+  \begin{mwejercicio}[Ejercicio 5 \quad \medio]
+    Resuelve la siguiente ecuación exponencial mediante un cambio de variable adecuado:
+    $$4^x - 3 \cdot 2^{x + 1} + 8 = 0$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 6}
+  \begin{mwejercicio}[Ejercicio 6 \quad \medio]
+    Un cultivo bacteriano crece según el modelo exponencial $N(t) = 500 e^{0{,}08 t}$, donde $t$ está en horas:
+    \begin{enumerate}
+      \item ¿Cuál es la población inicial?
+      \item ¿En cuánto tiempo la población alcanzará exactamente 4\,000 bacterias?
+    \end{enumerate}
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 7}
+  \begin{mwejercicio}[Ejercicio 7 \quad \medio]
+    Resuelve la ecuación con la base de Euler:
+    $$e^{2x} - 5e^x + 6 = 0$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 8}
+  \begin{mwejercicio}[Ejercicio 8 \quad \dificil]
+    Resuelve el sistema de ecuaciones exponenciales no lineal:
+    $$\begin{cases}
+      2^x \cdot 3^y = 18 \\
+      2^{2x} \cdot 3^y = 36
+    \end{cases}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 9}
+  \begin{mwejercicio}[Ejercicio 9 \quad \dificil]
+    Una taza de café caliente a $90^\circ\text{C}$ se coloca en una habitación con temperatura constante de $20^\circ\text{C}$. Después de 10 minutos la temperatura del café es de $60^\circ\text{C}$.
+    \begin{enumerate}
+      \item Encuentra la constante de enfriamiento $k$ en la Ley de Newton $T(t) = T_a + (T_0 - T_a)e^{-kt}$.
+      \item ¿A qué temperatura estará el café después de 25 minutos?
+    \end{enumerate}
+  \end{mwejercicio}
+  \vspace{2.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 10}
+  \begin{mwejercicio}[Ejercicio 10 \quad \dificil]
+    Resuelve la ecuación exponencial extrayendo factores comunes:
+    $$3^{x + 2} + 3^{x - 1} - 3^x = 75 \sqrt{3}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+
+% ════════════════════════════════════════════════════════════
+\section{Parte 2: Función Logarítmica y Propiedades}
+% ════════════════════════════════════════════════════════════
+
+
+\begin{frame}{Definición de Logaritmo y su Gráfica}
+  \begin{block}{Definición formal ($a > 0, \; a \neq 1, \; x > 0$)}
+    $$\boxed{\log_a x = y \iff a^y = x}$$
+    La función logarítmica $f(x) = \log_a x$ es la \textbf{inversa} de la función exponencial $g(x) = a^x$.
+    \begin{itemize}
+      \item \textbf{Dominio:} $(0, \infty)$ (solo argumentos estrictamente positivos).
+      \item \textbf{Rango:} $(-\infty, \infty) = \mathbb{R}$.
+      \item \textbf{Intercepto $x$:} $(1, 0)$ ya que $\log_a 1 = 0$.
+      \item \textbf{Asíntota vertical:} Recta $x = 0$ (eje $y$).
+    \end{itemize}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{Logaritmos especiales}
+    \begin{itemize}
+      \item \textbf{Logaritmo natural:} $\ln x = \log_e x$ \quad (inversa de $e^x$).
+      \item \textbf{Logaritmo decimal / común:} $\log x = \log_{10} x$.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Leyes de los Logaritmos y Cambio de Base}
+  \begin{block}{Propiedades fundamentales ($M, N > 0, \; p \in \mathbb{R}$)}
+    \begin{align*}
+      \log_a(M \cdot N) &= \log_a M + \log_a N && \text{(Regla del producto)} \\
+      \log_a\left(\frac{M}{N}\right) &= \log_a M - \log_a N && \text{(Regla del cociente)} \\
+      \log_a(M^p) &= p \cdot \log_a M && \text{(Regla de la potencia)} \\
+      \log_a a &= 1, \qquad \log_a 1 = 0 && \text{(Identidades básicas)}
+    \end{align*}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{Fórmula de Cambio de Base}
+    $$\boxed{\log_b x = \frac{\log_a x}{\log_a b} = \frac{\ln x}{\ln b}}$$
+  \end{block}
+
+  \vspace{4pt}
+  \begin{alertblock}{¡Cuidado con las propiedades falsas!}
+    $\log_a(M + N) \neq \log_a M + \log_a N$ \quad y \quad $\dfrac{\log_a M}{\log_a N} \neq \log_a(M - N)$.
+  \end{alertblock}
+\end{frame}
+
+
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase — Parte 2}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 11}
+  \begin{mwejercicio}[Ejercicio 11 \quad \facil]
+    Calcula el valor exacto de los siguientes logaritmos sin usar calculadora:
+    $$a)\; \log_2 64 \qquad\qquad b)\; \log_3\left(\frac{1}{27}\right) \qquad\qquad c)\; \ln(e^4 \sqrt{e}) \qquad\qquad d)\; \log_{10}(0{,}001)$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 12}
+  \begin{mwejercicio}[Ejercicio 12 \quad \facil]
+    Expande la siguiente expresión en términos de logaritmos más simples de una sola variable:
+    $$\log_5\left(\frac{25 x^3}{\sqrt{y}}\right)$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 13}
+  \begin{mwejercicio}[Ejercicio 13 \quad \facil]
+    Condensa en un único logaritmo con coeficiente 1:
+    $$2 \ln x + \frac{1}{2} \ln(x + 1) - 3 \ln y$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 14}
+  \begin{mwejercicio}[Ejercicio 14 \quad \medio]
+    Determina el dominio maximal de las siguientes funciones:
+    $$a)\; f(x) = \ln(x^2 - 9) \qquad\qquad b)\; g(x) = \log_2\left(\frac{x - 1}{x + 3}\right)$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 15}
+  \begin{mwejercicio}[Ejercicio 15 \quad \medio]
+    Resuelve la siguiente ecuación logarítmica y descarta posibles soluciones extrañas:
+    $$\log_2 x + \log_2(x - 2) = 3$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 16}
+  \begin{mwejercicio}[Ejercicio 16 \quad \medio]
+    Resuelve la ecuación logarítmica con base natural:
+    $$\ln(x + 5) - \ln(x - 1) = \ln 3$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 17}
+  \begin{mwejercicio}[Ejercicio 17 \quad \medio]
+    Halla la función inversa de $f(x) = 2 + \ln(3x - 1)$ y especifica su dominio y rango.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 18}
+  \begin{mwejercicio}[Ejercicio 18 \quad \dificil]
+    Resuelve la ecuación logarítmica cuadrática:
+    $$(\log_3 x)^2 - 4\log_3 x + 3 = 0$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 19}
+  \begin{mwejercicio}[Ejercicio 19 \quad \dificil]
+    Resuelve la ecuación aplicando la fórmula de cambio de base a la base 2:
+    $$\log_2 x + \log_4 x + \log_8 x = 11$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 20}
+  \begin{mwejercicio}[Ejercicio 20 \quad \dificil]
+    Resuelve la ecuación donde la variable $x$ aparece tanto en la base como en el argumento:
+    $$\log_x(2x^2 - 5x + 6) = 2$$
+    \emph{Verifica las condiciones de existencia de la base y del argumento.}
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+
+\end{document}

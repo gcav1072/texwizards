@@ -1,0 +1,251 @@
+% ============================================================
+%  CLASE 11 — TEOREMAS, MONOTONÍA Y CONCAVIDAD
+%  Curso Preuniversitario · Semana 6 · Clase de 2 horas
+%  (Fusión de las antiguas clases 21 y 22)
+% ============================================================
+\documentclass[aspectratio=169]{beamer}
+\usepackage{mathwizards-beamer}
+\mwbeamer{Clase 11}{Teoremas, Monotonía y Concavidad}{Semana 6}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Parte 1: Teoremas de Rolle y del Valor Medio}
+% ════════════════════════════════════════════════════════════
+
+
+\begin{frame}{Teorema de Rolle}
+  \begin{block}{Enunciado de Michel Rolle (1691)}
+    Sea $f$ una función que satisface las tres hipótesis fundamentales:
+    \begin{enumerate}
+      \item $f$ es \textbf{continua} en el intervalo cerrado $[a, b]$.
+      \item $f$ es \textbf{derivable} en el intervalo abierto $(a, b)$.
+      \item $f(a) = f(b)$ (toma el mismo valor en los extremos).
+    \end{enumerate}
+    Entonces \textbf{existe al menos un número} $c \in (a, b)$ tal que:
+    $$\boxed{f'(c) = 0}$$
+  \end{block}
+
+  \vspace{4pt}
+  \begin{mwextra}[Interpretación geométrica]
+    Garantiza la existencia de al menos un punto $(c, f(c))$ en el interior del intervalo donde la recta tangente a la curva es perfectamente \textbf{horizontal}.
+  \end{mwextra}
+\end{frame}
+
+\begin{frame}{Teorema del Valor Medio de Lagrange (TVM)}
+  \begin{block}{Enunciado de Joseph-Louis Lagrange (1797)}
+    Sea $f$ una función que cumple las dos hipótesis:
+    \begin{enumerate}
+      \item $f$ es \textbf{continua} en el intervalo cerrado $[a, b]$.
+      \item $f$ es \textbf{derivable} en el intervalo abierto $(a, b)$.
+    \end{enumerate}
+    Entonces \textbf{existe al menos un número} $c \in (a, b)$ tal que:
+    $$\boxed{f'(c) = \frac{f(b) - f(a)}{b - a}}$$
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{Interpretaciones geométrica y física}
+    \begin{itemize}
+      \item \textbf{Geométrica:} La recta tangente en $c$ es \textbf{paralela a la recta secante} que une los puntos extremos $(a, f(a))$ y $(b, f(b))$.
+      \item \textbf{Física:} En algún instante del recorrido, la velocidad instantánea es exactamente igual a la \textbf{velocidad media}.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase — Parte 1}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 1}
+  \begin{mwejercicio}[Ejercicio 1 \quad \facil]
+    Verifica que la función $f(x) = x^2 - 4x + 3$ cumple las hipótesis del Teorema de Rolle en el intervalo $[1, 3]$ y halla el valor exacto de $c$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 2}
+  \begin{mwejercicio}[Ejercicio 2 \quad \facil]
+    Calcula la pendiente de la recta secante que une los extremos de la gráfica de $f(x) = x^2$ en el intervalo $[0, 4]$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 3}
+  \begin{mwejercicio}[Ejercicio 3 \quad \facil]
+    Halla el número $c$ garantizado por el Teorema del Valor Medio para $f(x) = x^2$ en $[0, 4]$ cuya recta tangente es paralela a la secante del Ejercicio 3.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 4}
+  \begin{mwejercicio}[Ejercicio 4 \quad \medio]
+    Verifica las hipótesis del Teorema de Rolle para $f(x) = x^3 - 4x$ en el intervalo $[-2, 2]$ y encuentra todos los valores posibles de $c \in (-2, 2)$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 5}
+  \begin{mwejercicio}[Ejercicio 5 \quad \medio]
+    Aplica el Teorema del Valor Medio a la función radical $f(x) = \sqrt{x}$ en el intervalo $[1, 4]$ y halla el valor exacto de $c$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 6}
+  \begin{mwejercicio}[Ejercicio 6 \quad \medio]
+    Verifica el Teorema del Valor Medio para la función racional $f(x) = \dfrac{1}{x}$ en el intervalo $[1, 3]$ y calcula $c$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 7}
+  \begin{mwejercicio}[Ejercicio 7 \quad \medio]
+    Para la función $f(x) = |x|$ en el intervalo $[-1, 1]$ se cumple que $f(-1) = f(1) = 1$. Explica por qué no existe ningún número $c \in (-1, 1)$ tal que $f'(c) = 0$ y qué hipótesis del Teorema de Rolle falla.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 8}
+  \begin{mwejercicio}[Ejercicio 8 \quad \dificil]
+    Demuestra rigurosamente, combinando el Teorema del Valor Intermedio (existencia) y el Teorema de Rolle (unicidad), que la ecuación:
+    $$x^5 + 2x^3 + 4x - 5 = 0$$
+    tiene \textbf{exactamente una única raíz real}.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 9}
+  \begin{mwejercicio}[Ejercicio 9 \quad \dificil]
+    Un automóvil pasa por una estación de peaje a las 08:00 y por otra estación situada a 120 km de distancia a las 09:12 (1,2 horas más tarde). Si el límite de velocidad en la autopista es de $90\text{ km/h}$, demuestra usando el TVM que el conductor superó el límite de velocidad en algún instante del trayecto.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 10}
+  \begin{mwejercicio}[Ejercicio 10 \quad \dificil]
+    Aplica el Teorema del Valor Medio a la función $f(t) = \sin t$ en un intervalo arbitrario $[a, b]$ para demostrar formalmente la desigualdad:
+    $$|\sin b - \sin a| \le |b - a| \qquad (\forall a, b \in \mathbb{R})$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+
+% ════════════════════════════════════════════════════════════
+\section{Parte 2: Monotonía, Concavidad y Trazo de Curvas}
+% ════════════════════════════════════════════════════════════
+
+
+\begin{frame}{Puntos Críticos y Criterio de la Primera Derivada}
+  \begin{block}{Puntos Críticos}
+    Un número $c \in \text{Dom}(f)$ es un \textbf{punto crítico} si $f'(c) = 0$ o si $f'(c)$ \textbf{no existe}.
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{Criterio de la Primera Derivada para Monotonía y Extremos}
+    \begin{itemize}
+      \item \textbf{Crecimiento/Decrecimiento:} Si $f'(x) > 0 \implies f$ es \textbf{creciente} ($\nearrow$); si $f'(x) < 0 \implies f$ es \textbf{decreciente} ($\searrow$).
+      \item \textbf{Máximo local en $c$:} Si $f'$ cambia de signo de \textbf{positivo a negativo} ($+ \to -$).
+      \item \textbf{Mínimo local en $c$:} Si $f'$ cambia de signo de \textbf{negativo a positivo} ($- \to +$).
+      \item \textbf{Sin extremo:} Si $f'$ no cambia de signo al pasar por $c$.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Concavidad, Puntos de Inflexión y Criterio de $f''$}
+  \begin{block}{Concavidad y Segunda Derivada}
+    \begin{itemize}
+      \item Si $f''(x) > 0$ en $(a, b) \implies f$ es \textbf{cóncava hacia arriba} ($\cup$).
+      \item Si $f''(x) < 0$ en $(a, b) \implies f$ es \textbf{cóncava hacia abajo} ($\cap$).
+      \item \textbf{Punto de Inflexión:} Punto $(c, f(c))$ donde $f$ es continua y la concavidad \textbf{cambia de sentido}.
+    \end{itemize}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{Criterio de la Segunda Derivada (para $f'(c) = 0$)}
+    \begin{itemize}
+      \item Si $f''(c) < 0 \implies$ Hay un \textbf{máximo local} en $c$.
+      \item Si $f''(c) > 0 \implies$ Hay un \textbf{mínimo local} en $c$.
+      \item Si $f''(c) = 0 \implies$ Criterio \textbf{no concluyente} (usar la primera derivada).
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase — Parte 2}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 11}
+  \begin{mwejercicio}[Ejercicio 11 \quad \facil]
+    Encuentra todos los puntos críticos de la función polinomial:
+    $$f(x) = x^3 - 6x^2 + 9x + 2$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 12}
+  \begin{mwejercicio}[Ejercicio 12 \quad \facil]
+    Determina los intervalos de crecimiento y de decrecimiento de la parábola:
+    $$f(x) = -2x^2 + 8x - 3$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 13}
+  \begin{mwejercicio}[Ejercicio 13 \quad \facil]
+    Calcula la segunda derivada $f''(x)$ y determina los intervalos de concavidad hacia arriba y hacia abajo de:
+    $$f(x) = x^4 - 6x^2 + 5$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 14}
+  \begin{mwejercicio}[Ejercicio 14 \quad \medio]
+    Aplica el Criterio de la Primera Derivada para hallar y clasificar todos los extremos locales (máximos y mínimos) de:
+    $$f(x) = 2x^3 - 9x^2 + 12x - 3$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 15}
+  \begin{mwejercicio}[Ejercicio 15 \quad \medio]
+    Utiliza el Criterio de la Segunda Derivada para clasificar los puntos críticos de:
+    $$g(x) = 3x^4 - 4x^3 - 12x^2 + 5$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 16}
+  \begin{mwejercicio}[Ejercicio 16 \quad \medio]
+    Encuentra las coordenadas exactas de todos los puntos de inflexión de la curva:
+    $$f(x) = 3x^5 - 5x^4 + 2$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 17}
+  \begin{mwejercicio}[Ejercicio 17 \quad \medio]
+    Encuentra los puntos críticos donde la derivada no existe y clasifícalos para la función con exponente fraccionario:
+    $$f(x) = x^{2/3}(x - 5)$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 18}
+  \begin{mwejercicio}[Ejercicio 18 \quad \dificil]
+    Determina los valores de los coeficientes $a$, $b$ y $c$ para que la función cúbica $f(x) = ax^3 + bx^2 + cx$ tenga un extremo relativo en $x = 1$ y un punto de inflexión en $(2, 4)$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 19}
+  \begin{mwejercicio}[Ejercicio 19 \quad \dificil]
+    Para la función racional $f(x) = \dfrac{x^2}{x - 1}$:
+    \begin{enumerate}
+      \item Halla las asíntotas verticales y oblicuas.
+      \item Determina los intervalos de monotonía y extremos locales.
+      \item Determina la concavidad y bosqueja la gráfica completa.
+    \end{enumerate}
+  \end{mwejercicio}
+  \vspace{2.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 20}
+  \begin{mwejercicio}[Ejercicio 20 \quad \dificil]
+    Realiza el estudio analítico completo (dominio, asíntotas, extremos locales y puntos de inflexión) y bosqueja la gráfica de la función trascendente:
+    $$f(x) = x^2 e^{-x}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+
+\end{document}

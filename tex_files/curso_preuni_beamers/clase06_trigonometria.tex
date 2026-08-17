@@ -1,0 +1,294 @@
+% ============================================================
+%  CLASE 06 — TRIGONOMETRÍA ANALÍTICA Y GRÁFICAS
+%  Curso Preuniversitario · Semana 3 · Clase de 2 horas
+%  (Fusión de las antiguas clases 11 y 12)
+% ============================================================
+\documentclass[aspectratio=169]{beamer}
+\usepackage{mathwizards-beamer}
+\mwbeamer{Clase 6}{Trigonometría Analítica y Gráficas}{Semana 3}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Parte 1: Medición Angular y Circunferencia Unitaria}
+% ════════════════════════════════════════════════════════════
+
+
+\begin{frame}{Medición Angular: Grados y Radianes}
+  \begin{block}{Definición de Radián y Equivalencia}
+    Un \textbf{radián} es el ángulo central subtendido por un arco cuya longitud es igual al radio de la circunferencia.
+    $$\pi \text{ rad} = 180^\circ \iff 1 \text{ rad} = \frac{180^\circ}{\pi} \approx 57{,}2958^\circ$$
+    $$\text{Radianes} = \text{Grados} \times \frac{\pi}{180^\circ} \qquad\qquad \text{Grados} = \text{Radianes} \times \frac{180^\circ}{\pi}$$
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{Arco y Sector Circular ($\theta$ en radianes)}
+    \begin{itemize}
+      \item \textbf{Longitud de arco:} $s = r \cdot \theta$
+      \item \textbf{Área del sector circular:} $A = \dfrac{1}{2} r^2 \theta = \dfrac{1}{2} r s$
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{La Circunferencia Unitaria ($x^2 + y^2 = 1$)}
+  \begin{block}{Definición de las Funciones Trigonométricas}
+    Para cualquier ángulo $\theta$ en posición estándar cuyo lado terminal corta la circunferencia unitaria en $P(x, y)$:
+    \begin{columns}[T]
+      \column{0.48\textwidth}
+      \begin{itemize}
+        \item $\cos\theta = x$
+        \item $\sin\theta = y$
+        \item $\tan\theta = \dfrac{y}{x} = \dfrac{\sin\theta}{\cos\theta} \quad (x \neq 0)$
+      \end{itemize}
+      \column{0.48\textwidth}
+      \begin{itemize}
+        \item $\sec\theta = \dfrac{1}{x} = \dfrac{1}{\cos\theta} \quad (x \neq 0)$
+        \item $\csc\theta = \dfrac{1}{y} = \dfrac{1}{\sin\theta} \quad (y \neq 0)$
+        \item $\cot\theta = \dfrac{x}{y} = \dfrac{\cos\theta}{\sin\theta} \quad (y \neq 0)$
+      \end{itemize}
+    \end{columns}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{Signos por Cuadrantes}
+    \begin{itemize}
+      \item \textbf{I:} Todas positivas \quad|\quad \textbf{II:} Solo $\sin, \csc$ positivas
+      \item \textbf{III:} Solo $\tan, \cot$ positivas \quad|\quad \textbf{IV:} Solo $\cos, \sec$ positivas
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Ángulos Notables y Ángulos de Referencia}
+  \begin{block}{Valores fundamentales en el primer cuadrante}
+    \begin{center}
+      \small
+      \begin{tabular}{cccccc}
+        \toprule
+        $\theta$ (grados) & $0^\circ$ & $30^\circ$ & $45^\circ$ & $60^\circ$ & $90^\circ$ \\
+        $\theta$ (radianes) & $0$ & $\frac{\pi}{6}$ & $\frac{\pi}{4}$ & $\frac{\pi}{3}$ & $\frac{\pi}{2}$ \\
+        \midrule
+        $\sin\theta$ & $0$ & $\frac{1}{2}$ & $\frac{\sqrt{2}}{2}$ & $\frac{\sqrt{3}}{2}$ & $1$ \\
+        $\cos\theta$ & $1$ & $\frac{\sqrt{3}}{2}$ & $\frac{\sqrt{2}}{2}$ & $\frac{1}{2}$ & $0$ \\
+        $\tan\theta$ & $0$ & $\frac{\sqrt{3}}{3}$ & $1$ & $\sqrt{3}$ & no def. \\
+        \bottomrule
+      \end{tabular}
+    \end{center}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{mwextra}[Ángulo de referencia $\theta_{\text{ref}}$]
+    Es el ángulo agudo positivo formado por el lado terminal de $\theta$ y el \textbf{eje $x$}. Permite calcular cualquier razón trigonométrica reduciéndola al primer cuadrante y asignando el signo del cuadrante original.
+  \end{mwextra}
+\end{frame}
+
+
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase — Parte 1}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 1}
+  \begin{mwejercicio}[Ejercicio 1 \quad \facil]
+    Convierte los siguientes ángulos entre grados sexagesimales y radianes:
+    $$a)\; 150^\circ \qquad\qquad b)\; 225^\circ \qquad\qquad c)\; \frac{5\pi}{3}\text{ rad} \qquad\qquad d)\; -\frac{3\pi}{4}\text{ rad}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 2}
+  \begin{mwejercicio}[Ejercicio 2 \quad \facil]
+    En una circunferencia de radio $r = 12\text{ cm}$, un ángulo central mide $\theta = 75^\circ$:
+    \begin{enumerate}
+      \item Calcula la longitud del arco subtendido.
+      \item Calcula el área del sector circular correspondiente.
+    \end{enumerate}
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 3}
+  \begin{mwejercicio}[Ejercicio 3 \quad \facil]
+    Determina en qué cuadrante se encuentra el lado terminal del ángulo $\theta$ si:
+    $$a)\; \sin\theta < 0 \quad\text{y}\quad \cos\theta > 0 \qquad\qquad\qquad b)\; \tan\theta > 0 \quad\text{y}\quad \cos\theta < 0$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 4}
+  \begin{mwejercicio}[Ejercicio 4 \quad \medio]
+    El punto $P(-4, 3)$ se encuentra en el lado terminal de un ángulo $\theta$ en posición normal. Encuentra los valores exactos de las seis razones trigonométricas de $\theta$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 5}
+  \begin{mwejercicio}[Ejercicio 5 \quad \medio]
+    Determina el ángulo de referencia $\theta_{\text{ref}}$ y calcula el valor exacto de:
+    $$a)\; \sin(240^\circ) \qquad\qquad b)\; \cos\left(\frac{7\pi}{4}\right) \qquad\qquad c)\; \tan\left(\frac{5\pi}{6}\right)$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 6}
+  \begin{mwejercicio}[Ejercicio 6 \quad \medio]
+    Si se sabe que $\cos\theta = -\dfrac{5}{13}$ y que $\theta$ pertenece al tercer cuadrante (III), calcula los valores exactos de $\sin\theta$, $\tan\theta$ y $\csc\theta$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 7}
+  \begin{mwejercicio}[Ejercicio 7 \quad \medio]
+    Un péndulo de longitud 80 cm oscila formando un ángulo total de $15^\circ$ entre sus posiciones extremas. ¿Cuál es la distancia total que recorre la pesa del péndulo a lo largo de su trayectoria circular en una oscilación completa (ida y vuelta)?
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 8}
+  \begin{mwejercicio}[Ejercicio 8 \quad \dificil]
+    Una rueda de bicicleta de 70 cm de diámetro gira a 300 revoluciones por minuto (rpm):
+    \begin{enumerate}
+      \item Encuentra la velocidad angular en radianes por segundo ($\text{rad/s}$).
+      \item Encuentra la velocidad lineal de la bicicleta en kilómetros por hora ($\text{km/h}$).
+    \end{enumerate}
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 9}
+  \begin{mwejercicio}[Ejercicio 9 \quad \dificil]
+    Encuentra todos los ángulos $\theta \in [0, 2\pi)$ que satisfacen la ecuación trigonométrica básica:
+    $$\cos\theta = -\frac{\sqrt{3}}{2}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 10}
+  \begin{mwejercicio}[Ejercicio 10 \quad \dificil]
+    Dos poleas de radios $R_1 = 15\text{ cm}$ y $R_2 = 5\text{ cm}$ están unidas por una banda de transmisión sin holgura. Si la polea grande gira un ángulo de $120^\circ$:
+    \begin{enumerate}
+      \item ¿Qué longitud de banda se desplaza?
+      \item ¿Qué ángulo (en radianes y en grados) gira la polea pequeña?
+    \end{enumerate}
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+
+% ════════════════════════════════════════════════════════════
+\section{Parte 2: Gráficas Trigonométricas e Identidades}
+% ════════════════════════════════════════════════════════════
+
+
+\begin{frame}{Parámetros de las Ondas Sinusoidales}
+  \begin{block}{Forma general: $y = A \sin(Bx - C) + D \quad$ o $\quad y = A \cos(Bx - C) + D \quad (B > 0)$}
+    \begin{itemize}
+      \item \textbf{Amplitud:} $|A|$ (distancia del centro al pico máximo o valle mínimo).
+      \item \textbf{Período ($T$):} $T = \dfrac{2\pi}{B}$ (longitud de un ciclo completo).
+      \item \textbf{Desfase (corrimiento horizontal):} $\dfrac{C}{B}$ (hacia la derecha si $C > 0$, izquierda si $C < 0$).
+      \item \textbf{Desplazamiento vertical:} $D$ (línea media de oscilación $y = D$).
+    \end{itemize}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{Gráfica de la Tangente ($y = \tan x$)}
+    Tiene período $T = \pi$, ceros en $x = k\pi$ y asíntotas verticales en $x = \frac{\pi}{2} + k\pi$ ($k \in \mathbb{Z}$).
+  \end{block}
+\end{frame}
+
+\begin{frame}{Identidades Trigonométricas Fundamentales}
+  \begin{block}{Identidades Pitagóricas}
+    $$\boxed{\sin^2 x + \cos^2 x = 1} \qquad\qquad \boxed{1 + \tan^2 x = \sec^2 x} \qquad\qquad \boxed{1 + \cot^2 x = \csc^2 x}$$
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{Identidades de Paridad (Simetría)}
+    $$\sin(-x) = -\sin x \quad \text{(impar)} \qquad \cos(-x) = \cos x \quad \text{(par)} \qquad \tan(-x) = -\tan x \quad \text{(impar)}$$
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{Fórmulas de Ángulo Doble}
+    \begin{align*}
+      \sin(2x) &= 2\sin x \cos x \\
+      \cos(2x) &= \cos^2 x - \sin^2 x = 2\cos^2 x - 1 = 1 - 2\sin^2 x
+    \end{align*}
+  \end{block}
+\end{frame}
+
+
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase — Parte 2}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 11}
+  \begin{mwejercicio}[Ejercicio 11 \quad \facil]
+    Determina la amplitud, el período, el desfase y el desplazamiento vertical de la siguiente función periódica:
+    $$y = 3 \sin(2x - \pi) + 4$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 12}
+  \begin{mwejercicio}[Ejercicio 12 \quad \facil]
+    Simplifica al máximo la siguiente expresión trigonométrica usando identidades básicas:
+    $$\sin x \cdot \cot x \cdot \sec x$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 13}
+  \begin{mwejercicio}[Ejercicio 13 \quad \facil]
+    Demuestra la siguiente identidad algebraica elemental:
+    $$(1 - \cos x)(1 + \cos x) = \sin^2 x$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 14}
+  \begin{mwejercicio}[Ejercicio 14 \quad \medio]
+    Demuestra la siguiente identidad trigonométrica multiplicando por el conjugado:
+    $$\frac{\cos x}{1 - \sin x} = \sec x + \tan x$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 15}
+  \begin{mwejercicio}[Ejercicio 15 \quad \medio]
+    Usando las fórmulas de ángulo doble, demuestra que:
+    $$\frac{\sin(2x)}{1 + \cos(2x)} = \tan x$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 16}
+  \begin{mwejercicio}[Ejercicio 16 \quad \medio]
+    Escribe la ecuación de una onda cosenoidal de la forma $y = A\cos(Bx - C) + D$ que tenga amplitud 4, período $4\pi$, desfase de $\pi$ unidades hacia la izquierda y valor mínimo en $y = -1$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 17}
+  \begin{mwejercicio}[Ejercicio 17 \quad \medio]
+    Encuentra todas las soluciones en el intervalo $[0, 2\pi)$ de la ecuación cuadrática trigonométrica:
+    $$2\sin^2 x - \sin x - 1 = 0$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 18}
+  \begin{mwejercicio}[Ejercicio 18 \quad \dificil]
+    Demuestra la identidad trigonométrica no trivial:
+    $$\frac{\sin x + \sin(2x)}{1 + \cos x + \cos(2x)} = \tan x$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 19}
+  \begin{mwejercicio}[Ejercicio 19 \quad \dificil]
+    Resuelve la siguiente ecuación trigonométrica en $[0, 2\pi)$ transformando el ángulo doble:
+    $$\cos(2x) + \cos x = 0$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 20}
+  \begin{mwejercicio}[Ejercicio 20 \quad \dificil]
+    La profundidad del agua $h(t)$ (en metros) en el canal de acceso a un puerto varía periódicamente según:
+    $$h(t) = 5 + 3\cos\left(\frac{\pi t}{6}\right)$$
+    donde $t$ son las horas transcurridas desde las 00:00 (medianoche):
+    \begin{enumerate}
+      \item Halla la profundidad máxima (pleamar), mínima (bajamar) y las horas en que ocurren.
+      \item ¿En qué instantes entre las 00:00 y las 12:00 la profundidad es de $6{,}5\text{ metros}$?
+    \end{enumerate}
+  \end{mwejercicio}
+  \vspace{2.5cm}
+\end{frame}
+
+
+\end{document}

@@ -1,0 +1,518 @@
+% ============================================================
+%  GUÍA 3: Transformaciones y Funciones Polinomiales
+%  Curso de Introducción a la Universidad — Precálculo y Cálculo I
+%  Autor: Ing. Gabriel Astudillo
+%  Clase cubierta: 3
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+\usepackage{mathwizards-guia}
+\mwguia{Guía 3 — Transformaciones y Funciones Polinomiales}{Ing. Gabriel Astudillo $\cdot$ Curso Preuniversitario}
+
+\begin{document}
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Estudio 3}{Transformaciones y Funciones Polinomiales}{Traslaciones, Reflexiones, Escalamientos, Grado, Teoremas del Residuo y del Factor, División Sintética}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+\small
+\textbf{Presentación:} Esta guía estudia las transformaciones geométricas de las gráficas —traslaciones, reflexiones, alargamientos y compresiones— y el análisis completo de las funciones polinomiales: grado, coeficiente principal, comportamiento en los extremos, teoremas del residuo y del factor, división sintética y multiplicidad de raíces. Con la teoría, los ejercicios resueltos y los propuestos con clave dominarás las herramientas que exige el cálculo.
+\\[4pt]
+\textbf{Nivel de Dificultad:}\quad
+\facil{} Básico / Directo \quad
+\medio{} Intermedio \quad
+\dificil{} Desafiante \quad
+\muyDificil{} Muy Difícil / Reto
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+\section{Transformaciones de Gráficas}
+% ============================================================
+
+\subsection{Reglas de transformación}
+
+\begin{cuadroteoria}
+  Dada la función $y = f(x)$, las siguientes transformaciones producen nuevas gráficas:
+
+  \textbf{Traslaciones (desplazamientos):}
+  \begin{center}
+    \begin{tabular}{l p{7.8cm}}
+      \toprule
+      \textbf{Nueva función} & \textbf{Efecto sobre la gráfica}                                                      \\
+      \midrule
+      $y = f(x) + k$         & Desplaza $k$ unidades \textbf{hacia arriba} (si $k > 0$) / abajo (si $k < 0$)         \\
+      $y = f(x - h)$         & Desplaza $h$ unidades \textbf{hacia la derecha} (si $h > 0$) / izquierda (si $h < 0$) \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+
+  \textbf{Reflexiones:}
+  \begin{center}
+    \begin{tabular}{ll}
+      \toprule
+      $y = -f(x)$ & Reflexión \textbf{sobre el eje $x$} (vertical)   \\
+      $y = f(-x)$ & Reflexión \textbf{sobre el eje $y$} (horizontal) \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+
+  \textbf{Alargamientos y compresiones:}
+  \begin{center}
+    \begin{tabular}{ll}
+      \toprule
+      $y = c \cdot f(x)$ con $|c| > 1$     & Alargamiento \textbf{vertical}   \\
+      $y = c \cdot f(x)$ con $0 < |c| < 1$ & Compresión \textbf{vertical}     \\
+      $y = f(c \cdot x)$ con $|c| > 1$     & Compresión \textbf{horizontal}   \\
+      $y = f(c \cdot x)$ con $0 < |c| < 1$ & Alargamiento \textbf{horizontal} \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+  \textbf{Orden de las transformaciones:} Para graficar $y = af\left(b(x - h)\right) + k$, aplica:
+  \begin{enumerate}
+    \item Alargamiento/compresión (por $a$ y $b$).
+    \item Reflexiones (si $a < 0$ o $b < 0$).
+    \item Traslación horizontal ($h$).
+    \item Traslación vertical ($k$).
+  \end{enumerate}
+\end{cuadroadvertencia}
+
+\newpage
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} A partir de $f(x) = |x|$, describe y esboza $g(x) = |x - 2| + 1$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item $|x - 2|$ desplaza la gráfica de $|x|$ \textbf{2 unidades a la derecha}.
+    \item $+\,1$ la desplaza \textbf{1 unidad hacia arriba}.
+  \end{itemize}
+  El vértice original $(0, 0)$ se traslada a $(2, 1)$. La gráfica sigue siendo una ``V''.
+  \begin{center}
+    \begin{tikzpicture}[scale=0.8]
+      \draw[thin, gray!50] (-1,-1) grid (6,5);
+      \draw[thick, -Latex] (-1.5,0) -- (6.5,0) node[right] {$x$};
+      \draw[thick, -Latex] (0,-1.5) -- (0,5.5) node[above] {$y$};
+      \draw[domain=-1:3, smooth, very thick, gray!60, dashed] plot (\x, {abs(\x)}) node[above] {$f(x)=|x|$};
+      \draw[domain=0:5, smooth, very thick, mwprimario] plot (\x, {abs(\x-2)+1}) node[above right] {$g(x)=|x-2|+1$};
+      \filldraw[red] (2,1) circle (2.5pt) node[below right] {$(2,1)$};
+    \end{tikzpicture}
+  \end{center}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Describe las transformaciones que llevan $f(x) = x^2$ a $g(x) = -2(x + 1)^2 + 3$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{enumerate}
+    \item $(x + 1)^2$: traslación 1 unidad a la izquierda.
+    \item $-2(x + 1)^2$: alargamiento vertical por factor 2 y reflexión sobre el eje $x$.
+    \item $-2(x + 1)^2 + 3$: traslación 3 unidades hacia arriba.
+  \end{enumerate}
+  Vértice original $(0, 0)$ → vértice final $(-1, 3)$.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Sea $f(x) = \sqrt{x}$. Escribe la función $g$ que: refleja $f$ sobre el eje $x$, luego la desplaza 3 unidades a la derecha y 2 unidades arriba.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{enumerate}
+    \item Reflexión sobre eje $x$: $-\sqrt{x}$.
+    \item Desplazamiento 3 a la derecha: $-\sqrt{x - 3}$.
+    \item Desplazamiento 2 arriba: $g(x) = -\sqrt{x - 3} + 2$.
+  \end{enumerate}
+\end{cuadrosolucion}
+
+\newpage
+
+\textbf{Ejemplo R4.} La gráfica de $f$ contiene el punto $(4, 9)$. Encuentra el punto correspondiente en la gráfica de $g(x) = f(x - 2) + 5$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item La traslación horizontal cambia $x$: $x - 2 = 4 \Rightarrow x = 6$.
+    \item La traslación vertical cambia $y$: $y = 9 + 5 = 14$.
+  \end{itemize}
+  El punto correspondiente es $(6, 14)$.
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*]
+  \item \facil{} Describe las transformaciones: $f(x) = x^2$ se convierte en $g(x) = (x + 3)^2 - 4$.
+
+  \item \facil{} A partir de $f(x) = \sqrt{x}$, escribe la función que traslada su gráfica 2 unidades a la izquierda y 1 unidad abajo.
+
+  \item \facil{} A partir de $f(x) = |x|$, escribe la función reflejada sobre el eje $x$.
+
+  \item \facil{} Describe las transformaciones: $f(x) = x^3$ se convierte en $g(x) = -(x - 1)^3$.
+
+  \item \medio{} Sea $f(x) = \dfrac{1}{x}$. Escribe la función $g$ cuyas transformaciones son: alargamiento vertical por 3, desplazamiento 2 a la izquierda y 4 hacia abajo.
+
+  \item \medio{} Escribe la función $g(x)$ obtenida al aplicar a $f(x) = x^2$: compresión vertical por $\frac{1}{2}$, reflexión sobre el eje $x$ y traslación 5 unidades a la derecha.
+
+  \item \medio{} El punto $(2, 8)$ está en la gráfica de $f$. Encuentra el punto correspondiente en la gráfica de $g(x) = f(x + 3) - 1$.
+
+  \item \medio{} La gráfica de $f(x) = x^2$ se traslada 3 unidades a la izquierda y 2 hacia abajo. Escribe la nueva función y encuentra su vértice.
+
+  \item \dificil{} Escribe la función que resulta de aplicar a $f(x) = \sqrt{x}$ (en este orden): reflexión sobre el eje $y$, alargamiento horizontal por factor $\frac{1}{2}$, y traslación 4 unidades hacia arriba.
+
+  \item \dificil{} Determina la función $f(x)$ cuya gráfica es una parábola con vértice en $(-2, 6)$ que pasa por el punto $(0, 2)$.
+
+  \item \dificil{} Sea $f(x) = x^3$. Grafica $g(x) = \frac{1}{2}f(x - 1) - 3$ indicando claramente cómo se transforman los puntos clave $(0, 0)$, $(1, 1)$ y $(-1, -1)$.
+
+  \item \dificil{} Una báscula mide el peso real $x$ con un error sistemático: siempre marca 2 kg menos. Además, debido a una falla electrónica, amplifica el peso por 1,5. La lectura es $L(x) = 1{,}5(x - 2)$.
+        \begin{enumerate}[label=\alph*)]
+          \item ¿Cuál es el peso real cuando la báscula marca $L = 30$?
+          \item Describe las transformaciones que sufre $y = x$ para obtener $L(x)$.
+        \end{enumerate}
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+
+\section{Funciones Polinomiales y Teorema del Factor}
+% ============================================================
+
+\subsection{Conceptos generales}
+
+\begin{cuadroteoria}
+  \textbf{Función polinomial de grado $n$:}
+  $$f(x) = a_n x^n + a_{n-1}x^{n-1} + \dots + a_1 x + a_0$$
+  donde $a_n \neq 0$, $a_n$ es el \textbf{coeficiente principal} y $a_0$ el término constante.
+
+  El \textbf{grado} de la función es $n$. Su \textbf{dominio} es siempre $\mathbb{R} = (-\infty, \infty)$.
+
+  \textbf{Comportamiento en los extremos} (cuando $x \to \pm\infty$):
+  \begin{center}
+    \begin{tabular}{ccc}
+      \toprule
+      \textbf{Grado} & \textbf{Coef. principal} & \textbf{Extremos}                              \\
+      \midrule
+      Par            & Positivo                 & $f \to +\infty$ en ambos extremos              \\
+      Par            & Negativo                 & $f \to -\infty$ en ambos extremos              \\
+      Impar          & Positivo                 & $f \to -\infty$ (izq.), $f \to +\infty$ (der.) \\
+      Impar          & Negativo                 & $f \to +\infty$ (izq.), $f \to -\infty$ (der.) \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{cuadroteoria}
+
+\newpage
+
+\begin{cuadrosolucion}
+  \textbf{Teorema del Residuo} (también llamado \textbf{Teorema del Resto})\textbf{:} Si $f$ es un polinomio, el residuo de dividir $f(x)$ entre $(x - c)$ es $f(c)$.
+
+  \textbf{Teorema del Factor:} $(x - c)$ es factor de $f(x)$ si y solo si $f(c) = 0$. Es decir, $c$ es raíz de $f$.
+
+  \textbf{Número máximo de raíces:} Un polinomio de grado $n$ tiene a lo sumo $n$ raíces reales.
+
+  \textbf{Regla de los signos de Descartes:} El número de raíces positivas es igual al número de cambios de signo de $f(x)$ (o menor en un número par). Para raíces negativas, se aplica la misma regla a $f(-x)$.
+\end{cuadrosolucion}
+
+\begin{cuadroextra}
+  \textbf{Teorema del Cero Racional:} Si $f(x) = a_n x^n + a_{n-1}x^{n-1} + \dots + a_1 x + a_0$ es un polinomio con coeficientes enteros, entonces toda raíz racional $\dfrac{p}{q}$ (en forma reducida) satisface:
+  \begin{itemize}[leftmargin=*]
+    \item $p$ divide al término constante $a_0$.
+    \item $q$ divide al coeficiente principal $a_n$.
+  \end{itemize}
+  Esto permite generar una lista finita de \textbf{posibles raíces racionales} para probar con el Teorema del Residuo o división sintética.
+\end{cuadroextra}
+
+\subsection{División sintética}
+
+\begin{cuadroadvertencia}
+  \textbf{División sintética} (para dividir por $x - c$):
+  \begin{enumerate}[leftmargin=*]
+    \item Escribe los coeficientes del polinomio (con ceros para términos faltantes).
+    \item Baja el primer coeficiente.
+    \item Multiplica por $c$ y suma con el siguiente coeficiente; repite.
+    \item El último número es el residuo; los demás son los coeficientes del cociente.
+  \end{enumerate}
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Divide $f(x) = 2x^3 - 7x^2 + 4x + 4$ entre $x - 2$ usando división sintética.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Coeficientes: $2$, $-7$, $4$, $4$. Colocamos $c = 2$:
+  \[
+    \begin{array}{c|cccc}
+      2 & 2 & -7 & 4  & 4  \\
+        &   & 4  & -6 & -4 \\
+      \hline
+        & 2 & -3 & -2 & 0  \\
+    \end{array}
+  \]
+  Cociente: $2x^2 - 3x - 2$; residuo $= 0$. Como el residuo es cero, $x = 2$ es raíz y $(x - 2)$ es factor.
+\end{cuadrosolucion}
+
+\newpage
+
+\textbf{Ejemplo R2.} Factoriza completamente $f(x) = x^3 - 4x^2 + x + 6$ y encuentra sus raíces.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{enumerate}
+    \item Posibles raíces racionales (divisores de 6): $\pm 1, \pm 2, \pm 3, \pm 6$.
+    \item Probamos con $x = -1$: $f(-1) = -1 - 4 - 1 + 6 = 0$. ¡Es raíz!
+    \item División sintética con $c = -1$:
+          \[
+            \begin{array}{c|cccc}
+              -1 & 1 & -4 & 1 & 6  \\
+                 &   & -1 & 5 & -6 \\
+              \hline
+                 & 1 & -5 & 6 & 0  \\
+            \end{array}
+          \]
+    \item El cociente es $x^2 - 5x + 6 = (x - 2)(x - 3)$.
+    \item Factorización completa: $f(x) = (x + 1)(x - 2)(x - 3)$. Raíces: $x = -1$, $x = 2$, $x = 3$.
+  \end{enumerate}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Encuentra el residuo de dividir $f(x) = x^4 - 2x^2 + 5$ entre $x - 3$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Por el Teorema del Residuo, el residuo es $f(3) = 3^4 - 2(3)^2 + 5 = 81 - 18 + 5 = 68$.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R4.} Determina el comportamiento en los extremos de $f(x) = -2x^5 + 3x^3 - x + 7$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Grado 5 (impar), coeficiente principal $-2$ (negativo). Entonces: cuando $x \to +\infty$, $f(x) \to -\infty$; cuando $x \to -\infty$, $f(x) \to +\infty$.
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Determina el grado, el coeficiente principal y el comportamiento en los extremos de:
+        \begin{enumerate}[label=\alph*)]
+          \item $f(x) = 3x^4 - 2x^2 + 1$
+          \item $g(x) = -x^3 + 5x$
+          \item $h(x) = 2x^5 - 3x^3 + x - 8$
+        \end{enumerate}
+
+  \item \facil{} Divide usando división sintética: $(x^3 - 7x + 6) \div (x - 2)$
+
+  \item \facil{} Divide usando división sintética: $(2x^3 + x^2 - 8x - 4) \div (x + 1)$
+
+  \item \facil{} Usa el Teorema del Factor para verificar que $x = 1$ es raíz de $f(x) = x^3 - 3x^2 + 3x - 1$, y factoriza.
+
+  \item \medio{} Encuentra el residuo de dividir $f(x) = x^5 - x^3 + 4$ entre $x - 2$.
+
+  \item \medio{} Factoriza completamente: $f(x) = x^3 - 6x^2 + 11x - 6$.
+
+  \item \medio{} Factoriza completamente: $g(x) = x^3 + 2x^2 - 5x - 6$ (una raíz es $x = -1$).
+
+  \item \medio{} Un polinomio $f$ de grado 3 tiene raíces $x = -2$, $x = 1$ y $x = 4$, y $f(0) = 16$. Encuentra $f(x)$.
+
+  \item \dificil{} Factoriza: $h(x) = 2x^4 - 5x^3 - 5x^2 + 20x - 12$ (pista: prueba $x = 2$ y $x = -2$; luego factoriza el cociente).
+
+  \item \dificil{} Determina cuántas raíces positivas y negativas tiene $f(x) = x^4 - 3x^3 + x^2 + 2x - 1$ usando la regla de los signos de Descartes (no hace falta hallarlas).
+
+  \item \dificil{} El volumen de una caja abierta es $V(x) = 4x^3 - 44x^2 + 120x$ (con $x$ en cm y $0 < x < 6$). Determina los valores de $x$ para los cuales el volumen es cero, e interpreta el resultado geométricamente.
+
+  \item \dificil{} Encuentra $a$ y $b$ sabiendo que $x = 1$ y $x = 3$ son raíces de $f(x) = x^3 + ax^2 + bx + 6$.
+\end{enumerate}
+
+
+% ==============================================================
+
+% ──────────────────────────────────────────────────────────
+%  NUEVOS EJERCICIOS PROPUESTOS (26) — INSERCIÓN MANUAL
+% ──────────────────────────────────────────────────────────
+\subsection{Ejercicios propuestos: Transformaciones Combinadas}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Dada $f(x) = x^2$, escribe la función $g(x) = f(x + 3) - 2$ y describe la transformación respecto a $f$.
+
+  \item \facil{} Aplica la reflexión sobre el eje $x$ a $f(x) = \sqrt{x}$ y escribe la nueva función.
+
+  \item \medio{} Partiendo de $f(x) = x^2$, escribe la expresión de la función que resulta de: traslación 2 unidades a la derecha, reflexión sobre el eje $x$ y alargamiento vertical por 3.
+
+  \item \medio{} Determina las transformaciones que convierten $f(x) = \dfrac{1}{x}$ en $g(x) = \dfrac{2}{x - 3} + 1$.
+
+  \item \medio{} Escribe la función $g$ que resulta de aplicar a $f(x) = |x|$ una compresión vertical por $\frac{1}{2}$ y una traslación de $(-1, 4)$ (vértice en $(-1, 4)$).
+
+  \item \dificil{} Dada $f(x) = x^3$, expresa en forma expandida la función $g(x) = -2\,f(x - 1) + 3$.
+
+  \item \dificil{} Describe las transformaciones que producen $g(x) = \sqrt{-2x} + 4$ a partir de $f(x) = \sqrt{x}$.
+
+  \item \dificil{} Halla la función cuadrática cuyo vértice es $(-2, 5)$, que pasa por $(0, 1)$ y abre hacia abajo.
+
+  \item \muyDificil{} Escribe $f(x) = x^2 - 4x + 7$ en la forma $a(x - h)^2 + k$ e identifica las transformaciones que la generan desde $y = x^2$.
+\end{enumerate}
+
+\subsection{Ejercicios propuestos: Polinomiales — Raíces y División Sintética}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Determina el grado y el coeficiente principal de $P(x) = -3x^5 + 2x^3 - x + 7$.
+
+  \item \facil{} Divide $x^3 - 2x^2 + 3x - 6$ entre $x - 2$ usando división sintética e indica cociente y residuo.
+
+  \item \medio{} Usa el teorema del residuo para hallar el residuo de dividir $P(x) = 2x^3 - x^2 + 3x - 5$ entre $x - 1$.
+
+  \item \medio{} Determina si $x + 3$ es factor de $P(x) = x^3 + 5x^2 + 2x - 24$.
+
+  \item \medio{} Halla todas las raíces racionales del polinomio $x^3 - 6x^2 + 11x - 6$.
+
+  \item \dificil{} Factoriza completamente $P(x) = x^4 - 5x^3 + 5x^2 + 5x - 6$ usando división sintética.
+
+  \item \dificil{} Determina la multiplicidad de cada raíz de $P(x) = (x - 1)^3 (x + 2)^2 x$ e indica su grado.
+
+  \item \dificil{} Halla un polinomio de grado 3 con raíces $2$, $-1$ y $3$ y coeficiente principal 2.
+
+  \item \muyDificil{} Verifica que $x = 2$ es raíz de $P(x) = 2x^3 - 3x^2 - 8x + 12$, factoriza completamente y halla todas las raíces.
+\end{enumerate}
+
+\subsection{Ejercicios propuestos: Retos Integradores}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Indica el comportamiento en los extremos de $P(x) = x^5 - 3x^3 + 2$ (cuando $x \to \pm \infty$).
+
+  \item \medio{} Halla el residuo de dividir $P(x) = x^{100} - 1$ entre $x - 1$.
+
+  \item \medio{} Si al dividir $P(x)$ entre $x - 2$ el residuo es 5 y entre $x + 1$ el residuo es 3, halla el residuo de dividir $P(x)$ entre $(x - 2)(x + 1)$.
+
+  \item \medio{} Determina el valor de $k$ para que $x - 1$ sea factor de $P(x) = x^3 - kx^2 + 2x - 1$.
+
+  \item \dificil{} Describe el bosquejo de la gráfica de $y = -x(x - 2)^2 (x + 3)^3$: raíces, multiplicidades y comportamiento en los extremos.
+
+  \item \dificil{} Resuelve la desigualdad polinomial:
+        $$x^3 - 2x^2 - x + 2 < 0$$
+
+  \item \muyDificil{} El polinomio $P(x) = x^4 - 4x^3 + 6x^2 - 4x + 1$ tiene una única raíz con multiplicidad 4. Determina dicha raíz y su multiplicidad.
+
+  \item \muyDificil{} \textbf{Aplicación:} El volumen de una caja sin tapa que se forma recortando cuadrados de lado $x$ de una lámina de $20 \times 30$ cm es $V(x) = x(20 - 2x)(30 - 2x)$. Expande el polinomio, halla sus raíces y determina el dominio realista de $x$.
+\end{enumerate}
+
+% ============================================================
+\section{Clave de Respuestas}
+% ============================================================
+
+\subsection*{Sección 1: Transformaciones (Ejercicios 1--12)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item Traslación 3 unidades a la izquierda y 4 unidades hacia abajo.
+
+  \item $g(x) = \sqrt{x + 2} - 1$
+
+  \item $g(x) = -|x|$
+
+  \item Reflexión sobre el eje $x$ y traslación 1 unidad a la derecha.
+
+  \item Alargamiento vertical por 3: $3 \cdot \frac{1}{x}$. Desplazamiento 2 a la izquierda: $3 \cdot \frac{1}{x + 2}$. Desplazamiento 4 abajo: $g(x) = \dfrac{3}{x + 2} - 4$.
+
+  \item Compresión vertical por $\frac{1}{2}$: $\frac{1}{2}x^2$. Reflexión sobre eje $x$: $-\frac{1}{2}x^2$. Traslación 5 a la derecha: $g(x) = -\frac{1}{2}(x - 5)^2$.
+
+  \item Para $g(x) = f(x + 3) - 1$: $x + 3 = 2 \Rightarrow x = -1$; $y = 8 - 1 = 7$. Punto: $(-1, 7)$.
+
+  \item Nueva función: $g(x) = (x + 3)^2 - 2$. Vértice: $(-3, -2)$.
+
+  \item Reflexión sobre eje $y$: $\sqrt{-x}$ (requiere $x \leq 0$). Alargamiento horizontal por $\frac{1}{2}$: $\sqrt{-2x}$. Traslación 4 arriba: $g(x) = \sqrt{-2x} + 4$ (con dominio $x \leq 0$).
+
+  \item $f(x) = a(x + 2)^2 + 6$. Con $(0, 2)$: $2 = a(4) + 6 \Rightarrow 4a = -4 \Rightarrow a = -1$. Ecuación: $f(x) = -(x + 2)^2 + 6$.
+
+  \item $g(x) = \frac{1}{2}(x - 1)^3 - 3$. Puntos clave:
+        \begin{itemize}
+          \item $(0, 0)$ → $(1, -3)$
+          \item $(1, 1)$ → $(2, -2{,}5)$
+          \item $(-1, -1)$ → $(0, -3{,}5)$
+        \end{itemize}
+
+  \item a) $30 = 1{,}5(x - 2) \Rightarrow x - 2 = 20 \Rightarrow x = 22$ kg.
+        \begin{enumerate}[label=\alph*)]
+          \setcounter{enumi}{1}
+          \item $y = x$ → $y = x - 2$ (desplazamiento 2 hacia abajo) → $y = 1{,}5(x - 2)$ (alargamiento vertical por 1,5).
+        \end{enumerate}
+\end{enumerate}
+
+
+\subsection*{Sección 2: Funciones Polinomiales (Ejercicios 13--24)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{12}
+  \item a) Grado 4, coef. principal 3, extremos: $+\infty$ hacia ambos lados.
+        \quad b) Grado 3, coef. principal $-1$, extremos: $+\infty$ (izq.), $-\infty$ (der.).
+        \quad c) Grado 5, coef. principal 2, extremos: $-\infty$ (izq.), $+\infty$ (der.).
+
+  \item División sintética con 2: cociente $x^2 + 2x - 3$, residuo 0.
+
+  \item División sintética con $-1$: cociente $2x^2 - x - 7$, residuo 3.
+
+  \item $f(1) = 1 - 3 + 3 - 1 = 0$. Factorización: $(x - 1)^3$.
+
+  \item $f(2) = 32 - 8 + 4 = 28$.
+
+  \item Raíz $x = 1$ (probando divisores de $-6$): $f(1) = 0$. División sintética: cociente $x^2 - 5x + 6 = (x - 2)(x - 3)$. Factorización: $(x - 1)(x - 2)(x - 3)$.
+
+  \item Con $x = -1$: división sintética da cociente $x^2 + x - 6 = (x + 3)(x - 2)$. Factorización: $g(x) = (x + 1)(x + 3)(x - 2)$.
+
+  \item $f(x) = a(x + 2)(x - 1)(x - 4)$. Como $f(0) = a(2)(-1)(-4) = 8a = 16 \Rightarrow a = 2$. $f(x) = 2(x + 2)(x - 1)(x - 4)$.
+
+  \item Probando $x = 2$: cociente $2x^3 - x^2 - 7x + 6$. Probando $x = -2$ en el cociente: $2(-8) - 4 + 14 + 6 = 0$. Nuevo cociente: $2x^2 - 3x - 2 = (2x + 1)(x - 2)$. Factorización: $h(x) = (x - 2)^2 (x + 2)(2x + 1)$. Raíces: $x = 2$ (doble), $x = -2$, $x = -\frac{1}{2}$.
+
+  \item Cambios de signo en $f(x)$: $+ \to -$ (1), $- \to +$ (2), $+ \to +$ (no), $+ \to -$ (3). Hay 3 cambios: 3 o 1 raíces positivas. En $f(-x) = x^4 + 3x^3 + x^2 - 2x - 1$: $+ \to +$, $+ \to +$, $+ \to -$ (1), $- \to -$ (no). 1 cambio: exactamente 1 raíz negativa.
+
+  \item $V(x) = 4x^3 - 44x^2 + 120x = 4x(x^2 - 11x + 30) = 4x(x - 5)(x - 6)$. Volumen cero en $x = 0$, $x = 5$, $x = 6$. En $x = 0$ y $x = 6$ el corte produce una caja de altura cero (no hay caja); en $x = 5$ también, por la geometría del problema (largo o ancho se anula).
+
+  \item $f(1) = 1 + a + b + 6 = 0 \Rightarrow a + b = -7$. $f(3) = 27 + 9a + 3b + 6 = 0 \Rightarrow 9a + 3b = -33 \Rightarrow 3a + b = -11$. Restando: $2a = -4 \Rightarrow a = -2$, $b = -5$.
+\end{enumerate}
+
+\newpage
+
+
+% ──────────────────────────────────────────────────────────
+%  NUEVAS RESPUESTAS (26) — INSERCIÓN MANUAL
+% ──────────────────────────────────────────────────────────
+\subsection*{Sección 4: Transformaciones Combinadas (Ejercicios 25--33)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{24}
+  \item $g(x) = (x + 3)^2 - 2$: traslación 3 unidades a la izquierda y 2 hacia abajo.
+  \item $g(x) = -\sqrt{x}$ (reflexión sobre el eje $x$).
+  \item $g(x) = -3(x - 2)^2$
+  \item Alargamiento vertical por 2, traslación 3 unidades a la derecha y 1 hacia arriba.
+  \item $g(x) = \dfrac{1}{2}|x + 1| + 4$
+  \item $g(x) = -2(x - 1)^3 + 3 = -2x^3 + 6x^2 - 6x + 5$
+  \item Reflexión sobre el eje $y$, compresión horizontal por $\frac{1}{2}$ y traslación 4 unidades hacia arriba.
+  \item $y = -(x + 2)^2 + 5$ \quad (de $1 = a(0 + 2)^2 + 5 \Rightarrow 4a = -4 \Rightarrow a = -1$)
+  \item $f(x) = (x - 2)^2 + 3$: traslación 2 unidades a la derecha y 3 hacia arriba desde $y = x^2$.
+\end{enumerate}
+
+\subsection*{Sección 5: Polinomiales — Raíces y División Sintética (Ejercicios 34--42)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{33}
+  \item Grado 5, coeficiente principal $-3$.
+  \item Cociente $x^2 + 3$, residuo $0$ (por lo tanto $x - 2$ es factor).
+  \item $P(1) = 2 - 1 + 3 - 5 = -1$. Residuo: $-1$.
+  \item $P(-3) = -27 + 45 - 6 - 24 = -12 \neq 0$. No es factor.
+  \item $1$, $2$ y $3$ (por división sintética o factorización).
+  \item $(x - 1)(x - 2)(x - 3)(x + 1)$ \quad (raíces: $1$, $2$, $3$, $-1$)
+  \item Raíz $1$ con multiplicidad 3; raíz $-2$ con multiplicidad 2; raíz $0$ con multiplicidad 1. Grado total: 6.
+  \item $P(x) = 2(x - 2)(x + 1)(x - 3)$
+  \item $P(2) = 16 - 12 - 16 + 12 = 0$; \quad factorización: $(x - 2)(2x - 3)(x + 2)$; \quad raíces: $2$, $\dfrac{3}{2}$, $-2$.
+\end{enumerate}
+
+\subsection*{Sección 6: Retos Integradores (Ejercicios 43--50)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{42}
+  \item Grado impar con coeficiente principal positivo: $x \to -\infty \Rightarrow P \to -\infty$; $x \to +\infty \Rightarrow P \to +\infty$.
+  \item $P(1) = 1^{100} - 1 = 0$. Residuo: $0$ (es factor).
+  \item Residuo lineal $ax + b$: $2a + b = 5$, $-a + b = 3$ $\Rightarrow$ $a = \dfrac{2}{3}$, $b = \dfrac{11}{3}$. Residuo: $\dfrac{2}{3}x + \dfrac{11}{3}$.
+  \item $P(1) = 1 - k + 2 - 1 = 2 - k = 0 \Rightarrow k = 2$.
+  \item Raíces: $0$ (multiplicidad 1, cruza el eje), $2$ (multiplicidad 2, toca sin cruzar), $-3$ (multiplicidad 3, cruza). Grado 6 con coeficiente principal $-1$: $P \to -\infty$ en ambos extremos.
+  \item Factorizando: $(x - 1)(x + 1)(x - 2) < 0$. Solución: $(-\infty, -1) \cup (1, 2)$.
+  \item Raíz $x = 1$ con multiplicidad 4, pues $P(x) = (x - 1)^4$.
+  \item $V(x) = 4x^3 - 100x^2 + 600x$; raíces: $0$, $10$, $15$; dominio realista: $0 < x < 10$ cm.
+\end{enumerate}
+\end{document}

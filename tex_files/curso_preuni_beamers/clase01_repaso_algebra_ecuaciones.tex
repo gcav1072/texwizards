@@ -1,0 +1,325 @@
+% ============================================================
+%  CLASE 01 — REPASO DE ÁLGEBRA, ECUACIONES Y DESIGUALDADES
+%  Curso Preuniversitario · Semana 1 · Clase de 2 horas
+%  (Fusión de las antiguas clases 01 y 02)
+% ============================================================
+\documentclass[aspectratio=169]{beamer}
+\usepackage{mathwizards-beamer}
+\mwbeamer{Clase 1}{Repaso de Álgebra, Ecuaciones y Desigualdades}{Semana 1}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Parte 1: Repaso de Álgebra Elemental}
+% ════════════════════════════════════════════════════════════
+
+
+\begin{frame}{Leyes de los Exponentes y Radicales}
+  \begin{block}{Propiedades fundamentales ($a, b > 0$; \ $m, n \in \mathbb{R}$)}
+    \begin{columns}[T]
+      \column{0.48\textwidth}
+      \begin{itemize}
+        \item $a^m \cdot a^n = a^{m+n}$
+        \item $\dfrac{a^m}{a^n} = a^{m-n} \quad (a \neq 0)$
+        \item $(a^m)^n = a^{m \cdot n}$
+        \item $(a \cdot b)^n = a^n \cdot b^n$
+      \end{itemize}
+      \column{0.48\textwidth}
+      \begin{itemize}
+        \item $\left(\dfrac{a}{b}\right)^n = \dfrac{a^n}{b^n} \quad (b \neq 0)$
+        \item $a^{-n} = \dfrac{1}{a^n} \quad (a \neq 0)$
+        \item $\left(\dfrac{a}{b}\right)^{-n} = \left(\dfrac{b}{a}\right)^n$
+        \item $a^{m/n} = \sqrt[n]{a^m} = (\sqrt[n]{a})^m$
+      \end{itemize}
+    \end{columns}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{alertblock}{¡Cuidado con los errores clásicos!}
+    $a^m \cdot a^n \neq a^{m \cdot n}$ \qquad $(a + b)^n \neq a^n + b^n$ \qquad $\sqrt{a^2} = |a| \quad (\forall a \in \mathbb{R})$
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Técnicas de Racionalización}
+  \begin{block}{1. Denominadores Monomios}
+    \begin{itemize}
+      \item \textbf{Raíz cuadrada:} $\dfrac{k}{\sqrt{a}} \cdot \dfrac{\sqrt{a}}{\sqrt{a}} = \dfrac{k\sqrt{a}}{a}$
+      \item \textbf{Raíz de orden $n$:} $\dfrac{k}{\sqrt[n]{a^m}} \cdot \dfrac{\sqrt[n]{a^{n-m}}}{\sqrt[n]{a^{n-m}}} = \dfrac{k\sqrt[n]{a^{n-m}}}{a} \quad (m < n)$
+    \end{itemize}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{2. Denominadores Binomios}
+    \begin{itemize}
+      \item \textbf{Conjugado Cuadrático ($(A+B)(A-B) = A^2 - B^2$):}
+            $$\frac{k}{\sqrt{a} \pm \sqrt{b}} \cdot \frac{\sqrt{a} \mp \sqrt{b}}{\sqrt{a} \mp \sqrt{b}} = \frac{k(\sqrt{a} \mp \sqrt{b})}{a - b}$$
+      \item \textbf{Conjugado Cúbico ($A^3 \pm B^3 = (A \pm B)(A^2 \mp AB + B^2)$):}
+            $$\frac{k}{\sqrt[3]{a} \pm \sqrt[3]{b}} \cdot \frac{\sqrt[3]{a^2} \mp \sqrt[3]{ab} + \sqrt[3]{b^2}}{\sqrt[3]{a^2} \mp \sqrt[3]{ab} + \sqrt[3]{b^2}} = \frac{k(\sqrt[3]{a^2} \mp \sqrt[3]{ab} + \sqrt[3]{b^2})}{a \pm b}$$
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Catálogo Sistemático de Factorización}
+  \begin{block}{Casos fundamentales de factorización}
+    \begin{center}
+      \small
+      \begin{tabular}{ll}
+        \toprule
+        \textbf{Caso} & \textbf{Forma Algebraica / Procedimiento} \\
+        \midrule
+        Factor Común & $ax + ay = a(x + y)$ \\
+        Agrupación de Términos & $ax + ay + bx + by = (x + y)(a + b)$ \\
+        Diferencia de Cuadrados & $a^2 - b^2 = (a - b)(a + b)$ \\
+        Trinomio Cuadrado Perfecto & $a^2 \pm 2ab + b^2 = (a \pm b)^2$ \\
+        Trinomio $x^2 + bx + c$ & $x^2 + (p+q)x + pq = (x + p)(x + q)$ \\
+        Trinomio $ax^2 + bx + c$ & Descomposición del término central $bx$ y agrupación \\
+        Suma / Diferencia de Cubos & $a^3 \pm b^3 = (a \pm b)(a^2 \mp ab + b^2)$ \\
+        Completación (Sophie Germain) & $a^4 + 4b^4 = (a^2 - 2ab + 2b^2)(a^2 + 2ab + 2b^2)$ \\
+        \bottomrule
+      \end{tabular}
+    \end{center}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Fracciones Algebraicas y Expresiones Complejas}
+  \begin{block}{Operaciones con Fracciones Algebraicas}
+    \begin{itemize}
+      \item \textbf{Simplificación:} Factorizar numerador y denominador y cancelar factores comunes.
+      \item \textbf{Multiplicación / División:}
+            $$\frac{A}{B} \cdot \frac{C}{D} = \frac{A \cdot C}{B \cdot D} \qquad\qquad \frac{A}{B} \div \frac{C}{D} = \frac{A}{B} \cdot \frac{D}{C} = \frac{A \cdot D}{B \cdot C}$$
+      \item \textbf{Suma y Resta:} Factorizar previamente los denominadores para hallar el \textbf{m.c.m.}
+    \end{itemize}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{mwpasos}[Fracciones Complejas (Fracción de Fracciones)]
+    Multiplicar el numerador y el denominador principal por el m.c.m. de todos los denominadores secundarios, o reducir cada nivel a una sola fracción y aplicar la regla de extremos y medios.
+  \end{mwpasos}
+\end{frame}
+
+
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase — Parte 1}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 1}
+  \begin{mwejercicio}[Ejercicio 1 — Exponentes y Radicales \quad \facil]
+    Simplifica la siguiente expresión dejando únicamente exponentes positivos:
+    $$\frac{(3x^3 y^{-2})^3 \cdot (2x^{-1} y^4)^2}{6x^5 y^{-3}}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 2}
+  \begin{mwejercicio}[Ejercicio 2 — Racionalización Directa \quad \facil]
+    Racionaliza los denominadores y simplifica:
+    $$a)\; \frac{6}{\sqrt[3]{4x}} \qquad\qquad\qquad b)\; \frac{10}{\sqrt{7} - \sqrt{2}}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 3}
+  \begin{mwejercicio}[Ejercicio 3 — Factor Común y Diferencia de Cuadrados \quad \facil]
+    Factoriza completamente en $\mathbb{R}$:
+    $$a)\; 12x^4 y^3 - 18x^3 y^5 + 24x^5 y^2 \qquad\qquad\qquad b)\; 49a^4 - 64b^6$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 4}
+  \begin{mwejercicio}[Ejercicio 4 — Trinomios Cuadráticos \quad \medio]
+    Factoriza completamente los siguientes trinomios:
+    $$a)\; x^2 - 7x - 18 \qquad\qquad\qquad b)\; 6x^2 - 11x - 10$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 5}
+  \begin{mwejercicio}[Ejercicio 5 — Suma/Diferencia de Cubos y Agrupación \quad \medio]
+    Factoriza completamente:
+    $$a)\; 27x^3 + 125 \qquad\qquad\qquad b)\; 2x^3 - 3x^2 + 8x - 12$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 6}
+  \begin{mwejercicio}[Ejercicio 6 — Racionalización de Binomios Cúbicos \quad \medio]
+    Racionaliza el denominador binomio que contiene raíces cúbicas:
+    $$\frac{4}{\sqrt[3]{x} + 2}$$
+    \emph{Pista: utiliza la identidad $A^3 + B^3 = (A + B)(A^2 - AB + B^2)$.}
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 7}
+  \begin{mwejercicio}[Ejercicio 7 — Suma y Resta de Fracciones Algebraicas \quad \medio]
+    Efectúa la operación y simplifica la fracción resultante calculando el m.c.m.:
+    $$\frac{2}{x^2 - 1} - \frac{1}{x^2 - x} + \frac{3}{x^2 + x}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 8}
+  \begin{mwejercicio}[Ejercicio 8 — Fracciones Complejas \quad \dificil]
+    Simplifica completamente la fracción compleja de fracciones:
+    $$\frac{\dfrac{x + 1}{x - 1} - \dfrac{x - 1}{x + 1}}{\dfrac{1}{x - 1} + \dfrac{1}{x + 1}}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 9}
+  \begin{mwejercicio}[Ejercicio 9 — Completación de Cuadrados (Sophie Germain) \quad \dificil]
+    Factoriza completamente en polinomios irreducibles con coeficientes reales:
+    $$x^4 + 64y^4$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 10}
+  \begin{mwejercicio}[Ejercicio 10 — Operación Combinada Integral \quad \dificil]
+    Efectúa todas las operaciones, factoriza y simplifica al máximo:
+    $$\frac{x^3 - 8}{x^2 - 4} \cdot \frac{x^2 + 4x + 4}{x^2 + 2x + 4} \div \frac{x^2 - 4x + 4}{x - 2}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+
+% ════════════════════════════════════════════════════════════
+\section{Parte 2: Ecuaciones, Desigualdades y Valor Absoluto}
+% ════════════════════════════════════════════════════════════
+
+
+\begin{frame}{Ecuaciones Cuadráticas y Racionales}
+  \begin{block}{Ecuación cuadrática: $ax^2 + bx + c = 0$ ($a \neq 0$)}
+    Fórmula general:
+    $$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
+    \textbf{Discriminante} $\Delta = b^2 - 4ac$:
+    \begin{itemize}
+      \item $\Delta > 0$: Dos soluciones reales distintas.
+      \item $\Delta = 0$: Una solución real única (raíz doble).
+      \item $\Delta < 0$: No existen soluciones reales (soluciones complejas conjugadas).
+    \end{itemize}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{alertblock}{Ecuaciones Racionales y Radicales}
+    \begin{itemize}
+      \item \textbf{Racionales:} Siempre identificar valores prohibidos ($Q(x) = 0$) antes de cancelar o multiplicar denominadores.
+      \item \textbf{Radicales:} Al elevar ambos miembros a potencias pares pueden surgir \textbf{soluciones extrañas}. Es obligatorio verificar cada candidato en la ecuación original.
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Desigualdades y Método de Puntos Críticos}
+  \begin{block}{Propiedades de las desigualdades}
+    \begin{itemize}
+      \item Si $a < b$, entonces $a + c < b + c$.
+      \item Si $a < b$ y $c > 0$, entonces $ac < bc$.
+      \item Si $a < b$ y \alert{$c < 0$}, entonces \alert{$ac > bc$} (la desigualdad se invierte).
+    \end{itemize}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{mwpasos}[Método de los puntos críticos (para $P(x)/Q(x) \gtrless 0$)]
+    \begin{enumerate}
+      \item Llevar todo a un solo miembro de modo que el otro miembro sea 0.
+      \item Factorizar completamente numerador y denominador.
+      \item Hallar los ceros (raíces de numerador) y restricciones (raíces de denominador).
+      \item Construir la tabla / recta de signos y determinar los intervalos solución.
+    \end{enumerate}
+  \end{mwpasos}
+\end{frame}
+
+\begin{frame}{Valor Absoluto: Definición y Propiedades}
+  \begin{block}{Definición por tramos}
+    $$|x| = \begin{cases} x & \text{si } x \ge 0 \\ -x & \text{si } x < 0 \end{cases}$$
+    Geométricamente, $|x - a|$ representa la \textbf{distancia} en la recta real entre $x$ y $a$.
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{Propiedades operativas fundamentales ($k > 0$)}
+    \begin{itemize}
+      \item $|X| = k \iff X = k \quad\text{o}\quad X = -k$
+      \item $|X| < k \iff -k < X < k \iff X \in (-k, k)$
+      \item $|X| > k \iff X < -k \quad\text{o}\quad X > k \iff X \in (-\infty, -k) \cup (k, \infty)$
+      \item Desigualdad triangular: $|a + b| \le |a| + |b|$
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase — Parte 2}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 11}
+  \begin{mwejercicio}[Ejercicio 11 \quad \facil]
+    Resuelve la siguiente ecuación cuadrática completando el cuadrado y por fórmula general:
+    $$2x^2 + 5x - 3 = 0$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 12}
+  \begin{mwejercicio}[Ejercicio 12 \quad \facil]
+    Resuelve la desigualdad lineal y expresa el conjunto solución en notación de intervalos y gráfica:
+    $$3 - 2(x - 4) \ge 5x + 17$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 13}
+  \begin{mwejercicio}[Ejercicio 13 \quad \facil]
+    Resuelve la ecuación con valor absoluto:
+    $$|3x - 5| = 10$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 14}
+  \begin{mwejercicio}[Ejercicio 14 \quad \medio]
+    Resuelve la ecuación racional identificando posibles soluciones extrañas:
+    $$\frac{2}{x - 3} - \frac{3}{x + 3} = \frac{12}{x^2 - 9}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 15}
+  \begin{mwejercicio}[Ejercicio 15 \quad \medio]
+    Resuelve la desigualdad cuadrática mediante el método de los puntos críticos:
+    $$x^2 - 4x - 12 < 0$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 16}
+  \begin{mwejercicio}[Ejercicio 16 \quad \medio]
+    Resuelve la desigualdad con valor absoluto:
+    $$|2x + 1| \le 7$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 17}
+  \begin{mwejercicio}[Ejercicio 17 \quad \medio]
+    Resuelve la desigualdad fraccionaria:
+    $$\frac{2x - 1}{x + 2} \ge 1$$
+    \emph{¡Cuidado: no multipliques en cruz por una expresión cuyo signo depende de $x$!}
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 18}
+  \begin{mwejercicio}[Ejercicio 18 \quad \dificil]
+    Resuelve la ecuación irracional y verifica la validez de todas las soluciones:
+    $$\sqrt{2x + 5} - \sqrt{x - 1} = 2$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 19}
+  \begin{mwejercicio}[Ejercicio 19 \quad \dificil]
+    Determina el conjunto de todos los números reales que satisfacen:
+    $$\frac{x^2 - 5x + 6}{x^2 - 1} \le 0$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 20}
+  \begin{mwejercicio}[Ejercicio 20 \quad \dificil]
+    Resuelve la ecuación con doble valor absoluto analizando por casos o intervalos de la recta real:
+    $$|x - 2| + |x + 4| = 8$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+
+\end{document}

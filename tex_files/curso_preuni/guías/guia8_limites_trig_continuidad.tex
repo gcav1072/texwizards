@@ -1,0 +1,448 @@
+% ============================================================
+%  GUÍA 8: Límites Trigonométricos, al Infinito y Continuidad
+%  Curso de Introducción a la Universidad — Precálculo y Cálculo I
+%  Autor: Ing. Gabriel Astudillo
+%  Clase cubierta: 8
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+\usepackage{mathwizards-guia}
+\mwguia{Guía 8 — Límites Trigonométricos, al Infinito y Continuidad}{Ing. Gabriel Astudillo $\cdot$ Curso Preuniversitario}
+
+\begin{document}
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Estudio 8}{Límites Trigonométricos, al Infinito y Continuidad}{Límite Fundamental, Límites al Infinito, Asíntotas, Continuidad y Teorema del Valor Intermedio}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+\small
+\textbf{Presentación:} Esta guía completa el estudio de los límites: el límite trigonométrico fundamental $\lim_{x \to 0} \frac{\sin x}{x}$ y sus variantes, los límites al infinito y las asíntotas horizontales, la definición formal de continuidad, la clasificación de discontinuidades y el Teorema del Valor Intermedio. Con teoría, resueltos y propuestos con clave.
+\\[4pt]
+\textbf{Nivel de Dificultad:}\quad
+\facil{} Básico / Directo \quad
+\medio{} Intermedio \quad
+\dificil{} Desafiante \quad
+\muyDificil{} Muy Difícil / Reto
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+\section{Límites Trigonométricos y Límites al Infinito}
+% ============================================================
+
+\subsection{Límite fundamental y límites al infinito}
+
+\begin{cuadroteoria}
+  \textbf{Límite trigonométrico fundamental:}
+  $$\boxed{\lim_{x \to 0} \frac{\sin x}{x} = 1}$$
+
+  \textbf{Variantes útiles:}
+  \begin{itemize}[leftmargin=*]
+    \item $\lim_{x \to 0} \dfrac{\sin(kx)}{kx} = 1$ (para cualquier constante $k \neq 0$).
+    \item $\lim_{x \to 0} \dfrac{1 - \cos x}{x} = 0$.
+    \item $\lim_{x \to 0} \dfrac{\tan x}{x} = 1$.
+  \end{itemize}
+\end{cuadroteoria}
+
+\begin{cuadrosolucion}
+  \textbf{Límites al infinito:}
+  $$\lim_{x \to \infty} f(x) = L$$
+  significa que $f(x)$ se acerca a $L$ conforme $x$ crece sin límite.
+
+  \textbf{Técnica para funciones racionales en el infinito:} divide numerador y denominador por la mayor potencia de $x$ en el denominador.
+
+  \textbf{Asíntotas horizontales:} si $\lim_{x \to \infty} f(x) = L$, entonces $y = L$ es asíntota horizontal.
+\end{cuadrosolucion}
+
+\begin{cuadroadvertencia}
+  \textbf{Límites infinitos:} $\lim_{x \to a} f(x) = \infty$ o $-\infty$ indica que la función crece o decrece sin límite cerca de $x = a$. Representan asíntotas verticales.
+\end{cuadroadvertencia}
+
+\begin{cuadroextra}
+  \textbf{Teorema del Emparedado} (\textit{Squeeze Theorem})\textbf{:} Si $g(x) \leq f(x) \leq h(x)$ para todo $x$ cerca de $a$ (excepto posiblemente en $a$), y
+  $$\lim_{x \to a} g(x) = \lim_{x \to a} h(x) = L,$$
+  entonces $\lim_{x \to a} f(x) = L$.
+
+  Este teorema se utiliza para demostrar el límite fundamental $\lim_{x \to 0} \frac{\sin x}{x} = 1$, encuadrando $\frac{\sin x}{x}$ entre funciones cuyo límite es 1.
+\end{cuadroextra}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Calcula $\lim_{x \to 0} \dfrac{\sin(3x)}{x}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Multiplicamos y dividimos por 3:
+  $$\frac{\sin(3x)}{x} = 3 \cdot \frac{\sin(3x)}{3x}.$$
+  Como $\lim_{x \to 0} \frac{\sin(3x)}{3x} = 1$ (variante del límite fundamental con $k = 3$):
+  $$\lim_{x \to 0} \frac{\sin(3x)}{x} = 3.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Calcula $\lim_{x \to 0} \dfrac{\tan x}{x}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Escribimos $\tan x = \dfrac{\sin x}{\cos x}$:
+  $$\frac{\tan x}{x} = \frac{\sin x}{x} \cdot \frac{1}{\cos x}.$$
+  $$\lim_{x \to 0} \frac{\tan x}{x} = 1 \cdot \frac{1}{\cos 0} = 1.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Calcula $\lim_{x \to \infty} \dfrac{3x^2 + 2x - 1}{5x^2 + x + 4}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Dividimos por $x^2$:
+  $$\frac{3 + \frac{2}{x} - \frac{1}{x^2}}{5 + \frac{1}{x} + \frac{4}{x^2}} \xrightarrow{x \to \infty} \frac{3 + 0 - 0}{5 + 0 + 0} = \frac{3}{5}.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R4.} Calcula $\lim_{x \to \infty} \dfrac{2x^2 + 3}{5x^3 - x}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Dividimos por $x^3$:
+  $$\frac{\frac{2}{x} + \frac{3}{x^3}}{5 - \frac{1}{x^2}} \xrightarrow{x \to \infty} \frac{0 + 0}{5 - 0} = 0.$$
+  Asíntota horizontal: $y = 0$.
+\end{cuadrosolucion}
+\newpage
+\textbf{Ejemplo R5.} Calcula $\lim_{x \to \infty} \dfrac{3x^3 - 2x + 1}{x^2 + 1}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Dividimos por $x^3$ (la mayor potencia del denominador es $x^2$, así que también funciona observar que el numerador crece más rápido):
+
+  Método con división por $x^2$:
+  $$\frac{3x - \frac{2}{x} + \frac{1}{x^2}}{1 + \frac{1}{x^2}} \xrightarrow{x \to \infty} \frac{3x - 0 + 0}{1 + 0} \to +\infty.$$
+  El límite es $\infty$ (la función crece sin límite).
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R6.} Calcula $\lim_{x \to 3} \dfrac{2}{x - 3}$ (límite infinito).
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Cuando $x$ se acerca a 3 por la derecha, $x - 3 \to 0^+$ y $\frac{2}{x-3} \to +\infty$. Cuando $x$ se acerca por la izquierda, $x - 3 \to 0^-$ y $\frac{2}{x-3} \to -\infty$. Por tanto, el límite bilateral no existe, pero hay asíntota vertical en $x = 3$:
+  $$\lim_{x \to 3^+} \frac{2}{x - 3} = +\infty, \qquad \lim_{x \to 3^-} \frac{2}{x - 3} = -\infty.$$
+\end{cuadrosolucion}
+
+\newpage
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*]
+  \item \facil{} Calcula: $\lim_{x \to 0} \dfrac{\sin(2x)}{2x}$
+
+  \item \facil{} Calcula: $\lim_{x \to 0} \dfrac{\sin(5x)}{x}$
+
+  \item \facil{} Calcula: $\lim_{x \to 0} \dfrac{1 - \cos x}{x}$
+
+  \item \facil{} Calcula: $\lim_{x \to \infty} \dfrac{1}{x}$
+
+  \item \medio{} Calcula: $\lim_{x \to 0} \dfrac{\sin(4x)}{\sin(2x)}$
+
+  \item \medio{} Calcula: $\lim_{x \to 0} \dfrac{1 - \cos x}{x^2}$ (pista: multiplica por el conjugado $1 + \cos x$)
+
+  \item \medio{} Calcula: $\lim_{x \to \infty} \dfrac{7x^2 - 3}{2x^2 + 1}$
+
+  \item \medio{} Calcula: $\lim_{x \to \infty} \dfrac{x + 5}{x^2 + 1}$
+
+  \item \dificil{} Calcula: $\lim_{x \to 0} \dfrac{\sin(3x)}{\tan(2x)}$
+
+  \item \dificil{} Calcula: $\lim_{x \to \infty} \dfrac{4x^3 + 2}{5x^3 - x^2 + 1}$
+
+  \item \dificil{} Calcula: $\lim_{x \to \infty} \dfrac{x^2 + 4x}{x + 1}$ ¿Existe asíntota horizontal u oblicua?
+
+  \item \dificil{} Calcula: $\lim_{x \to 0} \dfrac{\sin^2 x}{x^2}$
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+
+\section{Continuidad}
+% ============================================================
+
+\subsection{Definición y tipos de discontinuidades}
+
+\begin{cuadroteoria}
+  \textbf{Continuidad en un punto:} $f$ es continua en $x = a$ si se cumplen tres condiciones:
+  \begin{enumerate}
+    \item $f(a)$ está definida.
+    \item $\lim_{x \to a} f(x)$ existe.
+    \item $\lim_{x \to a} f(x) = f(a)$.
+  \end{enumerate}
+\end{cuadroteoria}
+
+\begin{cuadrosolucion}
+  \textbf{Tipos de discontinuidad:}
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Evitable (hueco):} $\lim_{x \to a} f(x)$ existe pero no es igual a $f(a)$, o $f(a)$ no está definida. Se puede ``reparar'' definiendo $f(a)$ apropiadamente.
+    \item \textbf{De salto:} los límites laterales existen pero son distintos.
+    \item \textbf{Infinita:} al menos uno de los límites laterales es $\pm\infty$ (asíntota vertical).
+  \end{itemize}
+\end{cuadrosolucion}
+
+\begin{cuadroadvertencia}
+  \textbf{Continuidad en un intervalo:} $f$ es continua en $(a, b)$ si es continua en cada punto del intervalo. Las funciones polinomiales son continuas en $\mathbb{R}$; las racionales, en todo su dominio; $\sin x$, $\cos x$, $e^x$ y $\ln x$ (en su dominio) son continuas.
+\end{cuadroadvertencia}
+
+\begin{cuadroextra}
+  \textbf{Teorema del Valor Intermedio (TVI):} Si $f$ es continua en $[a, b]$ y $N$ es cualquier número entre $f(a)$ y $f(b)$, entonces existe al menos un $c \in (a, b)$ tal que $f(c) = N$.
+
+  \textbf{Consecuencia para raíces:} Si $f$ es continua en $[a, b]$ y $f(a)$ y $f(b)$ tienen \textbf{signos opuestos}, entonces $f$ tiene al menos una raíz en $(a, b)$.
+\end{cuadroextra}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Determina si $f(x) = \dfrac{x^2 - 9}{x - 3}$ (para $x \neq 3$) es continua en $x = 3$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} $f(3)$ no está definida, por lo que falla la primera condición. Hay una discontinuidad \textbf{evitable}. Si definimos $f(3) = 6$, la función se vuelve continua (pues $\lim_{x \to 3} f(x) = 6$).
+\end{cuadrosolucion}
+\newpage
+\textbf{Ejemplo R2.} ¿En qué puntos es discontinua $f(x) = \dfrac{x + 2}{x^2 - 4}$?
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} El denominador se anula en $x = \pm 2$.
+  \begin{itemize}
+    \item En $x = 2$: el numerador no se anula. Hay asíntota vertical (discontinuidad infinita).
+    \item En $x = -2$: $x^2 - 4 = (x - 2)(x + 2)$, el numerador $x + 2$ también se anula. La función se simplifica: $f(x) = \dfrac{1}{x - 2}$ para $x \neq -2$. El límite en $x = -2$ es $\dfrac{1}{-4} = -\dfrac{1}{4}$, pero $f(-2)$ no está definida: discontinuidad evitable.
+  \end{itemize}
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Encuentra el valor de $k$ para que $f$ sea continua en $x = 1$:
+$$f(x) = \begin{cases} 2x + k & \text{si } x < 1 \\ 5x - 1 & \text{si } x \ge 1 \end{cases}$$
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Para que sea continua, los límites laterales deben coincidir y ser igual a $f(1)$:
+  \begin{itemize}
+    \item Por la izquierda: $\lim_{x \to 1^-} (2x + k) = 2 + k$.
+    \item Por la derecha: $f(1) = 5(1) - 1 = 4$.
+  \end{itemize}
+  Igualamos: $2 + k = 4 \Rightarrow k = 2$.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R4.} Determina los intervalos de continuidad de $f(x) = \dfrac{1}{x^2 - 1}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} El denominador se anula cuando $x^2 - 1 = 0 \Rightarrow x = \pm 1$. La función es continua en todo su dominio:
+  $$(-\infty, -1) \cup (-1, 1) \cup (1, \infty).$$
+  Tiene asíntotas verticales en $x = -1$ y $x = 1$.
+\end{cuadrosolucion}
+
+\newpage
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Determina si $f(x) = x^2 - 3x + 2$ es continua en $x = 2$ (justifica las 3 condiciones).
+
+  \item \facil{} Determina los puntos de discontinuidad de $f(x) = \dfrac{x + 1}{x - 3}$.
+
+  \item \facil{} Determina si la siguiente función es continua en $x = 0$:
+        $$f(x) = \begin{cases} x^2 + 1 & \text{si } x < 0 \\ 2 & \text{si } x = 0 \\ x + 1 & \text{si } x > 0 \end{cases}$$
+
+  \item \facil{} Determina los intervalos de continuidad de $f(x) = \sqrt{x - 2}$.
+
+  \item \medio{} Encuentra $k$ para que $f$ sea continua en $x = 2$:
+        $$f(x) = \begin{cases} kx + 3 & \text{si } x \le 2 \\ x^2 - 1 & \text{si } x > 2 \end{cases}$$
+
+  \item \medio{} Determina el tipo de discontinuidad de $f(x) = \dfrac{x^2 - 16}{x + 4}$ en $x = -4$, y repara la función si es posible.
+
+  \item \medio{} Determina los intervalos de continuidad de $f(x) = \dfrac{x}{x^2 + x - 6}$.
+
+  \item \medio{} Sea $f(x) = \begin{cases} \dfrac{\sin x}{x} & \text{si } x \neq 0 \\ 1 & \text{si } x = 0 \end{cases}$. ¿Es continua en $x = 0$?
+
+  \item \dificil{} Encuentra $a$ y $b$ para que $f$ sea continua en todo $\mathbb{R}$:
+        $$f(x) = \begin{cases} ax^2 + b & \text{si } x < 1 \\ 5x - 2 & \text{si } 1 \le x \le 3 \\ 2a x + b & \text{si } x > 3 \end{cases}$$
+
+  \item \dificil{} Usa el Teorema del Valor Intermedio para mostrar que $f(x) = x^3 - 4x + 1$ tiene al menos una raíz en el intervalo $[0, 1]$.
+
+  \item \dificil{} Determina si $f(x) = \begin{cases} \dfrac{x^2 - 4}{x - 2} & \text{si } x \neq 2 \\ 3 & \text{si } x = 2 \end{cases}$ es continua en $x = 2$. Si no lo es, ¿puedes repararla?
+
+  \item \dificil{} Demuestra que la ecuación $\cos x = x$ tiene al menos una solución en $[0, 1]$.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+
+% ──────────────────────────────────────────────────────────
+%  NUEVOS EJERCICIOS PROPUESTOS (26) — INSERCIÓN MANUAL
+% ──────────────────────────────────────────────────────────
+\subsection{Ejercicios propuestos: Límites Trigonométricos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Calcula el límite trigonométrico: $\displaystyle\lim_{x \to 0} \frac{\sin 3x}{x}$.
+
+  \item \facil{} Calcula el límite trigonométrico: $\displaystyle\lim_{x \to 0} \frac{\sin x}{2x}$.
+
+  \item \medio{} Calcula el límite con tangente: $\displaystyle\lim_{x \to 0} \frac{\tan x}{x}$.
+
+  \item \medio{} Calcula el límite con dos senos: $\displaystyle\lim_{x \to 0} \frac{\sin 2x}{\sin 5x}$.
+
+  \item \medio{} Calcula el límite con coseno: $\displaystyle\lim_{x \to 0} \frac{1 - \cos x}{x^2}$.
+
+  \item \dificil{} Calcula el límite mixto: $\displaystyle\lim_{x \to 0} \frac{\sin 3x}{\tan 2x}$.
+
+  \item \dificil{} Calcula el límite al infinito de la función racional:
+        $$\lim_{x \to \infty} \frac{3x^2 + 1}{2x^2 - 5}$$
+
+  \item \dificil{} Calcula el límite al infinito comparando grados:
+        $$\lim_{x \to \infty} \frac{2x^3 - x}{x^3 + 4x^2}$$
+
+  \item \muyDificil{} Calcula el límite trigonométrico con identidad del ángulo doble:
+        $$\lim_{x \to 0} \frac{1 - \cos 2x}{x \sin x}$$
+\end{enumerate}
+
+\subsection{Ejercicios propuestos: Límites al Infinito y Continuidad}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Calcula el límite: $\displaystyle\lim_{x \to \infty} \frac{1}{x}$.
+
+  \item \facil{} Calcula el límite: $\displaystyle\lim_{x \to \infty} \frac{5x + 2}{x}$.
+
+  \item \medio{} Calcula el límite al infinito: $\displaystyle\lim_{x \to \infty} \frac{4x^2 + x}{2x^2 - 3}$.
+
+  \item \medio{} Calcula el límite al infinito con grado mayor en el denominador:
+        $$\lim_{x \to -\infty} \frac{x^2 + 1}{x^3 - 2}$$
+
+  \item \medio{} Determina si $f(x) = \dfrac{x^2 - 1}{x - 1}$ es continua en $x = 1$ y clasifica su discontinuidad.
+
+  \item \dificil{} Determina $k$ para que la función por tramos sea continua:
+        $$f(x) = \begin{cases} kx^2 & \text{si } x < 1 \\ 3 & \text{si } x \ge 1 \end{cases}$$
+
+  \item \dificil{} Calcula el límite al infinito con raíz:
+        $$\lim_{x \to \infty} \big(\sqrt{x^2 + 2x} - x\big)$$
+
+  \item \dificil{} Clasifica la discontinuidad de $f(x) = \dfrac{|x|}{x}$ en $x = 0$.
+
+  \item \muyDificil{} Usa el Teorema del Valor Intermedio para demostrar que $f(x) = x^3 + x - 1$ tiene una raíz en el intervalo $(0, 1)$.
+\end{enumerate}
+
+\subsection{Ejercicios propuestos: Retos Integradores}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Calcula el límite: $\displaystyle\lim_{x \to \infty} \frac{3}{x^2}$.
+
+  \item \medio{} Calcula el límite trigonométrico: $\displaystyle\lim_{x \to 0} \frac{\sin 5x}{x}$.
+
+  \item \medio{} Calcula el límite al infinito con seno acotado:
+        $$\lim_{x \to \infty} \frac{x + \sin x}{x}$$
+
+  \item \medio{} Analiza la continuidad de $f(x) = \dfrac{x + 2}{x - 2}$ en $x = 2$ y clasifica la discontinuidad.
+
+  \item \dificil{} Calcula el límite al infinito con raíz cuadrada:
+        $$\lim_{x \to \infty} \frac{\sqrt{4x^2 + 1}}{x + 3}$$
+
+  \item \dificil{} Determina $a$ y $b$ para que la función sea continua en todo $\mathbb{R}$:
+        $$f(x) = \begin{cases} ax + b & \text{si } x \le 1 \\ x^2 & \text{si } 1 < x < 3 \\ 2x - a & \text{si } x \ge 3 \end{cases}$$
+
+  \item \muyDificil{} Calcula el límite trigonométrico de orden superior:
+        $$\lim_{x \to 0} \frac{\tan x - \sin x}{x^3}$$
+
+  \item \muyDificil{} Usa el Teorema del Valor Intermedio para demostrar que la ecuación $\cos x = x$ tiene solución en $(0, 1)$.
+\end{enumerate}
+
+% ============================================================
+\section{Clave de Respuestas}
+% ============================================================
+
+\subsection*{Sección 1: Trigonométricos e Infinito (Ejercicios 1--12)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $1$ (es el límite fundamental con $k = 2$).
+
+  \item $5 \cdot \lim_{x \to 0} \dfrac{\sin(5x)}{5x} = 5$.
+
+  \item $0$.
+
+  \item $0$.
+
+  \item $\dfrac{\sin(4x)}{\sin(2x)} = \dfrac{4 \cdot \frac{\sin(4x)}{4x}}{2 \cdot \frac{\sin(2x)}{2x}} \to \dfrac{4}{2} = 2$.
+
+  \item $\dfrac{1 - \cos x}{x^2} \cdot \dfrac{1 + \cos x}{1 + \cos x} = \dfrac{\sin^2 x}{x^2(1 + \cos x)} = \left(\dfrac{\sin x}{x}\right)^2 \cdot \dfrac{1}{1 + \cos x} \to 1 \cdot \dfrac{1}{2} = \dfrac{1}{2}$.
+
+  \item $\dfrac{7}{2}$.
+
+  \item $0$.
+
+  \item $\dfrac{\sin(3x)}{\tan(2x)} = \dfrac{\sin(3x)}{\sin(2x)/\cos(2x)} = \dfrac{\sin(3x) \cos(2x)}{\sin(2x)}$. Dividiendo todo por $x$: $\dfrac{3 \cdot \frac{\sin(3x)}{3x} \cdot \cos(2x)}{2 \cdot \frac{\sin(2x)}{2x}} \to \dfrac{3 \cdot 1 \cdot 1}{2 \cdot 1} = \dfrac{3}{2}$.
+
+  \item $\dfrac{4 + \frac{2}{x^3}}{5 - \frac{1}{x^2} + \frac{1}{x^3}} \to \dfrac{4}{5}$.
+
+  \item Dividimos por $x^2$: $\dfrac{1 + \frac{4}{x}}{\frac{1}{x} + \frac{1}{x^2}} \to \infty$. No hay asíntota horizontal; hay asíntota oblicua porque la diferencia de grados es 1. Dividiendo: $\dfrac{x^2 + 4x}{x + 1} = x + 3 - \dfrac{3}{x + 1}$; asíntota oblicua: $y = x + 3$.
+
+  \item $\left(\dfrac{\sin x}{x}\right)^2 \to 1^2 = 1$.
+\end{enumerate}
+
+
+\subsection*{Sección 2: Continuidad (Ejercicios 13--24)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{12}
+  \item Sí: $f(2) = 4 - 6 + 2 = 0$; $\lim_{x \to 2} f(x) = 0$; coinciden.
+
+  \item Discontinua en $x = 3$ (asíntota vertical). Continua en $\mathbb{R} \setminus \{3\}$.
+
+  \item Por izquierda: $1$; por derecha y en $x = 0$: $1$. Coinciden, sí es continua en $x = 0$.
+
+  \item $[2, \infty)$.
+
+  \item $\lim_{x \to 2^-} (kx + 3) = 2k + 3$; $f(2) = 2k + 3$. $\lim_{x \to 2^+} (x^2 - 1) = 3$. Igualamos: $2k + 3 = 3 \Rightarrow k = 0$.
+
+  \item En $x = -4$: $f(x) = \dfrac{(x - 4)(x + 4)}{x + 4} = x - 4$ para $x \neq -4$. El límite es $-8$, pero $f(-4)$ no existe. Discontinuidad evitable; se repara definiendo $f(-4) = -8$.
+
+  \item $x^2 + x - 6 = (x + 3)(x - 2)$. Dominio: $(-\infty, -3) \cup (-3, 2) \cup (2, \infty)$. La función es continua en todo su dominio.
+
+  \item $\lim_{x \to 0} \dfrac{\sin x}{x} = 1 = f(0)$. Sí es continua.
+
+  \item En $x = 1$: $a + b = 3$. En $x = 3$: $13 = 6a + b$. Restando: $5a = 10 \Rightarrow a = 2$; $b = 1$.
+
+  \item $f(0) = 1 > 0$; $f(1) = 1 - 4 + 1 = -2 < 0$. Por el TVI, existe $c \in (0, 1)$ con $f(c) = 0$.
+
+  \item La función simplificada es $f(x) = x + 2$ para $x \neq 2$. El límite en $x = 2$ es 4 y $f(2) = 3$, así que NO es continua. Se puede reparar cambiando $f(2) = 4$.
+
+  \item Sea $f(x) = \cos x - x$. $f(0) = 1 > 0$; $f(1) \approx 0{,}54 - 1 = -0{,}46 < 0$. Por TVI, existe $c \in (0, 1)$ con $f(c) = 0$, es decir, $\cos c = c$.
+\end{enumerate}
+
+
+% ──────────────────────────────────────────────────────────
+%  NUEVAS RESPUESTAS (26) — INSERCIÓN MANUAL
+% ──────────────────────────────────────────────────────────
+\subsection*{Sección 4: Límites Trigonométricos (Ejercicios 25--33)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{24}
+  \item $3$
+  \item $\dfrac{1}{2}$
+  \item $1$ \quad (pues $\tan x = \frac{\sin x}{\cos x}$)
+  \item $\dfrac{2}{5}$
+  \item $\dfrac{1}{2}$ \quad (con $1 - \cos x = 2\sin^2(x/2)$)
+  \item $\dfrac{3}{2}$
+  \item $\dfrac{3}{2}$
+  \item $2$
+  \item $1 - \cos 2x = 2\sin^2 x$; \quad límite $= \displaystyle\lim_{x \to 0} \frac{2\sin x}{x} = 2$
+\end{enumerate}
+
+\subsection*{Sección 5: Límites al Infinito y Continuidad (Ejercicios 34--42)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{33}
+  \item $0$
+  \item $5$
+  \item $2$
+  \item $0$ (grado del denominador mayor)
+  \item No es continua en $x = 1$ (no está definida); discontinuidad evitable con $f(x) = x + 1$.
+  \item $k = 3$ \quad (pues $\lim_{x \to 1^-} kx^2 = k$ y $f(1) = 3$)
+  \item $1$ \quad (racionalizando: $\dfrac{2x}{\sqrt{x^2 + 2x} + x} \to \dfrac{2}{1 + 1}$)
+  \item Discontinuidad de salto (no evitable): límites laterales $-1$ y $+1$.
+  \item $f(0) = -1 < 0$ y $f(1) = 1 > 0$; por el TVI existe $c \in (0, 1)$ con $f(c) = 0$.
+\end{enumerate}
+
+\subsection*{Sección 6: Retos Integradores (Ejercicios 43--50)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{42}
+  \item $0$
+  \item $5$
+  \item $1$ \quad (pues $\frac{\sin x}{x} \to 0$)
+  \item Discontinuidad infinita (asíntota vertical en $x = 2$).
+  \item $2$ \quad (dividiendo por $x$: $\dfrac{\sqrt{4 + 1/x^2}}{1 + 3/x} \to 2$)
+  \item En $x = 1$: $a + b = 1$. \quad En $x = 3$: $9 = 6 - a \Rightarrow a = -3$, $b = 4$.
+  \item $\dfrac{1}{2}$ \quad (usando $\tan x - \sin x = \frac{\sin x(1 - \cos x)}{\cos x}$)
+  \item $f(x) = \cos x - x$: $f(0) = 1 > 0$ y $f(1) = \cos 1 - 1 < 0$; por el TVI existe $c \in (0, 1)$ con $f(c) = 0$.
+\end{enumerate}
+\end{document}

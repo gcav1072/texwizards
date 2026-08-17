@@ -1,0 +1,291 @@
+% ============================================================
+%  CLASE 02 — PLANO CARTESIANO, RELACIONES Y GRÁFICAS BÁSICAS
+%  Curso Preuniversitario · Semana 1 · Clase de 2 horas
+%  (Fusión de las antiguas clases 03 y 04)
+% ============================================================
+\documentclass[aspectratio=169]{beamer}
+\usepackage{mathwizards-beamer}
+\mwbeamer{Clase 2}{Plano Cartesiano, Relaciones y Gráficas Básicas}{Semana 1}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Parte 1: Plano Cartesiano y Definición de Función}
+% ════════════════════════════════════════════════════════════
+
+
+\begin{frame}{Geometría Analítica en el Plano}
+  \begin{block}{Fórmulas fundamentales dados $P_1(x_1, y_1)$ y $P_2(x_2, y_2)$}
+    \begin{itemize}
+      \item \textbf{Distancia euclídea:} $d(P_1, P_2) = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$
+      \item \textbf{Punto medio:} $M = \left(\dfrac{x_1 + x_2}{2}, \; \dfrac{y_1 + y_2}{2}\right)$
+      \item \textbf{Pendiente de la recta:} $m = \dfrac{y_2 - y_1}{x_2 - x_1} \quad (x_1 \neq x_2)$
+    \end{itemize}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{Relaciones entre rectas con pendientes $m_1$ y $m_2$}
+    \begin{itemize}
+      \item \textbf{Paralelas:} $L_1 \parallel L_2 \iff m_1 = m_2$
+      \item \textbf{Perpendiculares:} $L_1 \perp L_2 \iff m_1 \cdot m_2 = -1 \iff m_2 = -\dfrac{1}{m_1}$
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Concepto Formal de Función}
+  \begin{block}{Definición de función}
+    Una función $f: A \to B$ es una regla de correspondencia que asigna a cada elemento $x \in A$ (\textbf{dominio}) \textbf{exactamente un único} elemento $y = f(x) \in B$ (\textbf{codominio}).
+    \begin{itemize}
+      \item \textbf{Dominio ($\text{Dom}(f)$):} Conjunto de todas las entradas admisibles en $\mathbb{R}$.
+      \item \textbf{Rango o Imagen ($\text{Ran}(f)$):} Conjunto de todas las salidas reales efectivas:
+            $$\text{Ran}(f) = \{y \in \mathbb{R} \mid \exists x \in \text{Dom}(f), \; f(x) = y\}$$
+    \end{itemize}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{mwextra}[Prueba de la recta vertical]
+    Una curva en el plano cartesiano representa la gráfica de una función si y solo si \textbf{ninguna recta vertical} intersecta la curva en más de un punto.
+  \end{mwextra}
+\end{frame}
+
+\begin{frame}{Restricciones Algebraicas para el Dominio}
+  \begin{alertblock}{Las 3 restricciones básicas en los Reales ($\mathbb{R}$)}
+    \begin{enumerate}
+      \item \textbf{Fracciones / Denominadores:} $\dfrac{P(x)}{Q(x)} \;\Longrightarrow\; Q(x) \neq 0$.
+      \item \textbf{Raíces de índice par:} $\sqrt[2n]{g(x)} \;\Longrightarrow\; g(x) \ge 0$.
+      \item \textbf{Logaritmos:} $\log_a(g(x)) \;\Longrightarrow\; g(x) > 0$.
+    \end{enumerate}
+  \end{alertblock}
+
+  \vspace{4pt}
+  \begin{block}{Cociente Incremental (Fundamento del Cálculo Diferencial)}
+    Para cualquier función $f(x)$, la razón de cambio promedio en $[x, x+h]$ es:
+    $$\frac{\Delta y}{\Delta x} = \frac{f(x + h) - f(x)}{h} \quad (h \neq 0)$$
+  \end{block}
+\end{frame}
+
+
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase — Parte 1}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 1}
+  \begin{mwejercicio}[Ejercicio 1 \quad \facil]
+    Calcula la distancia entre los puntos $A(-3, 5)$ y $B(5, -1)$, y encuentra las coordenadas de su punto medio $M$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 2}
+  \begin{mwejercicio}[Ejercicio 2 \quad \facil]
+    Encuentra la ecuación de la recta que pasa por el punto $P(2, -3)$ y es perpendicular a la recta $3x - 4y + 8 = 0$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 3}
+  \begin{mwejercicio}[Ejercicio 3 \quad \facil]
+    Dada la función $f(x) = 2x^2 - 3x + 1$, calcula y simplifica:
+    $$f(-2), \qquad f\left(\frac{1}{2}\right), \qquad f(a + 1)$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 4}
+  \begin{mwejercicio}[Ejercicio 4 \quad \medio]
+    Determina el dominio maximal de la siguiente función racional:
+    $$f(x) = \frac{x^2 - 4}{x^2 - 5x + 6}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 5}
+  \begin{mwejercicio}[Ejercicio 5 \quad \medio]
+    Encuentra el dominio y el rango de la función semicircunferencia:
+    $$f(x) = \sqrt{16 - x^2}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 6}
+  \begin{mwejercicio}[Ejercicio 6 \quad \medio]
+    Calcula y simplifica completamente el cociente incremental $\dfrac{f(x + h) - f(x)}{h}$ para:
+    $$f(x) = 3x^2 - 2x + 5$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 7}
+  \begin{mwejercicio}[Ejercicio 7 \quad \medio]
+    Determina el dominio y el rango analítico de la función racional homográfica:
+    $$f(x) = \frac{3x - 1}{x + 2}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 8}
+  \begin{mwejercicio}[Ejercicio 8 \quad \dificil]
+    Determina el dominio de la siguiente función irracional:
+    $$f(x) = \sqrt{\frac{x - 3}{x + 4}}$$
+    \emph{Asegúrate de estudiar el signo del cociente mediante puntos críticos.}
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 9}
+  \begin{mwejercicio}[Ejercicio 9 \quad \dificil]
+    Halla el dominio de la función compuesta con radicales anidados:
+    $$f(x) = \frac{\sqrt{x^2 - 9}}{\sqrt{25 - x^2}}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 10}
+  \begin{mwejercicio}[Ejercicio 10 \quad \dificil]
+    Demuestra analíticamente que los puntos $A(1, 2)$, $B(5, 5)$, $C(2, 9)$ y $D(-2, 6)$ forman los vértices de un rectángulo en el plano cartesiano calculando longitudes de lados y pendientes.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+
+% ════════════════════════════════════════════════════════════
+\section{Parte 2: Gráficas de Funciones Básicas}
+% ════════════════════════════════════════════════════════════
+
+
+\begin{frame}{Catálogo de Funciones Madre}
+  \begin{block}{Funciones elementales de referencia}
+    \begin{center}
+      \small
+      \begin{tabular}{lcccc}
+        \toprule
+        \textbf{Nombre} & \textbf{Ecuación} & \textbf{Dominio} & \textbf{Rango} & \textbf{Simetría} \\
+        \midrule
+        Identidad & $f(x) = x$ & $\mathbb{R}$ & $\mathbb{R}$ & Impar (origen) \\
+        Cuadrática & $f(x) = x^2$ & $\mathbb{R}$ & $[0, \infty)$ & Par (eje $y$) \\
+        Cúbica & $f(x) = x^3$ & $\mathbb{R}$ & $\mathbb{R}$ & Impar (origen) \\
+        Valor absoluto & $f(x) = |x|$ & $\mathbb{R}$ & $[0, \infty)$ & Par (eje $y$) \\
+        Raíz cuadrada & $f(x) = \sqrt{x}$ & $[0, \infty)$ & $[0, \infty)$ & Ninguna \\
+        Recíproca & $f(x) = \frac{1}{x}$ & $\mathbb{R} \setminus \{0\}$ & $\mathbb{R} \setminus \{0\}$ & Impar (origen) \\
+        \bottomrule
+      \end{tabular}
+    \end{center}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{Criterios algebraicos de simetría}
+    \begin{itemize}
+      \item \textbf{Función Par:} $f(-x) = f(x)$ para todo $x \in \text{Dom}(f)$ $\;\Longrightarrow\;$ Simétrica respecto al \textbf{eje $y$}.
+      \item \textbf{Función Impar:} $f(-x) = -f(x)$ para todo $x \in \text{Dom}(f)$ $\;\Longrightarrow\;$ Simétrica respecto al \textbf{origen $(0,0)$}.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Análisis de la Función Cuadrática}
+  \begin{block}{Formas de la ecuación cuadrática}
+    \begin{itemize}
+      \item \textbf{Forma general:} $f(x) = ax^2 + bx + c \quad (a \neq 0)$
+      \item \textbf{Forma canónica (del vértice):} $f(x) = a(x - h)^2 + k$
+    \end{itemize}
+    Coordenadas del vértice $V(h, k)$:
+    $$h = -\frac{b}{2a}, \qquad k = f(h) = c - \frac{b^2}{4a}$$
+  \end{block}
+
+  \vspace{4pt}
+  \begin{alertblock}{Concavidad y Extremos}
+    \begin{itemize}
+      \item Si $a > 0$: La parábola abre \textbf{hacia arriba} ($\cup$) $\;\Longrightarrow\;$ El vértice $V(h, k)$ es un \textbf{mínimo absoluto} ($k = \min f$).
+      \item Si $a < 0$: La parábola abre \textbf{hacia abajo} ($\cap$) $\;\Longrightarrow\;$ El vértice $V(h, k)$ es un \textbf{máximo absoluto} ($k = \max f$).
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Interceptos con los Ejes Cartesianos}
+  \begin{block}{Procedimiento general para cualquier función $y = f(x)$}
+    \begin{itemize}
+      \item \textbf{Intercepto con el eje $y$:} Se evalúa $x = 0$ $\;\Longrightarrow\; (0, f(0))$. Existe como máximo uno.
+      \item \textbf{Interceptos con el eje $x$ (Ceros / Raíces):} Se resuelve la ecuación $f(x) = 0$ $\;\Longrightarrow\; (x_i, 0)$.
+    \end{itemize}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{mwextra}[Funciones Definidas a Trozos (por Partes)]
+    Son funciones con reglas algebraicas distintas en diferentes intervalos del dominio. Al graficarlas, se debe prestar especial atención a los extremos de cada intervalo (puntos llenos $\bullet$ o huecos $\circ$).
+  \end{mwextra}
+\end{frame}
+
+
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase — Parte 2}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 11}
+  \begin{mwejercicio}[Ejercicio 11 \quad \facil]
+    Determina analíticamente si cada una de las siguientes funciones es par, impar o ninguna:
+    $$a)\; f(x) = x^4 - 3x^2 + 5 \qquad\qquad b)\; g(x) = x^3 - 2x \qquad\qquad c)\; h(x) = x^2 + 2x - 1$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 12}
+  \begin{mwejercicio}[Ejercicio 12 \quad \facil]
+    Halla el vértice y todos los interceptos con los ejes cartesianos de la parábola:
+    $$f(x) = x^2 - 6x + 8$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 13}
+  \begin{mwejercicio}[Ejercicio 13 \quad \facil]
+    Evalúa y bosqueja la función definida a trozos en el intervalo $[-3, 4]$:
+    $$f(x) = \begin{cases} 2x + 4 & \text{si } x < 1 \\ 5 - x & \text{si } x \ge 1 \end{cases}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 14}
+  \begin{mwejercicio}[Ejercicio 14 \quad \medio]
+    Escribe la función cuadrática $f(x) = -2x^2 + 8x - 5$ en la forma canónica $f(x) = a(x-h)^2 + k$, indica su vértice, eje de simetría y valor extremo.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 15}
+  \begin{mwejercicio}[Ejercicio 15 \quad \medio]
+    Calcula todos los interceptos con los ejes y el vértice de la función valor absoluto:
+    $$f(x) = |2x - 4| - 6$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 16}
+  \begin{mwejercicio}[Ejercicio 16 \quad \medio]
+    Encuentra la ecuación general de la parábola cuyo vértice se ubica en $V(3, -2)$ y que pasa por el punto $P(1, 6)$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 17}
+  \begin{mwejercicio}[Ejercicio 17 \quad \medio]
+    Determina la simetría de las siguientes funciones racionales y con valor absoluto:
+    $$f(x) = \frac{x^3}{x^2 + 4} \qquad\qquad g(x) = \frac{|x|}{x^4 + 1}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 18}
+  \begin{mwejercicio}[Ejercicio 18 \quad \dificil]
+    Halla los valores de la constante $k$ para los cuales la parábola $f(x) = kx^2 + 4x + (k - 3)$ es tangente al eje $x$ (intersecta en un único punto).
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 19}
+  \begin{mwejercicio}[Ejercicio 19 \quad \dificil]
+    Determina el dominio, rango y los puntos de discontinuidad de la función a trozos:
+    $$f(x) = \begin{cases}
+      -x + 1 & \text{si } x < 0 \\
+      x^2 - 1 & \text{si } 0 \le x \le 2 \\
+      3 & \text{si } x > 2
+    \end{cases}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 20}
+  \begin{mwejercicio}[Ejercicio 20 \quad \dificil]
+    Un granjero dispone de 60 metros de alambre para cercar un terreno rectangular. Expresa el área del terreno en función del ancho $x$, determina la parábola resultante y encuentra las dimensiones que maximizan el área encerrada.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+
+\end{document}

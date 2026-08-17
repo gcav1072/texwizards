@@ -1,0 +1,410 @@
+% ============================================================
+%  GUÍA 5: Funciones Exponenciales y Logarítmicas
+%  Curso de Introducción a la Universidad — Precálculo y Cálculo I
+%  Autor: Ing. Gabriel Astudillo
+%  Clase cubierta: 5
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+\usepackage{mathwizards-guia}
+\mwguia{Guía 5 — Funciones Exponenciales y Logarítmicas}{Ing. Gabriel Astudillo $\cdot$ Curso Preuniversitario}
+
+\begin{document}
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Estudio 5}{Funciones Exponenciales y Logarítmicas}{El número $e$, Gráficas de $a^x$ y $\log_a x$, Propiedades de Logaritmos, Cambio de Base y Modelado}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+\small
+\textbf{Presentación:} Esta guía desarrolla las funciones exponenciales y logarítmicas: sus gráficas, el número de Euler $e$, el logaritmo natural, las propiedades de los logaritmos, el cambio de base y el modelado de crecimiento y decaimiento. Incluye teoría, ejercicios resueltos paso a paso y una amplia batería de ejercicios propuestos con su clave de respuestas.
+\\[4pt]
+\textbf{Nivel de Dificultad:}\quad
+\facil{} Básico / Directo \quad
+\medio{} Intermedio \quad
+\dificil{} Desafiante \quad
+\muyDificil{} Muy Difícil / Reto
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+\section{Función Exponencial y el Número $e$}
+% ============================================================
+
+\subsection{Definición y propiedades}
+
+\begin{cuadroteoria}
+  \textbf{Función exponencial de base $a$:}
+  $$f(x) = a^x \qquad (a > 0,\; a \neq 1)$$
+  \begin{itemize}[leftmargin=*]
+    \item Dominio: $\mathbb{R}$.
+    \item Rango: $(0, \infty)$.
+    \item Intercepto $y$: $(0, 1)$ (pues $a^0 = 1$).
+    \item Si $a > 1$: creciente. Si $0 < a < 1$: decreciente.
+    \item Asíntota horizontal: $y = 0$.
+  \end{itemize}
+
+  \textbf{El número de Euler:}
+  $$e \approx 2{,}718281828{\dots}$$
+  Es la base de la exponencial natural $f(x) = e^x$, la más usada en cálculo.
+\end{cuadroteoria}
+\newpage
+\begin{cuadrosolucion}
+  \textbf{Propiedades algebraicas} (para $a > 0$, $a \neq 1$):
+  \begin{align*}
+    a^x a^y & = a^{x+y} & \frac{a^x}{a^y} & = a^{x-y} \\
+    (a^x)^y & = a^{xy}  & (ab)^x          & = a^x b^x
+  \end{align*}
+
+  \textbf{Ecuaciones exponenciales:} si $a^u = a^v$, entonces $u = v$.
+
+  \textbf{Cuando las bases no se pueden igualar,} tomamos logaritmo natural en ambos lados:
+  $$a^x = b \;\Longrightarrow\; x = \frac{\ln b}{\ln a}$$
+\end{cuadrosolucion}
+
+\begin{cuadroadvertencia}
+  \textbf{Modelos de crecimiento/decrecimiento exponencial:}
+  $$P(t) = P_0 e^{kt}$$
+  \begin{itemize}[leftmargin=*]
+    \item $P_0$: cantidad inicial.
+    \item Si $k > 0$: crecimiento (poblaciones, interés compuesto continuo).
+    \item Si $k < 0$: decrecimiento (decaimiento radiactivo, enfriamiento).
+  \end{itemize}
+
+  \textbf{Interés compuesto:}
+  $$A = P\left(1 + \frac{r}{n}\right)^{nt}$$
+  donde $P$ es el capital, $r$ la tasa anual, $n$ las capitalizaciones por año y $t$ los años.
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Resuelve $2^{x+1} = 16$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Escribimos 16 como potencia de 2: $2^{x+1} = 2^4$. Entonces $x + 1 = 4$, de donde $x = 3$.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Resuelve $4^x = 8$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} $4^x = (2^2)^x = 2^{2x}$ y $8 = 2^3$. Entonces $2^{2x} = 2^3$, luego $2x = 3$, o sea $x = \dfrac{3}{2}$.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Resuelve $3^{x^2} = 9^{x+1}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} $9^{x+1} = (3^2)^{x+1} = 3^{2x+2}$. Entonces $x^2 = 2x + 2$, es decir $x^2 - 2x - 2 = 0$. Por la fórmula general:
+  $$x = \frac{2 \pm \sqrt{4 + 8}}{2} = \frac{2 \pm \sqrt{12}}{2} = 1 \pm \sqrt{3}.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R4.} Una población de bacterias se modela con $P(t) = 500\,e^{0{,}3t}$, donde $t$ está en horas. ¿Cuántas bacterias habrá después de 4 horas?
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} $P(4) = 500\,e^{0{,}3 \cdot 4} = 500\,e^{1{,}2} \approx 500(3{,}3201) \approx 1660$ bacterias.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R5.} Si inviertes $\$1000$ a una tasa anual del $5\%$ compuesto trimestralmente, ¿cuánto tendrás después de 6 años?
+
+  \begin{cuadrosolucion}
+    \textbf{Solución:} $P = 1000$, $r = 0{,}05$, $n = 4$, $t = 6$:
+    $$A = 1000\left(1 + \frac{0{,}05}{4}\right)^{4 \cdot 6} = 1000(1{,}0125)^{24} \approx 1000(1{,}3474) = \$\,1347{,}40.$$
+  \end{cuadrosolucion}
+
+  \textbf{Ejemplo R6.} Resuelve $5^x = 17$.
+
+  \begin{cuadrosolucion}
+    \textbf{Solución:} Las bases no son igualizables. Tomamos logaritmo natural en ambos lados:
+    $$\ln(5^x) = \ln 17 \Rightarrow x \ln 5 = \ln 17 \Rightarrow x = \frac{\ln 17}{\ln 5} \approx \frac{2{,}833}{1{,}609} \approx 1{,}760.$$
+  \end{cuadrosolucion}
+
+  \textbf{Ejemplo R7.} Resuelve $e^{2x - 1} = 10$.
+
+  \begin{cuadrosolucion}
+    \textbf{Solución:} Tomamos logaritmo natural:
+    $$2x - 1 = \ln 10 \Rightarrow 2x = 1 + \ln 10 \Rightarrow x = \frac{1 + \ln 10}{2} \approx \frac{1 + 2{,}303}{2} \approx 1{,}651.$$
+  \end{cuadrosolucion}
+
+  \subsection{Ejercicios propuestos}
+
+  \begin{enumerate}[leftmargin=*]
+    \item \facil{} Resuelve: $5^x = 125$
+    \item \facil{} Resuelve: $2^{x-3} = 1$
+    \item \facil{} Resuelve: $3^{2x} = 27$
+    \item \facil{} Evalúa $f(2)$ si $f(x) = 4^x$.
+    \item \facil{} Determina si cada función es creciente o decreciente: $f(x) = 2^x$, $g(x) = \left(\frac{1}{3}\right)^x$, $h(x) = e^{-x}$.
+    \item \medio{} Resuelve: $2^{2x+1} = 8^{x-1}$
+    \item \medio{} Resuelve: $e^{x+1} = e^{2x-3}$
+    \item \medio{} Resuelve: $25^x = 125^{x-1}$
+    \item \medio{} El número de bacterias en un cultivo se duplica cada 3 horas. Si inicialmente hay 200 bacterias, escribe la función $P(t)$ (exponencial con base 2) y calcula cuántas habrá después de 12 horas.
+    \item \medio{} Una sustancia radiactiva decae según $A(t) = A_0 e^{-0{,}02t}$ (t en años). Si $A_0 = 100$ g, ¿cuánto queda después de 10 años?
+    \item \dificil{} Resuelve: $4^x - 10 \cdot 2^x + 16 = 0$ (pista: haz $u = 2^x$).
+    \item \dificil{} ¿Cuánto tiempo (en años) se necesita para que una inversión de $\$500$ al $6\%$ anual compuesto mensualmente alcance $\$1000$?
+  \end{enumerate}
+
+  % ============================================================
+
+  \section{Función Logarítmica y sus Propiedades}
+  % ============================================================
+
+  \subsection{Definición y propiedades}
+
+  \begin{cuadroteoria}
+    \textbf{Definición:} Para $a > 0$, $a \neq 1$ y $x > 0$:
+    $$\boxed{\log_a x = y \iff a^y = x}$$
+
+    La función logarítmica $f(x) = \log_a x$ es la \textbf{inversa} de $f(x) = a^x$.
+
+    \begin{itemize}[leftmargin=*]
+      \item Dominio: $(0, \infty)$.
+      \item Rango: $\mathbb{R}$.
+      \item Intercepto $x$: $(1, 0)$ (pues $\log_a 1 = 0$).
+      \item Asíntota vertical: $x = 0$.
+    \end{itemize}
+
+    \textbf{Logaritmo natural:} $\ln x = \log_e x$. Es el logaritmo de base $e$.
+  \end{cuadroteoria}
+
+  \begin{cuadrosolucion}
+    \textbf{Propiedades de los logaritmos} (para $M, N > 0$):
+    \begin{align*}
+      \log_a (MN)                     & = \log_a M + \log_a N \\
+      \log_a \left(\frac{M}{N}\right) & = \log_a M - \log_a N \\
+      \log_a (M^p)                    & = p \log_a M          \\
+      \log_a 1                        & = 0                   \\
+      \log_a a                        & = 1
+    \end{align*}
+
+    \textbf{Cambio de base:}
+    $$\log_a x = \frac{\log_b x}{\log_b a}$$
+  \end{cuadrosolucion}
+
+  \begin{cuadroadvertencia}
+    \textbf{Ecuaciones logarítmicas:}\\
+    Una estrategia es combinar los logaritmos usando las propiedades y luego aplicar la definición. Verifica siempre que las soluciones no hagan que un logaritmo tenga argumento negativo o cero.
+  \end{cuadroadvertencia}
+
+  \subsection{Ejercicios resueltos}
+
+  \textbf{Ejemplo R1.} Expande $\log_2(8x^3)$ usando las propiedades.
+
+  \begin{cuadrosolucion}
+    \textbf{Solución:}
+    $$\log_2(8x^3) = \log_2 8 + \log_2 x^3 = 3 + 3\log_2 x.$$
+  \end{cuadrosolucion}
+
+  \textbf{Ejemplo R2.} Condensa en un solo logaritmo: $\log_3 x + \log_3 y - 2\log_3 z$.
+
+  \begin{cuadrosolucion}
+    \textbf{Solución:}
+    $$\log_3 x + \log_3 y - 2\log_3 z = \log_3\left(\frac{xy}{z^2}\right).$$
+  \end{cuadrosolucion}
+
+  \textbf{Ejemplo R3.} Resuelve $\log_2 x + \log_2(x - 2) = 3$.
+
+  \begin{cuadrosolucion}
+    \textbf{Solución:}
+    \begin{enumerate}
+      \item Combinamos: $\log_2[x(x - 2)] = 3$.
+      \item Aplicamos la definición: $x(x - 2) = 2^3 = 8$.
+      \item $x^2 - 2x - 8 = 0 \Rightarrow (x - 4)(x + 2) = 0 \Rightarrow x = 4$ o $x = -2$.
+      \item Verificamos: $x = -2$ da argumentos negativos, se descarta. Solución: $x = 4$.
+    \end{enumerate}
+  \end{cuadrosolucion}
+
+  \textbf{Ejemplo R4.} Resuelve $\ln x = 2$.
+
+  \begin{cuadrosolucion}
+    \textbf{Solución:} Por definición: $x = e^2 \approx 7{,}389$.
+  \end{cuadrosolucion}
+
+  \textbf{Ejemplo R5.} Expresa $\log_2 5$ en términos de logaritmos naturales.
+
+  \begin{cuadrosolucion}
+    \textbf{Solución:} Usando cambio de base: $\log_2 5 = \dfrac{\ln 5}{\ln 2} \approx \dfrac{1{,}609}{0{,}693} \approx 2{,}322$.
+  \end{cuadrosolucion}
+
+  \subsection{Ejercicios propuestos}
+
+  \begin{enumerate}[leftmargin=*, resume]
+    \item \facil{} Evalúa: $\log_2 8$, $\log_3 81$, $\log_5 1$, $\log_{10} 1000$.
+    \item \facil{} Evalúa: $\ln e^3$, $\log_7 7$, $\log_{10} 0{,}01$.
+    \item \facil{} Expande: $\log_3(9x^2)$.
+    \item \facil{} Condensa: $\log_2 x + \log_2 y$.
+    \item \facil{} Resuelve: $\log_3 x = 4$.
+    \item \medio{} Expande: $\ln\left(\dfrac{x^2 y}{z}\right)$.
+    \item \medio{} Condensa: $2\log x + 3\log y - \frac{1}{2}\log z$.
+    \item \medio{} Resuelve: $\log_3(x + 1) - \log_3 x = 2$.
+    \item \medio{} Resuelve: $\log_4 x + \log_4(x - 6) = 2$.
+    \item \medio{} Usa cambio de base para calcular $\log_3 7$ con calculadora (expresa usando $\ln$).
+    \item \dificil{} Resuelve: $\log_2(x + 3) + \log_2(x - 1) = 4$.
+    \item \dificil{} Resuelve: $\ln(x + 2) - \ln(x - 1) = \ln 4$.
+  \end{enumerate}
+
+  % ============================================================
+
+% ──────────────────────────────────────────────────────────
+%  NUEVOS EJERCICIOS PROPUESTOS (26) — INSERCIÓN MANUAL
+% ──────────────────────────────────────────────────────────
+\subsection{Ejercicios propuestos: Ecuaciones Exponenciales y Modelado}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Resuelve la ecuación exponencial: $3^x = 81$.
+
+  \item \facil{} Resuelve la ecuación exponencial: $2^x = \dfrac{1}{32}$.
+
+  \item \medio{} Resuelve expresando en base 2: $4^x = 8^{x - 1}$.
+
+  \item \medio{} Resuelve la ecuación exponencial: $2^{x^2} = 16^x$.
+
+  \item \medio{} Resuelve extrayendo factor común: $3^{x + 1} - 3^x = 54$.
+
+  \item \dificil{} Resuelve mediante cambio de variable $u = 2^x$:
+        $$4^x - 6 \cdot 2^x + 8 = 0$$
+
+  \item \dificil{} \textbf{Modelado:} Una población bacteriana se duplica cada 12 horas. Si comienza con 500 bacterias, ¿cuántas horas tardará en alcanzar 4000?
+
+  \item \dificil{} Resuelve mediante cambio de variable $u = 5^x$:
+        $$5^{2x} - 5^{x + 1} + 6 = 0$$
+
+  \item \muyDificil{} Resuelve la ecuación exponencial (deja el resultado con logaritmos):
+        $$3^{2x} - 2 \cdot 3^x - 9 = 0$$
+\end{enumerate}
+
+\subsection{Ejercicios propuestos: Logaritmos y Cambio de Base}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Evalúa el logaritmo: $\log_2 32$.
+
+  \item \facil{} Evalúa el logaritmo: $\log_5 \dfrac{1}{25}$.
+
+  \item \medio{} Resuelve la ecuación logarítmica:
+        $$\log_2 x + \log_2 (x - 2) = 3$$
+
+  \item \medio{} Expande usando las propiedades de los logaritmos:
+        $$\log_3 \frac{x^2 \sqrt{y}}{z}$$
+
+  \item \medio{} Resuelve la ecuación logarítmica:
+        $$\log(x + 4) - \log(x - 1) = \log 2$$
+
+  \item \dificil{} Aplica cambio de base para evaluar $\log_4 8$ con exactitud.
+
+  \item \dificil{} Resuelve la ecuación logarítmica:
+        $$\log_2 (x^2 - 6x) = 4$$
+
+  \item \dificil{} Evalúa la expresión combinando propiedades:
+        $$2^{\log_2 5} + \log_3 27$$
+
+  \item \muyDificil{} Resuelve la ecuación con bases distintas:
+        $$\log_2 x + \log_4 x = 6$$
+\end{enumerate}
+
+\subsection{Ejercicios propuestos: Retos Integradores}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Resuelve la ecuación exponencial: $e^x = e^{2x - 1}$.
+
+  \item \medio{} Resuelve la ecuación exponencial: $10^{2x - 1} = 1000$.
+
+  \item \medio{} \textbf{Modelado:} Una sustancia se desintegra según $A(t) = A_0 e^{-kt}$ y reduce su masa a la mitad en 10 años. Determina la constante $k$.
+
+  \item \medio{} Resuelve la ecuación logarítmica natural:
+        $$\ln(x - 1) + \ln 3 = \ln 6$$
+
+  \item \dificil{} Resuelve aplicando logaritmos en ambos lados:
+        $$2^x = 3^{x - 1}$$
+
+  \item \dificil{} \textbf{Modelado:} Un capital de \$1000 se invierte con interés compuesto continuo a razón del $5\%$ anual ($A = Pe^{rt}$). ¿En cuánto tiempo se duplicará el capital?
+
+  \item \muyDificil{} Resuelve la ecuación logarítmica (verifica el dominio):
+        $$2 \log_3 x - \log_3 (x - 2) = 2$$
+
+  \item \muyDificil{} \textbf{Modelado:} El número de bacterias sigue $N(t) = 200 \cdot 3^{t/4}$. Determina el tiempo $t$ (en horas) para que $N = 5400$.
+\end{enumerate}
+
+% ============================================================
+\section{Clave de Respuestas}
+% ============================================================
+
+\subsection*{Sección 1: Exponenciales (Ejercicios 1--12)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $x = 3$
+  \item $x - 3 = 0 \Rightarrow x = 3$
+  \item $2x = 3 \Rightarrow x = \dfrac{3}{2}$
+  \item $f(2) = 4^2 = 16$
+  \item $f$ creciente; $g$ decreciente; $h$ decreciente (pues $e^{-x} = (1/e)^x$ con $0 < 1/e < 1$).
+  \item $2^{2x+1} = (2^3)^{x-1} = 2^{3x-3}$. Entonces $2x+1 = 3x-3 \Rightarrow x = 4$.
+  \item $x + 1 = 2x - 3 \Rightarrow x = 4$.
+  \item $25^x = (5^2)^x = 5^{2x}$ y $125^{x-1} = (5^3)^{x-1} = 5^{3x-3}$. Entonces $2x = 3x - 3 \Rightarrow x = 3$.
+  \item $P(t) = 200 \cdot 2^{t/3}$. En $t = 12$: $P(12) = 200 \cdot 2^4 = 3200$ bacterias.
+  \item $A(10) = 100 e^{-0{,}2} \approx 100(0{,}8187) = 81{,}87$ g.
+  \item $u = 2^x$: $u^2 - 10u + 16 = 0 \Rightarrow (u - 2)(u - 8) = 0$. Entonces $2^x = 2 \Rightarrow x = 1$; o $2^x = 8 \Rightarrow x = 3$. Soluciones: $x = 1$, $x = 3$.
+  \item $1000 = 500\left(1 + \frac{0{,}06}{12}\right)^{12t} \Rightarrow 2 = (1{,}005)^{12t} \Rightarrow \ln 2 = 12t \ln(1{,}005) \Rightarrow t = \dfrac{\ln 2}{12\ln(1{,}005)} \approx 11{,}58$ años.
+\end{enumerate}
+
+
+\subsection*{Sección 2: Logarítmicas (Ejercicios 13--24)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{12}
+  \item $3$, $4$, $0$, $3$
+  \item $3$, $1$, $-2$
+  \item $\log_3 9 + \log_3 x^2 = 2 + 2\log_3 x$
+  \item $\log_2(xy)$
+  \item $x = 3^4 = 81$
+  \item $\ln(x^2 y) - \ln z = 2\ln x + \ln y - \ln z$
+  \item $\log(x^2 y^3) - \log\sqrt{z} = \log\left(\dfrac{x^2 y^3}{\sqrt{z}}\right)$
+  \item $\log_3\left(\dfrac{x+1}{x}\right) = 2 \Rightarrow \dfrac{x+1}{x} = 9 \Rightarrow 9x = x + 1 \Rightarrow 8x = 1 \Rightarrow x = \dfrac{1}{8}$.
+  \item $\log_4[x(x - 6)] = 2 \Rightarrow x(x - 6) = 16 \Rightarrow x^2 - 6x - 16 = 0 \Rightarrow (x - 8)(x + 2) = 0$. $x = 8$ (válida), $x = -2$ (descartada).
+  \item $\log_3 7 = \dfrac{\ln 7}{\ln 3} \approx \dfrac{1{,}946}{1{,}099} \approx 1{,}771$.
+  \item $\log_2[(x + 3)(x - 1)] = 4 \Rightarrow (x + 3)(x - 1) = 16 \Rightarrow x^2 + 2x - 3 = 16 \Rightarrow x^2 + 2x - 19 = 0 \Rightarrow x = -1 \pm 2\sqrt{5}$. La positiva es $-1 + 2\sqrt{5} \approx 3{,}47$ (válida); la negativa se descarta.
+  \item $\ln\left(\dfrac{x+2}{x - 1}\right) = \ln 4 \Rightarrow \dfrac{x + 2}{x - 1} = 4 \Rightarrow x + 2 = 4x - 4 \Rightarrow 6 = 3x \Rightarrow x = 2$ (válida: $x + 2 = 4 > 0$, $x - 1 = 1 > 0$).
+\end{enumerate}
+
+
+% ──────────────────────────────────────────────────────────
+%  NUEVAS RESPUESTAS (26) — INSERCIÓN MANUAL
+% ──────────────────────────────────────────────────────────
+\subsection*{Sección 4: Ecuaciones Exponenciales y Modelado (Ejercicios 25--33)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{24}
+  \item $x = 4$
+  \item $x = -5$
+  \item $2^{2x} = 2^{3x - 3} \Rightarrow x = 3$
+  \item $x^2 = 4x \Rightarrow x = 0$ o $x = 4$
+  \item $3^x(3 - 1) = 54 \Rightarrow 2 \cdot 3^x = 54 \Rightarrow 3^x = 27 \Rightarrow x = 3$
+  \item $u = 2^x$: $u^2 - 6u + 8 = 0 \Rightarrow u = 2$ o $u = 4$; \quad $x = 1$ o $x = 2$
+  \item $500 \cdot 2^{t/12} = 4000 \Rightarrow 2^{t/12} = 8 \Rightarrow t = 36$ horas
+  \item $u = 5^x$: $u^2 - 5u + 6 = 0 \Rightarrow u = 2$ o $u = 3$; \quad $x = \log_5 2$ o $x = \log_5 3$
+  \item $u = 3^x$: $u = 1 \pm \sqrt{10}$; solo $u > 0$: $x = \log_3(1 + \sqrt{10})$
+\end{enumerate}
+
+\subsection*{Sección 5: Logaritmos y Cambio de Base (Ejercicios 34--42)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{33}
+  \item $5$
+  \item $-2$
+  \item $x(x - 2) = 8 \Rightarrow x = 4$ (se descarta $x = -2$)
+  \item $2\log_3 x + \dfrac{1}{2}\log_3 y - \log_3 z$
+  \item $\dfrac{x + 4}{x - 1} = 2 \Rightarrow x = 6$
+  \item $\log_4 8 = \dfrac{\log_2 8}{\log_2 4} = \dfrac{3}{2}$
+  \item $x^2 - 6x = 16 \Rightarrow x = 8$ o $x = -2$ (ambos cumplen el dominio)
+  \item $2^{\log_2 5} = 5$ y $\log_3 27 = 3$; \quad total: $8$
+  \item $\log_4 x = \frac{1}{2}\log_2 x$; \quad $\frac{3}{2}\log_2 x = 6 \Rightarrow x = 16$
+\end{enumerate}
+
+\subsection*{Sección 6: Retos Integradores (Ejercicios 43--50)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{42}
+  \item $x = 1$
+  \item $2x - 1 = 3 \Rightarrow x = 2$
+  \item $e^{-10k} = \frac{1}{2} \Rightarrow k = \dfrac{\ln 2}{10} \approx 0{,}0693$
+  \item $3(x - 1) = 6 \Rightarrow x = 3$
+  \item $x \ln 2 = (x - 1)\ln 3 \Rightarrow x = \dfrac{\ln 3}{\ln 3 - \ln 2} \approx 2{,}71$
+  \item $e^{0{,}05t} = 2 \Rightarrow t = \dfrac{\ln 2}{0{,}05} \approx 13{,}86$ años
+  \item $\log_3 \dfrac{x^2}{x - 2} = 2 \Rightarrow x^2 = 9(x - 2) \Rightarrow x = 3$ o $x = 6$ (ambos válidos)
+  \item $3^{t/4} = 27 = 3^3 \Rightarrow t = 12$ horas
+\end{enumerate}
+\end{document}

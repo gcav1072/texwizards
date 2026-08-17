@@ -1,0 +1,247 @@
+% ============================================================
+%  CLASE 12 — OPTIMIZACIÓN, RAZONES DE CAMBIO Y REPASO GENERAL
+%  Curso Preuniversitario · Semana 6 · Clase de 2 horas
+%  (Fusión de las antiguas clases 23 y 24)
+% ============================================================
+\documentclass[aspectratio=169]{beamer}
+\usepackage{mathwizards-beamer}
+\mwbeamer{Clase 12}{Optimización, Razones de Cambio y Repaso General}{Semana 6}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Parte 1: Optimización y Razones de Cambio}
+% ════════════════════════════════════════════════════════════
+
+
+\begin{frame}{Metodología de Problemas de Optimización}
+  \begin{mwpasos}[Protocolo de resolución de máximos y mínimos aplicados]
+    \begin{enumerate}
+      \item \textbf{Esquema y variables:} Realizar un dibujo claro e identificar todas las magnitudes dadas y desconocidas.
+      \item \textbf{Función objetivo:} Formular la ecuación de la magnitud $Q$ que se desea maximizar o minimizar.
+      \item \textbf{Ecuación de ligadura:} Usar las restricciones geométricas/físicas para despejar y expresar $Q$ en función de \textbf{una sola variable}: $Q = Q(x)$.
+      \item \textbf{Dominio admisible:} Determinar el intervalo viable de la variable $x$ ($[a, b]$ o $(a, b)$).
+      \item \textbf{Optimización con cálculo:} Calcular $Q'(x) = 0$, clasificar el punto crítico mediante la segunda derivada ($Q'' < 0 \implies \max$; $Q'' > 0 \implies \min$) y comparar con los extremos del intervalo si es cerrado.
+    \end{enumerate}
+  \end{mwpasos}
+\end{frame}
+
+\begin{frame}{Metodología de Razones de Cambio Relacionadas}
+  \begin{mwpasos}[Protocolo para razones de cambio temporales ($d/dt$)]
+    \begin{enumerate}
+      \item \textbf{Identificar variables temporales:} Todas las magnitudes que cambian con el tiempo son funciones $x(t), y(t), V(t), \theta(t)$.
+      \item \textbf{Plantear la relación geométrica/física:} Escribir la ecuación estática que relaciona las variables (Teorema de Pitágoras, semejanza de triángulos, fórmulas de volumen/área, razones trigonométricas).
+      \item \textbf{Derivar implícitamente respecto a $t$:} Aplicar la regla de la cadena a toda la ecuación:
+            $$\frac{d}{dt}[x^2] = 2x \frac{dx}{dt}, \qquad \frac{d}{dt}[V] = \frac{dV}{dt}$$
+      \item \textbf{Sustituir datos numéricos:} Introducir los valores instantáneos \alert{únicamente después de haber derivado} y despejar la razón buscada.
+    \end{enumerate}
+  \end{mwpasos}
+\end{frame}
+
+
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase — Parte 1}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 1}
+  \begin{mwejercicio}[Ejercicio 1 — Optimización \quad \facil]
+    Encuentra dos números reales positivos cuya suma sea exactamente 20 y cuyo producto sea el máximo posible.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 2}
+  \begin{mwejercicio}[Ejercicio 2 — Razones de Cambio \quad \facil]
+    El radio $r$ de una mancha circular de petróleo en el mar se expande a una tasa constante de $2\text{ m/min}$. ¿Con qué rapidez está aumentando el área de la mancha cuando su radio alcanza los $15\text{ metros}$?
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 3}
+  \begin{mwejercicio}[Ejercicio 3 — Optimización \quad \facil]
+    Un granjero dispone de 120 metros de cerca para delimitar un corral rectangular aprovechando un muro recto de piedra ya existente (por lo que solo cerca 3 lados). Halla las dimensiones que maximizan el área del corral.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 4}
+  \begin{mwejercicio}[Ejercicio 4 — Razones de Cambio \quad \medio]
+    Una escalera de 10 metros de longitud está apoyada contra una pared vertical. Si la base de la escalera se resbala alejándose de la pared a una velocidad de $1\text{ m/s}$, ¿con qué rapidez desciende el extremo superior de la escalera en el instante en que la base se encuentra a $6\text{ metros}$ de la pared?
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 5}
+  \begin{mwejercicio}[Ejercicio 5 — Optimización \quad \medio]
+    Se desea fabricar una caja rectangular abierta sin tapa a partir de una pieza cuadrada de lámina de $24\text{ cm}$ de lado, cortando cuadrados iguales de lado $x$ en cada una de las 4 esquinas y doblando los bordes hacia arriba. Encuentra el valor de $x$ que maximiza el volumen de la caja.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 6}
+  \begin{mwejercicio}[Ejercicio 6 — Razones de Cambio \quad \medio]
+    Se infla un globo esférico introduciendo aire a una razón constante de $100\text{ cm}^3\text{/s}$. ¿Con qué rapidez aumenta el radio del globo en el instante en que su diámetro es exactamente de $20\text{ cm}$?
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 7}
+  \begin{mwejercicio}[Ejercicio 7 — Optimización \quad \medio]
+    Se desea diseñar una lata cilíndrica cerrada de hojalata que contenga un volumen de $1000\text{ cm}^3$ ($1\text{ litro}$). Determina el radio $r$ y la altura $h$ de la lata que minimizan la cantidad total de material empleado (área superficial total).
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 8}
+  \begin{mwejercicio}[Ejercicio 8 — Razones de Cambio \quad \dificil]
+    Se vierte agua a una razón constante de $2\text{ m}^3\text{/min}$ en un depósito que tiene la forma de un cono invertido con vértice hacia abajo, de altura $6\text{ m}$ y radio superior de $3\text{ m}$. ¿Con qué rapidez sube el nivel del agua cuando la profundidad es de $4\text{ metros}$?
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 9}
+  \begin{mwejercicio}[Ejercicio 9 — Optimización \quad \dificil]
+    Encuentra las coordenadas del punto sobre la parábola $y = x^2$ que se encuentra a la distancia mínima del punto $P(3, 0)$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 10}
+  \begin{mwejercicio}[Ejercicio 10 — Razones de Cambio \quad \dificil]
+    Una persona de $1{,}80\text{ m}$ de estatura camina alejándose a una velocidad de $1{,}2\text{ m/s}$ de la base de un farol de alumbrado que se encuentra a una altura de $5{,}40\text{ m}$:
+    \begin{enumerate}
+      \item ¿A qué ritmo está creciendo la longitud de su sombra proyectada en el suelo?
+      \item ¿A qué velocidad se desplaza la punta de la sombra sobre el suelo?
+    \end{enumerate}
+  \end{mwejercicio}
+  \vspace{2.5cm}
+\end{frame}
+
+
+% ════════════════════════════════════════════════════════════
+\section{Parte 2: Repaso General Integrador}
+% ════════════════════════════════════════════════════════════
+
+
+\begin{frame}{Estructura de Competencias del Curso Preuniversitario}
+  \begin{block}{Los 4 Grandes Ejes de Formación}
+    \begin{enumerate}
+      \item \textbf{Eje I: Fundamentos y Funciones (Semanas 1 y 2)} \\
+            Dominio, rango, polinomios, funciones racionales, transformaciones geométricas, composición e inversas.
+      \item \textbf{Eje II: Funciones Trascendentes (Semana 3)} \\
+            Exponenciales naturales, propiedades de logaritmos, trigonometría en la circunferencia unitaria, ondas e identidades.
+      \item \textbf{Eje III: Límites y Continuidad (Semana 4)} \\
+            Cálculo algebraico de indeterminaciones ($\frac{0}{0}, \frac{\infty}{\infty}, \infty-\infty$), trigonométricos notables, continuidad puntual y Teorema del Valor Intermedio (TVI).
+      \item \textbf{Eje IV: Cálculo Diferencial y Aplicaciones (Semanas 5 y 6)} \\
+            Primeros principios, reglas de derivación, regla de la cadena, derivación implícita, teoremas de Rolle/TVM, análisis gráfico completo, optimización y razones de cambio.
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Checklist Estratégico para Exámenes de Admisión}
+  \begin{alertblock}{Protocolo de verificación para resolver problemas de examen}
+    \begin{itemize}
+      \item \textbf{Antes de operar:} Identificar siempre el \textbf{dominio natural} y las restricciones de existencia.
+      \item \textbf{En límites:} Evaluar por sustitución directa para clasificar con precisión la indeterminación ($\frac{0}{0}, \frac{\infty}{\infty}, \infty-\infty, 1^\infty$).
+      \item \textbf{En derivabilidad:} Verificar obligatoriamente que la función sea \textbf{continua} en el punto antes de exigir la igualdad de derivadas laterales.
+      \item \textbf{En optimización:} Definir la función objetivo, la ecuación de ligadura y el \textbf{intervalo cerrado/abierto admisible} de la variable.
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase — Parte 2}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 11}
+  \begin{mwejercicio}[Ejercicio 11 — Funciones e Inversas \quad \facil]
+    Para la función racional homográfica $f(x) = \dfrac{4x - 1}{2x + 3}$:
+    \begin{enumerate}
+      \item Determina su dominio y su rango.
+      \item Demuestra analíticamente que $f$ es inyectiva y halla su función inversa $f^{-1}(x)$.
+      \item Identifica las asíntotas de $f(x)$ y compáralas con las de $f^{-1}(x)$.
+    \end{enumerate}
+  \end{mwejercicio}
+  \vspace{2.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 12}
+  \begin{mwejercicio}[Ejercicio 12 — Ecuaciones Trascendentes \quad \facil]
+    Resuelve las siguientes ecuaciones en $\mathbb{R}$:
+    $$a)\; 4^x - 5 \cdot 2^x + 4 = 0 \qquad\qquad\qquad b)\; \log_2(x + 3) + \log_2(x - 1) = 5$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 13}
+  \begin{mwejercicio}[Ejercicio 13 — Límites Fundamentales \quad \facil]
+    Calcula los siguientes límites inmediatos:
+    $$a)\; \lim_{x \to 2} \frac{x^2 - 4}{x^2 - 3x + 2} \qquad\qquad\qquad b)\; \lim_{x \to 0} \frac{\sin(5x)}{2x}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 14}
+  \begin{mwejercicio}[Ejercicio 14 — Geometría de la Derivada \quad \medio]
+    Encuentra las ecuaciones de la recta tangente y de la recta normal a la curva en el punto de abscisa $x = 2$:
+    $$y = \frac{x^2 + 1}{x - 1}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 15}
+  \begin{mwejercicio}[Ejercicio 15 — Límites Algebraicos y al Infinito \quad \medio]
+    Calcula los siguientes límites indeterminados:
+    $$a)\; \lim_{x \to 1} \frac{\sqrt{x + 8} - 3}{x - 1} \qquad\qquad\qquad b)\; \lim_{x \to \infty} \left(\sqrt{x^2 + 4x} - x\right)$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 16}
+  \begin{mwejercicio}[Ejercicio 16 — Continuidad por Tramos \quad \medio]
+    Determina los valores de las constantes $a$ y $b$ para que la función sea continua en todo $\mathbb{R}$:
+    $$f(x) = \begin{cases}
+      ax + 2 & \text{si } x \le 1 \\
+      x^2 + b & \text{si } 1 < x \le 3 \\
+      2x - a & \text{si } x > 3
+    \end{cases}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 17}
+  \begin{mwejercicio}[Ejercicio 17 — Derivación Implícita \quad \medio]
+    Dada la curva algebraica $2x^2 + 3y^2 - 4xy = 18$:
+    \begin{enumerate}
+      \item Calcula la derivada implícita $y'$ en términos de $x$ y $y$.
+      \item Halla la ecuación de la recta tangente a la curva en el punto $P(3, 2)$.
+    \end{enumerate}
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 18}
+  \begin{mwejercicio}[Ejercicio 18 — Continuidad y Derivabilidad \quad \dificil]
+    Encuentra los valores de las constantes reales $a$ y $b$ para que la siguiente función sea derivable en $x = 2$:
+    $$f(x) = \begin{cases}
+      ax^2 + bx + 1 & \text{si } x \le 2 \\
+      \sqrt{2x + 5} & \text{si } x > 2
+    \end{cases}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 19}
+  \begin{mwejercicio}[Ejercicio 19 — Análisis Completo de Funciones \quad \dificil]
+    Para la función $f(x) = \dfrac{\ln x}{x}$ en su dominio natural $(0, \infty)$:
+    \begin{enumerate}
+      \item Calcula los límites en los extremos del dominio ($\lim_{x \to 0^+} f(x)$ y $\lim_{x \to \infty} f(x)$) e identifica las asíntotas.
+      \item Determina los intervalos de crecimiento y decrecimiento, y el valor del máximo absoluto.
+      \item Halla las coordenadas del punto de inflexión de la curva.
+    \end{enumerate}
+  \end{mwejercicio}
+  \vspace{2.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 20}
+  \begin{mwejercicio}[Ejercicio 20 — Optimización Aplicada \quad \dificil]
+    Se desea construir una ventana que tiene la forma de un rectángulo coronado por un semicírculo en la parte superior. Si el perímetro total de la estructura de la ventana está limitado a 12 metros:
+    \begin{enumerate}
+      \item Expresa el área total de la ventana en función exclusivamente del radio $r$ del semicírculo.
+      \item Encuentra las dimensiones exactas ($r$ y la altura $h$ de la parte rectangular) que maximizan el área total para permitir la máxima entrada de luz solar.
+    \end{enumerate}
+  \end{mwejercicio}
+  \vspace{2.5cm}
+\end{frame}
+
+
+\end{document}

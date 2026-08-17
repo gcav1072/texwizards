@@ -1,7 +1,7 @@
 % ============================================================
 %  GUÍA 1: ARITMÉTICA CON NÚMEROS NATURALES Y DECIMALES
 %  Curso Introductorio de Matemáticas — 1er Año
-%  Autor: Gabriel Astudillo
+%  Autor: Ing. Gabriel Astudillo
 %  Sesiones cubiertas: Semana 1 (clases 1 a 4)
 % ============================================================
 
@@ -10,7 +10,7 @@
 % ── Paquetes ─────────────────────────────────────────────────
 
 \usepackage{mathwizards-guia}
-\mwguia{Guía 1 — Aritmética con Naturales y Decimales}{Gabriel Astudillo $\cdot$ Curso 1er Año}
+\mwguia{Guía 1 — Aritmética con Naturales y Decimales}{Ing. Gabriel Astudillo $\cdot$ Curso 1er Año}
 
 \begin{document}
 % ============================================================
@@ -473,22 +473,242 @@ Cuando aparece una coma en la división hay tres casos:
   \textbf{Regla para esta guía:} Cuando realices una división inexacta con decimales, la calcularás \textbf{únicamente hasta dos cifras decimales (centésimas)}.
 \end{cuadroadvertencia}
 
-\noindent\textbf{Ejemplo resuelto 1:} Calculemos $7 \div 2$. Como $2$ no cabe en $7$ exactamente, escribimos $7{,}0$: $70 \div 2 = 35$, así que $7 \div 2 = 3{,}5$.
+% ── El método de la galera ──────────────────────────────────
+\subsection{El método de la galera (división paso a paso)}
 
-\noindent\textbf{Ejemplo resuelto 2 (División inexacta):} Calculemos $14 \div 3$ hasta dos decimales.
-Dividimos $14 \div 3 = 4$ (resto $2$). Colocamos la coma en el cociente y bajamos un cero: $20 \div 3 = 6$ (resto $2$). Bajamos otro cero: $20 \div 3 = 6$ (resto $2$).
-Como ya alcanzamos las dos cifras decimales (centésimas), nos detenemos:
-\[
-  14 \div 3 = 4{,}66 \quad \text{(con resto $0{,}02$)}
-\]
+Para dividir usamos el \textbf{método de la galera}: colocamos el dividendo \emph{dentro} de la galera y el divisor \emph{fuera, a la derecha}. El cociente se escribe \emph{debajo} del divisor.
 
-\noindent\textbf{Ejemplo resuelto 3:} Repartimos $27{,}60$ Bs. entre $3$ amigos. \textquestiondown Cuánto le toca a cada uno?
+\begin{cuadropasos}
+  \textbf{Pasos del método de la galera:}
+  \begin{enumerate}
+    \item Escribe el \textbf{dividendo} dentro de la galera y el \textbf{divisor} a la derecha, separados por una línea vertical y una línea horizontal debajo del divisor.
+    \item Pregúntate: \textquestiondown cuántas veces cabe el divisor en las primeras cifras del dividendo?
+    \item Escribe ese número en el \textbf{cociente} (debajo del divisor).
+    \item \textbf{Multiplica} ese dígito por el divisor y \textbf{resta} el producto al grupo de cifras que estás dividiendo.
+    \item \textbf{Baja} la siguiente cifra del dividendo al lado del resto.
+    \item Repite los pasos 2 a 5 hasta que no queden cifras por bajar.
+    \item Si al terminar queda un resto y necesitas decimales: coloca la \textbf{coma} en el cociente, agrega un \textbf{cero} al resto y continúa dividiendo.
+  \end{enumerate}
+\end{cuadropasos}
 
-\[
-  27{,}60 \div 3 = 9{,}20
-\]
+% ── Caso 1: Decimal entre Entero ────────────────────────────
+\subsubsection*{Caso 1: Decimal entre entero}
 
-\noindent Cada amigo recibe $9{,}20$ Bs.
+\noindent\textbf{Ejemplo resuelto 1:} Calculemos $\boldsymbol{48{,}6 \div 3}$ con la galera.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1:} Armamos la galera:
+
+  \[
+    \renewcommand{\arraystretch}{1.2}
+    \begin{array}{r|l}
+      48{,}6 & 3 \\ \hline
+             &
+    \end{array}
+  \]
+
+  \textbf{Paso 2:} \textquestiondown Cuántas veces cabe $3$ en $4$? Cabe $1$ vez ($1 \times 3 = 3$). Escribimos $1$ en el cociente. Restamos: $4 - 3 = 1$.
+
+  \[
+    \renewcommand{\arraystretch}{1.2}
+    \begin{array}{r|l}
+      4\underline{8}{,}6         & 3 \\ \hline
+      \mathbf{-3}\phantom{8{,}6} & 1 \\
+      1\phantom{8{,}6}           &
+    \end{array}
+  \]
+
+  \textbf{Paso 3:} Bajamos el $8$. Ahora tenemos $18$. \textquestiondown Cuántas veces cabe $3$ en $18$? Cabe $6$ veces ($6 \times 3 = 18$). Restamos: $18 - 18 = 0$.
+
+  \[
+    \renewcommand{\arraystretch}{1.2}
+    \begin{array}{r|l}
+      48{,}\underline{6}         & 3  \\ \hline
+      \mathbf{-3}\phantom{8{,}6} & 16 \\
+      1\mathbf{8}\phantom{{,}6}  &    \\
+      \mathbf{-18}\phantom{{,}6} &    \\
+      0\phantom{{,}6}            &
+    \end{array}
+  \]
+
+  \textbf{Paso 4:} Bajamos el $6$. Como pasamos la coma en el dividendo, \textbf{colocamos la coma en el cociente}: $16{,}\ldots$ Ahora tenemos $06$. \textquestiondown Cuántas veces cabe $3$ en $6$? Cabe $2$ veces ($2 \times 3 = 6$). Restamos: $6 - 6 = 0$.
+
+  \[
+    \renewcommand{\arraystretch}{1.2}
+    \begin{array}{r|l}
+      48{,}6 & 3                   \\ \hline
+             & \boldsymbol{16{,}2} \\
+    \end{array}
+    \qquad \text{Resto } = 0
+  \]
+
+  \textbf{Respuesta:} $48{,}6 \div 3 = \boldsymbol{16{,}2}$.\\
+  \textbf{Comprobación:} $16{,}2 \times 3 = 48{,}6$ \checkmark
+\end{cuadrosolucion}
+
+\newpage %ajuste
+
+% ── Caso 2: Entero entre Decimal ────────────────────────────
+\subsubsection*{Caso 2: Entero entre decimal}
+
+\noindent\textbf{Ejemplo resuelto 2:} Calculemos $\boldsymbol{45 \div 0{,}5}$ con la galera.
+
+\begin{cuadrosolucion}
+  \textbf{Preparación:} El divisor $0{,}5$ tiene una cifra decimal. Multiplicamos ambos por $10$ para quitarle la coma:
+  \[
+    45 \div 0{,}5 \;=\; 450 \div 5
+  \]
+
+  Ahora dividimos $450 \div 5$ con la galera:
+
+  \textbf{Paso 1:} \textquestiondown Cuántas veces cabe $5$ en $4$? No cabe ($4 < 5$). Tomamos las dos primeras cifras: $45$. \textquestiondown Cuántas veces cabe $5$ en $45$? Cabe $9$ veces ($9 \times 5 = 45$). Restamos: $45 - 45 = 0$.
+
+  \[
+    \renewcommand{\arraystretch}{1.2}
+    \begin{array}{r|l}
+      45\underline{0}         & 5 \\ \hline
+      \mathbf{-45}\phantom{0} & 9 \\
+      0\phantom{0}            &
+    \end{array}
+  \]
+
+  \textbf{Paso 2:} Bajamos el $0$. Tenemos $00$. \textquestiondown Cuántas veces cabe $5$ en $0$? Cabe $0$ veces.
+
+  \[
+    \renewcommand{\arraystretch}{1.2}
+    \begin{array}{r|l}
+      450 & 5               \\ \hline
+          & \boldsymbol{90} \\
+    \end{array}
+    \qquad \text{Resto } = 0
+  \]
+
+  \textbf{Respuesta:} $45 \div 0{,}5 = \boldsymbol{90}$.\\
+  \textbf{Comprobación:} $90 \times 0{,}5 = 45$ \checkmark
+\end{cuadrosolucion}
+
+% ── Caso 3: Decimal entre Decimal ────────────────────────────
+\subsubsection*{Caso 3: Decimal entre decimal}
+
+\noindent\textbf{Ejemplo resuelto 3:} Calculemos $\boldsymbol{7{,}56 \div 0{,}12}$ con la galera.
+
+\begin{cuadrosolucion}
+  \textbf{Preparación:} El divisor $0{,}12$ tiene dos cifras decimales. Multiplicamos ambos por $100$:
+  \[
+    7{,}56 \div 0{,}12 \;=\; 756 \div 12
+  \]
+
+  Ahora dividimos $756 \div 12$ con la galera:
+
+  \textbf{Paso 1:} \textquestiondown Cuántas veces cabe $12$ en $7$? No cabe. Tomamos $75$. \textquestiondown Cuántas veces cabe $12$ en $75$? Probamos: $6 \times 12 = 72$ (cabe). $7 \times 12 = 84$ (no cabe, es mayor que $75$). Usamos $6$. Restamos: $75 - 72 = 3$.
+
+  \[
+    \renewcommand{\arraystretch}{1.2}
+    \begin{array}{r|l}
+      75\underline{6}         & 12 \\ \hline
+      \mathbf{-72}\phantom{6} & 6  \\
+      3\phantom{6}            &
+    \end{array}
+  \]
+
+  \textbf{Paso 2:} Bajamos el $6$. Tenemos $36$. \textquestiondown Cuántas veces cabe $12$ en $36$? Cabe $3$ veces ($3 \times 12 = 36$). Restamos: $36 - 36 = 0$.
+
+  \[
+    \renewcommand{\arraystretch}{1.2}
+    \begin{array}{r|l}
+      756 & 12              \\ \hline
+          & \boldsymbol{63} \\
+    \end{array}
+    \qquad \text{Resto } = 0
+  \]
+
+  \textbf{Respuesta:} $7{,}56 \div 0{,}12 = \boldsymbol{63}$.\\
+  \textbf{Comprobación:} $63 \times 0{,}12 = 7{,}56$ \checkmark
+\end{cuadrosolucion}
+
+% ── División inexacta ────────────────────────────────────────
+\subsubsection*{División inexacta (con decimales en el cociente)}
+
+\noindent\textbf{Ejemplo resuelto 4:} Calculemos $\boldsymbol{14 \div 3}$ hasta dos cifras decimales con la galera.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1:} \textquestiondown Cuántas veces cabe $3$ en $1$? No cabe. Tomamos $14$. \textquestiondown Cuántas veces cabe $3$ en $14$? Cabe $4$ veces ($4 \times 3 = 12$). Restamos: $14 - 12 = 2$.
+
+  \[
+    \renewcommand{\arraystretch}{1.2}
+    \begin{array}{r|l}
+      14           & 3 \\ \hline
+      \mathbf{-12} & 4 \\
+      2            &
+    \end{array}
+  \]
+
+  \textbf{Paso 2:} No quedan más cifras, pero queda resto. Colocamos la \textbf{coma} en el cociente y agregamos un cero al resto: tenemos $20$. \textquestiondown Cuántas veces cabe $3$ en $20$? Cabe $6$ veces ($6 \times 3 = 18$). Restamos: $20 - 18 = 2$.
+
+  \[
+    \renewcommand{\arraystretch}{1.2}
+    \begin{array}{r|l}
+      14{,}0                     & 3     \\ \hline
+      \mathbf{-12}\phantom{{,}0} & 4{,}6 \\
+      2\mathbf{0}\phantom{}      &       \\
+      \mathbf{-18}\phantom{}     &       \\
+      2\phantom{}                &
+    \end{array}
+  \]
+
+  \textbf{Paso 3:} Agregamos otro cero: tenemos $20$ de nuevo. Cabe $6$ veces otra vez. Restamos: $20 - 18 = 2$.
+
+  Ya alcanzamos las \textbf{dos cifras decimales} (centésimas), así que nos detenemos.
+
+  \[
+    \renewcommand{\arraystretch}{1.2}
+    \begin{array}{r|l}
+      14{,}00 & 3                   \\ \hline
+              & \boldsymbol{4{,}66} \\
+    \end{array}
+    \qquad \text{Resto } = 0{,}02
+  \]
+
+  \textbf{Respuesta:} $14 \div 3 = \boldsymbol{4{,}66}$ (con resto $0{,}02$).\\
+  \textbf{Comprobación:} $4{,}66 \times 3 + 0{,}02 = 13{,}98 + 0{,}02 = 14$ \checkmark
+\end{cuadrosolucion}
+
+\newpage
+% ── Problema de la vida real ─────────────────────────────────
+\subsubsection*{¡Otro ejemplo!}
+
+\noindent\textbf{Ejemplo resuelto 5:} Repartimos $\boldsymbol{27{,}60}$ Bs. entre $\boldsymbol{3}$ amigos. \textquestiondown Cuánto le toca a cada uno?
+
+\begin{cuadrosolucion}
+  Dividimos $27{,}60 \div 3$ con la galera:
+
+  \textbf{Paso 1:} \textquestiondown Cuántas veces cabe $3$ en $2$? No cabe. Tomamos $27$. \textquestiondown Cuántas veces cabe $3$ en $27$? Cabe $9$ veces ($9 \times 3 = 27$). Restamos: $27 - 27 = 0$.
+
+  \[
+    \renewcommand{\arraystretch}{1.2}
+    \begin{array}{r|l}
+      27{,}\underline{60}         & 3 \\ \hline
+      \mathbf{-27}\phantom{{,}60} & 9 \\
+      0\phantom{{,}60}            &
+    \end{array}
+  \]
+
+  \textbf{Paso 2:} Bajamos el $6$. Como pasamos la coma, \textbf{colocamos la coma en el cociente}: $9{,}\ldots$ Tenemos $06$. \textquestiondown Cuántas veces cabe $3$ en $6$? Cabe $2$ veces ($2 \times 3 = 6$). Restamos: $6 - 6 = 0$.
+
+  \textbf{Paso 3:} Bajamos el $0$. Tenemos $00$. \textquestiondown Cuántas veces cabe $3$ en $0$? Cabe $0$ veces.
+
+  \[
+    \renewcommand{\arraystretch}{1.2}
+    \begin{array}{r|l}
+      27{,}60 & 3                   \\ \hline
+              & \boldsymbol{9{,}20} \\
+    \end{array}
+    \qquad \text{Resto } = 0
+  \]
+
+  \textbf{Respuesta:} Cada amigo recibe $\boldsymbol{9{,}20}$ Bs.\\
+  \textbf{Comprobación:} $9{,}20 \times 3 = 27{,}60$ \checkmark
+\end{cuadrosolucion}
 
 \subsection{Ejercicios: La División}
 

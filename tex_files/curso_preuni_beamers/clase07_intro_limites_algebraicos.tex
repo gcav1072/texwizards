@@ -1,0 +1,259 @@
+% ============================================================
+%  CLASE 07 — INTRODUCCIÓN AL LÍMITE Y LÍMITES ALGEBRAICOS
+%  Curso Preuniversitario · Semana 4 · Clase de 2 horas
+%  (Fusión de las antiguas clases 13 y 14)
+% ============================================================
+\documentclass[aspectratio=169]{beamer}
+\usepackage{mathwizards-beamer}
+\mwbeamer{Clase 7}{Introducción al Límite y Límites Algebraicos}{Semana 4}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Parte 1: Introducción al Límite y Límites Laterales}
+% ════════════════════════════════════════════════════════════
+
+
+\begin{frame}{La Idea Intuitiva de Límite}
+  \begin{block}{Definición de límite}
+    Escribimos:
+    $$\lim_{x \to a} f(x) = L$$
+    si los valores de $f(x)$ se pueden hacer tan cercanos al número $L$ como se desee, tomando $x$ suficientemente cerca de $a$ (por ambos lados), pero \textbf{sin llegar a ser igual a $a$}.
+  \end{block}
+
+  \vspace{4pt}
+  \begin{alertblock}{¡El límite no depende del valor $f(a)$!}
+    Para que $\lim_{x \to a} f(x)$ exista y valga $L$, no importa si $f(a)$ está definida, si no existe o si toma un valor completamente distinto $f(a) \neq L$. Lo único relevante es el \textbf{comportamiento en las cercanías} de $a$.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Límites Laterales y Teorema de Existencia}
+  \begin{block}{Definiciones de aproximación unidireccional}
+    \begin{itemize}
+      \item \textbf{Límite por la izquierda ($\lim_{x \to a^-} f(x)$):} $x$ se aproxima a $a$ únicamente por valores menores que $a$ ($x < a$).
+      \item \textbf{Límite por la derecha ($\lim_{x \to a^+} f(x)$):} $x$ se aproxima a $a$ únicamente por valores mayores que $a$ ($x > a$).
+    \end{itemize}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{Teorema Fundamental de Existencia del Límite Bilateral}
+    $$\boxed{\lim_{x \to a} f(x) = L \iff \lim_{x \to a^-} f(x) = L \quad\text{y}\quad \lim_{x \to a^+} f(x) = L}$$
+  \end{block}
+
+  \vspace{4pt}
+  \begin{mwextra}[Causas por las que un límite NO existe]
+    1. Límites laterales distintos (salto) $\;$|\;$ 2. Comportamiento infinito no acotado $\;$|\;$ 3. Oscilación infinita cerca de $a$.
+  \end{mwextra}
+\end{frame}
+
+
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase — Parte 1}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 1}
+  \begin{mwejercicio}[Ejercicio 1 \quad \facil]
+    Estima el valor del límite construyendo una tabla de valores numéricos para $x$ acercándose a 2 por la izquierda ($1{,}9; 1{,}99; 1{,}999$) y por la derecha ($2{,}1; 2{,}01; 2{,}001$):
+    $$\lim_{x \to 2} (x^2 + 2x - 1)$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 2}
+  \begin{mwejercicio}[Ejercicio 2 \quad \facil]
+    Calcula el siguiente límite simplificando la discontinuidad evitable antes de evaluar:
+    $$\lim_{x \to 3} \frac{x^2 - 9}{x - 3}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 3}
+  \begin{mwejercicio}[Ejercicio 3 \quad \facil]
+    Dada la función a trozos $f(x) = \begin{cases} 3x - 1 & \text{si } x < 2 \\ 7 - x & \text{si } x \ge 2 \end{cases}$, calcula:
+    $$a)\; \lim_{x \to 2^-} f(x) \qquad\qquad b)\; \lim_{x \to 2^+} f(x) \qquad\qquad c)\; \lim_{x \to 2} f(x) \qquad\qquad d)\; f(2)$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 4}
+  \begin{mwejercicio}[Ejercicio 4 \quad \medio]
+    Analiza la existencia del límite en el origen para la función cociente de valor absoluto:
+    $$\lim_{x \to 2} \frac{|x - 2|}{x - 2}$$
+    Calcula detalladamente el límite lateral izquierdo y el límite lateral derecho.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 5}
+  \begin{mwejercicio}[Ejercicio 5 \quad \medio]
+    Determina si existe el límite $\lim_{x \to 1} f(x)$ para la función:
+    $$f(x) = \begin{cases} x^2 + 3 & \text{si } x < 1 \\ 5 & \text{si } x = 1 \\ 6 - 2x & \text{si } x > 1 \end{cases}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 6}
+  \begin{mwejercicio}[Ejercicio 6 \quad \medio]
+    Halla el valor de la constante $k$ para que el límite bilateral $\lim_{x \to -2} f(x)$ exista:
+    $$f(x) = \begin{cases} 2x^2 + kx & \text{si } x \le -2 \\ kx + 8 & \text{si } x > -2 \end{cases}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 7}
+  \begin{mwejercicio}[Ejercicio 7 \quad \medio]
+    Calcula los siguientes límites laterales en el origen:
+    $$a)\; \lim_{x \to 0^+} \frac{|x| + 2x}{x} \qquad\qquad\qquad b)\; \lim_{x \to 0^-} \frac{|x| + 2x}{x}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 8}
+  \begin{mwejercicio}[Ejercicio 8 \quad \dificil]
+    Evalúa los límites laterales infinitos en la asíntota vertical $x = 1$:
+    $$a)\; \lim_{x \to 1^+} \frac{2x + 1}{x - 1} \qquad\qquad\qquad b)\; \lim_{x \to 1^-} \frac{2x + 1}{x - 1}$$
+    ¿Existe el límite bilateral $\lim_{x \to 1} \frac{2x + 1}{x - 1}$? Justifica.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 9}
+  \begin{mwejercicio}[Ejercicio 9 \quad \dificil]
+    Determina los valores de las constantes $a$ y $b$ para que existan simultáneamente los límites en $x = -1$ y en $x = 2$ de la función:
+    $$f(x) = \begin{cases}
+      ax + 3 & \text{si } x < -1 \\
+      x^2 - b & \text{si } -1 \le x \le 2 \\
+      2ax + b & \text{si } x > 2
+    \end{cases}$$
+  \end{mwejercicio}
+  \vspace{2.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 10}
+  \begin{mwejercicio}[Ejercicio 10 \quad \dificil]
+    Considera la función oscilatoria $f(x) = \sin\left(\dfrac{\pi}{x}\right)$ para $x \neq 0$:
+    \begin{enumerate}
+      \item Evalúa $f(x)$ en las sucesiones $x_n = \dfrac{1}{2n}$ y $y_n = \dfrac{2}{4n + 1}$ para $n = 1, 2, 3, \dots$
+      \item Demuestra analíticamente por qué no existe el límite $\lim_{x \to 0} \sin\left(\dfrac{\pi}{x}\right)$.
+    \end{enumerate}
+  \end{mwejercicio}
+  \vspace{2.5cm}
+\end{frame}
+
+
+% ════════════════════════════════════════════════════════════
+\section{Parte 2: Cálculo de Límites Algebraicos}
+% ════════════════════════════════════════════════════════════
+
+
+\begin{frame}{Propiedades Operativas de los Límites}
+  \begin{block}{Si $\lim_{x \to a} f(x) = L$ y $\lim_{x \to a} g(x) = M$ existen y son finitos}
+    \begin{columns}[T]
+      \column{0.48\textwidth}
+      \begin{itemize}
+        \item $\lim_{x \to a} [f(x) \pm g(x)] = L \pm M$
+        \item $\lim_{x \to a} [c \cdot f(x)] = c \cdot L$
+        \item $\lim_{x \to a} [f(x) \cdot g(x)] = L \cdot M$
+      \end{itemize}
+      \column{0.48\textwidth}
+      \begin{itemize}
+        \item $\lim_{x \to a} \left[\dfrac{f(x)}{g(x)}\right] = \dfrac{L}{M} \quad (M \neq 0)$
+        \item $\lim_{x \to a} [f(x)]^n = L^n \quad (n \in \mathbb{N})$
+        \item $\lim_{x \to a} \sqrt[n]{f(x)} = \sqrt[n]{L} \quad (L > 0 \text{ si } n \text{ par})$
+      \end{itemize}
+    \end{columns}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{Sustitución Directa}
+    Para toda función polinomial o racional cuyo denominador no se anule en $a$:
+    $$\lim_{x \to a} P(x) = P(a)$$
+  \end{block}
+\end{frame}
+
+\begin{frame}{Estrategias para la Indeterminación $\left[\frac{0}{0}\right]$}
+  \begin{mwpasos}[Caja de herramientas algebraicas para levantar la forma $\frac{0}{0}$]
+    \begin{enumerate}
+      \item \textbf{Factorización:} Factorizar polinomios en numerador y denominador (diferencia de cuadrados, trinomios, Ruffini, diferencia de cubos) y cancelar el factor causante de la indeterminación $(x - a)$.
+      \item \textbf{Racionalización:} Multiplicar numerador y denominador por el \textbf{conjugado} de la expresión que contiene raíces cuadradas o la identidad de cubos para raíces cúbicas.
+      \item \textbf{Fracciones complejas:} Simplificar el mínimo común múltiplo en sumas/restas de fracciones algebraicas.
+      \item \textbf{Cambio de variable:} Para radicales con índices distintos ($\sqrt{x}$ y $\sqrt[3]{x}$, usar $x = t^6$).
+    \end{enumerate}
+  \end{mwpasos}
+\end{frame}
+
+
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase — Parte 2}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 11}
+  \begin{mwejercicio}[Ejercicio 11 \quad \facil]
+    Calcula aplicando las propiedades y sustitución directa:
+    $$\lim_{x \to -2} \frac{x^3 - 3x^2 + 4x + 1}{2x^2 + 5}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 12}
+  \begin{mwejercicio}[Ejercicio 12 \quad \facil]
+    Calcula el límite indeterminado $\left[\frac{0}{0}\right]$ factorizando diferencia de cuadrados:
+    $$\lim_{x \to -4} \frac{x^2 - 16}{x + 4}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 13}
+  \begin{mwejercicio}[Ejercicio 13 \quad \facil]
+    Calcula el límite indeterminado factorizando trinomios:
+    $$\lim_{x \to 3} \frac{x^2 - 5x + 6}{x^2 - 9}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 14}
+  \begin{mwejercicio}[Ejercicio 14 \quad \medio]
+    Calcula el límite racionalizando el numerador:
+    $$\lim_{x \to 4} \frac{\sqrt{x} - 2}{x - 4}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 15}
+  \begin{mwejercicio}[Ejercicio 15 \quad \medio]
+    Calcula el límite empleando la fórmula de diferencia de cubos:
+    $$\lim_{x \to 2} \frac{x^3 - 8}{x^2 - 4}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 16}
+  \begin{mwejercicio}[Ejercicio 16 \quad \medio]
+    Calcula el límite con fracciones compuestas en el numerador:
+    $$\lim_{x \to 0} \frac{\frac{1}{3 + x} - \frac{1}{3}}{x}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 17}
+  \begin{mwejercicio}[Ejercicio 17 \quad \medio]
+    Calcula el cociente incremental racionalizado (derivada de la raíz):
+    $$\lim_{h \to 0} \frac{\sqrt{x + h} - \sqrt{x}}{h} \qquad (x > 0)$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 18}
+  \begin{mwejercicio}[Ejercicio 18 \quad \dificil]
+    Calcula el límite indeterminado:
+    $$\lim_{x \to 1} \frac{\sqrt{x + 3} - 2}{x^2 - 1}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 19}
+  \begin{mwejercicio}[Ejercicio 19 \quad \dificil]
+    Calcula el límite de cocientes polinomiales de orden superior mediante división sintética o factorización:
+    $$\lim_{x \to 1} \frac{x^4 - 3x^2 + 2}{x^3 - 1}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 20}
+  \begin{mwejercicio}[Ejercicio 20 \quad \dificil]
+    Encuentra los valores de las constantes reales $a$ y $b$ para que el siguiente límite exista y sea igual a 1:
+    $$\lim_{x \to 0} \frac{\sqrt{ax + b} - 2}{x} = 1$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+
+\end{document}

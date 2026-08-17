@@ -1,0 +1,215 @@
+% ============================================================
+%  mathwizards-beamer.sty
+%  Tema Beamer — Mathwizards Consultoría Educativa STEM
+%
+%  Requisitos:
+%    * Compilar con XeLaTeX
+%    * Fuentes: Cabin y Nexa Heavy instaladas en el sistema
+%    * El paquete mathwizards-palette.sty debe estar en TEXINPUTS
+%
+%  Uso:
+%    \documentclass[aspectratio=169]{beamer}
+%    \usepackage{mathwizards-beamer}
+%    \mwbeamer{Clase 1}{Título de la Clase}{Semana 1}
+%    \begin{document}
+%    \maketitle
+%    ...
+%    \end{document}
+% ============================================================
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mathwizards-beamer}[2026/08/17 v1.0 Beamer Mathwizards]
+
+% ── Paquetes base ────────────────────────────────────────────
+\RequirePackage{fontspec}
+\RequirePackage[spanish,es-nodecimaldot]{babel}
+\AtBeginDocument{\shorthandoff{"}}
+\RequirePackage{icomma}
+\RequirePackage{amsmath, amssymb}
+\RequirePackage{booktabs}
+\RequirePackage{array}
+\RequirePackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, calc,
+  decorations.pathmorphing, babel}
+\RequirePackage{mathwizards-palette}
+
+% ── Fuentes ──────────────────────────────────────────────────
+% Cuerpo: Cabin · Títulos: Nexa Heavy · Matemáticas: Latin Modern
+\setsansfont{Cabin}[
+  BoldFont       = Cabin-Bold,
+  ItalicFont     = Cabin-Italic,
+  BoldItalicFont = Cabin-BoldItalic
+]
+\newfontfamily\nxheav{Nexa Heavy}[NFSSFamily=nexaheavy]
+
+% ── Búsqueda del logo ────────────────────────────────────────
+\graphicspath{
+  {assets/img/}{../assets/img/}{../../assets/img/}
+  {../../../assets/img/}{../../../../assets/img/}
+}
+
+% ── Tema base de Beamer ──────────────────────────────────────
+\usetheme{default}
+\useinnertheme{rounded}
+
+% Quitar barras de navegación
+\setbeamertemplate{navigation symbols}{}
+
+% ── Colores del tema ─────────────────────────────────────────
+\setbeamercolor{structure}{fg=mwprimario}
+\setbeamercolor{palette primary}{bg=mwprimario, fg=white}
+\setbeamercolor{palette secondary}{bg=mwmagenta, fg=white}
+\setbeamercolor{palette tertiary}{bg=mwnaranja, fg=white}
+\setbeamercolor{palette quaternary}{bg=mwvioleta, fg=white}
+
+\setbeamercolor{frametitle}{bg=mwprimario, fg=white}
+\setbeamercolor{title}{fg=white}
+\setbeamercolor{subtitle}{fg=white}
+\setbeamercolor{author}{fg=white}
+\setbeamercolor{date}{fg=white}
+\setbeamercolor{institute}{fg=white}
+
+\setbeamercolor{normal text}{fg=black, bg=white}
+\setbeamercolor{alerted text}{fg=mwrojonaranja}
+\setbeamercolor{example text}{fg=mwmagenta}
+\setbeamercolor{itemize item}{fg=mwprimario}
+\setbeamercolor{itemize subitem}{fg=mwnaranja}
+\setbeamercolor{itemize subsubitem}{fg=mwmagenta}
+\setbeamercolor{enumerate item}{fg=mwprimario}
+\setbeamercolor{enumerate subitem}{fg=mwnaranja}
+
+% ── Fuentes del tema ─────────────────────────────────────────
+\setbeamerfont{title}{family=\nxheav, size=\Large}
+\setbeamerfont{subtitle}{family=\nxheav, size=\large}
+\setbeamerfont{frametitle}{family=\nxheav, size=\large}
+\setbeamerfont{framesubtitle}{size=\normalsize}
+\setbeamerfont{block title}{family=\nxheav, size=\normalsize}
+
+% ── Plantilla de frame title ─────────────────────────────────
+\setbeamertemplate{frametitle}{%
+  \nointerlineskip
+  \begin{beamercolorbox}[wd=\paperwidth, ht=2.6em, dp=0.8em, leftskip=1em]{frametitle}%
+    \usebeamerfont{frametitle}\insertframetitle%
+    \ifx\insertframesubtitle\empty\else
+      \hfill{\usebeamerfont{framesubtitle}\color{white!80}\insertframesubtitle}%
+    \fi
+  \end{beamercolorbox}%
+}
+
+% ── Pie de página ────────────────────────────────────────────
+\newcommand{\mwfootleft}{Mathwizards}
+\newcommand{\mwfootcenter}{}
+\newcommand{\mwfootright}{}
+
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.33\paperwidth, ht=2.5ex, dp=1.2ex, leftskip=1em]{palette primary}%
+      \tiny\color{white}\mwfootleft%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.34\paperwidth, ht=2.5ex, dp=1.2ex, center]{palette primary}%
+      \tiny\color{white}\mwfootcenter%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.33\paperwidth, ht=2.5ex, dp=1.2ex, rightskip=1em, right]{palette primary}%
+      \tiny\color{white}\insertframenumber\,/\,\inserttotalframenumber%
+    \end{beamercolorbox}%
+  }%
+  \vskip0pt%
+}
+
+% ── Portada ──────────────────────────────────────────────────
+\setbeamertemplate{title page}{%
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[mwprimario] (current page.north west) rectangle (current page.south east);
+    \fill[mwprimario!85!black] (current page.south west) rectangle
+      ([yshift=2.5cm] current page.south east);
+  \end{tikzpicture}
+  \vfill
+  \begin{center}
+    \includegraphics[height=1.8cm]{l_white.png}\\[16pt]
+    {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}\\[8pt]
+    {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle}\\[16pt]
+    {\small\usebeamercolor[fg]{author}\insertauthor}\\[4pt]
+    {\footnotesize\usebeamercolor[fg]{date}\insertdate}
+  \end{center}
+  \vfill
+}
+
+% ── Comando de configuración ─────────────────────────────────
+\newcommand{\mwbeamer}[3]{%
+  % #1 = Título (e.g., "Clase 1")
+  % #2 = Subtítulo (e.g., "Repaso de Álgebra Elemental")
+  % #3 = Info extra (e.g., "Semana 1")
+  \title{#1}
+  \subtitle{#2}
+  \author{Ing. Gabriel Astudillo}
+  \institute{Mathwizards Consultoría Educativa STEM}
+  \date{#3}
+  \renewcommand{\mwfootleft}{Mathwizards · Curso Preuniversitario}
+  \renewcommand{\mwfootcenter}{#1 — #2}
+}
+
+% ── Bloques personalizados ───────────────────────────────────
+% Bloque Teoría (rojo)
+\setbeamercolor{block title}{bg=mwprimario, fg=white}
+\setbeamercolor{block body}{bg=mwprimario!8, fg=black}
+
+% Bloque Ejemplo (magenta)
+\setbeamercolor{block title example}{bg=mwmagenta, fg=white}
+\setbeamercolor{block body example}{bg=mwmagenta!8, fg=black}
+
+% Bloque Alerta/Advertencia (rojo-naranja)
+\setbeamercolor{block title alerted}{bg=mwrojonaranja, fg=white}
+\setbeamercolor{block body alerted}{bg=mwrojonaranja!8, fg=black}
+
+% ── Entornos adicionales ─────────────────────────────────────
+% Bloque violeta para notas extra
+\newenvironment{mwextra}[1][Nota]{%
+  \setbeamercolor{block title}{bg=mwvioleta, fg=white}%
+  \setbeamercolor{block body}{bg=mwvioleta!8, fg=black}%
+  \begin{block}{#1}%
+}{%
+  \end{block}%
+}
+
+% Bloque naranja para pasos/procedimientos
+\newenvironment{mwpasos}[1][Procedimiento]{%
+  \setbeamercolor{block title}{bg=mwnaranja, fg=white}%
+  \setbeamercolor{block body}{bg=mwnaranja!8, fg=black}%
+  \begin{block}{#1}%
+}{%
+  \end{block}%
+}
+
+% Bloque para ejercicios (gris oscuro)
+\newenvironment{mwejercicio}[1][Ejercicio]{%
+  \setbeamercolor{block title}{bg=mwgrisoscuro, fg=white}%
+  \setbeamercolor{block body}{bg=mwgrisclaro, fg=black}%
+  \begin{block}{#1}%
+}{%
+  \end{block}%
+}
+
+% ── Estrellitas de dificultad ────────────────────────────────
+\newcommand{\facil}{{\color{mwnaranja}$\bigstar$}}
+\newcommand{\medio}{{\color{mwrojonaranja}$\bigstar\bigstar$}}
+\newcommand{\dificil}{{\color{mwprimario}$\bigstar\bigstar\bigstar$}}
+% Nota: el nombre no puede llevar guión bajo (\muy_dificil se tokeniza
+% como \muy + _dificil y rompe); se usa \muyDificil en su lugar.
+\newcommand{\muyDificil}{{\color{mwvioleta}$\bigstar\bigstar\bigstar\bigstar$}}
+
+
+% ── Separador de secciones ───────────────────────────────────
+\AtBeginSection[]{%
+  \begin{frame}
+    \begin{tikzpicture}[remember picture, overlay]
+      \fill[mwprimario] (current page.north west) rectangle (current page.south east);
+    \end{tikzpicture}
+    \vfill
+    \begin{center}
+      {\nxheav\LARGE\color{white}\insertsectionhead}
+    \end{center}
+    \vfill
+  \end{frame}
+}
+
+\endinput

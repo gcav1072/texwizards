@@ -1,37 +1,35 @@
 % ============================================================
-%  GUÍA 7: APLICACIONES DE LA DERIVADA
+%  GUÍA 11: Teoremas, Monotonía y Concavidad
 %  Curso de Introducción a la Universidad — Precálculo y Cálculo I
-%  Autor: Gabriel Astudillo
-%  Sesiones cubiertas: 21, 22 y 23
+%  Autor: Ing. Gabriel Astudillo
+%  Clase cubierta: 11
 % ============================================================
 
 \documentclass[12pt, a4paper]{article}
 
 % ── Paquetes ─────────────────────────────────────────────────
-
 \usepackage{mathwizards-guia}
-\mwguia{Guía 7 — Aplicaciones de la Derivada}{Gabriel Astudillo $\cdot$ Curso Preuniversitario}
+\mwguia{Guía 11 — Teoremas, Monotonía y Concavidad}{Ing. Gabriel Astudillo $\cdot$ Curso Preuniversitario}
 
 \begin{document}
-% ============================================================
 
 % ── Portada / Título ─────────────────────────────────────────
-\mwportada{Guía de Estudio 7}{Aplicaciones de la Derivada}{Máximos y Mínimos, Optimización, Razones de Cambio, Teorema de Rolle y TVM, Análisis de Gráficas}
-
-%\vspace{4pt}
-\begin{cuadroinfo}
-  \small
-  \textbf{Presentación:} Esta guía muestra el poder de la derivada en situaciones reales. Aprenderás a encontrar valores extremos de funciones, resolver problemas de optimización, calcular razones de cambio relacionadas y analizar la forma de una gráfica. Cada sección incluye \textbf{ejercicios resueltos} y \textbf{propuestos}.
-  \\[4pt]
-  \textbf{Nivel de Dificultad:}\quad
-  \facil{} Básico / Directo \quad
-  \medio{} Intermedio \quad
-  \dificil{} Desafiante
-\end{cuadroinfo}
+\mwportada{Guía de Estudio 11}{Teoremas, Monotonía y Concavidad}{Teoremas de Rolle y del Valor Medio, Criterios de la Primera y Segunda Derivada, Trazado de Curvas}
 
 \vspace{4pt}
+\begin{cuadroinfo}
+\small
+\textbf{Presentación:} Esta guía aplica la derivada al análisis de funciones: los teoremas de Rolle y del Valor Medio, los criterios de la primera y segunda derivada, los puntos críticos y de inflexión y el trazado completo de curvas. Incluye teoría, ejercicios resueltos paso a paso y una amplia batería de propuestos con su clave de respuestas.
+\\[4pt]
+\textbf{Nivel de Dificultad:}\quad
+\facil{} Básico / Directo \quad
+\medio{} Intermedio \quad
+\dificil{} Desafiante \quad
+\muyDificil{} Muy Difícil / Reto
+\end{cuadroinfo}
 
-% ============================================================
+\vspace{8pt}
+
 \section{Máximos y Mínimos Locales}
 % ============================================================
 
@@ -167,123 +165,7 @@
 \newpage
 
 % ============================================================
-\section{Problemas de Optimización}
-% ============================================================
 
-\subsection{Metodología para resolver problemas de optimización}
-
-\begin{cuadroteoria}
-  \textbf{Pasos recomendados:}
-  \begin{enumerate}
-    \item \textbf{Identifica} la cantidad a maximizar o minimizar (llámala $Q$).
-    \item \textbf{Expresa} $Q$ en términos de una sola variable, usando las restricciones del problema (puentes geométricos como perímetros, áreas, volúmenes).
-    \item \textbf{Determina} el dominio realista de la variable.
-    \item \textbf{Deriva} $Q$ respecto a la variable.
-    \item \textbf{Iguala} la derivada a cero y resuelve.
-    \item \textbf{Verifica} si se trata de un máximo o mínimo (primera o segunda derivada), y comprueba los extremos del dominio.
-  \end{enumerate}
-\end{cuadroteoria}
-
-\begin{cuadroadvertencia}
-  \textbf{Recuerda:} en problemas de la vida real, los valores negativos o fuera del rango no tienen sentido. Verifica siempre la plausibilidad de la solución.
-\end{cuadroadvertencia}
-
-\subsection{Ejercicios resueltos}
-
-\textbf{Ejemplo R1.} Un granjero quiere cercar un campo rectangular de área $1200$ m$^2$ usando la menor cantidad de cerca posible. ¿Cuáles deben ser las dimensiones?
-
-\begin{cuadrosolucion}
-  \textbf{Solución:} Sea $x$ el largo e $y$ el ancho. Condición: $xy = 1200 \Rightarrow y = \frac{1200}{x}$. Perímetro: $P = 2x + 2y = 2x + \frac{2400}{x}$, con $x > 0$.
-  \begin{itemize}
-    \item Derivamos: $P'(x) = 2 - \dfrac{2400}{x^2}$.
-    \item $P'(x) = 0 \Rightarrow 2 = \dfrac{2400}{x^2} \Rightarrow x^2 = 1200 \Rightarrow x = \sqrt{1200} = 20\sqrt{3} \approx 34{,}64$ m.
-    \item $P''(x) = \dfrac{4800}{x^3} > 0$ siempre, así que es mínimo.
-    \item $y = \dfrac{1200}{20\sqrt{3}} = \dfrac{60}{\sqrt{3}} = 20\sqrt{3}$ m.
-  \end{itemize}
-  Las dimensiones óptimas son $20\sqrt{3} \times 20\sqrt{3}$ m (un cuadrado).
-\end{cuadrosolucion}
-
-\textbf{Ejemplo R2.} Se quiere construir una caja abierta (sin tapa) a partir de una hoja cuadrada de $30$ cm de lado, recortando cuadrados iguales en las esquinas y doblando. ¿De qué tamaño deben ser los cuadrados recortados para maximizar el volumen?
-
-\begin{cuadrosolucion}
-  \textbf{Solución:} Sea $x$ el lado del cuadrado recortado ($0 < x < 15$). La base de la caja mide $30 - 2x$, y la altura es $x$.
-  \begin{itemize}
-    \item Volumen: $V(x) = x(30 - 2x)^2$.
-    \item Derivada: $V'(x) = (30 - 2x)^2 + x \cdot 2(30 - 2x)(-2) = (30 - 2x)^2 - 4x(30 - 2x)$.
-    \item Factorizando: $V'(x) = (30 - 2x)[(30 - 2x) - 4x] = (30 - 2x)(30 - 6x) = 6(15 - x)(5 - x)$.
-    \item Ceros: $x = 15$ (fuera del dominio) y $x = 5$.
-    \item $V''(5) = ...$ (verificar): $V''(x) = -24x + 240$? En $x = 5$: $V''(5) = -24(5) + 240 = 120 > 0$, espera, eso indicaría mínimo. Revisemos la derivada:
-  \end{itemize}
-
-  Rehagamos correctamente: $V(x) = x(30 - 2x)^2 = x(900 - 120x + 4x^2) = 900x - 120x^2 + 4x^3$.
-  \begin{itemize}
-    \item $V'(x) = 900 - 240x + 12x^2 = 12(x^2 - 20x + 75) = 12(x - 5)(x - 15)$.
-    \item En $0 < x < 15$: $x = 5$ es el único punto crítico.
-    \item $V''(x) = -240 + 24x$; $V''(5) = -240 + 120 = -120 < 0$: máximo local.
-    \item $V(5) = 5(30 - 10)^2 = 5(20)^2 = 2000$ cm$^3$.
-  \end{itemize}
-  Se deben recortar cuadrados de $5$ cm para volumen máximo de $2000$ cm$^3$.
-\end{cuadrosolucion}
-
-\textbf{Ejemplo R3.} Encuentra las dimensiones del rectángulo de mayor área que puede inscribirse en una semicircunferencia de radio $5$, con la base sobre el diámetro.
-
-\begin{cuadrosolucion}
-  \textbf{Solución:} Colocamos el centro en el origen. El rectángulo tiene base $2x$ y altura $y = \sqrt{25 - x^2}$ (por la ecuación de la circunferencia $x^2 + y^2 = 25$). Dominio: $0 \le x \le 5$.
-  \begin{itemize}
-    \item Área: $A(x) = 2x\sqrt{25 - x^2}$.
-    \item Derivada (producto): $A'(x) = 2\sqrt{25 - x^2} + 2x \cdot \frac{-x}{\sqrt{25 - x^2}} = \frac{2(25 - x^2) - 2x^2}{\sqrt{25 - x^2}} = \frac{50 - 4x^2}{\sqrt{25 - x^2}}$.
-    \item Cero: $50 - 4x^2 = 0 \Rightarrow x^2 = 12{,}5 \Rightarrow x = \sqrt{12{,}5} = \frac{5\sqrt{2}}{2}$.
-    \item Altura: $y = \sqrt{25 - 12{,}5} = \sqrt{12{,}5} = \frac{5\sqrt{2}}{2}$.
-  \end{itemize}
-  Las dimensiones son base $2x = 5\sqrt{2}$ y altura $y = \frac{5\sqrt{2}}{2}$.
-\end{cuadrosolucion}
-
-\newpage
-
-\textbf{Ejemplo R4.} El costo de producir $x$ artículos es $C(x) = 0{,}1x^2 + 20x + 500$ dólares, y se venden a $50$ dólares cada uno. ¿Cuántos artículos maximizan la ganancia?
-
-\begin{cuadrosolucion}
-  \textbf{Solución:} Ingresos: $R(x) = 50x$. Ganancia: $P(x) = R(x) - C(x) = 50x - (0{,}1x^2 + 20x + 500) = -0{,}1x^2 + 30x - 500$.
-  \begin{itemize}
-    \item $P'(x) = -0{,}2x + 30 = 0 \Rightarrow x = 150$.
-    \item $P''(x) = -0{,}2 < 0$: máximo.
-  \end{itemize}
-  Se deben producir y vender 150 artículos.
-\end{cuadrosolucion}
-
-%\newpage
-
-\subsection{Ejercicios propuestos}
-
-\begin{enumerate}[leftmargin=*, resume]
-  \item \facil{} Encuentra dos números positivos cuya suma sea $20$ y su producto sea máximo.
-
-  \item \facil{} Encuentra dos números positivos cuyo producto sea $100$ y su suma sea mínima.
-
-  \item \medio{} Un rectángulo tiene perímetro fijo de $40$ m. Encuentra sus dimensiones para que el área sea máxima.
-
-  \item \medio{} Se lanza un proyectil hacia arriba y su altura es $h(t) = 80t - 16t^2$ pies. ¿Cuál es la altura máxima?
-
-  \item \medio{} Un fabricante puede vender $100$ artículos a $10$ dólares cada uno. Por cada reducción de $0{,}50$ dólares en el precio, se venden 10 artículos más. ¿Cuál es el precio óptimo para maximizar el ingreso?
-
-  \item \medio{} Se quiere construir un corral rectangular usando $120$ m de cerca, aprovechando un muro existente como uno de los lados. Encuentra las dimensiones que maximizan el área.
-
-  \item \dificil{} Una caja cerrada con base cuadrada debe tener volumen $32$ cm$^3$. Encuentra las dimensiones que minimizan el área de superficie total.
-
-  \item \dificil{} Encuentra el punto sobre la parábola $y = x^2$ más cercano al punto $(0, 3)$.
-
-  \item \dificil{} Una escalera de $10$ m está apoyada contra una pared. Si la base se desliza alejándose de la pared a $2$ m/s, ¿qué tan rápido baja el extremo superior cuando la base está a $6$ m de la pared? (Usa el Teorema de Pitágoras.)
-
-  \item \dificil{} Se vierte arena a razón de $10$ m$^3$/min formando un cono cuya altura es siempre igual al doble del radio. ¿A qué ritmo crece el radio cuando el radio es $5$ m? (Volumen del cono: $V = \frac{1}{3}\pi r^2 h$.)
-
-  \item \dificil{} Un poste de $6$ m proyecta una sombra mientras el sol se pone. Un hombre de $1{,}80$ m camina alejándose del poste a $1{,}5$ m/s. ¿Qué tan rápido crece su sombra?
-
-  \item \dificil{} Se desea hacer una caja abierta con base cuadrada y volumen $32$ cm$^3$ usando el menor material posible. ¿Cuáles son las dimensiones óptimas?
-\end{enumerate}
-
-\newpage
-
-% ============================================================
 \section{Teorema de Rolle y Teorema del Valor Medio}
 % ============================================================
 
@@ -363,75 +245,7 @@
 %\newpage
 
 % ============================================================
-\section{Razones de Cambio Relacionadas}
-% ============================================================
 
-\subsection{Metodología}
-
-\begin{cuadroteoria}
-  \textbf{Metodología de resolución:}
-  \begin{enumerate}[leftmargin=*]
-    \item \textbf{Dibuja un esquema} y asigna variables a las cantidades que varían con el tiempo $t$.
-    \item \textbf{Identifica las razones conocidas y desconocidas} (derivadas respecto a $t$, como $\frac{dx}{dt}$, $\frac{dV}{dt}$).
-    \item \textbf{Escribe una ecuación} que relacione las variables (Pitágoras, fórmulas de volumen/área, triángulos semejantes).
-    \item \textbf{Deriva implícitamente} ambos lados de la ecuación respecto al tiempo $t$ (regla de la cadena).
-    \item \textbf{Sustituye} los valores conocidos en el instante dado y despeja la razón buscada.
-  \end{enumerate}
-\end{cuadroteoria}
-
-\begin{cuadroadvertencia}
-  \textbf{¡Cuidado!} NUNCA sustituyas valores numéricos de variables cambiantes ANTES de derivar. Sustituye únicamente DESPUÉS de haber derivado respecto a $t$.
-\end{cuadroadvertencia}
-
-\subsection{Ejercicios resueltos}
-
-\textbf{Ejemplo R1.} Una escalera de $10$ m de largo está apoyada contra una pared vertical. Si la base de la escalera se desliza alejándose de la pared a razón de $2$ m/s, ¿con qué rapidez baja el extremo superior cuando la base está a $6$ m de la pared?
-
-\begin{cuadrosolucion}
-  \textbf{Solución:}
-  \begin{enumerate}
-    \item Variables: $x(t) =$ distancia de la base a la pared, $y(t) =$ altura en la pared.
-    \item Datos: $\dfrac{dx}{dt} = 2$ m/s. Queremos $\dfrac{dy}{dt}$ cuando $x = 6$.
-    \item Relación (Pitágoras): $x^2 + y^2 = 10^2 = 100$.
-    \item Derivamos respecto a $t$: $2x \dfrac{dx}{dt} + 2y \dfrac{dy}{dt} = 0 \Rightarrow x \dfrac{dx}{dt} + y \dfrac{dy}{dt} = 0$.
-    \item Para $x = 6$: $y = \sqrt{100 - 36} = 8$ m.
-    \item Sustituimos: $6(2) + 8 \dfrac{dy}{dt} = 0 \Rightarrow 12 + 8 \dfrac{dy}{dt} = 0 \Rightarrow \dfrac{dy}{dt} = -\dfrac{12}{8} = -1{,}5$ m/s.
-  \end{enumerate}
-  El extremo superior desciende a $1{,}5$ m/s (el signo negativo indica que $y$ disminuye).
-\end{cuadrosolucion}
-
-\textbf{Ejemplo R2.} Se vierte agua en un tanque cónico recetáculo (con el vértice hacia abajo) de radio $4$ m y altura $10$ m a razón de $2$ m$^3$/min. ¿Con qué rapidez sube el nivel del agua cuando la profundidad es de $5$ m?
-
-\begin{cuadrosolucion}
-  \textbf{Solución:}
-  \begin{enumerate}
-    \item Variables: $r =$ radio de la superficie del agua, $h =$ profundidad del agua, $V =$ volumen de agua.
-    \item Datos: $\dfrac{dV}{dt} = 2$ m$^3$/min. Queremos $\dfrac{dh}{dt}$ cuando $h = 5$.
-    \item Volumen del cono: $V = \dfrac{1}{3}\pi r^2 h$.
-    \item Triángulos semejantes: $\dfrac{r}{h} = \dfrac{4}{10} \Rightarrow r = \dfrac{2}{5}h$.
-    \item Expresamos $V$ solo en función de $h$: $V = \dfrac{1}{3}\pi \left(\dfrac{2}{5}h\right)^2 h = \dfrac{4\pi}{75} h^3$.
-    \item Derivamos respecto a $t$: $\dfrac{dV}{dt} = \dfrac{4\pi}{75} \cdot 3h^2 \dfrac{dh}{dt} = \dfrac{4\pi}{25} h^2 \dfrac{dh}{dt}$.
-    \item Sustituimos $h = 5$ y $\dfrac{dV}{dt} = 2$:
-          $$2 = \dfrac{4\pi}{25}(25) \dfrac{dh}{dt} = 4\pi \dfrac{dh}{dt} \Rightarrow \dfrac{dh}{dt} = \dfrac{2}{4\pi} = \dfrac{1}{2\pi} \approx 0{,}159 \text{ m/min}.$$
-  \end{enumerate}
-\end{cuadrosolucion}
-
-\newpage
-
-\subsection{Ejercicios propuestos}
-
-\begin{enumerate}[leftmargin=*, resume]
-  \item \facil{} Un globo esférico se infla a razón de $100$ cm$^3$/s. ¿Con qué rapidez aumenta el radio cuando el radio mide $5$ cm? ($V = \frac{4}{3}\pi r^3$).
-  \item \facil{} Las aristas de un cubo aumentan a razón de $3$ cm/s. ¿Con qué rapidez aumenta el volumen del cubo cuando cada arista mide $10$ cm?
-  \item \medio{} Un bote es arrastrado hacia un muelle por medio de un cable atado a la proa y pasado por una polea situada en el muelle a $3$ m por encima de la proa. Si el cable se recoge a $1$ m/s, ¿con qué rapidez se aproxima el bote al muelle cuando la distancia del cable es $5$ m?
-  \item \medio{} Un hombre de $1{,}80$ m de estatura camina alejándose de un farol de $6$ m de altura a razón de $1{,}5$ m/s. ¿Con qué rapidez crece su sombra?
-  \item \dificil{} Dos automóviles parten del mismo punto: uno viaja hacia el norte a $60$ km/h y el otro hacia el este a $80$ km/h. ¿Con qué rapidez aumenta la distancia entre ellos $2$ horas después de la salida?
-  \item \dificil{} Se vierte arena sobre el suelo a razón de $10$ m$^3$/min formando un montón cónico cuya altura es siempre igual al diámetro de la base. ¿Con qué rapidez aumenta la altura cuando el montón mide $4$ m de alto?
-\end{enumerate}
-
-%\newpage
-
-% ============================================================
 \section{Análisis Completo de una Gráfica}
 % ============================================================
 
@@ -540,6 +354,49 @@
 \newpage
 
 % ============================================================
+
+% ──────────────────────────────────────────────────────────
+%  NUEVOS EJERCICIOS PROPUESTOS (15) — INSERCIÓN MANUAL
+% ──────────────────────────────────────────────────────────
+\subsection{Ejercicios propuestos: Rolle, TVM y Extremos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Halla los puntos críticos de $f(x) = x^2 - 6x + 5$.
+
+  \item \medio{} Verifica las hipótesis del teorema de Rolle para $f(x) = x^2 - 4x$ en $[0, 4]$ y halla el valor de $c$.
+
+  \item \medio{} Aplica el Teorema del Valor Medio a $f(x) = x^2$ en $[1, 3]$ y halla el valor de $c$.
+
+  \item \medio{} Determina los intervalos de crecimiento de $f(x) = x^3 - 3x$.
+
+  \item \dificil{} Clasifica los extremos locales de $f(x) = x^3 - 3x^2 + 2$ usando el criterio de la primera derivada.
+
+  \item \dificil{} Halla los puntos de inflexión de $f(x) = x^3 - 3x^2 + 1$.
+
+  \item \dificil{} Determina los intervalos de concavidad y los puntos de inflexión de $f(x) = x^4 - 4x^3$.
+
+  \item \muyDificil{} Aplica el Teorema del Valor Medio a $f(x) = \sqrt{x}$ en $[1, 4]$ y halla el valor de $c$.
+\end{enumerate}
+
+\subsection{Ejercicios propuestos: Análisis de Gráficas y Retos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Halla el punto crítico de $f(x) = x^2 + 2x$.
+
+  \item \medio{} Determina si $f(x) = x^3$ tiene extremos locales. Justifica.
+
+  \item \medio{} Realiza el trazado completo de $f(x) = x^2 - 4x + 3$: dominio, cortes con los ejes, vértice y concavidad.
+
+  \item \dificil{} Halla los valores extremos absolutos de $f(x) = x^2 - 4x + 3$ en el intervalo $[0, 5]$.
+
+  \item \dificil{} Analiza $f(x) = \dfrac{x^2}{x - 1}$: asíntotas, puntos críticos y clasificación de extremos.
+
+  \item \muyDificil{} Realiza el análisis completo de $f(x) = x^3 - 6x^2 + 9x + 1$: extremos, monotonía, concavidad y puntos de inflexión.
+
+  \item \muyDificil{} \textbf{Optimización:} Maximiza el área de un rectángulo cuyo perímetro es 40 m.
+\end{enumerate}
+
+% ============================================================
 \section{Clave de Respuestas}
 % ============================================================
 
@@ -560,28 +417,11 @@
   \item $f'(x) = 3x^2 + 1 > 0$ siempre, no hay puntos críticos (la derivada nunca se anula). $f$ es estrictamente creciente en todo $\mathbb{R}$.
 \end{enumerate}
 
-\subsection*{Sección 2: Optimización (Ejercicios 13--24)}
+
+\subsection*{Sección 2: Rolle y TVM (Ejercicios 13--24)}
 
 \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
   \setcounter{enumi}{12}
-  \item Ambos números $= 10$ (producto máximo $100$).
-  \item Ambos números $= 10$ (suma mínima $20$).
-  \item Cuadrado de lado $10$ m (área máxima $100$ m$^2$).
-  \item $h'(t) = 80 - 32t = 0 \Rightarrow t = 2{,}5$ s. $h(2{,}5) = 80(2{,}5) - 16(6{,}25) = 200 - 100 = 100$ pies.
-  \item Si $x$ = reducción en dólares (múltiplos de $0{,}5$): precio $= 10 - x$, cantidad $= 100 + 20x$. Ingreso $R = (10 - x)(100 + 20x)$. Derivando: $R' = -100 + 200 - 40x = 100 - 40x = 0 \Rightarrow x = 2{,}5$. Precio óptimo: $7{,}50$ dólares.
-  \item Con muro como lado, largo $= 120 - 2x$ (donde $x$ es el ancho). Área $= x(120 - 2x)$. $A' = 120 - 4x = 0 \Rightarrow x = 30$. Dimensiones: $30 \times 60$ m.
-  \item Base cuadrada $x$, altura $h = \frac{32}{x^2}$. Área total: $2x^2 + 4xh = 2x^2 + \frac{128}{x}$. $A' = 4x - \frac{128}{x^2} = 0 \Rightarrow 4x^3 = 128 \Rightarrow x = \sqrt[3]{32} = 2\sqrt[3]{4}$. Altura $h = \frac{32}{x^2} = \frac{32}{(2\sqrt[3]{4})^2}$. Simplificado: $x = 2\sqrt[3]{4}$, $h = \frac{32}{4 \sqrt[3]{16}} = \frac{8}{\sqrt[3]{16}} = \frac{8}{2\sqrt[3]{2}} = \frac{4}{\sqrt[3]{2}} = 2\sqrt[3]{4}$. ¡Es un cubo! (base $= h$).
-  \item Punto $(a, a^2)$. Distancia al cuadrado al cuadrado al cuadrado al cuadrd: $D = a^2 + (a^2 - 3)^2$. $D' = 2a + 2(a^2 - 3)(2a) = 2a + 4a(a^2 - 3) = 2a(1 + 2a^2 - 6) = 2a(2a^2 - 5) = 0$. $a = 0$ o $a = \pm\sqrt{2{,}5}$. Los puntos más cercanos: $\left(\sqrt{2{,}5},\ 2{,}5\right)$, $\left(-\sqrt{2{,}5},\ 2{,}5\right)$. (El punto $(0,0)$ es un máximo local de la distancia).
-  \item Sea $x$ = distancia de la base a la pared, $y$ = altura. $x^2 + y^2 = 100$. Derivando: $2x\frac{dx}{dt} + 2y\frac{dy}{dt} = 0$. En $x = 6$, $y = 8$, $\frac{dx}{dt} = 2$: $2(6)(2) + 2(8)\frac{dy}{dt} = 0 \Rightarrow \frac{dy}{dt} = -\frac{24}{16} = -1{,}5$ m/s (la altura baja a 1,5 m/s).
-  \item $V = \frac{1}{3}\pi r^2(2r) = \frac{2}{3}\pi r^3$. Derivando: $\frac{dV}{dt} = 2\pi r^2 \frac{dr}{dt}$. Con $\frac{dV}{dt} = 10$ y $r = 5$: $10 = 2\pi(25)\frac{dr}{dt} \Rightarrow \frac{dr}{dt} = \frac{10}{50\pi} = \frac{1}{5\pi}$ m/min $\approx 0{,}064$ m/min.
-  \item Por triángulos semejantes: $\frac{6}{x + s} = \frac{1{,}8}{s}$. Entonces $6s = 1{,}8x + 1{,}8s \Rightarrow 4{,}2s = 1{,}8x \Rightarrow s = \frac{3}{7}x$. Derivando: $\frac{ds}{dt} = \frac{3}{7}\frac{dx}{dt} = \frac{3}{7}(1{,}5) = \frac{4{,}5}{7} \approx 0{,}643$ m/s.
-  \item Similar al anterior pero con base cuadrada $x$ y volumen fijo $32$: $h = \frac{32}{x^2}$. Área total (sin tapa) $= x^2 + 4xh = x^2 + \frac{128}{x}$. $A' = 2x - \frac{128}{x^2} = 0 \Rightarrow 2x^3 = 128 \Rightarrow x = 4$ cm, $h = \frac{32}{16} = 2$ cm.
-\end{enumerate}
-
-\subsection*{Sección 3: Rolle y TVM (Ejercicios 25--36)}
-
-\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-  \setcounter{enumi}{24}
   \item $f(-1) = 0$, $f(1) = 0$. $f'(x) = 2x = 0 \Rightarrow c = 0$.
   \item $f(0) = 0$, $f(\pi) = 0$. $f'(x) = \cos x = 0 \Rightarrow c = \frac{\pi}{2}$.
   \item $f$ es lineal con pendiente 2, así que $c$ puede ser cualquier punto en $(0, 3)$ (por ejemplo $c = 1$).
@@ -596,22 +436,11 @@
   \item $f(x) = |x|$ no es derivable en $x = 0 \in (-1, 1)$, que es un punto interior del intervalo. No se cumplen las hipótesis del TVM.
 \end{enumerate}
 
-\subsection*{Sección 4: Razones de Cambio Relacionadas (Ejercicios 37--42)}
+
+\subsection*{Sección 3: Análisis de Gráficas (Ejercicios 25--35)}
 
 \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-  \setcounter{enumi}{36}
-  \item $V = \frac{4}{3}\pi r^3 \Rightarrow \frac{dV}{dt} = 4\pi r^2 \frac{dr}{dt} \Rightarrow 100 = 4\pi(25)\frac{dr}{dt} \Rightarrow \frac{dr}{dt} = \frac{1}{\pi} \approx 0{,}318$ cm/s.
-  \item $V = x^3 \Rightarrow \frac{dV}{dt} = 3x^2 \frac{dx}{dt} = 3(100)(3) = 900$ cm$^3$/s.
-  \item Sea $x$ la distancia al muelle y $z$ la longitud del cable: $x^2 + 3^2 = z^2$. Derivando: $2x\frac{dx}{dt} = 2z\frac{dz}{dt}$. Con $z = 5 \Rightarrow x = 4$. $4\frac{dx}{dt} = 5(-1) \Rightarrow \frac{dx}{dt} = -1{,}25$ m/s. Se aproxima a $1{,}25$ m/s.
-  \item Triángulos semejantes: $\frac{6}{x+s} = \frac{1{,}8}{s} \Rightarrow s = \frac{3}{7}x \Rightarrow \frac{ds}{dt} = \frac{3}{7}\frac{dx}{dt} = \frac{3}{7}(1{,}5) = \frac{4{,}5}{7} \approx 0{,}643$ m/s.
-  \item Distancia $D = \sqrt{x^2 + y^2}$. A las 2 h: $x = 160$ km, $y = 120$ km $\Rightarrow D = 200$ km. Derivando: $\frac{dD}{dt} = \frac{x\frac{dx}{dt} + y\frac{dy}{dt}}{D} = \frac{160(80) + 120(60)}{200} = \frac{12800 + 7200}{200} = \frac{20000}{200} = 100$ km/h.
-  \item Diámetro $= 2r = h \Rightarrow r = \frac{h}{2}$. $V = \frac{1}{3}\pi r^2 h = \frac{\pi}{12}h^3$. Derivando: $\frac{dV}{dt} = \frac{\pi}{4}h^2 \frac{dh}{dt} \Rightarrow 10 = \frac{\pi}{4}(16)\frac{dh}{dt} = 4\pi \frac{dh}{dt} \Rightarrow \frac{dh}{dt} = \frac{10}{4\pi} = \frac{5}{2\pi} \approx 0{,}796$ m/min.
-\end{enumerate}
-
-\subsection*{Sección 5: Análisis de Gráficas (Ejercicios 43--54)}
-
-\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-  \setcounter{enumi}{42}
+  \setcounter{enumi}{24}
   \item $f''(x) = 2 > 0$: cóncava hacia arriba en todo $\mathbb{R}$.
   \item $f''(x) = -2 < 0$: cóncava hacia abajo en todo $\mathbb{R}$.
   \item $f''(x) = 6x = 0 \Rightarrow x = 0$; cambia de signo (negativa a la izquierda, positiva a la derecha). Punto de inflexión en $(0, 0)$.
@@ -625,4 +454,32 @@
   \item $f'(x) = \frac{2x}{x^2 + 1}$: decreciente en $(-\infty, 0)$, creciente en $(0, \infty)$; mínimo en $(0, 0)$. $f''(x) = \frac{-2x^2 + 2}{(x^2 + 1)^2} = \frac{2(1 - x^2)}{(x^2 + 1)^2}$: cóncava arriba en $(-1, 1)$, abajo en $(-\infty, -1) \cup (1, \infty)$; puntos de inflexión en $x = \pm 1$.
 \end{enumerate}
 
+
+% ──────────────────────────────────────────────────────────
+%  NUEVAS RESPUESTAS (15) — INSERCIÓN MANUAL
+% ──────────────────────────────────────────────────────────
+\subsection*{Sección 4: Rolle, TVM y Extremos (Ejercicios 36--43)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{35}
+  \item $f'(x) = 2x - 6 = 0 \Rightarrow x = 3$
+  \item $f(0) = 0 = f(4)$; continua y derivable en $[0, 4]$; $f'(x) = 2x - 4 = 0 \Rightarrow c = 2$.
+  \item $\dfrac{f(3) - f(1)}{3 - 1} = 4$; $f'(c) = 2c = 4 \Rightarrow c = 2$
+  \item $f' = 3(x^2 - 1)$; crece en $(-\infty, -1) \cup (1, \infty)$
+  \item $f' = 3x(x - 2)$: máximo local en $x = 0$ ($f(0) = 2$) y mínimo local en $x = 2$ ($f(2) = -2$).
+  \item $f'' = 6x - 6 = 0 \Rightarrow x = 1$; punto de inflexión $(1, -1)$.
+  \item $f'' = 12x(x - 2)$: cóncava hacia arriba en $(-\infty, 0) \cup (2, \infty)$ y hacia abajo en $(0, 2)$; inflexiones en $x = 0$ y $x = 2$.
+  \item $\dfrac{f(4) - f(1)}{3} = \dfrac{1}{3}$; $f'(c) = \dfrac{1}{2\sqrt{c}} = \dfrac{1}{3} \Rightarrow c = \dfrac{9}{4}$
+\end{enumerate}
+
+\subsection*{Sección 5: Análisis de Gráficas y Retos (Ejercicios 44--50)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{43}
+  \item $f'(x) = 2x + 2 = 0 \Rightarrow x = -1$
+  \item No tiene extremos locales: $f'(x) = 3x^2 \ge 0$; es estrictamente creciente en $\mathbb{R}$.
+  \item Dominio $\mathbb{R}$; cortes $(1, 0)$, $(3, 0)$, $(0, 3)$; vértice $(2, -1)$ (mínimo); cóncava hacia arriba.
+  \item Mínimo absoluto $-1$ (en $x = 2$); máximo absoluto $8$ (en $x = 5$).
+  \item Asíntota vertical $x = 1$; asíntota oblicua $y = x + 1$; $f' = \frac{x(x - 2)}{(x - 1)^2}$: máximo local en $x = 0$, mínimo local en $x = 2$.
+  \item $f' = 3(x - 1)(x - 3)$: crece en $(-\infty, 1) \cup (3, \infty)$, decrece en $(1, 3)$; máximo local $(1, 5)$, mínimo local $(3, 1)$; $f'' = 6(x - 2)$: cóncava hacia abajo en $(-\infty, 2)$, hacia arriba en $(2, \infty)$; punto de inflexión $(2, 3)$.
+  \item Cuadrado de $10 \times 10$ m; área máxima $100$ m$^2$.
+\end{enumerate}
 \end{document}

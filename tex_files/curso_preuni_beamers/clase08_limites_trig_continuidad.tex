@@ -1,0 +1,268 @@
+% ============================================================
+%  CLASE 08 — LÍMITES TRIGONOMÉTRICOS, AL INFINITO Y CONTINUIDAD
+%  Curso Preuniversitario · Semana 4 · Clase de 2 horas
+%  (Fusión de las antiguas clases 15 y 16)
+% ============================================================
+\documentclass[aspectratio=169]{beamer}
+\usepackage{mathwizards-beamer}
+\mwbeamer{Clase 8}{Límites Trigonométricos, al Infinito y Continuidad}{Semana 4}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Parte 1: Límites Trigonométricos y al Infinito}
+% ════════════════════════════════════════════════════════════
+
+
+\begin{frame}{Límite Trigonométrico Fundamental y Variantes}
+  \begin{block}{Límite fundamental ($x$ en radianes)}
+    $$\boxed{\lim_{x \to 0} \frac{\sin x}{x} = 1} \qquad\qquad \boxed{\lim_{u \to 0} \frac{\sin(ku)}{ku} = 1 \quad (k \neq 0)}$$
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{Variantes de uso frecuente en cálculo}
+    \begin{columns}[T]
+      \column{0.48\textwidth}
+      \begin{itemize}
+        \item $\lim_{x \to 0} \dfrac{\tan x}{x} = 1$
+        \item $\lim_{x \to 0} \dfrac{1 - \cos x}{x} = 0$
+      \end{itemize}
+      \column{0.48\textwidth}
+      \begin{itemize}
+        \item $\lim_{x \to 0} \dfrac{1 - \cos x}{x^2} = \dfrac{1}{2}$
+        \item $\lim_{x \to 0} \dfrac{\arcsin x}{x} = 1$
+      \end{itemize}
+    \end{columns}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{mwextra}[Teorema del Emparedado (Squeeze Theorem)]
+    Si $g(x) \le f(x) \le h(x)$ cerca de $a$ (excepto posiblemente en $a$) y $\lim_{x \to a} g(x) = \lim_{x \to a} h(x) = L$, entonces $\lim_{x \to a} f(x) = L$.
+  \end{mwextra}
+\end{frame}
+
+\begin{frame}{Límites al Infinito y Asíntotas Horizontales}
+  \begin{block}{Comportamiento asintótico cuando $x \to \pm\infty$}
+    $$\lim_{x \to \pm\infty} \frac{1}{x^p} = 0 \quad (p > 0)$$
+    Si $\lim_{x \to \infty} f(x) = L$ o $\lim_{x \to -\infty} f(x) = L$, entonces la recta horizontal \textbf{$y = L$} es una asíntota horizontal.
+  \end{block}
+
+  \vspace{4pt}
+  \begin{alertblock}{¡Cuidado con los signos al extraer raíces cuando $x \to -\infty$!}
+    Para $x < 0$, se cumple que $\sqrt{x^2} = |x| = \alert{-x}$. \\
+    Por tanto, al dividir entre $x$, dentro de la raíz cuadrada se divide entre $x^2$, pero fuera queda un signo negativo:
+    $$\frac{\sqrt{x^2 + 1}}{x} = \frac{\sqrt{x^2(1 + \frac{1}{x^2})}}{x} = \frac{|x|\sqrt{1 + \frac{1}{x^2}}}{x} = \frac{-x\sqrt{1 + \frac{1}{x^2}}}{x} = -\sqrt{1 + \frac{1}{x^2}} \xrightarrow{x \to -\infty} -1$$
+  \end{alertblock}
+\end{frame}
+
+
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase — Parte 1}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 1}
+  \begin{mwejercicio}[Ejercicio 1 \quad \facil]
+    Calcula aplicando el límite fundamental:
+    $$\lim_{x \to 0} \frac{\sin(7x)}{3x}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 2}
+  \begin{mwejercicio}[Ejercicio 2 \quad \facil]
+    Calcula el límite al infinito de la función racional:
+    $$\lim_{x \to \infty} \frac{5x^2 - 3x + 8}{2x^2 + 7x - 1}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 3}
+  \begin{mwejercicio}[Ejercicio 3 \quad \facil]
+    Calcula el límite donde el grado del denominador es mayor:
+    $$\lim_{x \to \infty} \frac{4x + 9}{3x^2 - 5x + 2}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 4}
+  \begin{mwejercicio}[Ejercicio 4 \quad \medio]
+    Calcula el límite trigonométrico compuesto dividiendo por $x$:
+    $$\lim_{x \to 0} \frac{\sin(4x)}{\tan(3x)}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 5}
+  \begin{mwejercicio}[Ejercicio 5 \quad \medio]
+    Calcula el límite multiplicando por el conjugado trigonométrico:
+    $$\lim_{x \to 0} \frac{1 - \cos(2x)}{x^2}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 6}
+  \begin{mwejercicio}[Ejercicio 6 \quad \medio]
+    Calcula el límite con radical en el infinito positivo:
+    $$\lim_{x \to \infty} \frac{\sqrt{9x^2 + 4}}{2x - 1}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 7}
+  \begin{mwejercicio}[Ejercicio 7 \quad \medio]
+    Demuestra y calcula el siguiente límite mediante el Teorema del Emparedado:
+    $$\lim_{x \to 0} x^2 \cos\left(\frac{1}{x}\right)$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 8}
+  \begin{mwejercicio}[Ejercicio 8 \quad \dificil]
+    Calcula con estricto cuidado del signo el límite en el infinito negativo:
+    $$\lim_{x \to -\infty} \frac{\sqrt{4x^2 + 5x}}{3x + 2}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 9}
+  \begin{mwejercicio}[Ejercicio 9 \quad \dificil]
+    Calcula la indeterminación $[\infty - \infty]$ racionalizando con el conjugado:
+    $$\lim_{x \to \infty} \left(\sqrt{x^2 + 6x} - x\right)$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 10}
+  \begin{mwejercicio}[Ejercicio 10 \quad \dificil]
+    Calcula el siguiente límite trigonométrico avanzado:
+    $$\lim_{x \to 0} \frac{\tan x - \sin x}{x^3}$$
+    \emph{Pista: expresa $\tan x = \frac{\sin x}{\cos x}$ y extrae factor común.}
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+
+% ════════════════════════════════════════════════════════════
+\section{Parte 2: Continuidad y Práctica de Límites}
+% ════════════════════════════════════════════════════════════
+
+
+\begin{frame}{Definición Formal de Continuidad}
+  \begin{block}{Las 3 Condiciones de Continuidad en un Punto $x = a$}
+    Una función $f$ es \textbf{continua} en $x = a$ si y solo si se verifican simultáneamente:
+    \begin{enumerate}
+      \item $f(a)$ \textbf{está definida} (es decir, $a \in \text{Dom}(f)$).
+      \item $\lim_{x \to a} f(x)$ \textbf{existe} (los límites laterales existen, son finitos y coinciden: $\lim_{x \to a^-} f(x) = \lim_{x \to a^+} f(x)$).
+      \item $\lim_{x \to a} f(x) = f(a)$ (el límite coincide exactamente con el valor de la función en el punto).
+    \end{enumerate}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{Continuidad en un Intervalo Cerrado $[a, b]$}
+    $f$ es continua en $[a, b]$ si es continua en $(a, b)$, continua por la derecha en $a$ ($\lim_{x \to a^+} f(x) = f(a)$) y continua por la izquierda en $b$ ($\lim_{x \to b^-} f(x) = f(b)$).
+  \end{block}
+\end{frame}
+
+\begin{frame}{Clasificación de Discontinuidades}
+  \begin{block}{Tipos de Discontinuidad}
+    \begin{itemize}
+      \item \textbf{Discontinuidad Evitable (Removible / Hueco):}
+            Existe $\lim_{x \to a} f(x) = L$ finito, pero $f(a)$ no existe o $f(a) \neq L$. La discontinuidad se puede ``reparar'' redefiniendo $f(a) = L$.
+      \item \textbf{Discontinuidad de Salto Finito:}
+            Existen ambos límites laterales $\lim_{x \to a^-} f(x) = L_1$ y $\lim_{x \to a^+} f(x) = L_2$, pero $L_1 \neq L_2$. El tamaño del salto es $|L_2 - L_1|$.
+      \item \textbf{Discontinuidad Infinita / Esencial:}
+            Al menos uno de los límites laterales tiende a $+\infty$ o $-\infty$ (presencia de una asíntota vertical).
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Teorema del Valor Intermedio (TVI)}
+  \begin{block}{Enunciado de Bolzano-Cauchy}
+    Si $f$ es una función \textbf{continua} en el intervalo cerrado $[a, b]$, y $N$ es cualquier número estrictamente entre $f(a)$ y $f(b)$, entonces \textbf{existe al menos un número} $c \in (a, b)$ tal que:
+    $$\boxed{f(c) = N}$$
+  \end{block}
+
+  \vspace{4pt}
+  \begin{mwextra}[Teorema de Existencia de Ceros / Raíces]
+    Si $f$ es continua en $[a, b]$ y $f(a) \cdot f(b) < 0$ (tienen signos opuestos), entonces la curva debe cruzar el eje $x$, garantizando la existencia de al menos una raíz $c \in (a, b)$ con $f(c) = 0$.
+  \end{mwextra}
+\end{frame}
+
+
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase — Parte 2}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 11}
+  \begin{mwejercicio}[Ejercicio 11 \quad \facil]
+    Determina si la función $f(x) = \dfrac{x^2 - 4}{x - 2}$ es continua en $x = 2$. Si no lo es, clasifica el tipo de discontinuidad.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 12}
+  \begin{mwejercicio}[Ejercicio 12 \quad \facil]
+    Analiza la continuidad en $x = 3$ de la función definida a trozos:
+    $$f(x) = \begin{cases} 2x + 1 & \text{si } x < 3 \\ 7 & \text{si } x = 3 \\ x^2 - 2 & \text{si } x > 3 \end{cases}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 13}
+  \begin{mwejercicio}[Ejercicio 13 \quad \facil]
+    Demuestra, mediante el Teorema del Valor Intermedio, que la ecuación polinomial $x^3 - 3x - 1 = 0$ tiene al menos una raíz real en el intervalo $[1, 2]$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 14}
+  \begin{mwejercicio}[Ejercicio 14 \quad \medio]
+    Determina el valor de la constante $k$ para que la función $f(x)$ sea continua en todo $\mathbb{R}$:
+    $$f(x) = \begin{cases} 3x + k & \text{si } x < 2 \\ 2x^2 - 1 & \text{si } x \ge 2 \end{cases}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 15}
+  \begin{mwejercicio}[Ejercicio 15 \quad \medio]
+    Dada la función $f(x) = \dfrac{\sqrt{x} - 3}{x - 9}$ para $x \neq 9$:
+    \begin{enumerate}
+      \item Calcula el límite $\lim_{x \to 9} f(x)$.
+      \item ¿Cómo se debe definir $f(9)$ para que la función sea continua en $x = 9$?
+    \end{enumerate}
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 16}
+  \begin{mwejercicio}[Ejercicio 16 \quad \medio]
+    Encuentra y clasifica todas las discontinuidades (evitables, de salto o infinitas) de la función:
+    $$f(x) = \frac{x^2 - 1}{|x - 1|(x + 2)}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 17}
+  \begin{mwejercicio}[Ejercicio 17 \quad \medio]
+    Demuestra que la ecuación trascendente $e^x + x = 2$ tiene al menos una solución en el intervalo $[0, 1]$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 18}
+  \begin{mwejercicio}[Ejercicio 18 \quad \dificil]
+    Determina los valores de las constantes $a$ y $b$ para que la función sea continua en todo $\mathbb{R}$:
+    $$f(x) = \begin{cases}
+      ax + 1 & \text{si } x < 1 \\
+      4 & \text{si } x = 1 \\
+      bx^2 + 2a & \text{si } x > 1
+    \end{cases}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 19}
+  \begin{mwejercicio}[Ejercicio 19 \quad \dificil]
+    Usa el Teorema del Valor Intermedio y los límites en el infinito para demostrar formalmente que \textbf{todo polinomio de grado impar con coeficientes reales tiene al menos una raíz real}.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 20}
+  \begin{mwejercicio}[Ejercicio 20 \quad \dificil]
+    Calcula el siguiente límite algebraico-trigonométrico de integración de técnicas:
+    $$\lim_{x \to 0} \frac{\sqrt{1 + \sin(2x)} - \sqrt{1 - \sin(2x)}}{x}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+
+\end{document}

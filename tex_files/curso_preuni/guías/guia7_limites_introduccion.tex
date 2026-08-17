@@ -1,0 +1,432 @@
+% ============================================================
+%  GUÍA 7: Introducción al Límite y Límites Algebraicos
+%  Curso de Introducción a la Universidad — Precálculo y Cálculo I
+%  Autor: Ing. Gabriel Astudillo
+%  Clase cubierta: 7
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+\usepackage{mathwizards-guia}
+\mwguia{Guía 7 — Introducción al Límite y Límites Algebraicos}{Ing. Gabriel Astudillo $\cdot$ Curso Preuniversitario}
+
+\begin{document}
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Estudio 7}{Introducción al Límite y Límites Algebraicos}{Límite Intuitivo, Límites Laterales, Propiedades, Indeterminación $0/0$, Factorización y Racionalización}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+\small
+\textbf{Presentación:} Esta guía construye la base conceptual del análisis matemático: la idea intuitiva de límite, los límites laterales y su teorema de existencia, las propiedades operativas y las técnicas para resolver indeterminaciones del tipo $0/0$ mediante factorización y racionalización. Incluye teoría, ejercicios resueltos paso a paso y propuestos con clave.
+\\[4pt]
+\textbf{Nivel de Dificultad:}\quad
+\facil{} Básico / Directo \quad
+\medio{} Intermedio \quad
+\dificil{} Desafiante \quad
+\muyDificil{} Muy Difícil / Reto
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+\section{Introducción Intuitiva al Límite y Límites Laterales}
+% ============================================================
+
+\subsection{¿Qué es un límite?}
+
+\begin{cuadroteoria}
+  \textbf{Idea intuitiva:} El límite de $f(x)$ cuando $x$ se acerca a $a$, denotado $\lim_{x \to a} f(x)$, es el valor al que $f(x)$ se aproxima conforme $x$ se acerca a $a$ (por ambos lados), sin necesidad de que $f(a)$ esté definida.
+
+  \textbf{Límites laterales:}
+  \begin{itemize}[leftmargin=*]
+    \item $\lim_{x \to a^-} f(x)$: límite por la \textbf{izquierda} (valores $x < a$).
+    \item $\lim_{x \to a^+} f(x)$: límite por la \textbf{derecha} (valores $x > a$).
+  \end{itemize}
+
+  \textbf{Existencia del límite:}
+  $$\boxed{\lim_{x \to a} f(x) = L \iff \lim_{x \to a^-} f(x) = L \;\text{ y }\; \lim_{x \to a^+} f(x) = L}$$
+\end{cuadroteoria}
+
+\begin{cuadrosolucion}
+  \textbf{Observación importante:} El límite $\lim_{x \to a} f(x)$ \textbf{no depende} del valor de $f(a)$. La función puede estar definida o no en $x = a$, y el límite existe igual si los valores se aproximan a $L$.
+\end{cuadrosolucion}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Evalúa $\lim_{x \to 2} (x^2 + 1)$ mediante una tabla de valores.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Construimos una tabla con valores cercanos a 2:
+  \begin{center}
+    \small
+    \begin{tabular}{cccccccc}
+      \toprule
+      $x$            & 1{,}9  & 1{,}99   & 1{,}999 & $\to 2^-$ & $\to 2^+$ & 2{,}001 & 2{,}01   \\
+      \midrule
+      $f(x) = x^2+1$ & 4{,}61 & 4{,}9601 & 4{,}996 & $\to 5$   &           & 5{,}004 & 5{,}0401 \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  Los valores se acercan a 5 por ambos lados. Por tanto: $\lim_{x \to 2} (x^2 + 1) = 5$.
+\end{cuadrosolucion}
+\newpage
+\textbf{Ejemplo R2.} Sea $f(x) = \dfrac{x^2 - 1}{x - 1}$ para $x \neq 1$. Evalúa $\lim_{x \to 1} f(x)$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Nota que $f(1)$ no está definida (división entre cero). Pero:
+  $$\frac{x^2 - 1}{x - 1} = \frac{(x - 1)(x + 1)}{x - 1} = x + 1 \quad (x \neq 1).$$
+  Entonces, cuando $x$ se acerca a 1, $f(x) = x + 1$ se acerca a 2. Por tanto:
+  $$\lim_{x \to 1} \frac{x^2 - 1}{x - 1} = 2.$$
+  Este es un ejemplo de \textbf{discontinuidad evitable}: la función tiene un hueco en $(1, 2)$, pero el límite existe.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Analiza la existencia del límite para $f(x) = |x|/x$ cuando $x \to 0$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Para $x > 0$: $\dfrac{|x|}{x} = 1$. Para $x < 0$: $\dfrac{|x|}{x} = -1$.
+  \begin{itemize}
+    \item $\lim_{x \to 0^+} \dfrac{|x|}{x} = 1$.
+    \item $\lim_{x \to 0^-} \dfrac{|x|}{x} = -1$.
+  \end{itemize}
+  Como los límites laterales son distintos, $\lim_{x \to 0} \dfrac{|x|}{x}$ \textbf{no existe}.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R4.} Sea $f(x) = \begin{cases} x^2 + 1 & \text{si } x \ge 1 \\ 3x & \text{si } x < 1 \end{cases}$. ¿Existe $\lim_{x \to 1} f(x)$?
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{itemize}
+    \item Por la izquierda: $\lim_{x \to 1^-} 3x = 3$.
+    \item Por la derecha: $\lim_{x \to 1^+} (x^2 + 1) = 2$.
+  \end{itemize}
+  Son distintos, por lo que el límite no existe.
+\end{cuadrosolucion}
+
+\newpage
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*]
+  \item \facil{} Evalúa mediante tabla de valores: $\lim_{x \to 3} (2x + 1)$.
+
+  \item \facil{} Evalúa mediante tabla de valores: $\lim_{x \to 0} \cos x$.
+
+  \item \facil{} Evalúa: $\lim_{x \to 2} \dfrac{x^2 - 4}{x - 2}$ (pista: factoriza).
+
+  \item \facil{} Determina si el límite existe: $f(x) = \begin{cases} x + 2 & \text{si } x < 1 \\ 4 & \text{si } x = 1 \\ 2x + 1 & \text{si } x > 1 \end{cases}$, en $x = 1$.
+
+  \item \medio{} Determina si existe $\lim_{x \to 0} \dfrac{1}{x^2}$.
+
+  \item \medio{} Determina si existe $\lim_{x \to 2} \dfrac{2x - 4}{|x - 2|}$.
+
+  \item \medio{} Sea $f(x) = \begin{cases} x^2 & \text{si } x < 0 \\ 1 & \text{si } x = 0 \\ x + 2 & \text{si } x > 0 \end{cases}$. Determina si existe $\lim_{x \to 0} f(x)$.
+
+  \item \medio{} Determina si existe $\lim_{x \to 4} \dfrac{x - 4}{\sqrt{x} - 2}$ (pista: racionaliza).
+
+  \item \dificil{} Dibuja una función que cumpla simultáneamente: $f(2) = 5$, $\lim_{x \to 2^-} f(x) = 3$, $\lim_{x \to 2^+} f(x) = 3$ y $\lim_{x \to 3} f(x) = \infty$.
+
+  \item \dificil{} Encuentra una fórmula para una función que tenga un hueco en $x = -1$, salto en $x = 0$ y esté definida en todos los reales.
+
+  \item \dificil{} Sea $f(x) = \begin{cases} 3x - a & \text{si } x < 2 \\ ax + 1 & \text{si } x \ge 2 \end{cases}$. Encuentra $a$ para que $\lim_{x \to 2} f(x)$ exista.
+
+  \item \dificil{} Analiza la existencia de $\lim_{x \to 1} \dfrac{|x - 1|}{x - 1}$ y justifica tu respuesta.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+
+\section{Cálculo de Límites Algebraicos}
+% ============================================================
+
+\subsection{Propiedades de los límites}
+
+\begin{cuadroteoria}
+  Si $\lim_{x \to a} f(x) = L$ y $\lim_{x \to a} g(x) = M$, entonces:
+  \begin{align*}
+    \lim_{x \to a} [f(x) + g(x)]                  & = L + M                                                               \\
+    \lim_{x \to a} [f(x) - g(x)]                  & = L - M                                                               \\
+    \lim_{x \to a} [f(x) \cdot g(x)]              & = L \cdot M                                                           \\
+    \lim_{x \to a} \left[\frac{f(x)}{g(x)}\right] & = \frac{L}{M} \quad (M \neq 0)                                        \\
+    \lim_{x \to a} [c \cdot f(x)]                 & = c \cdot L                                                           \\
+    \lim_{x \to a} [f(x)]^n                       & = L^n                                                                 \\
+    \lim_{x \to a} \sqrt[n]{f(x)}                 & = \sqrt[n]{L} \quad (\text{si } L \geq 0 \text{ para } n \text{ par})
+  \end{align*}
+
+  \textbf{Límite de una función polinomial:}
+  $$\lim_{x \to a} P(x) = P(a)$$
+
+  \textbf{Sustitución directa:} para funciones polinomiales y racionales (cuando el denominador no se anula), el límite se evalúa sustituyendo $x = a$.
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+  \textbf{Forma indeterminada $0/0$:} Si al sustituir obtienes $\frac{0}{0}$, necesitas \textbf{simplificar} antes de evaluar. Técnicas:
+  \begin{enumerate}[leftmargin=*]
+    \item \textbf{Factorizar} el numerador y/o denominador, y cancelar el factor común.
+    \item \textbf{Racionalizar} (multiplicar por el conjugado) cuando hay raíces.
+    \item En límites de cocientes de polinomios, el factor que causa el problema siempre se cancela o se llega a un límite infinito.
+  \end{enumerate}
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Calcula $\lim_{x \to 3} (2x^2 - 5x + 1)$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Sustitución directa:
+  $$2(3)^2 - 5(3) + 1 = 18 - 15 + 1 = 4.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Calcula $\lim_{x \to 2} \dfrac{x^2 - 5x + 6}{x - 2}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Sustituyendo $x = 2$ llegamos a $0/0$. Factorizamos:
+  $$\frac{x^2 - 5x + 6}{x - 2} = \frac{(x - 2)(x - 3)}{x - 2} = x - 3 \quad (x \neq 2).$$
+  Entonces: $\lim_{x \to 2} \dfrac{x^2 - 5x + 6}{x - 2} = \lim_{x \to 2} (x - 3) = -1$.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Calcula $\lim_{x \to 4} \dfrac{\sqrt{x} - 2}{x - 4}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Sustituyendo da $0/0$. Racionalizamos el numerador multiplicando por el conjugado $\sqrt{x} + 2$:
+  $$\frac{(\sqrt{x} - 2)(\sqrt{x} + 2)}{(x - 4)(\sqrt{x} + 2)} = \frac{x - 4}{(x - 4)(\sqrt{x} + 2)} = \frac{1}{\sqrt{x} + 2}.$$
+  Entonces:
+  $$\lim_{x \to 4} \dfrac{\sqrt{x} - 2}{x - 4} = \lim_{x \to 4} \dfrac{1}{\sqrt{x} + 2} = \dfrac{1}{\sqrt{4} + 2} = \dfrac{1}{4}.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R4.} Calcula $\lim_{x \to 1} \dfrac{x^3 - 1}{x - 1}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Factorizamos la diferencia de cubos $x^3 - 1 = (x - 1)(x^2 + x + 1)$:
+  $$\frac{x^3 - 1}{x - 1} = x^2 + x + 1 \quad (x \neq 1).$$
+  $$\lim_{x \to 1} \dfrac{x^3 - 1}{x - 1} = \lim_{x \to 1} (x^2 + x + 1) = 1 + 1 + 1 = 3.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R5.} Calcula $\lim_{x \to 0} \dfrac{\sqrt{1 + x} - 1}{x}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Racionalizamos:
+  $$\frac{(\sqrt{1 + x} - 1)(\sqrt{1 + x} + 1)}{x(\sqrt{1 + x} + 1)} = \frac{1 + x - 1}{x(\sqrt{1 + x} + 1)} = \frac{x}{x(\sqrt{1 + x} + 1)} = \frac{1}{\sqrt{1 + x} + 1}.$$
+  $$\lim_{x \to 0} \dfrac{\sqrt{1 + x} - 1}{x} = \dfrac{1}{\sqrt{1} + 1} = \dfrac{1}{2}.$$
+  Este límite aparecerá de nuevo en la definición de derivada.
+\end{cuadrosolucion}
+
+\newpage
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Calcula: $\lim_{x \to 1} (x^3 - 2x^2 + x)$.
+
+  \item \facil{} Calcula: $\lim_{x \to -2} \dfrac{x^2 + x - 2}{x + 2}$.
+
+  \item \facil{} Calcula: $\lim_{x \to 5} \dfrac{x^2 - 25}{x - 5}$.
+
+  \item \facil{} Calcula: $\lim_{x \to 3} \dfrac{2x - 6}{x^2 - 9}$.
+
+  \item \medio{} Calcula: $\lim_{x \to 9} \dfrac{\sqrt{x} - 3}{x - 9}$.
+
+  \item \medio{} Calcula: $\lim_{x \to 0} \dfrac{\sqrt{4 + x} - 2}{x}$.
+
+  \item \medio{} Calcula: $\lim_{x \to 2} \dfrac{x^3 - 8}{x - 2}$.
+
+  \item \medio{} Calcula: $\lim_{x \to 1} \dfrac{x^2 + 2x - 3}{x^2 - 1}$.
+
+  \item \dificil{} Calcula: $\lim_{x \to 0} \dfrac{1 - \sqrt{1 - x}}{x}$.
+
+  \item \dificil{} Calcula: $\lim_{x \to 1} \dfrac{\sqrt{x} - 1}{x - 1}$ (pista: haz $t = \sqrt{x}$, con $t \to 1$).
+
+  \item \dificil{} Calcula: $\lim_{h \to 0} \dfrac{(2 + h)^3 - 8}{h}$.
+
+  \item \dificil{} Calcula: $\lim_{x \to 0} \dfrac{3x - \sin(3x)}{x}$ (pista: usa el límite fundamental que verás en la siguiente sección).
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+
+% ──────────────────────────────────────────────────────────
+%  NUEVOS EJERCICIOS PROPUESTOS (26) — INSERCIÓN MANUAL
+% ──────────────────────────────────────────────────────────
+\subsection{Ejercicios propuestos: Límites Intuitivos y Laterales}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Calcula el límite por sustitución directa: $\displaystyle\lim_{x \to 2} (3x + 5)$.
+
+  \item \facil{} Calcula el límite simplificando: $\displaystyle\lim_{x \to 1} \frac{x^2 - 1}{x - 1}$.
+
+  \item \medio{} Calcula el límite factorizando: $\displaystyle\lim_{x \to 3} \frac{x^2 - 9}{x - 3}$.
+
+  \item \medio{} Calcula el límite racionalizando: $\displaystyle\lim_{x \to 0} \frac{\sqrt{x + 1} - 1}{x}$.
+
+  \item \medio{} Determina el límite lateral: $\displaystyle\lim_{x \to 2^-} \frac{1}{x - 2}$.
+
+  \item \dificil{} Calcula el límite racionalizando: $\displaystyle\lim_{x \to 4} \frac{\sqrt{x} - 2}{x - 4}$.
+
+  \item \dificil{} Calcula el límite factorizando la diferencia de cubos: $\displaystyle\lim_{x \to 1} \frac{x^3 - 1}{x - 1}$.
+
+  \item \dificil{} Determina si existe $\displaystyle\lim_{x \to 0} \frac{|x|}{x}$ analizando los límites laterales.
+
+  \item \muyDificil{} Calcula el límite con raíz en el numerador:
+        $$\lim_{x \to 9} \frac{3 - \sqrt{x}}{9 - x}$$
+\end{enumerate}
+
+\subsection{Ejercicios propuestos: Límites Algebraicos Avanzados}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Calcula el límite simplificando: $\displaystyle\lim_{x \to 0} \frac{2x^2 + 3x}{x}$.
+
+  \item \facil{} Calcula el límite por sustitución: $\displaystyle\lim_{x \to -1} (x^3 + 2x)$.
+
+  \item \medio{} Calcula el límite factorizando: $\displaystyle\lim_{x \to 5} \frac{x^2 - 25}{x - 5}$.
+
+  \item \medio{} Calcula el límite factorizando el trinomio: $\displaystyle\lim_{x \to 2} \frac{x^2 - 3x + 2}{x - 2}$.
+
+  \item \medio{} Calcula el límite racionalizando: $\displaystyle\lim_{x \to 0} \frac{\sqrt{4 + x} - 2}{x}$.
+
+  \item \dificil{} Calcula el límite factorizando el polinomio de grado 3:
+        $$\lim_{x \to 1} \frac{x^3 - x^2 - x + 1}{x - 1}$$
+
+  \item \dificil{} Calcula el límite racionalizando el denominador:
+        $$\lim_{x \to 2} \frac{x - 2}{\sqrt{x + 2} - 2}$$
+
+  \item \dificil{} Calcula el cociente incremental (derivada de $x^2$ en $x = 2$):
+        $$\lim_{h \to 0} \frac{(2 + h)^2 - 4}{h}$$
+
+  \item \muyDificil{} Calcula el límite con raíz cúbica:
+        $$\lim_{x \to 1} \frac{\sqrt[3]{x} - 1}{x - 1}$$
+\end{enumerate}
+
+\subsection{Ejercicios propuestos: Retos Integradores}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Calcula el límite simplificando: $\displaystyle\lim_{x \to 3} \frac{x - 3}{x^2 - 9}$.
+
+  \item \medio{} Calcula el límite expandiendo el cubo: $\displaystyle\lim_{x \to 0} \frac{(x + 1)^3 - 1}{x}$.
+
+  \item \medio{} Calcula el límite con raíz: $\displaystyle\lim_{x \to 0} \frac{\sqrt{x^2 + 4} - 2}{x^2}$.
+
+  \item \medio{} Calcula el límite lateral usando el valor absoluto:
+        $$\lim_{x \to 0^-} \frac{|x| - x}{x}$$
+
+  \item \dificil{} Calcula el límite con fracción algebraica:
+        $$\lim_{x \to 1} \frac{\frac{1}{x} - 1}{x - 1}$$
+
+  \item \dificil{} Calcula el límite racionalizando:
+        $$\lim_{x \to 0} \frac{1 - \sqrt{1 - x}}{x}$$
+
+  \item \muyDificil{} Calcula el límite con parámetro $a$ (constante real):
+        $$\lim_{x \to a} \frac{x^2 - a^2}{x - a}$$
+
+  \item \muyDificil{} Calcula el cociente incremental general (derivada de $\sqrt{x}$):
+        $$\lim_{h \to 0} \frac{\sqrt{x + h} - \sqrt{x}}{h}$$
+\end{enumerate}
+
+% ============================================================
+\section{Clave de Respuestas}
+% ============================================================
+
+\subsection*{Sección 1: Introducción (Ejercicios 1--12)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $\lim_{x \to 3} (2x + 1) = 7$.
+
+  \item $\lim_{x \to 0} \cos x = 1$.
+
+  \item $\dfrac{x^2 - 4}{x - 2} = x + 2$, entonces el límite es $4$.
+
+  \item Por izquierda: $3$; por derecha (y $f(1)$): $3$. Los límites laterales coinciden: el límite existe y vale 3.
+
+  \item $x^2 \to 0^+$ siempre (es cuadrado), así que $\dfrac{1}{x^2} \to +\infty$. El límite es $+\infty$; no existe como límite finito.
+
+  \item Por derecha: $\dfrac{2(x-2)}{x-2} = 2 \to 2$. Por izquierda: $\dfrac{2(x-2)}{-(x-2)} = -2 \to -2$. No existe (laterales distintos).
+
+  \item Por izquierda: $\lim_{x \to 0^-} x^2 = 0$. Por derecha: $\lim_{x \to 0^+} (x + 2) = 2$. Laterales distintos, no existe.
+
+  \item Racionalizamos: $\dfrac{(x - 4)(\sqrt{x} + 2)}{(\sqrt{x} - 2)(\sqrt{x} + 2)} = \dfrac{(x-4)(\sqrt{x}+2)}{x - 4} = \sqrt{x} + 2$. Límite: $\sqrt{4} + 2 = 4$.
+
+  \item (Gráfico, respuesta abierta). Una función con hueco en $(2,3)$, salto en algún punto antes de 3, y asíntota vertical en $x = 3$.
+
+  \item Ejemplo: $f(x) = \begin{cases} x + 2 & \text{si } x \neq -1, 0 \\ 1 & \text{si } x = 0 \end{cases}$ (hueco en $x = -1$: no definida; salto en $x = 0$). Otras respuestas son válidas.
+
+  \item $\lim_{x \to 2^-} (3x - a) = 6 - a$; $\lim_{x \to 2^+} (ax + 1) = 2a + 1$. Igualando: $6 - a = 2a + 1 \Rightarrow 3a = 5 \Rightarrow a = \dfrac{5}{3}$.
+
+  \item Para $x > 1$: $\dfrac{x-1}{x-1} = 1$; para $x < 1$: $\dfrac{-(x-1)}{x-1} = -1$. Laterales distintos, el límite no existe.
+\end{enumerate}
+
+
+\subsection*{Sección 2: Límites Algebraicos (Ejercicios 13--24)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{12}
+  \item $1 - 2 + 1 = 0$.
+
+  \item $\dfrac{x^2 + x - 2}{x + 2} = \dfrac{(x + 2)(x - 1)}{x + 2} = x - 1$. En $x = -2$: $-3$.
+
+  \item $x + 5$; límite: $10$.
+
+  \item $\dfrac{2(x - 3)}{(x - 3)(x + 3)} = \dfrac{2}{x + 3}$; en $x = 3$: $\dfrac{2}{6} = \dfrac{1}{3}$.
+
+  \item $\dfrac{1}{\sqrt{x} + 3}$; en $x = 9$: $\dfrac{1}{6}$.
+
+  \item $\dfrac{1}{\sqrt{4 + x} + 2}$; en $x = 0$: $\dfrac{1}{4}$.
+
+  \item $x^2 + 2x + 4$; en $x = 2$: $12$.
+
+  \item $\dfrac{(x - 1)(x + 3)}{(x - 1)(x + 1)} = \dfrac{x + 3}{x + 1}$; en $x = 1$: $\dfrac{4}{2} = 2$.
+
+  \item Racionalizamos: $\dfrac{x}{(\sqrt{1 - x} + 1)(1 + \sqrt{1-x})} \dots$ Al final: $\lim_{x \to 0} \dfrac{1 - \sqrt{1 - x}}{x} = \dfrac{1}{2}$.
+
+  \item Con $t = \sqrt{x}$: $x = t^2$, cuando $x \to 1$, $t \to 1$: $\dfrac{t - 1}{t^2 - 1} = \dfrac{1}{t + 1}$. Límite: $\dfrac{1}{2}$.
+
+  \item Expandimos: $(2 + h)^3 = 8 + 12h + 6h^2 + h^3$. Restando 8 y dividiendo entre $h$: $12 + 6h + h^2$. Límite: $12$.
+
+  \item $\dfrac{3x - \sin(3x)}{x} = 3 - \dfrac{\sin(3x)}{x} = 3 - 3\left(\dfrac{\sin(3x)}{3x}\right) \to 3 - 3 = 0$.
+\end{enumerate}
+
+
+% ──────────────────────────────────────────────────────────
+%  NUEVAS RESPUESTAS (26) — INSERCIÓN MANUAL
+% ──────────────────────────────────────────────────────────
+\subsection*{Sección 4: Límites Intuitivos y Laterales (Ejercicios 25--33)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{24}
+  \item $11$
+  \item $\displaystyle\lim_{x \to 1} (x + 1) = 2$
+  \item $\displaystyle\lim_{x \to 3} (x + 3) = 6$
+  \item $\displaystyle\lim_{x \to 0} \frac{1}{\sqrt{x + 1} + 1} = \frac{1}{2}$
+  \item $-\infty$ (el denominador tiende a 0 por valores negativos)
+  \item $\displaystyle\lim_{x \to 4} \frac{1}{\sqrt{x} + 2} = \frac{1}{4}$
+  \item $\displaystyle\lim_{x \to 1} (x^2 + x + 1) = 3$
+  \item No existe: el límite por la izquierda es $-1$ y por la derecha es $+1$.
+  \item $\displaystyle\lim_{x \to 9} \frac{1}{3 + \sqrt{x}} = \frac{1}{6}$
+\end{enumerate}
+
+\subsection*{Sección 5: Límites Algebraicos Avanzados (Ejercicios 34--42)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{33}
+  \item $\displaystyle\lim_{x \to 0} (2x + 3) = 3$
+  \item $(-1)^3 + 2(-1) = -3$
+  \item $\displaystyle\lim_{x \to 5} (x + 5) = 10$
+  \item $\displaystyle\lim_{x \to 2} (x - 1) = 1$
+  \item $\displaystyle\lim_{x \to 0} \frac{1}{\sqrt{4 + x} + 2} = \frac{1}{4}$
+  \item Factorizando: $(x - 1)^2 (x + 1)$; límite $= 0$
+  \item $\displaystyle\lim_{x \to 2} \big(\sqrt{x + 2} + 2\big) = 4$
+  \item $\displaystyle\lim_{h \to 0} (4 + h) = 4$
+  \item Con $a^3 - b^3$: $\displaystyle\lim_{x \to 1} \frac{1}{\sqrt[3]{x^2} + \sqrt[3]{x} + 1} = \frac{1}{3}$
+\end{enumerate}
+
+\subsection*{Sección 6: Retos Integradores (Ejercicios 43--50)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{42}
+  \item $\displaystyle\lim_{x \to 3} \frac{1}{x + 3} = \frac{1}{6}$
+  \item $\displaystyle\lim_{x \to 0} (3 + 3x + x^2) = 3$
+  \item $\displaystyle\lim_{x \to 0} \frac{1}{\sqrt{x^2 + 4} + 2} = \frac{1}{4}$
+  \item Para $x < 0$: $\dfrac{-x - x}{x} = -2$
+  \item $\displaystyle\lim_{x \to 1} \left(-\frac{1}{x}\right) = -1$
+  \item $\displaystyle\lim_{x \to 0} \frac{1}{1 + \sqrt{1 - x}} = \frac{1}{2}$
+  \item $\displaystyle\lim_{x \to a} (x + a) = 2a$
+  \item $\displaystyle\lim_{h \to 0} \frac{1}{\sqrt{x + h} + \sqrt{x}} = \frac{1}{2\sqrt{x}}$
+\end{enumerate}
+\end{document}

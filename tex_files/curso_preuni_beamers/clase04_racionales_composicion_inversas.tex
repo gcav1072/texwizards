@@ -1,0 +1,276 @@
+% ============================================================
+%  CLASE 04 — FUNCIONES RACIONALES, COMPOSICIÓN E INVERSAS
+%  Curso Preuniversitario · Semana 2 · Clase de 2 horas
+%  (Fusión de las antiguas clases 07 y 08)
+% ============================================================
+\documentclass[aspectratio=169]{beamer}
+\usepackage{mathwizards-beamer}
+\mwbeamer{Clase 4}{Funciones Racionales, Composición e Inversas}{Semana 2}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Parte 1: Funciones Racionales y Asíntotas}
+% ════════════════════════════════════════════════════════════
+
+
+\begin{frame}{Definición y Puntos de Indeterminación}
+  \begin{block}{Función racional}
+    $$f(x) = \frac{P(x)}{Q(x)} \qquad (P, Q \text{ polinomios}, \; Q(x) \not\equiv 0)$$
+    \textbf{Dominio maximal:} $\text{Dom}(f) = \{x \in \mathbb{R} \mid Q(x) \neq 0\}$.
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{Ceros, Asíntotas Verticales y Huecos}
+    Sea $x = a$ un valor real:
+    \begin{itemize}
+      \item \textbf{Intercepto con el eje $x$ (Cero):} Si $P(a) = 0$ y $Q(a) \neq 0$.
+      \item \textbf{Asíntota Vertical (A.V.):} La recta $x = a$ es A.V. si $Q(a) = 0$ y $P(a) \neq 0$. La función tiende a $\pm\infty$ en los límites laterales.
+      \item \textbf{Discontinuidad Evitable (Hueco):} Si $P(a) = 0$ y $Q(a) = 0$, se cancela el factor común $(x - a)$. El punto del hueco es $(a, L)$ donde $L = \lim_{x \to a} f(x)$.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Asíntotas Horizontales y Oblicuas (Comportamiento en $\pm\infty$)}
+  \begin{block}{Regla de los grados: Sea $n = \text{grado}(P)$ y $m = \text{grado}(Q)$}
+    \begin{itemize}
+      \item \textbf{Si $n < m$:} La recta \textbf{$y = 0$} (eje $x$) es la Asíntota Horizontal (A.H.).
+      \item \textbf{Si $n = m$:} La recta \textbf{$y = \dfrac{a_n}{b_m}$} (cociente de coeficientes principales) es la A.H.
+      \item \textbf{Si $n = m + 1$:} No hay A.H., pero existe una \textbf{Asíntota Oblicua (A.O.)} $y = mx + b$, obtenida como el cociente de la división polinomial $\frac{P(x)}{Q(x)} = (mx + b) + \frac{R(x)}{Q(x)}$.
+      \item \textbf{Si $n \ge m + 2$:} No hay A.H. ni A.O. (el comportamiento asintótico es parabólico o de orden superior).
+    \end{itemize}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{alertblock}{¡Una curva puede cruzar su asíntota horizontal u oblicua!}
+    A diferencia de las asíntotas verticales (que nunca se pueden cruzar porque están fuera del dominio), la gráfica de una función sí puede intersectar a su asíntota horizontal u oblicua para valores finitos de $x$.
+  \end{alertblock}
+\end{frame}
+
+
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase — Parte 1}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 1}
+  \begin{mwejercicio}[Ejercicio 1 \quad \facil]
+    Determina el dominio, los interceptos con ambos ejes y la ecuación de la asíntota vertical de:
+    $$f(x) = \frac{3x - 6}{x + 4}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 2}
+  \begin{mwejercicio}[Ejercicio 2 \quad \facil]
+    Determina la ecuación de la asíntota horizontal para cada una de las siguientes funciones racionales:
+    $$a)\; f(x) = \frac{4x^2 - 1}{2x^2 + 5x} \qquad\qquad b)\; g(x) = \frac{5x + 3}{x^2 - 4} \qquad\qquad c)\; h(x) = \frac{x^3 + 1}{3x^2 + 2}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 3}
+  \begin{mwejercicio}[Ejercicio 3 \quad \facil]
+    Halla las coordenadas exactas del hueco (discontinuidad evitable) en la gráfica de:
+    $$f(x) = \frac{x^2 - 2x - 3}{x - 3}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 4}
+  \begin{mwejercicio}[Ejercicio 4 \quad \medio]
+    Encuentra el dominio maximal, las coordenadas de los huecos, las asíntotas verticales y la asíntota horizontal de:
+    $$f(x) = \frac{x^2 - 1}{x^2 - 3x + 2}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 5}
+  \begin{mwejercicio}[Ejercicio 5 \quad \medio]
+    Determina la ecuación de la asíntota oblicua y de la asíntota vertical de la función:
+    $$f(x) = \frac{2x^2 + 3x - 5}{x - 2}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 6}
+  \begin{mwejercicio}[Ejercicio 6 \quad \medio]
+    Construye la tabla de signos completa y determina los intervalos donde la función es positiva y negativa:
+    $$f(x) = \frac{x - 2}{x^2 - 9}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 7}
+  \begin{mwejercicio}[Ejercicio 7 \quad \medio]
+    Determina la asíntota horizontal de $f(x) = \dfrac{2x^2 + 3x - 1}{x^2 - 4}$ y averigua si la gráfica de la función corta a dicha asíntota, calculando las coordenadas del punto de intersección.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 8}
+  \begin{mwejercicio}[Ejercicio 8 \quad \dificil]
+    Halla el dominio, todos los ceros, huecos, asíntotas verticales y la asíntota oblicua de la función racional:
+    $$f(x) = \frac{x^3 - 8}{x^2 - 4}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 9}
+  \begin{mwejercicio}[Ejercicio 9 \quad \dificil]
+    Construye una fórmula algebraica para una función racional $f(x)$ que cumpla simultáneamente:
+    \begin{itemize}
+      \item Asíntotas verticales en $x = -3$ y $x = 2$.
+      \item Asíntota horizontal en $y = 3$.
+      \item Ceros en $x = -1$ y $x = 4$.
+      \item Intercepto con el eje $y$ en $(0, 2)$.
+    \end{itemize}
+  \end{mwejercicio}
+  \vspace{2.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 10}
+  \begin{mwejercicio}[Ejercicio 10 \quad \dificil]
+    Realiza el análisis completo (simetría, dominio, interceptos, asíntotas verticales y oblicuas, tabla de signos) y bosqueja la gráfica de la función impar:
+    $$f(x) = \frac{x^3}{x^2 - 1}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+
+% ════════════════════════════════════════════════════════════
+\section{Parte 2: Composición e Inversas}
+% ════════════════════════════════════════════════════════════
+
+
+\begin{frame}{Álgebra y Composición de Funciones}
+  \begin{block}{Operaciones algebraicas}
+    Para $f$ y $g$, el dominio de $(f \pm g)$ y $(f \cdot g)$ es $\text{Dom}(f) \cap \text{Dom}(g)$. \\
+    Para el cociente $(f / g)(x) = \frac{f(x)}{g(x)}$, el dominio es $\{x \in \text{Dom}(f) \cap \text{Dom}(g) \mid g(x) \neq 0\}$.
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{Composición de funciones}
+    $$(f \circ g)(x) = f(g(x))$$
+    \textbf{Dominio de la composición:}
+    $$\boxed{\text{Dom}(f \circ g) = \{x \in \text{Dom}(g) \mid g(x) \in \text{Dom}(f)\}}$$
+    \alert{¡Atención!} En general, la composición \textbf{no es conmutativa}: $f \circ g \neq g \circ f$.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Inyectividad y Prueba de la Recta Horizontal}
+  \begin{block}{Función inyectiva (uno a uno)}
+    Una función $f$ es inyectiva en su dominio si entradas distintas producen salidas distintas:
+    $$f(x_1) = f(x_2) \implies x_1 = x_2 \qquad \text{o equivalentemente} \qquad x_1 \neq x_2 \implies f(x_1) \neq f(x_2)$$
+  \end{block}
+
+  \vspace{4pt}
+  \begin{mwextra}[Prueba geométrica de la recta horizontal]
+    Una función es inyectiva si y solo si \textbf{ninguna recta horizontal} intersecta su gráfica en más de un punto.
+    Toda función estrictamente creciente o estrictamente decreciente es inyectiva.
+  \end{mwextra}
+\end{frame}
+
+\begin{frame}{Función Inversa}
+  \begin{block}{Definición y propiedades}
+    Si $f$ es inyectiva con dominio $A$ y rango $B$, su \textbf{función inversa} $f^{-1}: B \to A$ cumple:
+    $$f^{-1}(f(x)) = x \quad (\forall x \in A) \qquad\text{y}\qquad f(f^{-1}(y)) = y \quad (\forall y \in B)$$
+    \begin{itemize}
+      \item $\text{Dom}(f^{-1}) = \text{Ran}(f)$ \quad y \quad $\text{Ran}(f^{-1}) = \text{Dom}(f)$.
+      \item La gráfica de $y = f^{-1}(x)$ es el reflejo simétrico de $y = f(x)$ respecto a la recta \textbf{$y = x$}.
+    \end{itemize}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{mwpasos}[Cálculo algebraico de la inversa]
+    1. Escribir $y = f(x)$ $\longrightarrow$ 2. Intercambiar $x$ por $y$ $\longrightarrow$ 3. Despejar $y = f^{-1}(x)$ explicitando restricciones.
+  \end{mwpasos}
+\end{frame}
+
+
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase — Parte 2}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 11}
+  \begin{mwejercicio}[Ejercicio 11 \quad \facil]
+    Dadas $f(x) = \sqrt{x + 2}$ y $g(x) = 2x - 3$:
+    \begin{enumerate}
+      \item Encuentra las fórmulas para $(f + g)(x)$, $(f \cdot g)(x)$ y $(f / g)(x)$.
+      \item Determina el dominio de cada una de las operaciones anteriores.
+    \end{enumerate}
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 12}
+  \begin{mwejercicio}[Ejercicio 12 \quad \facil]
+    Sean $f(x) = 3x - 5$ y $g(x) = x^2 + 2$. Calcula:
+    $$a)\; (f \circ g)(x) \qquad\qquad b)\; (g \circ f)(x) \qquad\qquad c)\; (f \circ f)(2)$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 13}
+  \begin{mwejercicio}[Ejercicio 13 \quad \facil]
+    Verifica algebraicamente mediante composición si $f(x) = \dfrac{2x + 1}{5}$ y $g(x) = \dfrac{5x - 1}{2}$ son funciones inversas mutuas.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 14}
+  \begin{mwejercicio}[Ejercicio 14 \quad \medio]
+    Dadas $f(x) = \dfrac{1}{x - 3}$ y $g(x) = \sqrt{x}$:
+    \begin{enumerate}
+      \item Encuentra la regla de correspondencia de $(f \circ g)(x)$.
+      \item Determina el dominio riguroso de $(f \circ g)$ usando la definición formal.
+    \end{enumerate}
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 15}
+  \begin{mwejercicio}[Ejercicio 15 \quad \medio]
+    Determina la función inversa $f^{-1}(x)$, su dominio y su rango para la función homográfica:
+    $$f(x) = \frac{3x - 1}{2x + 4}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 16}
+  \begin{mwejercicio}[Ejercicio 16 \quad \medio]
+    Descompón la siguiente función compleja $H(x) = \sqrt[3]{(4x^2 - 1)^5 + 7}$ en tres funciones no triviales $f, g, h$ tales que $H(x) = (f \circ g \circ h)(x)$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 17}
+  \begin{mwejercicio}[Ejercicio 17 \quad \medio]
+    Dada la función cuadrática $f(x) = x^2 - 6x + 11$ con dominio restringido $[3, \infty)$:
+    \begin{enumerate}
+      \item Demuestra que $f$ es inyectiva en dicho dominio.
+      \item Encuentra la fórmula de $f^{-1}(x)$ y especifica su dominio y rango.
+    \end{enumerate}
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 18}
+  \begin{mwejercicio}[Ejercicio 18 \quad \dificil]
+    Si se sabe que $(f \circ g)(x) = \dfrac{x + 1}{x - 2}$ y que $g(x) = 2x - 3$, encuentra la fórmula explícita de la función externa $f(x)$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 19}
+  \begin{mwejercicio}[Ejercicio 19 \quad \dificil]
+    Dada la función $f(x) = \dfrac{x}{\sqrt{x^2 + 1}}$:
+    \begin{enumerate}
+      \item Demuestra que $f$ es estrictamente inyectiva en todo $\mathbb{R}$.
+      \item Determina el rango de $f$ analíticamente.
+      \item Calcula la función inversa $f^{-1}(x)$ y su dominio maximal.
+    \end{enumerate}
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 20}
+  \begin{mwejercicio}[Ejercicio 20 \quad \dificil]
+    Para la función racional $f(x) = \dfrac{x - 1}{x + 1}$:
+    \begin{enumerate}
+      \item Halla $(f \circ f)(x)$ y determina su dominio.
+      \item Halla $(f \circ f \circ f \circ f)(x)$ (cuádruple composición) y deduce el comportamiento para $n$ composiciones.
+    \end{enumerate}
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+
+\end{document}

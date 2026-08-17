@@ -1,0 +1,384 @@
+% ============================================================
+%  GUÍA 12: Optimización, Razones de Cambio y Repaso General
+%  Curso de Introducción a la Universidad — Precálculo y Cálculo I
+%  Autor: Ing. Gabriel Astudillo
+%  Clase cubierta: 12
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+\usepackage{mathwizards-guia}
+\mwguia{Guía 12 — Optimización, Razones de Cambio y Repaso General}{Ing. Gabriel Astudillo $\cdot$ Curso Preuniversitario}
+
+\begin{document}
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Estudio 12}{Optimización, Razones de Cambio y Repaso General}{Máximos y Mínimos Aplicados, Razones de Cambio Relacionadas y Repaso Integrador}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+\small
+\textbf{Presentación:} Esta guía cierra el curso con las aplicaciones estrella de la derivada: los problemas de optimización y las razones de cambio relacionadas, y culmina con una sección de repaso integrador tipo examen con problemas que combinan todos los temas del curso. Con teoría, ejemplos resueltos y propuestos con clave.
+\\[4pt]
+\textbf{Nivel de Dificultad:}\quad
+\facil{} Básico / Directo \quad
+\medio{} Intermedio \quad
+\dificil{} Desafiante \quad
+\muyDificil{} Muy Difícil / Reto
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+\section{Problemas de Optimización}
+% ============================================================
+
+\subsection{Metodología para resolver problemas de optimización}
+
+\begin{cuadroteoria}
+  \textbf{Pasos recomendados:}
+  \begin{enumerate}
+    \item \textbf{Identifica} la cantidad a maximizar o minimizar (llámala $Q$).
+    \item \textbf{Expresa} $Q$ en términos de una sola variable, usando las restricciones del problema (puentes geométricos como perímetros, áreas, volúmenes).
+    \item \textbf{Determina} el dominio realista de la variable.
+    \item \textbf{Deriva} $Q$ respecto a la variable.
+    \item \textbf{Iguala} la derivada a cero y resuelve.
+    \item \textbf{Verifica} si se trata de un máximo o mínimo (primera o segunda derivada), y comprueba los extremos del dominio.
+  \end{enumerate}
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+  \textbf{Recuerda:} en problemas de la vida real, los valores negativos o fuera del rango no tienen sentido. Verifica siempre la plausibilidad de la solución.
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Un granjero quiere cercar un campo rectangular de área $1200$ m$^2$ usando la menor cantidad de cerca posible. ¿Cuáles deben ser las dimensiones?
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Sea $x$ el largo e $y$ el ancho. Condición: $xy = 1200 \Rightarrow y = \frac{1200}{x}$. Perímetro: $P = 2x + 2y = 2x + \frac{2400}{x}$, con $x > 0$.
+  \begin{itemize}
+    \item Derivamos: $P'(x) = 2 - \dfrac{2400}{x^2}$.
+    \item $P'(x) = 0 \Rightarrow 2 = \dfrac{2400}{x^2} \Rightarrow x^2 = 1200 \Rightarrow x = \sqrt{1200} = 20\sqrt{3} \approx 34{,}64$ m.
+    \item $P''(x) = \dfrac{4800}{x^3} > 0$ siempre, así que es mínimo.
+    \item $y = \dfrac{1200}{20\sqrt{3}} = \dfrac{60}{\sqrt{3}} = 20\sqrt{3}$ m.
+  \end{itemize}
+  Las dimensiones óptimas son $20\sqrt{3} \times 20\sqrt{3}$ m (un cuadrado).
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Se quiere construir una caja abierta (sin tapa) a partir de una hoja cuadrada de $30$ cm de lado, recortando cuadrados iguales en las esquinas y doblando. ¿De qué tamaño deben ser los cuadrados recortados para maximizar el volumen?
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Sea $x$ el lado del cuadrado recortado ($0 < x < 15$). La base de la caja mide $30 - 2x$, y la altura es $x$.
+  \begin{itemize}
+    \item Volumen: $V(x) = x(30 - 2x)^2$.
+    \item Derivada: $V'(x) = (30 - 2x)^2 + x \cdot 2(30 - 2x)(-2) = (30 - 2x)^2 - 4x(30 - 2x)$.
+    \item Factorizando: $V'(x) = (30 - 2x)[(30 - 2x) - 4x] = (30 - 2x)(30 - 6x) = 6(15 - x)(5 - x)$.
+    \item Ceros: $x = 15$ (fuera del dominio) y $x = 5$.
+    \item $V''(5) = ...$ (verificar): $V''(x) = -24x + 240$? En $x = 5$: $V''(5) = -24(5) + 240 = 120 > 0$, espera, eso indicaría mínimo. Revisemos la derivada:
+  \end{itemize}
+
+  Rehagamos correctamente: $V(x) = x(30 - 2x)^2 = x(900 - 120x + 4x^2) = 900x - 120x^2 + 4x^3$.
+  \begin{itemize}
+    \item $V'(x) = 900 - 240x + 12x^2 = 12(x^2 - 20x + 75) = 12(x - 5)(x - 15)$.
+    \item En $0 < x < 15$: $x = 5$ es el único punto crítico.
+    \item $V''(x) = -240 + 24x$; $V''(5) = -240 + 120 = -120 < 0$: máximo local.
+    \item $V(5) = 5(30 - 10)^2 = 5(20)^2 = 2000$ cm$^3$.
+  \end{itemize}
+  Se deben recortar cuadrados de $5$ cm para volumen máximo de $2000$ cm$^3$.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Encuentra las dimensiones del rectángulo de mayor área que puede inscribirse en una semicircunferencia de radio $5$, con la base sobre el diámetro.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Colocamos el centro en el origen. El rectángulo tiene base $2x$ y altura $y = \sqrt{25 - x^2}$ (por la ecuación de la circunferencia $x^2 + y^2 = 25$). Dominio: $0 \le x \le 5$.
+  \begin{itemize}
+    \item Área: $A(x) = 2x\sqrt{25 - x^2}$.
+    \item Derivada (producto): $A'(x) = 2\sqrt{25 - x^2} + 2x \cdot \frac{-x}{\sqrt{25 - x^2}} = \frac{2(25 - x^2) - 2x^2}{\sqrt{25 - x^2}} = \frac{50 - 4x^2}{\sqrt{25 - x^2}}$.
+    \item Cero: $50 - 4x^2 = 0 \Rightarrow x^2 = 12{,}5 \Rightarrow x = \sqrt{12{,}5} = \frac{5\sqrt{2}}{2}$.
+    \item Altura: $y = \sqrt{25 - 12{,}5} = \sqrt{12{,}5} = \frac{5\sqrt{2}}{2}$.
+  \end{itemize}
+  Las dimensiones son base $2x = 5\sqrt{2}$ y altura $y = \frac{5\sqrt{2}}{2}$.
+\end{cuadrosolucion}
+
+\newpage
+
+\textbf{Ejemplo R4.} El costo de producir $x$ artículos es $C(x) = 0{,}1x^2 + 20x + 500$ dólares, y se venden a $50$ dólares cada uno. ¿Cuántos artículos maximizan la ganancia?
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} Ingresos: $R(x) = 50x$. Ganancia: $P(x) = R(x) - C(x) = 50x - (0{,}1x^2 + 20x + 500) = -0{,}1x^2 + 30x - 500$.
+  \begin{itemize}
+    \item $P'(x) = -0{,}2x + 30 = 0 \Rightarrow x = 150$.
+    \item $P''(x) = -0{,}2 < 0$: máximo.
+  \end{itemize}
+  Se deben producir y vender 150 artículos.
+\end{cuadrosolucion}
+
+%\newpage
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*]
+  \item \facil{} Encuentra dos números positivos cuya suma sea $20$ y su producto sea máximo.
+
+  \item \facil{} Encuentra dos números positivos cuyo producto sea $100$ y su suma sea mínima.
+
+  \item \medio{} Un rectángulo tiene perímetro fijo de $40$ m. Encuentra sus dimensiones para que el área sea máxima.
+
+  \item \medio{} Se lanza un proyectil hacia arriba y su altura es $h(t) = 80t - 16t^2$ pies. ¿Cuál es la altura máxima?
+
+  \item \medio{} Un fabricante puede vender $100$ artículos a $10$ dólares cada uno. Por cada reducción de $0{,}50$ dólares en el precio, se venden 10 artículos más. ¿Cuál es el precio óptimo para maximizar el ingreso?
+
+  \item \medio{} Se quiere construir un corral rectangular usando $120$ m de cerca, aprovechando un muro existente como uno de los lados. Encuentra las dimensiones que maximizan el área.
+
+  \item \dificil{} Una caja cerrada con base cuadrada debe tener volumen $32$ cm$^3$. Encuentra las dimensiones que minimizan el área de superficie total.
+
+  \item \dificil{} Encuentra el punto sobre la parábola $y = x^2$ más cercano al punto $(0, 3)$.
+
+  \item \dificil{} Una escalera de $10$ m está apoyada contra una pared. Si la base se desliza alejándose de la pared a $2$ m/s, ¿qué tan rápido baja el extremo superior cuando la base está a $6$ m de la pared? (Usa el Teorema de Pitágoras.)
+
+  \item \dificil{} Se vierte arena a razón de $10$ m$^3$/min formando un cono cuya altura es siempre igual al doble del radio. ¿A qué ritmo crece el radio cuando el radio es $5$ m? (Volumen del cono: $V = \frac{1}{3}\pi r^2 h$.)
+
+  \item \dificil{} Un poste de $6$ m proyecta una sombra mientras el sol se pone. Un hombre de $1{,}80$ m camina alejándose del poste a $1{,}5$ m/s. ¿Qué tan rápido crece su sombra?
+
+  \item \dificil{} Se desea hacer una caja abierta con base cuadrada y volumen $32$ cm$^3$ usando el menor material posible. ¿Cuáles son las dimensiones óptimas?
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+
+\section{Razones de Cambio Relacionadas}
+% ============================================================
+
+\subsection{Metodología}
+
+\begin{cuadroteoria}
+  \textbf{Metodología de resolución:}
+  \begin{enumerate}[leftmargin=*]
+    \item \textbf{Dibuja un esquema} y asigna variables a las cantidades que varían con el tiempo $t$.
+    \item \textbf{Identifica las razones conocidas y desconocidas} (derivadas respecto a $t$, como $\frac{dx}{dt}$, $\frac{dV}{dt}$).
+    \item \textbf{Escribe una ecuación} que relacione las variables (Pitágoras, fórmulas de volumen/área, triángulos semejantes).
+    \item \textbf{Deriva implícitamente} ambos lados de la ecuación respecto al tiempo $t$ (regla de la cadena).
+    \item \textbf{Sustituye} los valores conocidos en el instante dado y despeja la razón buscada.
+  \end{enumerate}
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+  \textbf{¡Cuidado!} NUNCA sustituyas valores numéricos de variables cambiantes ANTES de derivar. Sustituye únicamente DESPUÉS de haber derivado respecto a $t$.
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Una escalera de $10$ m de largo está apoyada contra una pared vertical. Si la base de la escalera se desliza alejándose de la pared a razón de $2$ m/s, ¿con qué rapidez baja el extremo superior cuando la base está a $6$ m de la pared?
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{enumerate}
+    \item Variables: $x(t) =$ distancia de la base a la pared, $y(t) =$ altura en la pared.
+    \item Datos: $\dfrac{dx}{dt} = 2$ m/s. Queremos $\dfrac{dy}{dt}$ cuando $x = 6$.
+    \item Relación (Pitágoras): $x^2 + y^2 = 10^2 = 100$.
+    \item Derivamos respecto a $t$: $2x \dfrac{dx}{dt} + 2y \dfrac{dy}{dt} = 0 \Rightarrow x \dfrac{dx}{dt} + y \dfrac{dy}{dt} = 0$.
+    \item Para $x = 6$: $y = \sqrt{100 - 36} = 8$ m.
+    \item Sustituimos: $6(2) + 8 \dfrac{dy}{dt} = 0 \Rightarrow 12 + 8 \dfrac{dy}{dt} = 0 \Rightarrow \dfrac{dy}{dt} = -\dfrac{12}{8} = -1{,}5$ m/s.
+  \end{enumerate}
+  El extremo superior desciende a $1{,}5$ m/s (el signo negativo indica que $y$ disminuye).
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Se vierte agua en un tanque cónico recetáculo (con el vértice hacia abajo) de radio $4$ m y altura $10$ m a razón de $2$ m$^3$/min. ¿Con qué rapidez sube el nivel del agua cuando la profundidad es de $5$ m?
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  \begin{enumerate}
+    \item Variables: $r =$ radio de la superficie del agua, $h =$ profundidad del agua, $V =$ volumen de agua.
+    \item Datos: $\dfrac{dV}{dt} = 2$ m$^3$/min. Queremos $\dfrac{dh}{dt}$ cuando $h = 5$.
+    \item Volumen del cono: $V = \dfrac{1}{3}\pi r^2 h$.
+    \item Triángulos semejantes: $\dfrac{r}{h} = \dfrac{4}{10} \Rightarrow r = \dfrac{2}{5}h$.
+    \item Expresamos $V$ solo en función de $h$: $V = \dfrac{1}{3}\pi \left(\dfrac{2}{5}h\right)^2 h = \dfrac{4\pi}{75} h^3$.
+    \item Derivamos respecto a $t$: $\dfrac{dV}{dt} = \dfrac{4\pi}{75} \cdot 3h^2 \dfrac{dh}{dt} = \dfrac{4\pi}{25} h^2 \dfrac{dh}{dt}$.
+    \item Sustituimos $h = 5$ y $\dfrac{dV}{dt} = 2$:
+          $$2 = \dfrac{4\pi}{25}(25) \dfrac{dh}{dt} = 4\pi \dfrac{dh}{dt} \Rightarrow \dfrac{dh}{dt} = \dfrac{2}{4\pi} = \dfrac{1}{2\pi} \approx 0{,}159 \text{ m/min}.$$
+  \end{enumerate}
+\end{cuadrosolucion}
+
+\newpage
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Un globo esférico se infla a razón de $100$ cm$^3$/s. ¿Con qué rapidez aumenta el radio cuando el radio mide $5$ cm? ($V = \frac{4}{3}\pi r^3$).
+  \item \facil{} Las aristas de un cubo aumentan a razón de $3$ cm/s. ¿Con qué rapidez aumenta el volumen del cubo cuando cada arista mide $10$ cm?
+  \item \medio{} Un bote es arrastrado hacia un muelle por medio de un cable atado a la proa y pasado por una polea situada en el muelle a $3$ m por encima de la proa. Si el cable se recoge a $1$ m/s, ¿con qué rapidez se aproxima el bote al muelle cuando la distancia del cable es $5$ m?
+  \item \medio{} Un hombre de $1{,}80$ m de estatura camina alejándose de un farol de $6$ m de altura a razón de $1{,}5$ m/s. ¿Con qué rapidez crece su sombra?
+  \item \dificil{} Dos automóviles parten del mismo punto: uno viaja hacia el norte a $60$ km/h y el otro hacia el este a $80$ km/h. ¿Con qué rapidez aumenta la distancia entre ellos $2$ horas después de la salida?
+  \item \dificil{} Se vierte arena sobre el suelo a razón de $10$ m$^3$/min formando un montón cónico cuya altura es siempre igual al diámetro de la base. ¿Con qué rapidez aumenta la altura cuando el montón mide $4$ m de alto?
+\end{enumerate}
+
+%\newpage
+
+% ============================================================
+
+% ──────────────────────────────────────────────────────────
+%  NUEVOS EJERCICIOS PROPUESTOS (32) — INSERCIÓN MANUAL
+% ──────────────────────────────────────────────────────────
+\subsection{Ejercicios propuestos: Optimización Avanzada}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Halla dos números cuya suma sea 20 y cuyo producto sea máximo.
+
+  \item \facil{} Halla el valor mínimo de la función $f(x) = x^2 + 4$.
+
+  \item \medio{} Un granjero dispone de 100 m de cerca para encerrar un rectángulo junto a un río (el lado del río no necesita cerca). Determina las dimensiones que maximizan el área.
+
+  \item \medio{} Se construye una caja sin tapa recortando cuadrados de lado $x$ de una lámina cuadrada de $12 \times 12$. Determina $x$ para maximizar el volumen.
+
+  \item \medio{} Halla las dimensiones del rectángulo de área máxima con base sobre el eje $x$ y vértices superiores sobre la parábola $y = 4 - x^2$.
+
+  \item \dificil{} Halla el valor mínimo de la suma de un número positivo y su recíproco.
+
+  \item \dificil{} Determina el punto de la parábola $y = x^2$ más cercano al punto $(0, 3)$.
+
+  \item \dificil{} Maximiza el área de un rectángulo inscrito en un semicírculo de radio 5.
+
+  \item \dificil{} El costo total de producir $x$ unidades es $C(x) = 2x^2 + 50x + 100$. Determina el nivel de producción que minimiza el costo promedio.
+
+  \item \muyDificil{} Una página debe contener 300 cm$^2$ de texto con márgenes de 2 cm arriba y abajo y 1 cm a los lados. Determina las dimensiones de la página que minimizan su área.
+\end{enumerate}
+
+\subsection{Ejercicios propuestos: Razones de Cambio Relacionadas}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} El radio de un círculo crece a razón de 2 cm/s. ¿Qué tan rápido crece su área cuando $r = 5$ cm?
+
+  \item \medio{} Una escalera de 10 m apoyada en una pared se desliza: su base se aleja de la pared a 1 m/s. ¿Qué tan rápido desciende la parte superior cuando la base está a 6 m de la pared?
+
+  \item \medio{} El volumen de un cubo aumenta a razón de 24 cm$^3$/s. ¿Qué tan rápido crece su arista cuando el lado mide 2 cm?
+
+  \item \medio{} Un globo esférico se infla a 100 cm$^3$/s. ¿Qué tan rápido crece su radio cuando $r = 5$ cm?
+
+  \item \dificil{} Un automóvil viaja hacia el sur a 60 km/h por una carretera que cruza perpendicularmente otra por la que un segundo automóvil viaja hacia el oeste a 80 km/h. ¿Qué tan rápido cambia la distancia entre ellos cuando están a 0{,}3 km y 0{,}4 km del cruce?
+
+  \item \dificil{} Un tanque cónico (radio 3 m, altura 5 m) se llena a 2 m$^3$/min. ¿Qué tan rápido sube el nivel del agua cuando la altura del agua es 3 m?
+
+  \item \dificil{} Una persona de 1{,}8 m camina alejándose de un farol de 6 m a 1{,}5 m/s. ¿Qué tan rápido crece la longitud de su sombra?
+
+  \item \dificil{} El área de un círculo crece a razón de 10 cm$^2$/s. ¿Qué tan rápido crece su circunferencia cuando $r = 4$ cm?
+
+  \item \dificil{} Un globo asciende verticalmente a 5 m/s desde un punto a 30 m de un observador. ¿Qué tan rápido cambia el ángulo de elevación cuando el globo está a 30 m de altura?
+
+  \item \muyDificil{} La arista de un cubo crece a 3 cm/s. ¿Qué tan rápido crece el área de su superficie cuando la arista mide 4 cm?
+\end{enumerate}
+
+\subsection{Ejercicios propuestos: Repaso Integrador Tipo Examen}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Halla dos números con producto 36 y suma mínima.
+
+  \item \medio{} Determina el valor máximo de $f(x) = 4x - x^2$.
+
+  \item \medio{} Maximiza el área del rectángulo con base sobre el eje $x$ y vértices superiores sobre $y = 6 - x^2$.
+
+  \item \medio{} Si $y = x^2$ y $x$ crece a razón de 3 unidades por segundo, ¿qué tan rápido crece $y$ cuando $x = 5$?
+
+  \item \dificil{} Minimiza $x^2 + y^2$ sujeto a la restricción $x + y = 10$.
+
+  \item \dificil{} Un contenedor cilíndrico abierto de volumen 1000 cm$^3$ se construye con el mínimo material posible. Determina la relación entre su radio y su altura.
+
+  \item \dificil{} El área de un círculo crece a razón de 6 cm$^2$/s cuando $r = 3$ cm. Halla la razón de cambio del radio en ese instante.
+
+  \item \dificil{} Dos barcos parten del mismo punto: uno hacia el este a 20 km/h y otro hacia el norte a 15 km/h. ¿Qué tan rápido cambia la distancia entre ellos después de 2 horas?
+
+  \item \dificil{} Divide el número 20 en dos partes de modo que el producto de una de ellas por el cuadrado de la otra sea máximo.
+
+  \item \dificil{} Una cometa vuela horizontalmente a 4 m/s a una altura constante de 40 m. ¿Qué tan rápido se desenrolla la cuerda cuando se han soltado 50 m?
+
+  \item \muyDificil{} Realiza el análisis completo de $f(x) = x^3 - 3x^2 - 9x + 5$: extremos, monotonía, concavidad y puntos de inflexión.
+
+  \item \muyDificil{} Halla la mayor área de un rectángulo con base sobre el eje $x$ y vértices superiores sobre la parábola $y = 9 - x^2$.
+\end{enumerate}
+
+% ============================================================
+\section{Clave de Respuestas}
+% ============================================================
+
+\subsection*{Sección 1: Optimización (Ejercicios 1--12)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item Ambos números $= 10$ (producto máximo $100$).
+  \item Ambos números $= 10$ (suma mínima $20$).
+  \item Cuadrado de lado $10$ m (área máxima $100$ m$^2$).
+  \item $h'(t) = 80 - 32t = 0 \Rightarrow t = 2{,}5$ s. $h(2{,}5) = 80(2{,}5) - 16(6{,}25) = 200 - 100 = 100$ pies.
+  \item Si $x$ = reducción en dólares (múltiplos de $0{,}5$): precio $= 10 - x$, cantidad $= 100 + 20x$. Ingreso $R = (10 - x)(100 + 20x)$. Derivando: $R' = -100 + 200 - 40x = 100 - 40x = 0 \Rightarrow x = 2{,}5$. Precio óptimo: $7{,}50$ dólares.
+  \item Con muro como lado, largo $= 120 - 2x$ (donde $x$ es el ancho). Área $= x(120 - 2x)$. $A' = 120 - 4x = 0 \Rightarrow x = 30$. Dimensiones: $30 \times 60$ m.
+  \item Base cuadrada $x$, altura $h = \frac{32}{x^2}$. Área total: $2x^2 + 4xh = 2x^2 + \frac{128}{x}$. $A' = 4x - \frac{128}{x^2} = 0 \Rightarrow 4x^3 = 128 \Rightarrow x = \sqrt[3]{32} = 2\sqrt[3]{4}$. Altura $h = \frac{32}{x^2} = \frac{32}{(2\sqrt[3]{4})^2}$. Simplificado: $x = 2\sqrt[3]{4}$, $h = \frac{32}{4 \sqrt[3]{16}} = \frac{8}{\sqrt[3]{16}} = \frac{8}{2\sqrt[3]{2}} = \frac{4}{\sqrt[3]{2}} = 2\sqrt[3]{4}$. ¡Es un cubo! (base $= h$).
+  \item Punto $(a, a^2)$. Distancia al cuadrado al cuadrado al cuadrado al cuadrd: $D = a^2 + (a^2 - 3)^2$. $D' = 2a + 2(a^2 - 3)(2a) = 2a + 4a(a^2 - 3) = 2a(1 + 2a^2 - 6) = 2a(2a^2 - 5) = 0$. $a = 0$ o $a = \pm\sqrt{2{,}5}$. Los puntos más cercanos: $\left(\sqrt{2{,}5},\ 2{,}5\right)$, $\left(-\sqrt{2{,}5},\ 2{,}5\right)$. (El punto $(0,0)$ es un máximo local de la distancia).
+  \item Sea $x$ = distancia de la base a la pared, $y$ = altura. $x^2 + y^2 = 100$. Derivando: $2x\frac{dx}{dt} + 2y\frac{dy}{dt} = 0$. En $x = 6$, $y = 8$, $\frac{dx}{dt} = 2$: $2(6)(2) + 2(8)\frac{dy}{dt} = 0 \Rightarrow \frac{dy}{dt} = -\frac{24}{16} = -1{,}5$ m/s (la altura baja a 1,5 m/s).
+  \item $V = \frac{1}{3}\pi r^2(2r) = \frac{2}{3}\pi r^3$. Derivando: $\frac{dV}{dt} = 2\pi r^2 \frac{dr}{dt}$. Con $\frac{dV}{dt} = 10$ y $r = 5$: $10 = 2\pi(25)\frac{dr}{dt} \Rightarrow \frac{dr}{dt} = \frac{10}{50\pi} = \frac{1}{5\pi}$ m/min $\approx 0{,}064$ m/min.
+  \item Por triángulos semejantes: $\frac{6}{x + s} = \frac{1{,}8}{s}$. Entonces $6s = 1{,}8x + 1{,}8s \Rightarrow 4{,}2s = 1{,}8x \Rightarrow s = \frac{3}{7}x$. Derivando: $\frac{ds}{dt} = \frac{3}{7}\frac{dx}{dt} = \frac{3}{7}(1{,}5) = \frac{4{,}5}{7} \approx 0{,}643$ m/s.
+  \item Similar al anterior pero con base cuadrada $x$ y volumen fijo $32$: $h = \frac{32}{x^2}$. Área total (sin tapa) $= x^2 + 4xh = x^2 + \frac{128}{x}$. $A' = 2x - \frac{128}{x^2} = 0 \Rightarrow 2x^3 = 128 \Rightarrow x = 4$ cm, $h = \frac{32}{16} = 2$ cm.
+\end{enumerate}
+
+
+\subsection*{Sección 2: Razones de Cambio Relacionadas (Ejercicios 13--18)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{12}
+  \item $V = \frac{4}{3}\pi r^3 \Rightarrow \frac{dV}{dt} = 4\pi r^2 \frac{dr}{dt} \Rightarrow 100 = 4\pi(25)\frac{dr}{dt} \Rightarrow \frac{dr}{dt} = \frac{1}{\pi} \approx 0{,}318$ cm/s.
+  \item $V = x^3 \Rightarrow \frac{dV}{dt} = 3x^2 \frac{dx}{dt} = 3(100)(3) = 900$ cm$^3$/s.
+  \item Sea $x$ la distancia al muelle y $z$ la longitud del cable: $x^2 + 3^2 = z^2$. Derivando: $2x\frac{dx}{dt} = 2z\frac{dz}{dt}$. Con $z = 5 \Rightarrow x = 4$. $4\frac{dx}{dt} = 5(-1) \Rightarrow \frac{dx}{dt} = -1{,}25$ m/s. Se aproxima a $1{,}25$ m/s.
+  \item Triángulos semejantes: $\frac{6}{x+s} = \frac{1{,}8}{s} \Rightarrow s = \frac{3}{7}x \Rightarrow \frac{ds}{dt} = \frac{3}{7}\frac{dx}{dt} = \frac{3}{7}(1{,}5) = \frac{4{,}5}{7} \approx 0{,}643$ m/s.
+  \item Distancia $D = \sqrt{x^2 + y^2}$. A las 2 h: $x = 160$ km, $y = 120$ km $\Rightarrow D = 200$ km. Derivando: $\frac{dD}{dt} = \frac{x\frac{dx}{dt} + y\frac{dy}{dt}}{D} = \frac{160(80) + 120(60)}{200} = \frac{12800 + 7200}{200} = \frac{20000}{200} = 100$ km/h.
+  \item Diámetro $= 2r = h \Rightarrow r = \frac{h}{2}$. $V = \frac{1}{3}\pi r^2 h = \frac{\pi}{12}h^3$. Derivando: $\frac{dV}{dt} = \frac{\pi}{4}h^2 \frac{dh}{dt} \Rightarrow 10 = \frac{\pi}{4}(16)\frac{dh}{dt} = 4\pi \frac{dh}{dt} \Rightarrow \frac{dh}{dt} = \frac{10}{4\pi} = \frac{5}{2\pi} \approx 0{,}796$ m/min.
+\end{enumerate}
+
+
+% ──────────────────────────────────────────────────────────
+%  NUEVAS RESPUESTAS (32) — INSERCIÓN MANUAL
+% ──────────────────────────────────────────────────────────
+\subsection*{Sección 3: Optimización Avanzada (Ejercicios 19--28)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{18}
+  \item Los dos números son 10 y 10 (producto máximo 100).
+  \item Mínimo $4$ en $x = 0$.
+  \item $A(x) = x(100 - 2x)$; $A' = 100 - 4x = 0 \Rightarrow x = 25$; dimensiones $25 \times 50$ m; área máxima 1250 m$^2$.
+  \item $V(x) = x(12 - 2x)^2$; $V' = (12 - 2x)(12 - 6x) = 0 \Rightarrow x = 2$ (descartando $x = 6$); $V_{max} = 128$ u$^3$.
+  \item $A(x) = 2x(4 - x^2)$; $A' = 8 - 6x^2 = 0 \Rightarrow x = \dfrac{2}{\sqrt{3}}$; dimensiones $\dfrac{4}{\sqrt{3}} \times \dfrac{8}{3}$.
+  \item $S = x + \dfrac{1}{x}$; $S' = 1 - \dfrac{1}{x^2} = 0 \Rightarrow x = 1$; suma mínima $2$.
+  \item Minimizando $D = x^2 + (x^2 - 3)^2$: $x = \pm\sqrt{\dfrac{5}{2}}$; puntos $\left(\pm\sqrt{\frac{5}{2}}, \frac{5}{2}\right)$.
+  \item $A(x) = 2x\sqrt{25 - x^2}$; $x = \dfrac{5}{\sqrt{2}}$; área máxima $25$ u$^2$.
+  \item $\bar{C}(x) = 2x + 50 + \dfrac{100}{x}$; $\bar{C}' = 2 - \dfrac{100}{x^2} = 0 \Rightarrow x = 5\sqrt{2} \approx 7$ unidades.
+  \item Minimizando $A(x) = 308 + 4x + \dfrac{600}{x}$: $x = 5\sqrt{6}$; página de $(5\sqrt{6} + 2) \times (10\sqrt{6} + 4)$ cm.
+\end{enumerate}
+
+\subsection*{Sección 4: Razones de Cambio Relacionadas (Ejercicios 29--38)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{28}
+  \item $\dfrac{dA}{dt} = 2\pi r \dfrac{dr}{dt} = 2\pi(5)(2) = 20\pi$ cm$^2$/s
+  \item $x^2 + y^2 = 100$; $y = 8$; $\dot{y} = -\dfrac{x\dot{x}}{y} = -\dfrac{6}{8} = -\dfrac{3}{4}$ m/s (desciende).
+  \item $V = s^3$; $3s^2 \dot{s} = 24 \Rightarrow \dot{s} = 2$ cm/s
+  \item $4\pi r^2 \dot{r} = 100 \Rightarrow \dot{r} = \dfrac{1}{\pi}$ cm/s
+  \item $d^2 = x^2 + y^2$; $d = 0{,}5$; $\dot{d} = \dfrac{0{,}4(-80) + 0{,}3(-60)}{0{,}5} = -100$ km/h (se acercan a 100 km/h).
+  \item $r = \frac{3h}{5}$; $V = \frac{3\pi h^3}{25}$; $\dot{h} = \dfrac{50}{81\pi}$ m/min $\approx 0{,}196$ m/min
+  \item $s = \frac{3}{7}x$; $\dot{s} = \dfrac{3}{7}(1{,}5) = \dfrac{9}{14}$ m/s $\approx 0{,}64$ m/s
+  \item $\dot{r} = \dfrac{10}{8\pi}$; $\dot{C} = 2\pi\dot{r} = 2{,}5$ cm/s
+  \item $\tan\theta = \frac{y}{30}$; $\sec^2\theta\,\dot{\theta} = \frac{\dot{y}}{30}$; con $\theta = \pi/4$: $\dot{\theta} = \dfrac{1}{12}$ rad/s
+  \item $S = 6s^2$; $\dot{S} = 12s\dot{s} = 12(4)(3) = 144$ cm$^2$/s
+\end{enumerate}
+
+\subsection*{Sección 5: Repaso Integrador Tipo Examen (Ejercicios 39--50)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{38}
+  \item $6$ y $6$ (suma mínima 12)
+  \item Máximo $4$ en $x = 2$.
+  \item $A(x) = 2x(6 - x^2)$; $x = \sqrt{2}$; área máxima $8\sqrt{2}$ u$^2$.
+  \item $\dot{y} = 2x\dot{x} = 2(5)(3) = 30$ u/s
+  \item Mínimo $50$ cuando $x = y = 5$.
+  \item $S = \pi r^2 + \frac{2000}{r}$; $r^3 = \frac{1000}{\pi}$; el radio y la altura resultan iguales: $r = h = \dfrac{10}{\sqrt[3]{\pi}}$ cm.
+  \item $6 = 2\pi(3)\dot{r} \Rightarrow \dot{r} = \dfrac{1}{\pi}$ cm/s
+  \item $d^2 = (20t)^2 + (15t)^2 = 625t^2 \Rightarrow d = 25t$; $\dot{d} = 25$ km/h (constante)
+  \item $P(x) = x^2(20 - x)$; $x = \dfrac{40}{3}$; partes $\dfrac{40}{3}$ y $\dfrac{20}{3}$.
+  \item $x^2 + 1600 = s^2$; con $s = 50$: $x = 30$; $\dot{s} = \dfrac{30 \cdot 4}{50} = 2{,}4$ m/s
+  \item $f' = 3(x - 3)(x + 1)$: crece en $(-\infty, -1) \cup (3, \infty)$, decrece en $(-1, 3)$; máximo local $(-1, 10)$, mínimo local $(3, -22)$; $f'' = 6(x - 1)$: cóncava hacia abajo en $(-\infty, 1)$ y hacia arriba en $(1, \infty)$; punto de inflexión $(1, -6)$.
+  \item $A(x) = 2x(9 - x^2)$; $x = \sqrt{3}$; área máxima $12\sqrt{3}$ u$^2$.
+\end{enumerate}
+\end{document}

@@ -1,105 +1,69 @@
-Plan para el curso enfocado en el **Precálculo** y el **Análisis Matemático I (Límites y Derivadas)**, profundizando en las aplicaciones de la derivada. 
+Plan para el curso enfocado en el **Precálculo** y el **Análisis Matemático I (Límites y Derivadas)**, profundizando en las aplicaciones de la derivada.
 
-6 semanas (24 clases de 1 hora):
+6 semanas (12 clases de 2 horas):
 
 ---
 
 ### Semana 1: Fundamentos de Álgebra y Concepto de Función
 *(Objetivo: Nivelar bases matemáticas y presentar el lenguaje de las funciones)*
 
-- **Clase 1: Repaso de Álgebra Elemental**  
-  *Contenido:* Leyes de exponentes y radicales; productos notables y factorización; racionalización de denominadores y numeradores.
+- **Clase 1: Repaso de Álgebra, Ecuaciones y Desigualdades**  
+  *Contenido:* Leyes de exponentes y radicales; productos notables y factorización; racionalización. Resolución de ecuaciones lineales, cuadráticas y con valor absoluto; desigualdades y notación de intervalos.
 
-- **Clase 2: Ecuaciones, Desigualdades y Valor Absoluto**  
-  *Contenido:* Resolución de ecuaciones lineales, cuadráticas y con valor absoluto; resolución de desigualdades lineales, cuadráticas, racionales y con valor absoluto; notación de intervalos y representación en la recta real.
-
-- **Clase 3: Plano Cartesiano y Definición de Función**  
-  *Contenido:* Distancia y punto medio; definición de relación y función; dominio, codominio y rango (imagen); prueba de la recta vertical.
-
-- **Clase 4: Gráficas de Funciones Básicas**  
-  *Contenido:* Trazo y análisis de funciones lineales, cuadráticas, cúbicas y de valor absoluto; identificación de interceptos y vértices.
+- **Clase 2: Plano Cartesiano, Relaciones y Gráficas Básicas**  
+  *Contenido:* Distancia y punto medio; relación y función; dominio, codominio y rango. Trazo y análisis de funciones lineales, cuadráticas, cúbicas y de valor absoluto; interceptos y vértices.
 
 ---
 
 ### Semana 2: Familias de Funciones (Polinomiales, Racionales y Compuestas)
 *(Objetivo: Manejar las funciones más comunes del cálculo)*
 
-- **Clase 5: Transformaciones de Gráficas**  
-  *Contenido:* Traslaciones verticales/horizontales, reflexiones (ejes X y Y), alargamientos y compresiones; cómo modificar la ecuación y su gráfica.
+- **Clase 3: Transformaciones y Funciones Polinomiales**  
+  *Contenido:* Traslaciones, reflexiones, alargamientos y compresiones. Grado, coeficiente principal, teorema del residuo y del factor; división sintética.
 
-- **Clase 6: Funciones Polinomiales y Teorema del Factor**  
-  *Contenido:* Grado, coeficiente principal y comportamiento en extremos; teorema del residuo y del factor; división sintética para encontrar raíces.
-
-- **Clase 7: Funciones Racionales y Asíntotas**  
-  *Contenido:* Dominio restringido; asíntotas verticales, horizontales y oblicuas; identificación de huecos (discontinuidades evitables); graficación paso a paso.
-
-- **Clase 8: Composición de Funciones y Función Inversa**  
-  *Contenido:* Operaciones algebraicas con funciones; composición \(f \circ g\); condición de inyectividad; método para hallar la inversa de una función y su dominio restringido.
+- **Clase 4: Funciones Racionales, Composición e Inversas**  
+  *Contenido:* Asíntotas verticales, horizontales y oblicuas; discontinuidades evitables. Operaciones algebraicas con funciones, composición \(f \circ g\); inyectividad y función inversa.
 
 ---
 
 ### Semana 3: Funciones Exponenciales, Logarítmicas y Trigonométricas
 *(Objetivo: Dominar las funciones trascendentes clave para el cálculo)*
 
-- **Clase 9: Función Exponencial y el Número \(e\)**  
-  *Contenido:* Definición y gráfica de \(f(x)=a^x\); el número de Euler; modelado de crecimiento y decrecimiento exponencial (interés compuesto, poblaciones).
+- **Clase 5: Funciones Exponenciales y Logarítmicas**  
+  *Contenido:* Gráficas de \(a^x\) y \(\log_a(x)\); el número de Euler \(e\) y logaritmo natural; propiedades de logaritmos y cambio de base; modelado básico.
 
-- **Clase 10: Función Logarítmica y Propiedades**  
-  *Contenido:* Definición y gráfica de \(f(x)=\log_a(x)\); el logaritmo natural; propiedades de producto, cociente y potencia; cambio de base.
-
-- **Clase 11: Sistema de Medición Angular y Circunferencia Unitaria**  
-  *Contenido:* Conversión grados-radianes; longitud de arco y área de sector; coordenadas en la circunferencia unitaria; definición de seno y coseno.
-
-- **Clase 12: Gráficas de Funciones Trigonométricas e Identidades Básicas**  
-  *Contenido:* Gráficas de seno, coseno y tangente (amplitud, período, desfase y desplazamiento vertical); repaso de identidades pitagóricas y de ángulos notables.
+- **Clase 6: Trigonometría Analítica y Gráficas**  
+  *Contenido:* Grados y radianes; longitud de arco; circunferencia unitaria, seno y coseno. Gráficas de funciones trigonométricas (amplitud, período, desfase); identidades básicas.
 
 ---
 
 ### Semana 4: Análisis Matemático I – Límites y Continuidad
 *(Objetivo: Construir la base conceptual del cálculo diferencial)*
 
-- **Clase 13: Introducción Intuitiva al Límite y Límites Laterales**  
-  *Contenido:* Idea de aproximación; notación formal (sin rigor excesivo); evaluación de límites mediante tablas y gráficas; existencia del límite.
+- **Clase 7: Introducción al Límite y Límites Algebraicos**  
+  *Contenido:* Límite intuitivo y límites laterales. Propiedades de límites; resolución de indeterminaciones \(0/0\) usando factorización y racionalización.
 
-- **Clase 14: Cálculo de Límites Algebraicos**  
-  *Contenido:* Propiedades de los límites (suma, resta, producto, cociente); límites de funciones polinomiales y racionales; técnicas de factorización y racionalización para eliminar indeterminaciones \(0/0\).
-
-- **Clase 15: Límites Trigonométricos y Límites al Infinito**  
-  *Contenido:* Límite fundamental \(\lim_{x \to 0} \frac{\sin x}{x} = 1\) y sus variantes; límites en el infinito y asíntotas horizontales; límites infinitos y asíntotas verticales.
-
-- **Clase 16: Clase Práctica y usos de límites**  
-  *Contenido:* Repaso de límites y resolución de ejercicios.
+- **Clase 8: Límites Trigonométricos, al Infinito y Continuidad**  
+  *Contenido:* Límite fundamental \(\lim_{x \to 0} \frac{\sin x}{x}\); límites al infinito y asíntotas; continuidad y clase práctica integradora.
 
 ---
 
 ### Semana 5: Análisis Matemático I – La Derivada y Reglas de Derivación
 *(Objetivo: Dominar el concepto y las técnicas de derivación)*
 
-- **Clase 17: Definición Formal de Derivada y Recta Tangente**  
-  *Contenido:* Definición de derivada como límite del cociente incremental; interpretación geométrica (pendiente de la tangente) y física (velocidad instantánea); cálculo de derivadas por definición (primeros principios).
+- **Clase 9: Definición de Derivada y Reglas Básicas**  
+  *Contenido:* Derivada por definición (cociente incremental), recta tangente. Reglas: potencia, suma, producto y cociente.
 
-- **Clase 18: Reglas Básicas de Derivación**  
-  *Contenido:* Derivada de una constante, de la función potencia (\(x^n\)), de sumas, restas, productos (Regla del Producto) y cocientes (Regla del Cociente).
-
-- **Clase 19: Regla de la Cadena y Derivadas Trascendentes**  
-  *Contenido:* Regla de la cadena para funciones compuestas; derivadas de funciones exponenciales, logarítmicas y trigonométricas (seno, coseno, tangente).
-
-- **Clase 20: Derivación Implícita y Derivadas de Orden Superior**  
-  *Contenido:* Técnica de derivación implícita (para ecuaciones no despejadas); derivadas de funciones trigonométricas inversas (arcsen, arccos, arctan); cálculo de derivadas segunda y tercera.
+- **Clase 10: Regla de la Cadena, Trascendentes y Derivación Implícita**  
+  *Contenido:* Regla de la cadena; derivadas de exponenciales, logarítmicas y trigonométricas. Derivación implícita y derivadas de orden superior.
 
 ---
 
 ### Semana 6: Aplicaciones de la Derivada y Cierre del Curso
-*(Objetivo: Aplicar la derivada al análisis de funciones y a problemas de optimización, sin tocar integrales)*
+*(Objetivo: Aplicar la derivada al análisis de funciones y a problemas de optimización)*
 
-- **Clase 21: Teoremas de Rolle y del Valor Medio (TVM)**  
-  *Contenido:* Enunciado y comprensión geométrica del Teorema de Rolle y del Teorema del Valor Medio; verificación de condiciones y aplicación en ejercicios teóricos.
+- **Clase 11: Teoremas Fundamentales, Monotonía y Concavidad**  
+  *Contenido:* Teoremas de Rolle y Valor Medio (TVM). Criterios de la primera y segunda derivada; puntos críticos, de inflexión y trazado completo de curvas.
 
-- **Clase 22: Criterios de Monotonía, Concavidad y Trazo de Curvas**  
-  *Contenido:* Uso de la primera derivada para hallar intervalos de crecimiento/decrecimiento y puntos críticos; uso de la segunda derivada para concavidad y puntos de inflexión; trazado completo de gráficas (incluyendo asíntotas).
-
-- **Clase 23: Problemas de Optimización y Razones de Cambio Relacionadas**  
-  *Contenido:* Planteamiento y resolución de problemas de máximos y mínimos (áreas, volúmenes, costos); resolución de problemas de razones de cambio (velocidades que varían, llenado de tanques, escaleras).
-
-- **Clase 24: Repaso General Integrador y Resolución de Dudas**  
-  *Contenido:* Recorrido por toda la materia: ejercicios mixtos que combinen funciones, límites, continuidad y derivadas; preguntas abiertas y estrategias para afrontar un examen final.
+- **Clase 12: Optimización, Razones de Cambio y Repaso General**  
+  *Contenido:* Problemas de máximos/mínimos y razones de cambio relacionadas. Repaso integrador de toda la materia y simulación de examen.

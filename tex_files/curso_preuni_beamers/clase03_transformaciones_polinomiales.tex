@@ -1,0 +1,294 @@
+% ============================================================
+%  CLASE 03 — TRANSFORMACIONES Y FUNCIONES POLINOMIALES
+%  Curso Preuniversitario · Semana 2 · Clase de 2 horas
+%  (Fusión de las antiguas clases 05 y 06)
+% ============================================================
+\documentclass[aspectratio=169]{beamer}
+\usepackage{mathwizards-beamer}
+\mwbeamer{Clase 3}{Transformaciones y Funciones Polinomiales}{Semana 2}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Parte 1: Transformaciones de Gráficas}
+% ════════════════════════════════════════════════════════════
+
+
+\begin{frame}{Transformaciones Rígidas: Traslaciones y Reflexiones}
+  \begin{block}{A partir de la función básica $y = f(x)$}
+    \begin{center}
+      \small
+      \begin{tabular}{lp{8cm}}
+        \toprule
+        \textbf{Ecuación} & \textbf{Efecto geométrico sobre la gráfica} \\
+        \midrule
+        $y = f(x) + k$ & Traslación vertical: $k$ unidades hacia \textbf{arriba} ($k > 0$) o \textbf{abajo} ($k < 0$). \\
+        $y = f(x - h)$ & Traslación horizontal: $h$ unidades a la \textbf{derecha} ($h > 0$) o \textbf{izquierda} ($h < 0$). \\
+        $y = -f(x)$ & Reflexión respecto al \textbf{eje $x$} (cambia de signo la ordenada $y$). \\
+        $y = f(-x)$ & Reflexión respecto al \textbf{eje $y$} (cambia de signo la abscisa $x$). \\
+        \bottomrule
+      \end{tabular}
+    \end{center}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Transformaciones No Rígidas: Escalamientos}
+  \begin{block}{Alargamientos y compresiones}
+    \begin{itemize}
+      \item \textbf{Vertical ($y = c \cdot f(x)$ con $c > 0$):}
+            \begin{itemize}
+              \item Si $c > 1$: \textbf{Alargamiento vertical} por un factor $c$.
+              \item Si $0 < c < 1$: \textbf{Compresión vertical} por un factor $c$.
+            \end{itemize}
+      \item \textbf{Horizontal ($y = f(c \cdot x)$ con $c > 0$):}
+            \begin{itemize}
+              \item Si $c > 1$: \textbf{Compresión horizontal} por un factor $\frac{1}{c}$.
+              \item Si $0 < c < 1$: \textbf{Alargamiento horizontal} por un factor $\frac{1}{c}$.
+            \end{itemize}
+    \end{itemize}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{mwpasos}[Orden estándar para graficar $y = a \cdot f(b(x - h)) + k$]
+    1. Escalamientos y reflexiones $\longrightarrow$ 2. Traslación horizontal ($h$) $\longrightarrow$ 3. Traslación vertical ($k$).
+  \end{mwpasos}
+\end{frame}
+
+\begin{frame}{Transformaciones con Valor Absoluto}
+  \begin{block}{Efecto de aplicar valor absoluto a una función $y = f(x)$}
+    \begin{itemize}
+      \item \textbf{$y = |f(x)|$ (Valor absoluto externo):}
+            Conserva todas las partes de la gráfica donde $y \ge 0$ y \textbf{refleja hacia arriba} respecto al eje $x$ las partes donde $y < 0$. El rango resultante siempre cumple $\text{Ran}(|f|) \subseteq [0, \infty)$.
+      \item \textbf{$y = f(|x|)$ (Valor absoluto interno):}
+            Elimina la porción de la gráfica donde $x < 0$ y \textbf{refleja la porción de $x \ge 0$ hacia la izquierda} respecto al eje $y$. La función resultante es siempre una \textbf{función par}.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase — Parte 1}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 1}
+  \begin{mwejercicio}[Ejercicio 1 \quad \facil]
+    Describe la secuencia de transformaciones que se deben aplicar a la gráfica de $f(x) = x^2$ para obtener:
+    $$g(x) = (x - 4)^2 + 3$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 2}
+  \begin{mwejercicio}[Ejercicio 2 \quad \facil]
+    Escribe la expresión algebraica de la función $g(x)$ que resulta de aplicar a $f(x) = \sqrt{x}$: una traslación de 3 unidades hacia la izquierda seguida de una traslación de 5 unidades hacia abajo.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 3}
+  \begin{mwejercicio}[Ejercicio 3 \quad \facil]
+    Si el punto $P(2, -5)$ pertenece a la gráfica de $y = f(x)$, encuentra las coordenadas del punto correspondiente en las gráficas de:
+    $$a)\; y = -f(x) \qquad\qquad b)\; y = f(-x) \qquad\qquad c)\; y = f(x + 3) - 2$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 4}
+  \begin{mwejercicio}[Ejercicio 4 \quad \medio]
+    Detalla todas las transformaciones necesarias para transformar $f(x) = x^3$ en:
+    $$g(x) = -2(x + 1)^3 + 4$$
+    Indica cómo se transforma el punto de inflexión $(0,0)$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 5}
+  \begin{mwejercicio}[Ejercicio 5 \quad \medio]
+    El punto $P(6, -8)$ está en la gráfica de $y = f(x)$. Determina las coordenadas del punto transformado en la gráfica de:
+    $$y = 4 f\left(\frac{1}{2}x - 1\right) + 3$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 6}
+  \begin{mwejercicio}[Ejercicio 6 \quad \medio]
+    A partir de la función elemental $f(x) = \sqrt{x}$, describe las transformaciones, determina el dominio, rango y bosqueja la gráfica de:
+    $$g(x) = -\sqrt{4 - x} + 3$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 7}
+  \begin{mwejercicio}[Ejercicio 7 \quad \medio]
+    Dada la función cuadrática $f(x) = x^2 - 4$:
+    \begin{enumerate}
+      \item Bosqueja la gráfica de $g(x) = |f(x)| = |x^2 - 4|$.
+      \item Bosqueja la gráfica de $h(x) = f(|x|) = (|x|)^2 - 4$.
+    \end{enumerate}
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 8}
+  \begin{mwejercicio}[Ejercicio 8 \quad \dificil]
+    Se sabe que la función $y = f(x)$ tiene dominio $[-4, 6]$ y rango $[-3, 5]$. Determina el dominio y el rango de la función transformada:
+    $$g(x) = -2 f(3x - 6) + 4$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 9}
+  \begin{mwejercicio}[Ejercicio 9 \quad \dificil]
+    A la función recíproca $f(x) = \dfrac{1}{x}$ se le aplican en orden las siguientes transformaciones:
+    1) Alargamiento vertical por factor 3; 2) Reflexión respecto al eje $x$; 3) Traslación de 2 unidades a la derecha; 4) Traslación de 1 unidad hacia arriba. Encuentra la fórmula resultante $g(x)$ y exprésala como un único cociente de polinomios.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 10}
+  \begin{mwejercicio}[Ejercicio 10 \quad \dificil]
+    Analiza y grafica paso a paso la función con valor absoluto:
+    $$f(x) = 3 - 2|x + 1|$$
+    Indica su vértice, sus interceptos con ambos ejes cartesianos, su dominio y su rango.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+
+% ════════════════════════════════════════════════════════════
+\section{Parte 2: Funciones Polinomiales y Teorema del Factor}
+% ════════════════════════════════════════════════════════════
+
+
+\begin{frame}{Funciones Polinomiales y Comportamiento Asintótico}
+  \begin{block}{Definición general}
+    $$P(x) = a_n x^n + a_{n-1}x^{n-1} + \dots + a_1 x + a_0 \qquad (a_n \neq 0, \; n \in \mathbb{N}_0)$$
+    \begin{itemize}
+      \item \textbf{Dominio:} Todo el conjunto de los números reales $\mathbb{R}$.
+      \item \textbf{Continuidad:} Son curvas suaves y continuas en todo $\mathbb{R}$, sin picos ni asíntotas.
+    \end{itemize}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{Comportamiento en los extremos ($x \to \pm\infty$)}
+    El término principal $a_n x^n$ domina completamente para valores grandes de $|x|$:
+    \begin{center}
+      \small
+      \begin{tabular}{ccc}
+        \toprule
+        \textbf{Grado $n$} & \textbf{Coeficiente $a_n > 0$} & \textbf{Coeficiente $a_n < 0$} \\
+        \midrule
+        \textbf{Par} & Sube por izq. y der. ($\nwarrow \nearrow$) & Baja por izq. y der. ($\swarrow \searrow$) \\
+        \textbf{Impar} & Baja por izq., sube por der. ($\swarrow \nearrow$) & Sube por izq., baja por der. ($\nwarrow \searrow$) \\
+        \bottomrule
+      \end{tabular}
+    \end{center}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Teoremas del Residuo, del Factor y de las Raíces Racionales}
+  \begin{block}{Algoritmo de la división de polinomios}
+    $$P(x) = D(x) \cdot Q(x) + R(x) \qquad (\text{grado}(R) < \text{grado}(D))$$
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{Teoremas fundamentales}
+    \begin{itemize}
+      \item \textbf{Teorema del Residuo:} Al dividir $P(x)$ entre $(x - c)$, el residuo es exactamente el valor numérico $R = P(c)$.
+      \item \textbf{Teorema del Factor:} $(x - c)$ es un factor de $P(x) \iff P(c) = 0$ ($c$ es una raíz de $P(x)$).
+      \item \textbf{Teorema del Cero Racional:} Si $P(x)$ tiene coeficientes enteros, toda raíz racional $x = \frac{p}{q}$ irreducible cumple: $p$ es divisor de $a_0$ y $q$ es divisor de $a_n$.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{División Sintética y Multiplicidad de Raíces}
+  \begin{mwpasos}[División sintética (Regla de Ruffini para dividir entre $x - c$)]
+    1. Ordenar coeficientes de mayor a menor grado (completar con 0 si faltan términos). \\
+    2. Bajar el primer coeficiente $a_n$, multiplicar por $c$, sumar con el siguiente y repetir. \\
+    3. El último valor es el residuo; los anteriores son los coeficientes de $Q(x)$.
+  \end{mwpasos}
+
+  \vspace{4pt}
+  \begin{alertblock}{Multiplicidad de una raíz $c$ en $(x - c)^m$}
+    \begin{itemize}
+      \item Si $m$ es \textbf{impar}: La gráfica \textbf{cruza} el eje $x$ en $(c, 0)$. (Si $m \ge 3$, se aplana al cruzar).
+      \item Si $m$ es \textbf{par}: La gráfica es tangente y \textbf{rebota} en el eje $x$ en $(c, 0)$ sin cruzarlo.
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase — Parte 2}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 11}
+  \begin{mwejercicio}[Ejercicio 11 \quad \facil]
+    Determina el grado, el coeficiente principal y el comportamiento en los extremos ($x \to \infty$ y $x \to -\infty$) de las siguientes funciones polinomiales:
+    $$a)\; P(x) = -3x^4 + 5x^3 - 2x + 7 \qquad\qquad b)\; Q(x) = 4x^5 - 2x^3 + x - 1$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 12}
+  \begin{mwejercicio}[Ejercicio 12 \quad \facil]
+    Usando el Teorema del Residuo, calcula el resto de dividir $P(x) = 2x^4 - 3x^3 + 5x - 8$ entre:
+    $$a)\; (x - 2) \qquad\qquad\qquad b)\; (x + 1)$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 13}
+  \begin{mwejercicio}[Ejercicio 13 \quad \facil]
+    Efectúa la división sintética de $P(x) = 3x^3 - 7x^2 + 5$ entre $(x - 3)$, e indica el cociente $Q(x)$ y el residuo $R$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 14}
+  \begin{mwejercicio}[Ejercicio 14 \quad \medio]
+    Verifica que $x = 2$ es una raíz de $P(x) = x^3 - 4x^2 + x + 6$, y factoriza completamente el polinomio en factores lineales.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 15}
+  \begin{mwejercicio}[Ejercicio 15 \quad \medio]
+    Lista todas las posibles raíces racionales según el Teorema del Cero Racional y encuentra todas las soluciones reales de:
+    $$2x^3 + 3x^2 - 8x + 3 = 0$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 16}
+  \begin{mwejercicio}[Ejercicio 16 \quad \medio]
+    Determina el valor de la constante $k$ para que el binomio $(x + 2)$ sea un factor del polinomio:
+    $$P(x) = x^3 + kx^2 - 4x + 12$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 17}
+  \begin{mwejercicio}[Ejercicio 17 \quad \medio]
+    Construye la fórmula de una función polinomial de grado 3 que tenga ceros en $x = -2$, $x = 1$, $x = 3$ y cuyo intercepto con el eje $y$ sea $(0, 12)$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 18}
+  \begin{mwejercicio}[Ejercicio 18 \quad \dificil]
+    Factoriza completamente en $\mathbb{R}$ el siguiente polinomio de cuarto grado:
+    $$P(x) = 2x^4 - 5x^3 - 5x^2 + 20x - 12$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 19}
+  \begin{mwejercicio}[Ejercicio 19 \quad \dificil]
+    Halla los valores de los coeficientes $a$ y $b$ sabiendo que el polinomio $P(x) = x^4 + ax^3 + bx^2 - 8x + 4$ es divisible exactamente por $(x - 1)^2$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 20}
+  \begin{mwejercicio}[Ejercicio 20 \quad \dificil]
+    Para la función polinomial $P(x) = -x(x - 2)^2(x + 3)^3$:
+    \begin{enumerate}
+      \item Determina su grado y su comportamiento en los extremos ($x \to \pm\infty$).
+      \item Identifica todas sus raíces y clasifica el comportamiento gráfico en cada una (cruce o rebote).
+      \item Construye la tabla de signos y bosqueja la gráfica completa.
+    \end{enumerate}
+  \end{mwejercicio}
+  \vspace{1.5cm}
+\end{frame}
+
+
+\end{document}

@@ -1,0 +1,264 @@
+% ============================================================
+%  CLASE 10 — REGLA DE LA CADENA, TRASCENDENTES E IMPLÍCITA
+%  Curso Preuniversitario · Semana 5 · Clase de 2 horas
+%  (Fusión de las antiguas clases 19 y 20)
+% ============================================================
+\documentclass[aspectratio=169]{beamer}
+\usepackage{mathwizards-beamer}
+\mwbeamer{Clase 10}{Regla de la Cadena, Trascendentes e Implícita}{Semana 5}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Parte 1: Regla de la Cadena y Trascendentes}
+% ════════════════════════════════════════════════════════════
+
+
+\begin{frame}{Enunciado de la Regla de la Cadena}
+  \begin{block}{Derivada de la Función Compuesta}
+    Si $y = f(u)$ es derivable en $u = g(x)$ y $u = g(x)$ es derivable en $x$, entonces la función compuesta $(f \circ g)(x) = f(g(x))$ es derivable en $x$ y:
+    $$\boxed{\frac{d}{dx}[f(g(x))] = f'(g(x)) \cdot g'(x)} \qquad\text{o bien en notación de Leibniz:}\qquad \boxed{\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}}$$
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{Forma Generalizada de la Regla de la Potencia}
+    $$\boxed{\frac{d}{dx}\left[(u(x))^n\right] = n(u(x))^{n-1} \cdot u'(x)}$$
+  \end{block}
+\end{frame}
+
+\begin{frame}{Derivadas de Funciones Trascendentes Compuestas}
+  \begin{block}{Formulario general con regla de la cadena (donde $u = u(x)$)}
+    \begin{columns}[T]
+      \column{0.48\textwidth}
+      \begin{itemize}
+        \item $\dfrac{d}{dx}[e^u] = e^u \cdot u'$
+        \item $\dfrac{d}{dx}[a^u] = a^u \ln a \cdot u'$
+        \item $\dfrac{d}{dx}[\ln u] = \dfrac{u'}{u}$
+      \end{itemize}
+      \column{0.48\textwidth}
+      \begin{itemize}
+        \item $\dfrac{d}{dx}[\sin u] = \cos u \cdot u'$
+        \item $\dfrac{d}{dx}[\cos u] = -\sin u \cdot u'$
+        \item $\dfrac{d}{dx}[\tan u] = \sec^2 u \cdot u'$
+      \end{itemize}
+    \end{columns}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{mwpasos}[{Técnica de Derivación Logarítmica (para $y = [u(x)]^{v(x)}$)}]
+    1. Aplicar logaritmo natural en ambos miembros: $\ln y = v(x) \ln(u(x))$. \\
+    2. Derivar implícitamente respecto a $x$: $\dfrac{y'}{y} = \dfrac{d}{dx}[v(x) \ln(u(x))]$. \\
+    3. Multiplicar por $y$ para despejar $y'$.
+  \end{mwpasos}
+\end{frame}
+
+
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase — Parte 1}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 1}
+  \begin{mwejercicio}[Ejercicio 1 \quad \facil]
+    Aplica la regla de la potencia generalizada para calcular la derivada de:
+    $$f(x) = (3x^2 - 5x + 1)^4$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 2}
+  \begin{mwejercicio}[Ejercicio 2 \quad \facil]
+    Calcula la derivada de la función exponencial compuesta:
+    $$g(x) = e^{4x^2 - 2x + 3}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 3}
+  \begin{mwejercicio}[Ejercicio 3 \quad \facil]
+    Calcula la derivada de la función trigonométrica con argumento lineal:
+    $$h(x) = \sin(5x - \pi)$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 4}
+  \begin{mwejercicio}[Ejercicio 4 \quad \medio]
+    Calcula y simplifica la derivada del logaritmo natural compuesto:
+    $$f(x) = \ln(x^2 + 4x + 5)$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 5}
+  \begin{mwejercicio}[Ejercicio 5 \quad \medio]
+    Combina la regla del producto y la regla de la cadena para derivar y factorizar:
+    $$f(x) = x^2 e^{-2x}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 6}
+  \begin{mwejercicio}[Ejercicio 6 \quad \medio]
+    Calcula la derivada de la potencia trigonométrica:
+    $$g(x) = \cos^3(4x)$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 7}
+  \begin{mwejercicio}[Ejercicio 7 \quad \medio]
+    Aplica la regla de la cadena al radical de un cociente y simplifica:
+    $$h(x) = \sqrt{\frac{x + 1}{x - 1}}$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 8}
+  \begin{mwejercicio}[Ejercicio 8 \quad \dificil]
+    Aplica la técnica de derivación logarítmica para calcular la derivada de:
+    $$y = x^{\sin x} \qquad (x > 0)$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 9}
+  \begin{mwejercicio}[Ejercicio 9 \quad \dificil]
+    Usa las propiedades de logaritmos para simplificar la expresión antes de derivar:
+    $$y = \ln\left(\frac{x^3 \sqrt{x^2 + 1}}{(2x + 5)^4}\right)$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 10}
+  \begin{mwejercicio}[Ejercicio 10 \quad \dificil]
+    Calcula la derivada de la función con composición triple anidada:
+    $$f(x) = \ln\left(\sin\left(\sqrt{x^2 + 1}\right)\right)$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+
+% ════════════════════════════════════════════════════════════
+\section{Parte 2: Derivación Implícita y Orden Superior}
+% ════════════════════════════════════════════════════════════
+
+
+\begin{frame}{Derivación Implícita}
+  \begin{block}{Concepto y Regla de la Cadena con $y = y(x)$}
+    Cuando una curva viene dada por una ecuación implícita $F(x, y) = 0$, tratamos a $y$ como una función diferenciable de $x$ y aplicamos la regla de la cadena cada vez que derivamos un término que contiene a $y$:
+    $$\frac{d}{dx}[y^n] = n y^{n-1} \cdot y' \qquad\qquad \frac{d}{dx}[\sin y] = (\cos y) \cdot y' \qquad\qquad \frac{d}{dx}[e^y] = e^y \cdot y'$$
+  \end{block}
+
+  \vspace{4pt}
+  \begin{mwpasos}[Algoritmo de derivación implícita]
+    1. Derivar ambos miembros de la igualdad término a término respecto a $x$. \\
+    2. Agrupar todos los términos que contienen $y'$ en el miembro izquierdo y los restantes en el derecho. \\
+    3. Factorizar $y'$ como factor común y despejar $y' = \frac{dy}{dx}$.
+  \end{mwpasos}
+\end{frame}
+
+\begin{frame}{Trigonométricas Inversas y Derivadas de Orden Superior}
+  \begin{block}{Derivadas de las funciones trigonométricas inversas}
+    \begin{columns}[T]
+      \column{0.48\textwidth}
+      \begin{itemize}
+        \item $\dfrac{d}{dx}[\arcsin u] = \dfrac{u'}{\sqrt{1 - u^2}}$
+        \item $\dfrac{d}{dx}[\arccos u] = -\dfrac{u'}{\sqrt{1 - u^2}}$
+      \end{itemize}
+      \column{0.48\textwidth}
+      \begin{itemize}
+        \item $\dfrac{d}{dx}[\arctan u] = \dfrac{u'}{1 + u^2}$
+        \item $\dfrac{d}{dx}[\text{arcsec } u] = \dfrac{u'}{|u|\sqrt{u^2 - 1}}$
+      \end{itemize}
+    \end{columns}
+  \end{block}
+
+  \vspace{4pt}
+  \begin{block}{Derivadas de Orden Superior y Cinemática}
+    \begin{itemize}
+      \item \textbf{Segunda derivada:} $f''(x) = \dfrac{d}{dx}[f'(x)] = \dfrac{d^2y}{dx^2}$ \quad (concavidad y aceleración).
+      \item \textbf{Cinemática:} Posición $s(t) \;\xrightarrow{d/dt}\;$ Velocidad $v(t) = s'(t) \;\xrightarrow{d/dt}\;$ Aceleración $a(t) = s''(t) = v'(t)$.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase — Parte 2}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 11}
+  \begin{mwejercicio}[Ejercicio 11 \quad \facil]
+    Calcula la derivada implícita $y'$ para la ecuación de la circunferencia:
+    $$x^2 + y^2 = 25$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 12}
+  \begin{mwejercicio}[Ejercicio 12 \quad \facil]
+    Encuentra la ecuación de la recta tangente a la circunferencia $x^2 + y^2 = 25$ en el punto $P(3, 4)$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 13}
+  \begin{mwejercicio}[Ejercicio 13 \quad \facil]
+    Calcula la derivada de la función arco tangente compuesta:
+    $$f(x) = \arctan(3x - 1)$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 14}
+  \begin{mwejercicio}[Ejercicio 14 \quad \medio]
+    Halla la derivada implícita $y'$ en términos de $x$ y $y$ para:
+    $$x^2 + 2xy - y^2 = 4$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 15}
+  \begin{mwejercicio}[Ejercicio 15 \quad \medio]
+    Calcula la derivada de la función arco seno compuesta y simplifica:
+    $$g(x) = \arcsin(2x - 1)$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 16}
+  \begin{mwejercicio}[Ejercicio 16 \quad \medio]
+    Calcula la primera y la segunda derivada de la función producto:
+    $$f(x) = x^3 e^x$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 17}
+  \begin{mwejercicio}[Ejercicio 17 \quad \medio]
+    Calcula la segunda derivada implícita $y''$ para la elipse $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} = 1$ y exprésala en términos exclusivos de $y$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 18}
+  \begin{mwejercicio}[Ejercicio 18 \quad \dificil]
+    Para la curva algebraica del Folium de Descartes $x^3 + y^3 = 6xy$:
+    \begin{enumerate}
+      \item Encuentra la expresión general de la derivada implícita $y'$.
+      \item Determina la ecuación de la recta tangente en el punto $(3, 3)$.
+    \end{enumerate}
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 19}
+  \begin{mwejercicio}[Ejercicio 19 \quad \dificil]
+    Calcula y simplifica al máximo la derivada de la función trigonométrica inversa:
+    $$y = \arctan\left(\frac{2x}{1 - x^2}\right) \qquad (|x| < 1)$$
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+\begin{frame}{Ejercicio 20}
+  \begin{mwejercicio}[Ejercicio 20 \quad \dificil]
+    La posición de un objeto en movimiento rectilíneo viene dada por $s(t) = t^3 - 6t^2 + 9t + 2$ para $t \ge 0$:
+    \begin{enumerate}
+      \item Encuentra los instantes $t$ en que el objeto está instantáneamente en reposo ($v(t) = 0$).
+      \item Calcula la aceleración en cada uno de dichos instantes.
+      \item Determina los intervalos de tiempo en los que el objeto acelera (rapidez aumenta) y frena (rapidez disminuye).
+    \end{enumerate}
+  \end{mwejercicio}
+  \vspace{2.5cm}
+\end{frame}
+
+
+\end{document}

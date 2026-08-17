@@ -14,6 +14,9 @@
 *.xdv
 *.aux
 *.synctex.gz
+*.snm
+*.nav
+*.toc
 
 # ── Python (hay extract_columns.py en Formularios) ──
 __pycache__/

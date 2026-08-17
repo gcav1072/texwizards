@@ -1,184 +1,35 @@
 % ============================================================
-%  GUÍA 3: POLINOMIALES, RACIONALES, COMPOSICIÓN E INVERSAS
+%  GUÍA 4: Funciones Racionales, Composición e Inversas
 %  Curso de Introducción a la Universidad — Precálculo y Cálculo I
-%  Autor: Gabriel Astudillo
-%  Sesiones cubiertas: 6, 7 y 8
+%  Autor: Ing. Gabriel Astudillo
+%  Clase cubierta: 4
 % ============================================================
 
 \documentclass[12pt, a4paper]{article}
 
 % ── Paquetes ─────────────────────────────────────────────────
-
 \usepackage{mathwizards-guia}
-\mwguia{Guía 3 $\cdot$ Funciones pt. 2}{Gabriel Astudillo}
+\mwguia{Guía 4 — Funciones Racionales, Composición e Inversas}{Ing. Gabriel Astudillo $\cdot$ Curso Preuniversitario}
 
 \begin{document}
-% ============================================================
 
 % ── Portada / Título ─────────────────────────────────────────
-\mwportada{Guía de Estudio 3}{Funciones Polinomiales, Racionales, Compuestas e Inversas}{Teorema del Factor, División Sintética, Asíntotas, Composición e Inversas}
+\mwportada{Guía de Estudio 4}{Funciones Racionales, Composición e Inversas}{Asíntotas, Discontinuidades, Álgebra de Funciones, Composición, Inyectividad e Inversas}
 
 \vspace{4pt}
 \begin{cuadroinfo}
-  \small
-  \textbf{Presentación:} En esta guía estudiaremos tres familias de funciones que aparecen constantemente en el cálculo: las \textbf{polinomiales} (con sus técnicas de división sintética y el Teorema del Factor), las \textbf{racionales} (con sus asíntotas y huecos) y las \textbf{compuestas} con sus \textbf{inversas} (que te permitirán ``deshacer'' funciones). Cada sección contiene ejercicios resueltos y ejercicios propuestos.
-  \\[4pt]
-  \textbf{Nivel de Dificultad:}\quad
-  \facil{} Básico / Directo \quad
-  \medio{} Intermedio \quad
-  \dificil{} Desafiante
+\small
+\textbf{Presentación:} Esta guía profundiza en las funciones racionales —asíntotas verticales, horizontales y oblicuas, discontinuidades evitables— y en el álgebra de funciones: suma, producto, cociente, composición y función inversa, con el criterio de inyectividad y la prueba de la recta horizontal. La teoría, los ejemplos resueltos y los ejercicios propuestos con clave te preparan para los límites y la derivación.
+\\[4pt]
+\textbf{Nivel de Dificultad:}\quad
+\facil{} Básico / Directo \quad
+\medio{} Intermedio \quad
+\dificil{} Desafiante \quad
+\muyDificil{} Muy Difícil / Reto
 \end{cuadroinfo}
 
 \vspace{8pt}
 
-% ============================================================
-\section{Funciones Polinomiales y Teorema del Factor}
-% ============================================================
-
-\subsection{Conceptos generales}
-
-\begin{cuadroteoria}
-  \textbf{Función polinomial de grado $n$:}
-  $$f(x) = a_n x^n + a_{n-1}x^{n-1} + \dots + a_1 x + a_0$$
-  donde $a_n \neq 0$, $a_n$ es el \textbf{coeficiente principal} y $a_0$ el término constante.
-
-  El \textbf{grado} de la función es $n$. Su \textbf{dominio} es siempre $\mathbb{R} = (-\infty, \infty)$.
-
-  \textbf{Comportamiento en los extremos} (cuando $x \to \pm\infty$):
-  \begin{center}
-    \begin{tabular}{ccc}
-      \toprule
-      \textbf{Grado} & \textbf{Coef. principal} & \textbf{Extremos}                              \\
-      \midrule
-      Par            & Positivo                 & $f \to +\infty$ en ambos extremos              \\
-      Par            & Negativo                 & $f \to -\infty$ en ambos extremos              \\
-      Impar          & Positivo                 & $f \to -\infty$ (izq.), $f \to +\infty$ (der.) \\
-      Impar          & Negativo                 & $f \to +\infty$ (izq.), $f \to -\infty$ (der.) \\
-      \bottomrule
-    \end{tabular}
-  \end{center}
-\end{cuadroteoria}
-
-\newpage
-
-\begin{cuadrosolucion}
-  \textbf{Teorema del Residuo} (también llamado \textbf{Teorema del Resto})\textbf{:} Si $f$ es un polinomio, el residuo de dividir $f(x)$ entre $(x - c)$ es $f(c)$.
-
-  \textbf{Teorema del Factor:} $(x - c)$ es factor de $f(x)$ si y solo si $f(c) = 0$. Es decir, $c$ es raíz de $f$.
-
-  \textbf{Número máximo de raíces:} Un polinomio de grado $n$ tiene a lo sumo $n$ raíces reales.
-
-  \textbf{Regla de los signos de Descartes:} El número de raíces positivas es igual al número de cambios de signo de $f(x)$ (o menor en un número par). Para raíces negativas, se aplica la misma regla a $f(-x)$.
-\end{cuadrosolucion}
-
-\begin{cuadroextra}
-  \textbf{Teorema del Cero Racional:} Si $f(x) = a_n x^n + a_{n-1}x^{n-1} + \dots + a_1 x + a_0$ es un polinomio con coeficientes enteros, entonces toda raíz racional $\dfrac{p}{q}$ (en forma reducida) satisface:
-  \begin{itemize}[leftmargin=*]
-    \item $p$ divide al término constante $a_0$.
-    \item $q$ divide al coeficiente principal $a_n$.
-  \end{itemize}
-  Esto permite generar una lista finita de \textbf{posibles raíces racionales} para probar con el Teorema del Residuo o división sintética.
-\end{cuadroextra}
-
-\subsection{División sintética}
-
-\begin{cuadroadvertencia}
-  \textbf{División sintética} (para dividir por $x - c$):
-  \begin{enumerate}[leftmargin=*]
-    \item Escribe los coeficientes del polinomio (con ceros para términos faltantes).
-    \item Baja el primer coeficiente.
-    \item Multiplica por $c$ y suma con el siguiente coeficiente; repite.
-    \item El último número es el residuo; los demás son los coeficientes del cociente.
-  \end{enumerate}
-\end{cuadroadvertencia}
-
-\subsection{Ejercicios resueltos}
-
-\textbf{Ejemplo R1.} Divide $f(x) = 2x^3 - 7x^2 + 4x + 4$ entre $x - 2$ usando división sintética.
-
-\begin{cuadrosolucion}
-  \textbf{Solución:} Coeficientes: $2$, $-7$, $4$, $4$. Colocamos $c = 2$:
-  \[
-    \begin{array}{c|cccc}
-      2 & 2 & -7 & 4  & 4  \\
-        &   & 4  & -6 & -4 \\
-      \hline
-        & 2 & -3 & -2 & 0  \\
-    \end{array}
-  \]
-  Cociente: $2x^2 - 3x - 2$; residuo $= 0$. Como el residuo es cero, $x = 2$ es raíz y $(x - 2)$ es factor.
-\end{cuadrosolucion}
-
-\newpage
-
-\textbf{Ejemplo R2.} Factoriza completamente $f(x) = x^3 - 4x^2 + x + 6$ y encuentra sus raíces.
-
-\begin{cuadrosolucion}
-  \textbf{Solución:}
-  \begin{enumerate}
-    \item Posibles raíces racionales (divisores de 6): $\pm 1, \pm 2, \pm 3, \pm 6$.
-    \item Probamos con $x = -1$: $f(-1) = -1 - 4 - 1 + 6 = 0$. ¡Es raíz!
-    \item División sintética con $c = -1$:
-          \[
-            \begin{array}{c|cccc}
-              -1 & 1 & -4 & 1 & 6  \\
-                 &   & -1 & 5 & -6 \\
-              \hline
-                 & 1 & -5 & 6 & 0  \\
-            \end{array}
-          \]
-    \item El cociente es $x^2 - 5x + 6 = (x - 2)(x - 3)$.
-    \item Factorización completa: $f(x) = (x + 1)(x - 2)(x - 3)$. Raíces: $x = -1$, $x = 2$, $x = 3$.
-  \end{enumerate}
-\end{cuadrosolucion}
-
-\textbf{Ejemplo R3.} Encuentra el residuo de dividir $f(x) = x^4 - 2x^2 + 5$ entre $x - 3$.
-
-\begin{cuadrosolucion}
-  \textbf{Solución:} Por el Teorema del Residuo, el residuo es $f(3) = 3^4 - 2(3)^2 + 5 = 81 - 18 + 5 = 68$.
-\end{cuadrosolucion}
-
-\textbf{Ejemplo R4.} Determina el comportamiento en los extremos de $f(x) = -2x^5 + 3x^3 - x + 7$.
-
-\begin{cuadrosolucion}
-  \textbf{Solución:} Grado 5 (impar), coeficiente principal $-2$ (negativo). Entonces: cuando $x \to +\infty$, $f(x) \to -\infty$; cuando $x \to -\infty$, $f(x) \to +\infty$.
-\end{cuadrosolucion}
-
-\subsection{Ejercicios propuestos}
-
-\begin{enumerate}[leftmargin=*]
-  \item \facil{} Determina el grado, el coeficiente principal y el comportamiento en los extremos de:
-        \begin{enumerate}[label=\alph*)]
-          \item $f(x) = 3x^4 - 2x^2 + 1$
-          \item $g(x) = -x^3 + 5x$
-          \item $h(x) = 2x^5 - 3x^3 + x - 8$
-        \end{enumerate}
-
-  \item \facil{} Divide usando división sintética: $(x^3 - 7x + 6) \div (x - 2)$
-
-  \item \facil{} Divide usando división sintética: $(2x^3 + x^2 - 8x - 4) \div (x + 1)$
-
-  \item \facil{} Usa el Teorema del Factor para verificar que $x = 1$ es raíz de $f(x) = x^3 - 3x^2 + 3x - 1$, y factoriza.
-
-  \item \medio{} Encuentra el residuo de dividir $f(x) = x^5 - x^3 + 4$ entre $x - 2$.
-
-  \item \medio{} Factoriza completamente: $f(x) = x^3 - 6x^2 + 11x - 6$.
-
-  \item \medio{} Factoriza completamente: $g(x) = x^3 + 2x^2 - 5x - 6$ (una raíz es $x = -1$).
-
-  \item \medio{} Un polinomio $f$ de grado 3 tiene raíces $x = -2$, $x = 1$ y $x = 4$, y $f(0) = 16$. Encuentra $f(x)$.
-
-  \item \dificil{} Factoriza: $h(x) = 2x^4 - 5x^3 - 5x^2 + 20x - 12$ (pista: prueba $x = 2$ y $x = -2$; luego factoriza el cociente).
-
-  \item \dificil{} Determina cuántas raíces positivas y negativas tiene $f(x) = x^4 - 3x^3 + x^2 + 2x - 1$ usando la regla de los signos de Descartes (no hace falta hallarlas).
-
-  \item \dificil{} El volumen de una caja abierta es $V(x) = 4x^3 - 44x^2 + 120x$ (con $x$ en cm y $0 < x < 6$). Determina los valores de $x$ para los cuales el volumen es cero, e interpreta el resultado geométricamente.
-
-  \item \dificil{} Encuentra $a$ y $b$ sabiendo que $x = 1$ y $x = 3$ son raíces de $f(x) = x^3 + ax^2 + bx + 6$.
-\end{enumerate}
-
-
-% ==============================================================
 \section{Funciones Racionales y Asíntotas}
 % ============================================================
 
@@ -262,7 +113,7 @@
 
 \subsection{Ejercicios propuestos}
 
-\begin{enumerate}[leftmargin=*, resume]
+\begin{enumerate}[leftmargin=*]
   \item \facil{} Encuentra el dominio de $f(x) = \dfrac{x + 2}{x - 5}$.
 
   \item \facil{} Encuentra el dominio de $f(x) = \dfrac{x^2}{x^2 - 9}$.
@@ -290,6 +141,7 @@
 
 
 % ============================================================
+
 \section{Composición de Funciones y Función Inversa}
 % ============================================================
 
@@ -450,45 +302,81 @@
 \newpage
 
 % ============================================================
+
+% ──────────────────────────────────────────────────────────
+%  NUEVOS EJERCICIOS PROPUESTOS (26) — INSERCIÓN MANUAL
+% ──────────────────────────────────────────────────────────
+\subsection{Ejercicios propuestos: Asíntotas y Gráficas Racionales}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Determina el dominio de $f(x) = \dfrac{x + 2}{x^2 - 9}$.
+
+  \item \facil{} Halla la asíntota vertical de $f(x) = \dfrac{2x + 1}{x - 4}$.
+
+  \item \medio{} Determina las asíntotas vertical y horizontal de $f(x) = \dfrac{3x + 6}{x - 1}$.
+
+  \item \medio{} Halla la asíntota horizontal de $f(x) = \dfrac{2x^2 - 1}{3x^2 + 5x}$.
+
+  \item \medio{} Clasifica la discontinuidad de $f(x) = \dfrac{x^2 - 4}{x - 2}$ y escribe la función simplificada equivalente.
+
+  \item \dificil{} Determina las asíntotas vertical y oblicua de $f(x) = \dfrac{x^2 + 1}{x - 1}$.
+
+  \item \dificil{} Halla la asíntota oblicua de $f(x) = \dfrac{2x^2 - 3x + 1}{x + 2}$.
+
+  \item \dificil{} Describe el bosquejo de $f(x) = \dfrac{x}{x^2 - 4}$: dominio, asíntotas e interceptos.
+
+  \item \muyDificil{} Determina el dominio, las asíntotas verticales y la asíntota oblicua de $f(x) = \dfrac{x^3}{x^2 - 1}$.
+\end{enumerate}
+
+\subsection{Ejercicios propuestos: Composición e Inversas Avanzadas}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Dadas $f(x) = 2x + 1$ y $g(x) = x^2$, halla $(f \circ g)(x)$ y $(g \circ f)(x)$.
+
+  \item \facil{} Halla la función inversa de $f(x) = 3x - 6$.
+
+  \item \medio{} Halla la función inversa de $f(x) = \sqrt{x - 2}$ e indica su dominio.
+
+  \item \medio{} Verifica que $f(x) = 2x + 3$ y $g(x) = \dfrac{x - 3}{2}$ son funciones inversas.
+
+  \item \medio{} Dadas $f(x) = \dfrac{1}{x + 1}$ y $g(x) = \dfrac{x}{x - 2}$, determina el dominio de $f \circ g$.
+
+  \item \dificil{} Demuestra que $f(x) = x^2 - 4x$ (con dominio restringido $x \ge 2$) es inyectiva y halla su inversa.
+
+  \item \dificil{} Halla la función inversa de $f(x) = \dfrac{2x - 1}{x + 3}$.
+
+  \item \dificil{} Si $f(x) = x + 1$ y $(f \circ g)(x) = x^2 - 3$, determina $g(x)$.
+
+  \item \muyDificil{} Halla la inversa de $f(x) = \dfrac{3x - 2}{2x + 1}$ y verifica que $(f \circ f^{-1})(x) = x$.
+\end{enumerate}
+
+\subsection{Ejercicios propuestos: Retos Integradores}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Determina si $f(x) = x^3$ es inyectiva y justifica tu respuesta.
+
+  \item \medio{} Dadas $f(x) = x^2 + 1$ y $g(x) = \sqrt{x}$, halla $(f \circ g)(x)$ y su dominio.
+
+  \item \medio{} Halla el rango de $f(x) = \dfrac{x + 2}{x - 3}$.
+
+  \item \medio{} Dadas $f(x) = 2x$, $g(x) = x + 1$ y $h(x) = x^2$, halla $(f \circ g \circ h)(x)$.
+
+  \item \dificil{} Sea $f(x) = \dfrac{x}{x + 1}$. Determina la expresión de $f\big(f(x)\big)$.
+
+  \item \dificil{} Determina el número de asíntotas (verticales, horizontales u oblicuas) de $f(x) = \dfrac{2x^2 + 3x}{x^2 - 1}$.
+
+  \item \muyDificil{} Halla todas las asíntotas de $f(x) = \dfrac{x^3 - 2x}{x^2 + 1}$.
+
+  \item \muyDificil{} Determina $a$ y $b$ para que $f(x) = \dfrac{ax + b}{x - 1}$ cumpla $f(2) = 5$ y $f^{-1}(3) = 0$.
+\end{enumerate}
+
+% ============================================================
 \section{Clave de Respuestas}
 % ============================================================
 
-\subsection*{Sección 1: Polinomiales (Ejercicios 1--12)}
+\subsection*{Sección 1: Funciones Racionales (Ejercicios 1--12)}
 
 \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-  \item a) Grado 4, coef. principal 3, extremos: $+\infty$ hacia ambos lados.
-        \quad b) Grado 3, coef. principal $-1$, extremos: $+\infty$ (izq.), $-\infty$ (der.).
-        \quad c) Grado 5, coef. principal 2, extremos: $-\infty$ (izq.), $+\infty$ (der.).
-
-  \item División sintética con 2: cociente $x^2 + 2x - 3$, residuo 0.
-
-  \item División sintética con $-1$: cociente $2x^2 - x - 7$, residuo 3.
-
-  \item $f(1) = 1 - 3 + 3 - 1 = 0$. Factorización: $(x - 1)^3$.
-
-  \item $f(2) = 32 - 8 + 4 = 28$.
-
-  \item Raíz $x = 1$ (probando divisores de $-6$): $f(1) = 0$. División sintética: cociente $x^2 - 5x + 6 = (x - 2)(x - 3)$. Factorización: $(x - 1)(x - 2)(x - 3)$.
-
-  \item Con $x = -1$: división sintética da cociente $x^2 + x - 6 = (x + 3)(x - 2)$. Factorización: $g(x) = (x + 1)(x + 3)(x - 2)$.
-
-  \item $f(x) = a(x + 2)(x - 1)(x - 4)$. Como $f(0) = a(2)(-1)(-4) = 8a = 16 \Rightarrow a = 2$. $f(x) = 2(x + 2)(x - 1)(x - 4)$.
-
-  \item Probando $x = 2$: cociente $2x^3 - x^2 - 7x + 6$. Probando $x = -2$ en el cociente: $2(-8) - 4 + 14 + 6 = 0$. Nuevo cociente: $2x^2 - 3x - 2 = (2x + 1)(x - 2)$. Factorización: $h(x) = (x - 2)^2 (x + 2)(2x + 1)$. Raíces: $x = 2$ (doble), $x = -2$, $x = -\frac{1}{2}$.
-
-  \item Cambios de signo en $f(x)$: $+ \to -$ (1), $- \to +$ (2), $+ \to +$ (no), $+ \to -$ (3). Hay 3 cambios: 3 o 1 raíces positivas. En $f(-x) = x^4 + 3x^3 + x^2 - 2x - 1$: $+ \to +$, $+ \to +$, $+ \to -$ (1), $- \to -$ (no). 1 cambio: exactamente 1 raíz negativa.
-
-  \item $V(x) = 4x^3 - 44x^2 + 120x = 4x(x^2 - 11x + 30) = 4x(x - 5)(x - 6)$. Volumen cero en $x = 0$, $x = 5$, $x = 6$. En $x = 0$ y $x = 6$ el corte produce una caja de altura cero (no hay caja); en $x = 5$ también, por la geometría del problema (largo o ancho se anula).
-
-  \item $f(1) = 1 + a + b + 6 = 0 \Rightarrow a + b = -7$. $f(3) = 27 + 9a + 3b + 6 = 0 \Rightarrow 9a + 3b = -33 \Rightarrow 3a + b = -11$. Restando: $2a = -4 \Rightarrow a = -2$, $b = -5$.
-\end{enumerate}
-
-\newpage
-
-\subsection*{Sección 2: Racionales (Ejercicios 13--24)}
-
-\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-  \setcounter{enumi}{12}
   \item $(-\infty, 5) \cup (5, \infty)$.
 
   \item $(-\infty, -3) \cup (-3, 3) \cup (3, \infty)$.
@@ -516,10 +404,11 @@
 
 \newpage
 
-\subsection*{Sección 3: Composición e Inversas (Ejercicios 25--36)}
+
+\subsection*{Sección 2: Composición e Inversas (Ejercicios 13--24)}
 
 \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-  \setcounter{enumi}{24}
+  \setcounter{enumi}{12}
   \item a) $4x + 2$ \quad b) $-2x + 2$ \quad c) $3x^2 + 6x$ \quad d) $\dfrac{x + 2}{3x}$ (con $x \neq 0$).
 
   \item $(f \circ g)(x) = (x + 1)^2 = x^2 + 2x + 1$; \quad $(g \circ f)(x) = x^2 + 1$.
@@ -545,4 +434,48 @@
   \item $y = 0{,}8x - 10$. Intercambiamos: $x = 0{,}8y - 10 \Rightarrow 0{,}8y = x + 10 \Rightarrow y = \dfrac{x + 10}{0{,}8} = 1{,}25x + 12{,}5$. $P^{-1}(x) = 1{,}25x + 12{,}5$ da el precio original antes de impuesto y descuento, dado el precio final.
 \end{enumerate}
 
+
+% ──────────────────────────────────────────────────────────
+%  NUEVAS RESPUESTAS (26) — INSERCIÓN MANUAL
+% ──────────────────────────────────────────────────────────
+\subsection*{Sección 4: Asíntotas y Gráficas Racionales (Ejercicios 25--33)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{24}
+  \item Dominio: $\mathbb{R} \setminus \{\pm 3\}$
+  \item Asíntota vertical: $x = 4$
+  \item Asíntota vertical $x = 1$; \quad asíntota horizontal $y = 3$
+  \item $y = \dfrac{2}{3}$
+  \item Discontinuidad evitable (agujero) en $x = 2$; simplificada: $f(x) = x + 2$ (con $x \neq 2$).
+  \item Asíntota vertical $x = 1$; \quad asíntota oblicua $y = x + 1$
+  \item $y = 2x - 7$
+  \item Dominio $\mathbb{R} \setminus \{\pm 2\}$; asíntotas verticales $x = \pm 2$; asíntota horizontal $y = 0$; intercepto en $(0, 0)$.
+  \item Dominio $\mathbb{R} \setminus \{\pm 1\}$; asíntotas verticales $x = \pm 1$; asíntota oblicua $y = x$.
+\end{enumerate}
+
+\subsection*{Sección 5: Composición e Inversas Avanzadas (Ejercicios 34--42)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{33}
+  \item $(f \circ g)(x) = 2x^2 + 1$; \quad $(g \circ f)(x) = (2x + 1)^2 = 4x^2 + 4x + 1$
+  \item $f^{-1}(x) = \dfrac{x + 6}{3}$
+  \item $f^{-1}(x) = x^2 + 2$, con dominio $x \ge 0$ (rango de $f$)
+  \item $(f \circ g)(x) = 2\left(\dfrac{x - 3}{2}\right) + 3 = x$ \quad y \quad $(g \circ f)(x) = \dfrac{(2x + 3) - 3}{2} = x$. Son inversas.
+  \item $f(g(x)) = \dfrac{x - 2}{2(x - 1)}$; dominio: $\mathbb{R} \setminus \{1, 2\}$
+  \item $y = x^2 - 4x \Rightarrow (x - 2)^2 = y + 4$; con $x \ge 2$: $f^{-1}(x) = 2 + \sqrt{x + 4}$, dominio $x \ge -4$.
+  \item $f^{-1}(x) = \dfrac{3x + 1}{2 - x}$, dominio $\mathbb{R} \setminus \{2\}$
+  \item $g(x) = x^2 - 4$ \quad (pues $f(g(x)) = g(x) + 1 = x^2 - 3$)
+  \item $f^{-1}(x) = \dfrac{x + 2}{3 - 2x}$; se verifica $(f \circ f^{-1})(x) = x$ sustituyendo y simplificando.
+\end{enumerate}
+
+\subsection*{Sección 6: Retos Integradores (Ejercicios 43--50)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{42}
+  \item Sí es inyectiva: es estrictamente creciente en $\mathbb{R}$ (toda recta horizontal corta una sola vez).
+  \item $(f \circ g)(x) = x + 1$, con dominio $x \ge 0$
+  \item Rango: $\mathbb{R} \setminus \{1\}$ \quad (despejando $x = \dfrac{3y + 2}{y - 1}$)
+  \item $(f \circ g \circ h)(x) = 2(x^2 + 1) = 2x^2 + 2$
+  \item $f\big(f(x)\big) = \dfrac{x}{2x + 1}$ \quad (con $x \neq 0$ y $x \neq -1$)
+  \item Dos asíntotas verticales ($x = \pm 1$) y una asíntota horizontal ($y = 2$); no hay oblicua.
+  \item No hay asíntotas verticales ($x^2 + 1$ nunca se anula); asíntota oblicua $y = x$; no hay horizontal.
+  \item $f(2) = 5 \Rightarrow 2a + b = 5$; \quad $f^{-1}(3) = 0 \Rightarrow f(0) = 3 \Rightarrow b = -3$; \quad luego $a = 4$. \quad $f(x) = \dfrac{4x - 3}{x - 1}$.
+\end{enumerate}
 \end{document}

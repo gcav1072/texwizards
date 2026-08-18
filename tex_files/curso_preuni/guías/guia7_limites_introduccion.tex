@@ -9,7 +9,7 @@
 
 % ── Paquetes ─────────────────────────────────────────────────
 \usepackage{mathwizards-guia}
-\mwguia{Guía 7 — Introducción al Límite y Límites Algebraicos}{Ing. Gabriel Astudillo $\cdot$ Curso Preuniversitario}
+\mwguia{Guía 7 — Límites Algebraicos}{Ing. Gabriel Astudillo $\cdot$ Curso Preuniversitario}
 
 \begin{document}
 
@@ -18,14 +18,14 @@
 
 \vspace{4pt}
 \begin{cuadroinfo}
-\small
-\textbf{Presentación:} Esta guía construye la base conceptual del análisis matemático: la idea intuitiva de límite, los límites laterales y su teorema de existencia, las propiedades operativas y las técnicas para resolver indeterminaciones del tipo $0/0$ mediante factorización y racionalización. Incluye teoría, ejercicios resueltos paso a paso y propuestos con clave.
-\\[4pt]
-\textbf{Nivel de Dificultad:}\quad
-\facil{} Básico / Directo \quad
-\medio{} Intermedio \quad
-\dificil{} Desafiante \quad
-\muyDificil{} Muy Difícil / Reto
+  \small
+  \textbf{Presentación:} Esta guía construye la base conceptual del análisis matemático: la idea intuitiva de límite, los límites laterales y su teorema de existencia, las propiedades operativas y las técnicas para resolver indeterminaciones del tipo $0/0$ mediante factorización y racionalización. Incluye teoría, ejercicios resueltos paso a paso y propuestos con clave.
+  \\[4pt]
+  \textbf{Nivel de Dificultad:}\quad
+  \facil{} Básico / Directo \quad
+  \medio{} Intermedio \quad
+  \dificil{} Desafiante \quad
+  \muyDificil{} Muy Difícil / Reto
 \end{cuadroinfo}
 
 \vspace{8pt}
@@ -70,7 +70,6 @@
   \end{center}
   Los valores se acercan a 5 por ambos lados. Por tanto: $\lim_{x \to 2} (x^2 + 1) = 5$.
 \end{cuadrosolucion}
-\newpage
 \textbf{Ejemplo R2.} Sea $f(x) = \dfrac{x^2 - 1}{x - 1}$ para $x \neq 1$. Evalúa $\lim_{x \to 1} f(x)$.
 
 \begin{cuadrosolucion}
@@ -107,7 +106,7 @@
 
 \subsection{Ejercicios propuestos}
 
-\begin{enumerate}[leftmargin=*]
+\begin{enumerate}[series=ejercicios, leftmargin=*]
   \item \facil{} Evalúa mediante tabla de valores: $\lim_{x \to 3} (2x + 1)$.
 
   \item \facil{} Evalúa mediante tabla de valores: $\lim_{x \to 0} \cos x$.
@@ -216,7 +215,7 @@
 
 \subsection{Ejercicios propuestos}
 
-\begin{enumerate}[leftmargin=*, resume]
+\begin{enumerate}[resume=ejercicios, leftmargin=*]
   \item \facil{} Calcula: $\lim_{x \to 1} (x^3 - 2x^2 + x)$.
 
   \item \facil{} Calcula: $\lim_{x \to -2} \dfrac{x^2 + x - 2}{x + 2}$.
@@ -251,7 +250,7 @@
 % ──────────────────────────────────────────────────────────
 \subsection{Ejercicios propuestos: Límites Intuitivos y Laterales}
 
-\begin{enumerate}[leftmargin=*, resume]
+\begin{enumerate}[resume=ejercicios, leftmargin=*]
   \item \facil{} Calcula el límite por sustitución directa: $\displaystyle\lim_{x \to 2} (3x + 5)$.
 
   \item \facil{} Calcula el límite simplificando: $\displaystyle\lim_{x \to 1} \frac{x^2 - 1}{x - 1}$.
@@ -274,7 +273,7 @@
 
 \subsection{Ejercicios propuestos: Límites Algebraicos Avanzados}
 
-\begin{enumerate}[leftmargin=*, resume]
+\begin{enumerate}[resume=ejercicios, leftmargin=*]
   \item \facil{} Calcula el límite simplificando: $\displaystyle\lim_{x \to 0} \frac{2x^2 + 3x}{x}$.
 
   \item \facil{} Calcula el límite por sustitución: $\displaystyle\lim_{x \to -1} (x^3 + 2x)$.
@@ -300,7 +299,7 @@
 
 \subsection{Ejercicios propuestos: Retos Integradores}
 
-\begin{enumerate}[leftmargin=*, resume]
+\begin{enumerate}[resume=ejercicios, leftmargin=*]
   \item \facil{} Calcula el límite simplificando: $\displaystyle\lim_{x \to 3} \frac{x - 3}{x^2 - 9}$.
 
   \item \medio{} Calcula el límite expandiendo el cubo: $\displaystyle\lim_{x \to 0} \frac{(x + 1)^3 - 1}{x}$.
@@ -322,14 +321,14 @@
   \item \muyDificil{} Calcula el cociente incremental general (derivada de $\sqrt{x}$):
         $$\lim_{h \to 0} \frac{\sqrt{x + h} - \sqrt{x}}{h}$$
 \end{enumerate}
-
+\newpage
 % ============================================================
 \section{Clave de Respuestas}
 % ============================================================
 
 \subsection*{Sección 1: Introducción (Ejercicios 1--12)}
 
-\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+\begin{enumerate}[series=respuestas, leftmargin=*, label=\textbf{\arabic*.}]
   \item $\lim_{x \to 3} (2x + 1) = 7$.
 
   \item $\lim_{x \to 0} \cos x = 1$.
@@ -358,8 +357,7 @@
 
 \subsection*{Sección 2: Límites Algebraicos (Ejercicios 13--24)}
 
-\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-  \setcounter{enumi}{12}
+\begin{enumerate}[resume=respuestas, leftmargin=*, label=\textbf{\arabic*.}]
   \item $1 - 2 + 1 = 0$.
 
   \item $\dfrac{x^2 + x - 2}{x + 2} = \dfrac{(x + 2)(x - 1)}{x + 2} = x - 1$. En $x = -2$: $-3$.
@@ -389,9 +387,8 @@
 % ──────────────────────────────────────────────────────────
 %  NUEVAS RESPUESTAS (26) — INSERCIÓN MANUAL
 % ──────────────────────────────────────────────────────────
-\subsection*{Sección 4: Límites Intuitivos y Laterales (Ejercicios 25--33)}
-\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-  \setcounter{enumi}{24}
+\subsection*{Sección 3: Límites Intuitivos y Laterales (Ejercicios 25--33)}
+\begin{enumerate}[resume=respuestas, leftmargin=*, label=\textbf{\arabic*.}]
   \item $11$
   \item $\displaystyle\lim_{x \to 1} (x + 1) = 2$
   \item $\displaystyle\lim_{x \to 3} (x + 3) = 6$
@@ -403,9 +400,8 @@
   \item $\displaystyle\lim_{x \to 9} \frac{1}{3 + \sqrt{x}} = \frac{1}{6}$
 \end{enumerate}
 
-\subsection*{Sección 5: Límites Algebraicos Avanzados (Ejercicios 34--42)}
-\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-  \setcounter{enumi}{33}
+\subsection*{Sección 4: Límites Algebraicos Avanzados (Ejercicios 34--42)}
+\begin{enumerate}[resume=respuestas, leftmargin=*, label=\textbf{\arabic*.}]
   \item $\displaystyle\lim_{x \to 0} (2x + 3) = 3$
   \item $(-1)^3 + 2(-1) = -3$
   \item $\displaystyle\lim_{x \to 5} (x + 5) = 10$
@@ -417,9 +413,8 @@
   \item Con $a^3 - b^3$: $\displaystyle\lim_{x \to 1} \frac{1}{\sqrt[3]{x^2} + \sqrt[3]{x} + 1} = \frac{1}{3}$
 \end{enumerate}
 
-\subsection*{Sección 6: Retos Integradores (Ejercicios 43--50)}
-\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-  \setcounter{enumi}{42}
+\subsection*{Sección 5: Retos Integradores (Ejercicios 43--50)}
+\begin{enumerate}[resume=respuestas, leftmargin=*, label=\textbf{\arabic*.}]
   \item $\displaystyle\lim_{x \to 3} \frac{1}{x + 3} = \frac{1}{6}$
   \item $\displaystyle\lim_{x \to 0} (3 + 3x + x^2) = 3$
   \item $\displaystyle\lim_{x \to 0} \frac{1}{\sqrt{x^2 + 4} + 2} = \frac{1}{4}$

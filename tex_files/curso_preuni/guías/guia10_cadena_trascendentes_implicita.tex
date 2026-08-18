@@ -9,7 +9,7 @@
 
 % ── Paquetes ─────────────────────────────────────────────────
 \usepackage{mathwizards-guia}
-\mwguia{Guía 10 — Regla de la Cadena, Trascendentes e Implícita}{Ing. Gabriel Astudillo $\cdot$ Curso Preuniversitario}
+\mwguia{Guía 10 — Regla de la Cadena y otros}{Ing. Gabriel Astudillo $\cdot$ Curso Preuniversitario}
 
 \begin{document}
 
@@ -18,14 +18,14 @@
 
 \vspace{4pt}
 \begin{cuadroinfo}
-\small
-\textbf{Presentación:} Esta guía extiende la derivación a las funciones compuestas y trascendentes: la regla de la cadena, las derivadas de funciones exponenciales, logarítmicas y trigonométricas, la derivación implícita, las derivadas de orden superior y las funciones trigonométricas inversas. Con teoría, ejercicios resueltos y propuestos con clave.
-\\[4pt]
-\textbf{Nivel de Dificultad:}\quad
-\facil{} Básico / Directo \quad
-\medio{} Intermedio \quad
-\dificil{} Desafiante \quad
-\muyDificil{} Muy Difícil / Reto
+  \small
+  \textbf{Presentación:} Esta guía extiende la derivación a las funciones compuestas y trascendentes: la regla de la cadena, las derivadas de funciones exponenciales, logarítmicas y trigonométricas, la derivación implícita, las derivadas de orden superior y las funciones trigonométricas inversas. Con teoría, ejercicios resueltos y propuestos con clave.
+  \\[4pt]
+  \textbf{Nivel de Dificultad:}\quad
+  \facil{} Básico / Directo \quad
+  \medio{} Intermedio \quad
+  \dificil{} Desafiante \quad
+  \muyDificil{} Muy Difícil / Reto
 \end{cuadroinfo}
 
 \vspace{8pt}
@@ -33,10 +33,70 @@
 \section{Regla de la Cadena}
 % ============================================================
 
-\subsection{La regla de la cadena}
+\subsection{¿Qué es una función compuesta?}
 
 \begin{cuadroteoria}
-  \textbf{Regla de la cadena:} Si $y = f(g(x))$, entonces:
+  \textbf{Composición de funciones:} Si tenemos dos funciones $g$ y $f$, la \textbf{función compuesta} $(f \circ g)(x) = f(g(x))$ consiste en aplicar la función externa $f$ al resultado de la función interna $g$.
+
+  Intuitivamente, es un proceso en dos etapas o una ``máquina de dos pasos'':
+  \begin{center}
+    \begin{tikzpicture}[
+      box/.style={draw=mwprimario, fill=mwprimario!10, rounded corners=5pt, line width=1.1pt, minimum height=0.9cm, minimum width=2.4cm, align=center, font=\small\bfseries},
+      arrow/.style={-{Stealth[scale=1.1]}, line width=1.1pt, draw=mwgrisoscuro}
+      ]
+      \node (in) at (0,0) {$x$};
+      \node[box] (g) at (2.4,0) {Interior $g$\\[-1pt]\footnotesize (aplica $g$)};
+      \node (mid) at (5.3,0) {$u = g(x)$};
+      \node[box] (f) at (8.2,0) {Exterior $f$\\[-1pt]\footnotesize (aplica $f$)};
+      \node (out) at (11.4,0) {$y = f(g(x))$};
+
+      \draw[arrow] (in) -- (g) node[midway, above, font=\footnotesize\color{mwgris}] {Entrada};
+      \draw[arrow] (g) -- (mid);
+      \draw[arrow] (mid) -- (f);
+      \draw[arrow] (f) -- (out) node[midway, above, font=\footnotesize\color{mwgris}] {Salida};
+    \end{tikzpicture}
+  \end{center}
+\end{cuadroteoria}
+
+\textbf{Identificación de capas (interna y externa):} Para derivar con éxito, el paso fundamental es reconocer la estructura $y = f(u)$ con $u = g(x)$:
+\begin{center}
+  \small
+  \begin{tabular}{lll}
+    \toprule
+    \textbf{Función compuesta $y = f(g(x))$} & \textbf{Capa interna $u = g(x)$} & \textbf{Capa externa $y = f(u)$} \\
+    \midrule
+    $y = (3x^2 - 1)^5$                       & $u = 3x^2 - 1$                   & $y = u^5$                        \\
+    $y = e^{2x}$                             & $u = 2x$                         & $y = e^u$                        \\
+    $y = \ln(x^2 + 1)$                       & $u = x^2 + 1$                    & $y = \ln u$                      \\
+    $y = \sin(x^3)$                          & $u = x^3$                        & $y = \sin u$                     \\
+    $y = \sqrt{e^x + 1}$                     & $u = e^x + 1$                    & $y = \sqrt{u} = u^{1/2}$         \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+
+\newpage
+
+\subsection{Intuición de la Regla de la Cadena: Tasas de cambio engranadas}
+
+¿Cómo cambia la salida $y$ cuando se altera la entrada $x$?
+
+\begin{cuadroextra}
+  \textbf{Analogía de las tasas de cambio (engranajes):}
+  \begin{itemize}[leftmargin=*]
+    \item Supongamos que $u$ cambia $2$ veces más rápido que $x$ ($\dfrac{\Delta u}{\Delta x} = 2$).
+    \item A su vez, $y$ cambia $3$ veces más rápido que $u$ ($\dfrac{\Delta y}{\Delta u} = 3$).
+    \item ¿A qué ritmo cambia $y$ respecto a $x$? Si $x$ avanza $1$ unidad, $u$ cambia en $2$ unidades, y esas $2$ unidades provocan que $y$ cambie en $2 \times 3 = 6$ unidades.
+  \end{itemize}
+  Las razones de cambio se \textbf{multiplican en cadena}:
+  $$\frac{\Delta y}{\Delta x} = \frac{\Delta y}{\Delta u} \cdot \frac{\Delta u}{\Delta x}$$
+  Al tomar el límite cuando $\Delta x \to 0$, obtenemos la célebre fórmula de Leibniz:
+  $$\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}$$
+\end{cuadroextra}
+
+\subsection{La Regla de la Cadena: Regla general y derivadas inmediatas}
+
+\begin{cuadroteoria}
+  \textbf{Regla de la cadena:} Si $y = f(g(x))$ y ambas funciones son derivables, entonces:
   $$\frac{dy}{dx} = f'(g(x)) \cdot g'(x)$$
 
   En notación de Leibniz, si $y = f(u)$ con $u = g(x)$:
@@ -44,18 +104,20 @@
 \end{cuadroteoria}
 
 \begin{cuadrosolucion}
-  \textbf{Formas útiles de la regla de la cadena:}
+  \textbf{Formas útiles de la regla de la cadena (con función interna $u(x)$):}
   \begin{align*}
-    \frac{d}{dx}[(u(x))^n]   & = n(u(x))^{n-1} \cdot u'(x) \\
-    \frac{d}{dx}[e^{u(x)}]   & = e^{u(x)} \cdot u'(x)      \\
-    \frac{d}{dx}[\ln(u(x))]  & = \frac{u'(x)}{u(x)}        \\
-    \frac{d}{dx}[\sin(u(x))] & = \cos(u(x)) \cdot u'(x)    \\
-    \frac{d}{dx}[\cos(u(x))] & = -\sin(u(x)) \cdot u'(x)
+    \frac{d}{dx}[(u(x))^n]   & = n(u(x))^{n-1} \cdot u'(x) & \quad \frac{d}{dx}[e^{u(x)}]   & = e^{u(x)} \cdot u'(x)     \\[4pt]
+    \frac{d}{dx}[\ln(u(x))]  & = \frac{u'(x)}{u(x)}        & \quad \frac{d}{dx}[\sin(u(x))] & = \cos(u(x)) \cdot u'(x)   \\[4pt]
+    \frac{d}{dx}[\cos(u(x))] & = -\sin(u(x)) \cdot u'(x)   & \quad \frac{d}{dx}[\tan(u(x))] & = \sec^2(u(x)) \cdot u'(x)
   \end{align*}
 \end{cuadrosolucion}
 
 \begin{cuadroadvertencia}
-  \textbf{Estrategia:} identifica la ``función de afuera'' y la ``función de adentro''. Deriva la de afuera evaluada en la de adentro, y multiplica por la derivada de la de adentro.
+  \textbf{Estrategia y error común:}
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Estrategia:} Identifica la función de afuera $f$ y la de adentro $u$. Deriva la de afuera dejando la de adentro intacta, y multiplica al final por la derivada de adentro: $f'(u) \cdot u'$.
+    \item \textbf{Error clásico:} Olvidar multiplicar por la derivada interna $u'(x)$ o derivar la de adentro antes de tiempo. Por ejemplo, la derivada de $\sin(x^3)$ \textbf{no} es $\cos(x^3)$, sino $\cos(x^3) \cdot 3x^2 = 3x^2 \cos(x^3)$.
+  \end{itemize}
 \end{cuadroadvertencia}
 
 \subsection{Ejercicios resueltos}
@@ -73,8 +135,6 @@
   \textbf{Solución:} La función exterior es $e^u$ y la interior $u = 2x$:
   $$y' = e^{2x} \cdot 2 = 2e^{2x}.$$
 \end{cuadrosolucion}
-
-\newpage
 
 \textbf{Ejemplo R3.} Calcula la derivada de $y = \ln(x^2 + 1)$.
 
@@ -97,6 +157,8 @@
   $$y' = \frac{1}{2}(e^x + 1)^{-1/2} \cdot e^x = \frac{e^x}{2\sqrt{e^x + 1}}.$$
 \end{cuadrosolucion}
 
+\newpage
+
 \textbf{Ejemplo R6.} Calcula la derivada de $y = \cos^2(3x)$ (es decir, $[\cos(3x)]^2$).
 
 \begin{cuadrosolucion}
@@ -112,7 +174,7 @@
 
 \subsection{Ejercicios propuestos}
 
-\begin{enumerate}[leftmargin=*]
+\begin{enumerate}[series=ejercicios, leftmargin=*]
   \item \facil{} Calcula: $y'$ si $y = (2x + 1)^4$.
   \item \facil{} Calcula: $y'$ si $y = e^{3x}$.
   \item \facil{} Calcula: $y'$ si $y = \ln(x + 5)$.
@@ -127,6 +189,7 @@
   \item \dificil{} Calcula: $y'$ si $y = \ln\left(\dfrac{x + 1}{x - 1}\right)$.
 \end{enumerate}
 
+\newpage
 
 % ============================================================
 
@@ -173,8 +236,6 @@
   \end{align*}
 \end{cuadrosolucion}
 
-\newpage
-
 \textbf{Ejemplo R3.} La posición de un objeto es $s(t) = t^3 - 6t^2 + 9t$ metros ($t$ en segundos). Encuentra velocidad y aceleración en $t = 2$.
 
 \begin{cuadrosolucion}
@@ -199,7 +260,7 @@
 
 \subsection{Ejercicios propuestos}
 
-\begin{enumerate}[leftmargin=*, resume]
+\begin{enumerate}[resume=ejercicios, leftmargin=*]
   \item \facil{} Calcula $f''(x)$ para $f(x) = x^5 - 3x^2 + 1$.
   \item \facil{} Calcula $y''$ para $y = e^x$.
   \item \facil{} Calcula $y''$ para $y = \ln x$.
@@ -293,7 +354,7 @@
 
 \subsection{Ejercicios propuestos}
 
-\begin{enumerate}[leftmargin=*, resume]
+\begin{enumerate}[resume=ejercicios, leftmargin=*]
   \item \facil{} Encuentra $\dfrac{dy}{dx}$ si $x^2 + y^2 = 16$.
   \item \facil{} Encuentra $\dfrac{dy}{dx}$ si $3x + 2y = 10$.
   \item \facil{} Encuentra $\dfrac{dy}{dx}$ si $xy = 12$.
@@ -381,7 +442,7 @@
 
 \subsection{Ejercicios propuestos}
 
-\begin{enumerate}[leftmargin=*, resume]
+\begin{enumerate}[resume=ejercicios, leftmargin=*]
   \item \facil{} Calcula: $y'$ si $y = \arcsin(2x)$.
   \item \facil{} Calcula: $y'$ si $y = \arctan(5x)$.
   \item \facil{} Calcula: $y'$ si $y = \arccos(x)$.
@@ -403,7 +464,7 @@
 % ──────────────────────────────────────────────────────────
 \subsection{Ejercicios propuestos: Retos Integradores}
 
-\begin{enumerate}[leftmargin=*, resume]
+\begin{enumerate}[resume=ejercicios, leftmargin=*]
   \item \medio{} Deriva aplicando la regla de la cadena: $f(x) = e^{x^2}$.
 
   \item \dificil{} Deriva la función compuesta: $f(x) = \ln(\sin x)$.
@@ -412,14 +473,14 @@
 
   \item \muyDificil{} Halla la segunda derivada de $f(x) = x^3 \ln x$.
 \end{enumerate}
-
+\newpage
 % ============================================================
 \section{Clave de Respuestas}
 % ============================================================
 
 \subsection*{Sección 1: Regla de la Cadena (Ejercicios 1--12)}
 
-\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+\begin{enumerate}[series=respuestas, leftmargin=*, label=\textbf{\arabic*.}]
   \item $y' = 4(2x + 1)^3 \cdot 2 = 8(2x + 1)^3$
   \item $y' = 3e^{3x}$
   \item $y' = \dfrac{1}{x + 5}$
@@ -437,8 +498,7 @@
 
 \subsection*{Sección 2: Derivadas de Orden Superior (Ejercicios 13--24)}
 
-\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-  \setcounter{enumi}{12}
+\begin{enumerate}[resume=respuestas, leftmargin=*, label=\textbf{\arabic*.}]
   \item $f'(x) = 5x^4 - 6x$; $f''(x) = 20x^3 - 6$.
   \item $y' = e^x$; $y'' = e^x$.
   \item $y' = \dfrac{1}{x}$; $y'' = -\dfrac{1}{x^2}$.
@@ -458,8 +518,7 @@
 
 \subsection*{Sección 3: Derivación Implícita (Ejercicios 25--36)}
 
-\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-  \setcounter{enumi}{24}
+\begin{enumerate}[resume=respuestas, leftmargin=*, label=\textbf{\arabic*.}]
   \item $\dfrac{dy}{dx} = -\dfrac{x}{y}$
   \item $\dfrac{dy}{dx} = -\dfrac{3}{2}$
   \item $y + x\dfrac{dy}{dx} = 0 \Rightarrow \dfrac{dy}{dx} = -\dfrac{y}{x}$
@@ -477,8 +536,7 @@
 
 \subsection*{Sección 4: Inversas Trigonométricas (Ejercicios 37--46)}
 
-\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-  \setcounter{enumi}{36}
+\begin{enumerate}[resume=respuestas, leftmargin=*, label=\textbf{\arabic*.}]
   \item $y' = \dfrac{2}{\sqrt{1 - 4x^2}}$
   \item $y' = \dfrac{5}{1 + 25x^2}$
   \item $y' = -\dfrac{1}{\sqrt{1 - x^2}}$
@@ -496,8 +554,7 @@
 %  NUEVAS RESPUESTAS (4) — INSERCIÓN MANUAL
 % ──────────────────────────────────────────────────────────
 \subsection*{Sección 5: Retos Integradores (Ejercicios 47--50)}
-\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-  \setcounter{enumi}{46}
+\begin{enumerate}[resume=respuestas, leftmargin=*, label=\textbf{\arabic*.}]
   \item $f'(x) = 2x\,e^{x^2}$
   \item $f'(x) = \dfrac{\cos x}{\sin x} = \cot x$
   \item $3x^2 + 3y^2 y' = 6y + 6x y' \Rightarrow y' = \dfrac{2y - x^2}{y^2 - 2x}$

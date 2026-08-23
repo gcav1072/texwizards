@@ -14,12 +14,12 @@
 \begin{document}
 
 % ── Portada / Título ─────────────────────────────────────────
-\mwportada{Guía de Estudio 1}{Fundamentos de Álgebra}{Exponentes, Racionalización, Factorización, Fracciones Algebraicas, Ecuaciones y Desigualdades}
+\mwportada{Guía de Estudio 1}{Fundamentos de Álgebra}{Exponentes, Factorización, Racionalización, Fracciones Algebraicas, Ecuaciones y Desigualdades}
 
 \vspace{4pt}
 \begin{cuadroinfo}
       \small
-      \textbf{Presentación:} Esta primera guía sienta las bases operativas y conceptuales de todo el curso preuniversitario y de cálculo diferencial. Dominar las leyes de los exponentes, la racionalización de diversos órdenes, todos los casos de factorización, el álgebra de fracciones complejas, la resolución de ecuaciones y el trabajo con desigualdades es indispensable para abordar con éxito los temas de funciones, límites y derivadas. Cada sección incluye un marco teórico exhaustivo, ejercicios resueltos paso a paso y ejercicios propuestos con su clave de respuestas.
+      \textbf{Presentación:} Esta primera guía sienta las bases operativas y conceptuales de todo el curso preuniversitario y de cálculo diferencial. Dominar las leyes de los exponentes, todos los casos de factorización, la racionalización de diversos órdenes, el álgebra de fracciones complejas, la resolución de ecuaciones y el trabajo con desigualdades es indispensable para abordar con éxito los temas de funciones, límites y derivadas. Cada sección incluye un marco teórico exhaustivo, ejercicios resueltos paso a paso y ejercicios propuestos con su clave de respuestas.
       \\[4pt]
       \textbf{Nivel de Dificultad:}\quad
       \facil{} Básico / Directo \quad
@@ -30,7 +30,7 @@
 
 \vspace{8pt}
 
-\section{Leyes de Exponentes, Radicales y Racionalización}
+\section{Exponentes y Radicales}
 % ============================================================
 
 \subsection{Leyes fundamentales de exponentes y radicales}
@@ -67,37 +67,7 @@
       \end{itemize}
 \end{cuadroadvertencia}
 
-\subsection{Técnicas de Racionalización}
-
-La racionalización consiste en transformar una expresión con radicales en el numerador o denominador en una fracción equivalente libre de radicales en dicha posición.
-
-\begin{cuadropasos}
-      \textbf{1. Denominador Monomio:}
-      \begin{itemize}[leftmargin=*]
-            \item \textbf{Raíz cuadrada $\sqrt{a}$:} Se multiplica numerador y denominador por $\sqrt{a}$:
-                  $$\frac{k}{\sqrt{a}} \cdot \frac{\sqrt{a}}{\sqrt{a}} = \frac{k\sqrt{a}}{a}$$
-            \item \textbf{Raíz de orden $n$ ($\sqrt[n]{a^k}$ con $k < n$):} Se multiplica por $\sqrt[n]{a^{n-k}}$ para completar el exponente:
-                  $$\frac{k}{\sqrt[n]{a^m}} \cdot \frac{\sqrt[n]{a^{n-m}}}{\sqrt[n]{a^{n-m}}} = \frac{k\sqrt[n]{a^{n-m}}}{a}$$
-                  Ejemplo para raíz cúbica: $\dfrac{k}{\sqrt[3]{a}} \cdot \dfrac{\sqrt[3]{a^2}}{\sqrt[3]{a^2}} = \dfrac{k\sqrt[3]{a^2}}{a}$.
-      \end{itemize}
-
-      \textbf{2. Denominador Binomio con Raíces Cuadradas (Conjugado de Orden 2):}
-      Se utiliza la diferencia de cuadrados $(A + B)(A - B) = A^2 - B^2$:
-      $$\frac{k}{\sqrt{a} \pm \sqrt{b}} \cdot \frac{\sqrt{a} \mp \sqrt{b}}{\sqrt{a} \mp \sqrt{b}} = \frac{k(\sqrt{a} \mp \sqrt{b})}{a - b}$$
-
-      \textbf{3. Denominador Binomio con Raíces Cúbicas (Conjugado de Orden 3):}
-      Se utilizan las identidades de suma y diferencia de cubos:
-      \begin{align*}
-            (\sqrt[3]{a} + \sqrt[3]{b})(\sqrt[3]{a^2} - \sqrt[3]{ab} + \sqrt[3]{b^2}) & = a + b \\
-            (\sqrt[3]{a} - \sqrt[3]{b})(\sqrt[3]{a^2} + \sqrt[3]{ab} + \sqrt[3]{b^2}) & = a - b
-      \end{align*}
-      Multiplicando por el factor trinomio adecuado, se eliminan las raíces cúbicas del denominador.
-
-      \textbf{4. Racionalización del Numerador (Cocientes Incrementales de Límites):}
-      Multiplicar por el conjugado del numerador para eliminar la indeterminación $\frac{0}{0}$.
-\end{cuadropasos}
-
-\subsection{Ejercicios resueltos: Exponentes y Racionalización}
+\subsection{Ejercicios resueltos: Exponentes y Radicales}
 
 \textbf{Ejemplo R1.} Simplifica dejando solo exponentes positivos: $\dfrac{(3x^2 y^{-3})^3 \cdot (x^{-2} y^4)^2}{9x^{-1} y^2}$.
 
@@ -111,39 +81,7 @@ La racionalización consiste en transformar una expresión con radicales en el n
       \end{enumerate}
 \end{cuadrosolucion}
 
-\textbf{Ejemplo R2.} Racionaliza el denominador monomio con raíz cúbica: $\dfrac{5}{\sqrt[3]{2x}}$.
-
-\begin{cuadrosolucion}
-      \textbf{Solución:}
-      Multiplicamos por $\sqrt[3]{(2x)^2} = \sqrt[3]{4x^2}$ tanto arriba como abajo:
-      $$\frac{5}{\sqrt[3]{2x}} \cdot \frac{\sqrt[3]{4x^2}}{\sqrt[3]{4x^2}} = \frac{5\sqrt[3]{4x^2}}{\sqrt[3]{(2x)^3}} = \frac{5\sqrt[3]{4x^2}}{2x}.$$
-\end{cuadrosolucion}
-
-\textbf{Ejemplo R3.} Racionaliza el denominador binomio: $\dfrac{6}{\sqrt{7} - 2}$.
-
-\begin{cuadrosolucion}
-      \textbf{Solución:}
-      Multiplicamos por el conjugado del denominador $\sqrt{7} + 2$:
-      $$\frac{6}{\sqrt{7} - 2} \cdot \frac{\sqrt{7} + 2}{\sqrt{7} + 2} = \frac{6(\sqrt{7} + 2)}{(\sqrt{7})^2 - 2^2} = \frac{6(\sqrt{7} + 2)}{7 - 4} = \frac{6(\sqrt{7} + 2)}{3} = 2(\sqrt{7} + 2) = 2\sqrt{7} + 4.$$
-\end{cuadrosolucion}
-
-\textbf{Ejemplo R4.} Racionaliza el denominador que contiene una raíz cúbica en binomio: $\dfrac{4}{\sqrt[3]{x} + 2}$.
-
-\begin{cuadrosolucion}
-      \textbf{Solución:}
-      Identificamos $A = \sqrt[3]{x}$ y $B = 2$. Usamos $A^3 + B^3 = (A + B)(A^2 - AB + B^2)$ con factor racionalizante $A^2 - AB + B^2 = \sqrt[3]{x^2} - 2\sqrt[3]{x} + 4$:
-      $$\frac{4}{\sqrt[3]{x} + 2} \cdot \frac{\sqrt[3]{x^2} - 2\sqrt[3]{x} + 4}{\sqrt[3]{x^2} - 2\sqrt[3]{x} + 4} = \frac{4(\sqrt[3]{x^2} - 2\sqrt[3]{x} + 4)}{(\sqrt[3]{x})^3 + 2^3} = \frac{4(\sqrt[3]{x^2} - 2\sqrt[3]{x} + 4)}{x + 8}.$$
-\end{cuadrosolucion}
-
-\textbf{Ejemplo R5.} Racionaliza el numerador de $\dfrac{\sqrt{x + 9} - 3}{x}$ y simplifica para $x \neq 0$.
-
-\begin{cuadrosolucion}
-      \textbf{Solución:}
-      Multiplicamos por el conjugado del numerador:
-      $$\frac{(\sqrt{x + 9} - 3)(\sqrt{x + 9} + 3)}{x(\sqrt{x + 9} + 3)} = \frac{(x + 9) - 9}{x(\sqrt{x + 9} + 3)} = \frac{x}{x(\sqrt{x + 9} + 3)} = \frac{1}{\sqrt{x + 9} + 3}.$$
-\end{cuadrosolucion}
-
-\subsection{Ejercicios propuestos: Exponentes y Racionalización}
+\subsection{Ejercicios propuestos: Exponentes y Radicales}
 
 \begin{enumerate}[series=ejercicios, leftmargin=*]
       \item \facil{} Simplifica usando leyes de potencias:
@@ -151,24 +89,6 @@ La racionalización consiste en transformar una expresión con radicales en el n
 
       \item \facil{} Escribe como una única potencia fraccionaria irreducible:
             $$a)\; \sqrt{x\sqrt{x}} \qquad\qquad b)\; \sqrt[3]{x^2 \sqrt[4]{x}} \qquad\qquad c)\; \frac{\sqrt[3]{a^2}}{\sqrt{a}}$$
-
-      \item \facil{} Racionaliza el denominador monomio:
-            $$a)\; \frac{4}{\sqrt{6}} \qquad\qquad b)\; \frac{10}{\sqrt{5x}} \qquad\qquad c)\; \frac{3}{\sqrt[3]{4}}$$
-
-      \item \medio{} Racionaliza el denominador binomio con raíces cuadradas:
-            $$a)\; \frac{5}{\sqrt{3} + \sqrt{2}} \qquad\qquad b)\; \frac{x - 4}{\sqrt{x} - 2} \qquad\qquad c)\; \frac{12}{3 - \sqrt{5}}$$
-
-      \item \medio{} Racionaliza el denominador monomio de orden superior:
-            $$a)\; \frac{6}{\sqrt[4]{8}} \qquad\qquad b)\; \frac{x}{\sqrt[5]{x^3}} \qquad\qquad c)\; \frac{2}{\sqrt[3]{9x^2}}$$
-
-      \item \medio{} Racionaliza el numerador:
-            $$a)\; \frac{\sqrt{x + 4} - 2}{x} \qquad\qquad b)\; \frac{\sqrt{x + h} - \sqrt{x}}{h} \qquad\qquad c)\; \frac{\sqrt{2x + 1} - 3}{x - 4}$$
-
-      \item \dificil{} Racionaliza el denominador binomio con raíces cúbicas:
-            $$a)\; \frac{2}{\sqrt[3]{5} - \sqrt[3]{3}} \qquad\qquad b)\; \frac{1}{\sqrt[3]{x} - 1} \qquad\qquad c)\; \frac{6}{\sqrt[3]{9} - \sqrt[3]{3} + 1}$$
-
-      \item \dificil{} Racionaliza el numerador con raíz cúbica:
-            $$\frac{\sqrt[3]{x + 8} - 2}{x}$$
 \end{enumerate}
 
 \newpage
@@ -220,7 +140,7 @@ La factorización es el proceso inverso al desarrollo de productos notables; tra
 
 \subsection{Ejercicios resueltos: Casos de Factorización}
 
-\textbf{Ejemplo R6 (Factor Común y Agrupación).} Factoriza: $a)\; 6x^3 y^2 - 9x^2 y^4 + 15x^4 y^3 \qquad b)\; x^3 - 3x^2 - 4x + 12$.
+\textbf{Ejemplo R2 (Factor Común y Agrupación).} Factoriza: $a)\; 6x^3 y^2 - 9x^2 y^4 + 15x^4 y^3 \qquad b)\; x^3 - 3x^2 - 4x + 12$.
 
 \begin{cuadrosolucion}
       \textbf{Solución:}
@@ -232,7 +152,7 @@ La factorización es el proceso inverso al desarrollo de productos notables; tra
       \end{enumerate}
 \end{cuadrosolucion}
 
-\textbf{Ejemplo R7 (Trinomio $ax^2 + bx + c$).} Factoriza: $6x^2 - 11x - 10$.
+\textbf{Ejemplo R3 (Trinomio $ax^2 + bx + c$).} Factoriza: $6x^2 - 11x - 10$.
 
 \begin{cuadrosolucion}
       \textbf{Solución:}
@@ -241,7 +161,7 @@ La factorización es el proceso inverso al desarrollo de productos notables; tra
       $$6x^2 - 15x + 4x - 10 = 3x(2x - 5) + 2(2x - 5) = (2x - 5)(3x + 2).$$
 \end{cuadrosolucion}
 
-\textbf{Ejemplo R8 (Suma y Diferencia de Cubos).} Factoriza: $a)\; 27x^3 + 64 \qquad b)\; 8x^6 - y^3$.
+\textbf{Ejemplo R4 (Suma y Diferencia de Cubos).} Factoriza: $a)\; 27x^3 + 64 \qquad b)\; 8x^6 - y^3$.
 
 \begin{cuadrosolucion}
       \textbf{Solución:}
@@ -253,7 +173,7 @@ La factorización es el proceso inverso al desarrollo de productos notables; tra
 
 \newpage
 
-\textbf{Ejemplo R9 (Completación de Cuadrados / Sophie Germain).} Factoriza: $x^4 + 4y^4$.
+\textbf{Ejemplo R5 (Completación de Cuadrados / Sophie Germain).} Factoriza: $x^4 + 4y^4$.
 
 \begin{cuadrosolucion}
       \textbf{Solución:}
@@ -263,7 +183,7 @@ La factorización es el proceso inverso al desarrollo de productos notables; tra
       $$= (x^2 + 2y^2 - 2xy)(x^2 + 2y^2 + 2xy) = (x^2 - 2xy + 2y^2)(x^2 + 2xy + 2y^2).$$
 \end{cuadrosolucion}
 
-\textbf{Ejemplo R10 (Combinación Múltiple).} Factoriza completamente: $x^6 - 64$.
+\textbf{Ejemplo R6 (Combinación Múltiple).} Factoriza completamente: $x^6 - 64$.
 
 \begin{cuadrosolucion}
       \textbf{Solución:}
@@ -297,6 +217,99 @@ La factorización es el proceso inverso al desarrollo de productos notables; tra
 
       \item \dificil{} \textbf{Factorización Combinada Avanzada:}
             $$a)\; 2x^4 - 32 \qquad b)\; x^3 - 2x^2 - x + 2 \qquad c)\; x^4 - 13x^2 + 36 \qquad d)\; 4x^2 - y^2 + 4x + 1$$
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+
+\section{Técnicas de Racionalización}
+% ============================================================
+
+\subsection{Técnicas de Racionalización}
+
+La racionalización consiste en transformar una expresión con radicales en el numerador o denominador en una fracción equivalente libre de radicales en dicha posición.
+
+\begin{cuadropasos}
+      \textbf{1. Denominador Monomio:}
+      \begin{itemize}[leftmargin=*]
+            \item \textbf{Raíz cuadrada $\sqrt{a}$:} Se multiplica numerador y denominador por $\sqrt{a}$:
+                  $$\frac{k}{\sqrt{a}} \cdot \frac{\sqrt{a}}{\sqrt{a}} = \frac{k\sqrt{a}}{a}$$
+            \item \textbf{Raíz de orden $n$ ($\sqrt[n]{a^k}$ con $k < n$):} Se multiplica por $\sqrt[n]{a^{n-k}}$ para completar el exponente:
+                  $$\frac{k}{\sqrt[n]{a^m}} \cdot \frac{\sqrt[n]{a^{n-m}}}{\sqrt[n]{a^{n-m}}} = \frac{k\sqrt[n]{a^{n-m}}}{a}$$
+                  Ejemplo para raíz cúbica: $\dfrac{k}{\sqrt[3]{a}} \cdot \dfrac{\sqrt[3]{a^2}}{\sqrt[3]{a^2}} = \dfrac{k\sqrt[3]{a^2}}{a}$.
+      \end{itemize}
+
+      \textbf{2. Denominador Binomio con Raíces Cuadradas (Conjugado de Orden 2):}
+      Se utiliza la diferencia de cuadrados $(A + B)(A - B) = A^2 - B^2$:
+      $$\frac{k}{\sqrt{a} \pm \sqrt{b}} \cdot \frac{\sqrt{a} \mp \sqrt{b}}{\sqrt{a} \mp \sqrt{b}} = \frac{k(\sqrt{a} \mp \sqrt{b})}{a - b}$$
+
+      \textbf{3. Denominador Binomio con Raíces Cúbicas (Conjugado de Orden 3):}
+      Se utilizan las identidades de suma y diferencia de cubos:
+      \begin{align*}
+            (\sqrt[3]{a} + \sqrt[3]{b})(\sqrt[3]{a^2} - \sqrt[3]{ab} + \sqrt[3]{b^2}) & = a + b \\
+            (\sqrt[3]{a} - \sqrt[3]{b})(\sqrt[3]{a^2} + \sqrt[3]{ab} + \sqrt[3]{b^2}) & = a - b
+      \end{align*}
+      Multiplicando por el factor trinomio adecuado, se eliminan las raíces cúbicas del denominador.
+
+      \textbf{4. Racionalización del Numerador (Cocientes Incrementales de Límites):}
+      Multiplicar por el conjugado del numerador para eliminar la indeterminación $\frac{0}{0}$.
+\end{cuadropasos}
+
+\subsection{Ejercicios resueltos: Racionalización}
+
+\textbf{Ejemplo R7.} Racionaliza el denominador monomio con raíz cúbica: $\dfrac{5}{\sqrt[3]{2x}}$.
+
+\begin{cuadrosolucion}
+      \textbf{Solución:}
+      Multiplicamos por $\sqrt[3]{(2x)^2} = \sqrt[3]{4x^2}$ tanto arriba como abajo:
+      $$\frac{5}{\sqrt[3]{2x}} \cdot \frac{\sqrt[3]{4x^2}}{\sqrt[3]{4x^2}} = \frac{5\sqrt[3]{4x^2}}{\sqrt[3]{(2x)^3}} = \frac{5\sqrt[3]{4x^2}}{2x}.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R8.} Racionaliza el denominador binomio: $\dfrac{6}{\sqrt{7} - 2}$.
+
+\begin{cuadrosolucion}
+      \textbf{Solución:}
+      Multiplicamos por el conjugado del denominador $\sqrt{7} + 2$:
+      $$\frac{6}{\sqrt{7} - 2} \cdot \frac{\sqrt{7} + 2}{\sqrt{7} + 2} = \frac{6(\sqrt{7} + 2)}{(\sqrt{7})^2 - 2^2} = \frac{6(\sqrt{7} + 2)}{7 - 4} = \frac{6(\sqrt{7} + 2)}{3} = 2(\sqrt{7} + 2) = 2\sqrt{7} + 4.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R9.} Racionaliza el denominador que contiene una raíz cúbica en binomio: $\dfrac{4}{\sqrt[3]{x} + 2}$.
+
+\begin{cuadrosolucion}
+      \textbf{Solución:}
+      Identificamos $A = \sqrt[3]{x}$ y $B = 2$. Usamos $A^3 + B^3 = (A + B)(A^2 - AB + B^2)$ con factor racionalizante $A^2 - AB + B^2 = \sqrt[3]{x^2} - 2\sqrt[3]{x} + 4$:
+      $$\frac{4}{\sqrt[3]{x} + 2} \cdot \frac{\sqrt[3]{x^2} - 2\sqrt[3]{x} + 4}{\sqrt[3]{x^2} - 2\sqrt[3]{x} + 4} = \frac{4(\sqrt[3]{x^2} - 2\sqrt[3]{x} + 4)}{(\sqrt[3]{x})^3 + 2^3} = \frac{4(\sqrt[3]{x^2} - 2\sqrt[3]{x} + 4)}{x + 8}.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R10.} Racionaliza el numerador de $\dfrac{\sqrt{x + 9} - 3}{x}$ y simplifica para $x \neq 0$.
+
+\begin{cuadrosolucion}
+      \textbf{Solución:}
+      Multiplicamos por el conjugado del numerador:
+      $$\frac{(\sqrt{x + 9} - 3)(\sqrt{x + 9} + 3)}{x(\sqrt{x + 9} + 3)} = \frac{(x + 9) - 9}{x(\sqrt{x + 9} + 3)} = \frac{x}{x(\sqrt{x + 9} + 3)} = \frac{1}{\sqrt{x + 9} + 3}.$$
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos: Racionalización}
+
+\begin{enumerate}[resume=ejercicios, leftmargin=*]
+      \item \facil{} Racionaliza el denominador monomio:
+            $$a)\; \frac{4}{\sqrt{6}} \qquad\qquad b)\; \frac{10}{\sqrt{5x}} \qquad\qquad c)\; \frac{3}{\sqrt[3]{4}}$$
+
+      \item \medio{} Racionaliza el denominador binomio con raíces cuadradas:
+            $$a)\; \frac{5}{\sqrt{3} + \sqrt{2}} \qquad\qquad b)\; \frac{x - 4}{\sqrt{x} - 2} \qquad\qquad c)\; \frac{12}{3 - \sqrt{5}}$$
+
+      \item \medio{} Racionaliza el denominador monomio de orden superior:
+            $$a)\; \frac{6}{\sqrt[4]{8}} \qquad\qquad b)\; \frac{x}{\sqrt[5]{x^3}} \qquad\qquad c)\; \frac{2}{\sqrt[3]{9x^2}}$$
+
+      \item \medio{} Racionaliza el numerador:
+            $$a)\; \frac{\sqrt{x + 4} - 2}{x} \qquad\qquad b)\; \frac{\sqrt{x + h} - \sqrt{x}}{h} \qquad\qquad c)\; \frac{\sqrt{2x + 1} - 3}{x - 4}$$
+
+      \item \dificil{} Racionaliza el denominador binomio con raíces cúbicas:
+            $$a)\; \frac{2}{\sqrt[3]{5} - \sqrt[3]{3}} \qquad\qquad b)\; \frac{1}{\sqrt[3]{x} - 1} \qquad\qquad c)\; \frac{6}{\sqrt[3]{9} - \sqrt[3]{3} + 1}$$
+
+      \item \dificil{} Racionaliza el numerador con raíz cúbica:
+            $$\frac{\sqrt[3]{x + 8} - 2}{x}$$
 \end{enumerate}
 
 \newpage
@@ -605,20 +618,14 @@ Una fracción algebraica es un cociente de polinomios $\frac{P(x)}{Q(x)}$ con $Q
 \section{Clave de Respuestas}
 % ============================================================
 
-\subsection*{Sección 1: Exponentes y Racionalización (Ejercicios 1--8)}
+\subsection*{Sección 1: Exponentes y Radicales (Ejercicios 1--2)}
 \begin{enumerate}[series=respuestas, leftmargin=*, label=\textbf{\arabic*.}]
       \item a) $\dfrac{16x^{12}}{y^8}$ \quad b) $x y^3$ \quad c) $\dfrac{a^{10}}{9 b^4}$
       \item a) $x^{3/4}$ \quad b) $x^{11/12}$ \quad c) $a^{1/6}$
-      \item a) $\dfrac{2\sqrt{6}}{3}$ \quad b) $\dfrac{2\sqrt{5x}}{x}$ \quad c) $\dfrac{3\sqrt[3]{2}}{2}$
-      \item a) $5(\sqrt{3} - \sqrt{2})$ \quad b) $\sqrt{x} + 2$ \quad c) $3(3 + \sqrt{5})$
-      \item a) $3\sqrt[4]{2}$ \quad b) $\sqrt[5]{x^2}$ \quad c) $\dfrac{2\sqrt[3]{3x}}{3x}$
-      \item a) $\dfrac{1}{\sqrt{x + 4} + 2}$ \quad b) $\dfrac{1}{\sqrt{x + h} + \sqrt{x}}$ \quad c) $\dfrac{2}{\sqrt{2x + 1} + 3}$
-      \item a) $\sqrt[3]{25} + \sqrt[3]{15} + \sqrt[3]{9}$ \quad b) $\dfrac{\sqrt[3]{x^2} + \sqrt[3]{x} + 1}{x - 1}$ \quad c) $2(\sqrt[3]{3} + 1)$
-      \item $\dfrac{1}{\sqrt[3]{(x + 8)^2} + 2\sqrt[3]{x + 8} + 4}$
 \end{enumerate}
 
 
-\subsection*{Sección 2: Factorización (Ejercicios 9--16)}
+\subsection*{Sección 2: Factorización (Ejercicios 3--10)}
 \begin{enumerate}[resume=respuestas, leftmargin=*, label=\textbf{\arabic*.}]
       \item a) $6x^3 y^3(2x - 3y^2)$ \quad b) $4ab(a - 2b + 3a^2 b^2)$ \quad c) $(a - 1)(2x - y)$
       \item a) $(7x - 6)(7x + 6)$ \quad b) $(10a^2 - 9b^3)(10a^2 + 9b^3)$ \quad c) $(x - 3)(x + 7)$
@@ -631,7 +638,18 @@ Una fracción algebraica es un cociente de polinomios $\frac{P(x)}{Q(x)}$ con $Q
 \end{enumerate}
 
 
-\subsection*{Sección 3: Fracciones Algebraicas (Ejercicios 17--21)}
+\subsection*{Sección 3: Racionalización (Ejercicios 11--16)}
+\begin{enumerate}[resume=respuestas, leftmargin=*, label=\textbf{\arabic*.}]
+      \item a) $\dfrac{2\sqrt{6}}{3}$ \quad b) $\dfrac{2\sqrt{5x}}{x}$ \quad c) $\dfrac{3\sqrt[3]{2}}{2}$
+      \item a) $5(\sqrt{3} - \sqrt{2})$ \quad b) $\sqrt{x} + 2$ \quad c) $3(3 + \sqrt{5})$
+      \item a) $3\sqrt[4]{2}$ \quad b) $\sqrt[5]{x^2}$ \quad c) $\dfrac{2\sqrt[3]{3x}}{3x}$
+      \item a) $\dfrac{1}{\sqrt{x + 4} + 2}$ \quad b) $\dfrac{1}{\sqrt{x + h} + \sqrt{x}}$ \quad c) $\dfrac{2}{\sqrt{2x + 1} + 3}$
+      \item a) $\sqrt[3]{25} + \sqrt[3]{15} + \sqrt[3]{9}$ \quad b) $\dfrac{\sqrt[3]{x^2} + \sqrt[3]{x} + 1}{x - 1}$ \quad c) $2(\sqrt[3]{3} + 1)$
+      \item $\dfrac{1}{\sqrt[3]{(x + 8)^2} + 2\sqrt[3]{x + 8} + 4}$
+\end{enumerate}
+
+
+\subsection*{Sección 4: Fracciones Algebraicas (Ejercicios 17--21)}
 \begin{enumerate}[resume=respuestas, leftmargin=*, label=\textbf{\arabic*.}]
       \item a) $\dfrac{x + 3}{x - 2}$ \quad b) $\dfrac{2x}{x - 3}$ \quad c) $\dfrac{x + 3}{x^2 - 3x + 9}$
       \item a) $\dfrac{(x - 2)(x - 3)}{x(x + 2)}$ \quad b) $\dfrac{x - 3}{2x - 1}$
@@ -641,7 +659,7 @@ Una fracción algebraica es un cociente de polinomios $\frac{P(x)}{Q(x)}$ con $Q
 \end{enumerate}
 
 
-\subsection*{Sección 4: Ecuaciones (Ejercicios 22--28)}
+\subsection*{Sección 5: Ecuaciones (Ejercicios 22--28)}
 \begin{enumerate}[resume=respuestas, leftmargin=*, label=\textbf{\arabic*.}]
       \item a) $x = 9$ \quad b) $x = 12$
       \item a) $x = \pm 7$ \quad b) $x = -3$ (doble) \quad c) $x = 5$ o $x = -2$
@@ -653,7 +671,7 @@ Una fracción algebraica es un cociente de polinomios $\frac{P(x)}{Q(x)}$ con $Q
 \end{enumerate}
 
 
-\subsection*{Sección 5: Desigualdades (Ejercicios 29--35)}
+\subsection*{Sección 6: Desigualdades (Ejercicios 29--35)}
 \begin{enumerate}[resume=respuestas, leftmargin=*, label=\textbf{\arabic*.}]
       \item a) $(3, \infty)$ \quad b) $[-3, \infty)$
       \item a) $(-3, 3)$ \quad b) $(-\infty, 0] \cup [4, \infty)$
@@ -668,7 +686,7 @@ Una fracción algebraica es un cociente de polinomios $\frac{P(x)}{Q(x)}$ con $Q
 % ──────────────────────────────────────────────────────────
 %  NUEVAS RESPUESTAS (15) — INSERCIÓN MANUAL
 % ──────────────────────────────────────────────────────────
-\subsection*{Sección 6: Repaso Integral de Álgebra I (Ejercicios 36--43)}
+\subsection*{Sección 7: Repaso Integral de Álgebra I (Ejercicios 36--43)}
 \begin{enumerate}[resume=respuestas, leftmargin=*, label=\textbf{\arabic*.}]
       \item $\dfrac{8y^{12}}{9x^{7}}$
       \item a) $\dfrac{4\sqrt{3}}{3}$ \quad b) $\dfrac{5\sqrt[3]{4x^2}}{4x}$
@@ -680,7 +698,7 @@ Una fracción algebraica es un cociente de polinomios $\frac{P(x)}{Q(x)}$ con $Q
       \item $(-\infty, -3) \cup [3, \infty)$ \quad (con $x \neq 1$; el punto $x = 1$ da la forma $0/0$ y se excluye)
 \end{enumerate}
 
-\subsection*{Sección 7: Repaso Integral de Álgebra II (Ejercicios 44--50)}
+\subsection*{Sección 8: Repaso Integral de Álgebra II (Ejercicios 44--50)}
 \begin{enumerate}[resume=respuestas, leftmargin=*, label=\textbf{\arabic*.}]
       \item $2a^7 b^6$
       \item $\dfrac{1}{\sqrt{x + 5} + 3}$

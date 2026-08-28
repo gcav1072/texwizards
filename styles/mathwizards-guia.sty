@@ -84,6 +84,19 @@
   \renewcommand{\mwautorcurso}{#2}%
 }
 
+% ── Control de la sección de respuestas / clave ───────────────
+% Por defecto, las claves de respuestas se muestran (comportamiento actual).
+% Para generar una versión "estudiante" sin claves, invoca \mwclavesoff
+% antes de \begin{document}. Las guías pueden envolver su sección de
+% respuestas entre \ifmwclaves ... \fi.
+\newif\ifmwclaves
+\mwclavestrue
+\newcommand{\mwclaveson}{\mwclavestrue}
+\newcommand{\mwclavesoff}{\mwclavesfalse}
+\newcommand{\mwclavesestado}{%
+  \ifmwclaves{con respuestas}\else{sin respuestas}\fi
+}
+
 % ── Encabezados y pies de página ─────────────────────────────
 \pagestyle{fancy}
 \fancyhf{}

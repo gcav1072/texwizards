@@ -8,6 +8,12 @@
 #   ./compile_all.sh -f               # Fuerza recompilación (-g en latexmk)
 #   ./compile_all.sh -c               # Limpia auxiliares luego de compilar
 #   ./compile_all.sh -j 4             # Compila usando 4 hilos en paralelo
+#
+# Cada guía con respuestas (\ifmwclaves) se compila DOS veces desde el MISMO
+# fuente: la versión normal y la variante _scr (sin respuestas), usando
+# -usepretex='\AtBeginDocument{\mwclavesoff}' + -jobname=<stem>_scr.
+# Los archivos sin \ifmwclaves (exámenes, etc.) se compilan una sola vez.
+#   ./compile_all.sh guia1            # guia1...tex y guia1..._scr.tex
 # ==============================================================================
 
 set -euo pipefail
@@ -44,10 +50,14 @@ print_help() {
     echo "  -j, --jobs N        Número de compilaciones en paralelo (por defecto: 1)"
     echo "  -h, --help          Muestra esta ayuda"
     echo ""
+    echo "Cada guía con respuestas (\\ifmwclaves) se compila DOS veces desde el"
+    echo "mismo fuente: la versión normal y la variante _scr (sin respuestas)."
+    echo ""
     echo "Ejemplos:"
-    echo "  ./compile_all.sh                      # Todo tex_files/"
+    echo "  ./compile_all.sh                      # Todo tex_files/ (normal + _scr)"
     echo "  ./compile_all.sh lead_magnets         # Solo la carpeta lead_magnets"
     echo "  ./compile_all.sh conversiones.tex     # Solo conversiones.tex"
+    echo "  ./compile_all.sh guia1                # guia1...tex y guia1..._scr.tex"
     echo "  ./compile_all.sh -f -j 4              # Todo, forzado y con 4 hilos"
     exit 0
 }
@@ -127,13 +137,37 @@ compile_single_file() {
     local rel_path="${tex_path#$REPO_ROOT/}"
     local dir_name="$(dirname "$tex_path")"
     local base_name="$(basename "$tex_path")"
+    local stem="${base_name%.tex}"
     local log_file="$TEMP_LOG_DIR/$(echo "$rel_path" | tr '/ ' '__').log"
 
     cd "$dir_name"
 
-    local cmd="latexmk -xelatex -interaction=nonstopmode -halt-on-error $force \"$base_name\""
-    
-    if eval "$cmd" > "$log_file" 2>&1; then
+    # Detectar si el fuente tiene la sección de respuestas envuelta (\ifmwclaves).
+    # Si la tiene, además de la versión normal compilamos la variante _scr
+    # (sin respuestas) usando -usepretex + -jobname, desde el MISMO fuente.
+    local has_claves=false
+    if grep -q "ifmwclaves" "$base_name" 2>/dev/null; then
+        has_claves=true
+    fi
+
+    local ok_total=true
+    local FIRST_CMD="latexmk -xelatex -interaction=nonstopmode -halt-on-error $force \"$base_name\""
+    if eval "$FIRST_CMD" > "$log_file" 2>&1; then
+        :
+    else
+        ok_total=false
+    fi
+
+    if [[ "$has_claves" == "true" ]]; then
+        local SECOND_CMD="latexmk -xelatex -interaction=nonstopmode -halt-on-error $force -usepretex='\\AtBeginDocument{\\mwclavesoff}' -jobname=${stem}_scr \"$base_name\""
+        if eval "$SECOND_CMD" >> "$log_file" 2>&1; then
+            :
+        else
+            ok_total=false
+        fi
+    fi
+
+    if [[ "$ok_total" == "true" ]]; then
         if [[ "$clean" == "true" ]]; then
             latexmk -c "$base_name" > /dev/null 2>&1 || true
         fi

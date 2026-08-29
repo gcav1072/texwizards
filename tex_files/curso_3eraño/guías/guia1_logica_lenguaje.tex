@@ -5,7 +5,7 @@
 %  Sesiones cubiertas: 1, 2, 3
 % ============================================================
 
-\documentclass[12pt, a4paper]{article}
+\documentclass[12pt, letterpaper]{article}
 
 % ── Paquetes ─────────────────────────────────────────────────
 
@@ -20,13 +20,13 @@
 
 \vspace{4pt}
 \begin{cuadroinfo}
-\small
-\textbf{Presentación:} Bienvenido al inicio de un viaje por la ciencia. Esta primera guía está diseñada para que aprendas a \emph{pensar con orden}. Antes de lanzarnos a resolver ecuaciones o medir magnitudes, necesitamos afinar nuestra herramienta más importante: la mente. Aquí descubrirás cómo funciona el razonamiento lógico, cómo los matemáticos atacan problemas paso a paso, y cómo traducir situaciones cotidianas al lenguaje preciso del álgebra.
-\\[4pt]
-\textbf{Nivel de Dificultad:}\quad
-\facil{} Básico / Directo \quad
-\medio{} Intermedio \quad
-\dificil{} Desafiante
+  \small
+  \textbf{Presentación:} Bienvenido al inicio de un viaje por la ciencia. Esta primera guía está diseñada para que aprendas a \emph{pensar con orden}. Antes de lanzarnos a resolver ecuaciones o medir magnitudes, necesitamos afinar nuestra herramienta más importante: la mente. Aquí descubrirás cómo funciona el razonamiento lógico, cómo los matemáticos atacan problemas paso a paso, y cómo traducir situaciones cotidianas al lenguaje preciso del álgebra.
+  \\[4pt]
+  \textbf{Nivel de Dificultad:}\quad
+  \facil{} Básico / Directo \quad
+  \medio{} Intermedio \quad
+  \dificil{} Desafiante
 \end{cuadroinfo}
 
 \vspace{8pt}
@@ -40,7 +40,7 @@
 Imagina que estás en un juicio y alguien debe declarar si algo es \emph{verdadero} o \emph{falso}. No puede responder «tal vez» ni «depende»: la respuesta es una u otra. Ese tipo de enunciado, que obligatoriamente es verdadero o falso (nunca ambos, nunca ninguno), se llama \textbf{proposición}.
 
 \begin{cuadroteoria}
-\textbf{Definición:} Una \textbf{proposición} es un enunciado declarativo al que se le puede asignar exactamente uno de dos \textbf{valores de verdad}: Verdadero (\textbf{V}) o Falso (\textbf{F}).
+  \textbf{Definición:} Una \textbf{proposición} es un enunciado declarativo al que se le puede asignar exactamente uno de dos \textbf{valores de verdad}: Verdadero (\textbf{V}) o Falso (\textbf{F}).
 \end{cuadroteoria}
 
 \noindent\textbf{Ejemplos de proposiciones:}
@@ -75,19 +75,19 @@ Para trabajar cómodamente, representamos cada proposición atómica con una let
 Los conectivos lógicos son las «palabras pegamento» que unen proposiciones. Veamos los tres fundamentales:
 
 \begin{cuadrosolucion}
-\begin{enumerate}[label=\arabic*., leftmargin=*]
-  \item \textbf{Conjunción} (símbolo: $\wedge$, se lee «\emph{y}»): La proposición $p \wedge q$ es verdadera \textbf{solo cuando ambas} $p$ y $q$ son verdaderas.
-  
-  \textit{Ejemplo:} «Aprobé matemática \textbf{y} aprobé física.» Solo es verdad si aprobaste las dos.
+  \begin{enumerate}[label=\arabic*., leftmargin=*]
+    \item \textbf{Conjunción} (símbolo: $\wedge$, se lee «\emph{y}»): La proposición $p \wedge q$ es verdadera \textbf{solo cuando ambas} $p$ y $q$ son verdaderas.
 
-  \item \textbf{Disyunción} (símbolo: $\vee$, se lee «\emph{o}»): La proposición $p \vee q$ es verdadera \textbf{cuando al menos una} de las dos es verdadera.
-  
-  \textit{Ejemplo:} «Voy al cine \textbf{o} me quedo en casa.» Es verdad si haces una cosa, la otra, o incluso ambas.
+          \textit{Ejemplo:} «Aprobé matemática \textbf{y} aprobé física.» Solo es verdad si aprobaste las dos.
 
-  \item \textbf{Condicional} (símbolo: $\rightarrow$, se lee «\emph{si \ldots\ entonces}»): La proposición $p \rightarrow q$ es falsa \textbf{solamente} cuando $p$ es verdadera y $q$ es falsa. En todos los demás casos es verdadera.
-  
-  \textit{Ejemplo:} «\textbf{Si} estudias, \textbf{entonces} aprobarás.» Solo puedes decir que esta promesa se rompió si efectivamente estudiaste y aun así no aprobaste.
-\end{enumerate}
+    \item \textbf{Disyunción} (símbolo: $\vee$, se lee «\emph{o}»): La proposición $p \vee q$ es verdadera \textbf{cuando al menos una} de las dos es verdadera.
+
+          \textit{Ejemplo:} «Voy al cine \textbf{o} me quedo en casa.» Es verdad si haces una cosa, la otra, o incluso ambas.
+
+    \item \textbf{Condicional} (símbolo: $\rightarrow$, se lee «\emph{si \ldots\ entonces}»): La proposición $p \rightarrow q$ es falsa \textbf{solamente} cuando $p$ es verdadera y $q$ es falsa. En todos los demás casos es verdadera.
+
+          \textit{Ejemplo:} «\textbf{Si} estudias, \textbf{entonces} aprobarás.» Solo puedes decir que esta promesa se rompió si efectivamente estudiaste y aun así no aprobaste.
+  \end{enumerate}
 \end{cuadrosolucion}
 
 \subsection{Tablas de verdad}
@@ -95,20 +95,20 @@ Los conectivos lógicos son las «palabras pegamento» que unen proposiciones. V
 Una \textbf{tabla de verdad} es simplemente un cuadro donde listamos todas las combinaciones posibles de valores de verdad de las proposiciones atómicas y calculamos el resultado de la proposición compuesta. Veamos las tablas para los tres conectivos:
 
 \begin{center}
-\begin{tabular}{cc|c|c|c}
-\toprule
-$p$ & $q$ & $p \wedge q$ & $p \vee q$ & $p \rightarrow q$ \\
-\midrule
-V & V & V & V & V \\
-V & F & F & V & F \\
-F & V & F & V & V \\
-F & F & F & F & V \\
-\bottomrule
-\end{tabular}
+  \begin{tabular}{cc|c|c|c}
+    \toprule
+    $p$ & $q$ & $p \wedge q$ & $p \vee q$ & $p \rightarrow q$ \\
+    \midrule
+    V   & V   & V            & V          & V                 \\
+    V   & F   & F            & V          & F                 \\
+    F   & V   & F            & V          & V                 \\
+    F   & F   & F            & F          & V                 \\
+    \bottomrule
+  \end{tabular}
 \end{center}
 
 \begin{cuadroadvertencia}
-\textbf{Dato curioso:} La línea que más sorprende a los estudiantes es la última del condicional: cuando $p$ es falsa, $p \rightarrow q$ siempre es verdadera, sin importar $q$. Piénsalo así: si tu profesor te dice «si sacas 20 puntos, te regalo un libro» y tú no sacas 20, el profesor no rompió su promesa, pase lo que pase. Una promesa solo se rompe si se cumple la condición y no se cumple lo prometido.
+  \textbf{Dato curioso:} La línea que más sorprende a los estudiantes es la última del condicional: cuando $p$ es falsa, $p \rightarrow q$ siempre es verdadera, sin importar $q$. Piénsalo así: si tu profesor te dice «si sacas 20 puntos, te regalo un libro» y tú no sacas 20, el profesor no rompió su promesa, pase lo que pase. Una promesa solo se rompe si se cumple la condición y no se cumple lo prometido.
 \end{cuadroadvertencia}
 
 \subsection{Traducción del lenguaje natural a la lógica simbólica}
@@ -138,29 +138,29 @@ Observa que la palabra «no» se representa con el símbolo $\neg$ (\textbf{nega
 
 \begin{enumerate}[leftmargin=*]
   \item \facil{} Un detective llega a la escena del crimen y encuentra tres sospechosos: Ana, Bruno y Carlos. Se sabe que:
-  \begin{itemize}
-    \item Si Ana es culpable, entonces Bruno también lo es.
-    \item Bruno es inocente.
-  \end{itemize}
-  ¿Puedes concluir algo sobre Ana? Justifica tu razonamiento.
+        \begin{itemize}
+          \item Si Ana es culpable, entonces Bruno también lo es.
+          \item Bruno es inocente.
+        \end{itemize}
+        ¿Puedes concluir algo sobre Ana? Justifica tu razonamiento.
 
   \item \facil{} En una isla viven dos tipos de habitantes: los \emph{caballeros} (siempre dicen la verdad) y los \emph{pícaros} (siempre mienten). Te encuentras a un habitante que dice: «Yo soy un pícaro.» ¿Es caballero o pícaro? ¿Por qué?
 
   \item \facil{} Determina cuáles de los siguientes enunciados son proposiciones y asígnales un valor de verdad (V o F) cuando sea posible:
-  \begin{enumerate}[label=\alph*)]
-    \item «El número 15 es par.»
-    \item «¡Pásame el borrador!»
-    \item «$3 \times 4 = 12$»
-    \item «¿Venezuela queda en Europa?»
-    \item «El oxígeno es un gas a temperatura ambiente.»
-  \end{enumerate}
+        \begin{enumerate}[label=\alph*)]
+          \item «El número 15 es par.»
+          \item «¡Pásame el borrador!»
+          \item «$3 \times 4 = 12$»
+          \item «¿Venezuela queda en Europa?»
+          \item «El oxígeno es un gas a temperatura ambiente.»
+        \end{enumerate}
 
   \item \facil{} Traduce al lenguaje simbólico, definiendo las proposiciones atómicas que necesites:
-  \begin{enumerate}[label=\alph*)]
-    \item «Hace calor y estoy cansado.»
-    \item «Si estudio, entonces apruebo el examen.»
-    \item «Llueve o hace sol.»
-  \end{enumerate}
+        \begin{enumerate}[label=\alph*)]
+          \item «Hace calor y estoy cansado.»
+          \item «Si estudio, entonces apruebo el examen.»
+          \item «Llueve o hace sol.»
+        \end{enumerate}
 
   \item \medio{} Un profesor afirma: «Si entregas la tarea a tiempo \textbf{y} participas en clase, entonces tendrás puntos extra.» Marcos entregó la tarea a tiempo pero no participó en clase, y no obtuvo puntos extra. ¿El profesor cumplió su promesa o la rompió? Justifica usando el condicional.
 
@@ -169,12 +169,12 @@ Observa que la palabra «no» se representa con el símbolo $\neg$ (\textbf{nega
   \item \medio{} En un juego de cartas, se establece la siguiente regla: «Si una carta tiene una vocal en un lado, entonces tiene un número par en el otro.» Tienes cuatro cartas sobre la mesa mostrando: \textbf{A}, \textbf{K}, \textbf{4}, \textbf{7}. ¿Cuáles cartas debes voltear para verificar si la regla se cumple? Justifica tu respuesta lógicamente.
 
   \item \medio{} Tres amigos hacen las siguientes afirmaciones:
-  \begin{itemize}
-    \item Luis: «Si María fue al cine, entonces Pedro se quedó en casa.»
-    \item María: «Yo fui al cine.»
-    \item Pedro: «Yo no me quedé en casa.»
-  \end{itemize}
-  Si todos dicen la verdad excepto uno, ¿quién miente?
+        \begin{itemize}
+          \item Luis: «Si María fue al cine, entonces Pedro se quedó en casa.»
+          \item María: «Yo fui al cine.»
+          \item Pedro: «Yo no me quedé en casa.»
+        \end{itemize}
+        Si todos dicen la verdad excepto uno, ¿quién miente?
 
   \item \medio{} Traduce al lenguaje simbólico y luego construye la tabla de verdad: «Si no llueve, entonces iré al parque o me quedaré leyendo.»
 
@@ -182,15 +182,13 @@ Observa que la palabra «no» se representa con el símbolo $\neg$ (\textbf{nega
 
   \item \dificil{} Un acertijo clásico: Tienes tres cajas etiquetadas «Manzanas», «Naranjas» y «Mixta», pero \textbf{todas las etiquetas están mal colocadas}. Solo puedes sacar \textbf{una fruta} de \textbf{una caja} para determinar el contenido correcto de las tres cajas. ¿De qué caja sacas la fruta y por qué? Explica tu razonamiento lógico paso a paso.
 
-  \item \dificil{} Considera la afirmación: «Si un número es divisible por 6, entonces es divisible por 2 \textbf{y} por 3.» 
-  \begin{enumerate}[label=\alph*)]
-    \item Escríbela en lenguaje simbólico.
-    \item ¿Es verdadera o falsa? Justifica.
-    \item Escribe la afirmación \emph{recíproca} (intercambiando la hipótesis con la conclusión). ¿Es verdadera? Da un ejemplo o contraejemplo.
-  \end{enumerate}
+  \item \dificil{} Considera la afirmación: «Si un número es divisible por 6, entonces es divisible por 2 \textbf{y} por 3.»
+        \begin{enumerate}[label=\alph*)]
+          \item Escríbela en lenguaje simbólico.
+          \item ¿Es verdadera o falsa? Justifica.
+          \item Escribe la afirmación \emph{recíproca} (intercambiando la hipótesis con la conclusión). ¿Es verdadera? Da un ejemplo o contraejemplo.
+        \end{enumerate}
 \end{enumerate}
-
-\newpage
 
 % ============================================================
 \section{El Método de George Pólya}
@@ -201,20 +199,20 @@ Observa que la palabra «no» se representa con el símbolo $\neg$ (\textbf{nega
 Seguramente te ha pasado: lees un problema, no sabes por dónde empezar, y terminas dejándolo en blanco. La buena noticia es que resolver problemas \textbf{es una habilidad que se puede aprender}. George Pólya, un famoso matemático húngaro, dedicó años a observar cómo las personas resuelven problemas y resumió su método en cuatro fases claras.
 
 \begin{cuadroteoria}
-\textbf{El Método de Pólya en 4 fases:}
-\begin{enumerate}[label=\textbf{Fase \arabic*:}, leftmargin=*]
-  \item \textbf{Comprender el problema} — ¿Qué te piden? ¿Qué datos tienes? ¿Qué condiciones hay? Reformula el problema con tus propias palabras.
-  \item \textbf{Concebir un plan} — ¿Has visto algo parecido antes? ¿Puedes simplificarlo? ¿Hay un patrón? Busca analogías con problemas resueltos.
-  \item \textbf{Ejecutar el plan} — Lleva a cabo tu estrategia paso a paso, con cuidado y orden. Si te atascas, vuelve a la Fase 2.
-  \item \textbf{Visión retrospectiva} — ¿Tu resultado tiene sentido? ¿Puedes verificarlo? ¿Podrías haberlo resuelto de otra forma?
-\end{enumerate}
+  \textbf{El Método de Pólya en 4 fases:}
+  \begin{enumerate}[label=\textbf{Fase \arabic*:}, leftmargin=*]
+    \item \textbf{Comprender el problema} — ¿Qué te piden? ¿Qué datos tienes? ¿Qué condiciones hay? Reformula el problema con tus propias palabras.
+    \item \textbf{Concebir un plan} — ¿Has visto algo parecido antes? ¿Puedes simplificarlo? ¿Hay un patrón? Busca analogías con problemas resueltos.
+    \item \textbf{Ejecutar el plan} — Lleva a cabo tu estrategia paso a paso, con cuidado y orden. Si te atascas, vuelve a la Fase 2.
+    \item \textbf{Visión retrospectiva} — ¿Tu resultado tiene sentido? ¿Puedes verificarlo? ¿Podrías haberlo resuelto de otra forma?
+  \end{enumerate}
 \end{cuadroteoria}
 
 \begin{figure}[h!]
   \centering
   \begin{tikzpicture}[
-      phase/.style = {circle, draw=mwprimario, fill=mwprimario!12, thick, minimum size=3cm, text width=2.6cm, align=center, text=mwprimario, font=\bfseries\small},
-      arrow/.style = {-{Latex[scale=1.2]}, thick, draw=mwprimario}
+    phase/.style = {circle, draw=mwprimario, fill=mwprimario!12, thick, minimum size=3cm, text width=2.6cm, align=center, text=mwprimario, font=\bfseries\small},
+    arrow/.style = {-{Latex[scale=1.2]}, thick, draw=mwprimario}
     ]
     \node (f1) [phase] at (90:2.8) {Fase 1:\\Comprender\\el problema};
     \node (f2) [phase] at (0:2.8) {Fase 2:\\Concebir\\un plan};
@@ -225,7 +223,7 @@ Seguramente te ha pasado: lees un problema, no sabes por dónde empezar, y termi
     \draw [arrow] (f2) to[bend left=20] (f3);
     \draw [arrow] (f3) to[bend left=20] (f4);
     \draw [arrow] (f4) to[bend left=20] (f1);
-    
+
     \draw [arrow, dashed, mwrojonaranja, bend left=30] (f3) to node[midway, below left, text=mwrojonaranja, font=\scriptsize\bfseries] {Replanificar} (f2);
     \draw [arrow, dashed, mwrojonaranja, bend left=30] (f4) to node[midway, above left, text=mwrojonaranja, font=\scriptsize\bfseries] {Reevaluar} (f1);
   \end{tikzpicture}
@@ -238,29 +236,29 @@ Seguramente te ha pasado: lees un problema, no sabes por dónde empezar, y termi
 \noindent\textbf{Problema:} En un estacionamiento hay bicicletas y automóviles. En total se cuentan 18 vehículos y 50 ruedas. ¿Cuántas bicicletas y cuántos automóviles hay?
 
 \begin{cuadrosolucion}
-\textbf{Fase 1 — Comprender:} 
-\begin{itemize}[leftmargin=*]
-  \item \textit{¿Qué nos piden?} La cantidad de bicicletas y la cantidad de automóviles.
-  \item \textit{¿Qué sabemos?} Hay 18 vehículos en total. Hay 50 ruedas en total. Las bicicletas tienen 2 ruedas y los autos tienen 4.
-\end{itemize}
+  \textbf{Fase 1 — Comprender:}
+  \begin{itemize}[leftmargin=*]
+    \item \textit{¿Qué nos piden?} La cantidad de bicicletas y la cantidad de automóviles.
+    \item \textit{¿Qué sabemos?} Hay 18 vehículos en total. Hay 50 ruedas en total. Las bicicletas tienen 2 ruedas y los autos tienen 4.
+  \end{itemize}
 \end{cuadrosolucion}
 
 \begin{cuadrosolucion}
-\textbf{Fase 2 — Planificar:}
-Podemos usar una estrategia de «suposición extrema»: ¿qué pasaría si todos fueran bicicletas? Tendríamos $18 \times 2 = 36$ ruedas, pero hay 50. Nos faltan $50 - 36 = 14$ ruedas. Cada auto que «reemplace» una bicicleta agrega 2 ruedas extra. Entonces, el número de autos sería $14 \div 2 = 7$.
+  \textbf{Fase 2 — Planificar:}
+  Podemos usar una estrategia de «suposición extrema»: ¿qué pasaría si todos fueran bicicletas? Tendríamos $18 \times 2 = 36$ ruedas, pero hay 50. Nos faltan $50 - 36 = 14$ ruedas. Cada auto que «reemplace» una bicicleta agrega 2 ruedas extra. Entonces, el número de autos sería $14 \div 2 = 7$.
 \end{cuadrosolucion}
 
 \begin{cuadrosolucion}
-\textbf{Fase 3 — Ejecutar:}
-\begin{itemize}
-  \item Automóviles: $7$
-  \item Bicicletas: $18 - 7 = 11$
-\end{itemize}
+  \textbf{Fase 3 — Ejecutar:}
+  \begin{itemize}
+    \item Automóviles: $7$
+    \item Bicicletas: $18 - 7 = 11$
+  \end{itemize}
 \end{cuadrosolucion}
 
 \begin{cuadrosolucion}
-\textbf{Fase 4 — Verificar:}
-$11$ bicicletas $\times$ 2 ruedas $= 22$ ruedas. $7$ autos $\times$ 4 ruedas $= 28$ ruedas. Total: $22 + 28 = 50$ ruedas. $\checkmark$ Total vehículos: $11 + 7 = 18$. $\checkmark$
+  \textbf{Fase 4 — Verificar:}
+  $11$ bicicletas $\times$ 2 ruedas $= 22$ ruedas. $7$ autos $\times$ 4 ruedas $= 28$ ruedas. Total: $22 + 28 = 50$ ruedas. $\checkmark$ Total vehículos: $11 + 7 = 18$. $\checkmark$
 \end{cuadrosolucion}
 
 \newpage
@@ -307,11 +305,11 @@ Para cada problema, aplica explícitamente las cuatro fases del Método de Póly
 En la vida cotidiana usamos palabras para describir situaciones. En matemática, usamos \textbf{símbolos} para hacer lo mismo, pero con mayor precisión. Para ello, necesitamos entender tres conceptos clave:
 
 \begin{cuadroteoria}
-\begin{itemize}[leftmargin=*]
-  \item \textbf{Constante:} Un valor fijo que no cambia. Ejemplo: el número 5, el precio de una entrada que cuesta 20\,Bs, la aceleración de la gravedad $g = 9{,}8\;\text{m/s}^2$.
-  \item \textbf{Variable:} Un símbolo (generalmente una letra) que puede tomar diferentes valores. Ejemplo: la temperatura $T$ de un día cualquiera, la velocidad $v$ de un carro en movimiento.
-  \item \textbf{Incógnita:} Una variable cuyo valor específico desconocemos y queremos encontrar. Ejemplo: «Un número sumado con 7 da 15. ¿Cuál es ese número?» → Aquí la incógnita es ese «número» misterioso, que representamos con $x$.
-\end{itemize}
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Constante:} Un valor fijo que no cambia. Ejemplo: el número 5, el precio de una entrada que cuesta 20\,Bs, la aceleración de la gravedad $g = 9{,}8\;\text{m/s}^2$.
+    \item \textbf{Variable:} Un símbolo (generalmente una letra) que puede tomar diferentes valores. Ejemplo: la temperatura $T$ de un día cualquiera, la velocidad $v$ de un carro en movimiento.
+    \item \textbf{Incógnita:} Una variable cuyo valor específico desconocemos y queremos encontrar. Ejemplo: «Un número sumado con 7 da 15. ¿Cuál es ese número?» → Aquí la incógnita es ese «número» misterioso, que representamos con $x$.
+  \end{itemize}
 \end{cuadroteoria}
 
 \subsection{Traducir enunciados a expresiones algebraicas}
@@ -319,19 +317,19 @@ En la vida cotidiana usamos palabras para describir situaciones. En matemática,
 La clave está en reconocer las \textbf{palabras clave} del español que corresponden a operaciones matemáticas:
 
 \begin{center}
-\small
-\begin{tabular}{p{5.5cm} c p{4cm}}
-\toprule
-\textbf{Expresión en español} & \textbf{Operación} & \textbf{Símbolo} \\
-\midrule
-«la suma de», «más que», «aumentado en», «excede en» & Adición & $a + b$ \\
-«la diferencia de», «menos que», «disminuido en» & Sustracción & $a - b$ \\
-«el producto de», «multiplicado por», «el doble/triple de» & Multiplicación & $a \cdot b$, $2a$, $3a$ \\
-«el cociente de», «dividido entre», «la mitad/tercera parte de» & División & $\frac{a}{b}$, $\frac{a}{2}$, $\frac{a}{3}$ \\
-«el cuadrado de», «al cubo» & Potenciación & $a^2$, $a^3$ \\
-«es igual a», «resulta», «da como resultado» & Igualdad & $=$ \\
-\bottomrule
-\end{tabular}
+  \small
+  \begin{tabular}{p{5.5cm} c p{4cm}}
+    \toprule
+    \textbf{Expresión en español}                                   & \textbf{Operación} & \textbf{Símbolo}                            \\
+    \midrule
+    «la suma de», «más que», «aumentado en», «excede en»            & Adición            & $a + b$                                     \\
+    «la diferencia de», «menos que», «disminuido en»                & Sustracción        & $a - b$                                     \\
+    «el producto de», «multiplicado por», «el doble/triple de»      & Multiplicación     & $a \cdot b$, $2a$, $3a$                     \\
+    «el cociente de», «dividido entre», «la mitad/tercera parte de» & División           & $\frac{a}{b}$, $\frac{a}{2}$, $\frac{a}{3}$ \\
+    «el cuadrado de», «al cubo»                                     & Potenciación       & $a^2$, $a^3$                                \\
+    «es igual a», «resulta», «da como resultado»                    & Igualdad           & $=$                                         \\
+    \bottomrule
+  \end{tabular}
 \end{center}
 
 \subsection{Ejemplos de traducción}
@@ -358,10 +356,8 @@ La clave está en reconocer las \textbf{palabras clave} del español que corresp
 \end{itemize}
 
 \begin{cuadroadvertencia}
-\textbf{Consejo:} Cuando traduzcas, léelo al revés para verificar. Si escribiste $3x - 4 = 17$, léelo como «el triple de $x$, menos 4, es igual a 17.» ¿Coincide con el enunciado original? ¡Perfecto!
+  \textbf{Consejo:} Cuando traduzcas, léelo al revés para verificar. Si escribiste $3x - 4 = 17$, léelo como «el triple de $x$, menos 4, es igual a 17.» ¿Coincide con el enunciado original? ¡Perfecto!
 \end{cuadroadvertencia}
-
-\newpage
 
 % ============================================================
 \subsection{Ejercicios: Lenguaje Algebraico}
@@ -398,120 +394,120 @@ Traduce cada enunciado a una expresión o ecuación algebraica. Define clarament
 
 % ============================================================
 \ifmwclaves
-\section{Clave de Respuestas}
-% ============================================================
+  \section{Clave de Respuestas}
+  % ============================================================
 
-\subsection*{Lógica Proposicional (Ejercicios 1--12)}
+  \subsection*{Lógica Proposicional (Ejercicios 1--12)}
 
-\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-  \item Ana es inocente. Si Ana fuera culpable, entonces Bruno sería culpable (por el condicional). Pero Bruno es inocente. Por contrapositiva ($\neg q \rightarrow \neg p$): si Bruno es inocente, entonces Ana también lo es.
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \item Ana es inocente. Si Ana fuera culpable, entonces Bruno sería culpable (por el condicional). Pero Bruno es inocente. Por contrapositiva ($\neg q \rightarrow \neg p$): si Bruno es inocente, entonces Ana también lo es.
 
-  \item El habitante no puede ser pícaro (si lo fuera, estaría diciendo la verdad, lo cual contradice que los pícaros mienten). Tampoco puede ser caballero (si lo fuera, estaría afirmando algo falso). La situación es una \textbf{paradoja}: este enunciado no puede ser dicho por ningún habitante de la isla.
+    \item El habitante no puede ser pícaro (si lo fuera, estaría diciendo la verdad, lo cual contradice que los pícaros mienten). Tampoco puede ser caballero (si lo fuera, estaría afirmando algo falso). La situación es una \textbf{paradoja}: este enunciado no puede ser dicho por ningún habitante de la isla.
 
-  \item a) Proposición, \textbf{F}. \quad b) No es proposición (orden). \quad c) Proposición, \textbf{V}. \quad d) No es proposición (pregunta). \quad e) Proposición, \textbf{V}.
+    \item a) Proposición, \textbf{F}. \quad b) No es proposición (orden). \quad c) Proposición, \textbf{V}. \quad d) No es proposición (pregunta). \quad e) Proposición, \textbf{V}.
 
-  \item a) $p$: «Hace calor», $q$: «Estoy cansado» → $p \wedge q$. \quad b) $p$: «Estudio», $q$: «Apruebo el examen» → $p \rightarrow q$. \quad c) $p$: «Llueve», $q$: «Hace sol» → $p \vee q$.
+    \item a) $p$: «Hace calor», $q$: «Estoy cansado» → $p \wedge q$. \quad b) $p$: «Estudio», $q$: «Apruebo el examen» → $p \rightarrow q$. \quad c) $p$: «Llueve», $q$: «Hace sol» → $p \vee q$.
 
-  \item El profesor cumplió su promesa. La condición del condicional era «entregas la tarea a tiempo \textbf{y} participas en clase» ($p \wedge q$). Como Marcos no participó, $p \wedge q$ es falsa, y cuando la hipótesis es falsa, el condicional es verdadero independientemente de la conclusión.
+    \item El profesor cumplió su promesa. La condición del condicional era «entregas la tarea a tiempo \textbf{y} participas en clase» ($p \wedge q$). Como Marcos no participó, $p \wedge q$ es falsa, y cuando la hipótesis es falsa, el condicional es verdadero independientemente de la conclusión.
 
-  \item Tabla de verdad de $(p \vee q) \rightarrow p$:
-  \begin{center}
-  \small
-  \begin{tabular}{cc|c|c}
-  $p$ & $q$ & $p \vee q$ & $(p \vee q) \rightarrow p$ \\
-  \hline
-  V & V & V & V \\
-  V & F & V & V \\
-  F & V & V & F \\
-  F & F & F & V \\
-  \end{tabular}
-  \end{center}
+    \item Tabla de verdad de $(p \vee q) \rightarrow p$:
+          \begin{center}
+            \small
+            \begin{tabular}{cc|c|c}
+              $p$ & $q$ & $p \vee q$ & $(p \vee q) \rightarrow p$ \\
+              \hline
+              V   & V   & V          & V                          \\
+              V   & F   & V          & V                          \\
+              F   & V   & V          & F                          \\
+              F   & F   & F          & V                          \\
+            \end{tabular}
+          \end{center}
 
-  \item Debes voltear \textbf{A} y \textbf{7}. La carta A tiene vocal, así que debes verificar que tenga número par detrás. La carta 7 es impar; si tiene vocal del otro lado, la regla se viola. La K y el 4 no requieren verificación (K no tiene vocal, y el 4 con cualquier letra cumple).
+    \item Debes voltear \textbf{A} y \textbf{7}. La carta A tiene vocal, así que debes verificar que tenga número par detrás. La carta 7 es impar; si tiene vocal del otro lado, la regla se viola. La K y el 4 no requieren verificación (K no tiene vocal, y el 4 con cualquier letra cumple).
 
-  \item Luis miente. Si María dice la verdad (fue al cine) y Pedro dice la verdad (no se quedó en casa), entonces la afirmación de Luis («Si María fue al cine, entonces Pedro se quedó en casa») es falsa, ya que la hipótesis es V y la conclusión es F.
+    \item Luis miente. Si María dice la verdad (fue al cine) y Pedro dice la verdad (no se quedó en casa), entonces la afirmación de Luis («Si María fue al cine, entonces Pedro se quedó en casa») es falsa, ya que la hipótesis es V y la conclusión es F.
 
-  \item $p$: «Llueve», $q$: «Iré al parque», $r$: «Me quedaré leyendo». Traducción: $\neg p \rightarrow (q \vee r)$.
-  \begin{center}
-  \small
-  \begin{tabular}{ccc|c|c|c}
-  $p$ & $q$ & $r$ & $\neg p$ & $q \vee r$ & $\neg p \rightarrow (q \vee r)$ \\
-  \hline
-  V & V & V & F & V & V \\
-  V & V & F & F & V & V \\
-  V & F & V & F & V & V \\
-  V & F & F & F & F & V \\
-  F & V & V & V & V & V \\
-  F & V & F & V & V & V \\
-  F & F & V & V & V & V \\
-  F & F & F & V & F & F \\
-  \end{tabular}
-  \end{center}
+    \item $p$: «Llueve», $q$: «Iré al parque», $r$: «Me quedaré leyendo». Traducción: $\neg p \rightarrow (q \vee r)$.
+          \begin{center}
+            \small
+            \begin{tabular}{ccc|c|c|c}
+              $p$ & $q$ & $r$ & $\neg p$ & $q \vee r$ & $\neg p \rightarrow (q \vee r)$ \\
+              \hline
+              V   & V   & V   & F        & V          & V                               \\
+              V   & V   & F   & F        & V          & V                               \\
+              V   & F   & V   & F        & V          & V                               \\
+              V   & F   & F   & F        & F          & V                               \\
+              F   & V   & V   & V        & V          & V                               \\
+              F   & V   & F   & V        & V          & V                               \\
+              F   & F   & V   & V        & V          & V                               \\
+              F   & F   & F   & V        & F          & F                               \\
+            \end{tabular}
+          \end{center}
 
-  \item $A$ es caballero y $B$ es pícaro. Si $A$ fuera pícaro, su afirmación «al menos uno de nosotros es pícaro» sería verdadera (porque $A$ mismo lo es), pero los pícaros mienten, contradicción. Entonces $A$ es caballero y su afirmación es verdadera: al menos uno es pícaro. Como $A$ no lo es, $B$ debe ser el pícaro.
+    \item $A$ es caballero y $B$ es pícaro. Si $A$ fuera pícaro, su afirmación «al menos uno de nosotros es pícaro» sería verdadera (porque $A$ mismo lo es), pero los pícaros mienten, contradicción. Entonces $A$ es caballero y su afirmación es verdadera: al menos uno es pícaro. Como $A$ no lo es, $B$ debe ser el pícaro.
 
-  \item Sacas una fruta de la caja etiquetada «Mixta». Como la etiqueta es incorrecta, esa caja contiene solo un tipo de fruta. Si sacas una manzana, esa caja es «Manzanas». Entonces la caja etiquetada «Manzanas» (que está mal) no puede ser manzanas ni mixta (porque mixta ya se asignó... Espera, no). Corrección: la caja «Manzanas» tiene etiqueta incorrecta, y la caja «Naranjas» también. Como la caja real de manzanas ya fue identificada, la caja etiquetada «Naranjas» no puede ser naranjas (etiqueta incorrecta), así que es «Mixta», y la etiquetada «Manzanas» es «Naranjas».
+    \item Sacas una fruta de la caja etiquetada «Mixta». Como la etiqueta es incorrecta, esa caja contiene solo un tipo de fruta. Si sacas una manzana, esa caja es «Manzanas». Entonces la caja etiquetada «Manzanas» (que está mal) no puede ser manzanas ni mixta (porque mixta ya se asignó... Espera, no). Corrección: la caja «Manzanas» tiene etiqueta incorrecta, y la caja «Naranjas» también. Como la caja real de manzanas ya fue identificada, la caja etiquetada «Naranjas» no puede ser naranjas (etiqueta incorrecta), así que es «Mixta», y la etiquetada «Manzanas» es «Naranjas».
 
-  \item a) $p$: «un número es divisible por 6», $q$: «es divisible por 2», $r$: «es divisible por 3». Expresión: $p \rightarrow (q \wedge r)$. \quad b) Verdadera: todo múltiplo de 6 es múltiplo de 2 y de 3 por definición ($6 = 2 \times 3$). \quad c) Recíproca: $(q \wedge r) \rightarrow p$: «Si un número es divisible por 2 y por 3, entonces es divisible por 6.» También es verdadera, ya que $\text{mcm}(2,3) = 6$.
-\end{enumerate}
+    \item a) $p$: «un número es divisible por 6», $q$: «es divisible por 2», $r$: «es divisible por 3». Expresión: $p \rightarrow (q \wedge r)$. \quad b) Verdadera: todo múltiplo de 6 es múltiplo de 2 y de 3 por definición ($6 = 2 \times 3$). \quad c) Recíproca: $(q \wedge r) \rightarrow p$: «Si un número es divisible por 2 y por 3, entonces es divisible por 6.» También es verdadera, ya que $\text{mcm}(2,3) = 6$.
+  \end{enumerate}
 
-\subsection*{Método de Pólya (Ejercicios 13--24)}
+  \subsection*{Método de Pólya (Ejercicios 13--24)}
 
-\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-  \setcounter{enumi}{12}
-  \item 12 gallinas y 8 conejos. (Si todas fueran gallinas: $20 \times 2 = 40$ patas. Faltan $56 - 40 = 16$. Cada conejo agrega 2 patas extra: $16 \div 2 = 8$ conejos, $20 - 8 = 12$ gallinas.)
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \setcounter{enumi}{12}
+    \item 12 gallinas y 8 conejos. (Si todas fueran gallinas: $20 \times 2 = 40$ patas. Faltan $56 - 40 = 16$. Cada conejo agrega 2 patas extra: $16 \div 2 = 8$ conejos, $20 - 8 = 12$ gallinas.)
 
-  \item Juan tiene 9 años y María tiene 18 años. (Sea $x$ la edad de Juan. María: $2x$. Dentro de 5 años: $(x + 5) + (2x + 5) = 37 \Rightarrow 3x + 10 = 37 \Rightarrow x = 9$.)
+    \item Juan tiene 9 años y María tiene 18 años. (Sea $x$ la edad de Juan. María: $2x$. Dentro de 5 años: $(x + 5) + (2x + 5) = 37 \Rightarrow 3x + 10 = 37 \Rightarrow x = 9$.)
 
-  \item Ancho: 8\,cm, largo: 12\,cm. ($2(a + a + 4) = 40 \Rightarrow 2a + 4 = 20 \Rightarrow a = 8$.)
+    \item Ancho: 8\,cm, largo: 12\,cm. ($2(a + a + 4) = 40 \Rightarrow 2a + 4 = 20 \Rightarrow a = 8$.)
 
-  \item 7 billetes de 5\,Bs y 5 billetes de 10\,Bs. ($x + y = 12$, $5x + 10y = 85$. Sustitución: $y = 12 - x$, $5x + 10(12 - x) = 85 \Rightarrow -5x = -35 \Rightarrow x = 7$.)
+    \item 7 billetes de 5\,Bs y 5 billetes de 10\,Bs. ($x + y = 12$, $5x + 10y = 85$. Sustitución: $y = 12 - x$, $5x + 10(12 - x) = 85 \Rightarrow -5x = -35 \Rightarrow x = 7$.)
 
-  \item $2{,}44$ horas ($\approx 2$\,h\,26\,min) después de que sale el segundo tren. (Cuando sale el 2do tren, el 1ro lleva $80 \times 2 = 160$\,km. Distancia restante: $440$\,km. Velocidad de acercamiento: $180$\,km/h. Tiempo: $440/180 = 22/9 \approx 2{,}44$\,h.)
+    \item $2{,}44$ horas ($\approx 2$\,h\,26\,min) después de que sale el segundo tren. (Cuando sale el 2do tren, el 1ro lleva $80 \times 2 = 160$\,km. Distancia restante: $440$\,km. Velocidad de acercamiento: $180$\,km/h. Tiempo: $440/180 = 22/9 \approx 2{,}44$\,h.)
 
-  \item 17 correctas, 8 incorrectas. ($c + i = 25$, $4c - i = 60$. Sumando: $5c = 85 \Rightarrow c = 17$.)
+    \item 17 correctas, 8 incorrectas. ($c + i = 25$, $4c - i = 60$. Sumando: $5c = 85 \Rightarrow c = 17$.)
 
-  \item $\frac{12}{5} = 2{,}4$ horas (2\,h\,24\,min). (Tasa combinada: $\frac{1}{6} + \frac{1}{4} = \frac{5}{12}$. Tiempo: $\frac{12}{5}$\,h.)
+    \item $\frac{12}{5} = 2{,}4$ horas (2\,h\,24\,min). (Tasa combinada: $\frac{1}{6} + \frac{1}{4} = \frac{5}{12}$. Tiempo: $\frac{12}{5}$\,h.)
 
-  \item Luis: 22, Ana: 32, Pedro: 64 caramelos. (Sea $L$ la cantidad de Luis. Ana: $L + 10$. Pedro: $2(L + 10)$. Total: $L + (L + 10) + 2(L + 10) = 120 \Rightarrow 4L + 30 = 120 \Rightarrow L = 22{,}5$... Corrección: $L + (L+10) + 2(L+10) = 120$, $4L + 30 = 120$, $L = 22{,}5$. Si se requieren enteros, revisar enunciado. Respuesta exacta: Luis $= 22{,}5$, Ana $= 32{,}5$, Pedro $= 65$.)
+    \item Luis: 22, Ana: 32, Pedro: 64 caramelos. (Sea $L$ la cantidad de Luis. Ana: $L + 10$. Pedro: $2(L + 10)$. Total: $L + (L + 10) + 2(L + 10) = 120 \Rightarrow 4L + 30 = 120 \Rightarrow L = 22{,}5$... Corrección: $L + (L+10) + 2(L+10) = 120$, $4L + 30 = 120$, $L = 22{,}5$. Si se requieren enteros, revisar enunciado. Respuesta exacta: Luis $= 22{,}5$, Ana $= 32{,}5$, Pedro $= 65$.)
 
-  \item 8 días. Los primeros 7 días sube neto 1\,m/día (llega a 7\,m al inicio del día 8). El día 8 sube 3\,m y alcanza los 10\,m sin resbalar.
+    \item 8 días. Los primeros 7 días sube neto 1\,m/día (llega a 7\,m al inicio del día 8). El día 8 sube 3\,m y alcanza los 10\,m sin resbalar.
 
-  \item 14 pruebas superadas. ($s + f = 20$, $5s - 3f = 52$. Sustituyendo $f = 20 - s$: $5s - 3(20 - s) = 52 \Rightarrow 8s = 112 \Rightarrow s = 14$.)
+    \item 14 pruebas superadas. ($s + f = 20$, $5s - 3f = 52$. Sustituyendo $f = 20 - s$: $5s - 3(20 - s) = 52 \Rightarrow 8s = 112 \Rightarrow s = 14$.)
 
-  \item Coloca una moneda en cada platillo de la balanza y deja la tercera fuera. Si la balanza se inclina, la moneda que sube es la falsa. Si queda equilibrada, la moneda fuera es la falsa.
+    \item Coloca una moneda en cada platillo de la balanza y deja la tercera fuera. Si la balanza se inclina, la moneda que sube es la falsa. Si queda equilibrada, la moneda fuera es la falsa.
 
-  \item De 1 a 12: $1 + 2 + \cdots + 12 = \frac{12 \times 13}{2} = 78$ campanadas. En 24 horas se dan campanadas de 1 a 12 dos veces: $78 \times 2 = 156$. Además, se da 1 campanada cada media hora: hay $24 \times 2 = 48$ medias horas, pero 24 de ellas coinciden con las horas exactas (ya contadas). Quedan $48 - 24 = 24$ campanadas de media hora. Total: $156 + 24 = 180$ campanadas.
-\end{enumerate}
+    \item De 1 a 12: $1 + 2 + \cdots + 12 = \frac{12 \times 13}{2} = 78$ campanadas. En 24 horas se dan campanadas de 1 a 12 dos veces: $78 \times 2 = 156$. Además, se da 1 campanada cada media hora: hay $24 \times 2 = 48$ medias horas, pero 24 de ellas coinciden con las horas exactas (ya contadas). Quedan $48 - 24 = 24$ campanadas de media hora. Total: $156 + 24 = 180$ campanadas.
+  \end{enumerate}
 
-\subsection*{Lenguaje Algebraico (Ejercicios 25--36)}
+  \subsection*{Lenguaje Algebraico (Ejercicios 25--36)}
 
-\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-  \setcounter{enumi}{24}
-  \item $2x + 9$ (donde $x$ es el número).
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \setcounter{enumi}{24}
+    \item $2x + 9$ (donde $x$ es el número).
 
-  \item $\frac{x}{2} = 20$ (donde $x$ es el número), es decir, $x = 40$.
+    \item $\frac{x}{2} = 20$ (donde $x$ es el número), es decir, $x = 40$.
 
-  \item $n + (n + 1) + (n + 2) = 3n + 3$ (donde $n$ es el primero de los tres consecutivos).
+    \item $n + (n + 1) + (n + 2) = 3n + 3$ (donde $n$ es el primero de los tres consecutivos).
 
-  \item $x^2 - x = 12$ (donde $x$ es el número).
+    \item $x^2 - x = 12$ (donde $x$ es el número).
 
-  \item Sea $h$ la edad del hijo. Pedro: $3h$. Ecuación: $h + 3h = 48$, es decir, $4h = 48$.
+    \item Sea $h$ la edad del hijo. Pedro: $3h$. Ecuación: $h + 3h = 48$, es decir, $4h = 48$.
 
-  \item $P = 3\ell$ (donde $\ell$ es la longitud del lado).
+    \item $P = 3\ell$ (donde $\ell$ es la longitud del lado).
 
-  \item Precio final $= P - 0{,}15P = 0{,}85P$.
+    \item Precio final $= P - 0{,}15P = 0{,}85P$.
 
-  \item $v = \dfrac{d}{t}$ (donde $v$ = velocidad, $d$ = distancia, $t$ = tiempo).
+    \item $v = \dfrac{d}{t}$ (donde $v$ = velocidad, $d$ = distancia, $t$ = tiempo).
 
-  \item $(3 + 5) \cdot t = 40$, es decir, $8t = 40$ (donde $t$ es el tiempo en horas).
+    \item $(3 + 5) \cdot t = 40$, es decir, $8t = 40$ (donde $t$ es el tiempo en horas).
 
-  \item $(a + b)^2 = a^2 + 2ab + b^2$.
+    \item $(a + b)^2 = a^2 + 2ab + b^2$.
 
-  \item Ecuación 1: $d = v \cdot t$. Ecuación 2: $d = (v + 20)(t - 1)$.
+    \item Ecuación 1: $d = v \cdot t$. Ecuación 2: $d = (v + 20)(t - 1)$.
 
-  \item Sea $c$ el precio de una camisa. Pantalón: $2c$. Sistema: $3(2c) + 5c = 770$ y $2c = 2c + 40$... Corrección del segundo dato: «2 camisas cuestan 40\,Bs más que un pantalón» → $2c = 2c + 40$ no tiene sentido; la interpretación correcta es $2c - 2c = 40$. Re-lectura: $2c = p + 40$, con $p = 2c$, da $2c = 2c + 40$ (inconsistencia del enunciado). Sistema planteable: $6c + 5c = 770 \Rightarrow 11c = 770 \Rightarrow c = 70$. Pantalón: $140$\,Bs. Verificación con el segundo dato: $2(70) = 140$ y $140 + 40 = 180 \neq 140$. El sistema es sobredeterminado e inconsistente como ejercicio de planteamiento.
-\end{enumerate}
+    \item Sea $c$ el precio de una camisa. Pantalón: $2c$. Sistema: $3(2c) + 5c = 770$ y $2c = 2c + 40$... Corrección del segundo dato: «2 camisas cuestan 40\,Bs más que un pantalón» → $2c = 2c + 40$ no tiene sentido; la interpretación correcta es $2c - 2c = 40$. Re-lectura: $2c = p + 40$, con $p = 2c$, da $2c = 2c + 40$ (inconsistencia del enunciado). Sistema planteable: $6c + 5c = 770 \Rightarrow 11c = 770 \Rightarrow c = 70$. Pantalón: $140$\,Bs. Verificación con el segundo dato: $2(70) = 140$ y $140 + 40 = 180 \neq 140$. El sistema es sobredeterminado e inconsistente como ejercicio de planteamiento.
+  \end{enumerate}
 
 \fi
 \end{document}

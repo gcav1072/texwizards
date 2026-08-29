@@ -5,7 +5,7 @@
 %  Clases cubiertas: 4 a 6
 % ============================================================
 
-\documentclass[12pt, a4paper]{article}
+\documentclass[12pt, letterpaper]{article}
 
 % ── Paquetes ─────────────────────────────────────────────────
 
@@ -46,7 +46,9 @@
     \item \textbf{Magnitudes fundamentales:} no se definen a partir de otras (longitud, masa, tiempo\ldots).
     \item \textbf{Magnitudes derivadas:} se obtienen combinando fundamentales (velocidad, fuerza, densidad\ldots).
   \end{itemize}
-
+\end{cuadroteoria}
+\newpage
+\begin{cuadroteoria}
   \textbf{Unidades fundamentales del Sistema Internacional (SI):}
   \begin{center}
     \begin{tabular}{lll}
@@ -113,8 +115,6 @@
   \end{itemize}
 \end{cuadrosolucion}
 
-\newpage
-
 \textbf{Ejemplo R2.} Expresa en metros: $a)\ 5 \text{ km} \qquad b)\ 2500 \text{ mm}$.
 
 \begin{cuadrosolucion}
@@ -161,8 +161,6 @@
   \item \dificil{} La masa de la Tierra es $5{,}97 \times 10^{24}$ kg. Escríbela con todos sus ceros y ordénala comparándola con la masa del Sol ($1{,}99 \times 10^{30}$ kg). ¿Cuántas veces cabe la Tierra en el Sol en masa?
 \end{enumerate}
 
-\newpage
-
 % ============================================================
 \section{Transformación de unidades}
 % ============================================================
@@ -201,8 +199,6 @@
   $$\rho = \frac{m}{V} \qquad (\text{en } \text{kg/m}^3 \text{ o } \text{g/cm}^3)$$
   El agua tiene densidad $1000 \text{ kg/m}^3 = 1 \text{ g/cm}^3$.
 \end{cuadroteoria}
-
-\newpage %ajustes pag
 
 \begin{cuadroadvertencia}
   \textbf{Errores clásicos:}
@@ -270,8 +266,6 @@
 
   \item \dificil{} Un coche recorre $240$ km en $2{,}5$ horas. ¿Cuál es su rapidez media en km/h y en m/s?
 \end{enumerate}
-
-\newpage
 
 % ============================================================
 \section{Vectores}
@@ -363,8 +357,6 @@
   \end{itemize}
 \end{cuadroadvertencia}
 
-\newpage %ajustes pag
-
 \subsection{Reducción al primer cuadrante}
 
 \begin{cuadroteoria}
@@ -387,7 +379,9 @@
       \draw[thick,-Latex,mwvioleta]   (0,0) -- ( 1.8,-1.2) node[below right,font=\tiny] {$\vec{v}_{\text{IV}}$};
     \end{tikzpicture}
   \end{center}
-
+\end{cuadroteoria}
+\newpage
+\begin{cuadroteoria}
   \textbf{Signos de las componentes según el cuadrante:}
   \begin{center}
     \begin{tabular}{cccc}
@@ -405,8 +399,6 @@
   Las fórmulas de las componentes \textbf{siempre se aplican con el ángulo de referencia $\theta_{\text{ref}}$}; el signo se asigna según el cuadrante:
   $$v_x = \pm |\vec{v}|\cos\theta_{\text{ref}}, \qquad v_y = \pm |\vec{v}|\sen\theta_{\text{ref}}$$
 \end{cuadroteoria}
-
-\newpage %ajuste pág
 
 \begin{cuadropasos}
   \textbf{Cómo descomponer un vector en cualquier cuadrante:}
@@ -510,7 +502,7 @@
 
   \item \dificil{} Un vector tiene componentes $v_x = 4$ y $v_y = 4$. ¿Cuál es su módulo y qué ángulo forma con el eje $X$?
 
-  \item \dificil{} \textbf{El reto de los campeones:} un barco navega $30$ km hacia el este y luego $40$ km en dirección $60^{\circ}$ al norte del este. ¿A qué distancia del punto de partida queda?
+  \item \dificil{} \textbf{:} un barco navega $30$ km hacia el este y luego $40$ km en dirección $60^{\circ}$ al norte del este. ¿A qué distancia del punto de partida queda?
 
         % ── Ejercicios de reducción al primer cuadrante ──────────
   \item \medio{} Halla las componentes de los siguientes vectores (módulo $20$):
@@ -524,69 +516,69 @@
 
 % ============================================================
 \ifmwclaves
-\section{Clave de Respuestas}
-% ============================================================
+  \section{Clave de Respuestas}
+  % ============================================================
 
-\subsection*{Sección 1: Sistema Internacional y medición (Ejercicios 1--11)}
+  \subsection*{Sección 1: Sistema Internacional y medición (Ejercicios 1--11)}
 
-\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-  \setcounter{enumi}{0}
-  \item a) Fundamental. \quad b) Derivada. \quad c) Fundamental. \quad d) Derivada.
-  \item a) kg. \quad b) s. \quad c) m.
-  \item $1000$ m; $0{,}01$ m; $0{,}001$ m.
-  \item a) $3000$ m. \quad b) $7{,}5$ m. \quad c) $0{,}012$ m.
-  \item a) $3 \times 10^{5}$. \quad b) $5 \times 10^{-4}$. \quad c) $2{,}5 \times 10^{7}$.
-  \item a) $2 \times 10^{-7}$. \quad b) $9{,}46 \times 10^{12}$.
-  \item $2500$ mm; $250$ cm.
-  \item $3{,}4 \times 10^{2}$ m/s.
-  \item a) 3. \quad b) 2 (los ceros a la izquierda no cuentan). \quad c) 4 (el cero final cuenta).
-  \item $1 \times 10^{-10}$ m = $1$ \AA.
-  \item $5\,970\,000\,000\,000\,000\,000\,000\,000$ kg; la Tierra cabe $\approx 333\,000$ veces en el Sol (en masa).
-\end{enumerate}
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \setcounter{enumi}{0}
+    \item a) Fundamental. \quad b) Derivada. \quad c) Fundamental. \quad d) Derivada.
+    \item a) kg. \quad b) s. \quad c) m.
+    \item $1000$ m; $0{,}01$ m; $0{,}001$ m.
+    \item a) $3000$ m. \quad b) $7{,}5$ m. \quad c) $0{,}012$ m.
+    \item a) $3 \times 10^{5}$. \quad b) $5 \times 10^{-4}$. \quad c) $2{,}5 \times 10^{7}$.
+    \item a) $2 \times 10^{-7}$. \quad b) $9{,}46 \times 10^{12}$.
+    \item $2500$ mm; $250$ cm.
+    \item $3{,}4 \times 10^{2}$ m/s.
+    \item a) 3. \quad b) 2 (los ceros a la izquierda no cuentan). \quad c) 4 (el cero final cuenta).
+    \item $1 \times 10^{-10}$ m = $1$ \AA.
+    \item $5\,970\,000\,000\,000\,000\,000\,000\,000$ kg; la Tierra cabe $\approx 333\,000$ veces en el Sol (en masa).
+  \end{enumerate}
 
-\subsection*{Sección 2: Transformación de unidades (Ejercicios 12--22)}
+  \subsection*{Sección 2: Transformación de unidades (Ejercicios 12--22)}
 
-\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-  \setcounter{enumi}{11}
-  \item a) $2{,}5$ m. \quad b) $4000$ m. \quad c) $0{,}5$ m.
-  \item a) $3{,}5$ kg. \quad b) $500$ kg.
-  \item a) $180$ s. \quad b) $3600$ s. \quad c) $5400$ s.
-  \item a) $36 \div 3{,}6 = 10$ m/s. \quad b) $90 \div 3{,}6 = 25$ m/s.
-  \item a) $10 \cdot 3{,}6 = 36$ km/h. \quad b) $25 \cdot 3{,}6 = 90$ km/h.
-  \item $42\,195$ m; $4\,219\,500$ cm.
-  \item $144 \div 3{,}6 = 40$ m/s, así que recorre $40$ m en 1 s.
-  \item $\rho = \dfrac{400 \text{ g}}{50 \text{ cm}^3} = 8$ g/cm$^3$ $= 8000$ kg/m$^3$.
-  \item $v \approx \dfrac{100}{9{,}58} \approx 10{,}4$ m/s $\approx 37{,}6$ km/h.
-  \item $1 \frac{\text{g}}{\text{cm}^3} = \frac{10^{-3} \text{ kg}}{10^{-6} \text{ m}^3} = 10^{3} \frac{\text{kg}}{\text{m}^3} = 1000$ kg/m$^3$. \checkmark
-  \item $v = \dfrac{240}{2{,}5} = 96$ km/h $= 96 \div 3{,}6 \approx 26{,}7$ m/s.
-\end{enumerate}
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \setcounter{enumi}{11}
+    \item a) $2{,}5$ m. \quad b) $4000$ m. \quad c) $0{,}5$ m.
+    \item a) $3{,}5$ kg. \quad b) $500$ kg.
+    \item a) $180$ s. \quad b) $3600$ s. \quad c) $5400$ s.
+    \item a) $36 \div 3{,}6 = 10$ m/s. \quad b) $90 \div 3{,}6 = 25$ m/s.
+    \item a) $10 \cdot 3{,}6 = 36$ km/h. \quad b) $25 \cdot 3{,}6 = 90$ km/h.
+    \item $42\,195$ m; $4\,219\,500$ cm.
+    \item $144 \div 3{,}6 = 40$ m/s, así que recorre $40$ m en 1 s.
+    \item $\rho = \dfrac{400 \text{ g}}{50 \text{ cm}^3} = 8$ g/cm$^3$ $= 8000$ kg/m$^3$.
+    \item $v \approx \dfrac{100}{9{,}58} \approx 10{,}4$ m/s $\approx 37{,}6$ km/h.
+    \item $1 \frac{\text{g}}{\text{cm}^3} = \frac{10^{-3} \text{ kg}}{10^{-6} \text{ m}^3} = 10^{3} \frac{\text{kg}}{\text{m}^3} = 1000$ kg/m$^3$. \checkmark
+    \item $v = \dfrac{240}{2{,}5} = 96$ km/h $= 96 \div 3{,}6 \approx 26{,}7$ m/s.
+  \end{enumerate}
 
-\subsection*{Sección 3: Vectores (Ejercicios 23--35)}
+  \subsection*{Sección 3: Vectores (Ejercicios 23--35)}
 
-\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-  \setcounter{enumi}{22}
-  \item a) Escalar. \quad b) Vectorial. \quad c) Vectorial. \quad d) Escalar.
-  \item Módulo, dirección y sentido.
-  \item $v_x = 8$, $v_y = 0$ (está sobre el eje $X$).
-  \item $(5, 6)$.
-  \item $(6, 9)$ (se triplican las componentes).
-  \item $v_x = 12 \cdot \dfrac{\sqrt{3}}{2} = 6\sqrt{3}$; $v_y = 12 \cdot \dfrac{1}{2} = 6$. $\vec{v} = (6\sqrt{3}, 6)$.
-  \item $|\vec{d}| = \sqrt{3^2 + 4^2} = 5$ km. No es lo mismo: la distancia recorrida es $7$ km, pero el desplazamiento es $5$ km.
-  \item $(2, 2)$; módulo $\sqrt{8} = 2\sqrt{2}$.
-  \item $|\vec{v}| = \sqrt{3^2 + 4^2} = 5$; el ángulo es aproximadamente $53^{\circ}$ (cerca de $60^{\circ}$, pero un poco menos).
-  \item $|\vec{v}| = \sqrt{4^2 + 4^2} = 4\sqrt{2}$; ángulo $45^{\circ}$.
-  \item \textbf{Reto:} segundo tramo: $(40\cos 60^{\circ},\, 40\sen 60^{\circ}) = (20,\, 20\sqrt{3})$. Total: $(30 + 20,\, 20\sqrt{3}) = (50,\, 20\sqrt{3})$. Distancia: $\sqrt{50^2 + (20\sqrt{3})^2} = \sqrt{2500 + 1200} = \sqrt{3700} \approx 60{,}8$ km.
-  \item $a)$ C.II, $\theta_{\text{ref}} = 60^{\circ}$: $\vec{v} = (-10,\; 10\sqrt{3})$. \quad
-        $b)$ C.III, $\theta_{\text{ref}} = 60^{\circ}$: $\vec{v} = (-10,\; -10\sqrt{3})$. \quad
-        $c)$ C.IV, $\theta_{\text{ref}} = 45^{\circ}$: $\vec{v} = (10\sqrt{2},\; -10\sqrt{2})$.
-  \item $\theta_{\text{ref}} = 210^{\circ} - 180^{\circ} = 30^{\circ}$ (C.III): $F_x = -50\cos 30^{\circ} = -25\sqrt{3} \approx -43{,}3$ N; $F_y = -50\sen 30^{\circ} = -25$ N. Verificación: $\sqrt{(-25\sqrt{3})^2 + (-25)^2} = \sqrt{1875 + 625} = \sqrt{2500} = 50$ N. \checkmark
-\end{enumerate}
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \setcounter{enumi}{22}
+    \item a) Escalar. \quad b) Vectorial. \quad c) Vectorial. \quad d) Escalar.
+    \item Módulo, dirección y sentido.
+    \item $v_x = 8$, $v_y = 0$ (está sobre el eje $X$).
+    \item $(5, 6)$.
+    \item $(6, 9)$ (se triplican las componentes).
+    \item $v_x = 12 \cdot \dfrac{\sqrt{3}}{2} = 6\sqrt{3}$; $v_y = 12 \cdot \dfrac{1}{2} = 6$. $\vec{v} = (6\sqrt{3}, 6)$.
+    \item $|\vec{d}| = \sqrt{3^2 + 4^2} = 5$ km. No es lo mismo: la distancia recorrida es $7$ km, pero el desplazamiento es $5$ km.
+    \item $(2, 2)$; módulo $\sqrt{8} = 2\sqrt{2}$.
+    \item $|\vec{v}| = \sqrt{3^2 + 4^2} = 5$; el ángulo es aproximadamente $53^{\circ}$ (cerca de $60^{\circ}$, pero un poco menos).
+    \item $|\vec{v}| = \sqrt{4^2 + 4^2} = 4\sqrt{2}$; ángulo $45^{\circ}$.
+    \item \textbf{Reto:} segundo tramo: $(40\cos 60^{\circ},\, 40\sen 60^{\circ}) = (20,\, 20\sqrt{3})$. Total: $(30 + 20,\, 20\sqrt{3}) = (50,\, 20\sqrt{3})$. Distancia: $\sqrt{50^2 + (20\sqrt{3})^2} = \sqrt{2500 + 1200} = \sqrt{3700} \approx 60{,}8$ km.
+    \item $a)$ C.II, $\theta_{\text{ref}} = 60^{\circ}$: $\vec{v} = (-10,\; 10\sqrt{3})$. \quad
+          $b)$ C.III, $\theta_{\text{ref}} = 60^{\circ}$: $\vec{v} = (-10,\; -10\sqrt{3})$. \quad
+          $c)$ C.IV, $\theta_{\text{ref}} = 45^{\circ}$: $\vec{v} = (10\sqrt{2},\; -10\sqrt{2})$.
+    \item $\theta_{\text{ref}} = 210^{\circ} - 180^{\circ} = 30^{\circ}$ (C.III): $F_x = -50\cos 30^{\circ} = -25\sqrt{3} \approx -43{,}3$ N; $F_y = -50\sen 30^{\circ} = -25$ N. Verificación: $\sqrt{(-25\sqrt{3})^2 + (-25)^2} = \sqrt{1875 + 625} = \sqrt{2500} = 50$ N. \checkmark
+  \end{enumerate}
 
-\vspace{8pt}
-\begin{cuadroinfo}
-  \small
-  \textbf{¿Cómo te fue?} Ya sabes medir, convertir y trabajar con direcciones: eso es media física. En la próxima guía usaremos estas herramientas para describir el \emph{movimiento}: con el MRU y el MRUV aprenderás a predecir dónde estará un auto dentro de 10 segundos. ¡Nos vemos ahí!
-\end{cuadroinfo}
+  \vspace{8pt}
+  \begin{cuadroinfo}
+    \small
+    \textbf{¿Cómo te fue?} Ya sabes medir, convertir y trabajar con direcciones: eso es media física. En la próxima guía usaremos estas herramientas para describir el \emph{movimiento}: con el MRU y el MRUV aprenderás a predecir dónde estará un auto dentro de 10 segundos. ¡Nos vemos ahí!
+  \end{cuadroinfo}
 
 \fi
 \end{document}

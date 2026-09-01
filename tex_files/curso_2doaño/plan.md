@@ -1,5 +1,5 @@
 # Plan de Clases: Curso de Introducción 2do año
-Duración: 5 semanas - 3 clases por semana - 2h académicas p/clase (1h 30 min total) 30h académicas
+**Duración:** 5 semanas - 3 clases por semana - 15 sesiones totales (14 clases + examen final) - 2h académicas p/clase = 30h académicas
 
 ## Temas
 
@@ -492,7 +492,7 @@ Dados los conjuntos: A = {0, 1, 2, 3, 4} y B = {-6, -3, 0, 3, 6} y sea la relaci
 
 ---
 
-### TEMA 4 — Introducción al Álgebra: Suma y Resta de Polinomios (Clases 13 a 15)
+### TEMA 4 — Introducción al Álgebra: Suma y Resta de Polinomios (Clases 13 a 14)
 **Guía asociada:** `guia4_polinomios_suma_resta.tex`
 
 #### Clase 13: Expresiones algebraicas, términos semejantes y ordenamiento
@@ -508,39 +508,27 @@ Dados los conjuntos: A = {0, 1, 2, 3, 4} y B = {-6, -3, 0, 3, 6} y sea la relaci
   - Cierre: juego "clasifica los términos" en la pizarra.
 - **Tarea:** propuestos 1–12 (secciones 1 y 2) y 13–16 (sección 3).
 
-#### Clase 14: Suma y resta de polinomios
-- **Objetivo:** Sumar y restar polinomios por los métodos horizontal y vertical, aplicando la regla de cambio de signos en la resta.
+#### Clase 14: Suma, resta y escalares + repaso integrador
+- **Objetivo:** Sumar y restar polinomios, multiplicarlos por escalares y combinar suma/resta con escalares; repasar los cuatro temas para el examen final.
 - **Contenidos:**
   - Suma: regla de semejantes; método horizontal y vertical.
   - Resta: sumar el opuesto; cambio de signos de todos los términos del sustraendo.
-  - Errores comunes (olvidar cambiar signos).
-- **Actividades:**
-  - Inicio: ¿cuál es el opuesto de $3x^2 - 2x + 5$?
-  - Desarrollo: ejemplos R1–R4 (suma) y R1–R4 (resta).
-  - Cierre: detección de errores en una "solución incorrecta" escrita en la pizarra.
-- **Tarea:** propuestos 17–22 (sección 4) y 23–28 (sección 5).
-
-#### Clase 15: Escalares + operaciones combinadas + repaso
-- **Objetivo:** Multiplicar polinomios por escalares y combinar suma/resta con escalares; repasar los cuatro temas para el examen final.
-- **Contenidos:**
-  - Multiplicación por escalar: distributiva y regla de signos.
-  - Procedimiento combinado en 4 pasos (distribuir → paréntesis → agrupar → reducir).
-  - Verificación por sustitución numérica.
+  - Multiplicación por escalar: distributiva y regla de signos; procedimiento en 4 pasos (distribuir → paréntesis → agrupar → reducir).
+  - Verificación por sustitución numérica; errores comunes (olvidar cambiar signos).
   - Repaso general de Temas 1–4.
 - **Actividades:**
-  - Inicio: ¿$3(2x^2)$ es $6x^2$ o $6x^4$? (discusión dirigida).
-  - Desarrollo: ejemplos R1–R4; ejercicios progresivos niveles 1–7.
-  - Cierre: mapa conceptual de los 4 temas + guía de estudio para el examen.
-- **Tarea:** ejercicios progresivos completos + repaso para el examen.
+  - Inicio: ¿cuál es el opuesto de $3x^2 - 2x + 5$? ¿$3(2x^2)$ es $6x^2$ o $6x^4$? (discusión dirigida).
+  - Desarrollo: ejemplos R1–R4 (suma) y R1–R4 (resta); ejercicios progresivos de escalares.
+  - Cierre: detección de errores en una "solución incorrecta" + mapa conceptual de los 4 temas.
+- **Tarea:** propuestos 17–22 (sección 4), 23–28 (sección 5) + ejercicios progresivos completos + repaso para el examen.
 
 ---
 
-### EXAMEN FINAL INTEGRADOR (90 minutos)
-- **Clase 16 (sesión de evaluación):** examen final con los 4 temas:
+### EXAMEN FINAL INTEGRADOR (Clase 15 · 90 minutos)
+- **Clase 15 (sesión de evaluación):** examen final con los 4 temas:
   - Fracciones y operaciones combinadas en $\mathbb{Q}$.
   - Potenciación y ecuaciones con fracciones.
   - Funciones: dominio, codominio, rango, tipos y representaciones.
   - Funciones lineales: gráficas, pendiente y problemas de aplicación.
   - Polinomios: suma, resta y escalares.
 - **Formato:** 100 puntos, sin calculadora, con comprobación de ecuaciones y gráficas en plano cartesiano.
-- **Alternativa:** si el calendario solo permite 15 clases, el examen puede ocupar los últimos 45 min de la Clase 15 + los primeros 45 min de la sesión siguiente, o bien sustituir la práctica final de la Clase 15.

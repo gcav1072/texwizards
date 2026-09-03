@@ -27,3 +27,5 @@ __pycache__/
 *.swp
 .DS_Store
 Thumbs.db
+#Cosas personales
+tex_files/CV

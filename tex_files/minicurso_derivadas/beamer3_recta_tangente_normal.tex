@@ -1,0 +1,127 @@
+% ============================================================
+%  CLASE 3 — RECTA TANGENTE Y NORMAL
+%  Minicurso de Derivadas · Clase de 2 horas
+% ============================================================
+\documentclass[aspectratio=169]{beamer}
+\usepackage{mathwizards-beamer}
+\mwbeamer{Clase 3}{Recta Tangente y Normal}{Minicurso de Derivadas}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Marco Teórico}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Derivada como Pendiente}
+  \begin{block}{La derivada como pendiente}
+    Si $f$ es derivable en $x_0$, la recta tangente a la gráfica en $P(x_0, f(x_0))$ tiene pendiente
+    \[
+      m_T = f'(x_0)
+    \]
+  \end{block}
+  \vspace{6pt}
+  \begin{mwextra}[Recta normal]
+    La normal es \textbf{perpendicular} a la tangente:
+    \[
+      m_N = -\frac{1}{m_T} \quad (m_T \neq 0)
+    \]
+  \end{mwextra}
+\end{frame}
+
+\begin{frame}{Ecuación Punto-Pendiente}
+  \begin{block}{Recta que pasa por $(x_0, y_0)$ con pendiente $m$}
+    \[
+      y - y_0 = m\,(x - x_0)
+    \]
+  \end{block}
+  \vspace{6pt}
+  \begin{mwpasos}[Pasos para una curva implícita $F(x,y)=0$]
+    \begin{enumerate}
+      \item Calcula $\dfrac{dy}{dx}$ (implícita).
+      \item Evalúa $m_T = \left.\dfrac{dy}{dx}\right|_{(x_0,y_0)}$.
+      \item Tangente: $y - y_0 = m_T(x-x_0)$.
+      \item Normal: $y - y_0 = -\frac{1}{m_T}(x-x_0)$.
+    \end{enumerate}
+  \end{mwpasos}
+\end{frame}
+
+\begin{frame}{Casos Especiales y Errores}
+  \begin{alertblock}{¡Cuidado!}
+    \begin{itemize}
+      \item No evaluar la derivada \emph{en el punto}.
+      \item Si $m_T = 0$: tangente horizontal ($y = y_0$), normal vertical ($x = x_0$).
+      \item Si la tangente es vertical: normal horizontal.
+      \item Confundir tangente con normal.
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 1}
+  \begin{mwejercicio}[Ejercicio 1 — Tangente a parábola \quad \medio]
+    Halle tangente y normal a $y = x^2$ en $(2, 4)$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 2}
+  \begin{mwejercicio}[Ejercicio 2 — Tangente a cúbica \quad \medio]
+    Halle tangente y normal a $y = x^3$ en $(1, 1)$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 3}
+  \begin{mwejercicio}[Ejercicio 3 — Curva implícita \quad \medio]
+    Halle tangente y normal a $x^2 + y^2 = 25$ en $(3, 4)$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 4}
+  \begin{mwejercicio}[Ejercicio 4 — Implícita con coseno \quad \dificil]
+    Halle tangente y normal a $xy^2 - \cos(x-y) = x - y$ en $(1, 1)$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 5}
+  \begin{mwejercicio}[Ejercicio 5 — Implícita con producto \quad \dificil]
+    Halle tangente y normal a $x^2 + xy + y^2 = 7$ en $(1, 2)$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 6}
+  \begin{mwejercicio}[Ejercicio 6 — Implícita con sen(xy) \quad \dificil]
+    Halle tangente y normal a $x + \operatorname{sen}(xy) = y + \frac{\pi}{2}$ en $\left(\frac{\pi}{2}, 1\right)$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 7}
+  \begin{mwejercicio}[Ejercicio 7 — Implícita trigonométrica \quad \dificil]
+    Halle tangente y normal a $x^2 y + y^3 = \cos(x+4)$ en $\left(0, -\frac{\pi}{2}\right)$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 8}
+  \begin{mwejercicio}[Ejercicio 8 — Curva con raíz \quad \muyDificil]
+    Halle tangente y normal a $\sqrt{x^2+y^2} + x^2 = 5y + 6$ en $(4, 3)$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 9}
+  \begin{mwejercicio}[Ejercicio 9 — Tangencia y parámetro \quad \muyDificil]
+    Halle $m$ para que la recta $y = mx$ sea tangente a $y = x^2 + 1$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 10}
+  \begin{mwejercicio}[Ejercicio 10 — Tangencia paralela \quad \muyDificil]
+    Halle el punto de la curva $y = x^3$ donde la tangente es paralela a $y = 12x + 5$.
+  \end{mwejercicio}
+\end{frame}
+
+\end{document}

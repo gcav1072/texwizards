@@ -1,0 +1,129 @@
+% ============================================================
+%  CLASE 5 — L'HÔPITAL Y DERIVABILIDAD
+%  Minicurso de Derivadas · Clase de 2 horas
+% ============================================================
+\documentclass[aspectratio=169]{beamer}
+\usepackage{mathwizards-beamer}
+\mwbeamer{Clase 5}{L'Hôpital y Derivabilidad}{Minicurso de Derivadas}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Marco Teórico}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Regla de L'Hôpital}
+  \begin{block}{Formas indeterminadas}
+    $0/0$, $\infty/\infty$, $0\cdot\infty$, $\infty - \infty$, $0^0$, $1^\infty$.
+  \end{block}
+  \vspace{6pt}
+  \begin{block}{Regla (para $\frac{0}{0}$ o $\frac{\infty}{\infty}$)}
+    \[
+      \lim_{x\to a}\frac{f(x)}{g(x)} = \lim_{x\to a}\frac{f'(x)}{g'(x)}
+    \]
+    Puede aplicarse repetidamente mientras sigan resultando formas indeterminadas.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Aplicación Paso a Paso}
+  \begin{mwpasos}[Pasos]
+    \begin{enumerate}
+      \item Verifica la forma indeterminada ($\frac{0}{0}$ o $\frac{\infty}{\infty}$).
+      \item Deriva numerador y denominador por separado (¡no la regla del cociente!).
+      \item Evalúa; si sigue indeterminado, repite.
+      \item Simplifica (factoriza $\operatorname{sen} x$, $\frac{1}{x}$, etc.) antes de seguir.
+    \end{enumerate}
+  \end{mwpasos}
+  \vspace{6pt}
+  \begin{alertblock}{Errores clásicos}
+    \begin{itemize}
+      \item Aplicar L'Hôpital sin verificar la forma indeterminada.
+      \item Derivar con la regla del cociente.
+      \item Seguir indefinidamente sin simplificar.
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Continuidad y Derivabilidad}
+  \begin{block}{Relación}
+    \begin{itemize}
+      \item \textbf{Derivable} $\Rightarrow$ \textbf{continua}.
+      \item Continua $\not\Rightarrow$ derivable (pico, esquina, tangente vertical).
+      \item Para funciones a trozos, iguala las derivadas laterales en el punto de unión.
+    \end{itemize}
+  \end{block}
+  \vspace{6pt}
+  \begin{mwextra}[Comprobación en $x_0$]
+    $f$ es derivable en $x_0$ si $f'_-(x_0) = f'_+(x_0)$.
+  \end{mwextra}
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 1}
+  \begin{mwejercicio}[Ejercicio 1 — L'Hôpital básico \quad \medio]
+    $\lim_{x\to0}\dfrac{\operatorname{sen} x}{x}$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 2}
+  \begin{mwejercicio}[Ejercicio 2 — L'Hôpital con coseno \quad \medio]
+    $\lim_{x\to0}\dfrac{1 - \cos x}{x^2}$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 3}
+  \begin{mwejercicio}[Ejercicio 3 — L'Hôpital polinómico \quad \medio]
+    $\lim_{x\to1}\dfrac{x^2 - 1}{x - 1}$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 4}
+  \begin{mwejercicio}[Ejercicio 4 — L'Hôpital trigonométrico \quad \dificil]
+    $\lim_{x\to0}\dfrac{\operatorname{tg}x - \operatorname{sen}x}{\operatorname{tg}^3 x}$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 5}
+  \begin{mwejercicio}[Ejercicio 5 — L'Hôpital con repetición \quad \dificil]
+    $\lim_{x\to\pi}\dfrac{1 + \cos x}{(2\pi - 2x)^2}$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 6}
+  \begin{mwejercicio}[Ejercicio 6 — L'Hôpital en $\pi/4$ \quad \dificil]
+    $\lim_{x\to\pi/4}\dfrac{\operatorname{sen}x - \cos x}{1 - \tan x}$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 7}
+  \begin{mwejercicio}[Ejercicio 7 — Derivabilidad a trozos \quad \dificil]
+    Dada $f(x) = \begin{cases} \sqrt{8-x} & x \le 4 \\ x^2 - 14 & x > 4 \end{cases}$, analice la derivabilidad en $x=4$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 8}
+  \begin{mwejercicio}[Ejercicio 8 — L'Hôpital con demostración \quad \muyDificil]
+    Demuestre que $\lim_{x\to1}\dfrac{2\operatorname{sen}(\pi x) + \pi(x^2-1)}{(1-x)^2} = \pi$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 9}
+  \begin{mwejercicio}[Ejercicio 9 — Forma $\infty-\infty$ \quad \muyDificil]
+    $\lim_{x\to0}\left(\dfrac{1}{x} - \dfrac{1}{\operatorname{sen} x}\right)$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 10}
+  \begin{mwejercicio}[Ejercicio 10 — Constantes para diferenciabilidad \quad \muyDificil]
+    Halle $a$ y $b$ para que $f(x) = \begin{cases} x^2 - 4 & x < 2 \\ ax^2 + b & x \ge 2 \end{cases}$ sea diferenciable en $x_0 = 2$.
+  \end{mwejercicio}
+\end{frame}
+
+\end{document}

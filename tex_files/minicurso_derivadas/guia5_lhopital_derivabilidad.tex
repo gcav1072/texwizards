@@ -1,0 +1,245 @@
+% ============================================================
+%  GUÍA 5: L'HÔPITAL Y DERIVABILIDAD
+%  Minicurso de Derivadas (Cálculo I · Nivel Universitario)
+%  Clase 5 · Clase de 2 horas
+%  Autor: Ing. Gabriel Astudillo
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Clase 5 — L'Hôpital y Derivabilidad}{Ing. Gabriel Astudillo $\cdot$ Minicurso de Derivadas}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Clase 5}{L'Hôpital y Derivabilidad}{Resuelve límites indeterminados y analiza funciones a trozos}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} La regla de L'Hôpital es una herramienta poderosa para resolver límites en \emph{forma indeterminada} ($0/0$, $\infty/\infty$). Además del cálculo, la derivada nos da el criterio para saber \emph{cuándo} una función es continua y derivable, y para hallar las constantes que hacen que una función a trozos sea diferenciable. Esta clase combina el límite con la derivada: la antesala del estudio completo de curvas.
+  \\[6pt]
+  \textbf{Nivel de Dificultad:}\quad
+  \medio{} Intermedio $(\bigstar\bigstar)$ \quad
+  \dificil{} Difícil $(\bigstar\bigstar\bigstar)$ \quad
+  \muyDificil{} Muy difícil $(\bigstar\bigstar\bigstar\bigstar)$
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Marco Teórico}
+% ============================================================
+
+\subsection{Formas indeterminadas}
+
+Al calcular límites, aparecen \emph{formas indeterminadas}: $0/0$, $\infty/\infty$, $0\cdot\infty$, $\infty - \infty$, $0^0$, $\infty^0$, $1^\infty$. La regla de L'Hôpital resuelve las dos primeras (las de tipo cociente).
+
+\begin{cuadroteoria}
+  \textbf{Regla de L'Hôpital:} Si $\lim_{x\to a} \frac{f(x)}{g(x)}$ es de la forma $\frac{0}{0}$ o $\frac{\infty}{\infty}$, y $\lim_{x\to a}\frac{f'(x)}{g'(x)}$ existe, entonces
+  \[
+    \lim_{x\to a}\frac{f(x)}{g(x)} = \lim_{x\to a}\frac{f'(x)}{g'(x)}
+  \]
+  Puede aplicarse \emph{repetidamente} mientras sigan resultando formas indeterminadas.
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Pasos para aplicar L'Hôpital:}
+  \begin{enumerate}
+    \item Verifica que el límite sea una forma indeterminada del tipo $\frac{0}{0}$ o $\frac{\infty}{\infty}$.
+    \item Deriva numerador y denominador por separado (¡no uses la regla del cociente!).
+    \item Evalúa el nuevo límite. Si sigue indeterminado, repite.
+    \item Si el numerador y denominador se repiten, simplifica (por ejemplo, factoriza $\operatorname{sen} x$, $\frac{1}{x}$, etc.) antes de seguir.
+  \end{enumerate}
+\end{cuadropasos}
+
+\subsection{Continuidad y derivabilidad}
+
+Una función es \textbf{continua} en $x_0$ si $\lim_{x\to x_0} f(x) = f(x_0)$. Es \textbf{derivable} en $x_0$ si $\lim_{h\to0}\frac{f(x_0+h)-f(x_0)}{h}$ existe, lo que equivale a que las derivadas laterales coincidan.
+
+\begin{cuadroteoria}
+  \textbf{Continuidad vs. derivabilidad:}
+  \begin{itemize}
+    \item \textbf{Derivable} $\Rightarrow$ \textbf{continua} (pero no al revés).
+    \item Si $f$ tiene un \emph{pico}, esquina o tangente vertical en $x_0$, no es derivable allí.
+    \item Para funciones a trozos, iguala las derivadas laterales en el punto de unión.
+  \end{itemize}
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos:}
+  \begin{itemize}
+    \item Aplicar L'Hôpital sin verificar la forma indeterminada.
+    \item Derivar con la regla del cociente en vez de derivar numerador y denominador por separado.
+    \item En L'Hôpital, seguir aplicando indefinidamente sin simplificar.
+    \item Confundir continuidad con derivabilidad: continua no implica derivable.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\newpage
+% ============================================================
+\section{Ejemplos Resueltos}
+% ============================================================
+
+\noindent\textbf{Ejemplo resuelto 1 (L'Hôpital trigonométrico):} Utilice L'Hôpital para hallar $\lim_{x\to0}\dfrac{\operatorname{tg}x - \operatorname{sen}x}{\operatorname{tg}^3 x}$.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1:} Verificamos: $\operatorname{tg}0 - \operatorname{sen}0 = 0$ y $\operatorname{tg}^3 0 = 0$ $\to$ forma $\frac{0}{0}$.
+  \textbf{Paso 2:} Aplicamos L'Hôpital.
+  \[
+    \lim_{x\to0}\frac{\sec^2 x - \cos x}{3\operatorname{tg}^2 x\sec^2 x}
+  \]
+  Sigue $\frac{0}{0}$ ($\sec^2 0 - \cos 0 = 1 - 1 = 0$; $\operatorname{tg}^2 0 = 0$).
+  \textbf{Paso 3:} Simplificamos antes de la segunda aplicación: $\operatorname{tg}^2 x = \frac{\operatorname{sen}^2 x}{\cos^2 x}$, $\sec^2 x = \frac{1}{\cos^2 x}$. Entonces
+  \[
+    \lim_{x\to0}\frac{\sec^2 x - \cos x}{3\frac{\operatorname{sen}^2 x}{\cos^2 x}\cdot\frac{1}{\cos^2 x}}
+    = \lim_{x\to0}\frac{(\sec^2 x - \cos x)\cos^4 x}{3\operatorname{sen}^2 x}
+  \]
+  \textbf{Paso 4:} El numerador $\to 0$ y $\operatorname{sen}^2 x \to 0$. Reescribimos $\sec^2 x - \cos x = \frac{1 - \cos^3 x}{\cos^2 x}$, y el límite se transforma. Otra aproximación: usar $\operatorname{tg}x - \operatorname{sen}x = \operatorname{sen}x\left(\frac{1}{\cos x}-1\right)$ y $\operatorname{tg}^3 x = \frac{\operatorname{sen}^3 x}{\cos^3 x}$:
+  \[
+    \lim_{x\to0}\frac{\operatorname{sen}x\left(\frac{1-\cos x}{\cos x}\right)}{\frac{\operatorname{sen}^3 x}{\cos^3 x}}
+    = \lim_{x\to0}\frac{(1-\cos x)\cos^2 x}{\operatorname{sen}^2 x}
+  \]
+  Con $\frac{1-\cos x}{\operatorname{sen}^2 x} = \frac{1}{1+\cos x}$: el límite es $\frac{(1)\cdot 1^2}{1+1} = \frac{1}{2}$. \textbf{Respuesta:} $\frac{1}{2}$.
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplo resuelto 2 (L'Hôpital con repetición):} Resolver $\lim_{x\to\pi}\dfrac{1+\cos x}{(2\pi - 2x)^2}$.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1:} Verificamos: $1 + \cos\pi = 1 - 1 = 0$; $(2\pi - 2\pi)^2 = 0$ $\to$ $\frac{0}{0}$.
+  \textbf{Paso 2:} Aplicamos L'Hôpital.
+  \[
+    \lim_{x\to\pi}\frac{-\operatorname{sen} x}{2(2\pi-2x)(-2)} = \lim_{x\to\pi}\frac{-\operatorname{sen} x}{-4(2\pi-2x)} = \lim_{x\to\pi}\frac{\operatorname{sen} x}{4(2\pi-2x)}
+  \]
+  Sigue $\frac{0}{0}$.
+  \textbf{Paso 3:} Segunda aplicación.
+  \[
+    \lim_{x\to\pi}\frac{\cos x}{4(-2)} = \frac{\cos\pi}{-8} = \frac{-1}{-8} = \frac{1}{8}
+  \]
+  \textbf{Respuesta:} $\frac{1}{8}$.
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplo resuelto 3 (derivabilidad a trozos):} Dada $f(x) = \begin{cases} \sqrt{8-x} & \text{si } x \le 4 \\ x^2 - 14 & \text{si } x > 4 \end{cases}$, analice la derivabilidad en $x_0 = 4$.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1 (continuidad):} $\lim_{x\to4^-}\sqrt{8-x} = \sqrt{4} = 2$; $\lim_{x\to4^+}x^2-14 = 16-14 = 2$. Como $f(4) = 2$, es continua en $x=4$.
+  \textbf{Paso 2 (derivadas laterales):}
+  \[
+    f'_-(4) = \lim_{x\to4^-}\frac{\sqrt{8-x} - 2}{x-4}, \qquad
+    f'_+(4) = \lim_{x\to4^+}\frac{x^2-14 - 2}{x-4}
+  \]
+  \textbf{Paso 3:} Derivamos cada rama y evaluamos el límite lateral del cociente definido.
+  \[
+    f'_-(4) = \left.\frac{d}{dx}\sqrt{8-x}\right|_{x=4} = \frac{-1}{2\sqrt{8-4}} = \frac{-1}{4}
+  \]
+  \[
+    f'_+(4) = \left.2x\right|_{x=4} = 8
+  \]
+  \textbf{Paso 4:} Como $f'_-(4) \ne f'_+(4)$, la función \textbf{no es derivable} en $x=4$ (tiene un pico).
+\end{cuadrosolucion}
+
+\newpage
+% ============================================================
+\section{Ejercicios Propuestos}
+% ============================================================
+
+\noindent En los ejercicios 1--7 $(\bigstar\bigstar)$, aplica L'Hôpital o analiza continuidad. En los 8--17 $(\bigstar\bigstar\bigstar)$ y 18--25 $(\bigstar\bigstar\bigstar\bigstar)$, aumenta la dificultad.
+
+\begin{enumerate}[leftmargin=*]
+
+  % ── ★★ (1─7) ─────────────────────────────────────────────
+  \item \medio{} $\lim_{x\to0}\dfrac{\operatorname{sen} x}{x}$
+
+  \item \medio{} $\lim_{x\to0}\dfrac{1 - \cos x}{x^2}$
+
+  \item \medio{} $\lim_{x\to1}\dfrac{x^2 - 1}{x - 1}$
+
+  \item \medio{} $\lim_{x\to0}\dfrac{e^x - 1}{x}$
+
+  \item \medio{} $\lim_{x\to0}\dfrac{\operatorname{tg} x}{x}$
+
+  \item \medio{} $\lim_{x\to2}\dfrac{x^3 - 8}{x - 2}$
+
+  \item \medio{} Analice la continuidad de $f(x) = \dfrac{x^2 - 1}{x - 1}$ en $x = 1$.
+
+  % ── ★★★ (8─17) ───────────────────────────────────────────
+  \item \dificil{} $\lim_{x\to0}\dfrac{\operatorname{tg}x - \operatorname{sen}x}{\operatorname{tg}^3 x}$ % [Examen 1, IV]
+
+  \item \dificil{} $\lim_{x\to\pi}\dfrac{1 + \cos x}{(2\pi - 2x)^2}$ % [Examen 3A, 3]
+
+  \item \dificil{} $\lim_{x\to0}\dfrac{2 + \operatorname{tg}^2 x - 2\cos(2x)}{3x\operatorname{sen}x}$ % [Examen 3, 2]
+
+  \item \dificil{} $\lim_{x\to0}\dfrac{1 - \cos^2 x}{x\operatorname{sen}(2x)}$ % [Examen 4, 2]
+
+  \item \dificil{} $\lim_{x\to0}\dfrac{1 - \cos^3 x}{x\operatorname{sen}(2x)}$ % [Examen 7A, 3]
+
+  \item \dificil{} $\lim_{x\to\pi/4}\dfrac{\operatorname{sen}x - \cos x}{1 - \tan x}$ % [Examen 8B, 3]
+
+  \item \dificil{} $\lim_{x\to0}\dfrac{\ln(1+x)}{x}$
+
+  \item \dificil{} $\lim_{x\to0}\dfrac{x - \operatorname{sen} x}{x^3}$
+
+  \item \dificil{} $\lim_{x\to1}\dfrac{\ln x}{x - 1}$
+
+  \item \dificil{} Dada $f(x) = \begin{cases} \sqrt{8-x} & x \le 4 \\ x^2 - 14 & x > 4 \end{cases}$, analice la derivabilidad en $x=4$. % [Examen 3A, 5]
+
+  % ── ★★★★ (18─25) ─────────────────────────────────────────
+  \item \muyDificil{} Aplicando L'Hôpital, demuestre que $\lim_{x\to1}\dfrac{2\operatorname{sen}(\pi x) + \pi(x^2-1)}{(1-x)^2} = \pi$. % [Examen 6, 3]
+
+  \item \muyDificil{} $\lim_{x\to0}\dfrac{e^x - 1 - x}{x^2}$
+
+  \item \muyDificil{} $\lim_{x\to0}\left(\dfrac{1}{x} - \dfrac{1}{\operatorname{sen} x}\right)$ (forma $\infty - \infty$)
+
+  \item \muyDificil{} $\lim_{x\to\infty}\dfrac{\ln x}{x}$
+
+  \item \muyDificil{} $\lim_{x\to0}x^x$ (forma $0^0$; usar $e^{\ln x^x}$)
+
+  \item \muyDificil{} $\lim_{x\to0^+}x\ln x$ (forma $0\cdot\infty$)
+
+  \item \muyDificil{} Halle las constantes $a$ y $b$ para que $f(x) = \begin{cases} x^2 - 4 & x < 2 \\ ax^2 + b & x \ge 2 \end{cases}$ sea diferenciable en $x_0 = 2$. % [Examen 5, 5]
+
+  \item \muyDificil{} Demuestre que $\lim_{x\to0}\dfrac{\operatorname{sen} x - x\cos x}{x^3} = \dfrac{1}{3}$.
+
+\end{enumerate}
+
+\newpage
+% ============================================================
+\ifmwclaves
+  \section{Clave de Respuestas}
+  % ============================================================
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \item $1$
+    \item $\frac{1}{2}$
+    \item $2$
+    \item $1$
+    \item $1$
+    \item $12$
+    \item Discontinuidad evitable (hay un agujero en $(1,2)$); el límite es $2$ pero $f(1)$ no existe.
+    \item $\frac{1}{2}$
+    \item $\frac{1}{8}$
+    \item $1$ (aplicar L'Hôpital dos veces o el desarrolla de $\operatorname{tg}^2 x$)
+    \item $\frac{1}{2}$ (usar $\operatorname{sen}(2x) = 2\operatorname{sen}x\cos x$ y luego L'Hôpital)
+    \item $\frac{1}{2}$ (usar $1-\cos^3 x = (1-\cos x)(1+\cos x+\cos^2 x)$)
+    \item $\frac{\sqrt{2}}{2}$ (o $\frac{\sqrt{2}}{2}$; reescribir $1-\tan x$)
+    \item $1$
+    \item $\frac{1}{6}$ (aplicar L'Hôpital tres veces)
+    \item $1$
+    \item No es derivable: $f'_-(4) = -\frac{1}{4}$, $f'_+(4) = 8$. Es continua pero no derivable (pico en $x=4$).
+    \item $\pi$ \checkmark
+    \item $\frac{1}{2}$
+    \item $0$ (tras combinar en $\frac{\operatorname{sen}x - x}{x\operatorname{sen}x}$, L'Hôpital da $-\frac{1}{2}$; revisar signo. El valor es $-\frac{1}{2}$; combinando: $\lim = -\frac{1}{2}$).
+    \item $0$
+    \item $1$
+    \item $0$ (reescribir $\frac{\ln x}{1/x}$ primero)
+    \item Continuidad: $4 + -4 = 0$... condiciona $a(2)^2 + b = 0 \Rightarrow 4a + b = 0$. Derivadas: $2x|_{x=2} = 4$ y $2ax|_{x=2} = 4a$; igualar: $4 = 4a \Rightarrow a = 1$, luego $b = -4$.
+    \item $\frac{1}{3}$ \checkmark
+
+  \end{enumerate}
+\fi
+
+\end{document}

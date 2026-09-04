@@ -1,0 +1,254 @@
+% ============================================================
+%  GUÍA 1: EL ARTE DE DERIVAR — REGLAS Y DEFINICIÓN
+%  Minicurso de Derivadas (Cálculo I · Nivel Universitario)
+%  Clase 1 · Clase de 2 horas
+%  Autor: Ing. Gabriel Astudillo
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Clase 1 — Reglas de Derivación y Definición}{Ing. Gabriel Astudillo $\cdot$ Minicurso de Derivadas}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Clase 1}{El Arte de Derivar: Reglas y Definición}{Domina la mecánica de la derivación}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} En la primera clase del minicurso dominaremos la mecánica de la derivación. Empezamos con la \emph{definición} de derivada como límite y luego las \emph{reglas} que nos permiten derivar con velocidad: potencia, producto, cociente y la regla de la cadena, con énfasis en funciones compuestas anidadas. Aquí se construye la herramienta que usaremos en las próximas clases: la interpretación geométrica, la derivación implícita, las paramétricas y el estudio completo de curvas.
+  \\[6pt]
+  \textbf{Nivel de Dificultad:}\quad
+  \medio{} Intermedio $(\bigstar\bigstar)$ \quad
+  \dificil{} Difícil $(\bigstar\bigstar\bigstar)$ \quad
+  \muyDificil{} Muy difícil $(\bigstar\bigstar\bigstar\bigstar)$
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Marco Teórico}
+% ============================================================
+
+\subsection{Definición de derivada}
+
+La \textbf{derivada} de una función $f$ en un punto $x$ mide la \emph{tasa de cambio instantánea}. Se define como el límite del cociente incremental:
+
+\begin{cuadroteoria}
+  \textbf{Definición:} La derivada de $f(x)$ respecto a $x$ es
+  \[
+    f'(x) \;=\; \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}
+  \]
+  siempre que el límite exista. En ese caso decimos que $f$ es \emph{derivable} en $x$.
+\end{cuadroteoria}
+
+\subsection{Reglas de derivación}
+
+\begin{cuadroteoria}
+  \textbf{Reglas fundamentales} (para funciones derivables):
+  \begin{itemize}
+    \item \textbf{Constante:} $(c)' = 0$
+    \item \textbf{Potencia:} $(x^n)' = n\,x^{n-1}$ \qquad (vale para $n$ real)
+    \item \textbf{Múltiplo constante:} $(c\,f)' = c\,f'$
+    \item \textbf{Suma / Resta:} $(f \pm g)' = f' \pm g'$
+    \item \textbf{Producto:} $(f\,g)' = f'g + fg'$
+    \item \textbf{Cociente:} $\left(\dfrac{f}{g}\right)' = \dfrac{f'g - fg'}{g^2}$
+    \item \textbf{Cadena:} $(f(g(x)))' = f'(g(x))\cdot g'(x)$
+  \end{itemize}
+\end{cuadroteoria}
+
+\subsection{La regla de la cadena en funciones anidadas}
+
+La dificultad de la clase está en funciones compuestas \emph{anidadas}. La cadena se aplica de afuera hacia adentro, capa por capa.
+
+\begin{cuadropasos}
+  \textbf{Pasos para derivar con la regla de la cadena:}
+  \begin{enumerate}
+    \item Identifica la función \textbf{externa} y derívala (dejando el argumento intacto).
+    \item Multiplica por la derivada del \textbf{argumento} (función interna).
+    \item Si el argumento a su vez es compuesto, repite el proceso (cadena anidada).
+    \item Simplifica el resultado.
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos:}
+  \begin{itemize}
+    \item Olvidar multiplicar por la derivada del argumento en la cadena.
+    \item Confundir $f(g(x))$ con $f(x)\cdot g(x)$ — no son lo mismo.
+    \item En el cociente, invertir el orden del numerador: $\frac{f'g - fg'}{g^2}$, \emph{no} $\frac{fg' - f'g}{g^2}$.
+    \item Derivar un exponente constante como si fuera variable: $(x^n)' = n x^{n-1}$, \emph{no} $x^n \ln x$.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\newpage
+% ============================================================
+\section{Ejemplos Resueltos}
+% ============================================================
+
+\noindent\textbf{Ejemplo resuelto 1 (por definición):} Calcule $f'(x)$ por definición para $f(x) = \dfrac{2x}{1-x}$.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1:} Planteamos el cociente incremental.
+  \[
+    \frac{f(x+h) - f(x)}{h}
+    = \frac{\dfrac{2(x+h)}{1-(x+h)} - \dfrac{2x}{1-x}}{h}
+  \]
+  \textbf{Paso 2:} Simplificamos el numerador (común denominador $(1-x)(1-x-h)$).
+  \[
+    \frac{f(x+h) - f(x)}{h}
+    = \frac{2(x+h)(1-x) - 2x(1-x-h)}{h\,(1-x)(1-x-h)}
+  \]
+  \textbf{Paso 3:} Desarrollamos el numerador.
+  \[
+    2x - 2x^2 + 2h - 2hx - 2x + 2x^2 + 2hx = 2h
+  \]
+  \textbf{Paso 4:} Simplificamos el factor $h$ y tomamos límite.
+  \[
+    \lim_{h\to0} \frac{2h}{h\,(1-x)(1-x-h)} = \lim_{h\to0} \frac{2}{(1-x)(1-x-h)} = \frac{2}{(1-x)^2}
+  \]
+  \textbf{Respuesta:} $f'(x) = \dfrac{2}{(1-x)^2}$.
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplo resuelto 2 (reglas combinadas):} Derive $f(x) = \dfrac{\cos(2x)-\operatorname{sen}(2x)}{\operatorname{sen}(2x)+\cos(2x)}$.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1:} Aplicamos la regla del cociente. Sea $u = \cos(2x)-\operatorname{sen}(2x)$ y $v = \operatorname{sen}(2x)+\cos(2x)$.
+  \[
+    u' = -2\operatorname{sen}(2x) - 2\cos(2x), \qquad
+    v' = 2\cos(2x) - 2\operatorname{sen}(2x)
+  \]
+  \textbf{Paso 2:} Sustituimos en la fórmula del cociente.
+  \[
+    f' = \frac{u'v - uv'}{v^2}
+  \]
+  \textbf{Paso 3:} Observamos que $u' = -v'$. Entonces $u'v - uv' = -v'v - uv' = -v'(v+u)$. Como $v - u = 2\operatorname{sen}(2x)$ y $v + u = 2\cos(2x)$...
+  \noindent\textit{Simplificación:} Resulta $f'(x) = -\dfrac{4}{( \operatorname{sen}(2x)+\cos(2x) )^2}$.
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplo resuelto 3 (cadena anidada):} Derive $f(x) = \left(\dfrac{-2x^{-1} - 3x + 1}{3x - 2x^2 + 3}\right)^{8}$.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1:} Función externa: $(\cdot)^8$. Aplicamos cadena y cociente.
+  \[
+    f'(x) = 8\left(\frac{-2x^{-1} - 3x + 1}{3x - 2x^2 + 3}\right)^{7}
+    \cdot \left(\frac{-2x^{-1} - 3x + 1}{3x - 2x^2 + 3}\right)'
+  \]
+  \textbf{Paso 2:} Derivamos el cociente interior.
+  \[
+    \left(\frac{u}{v}\right)' = \frac{u'v - uv'}{v^2},
+    \quad u' = 2x^{-2} - 3,\quad v' = 3 - 4x
+  \]
+  \textbf{Paso 3:} Sustituimos y simplificamos.
+  \[
+    f'(x) = 8\left(\frac{-2x^{-1} - 3x + 1}{3x - 2x^2 + 3}\right)^{7}
+    \cdot \frac{(2x^{-2} - 3)(3x-2x^2+3) - (-2x^{-1}-3x+1)(3-4x)}{(3x-2x^2+3)^2}
+  \]
+\end{cuadrosolucion}
+
+\newpage
+% ============================================================
+\section{Ejercicios Propuestos}
+% ============================================================
+
+\noindent En los ejercicios 1--7 $(\bigstar\bigstar)$, deriva cada función. En los 8--17 $(\bigstar\bigstar\bigstar)$ y 18--25 $(\bigstar\bigstar\bigstar\bigstar)$, la dificultad aumenta.
+
+\begin{enumerate}[leftmargin=*]
+
+  % ── ★★ (1─7) ─────────────────────────────────────────────
+  \item \medio{} $f(x) = 5x^4 - 3x^2 + 7x - 2$
+
+  \item \medio{} $f(x) = x^3\,\cos x$
+
+  \item \medio{} $f(x) = \dfrac{x^2 + 1}{x - 3}$
+
+  \item \medio{} $f(x) = (3x + 2)^4$
+
+  \item \medio{} $f(x) = \operatorname{sen}(5x^2)$
+
+  \item \medio{} $f(x) = \sqrt{2x + 1}$
+
+  \item \medio{} $f(x) = \ln(x^2 + 4)$
+
+  % ── ★★★ (8─17) ───────────────────────────────────────────
+  \item \dificil{} $f(x) = \operatorname{sen}^4(\pi^2 a x^5)\cdot\cos^8(\pi^2 a x^5)$ % [Examen 2, 1c]
+
+  \item \dificil{} $f(x) = \sqrt{\left(2\sqrt{x^3} - 3\sqrt[3]{x^{31}}\right)^5}$ % [Examen 2, 1b]
+
+  \item \dificil{} $f(x) = \left(\frac{x^2 - 3}{5 - x^2}\right)^3$ % [Examen 5, 1b]
+
+  \item \dificil{} $f(x) = \operatorname{sen}^2(-3\pi x^2)\cdot\cos^3\left(\frac{\pi}{2}x^3\right)$ % [Examen 6, 1b]
+
+  \item \dificil{} Aplicando la definición de derivada, determine $f'(x)$ para $f(x) = (4x^2 + 1)^{1/2}$ % [Examen 3A, 1]
+
+  \item \dificil{} $f(x) = \dfrac{1 - \cos x}{x^2}$ (deriva por cociente)
+
+  \item \dificil{} $f(x) = e^{x^2}\,\operatorname{sen}(3x)$
+
+  \item \dificil{} $f(x) = \tan^3(2x)$
+
+  \item \dificil{} $f(x) = \dfrac{x^2\,\ln x}{x + 1}$
+
+  \item \dificil{} $f(x) = \operatorname{arctg}(x^2 + 1)$
+
+  % ── ★★★★ (18─25) ─────────────────────────────────────────
+  \item \muyDificil{} $f(x) = \left(\dfrac{2x^{-1} + x^2 + 3}{x^{-2} - 4}\right)^{5}$ % [Examen 6, 1a]
+
+  \item \muyDificil{} $f(x) = \dfrac{-2x^{-1} - 3x + 1}{3x - 2x^2 + 3}$ (deriva el cociente interior del Ejemplo 3) % [Examen 2, 1a]
+
+  \item \muyDificil{} $f(x) = \dfrac{2}{3}\sqrt{\cot^3(\pi - \pi x^2)^2}$ % [Examen 5, 1a]
+
+  \item \muyDificil{} $f(x) = \dfrac{\cos(2x) - \operatorname{sen}(2x)}{\operatorname{sen}(2x) + \cos(2x)}$ % [Examen 2, 1d]
+
+  \item \muyDificil{} Por definición, calcule $f'(x)$ para $f(x) = \dfrac{2x}{1-x}$ % [Examen 1, I]
+
+  \item \muyDificil{} $f(x) = (x^2 + 1)\sqrt{x^2 - 1}$ (producto con raíz)
+
+  \item \muyDificil{} $f(x) = \dfrac{\sqrt{2x + 1} + \sqrt{2x - 1}}{\sqrt{2x + 1} - \sqrt{2x - 1}}$
+
+  \item \muyDificil{} $f(x) = \operatorname{sen}^2\!\left(\cos\!\left(\sqrt{x}\right)\right)$
+
+\end{enumerate}
+
+\newpage
+% ============================================================
+\ifmwclaves
+  \section{Clave de Respuestas}
+  % ============================================================
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \item $f'(x) = 20x^3 - 6x + 7$
+    \item $f'(x) = 3x^2\cos x - x^3\operatorname{sen} x$
+    \item $f'(x) = \dfrac{x^2 - 6x - 1}{(x-3)^2}$
+    \item $f'(x) = 12(3x+2)^3$
+    \item $f'(x) = 10x\cos(5x^2)$
+    \item $f'(x) = \dfrac{1}{\sqrt{2x + 1}}$
+    \item $f'(x) = \dfrac{2x}{x^2 + 4}$
+    \item $f'(x) = 5\pi^2 a x^4\operatorname{sen}^3(\pi^2 a x^5)\cos^7(\pi^2 a x^5)\bigl[4\cos^2(\pi^2 a x^5) - 8\operatorname{sen}^2(\pi^2 a x^5)\bigr]$
+    \item $f'(x) = \dfrac{5}{2}\sqrt{\left(2x^{3/2} - 3x^{31/3}\right)^3}\cdot\left(3x^{1/2} - 31x^{28/3}\right)$
+    \item $f'(x) = 6\left(\frac{x^2-3}{5-x^2}\right)^2\cdot\frac{x(13-x^2)}{(5-x^2)^2}$
+    \item $f'(x) = -6\pi x\operatorname{sen}(-3\pi x^2)\cos(-3\pi x^2)\cos^3(\frac{\pi}{2}x^3) - \frac{3\pi}{2}x^2\operatorname{sen}^2(-3\pi x^2)\cos^2(\frac{\pi}{2}x^3)\operatorname{sen}(\frac{\pi}{2}x^3)$
+    \item $f'(x) = \dfrac{4x}{(4x^2+1)^{1/2}}$
+    \item $f'(x) = \dfrac{x\operatorname{sen} x + 2\cos x - 2}{x^3}$
+    \item $f'(x) = e^{x^2}\left(2x\operatorname{sen}(3x) + 3\cos(3x)\right)$
+    \item $f'(x) = 6\tan^2(2x)\sec^2(2x)$
+    \item $f'(x) = \dfrac{(x+1)(2x\ln x + x) - x^2\ln x}{(x+1)^2}$
+    \item $f'(x) = \dfrac{2x}{1 + (x^2+1)^2}$
+    \item $f'(x) = 5\left(\frac{2x^{-1}+x^2+3}{x^{-2}-4}\right)^4\cdot\frac{(-2x^{-2}+2x)(x^{-2}-4) + 2x^{-3}(2x^{-1}+x^2+3)}{(x^{-2}-4)^2}$
+    \item $f'(x) = \dfrac{(2x^{-2}-3)(3x-2x^2+3) - (-2x^{-1}-3x+1)(3-4x)}{(3x-2x^2+3)^2}$
+    \item $f'(x) = \dfrac{2}{3}\cdot\frac{1}{2\sqrt{\cot^3(\pi-\pi x^2)^2}}\cdot 3\cot^2(\pi-\pi x^2)^2\cdot\left(-\csc^2(\pi-\pi x^2)^2\cdot 2(\pi-\pi x^2)\cdot(-\pi)\right)$
+    \item $f'(x) = \dfrac{-4}{\left(\operatorname{sen}(2x)+\cos(2x)\right)^2}$
+    \item $f'(x) = \dfrac{2}{(1-x)^2}$
+    \item $f'(x) = 2x\sqrt{x^2-1} + \dfrac{x(x^2+1)}{\sqrt{x^2-1}}$
+    \item $f'(x) = \dfrac{-2\sqrt{x}\cdot\left(\sqrt{2x-1} - \sqrt{2x+1}\right) - \dots}{(\sqrt{2x+1}-\sqrt{2x-1})^2}$ (simplificar con racionalización)
+    \item $f'(x) = 2\operatorname{sen}(\cos\sqrt{x})\cos(\cos\sqrt{x})\cdot\left(-\operatorname{sen}\sqrt{x}\cdot\frac{1}{2\sqrt{x}}\right)$
+
+  \end{enumerate}
+\fi
+
+\end{document}

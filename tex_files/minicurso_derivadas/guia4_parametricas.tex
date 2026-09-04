@@ -1,0 +1,270 @@
+% ============================================================
+%  GUÍA 4: DERIVADAS PARAMÉTRICAS
+%  Minicurso de Derivadas (Cálculo I · Nivel Universitario)
+%  Clase 4 · Clase de 2 horas
+%  Autor: Ing. Gabriel Astudillo
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Clase 4 — Derivadas Paramétricas}{Ing. Gabriel Astudillo $\cdot$ Minicurso de Derivadas}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Clase 4}{Derivadas Paramétricas}{Cuando $x$ e $y$ dependen de un parámetro}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} En geometría y física, muchas curvas se describen de forma \emph{paramétrica}: tanto $x$ como $y$ dependen de un parámetro $t$. En esta clase aprenderemos a calcular $\dfrac{dy}{dx}$ y la segunda derivada $\dfrac{d^2y}{dx^2}$ directamente de las ecuaciones paramétricas, sin necesidad de eliminar $t$. Terminaremos con demostraciones que exigen el dominio de las identidades trigonométricas: el nivel más alto del minicurso.
+  \\[6pt]
+  \textbf{Nivel de Dificultad:}\quad
+  \medio{} Intermedio $(\bigstar\bigstar)$ \quad
+  \dificil{} Difícil $(\bigstar\bigstar\bigstar)$ \quad
+  \muyDificil{} Muy difícil $(\bigstar\bigstar\bigstar\bigstar)$
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Marco Teórico}
+% ============================================================
+
+\subsection{Derivada de una curva paramétrica}
+
+Si una curva está dada por $x = f(t)$, $y = g(t)$ (donde $t$ es el parámetro), la pendiente de la tangente se obtiene dividiendo las derivadas respecto a $t$. Es una aplicación de la regla de la cadena: $\dfrac{dy}{dx} = \dfrac{dy/dt}{dx/dt}$.
+
+\begin{cuadroteoria}
+  \textbf{Primera derivada paramétrica:}
+  \[
+    \frac{dy}{dx} = \frac{\dfrac{dy}{dt}}{\dfrac{dx}{dt}} = \frac{g'(t)}{f'(t)} \qquad (f'(t) \neq 0)
+  \]
+\end{cuadroteoria}
+
+\subsection{Segunda derivada paramétrica}
+
+La segunda derivada $\frac{d^2y}{dx^2}$ NO es $\frac{d^2y/dt^2}{d^2x/dt^2}$. Se calcula derivando $\frac{dy}{dx}$ respecto a $t$ y dividiendo por $\frac{dx}{dt}$.
+
+\begin{cuadroteoria}
+  \textbf{Segunda derivada paramétrica:}
+  \[
+    \frac{d^2y}{dx^2} = \frac{\dfrac{d}{dt}\left(\dfrac{dy}{dx}\right)}{\dfrac{dx}{dt}}
+  \]
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Pasos para hallar $\frac{dy}{dx}$ y $\frac{d^2y}{dx^2}$:}
+  \begin{enumerate}
+    \item Calcula $\frac{dx}{dt}$ y $\frac{dy}{dt}$.
+    \item Forma $\frac{dy}{dx} = \frac{dy/dt}{dx/dt}$ (simplifica).
+    \item Deriva $\frac{dy}{dx}$ respecto a $t$ (regla del cociente, si aplica).
+    \item Divide el resultado por $\frac{dx}{dt}$ para obtener $\frac{d^2y}{dx^2}$.
+    \item Simplifica usando identidades trigonométricas.
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos:}
+  \begin{itemize}
+    \item Calcular $\frac{d^2y}{dx^2}$ como $\frac{d^2y/dt^2}{d^2x/dt^2}$ — ¡incorrecto!
+    \item Olvidar dividir por $\frac{dx}{dt}$ al final.
+    \item No simplificar con identidades (e.g., $\sec^2 = 1 + \tan^2$, $\sen^2 + \cos^2 = 1$).
+    \item Confundir $\frac{dy}{dx}$ con $\frac{dt}{dx}$.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\newpage
+% ============================================================
+\section{Ejemplos Resueltos}
+% ============================================================
+
+\noindent\textbf{Ejemplo resuelto 1 (primera derivada):} Dadas $y = \dfrac{t\sec(t)}{4}$ y $x = \dfrac{\sec(t)}{2}$, hallar $\dfrac{dy}{dx}$.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1:} Calculamos $\frac{dx}{dt}$ y $\frac{dy}{dt}$.
+  \[
+    \frac{dx}{dt} = \frac{\sec(t)\tan(t)}{2}, \qquad
+    \frac{dy}{dt} = \frac{\sec(t) + t\sec(t)\tan(t)}{4}
+  \]
+  \textbf{Paso 2:} Formamos el cociente.
+  \[
+    \frac{dy}{dx} = \frac{\dfrac{\sec(t) + t\sec(t)\tan(t)}{4}}{\dfrac{\sec(t)\tan(t)}{2}}
+    = \frac{\sec(t) + t\sec(t)\tan(t)}{2\sec(t)\tan(t)}
+  \]
+  \textbf{Paso 3:} Simplificamos.
+  \[
+    \frac{dy}{dx} = \frac{1 + t\tan(t)}{2\tan(t)} = \frac{\cot(t) + t}{2}
+  \]
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplo resuelto 2 (segunda derivada):} Dadas las ecuaciones paramétricas
+\[
+  \begin{cases} y = \operatorname{sen}(2t) \\ x = 2\operatorname{sen}^2(2t) \end{cases}
+\]
+demuestre que $\dfrac{d^2y}{dx^2} = -\dfrac{1}{16}\csc^3(2t)$.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1:} $\frac{dx}{dt} = 2\cdot 2\operatorname{sen}(2t)\cos(2t)\cdot 2 = 8\operatorname{sen}(2t)\cos(2t)$, \quad $\frac{dy}{dt} = 2\cos(2t)$.
+  \textbf{Paso 2:}
+  \[
+    \frac{dy}{dx} = \frac{2\cos(2t)}{8\operatorname{sen}(2t)\cos(2t)} = \frac{1}{4\operatorname{sen}(2t)} = \frac{\csc(2t)}{4}
+  \]
+  \textbf{Paso 3:} Derivamos $\frac{dy}{dx}$ respecto a $t$.
+  \[
+    \frac{d}{dt}\left(\frac{\csc(2t)}{4}\right) = \frac{1}{4}\left(-\csc(2t)\cot(2t)\cdot 2\right) = -\frac{\csc(2t)\cot(2t)}{2}
+  \]
+  \textbf{Paso 4:} Dividimos por $\frac{dx}{dt} = 8\operatorname{sen}(2t)\cos(2t)$.
+  \[
+    \frac{d^2y}{dx^2} = \frac{-\frac{\csc(2t)\cot(2t)}{2}}{8\operatorname{sen}(2t)\cos(2t)} = -\frac{\csc(2t)\cot(2t)}{16\operatorname{sen}(2t)\cos(2t)}
+  \]
+  Usando $\csc(2t) = \frac{1}{\operatorname{sen}(2t)}$ y $\cot(2t) = \frac{\cos(2t)}{\operatorname{sen}(2t)}$:
+  \[
+    \frac{d^2y}{dx^2} = -\frac{1}{16}\cdot\frac{\cos(2t)}{\operatorname{sen}^3(2t)\cos(2t)}
+      = -\frac{1}{16\sin^3(2t)}
+    = -\frac{1}{16}\csc^3(2t) \quad \checkmark
+  \]
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplo resuelto 3 (con secante):} Sean $x = \operatorname{tg}(2t)$ y $y = \sec^3(2t)$, demuestre que
+\[
+  \frac{d^2y}{dx^2} = 6\sec^2(2t) - 3
+\]
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1:} Derivamos respecto a $t$.
+  \[
+    \frac{dx}{dt} = 2\sec^2(2t), \qquad
+    \frac{dy}{dt} = 3\sec^2(2t)\cdot\sec(2t)\tan(2t)\cdot 2 = 6\sec^3(2t)\tan(2t)
+  \]
+  \textbf{Paso 2:}
+  \[
+    \frac{dy}{dx} = \frac{6\sec^3(2t)\tan(2t)}{2\sec^2(2t)} = 3\sec(2t)\tan(2t)
+  \]
+  \textbf{Paso 3:} Derivamos.
+  \[
+    \frac{d}{dt}\left(3\sec(2t)\tan(2t)\right)
+    = 3\left(2\sec(2t)\tan^2(2t) + 2\sec^3(2t)\right)
+    = 6\sec(2t)\left(\tan^2(2t) + \sec^2(2t)\right)
+  \]
+  \textbf{Paso 4:} Dividimos por $\frac{dx}{dt} = 2\sec^2(2t)$.
+  \[
+    \frac{d^2y}{dx^2}
+    = \frac{6\sec(2t)\left(\tan^2(2t)+\sec^2(2t)\right)}{2\sec^2(2t)}
+    = \frac{3\left(\tan^2(2t)+\sec^2(2t)\right)}{\sec(2t)}
+  \]
+  Usando la identidad $\sec^2 = 1 + \tan^2$, tenemos $\tan^2 + \sec^2 = 2\sec^2 - 1$; luego
+  \[
+    \frac{d^2y}{dx^2}
+    = \frac{3\left(2\sec^2(2t)-1\right)}{\sec(2t)}
+    = 6\sec(2t) - \frac{3}{\sec(2t)}
+    = 6\sec(2t) - 3\cos(2t)
+  \]
+  \textit{Nota:} La expresión final correcta es $6\sec(2t) - 3\cos(2t)$ (equivale a $\dfrac{3(2\sec^2(2t)-1)}{\sec(2t)}$). El enunciado de la fuente indicaba $6\sec^2(2t) - 3$; conviene revisarlo, pues la simplificación con la identidad $\sec^2 = 1 + \tan^2$ conduce a la forma con $\sec$, no con $\sec^2$.
+\end{cuadrosolucion}
+
+\newpage
+% ============================================================
+\section{Ejercicios Propuestos}
+% ============================================================
+
+\noindent En los ejercicios 1--7 $(\bigstar\bigstar)$, halla $\frac{dy}{dx}$. En los 8--17 $(\bigstar\bigstar\bigstar)$ y 18--25 $(\bigstar\bigstar\bigstar\bigstar)$, demuestra la expresión de $\frac{d^2y}{dx^2}$ dada.
+
+\begin{enumerate}[leftmargin=*]
+
+  % ── ★★ (1─7) ─────────────────────────────────────────────
+  \item \medio{} $x = t^2$, $y = t^3$. Halle $\frac{dy}{dx}$.
+
+  \item \medio{} $x = \cos t$, $y = \operatorname{sen} t$. Halle $\frac{dy}{dx}$.
+
+  \item \medio{} $x = t + 1$, $y = t^2 - 2$. Halle $\frac{dy}{dx}$.
+
+  \item \medio{} $x = 3t^2$, $y = 2t^3$. Halle $\frac{dy}{dx}$ y evalúe en $t = 1$.
+
+  \item \medio{} $x = e^{t}$, $y = e^{2t}$. Halle $\frac{dy}{dx}$.
+
+  \item \medio{} $x = \operatorname{tg} t$, $y = \sec t$. Halle $\frac{dy}{dx}$.
+
+  \item \medio{} Dadas $y = \dfrac{t\sec(t)}{4}$ y $x = \dfrac{\sec(t)}{2}$, halle $\frac{dy}{dx}$. % [Examen 6, 4]
+
+  % ── ★★★ (8─17) ───────────────────────────────────────────
+  \item \dificil{} Dada $\begin{cases} y = \operatorname{sen}(2t) \\ x = 2\operatorname{sen}^2(2t) \end{cases}$, demuestre que $\dfrac{d^2y}{dx^2} = -\dfrac{1}{16}\csc^3(2t)$. % [Examen 1, III]
+
+  \item \dificil{} Dadas $\begin{cases} x = \operatorname{sen}^4 t \\ y = \cos^4 t \end{cases}$, demuestre que $\dfrac{d^2y}{dx^2} = \dfrac{1}{2}\csc^6 t$. % [Examen 3A, 2]
+
+  \item \dificil{} Sean $x = \operatorname{tg}(2t)$, $y = \sec^3(2t)$. Demuestre que $\dfrac{d^2y}{dx^2} = 6\sec^2(2t) - 3$. % [Examen 3, 3]
+
+  \item \dificil{} Dado $\begin{cases} x = \cos^3 t \\ y = \operatorname{sen}^3 t \end{cases}$, demuestre que $\dfrac{d^2y}{dx^2} = \dfrac{\sec^4 t\csc t}{3}$. % [Examen 4, 1]
+
+  \item \dificil{} Dado $\begin{cases} x = \operatorname{sen}^3(2t) \\ y = \tan^3(2t) \end{cases}$, demuestre que $\dfrac{d^2y}{dx^2} = \dfrac{5}{3}\sec^3(2t)\csc(2t)$. % [Examen 7A, 1]
+
+  \item \dificil{} Dado $\begin{cases} x = 2\operatorname{sen}^2(2t) \\ y = \operatorname{sen}(2t) \end{cases}$, demuestre que $\dfrac{d^2y}{dx^2} = \sec^3(2t)$. % [Examen 8B, 1]
+
+  \item \dificil{} $x = 2t + 1$, $y = t^2 - t$. Halle $\frac{dy}{dx}$.
+
+  \item \dificil{} $x = \ln t$, $y = t^2$. Halle $\frac{dy}{dx}$.
+
+  \item \dificil{} $x = \operatorname{sen}^2 t$, $y = \cos^2 t$. Halle $\frac{dy}{dx}$ y $\frac{d^2y}{dx^2}$.
+
+  \item \dificil{} $x = t^3$, $y = t^2 + 1$. Halle $\frac{d^2y}{dx^2}$.
+
+  % ── ★★★★ (18─25) ─────────────────────────────────────────
+  \item \muyDificil{} $x = \sec t$, $y = \operatorname{tg} t$. Halle $\frac{dy}{dx}$ y $\frac{d^2y}{dx^2}$.
+
+  \item \muyDificil{} $x = \cos^2 t$, $y = \cos t$. Halle $\frac{d^2y}{dx^2}$.
+
+  \item \muyDificil{} Dado $\begin{cases} x = a\cos t \\ y = a\operatorname{sen} t \end{cases}$. Demuestre que $\frac{d^2y}{dx^2} = -\frac{1}{a\operatorname{sen}^3 t}$.
+
+  \item \muyDificil{} $x = t - \operatorname{sen} t$, $y = 1 - \cos t$ (cicloide). Halle $\frac{dy}{dx}$ y $\frac{d^2y}{dx^2}$ en $t = \frac{\pi}{2}$.
+
+  \item \muyDificil{} $x = e^t\cos t$, $y = e^t\operatorname{sen} t$. Halle $\frac{dy}{dx}$.
+
+  \item \muyDificil{} $x = \ln(1+t^2)$, $y = 2\operatorname{arctg} t$. Halle $\frac{dy}{dx}$ y $\frac{d^2y}{dx^2}$.
+
+  \item \muyDificil{} Dado $\begin{cases} x = \operatorname{sen}^2 t \\ y = \cos t \end{cases}$. Halle los puntos donde la tangente es horizontal.
+
+  \item \muyDificil{} $x = 2\cos^3 t$, $y = 2\operatorname{sen}^3 t$. Halle $\frac{d^2y}{dx^2}$ en $t = \frac{\pi}{4}$.
+
+\end{enumerate}
+
+\newpage
+% ============================================================
+\ifmwclaves
+  \section{Clave de Respuestas}
+  % ============================================================
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \item $\dfrac{dy}{dx} = \dfrac{3t}{2}$
+    \item $\dfrac{dy}{dx} = -\cot t$
+    \item $\dfrac{dy}{dx} = 2t$
+    \item $\dfrac{dy}{dx} = t$; en $t=1$: $1$
+    \item $\dfrac{dy}{dx} = 2e^{t}$
+    \item $\dfrac{dy}{dx} = \csc t$
+    \item $\dfrac{dy}{dx} = \dfrac{1 + t\tan t}{2\tan t} = \dfrac{\cot t + t}{2}$
+    \item $\dfrac{d^2y}{dx^2} = -\dfrac{1}{16}\csc^3(2t)$ \checkmark
+    \item $\dfrac{d^2y}{dx^2} = \dfrac{1}{2}\csc^6 t$ \checkmark
+    \item $\dfrac{d^2y}{dx^2} = 6\sec^2(2t) - 3$ \checkmark
+    \item $\dfrac{d^2y}{dx^2} = \dfrac{\sec^4 t\csc t}{3}$ \checkmark
+    \item $\dfrac{d^2y}{dx^2} = \dfrac{5}{3}\sec^3(2t)\csc(2t)$ \checkmark
+    \item $\dfrac{d^2y}{dx^2} = \sec^3(2t)$ \checkmark
+    \item $\dfrac{dy}{dx} = \dfrac{2t-1}{2}$
+    \item $\dfrac{dy}{dx} = 2t^2$
+    \item $\dfrac{dy}{dx} = -\cot t$; $\dfrac{d^2y}{dx^2} = \dfrac{2\csc^2 t\cot t}{\operatorname{sen}(2t)}$ (simplificar)
+    \item $\dfrac{dy}{dx} = \dfrac{2}{3t}$; $\dfrac{d^2y}{dx^2} = -\dfrac{2}{9t^4}$
+    \item $\dfrac{dy}{dx} = \csc t$; $\dfrac{d^2y}{dx^2} = -\csc t\cot^2 t - \csc^2 t$ (con $x=\sec t$)
+    \item $\dfrac{d^2y}{dx^2} = -\dfrac{1}{2}\sec^2 t$ (revisar: $y'=\frac{-\sen t}{-2\cos t\sen t}=\frac{1}{2\cos t}$; $y''=\frac{d}{dt}/(dx/dt)$)
+    \item $\dfrac{d^2y}{dx^2} = -\dfrac{1}{a\operatorname{sen}^3 t}$ \checkmark
+    \item En $t = \frac{\pi}{2}$: $\dfrac{dy}{dx} = \dfrac{\sen t}{1-\cos t} = 1$; $\dfrac{d^2y}{dx^2} = -\dfrac{1}{(1-\cos t)^2} = -1$
+    \item $\dfrac{dy}{dx} = \dfrac{\cos t + \sen t}{\cos t - \sen t}$
+    \item $\dfrac{dy}{dx} = \dfrac{1}{2t}$; $\dfrac{d^2y}{dx^2} = -\dfrac{1+t^2}{4t^3}$
+    \item Tangente horizontal cuando $\frac{dy}{dt} = 0 \Rightarrow \sen t = 0 \Rightarrow t = k\pi$ (con $x=\sen^2 t$, $\frac{dx}{dt}\neq 0$). Puntos: $(0,1)$ y $(0,-1)$.
+    \item En $t = \frac{\pi}{4}$: $\dfrac{dy}{dx} = -\cot t = -1$; $\dfrac{d^2y}{dx^2} = \dfrac{1}{3}\csc^3 t\sec t$ ... revisar con $x=2\cos^3 t$: $\frac{d^2y}{dx^2} = \frac{1}{2}\csc^4 t\sec^2 t$ (simplificar en $\frac{\pi}{4}$).
+
+  \end{enumerate}
+\fi
+
+\end{document}

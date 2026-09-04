@@ -1,0 +1,135 @@
+% ============================================================
+%  CLASE 1 — EL ARTE DE DERIVAR: REGLAS Y DEFINICIÓN
+%  Minicurso de Derivadas · Clase de 2 horas
+% ============================================================
+\documentclass[aspectratio=169]{beamer}
+\usepackage{mathwizards-beamer}
+\mwbeamer{Clase 1}{El Arte de Derivar: Reglas y Definición}{Minicurso de Derivadas}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Marco Teórico}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Definición de Derivada}
+  \begin{block}{La derivada como límite}
+    \[
+      f'(x) = \lim_{h \to 0}\frac{f(x+h) - f(x)}{h}
+    \]
+    Mide la \emph{tasa de cambio instantánea} de $f$ en $x$.
+  \end{block}
+  \vspace{6pt}
+  \begin{mwextra}[Interpretación geométrica]
+    $f'(x_0)$ es la \textbf{pendiente} de la recta tangente a la gráfica de $f$ en el punto $(x_0, f(x_0))$.
+  \end{mwextra}
+\end{frame}
+
+\begin{frame}{Reglas de Derivación}
+  \begin{block}{Reglas fundamentales ($f,g$ derivables)}
+    \begin{columns}[T]
+      \column{0.48\textwidth}
+      \begin{itemize}
+        \item $(c)' = 0$
+        \item $(x^n)' = n\,x^{n-1}$
+        \item $(c\,f)' = c\,f'$
+        \item $(f \pm g)' = f' \pm g'$
+      \end{itemize}
+      \column{0.48\textwidth}
+      \begin{itemize}
+        \item $(f\,g)' = f'g + fg'$
+        \item $\left(\dfrac{f}{g}\right)' = \dfrac{f'g - fg'}{g^2}$
+        \item $(f(g(x)))' = f'(g(x))\cdot g'(x)$
+      \end{itemize}
+    \end{columns}
+  \end{block}
+\end{frame}
+
+\begin{frame}{La Cadena en Funciones Anidadas}
+  \begin{mwpasos}[Pasos para derivar con la cadena]
+    \begin{enumerate}
+      \item Identifica la función \textbf{externa} y derívala dejando el argumento intacto.
+      \item Multiplica por la derivada del \textbf{argumento} (función interna).
+      \item Si el argumento a su vez es compuesto, repite (cadena anidada).
+      \item Simplifica.
+    \end{enumerate}
+  \end{mwpasos}
+  \vspace{6pt}
+  \begin{alertblock}{Errores clásicos}
+    \begin{itemize}
+      \item Olvidar multiplicar por la derivada del argumento.
+      \item Confundir $f(g(x))$ con $f(x)\cdot g(x)$.
+      \item Invertir el numerador del cociente: $\dfrac{f'g - fg'}{g^2}$, \emph{no} $\dfrac{fg' - f'g}{g^2}$.
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 1}
+  \begin{mwejercicio}[Ejercicio 1 — Reglas básicas \quad \medio]
+    Derive $f(x) = 5x^4 - 3x^2 + 7x - 2$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 2}
+  \begin{mwejercicio}[Ejercicio 2 — Regla del producto \quad \medio]
+    Derive $f(x) = x^3\,\cos x$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 3}
+  \begin{mwejercicio}[Ejercicio 3 — Regla del cociente \quad \medio]
+    Derive $f(x) = \dfrac{x^2 + 1}{x - 3}$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 4}
+  \begin{mwejercicio}[Ejercicio 4 — Regla de la cadena \quad \dificil]
+    Derive $f(x) = \operatorname{sen}^4(\pi^2 a x^5)\cdot\cos^8(\pi^2 a x^5)$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 5}
+  \begin{mwejercicio}[Ejercicio 5 — Cadena con raíz \quad \dificil]
+    Derive $f(x) = \sqrt{\left(2\sqrt{x^3} - 3\sqrt[3]{x^{31}}\right)^5}$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 6}
+  \begin{mwejercicio}[Ejercicio 6 — Cociente elevado \quad \dificil]
+    Derive $f(x) = \left(\frac{x^2 - 3}{5 - x^2}\right)^3$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 7}
+  \begin{mwejercicio}[Ejercicio 7 — Producto trigonométrico \quad \dificil]
+    Derive $f(x) = \operatorname{sen}^2(-3\pi x^2)\cdot\cos^3\left(\frac{\pi}{2}x^3\right)$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 8}
+  \begin{mwejercicio}[Ejercicio 8 — Derivada por definición \quad \muyDificil]
+    Aplicando la definición de derivada, determine $f'(x)$ para $f(x) = (4x^2 + 1)^{1/2}$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 9}
+  \begin{mwejercicio}[Ejercicio 9 — Función enmarañada \quad \muyDificil]
+    Derive $f(x) = \left(\dfrac{2x^{-1} + x^2 + 3}{x^{-2} - 4}\right)^{5}$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 10}
+  \begin{mwejercicio}[Ejercicio 10 — Definición con racional \quad \muyDificil]
+    Por definición, calcule $f'(x)$ para $f(x) = \dfrac{2x}{1-x}$.
+  \end{mwejercicio}
+\end{frame}
+
+\end{document}

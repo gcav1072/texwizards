@@ -1,0 +1,245 @@
+% ============================================================
+%  GUÍA 3: RECTA TANGENTE Y NORMAL
+%  Minicurso de Derivadas (Cálculo I · Nivel Universitario)
+%  Clase 3 · Clase de 2 horas
+%  Autor: Ing. Gabriel Astudillo
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Clase 3 — Recta Tangente y Normal}{Ing. Gabriel Astudillo $\cdot$ Minicurso de Derivadas}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Clase 3}{Recta Tangente y Normal}{La derivada como pendiente de una recta}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} La derivada tiene una interpretación geométrica poderosa: $f'(x_0)$ es la \emph{pendiente} de la recta tangente en el punto $(x_0, f(x_0))$. En esta clase aprenderemos a escribir las ecuaciones de la recta \textbf{tangente} y de la recta \textbf{normal} a una curva en un punto dado. Trabajaremos con gráficas explícitas y, sobre todo, con \emph{curvas implícitas} donde deberás combinar la derivación implícita (Clase 2) con la ecuación punto-pendiente.
+  \\[6pt]
+  \textbf{Nivel de Dificultad:}\quad
+  \medio{} Intermedio $(\bigstar\bigstar)$ \quad
+  \dificil{} Difícil $(\bigstar\bigstar\bigstar)$ \quad
+  \muyDificil{} Muy difícil $(\bigstar\bigstar\bigstar\bigstar)$
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Marco Teórico}
+% ============================================================
+
+\subsection{Interpretación geométrica de la derivada}
+
+\begin{cuadroteoria}
+  \textbf{Derivada y pendiente:} Si $f$ es derivable en $x_0$, entonces la recta tangente a la gráfica de $f$ en el punto $P(x_0, f(x_0))$ tiene pendiente
+  \[
+    m_T = f'(x_0) = \lim_{h\to0}\frac{f(x_0+h) - f(x_0)}{h}
+  \]
+\end{cuadroteoria}
+
+\subsection{Ecuación punto-pendiente}
+
+\begin{cuadroteoria}
+  \textbf{Recta que pasa por $(x_0, y_0)$ con pendiente $m$:}
+  \[
+    y - y_0 = m\,(x - x_0)
+  \]
+  La recta \textbf{tangente} usa $m_T = f'(x_0)$. La recta \textbf{normal} (perpendicular) usa
+  \[
+    m_N = -\frac{1}{m_T} \quad (m_T \neq 0)
+  \]
+\end{cuadroteoria}
+
+\subsection{Tangente y normal a una curva implícita}
+
+Para una curva $F(x,y)=0$, la pendiente en un punto se obtiene por \emph{derivación implícita}: $\dfrac{dy}{dx}$ evaluada en el punto dado.
+
+\begin{cuadropasos}
+  \textbf{Pasos para hallar tangente y normal en $(x_0, y_0)$:}
+  \begin{enumerate}
+    \item Calcula $\dfrac{dy}{dx}$ (derivación implícita si la curva está en $F(x,y)=0$).
+    \item Evalúa $m_T = \left.\dfrac{dy}{dx}\right|_{(x_0,y_0)}$.
+    \item Escribe la tangente: $y - y_0 = m_T(x - x_0)$.
+    \item Escribe la normal: $y - y_0 = -\dfrac{1}{m_T}(x - x_0)$.
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos:}
+  \begin{itemize}
+    \item No evaluar la derivada \emph{en el punto}: usar $f'(x)$ en vez de $f'(x_0)$.
+    \item Confundir la normal con la tangente (la normal es perpendicular, no paralela).
+    \item Olvidar la derivación implícita y derivar solo una variable.
+    \item Si $m_T = 0$, la normal es vertical ($x = x_0$); si la tangente es vertical, la normal es horizontal.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\newpage
+% ============================================================
+\section{Ejemplos Resueltos}
+% ============================================================
+
+\noindent\textbf{Ejemplo resuelto 1 (curva implícita con coseno):} Halle la ecuación de la recta tangente y normal a la curva $xy^2 - \cos(x-y) = x - y$ en el punto $(1,1)$.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1:} Derivamos implícitamente.
+  \[
+    y^2 + 2xy\,y' + \operatorname{sen}(x-y)\,(1-y') = 1 - y'
+  \]
+  \textbf{Paso 2:} Agrupamos $y'$ y despejamos.
+  \[
+    y'\bigl[2xy - \operatorname{sen}(x-y) + 1\bigr] = 1 - y^2 - \operatorname{sen}(x-y)
+  \]
+  \textbf{Paso 3:} Evaluamos en $(1,1)$: $\operatorname{sen}(0)=0$, $x=y=1$.
+  \[
+    y'\bigl[2(1)(1) - 0 + 1\bigr] = 1 - 1 - 0 \;\Rightarrow\; 3y' = 0 \;\Rightarrow\; m_T = 0
+  \]
+  \textbf{Paso 4:} Como $m_T = 0$, la tangente es horizontal: $y = 1$. La normal es vertical: $x = 1$.
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplo resuelto 2 (curva implícita con sen(xy)):} Halle las ecuaciones de la recta tangente y normal a $x + \operatorname{sen}(xy) = y + \frac{\pi}{2}$ en el punto $\left(\frac{\pi}{2}, 1\right)$.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1:} Derivamos implícitamente.
+  \[
+    1 + y\cos(xy)\,(xy' + y) = y' \quad \Rightarrow \quad 1 + xy\cos(xy)\,y' + y\cos(xy) = y'
+  \]
+  Al usar regla del producto en $\operatorname{sen}(xy)$: $\frac{d}{dx}\operatorname{sen}(xy) = \cos(xy)(xy' + y)$.
+  \textbf{Paso 2:} Agrupamos $y'$.
+  \[
+    y'\bigl[xy\cos(xy) - 1\bigr] = -1 - y\cos(xy)
+  \]
+  \textbf{Paso 3:} En $\left(\frac{\pi}{2}, 1\right)$: $xy = \frac{\pi}{2}$, $\cos(\frac{\pi}{2}) = 0$.
+  \[
+    y'\bigl[0 - 1\bigr] = -1 - 0 \;\Rightarrow\; y' = 1 \;\Rightarrow\; m_T = 1
+  \]
+  \textbf{Paso 4:} Tangente: $y - 1 = 1\,(x - \frac{\pi}{2})$, es decir $y = x + 1 - \frac{\pi}{2}$.
+  \\[2pt]
+  Normal: $y - 1 = -1\,(x - \frac{\pi}{2})$, es decir $y = -x + 1 + \frac{\pi}{2}$.
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplo resuelto 3 (curva con raíz):} Halle la ecuación de la recta tangente y normal a $\sqrt{x^2 + y^2} + x^2 = 5y + 6$ en el punto $(4, 3)$.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1:} Derivamos implícitamente. Con $\frac{d}{dx}\sqrt{x^2+y^2} = \frac{x + y\,y'}{\sqrt{x^2+y^2}}$:
+  \[
+    \frac{x + y\,y'}{\sqrt{x^2+y^2}} + 2x = 5\,y'
+  \]
+  \textbf{Paso 2:} En $(4,3)$: $\sqrt{16+9} = 5$.
+  \[
+    \frac{4 + 3y'}{5} + 8 = 5y' \;\Rightarrow\; \frac{4 + 3y'}{5} = 5y' - 8
+  \]
+  \textbf{Paso 3:} Resolvemos: $4 + 3y' = 25y' - 40 \Rightarrow 44 = 22y' \Rightarrow y' = 2 = m_T$.
+  \textbf{Paso 4:} Tangente: $y - 3 = 2(x - 4)$, es decir $y = 2x - 5$.
+  \\[2pt]
+  Normal: $y - 3 = -\frac{1}{2}(x - 4)$, es decir $y = -\frac{1}{2}x + 5$.
+\end{cuadrosolucion}
+
+\newpage
+% ============================================================
+\section{Ejercicios Propuestos}
+% ============================================================
+
+\noindent En los ejercicios 1--7 $(\bigstar\bigstar)$, halla la tangente y normal a curvas explícitas o implícitas sencillas. En los 8--17 $(\bigstar\bigstar\bigstar)$ y 18--25 $(\bigstar\bigstar\bigstar\bigstar)$, la dificultad aumenta.
+
+\begin{enumerate}[leftmargin=*]
+
+  % ── ★★ (1─7) ─────────────────────────────────────────────
+  \item \medio{} Halle tangente y normal a $y = x^2$ en $(2, 4)$.
+
+  \item \medio{} Halle tangente y normal a $y = x^3$ en $(1, 1)$.
+
+  \item \medio{} Halle tangente y normal a $y = \operatorname{sen} x$ en $\left(\frac{\pi}{2}, 1\right)$.
+
+  \item \medio{} Halle tangente y normal a $x^2 + y^2 = 25$ en $(3, 4)$.
+
+  \item \medio{} Halle tangente y normal a $xy = 6$ en $(2, 3)$.
+
+  \item \medio{} Halle tangente y normal a $y = x^2 - 2x + 1$ en $(0, 1)$.
+
+  \item \medio{} Halle tangente y normal a $y = \sqrt{x}$ en $(4, 2)$.
+
+  % ── ★★★ (8─17) ───────────────────────────────────────────
+  \item \dificil{} Halle tangente y normal a $xy^2 - \cos(x-y) = x - y$ en $(1,1)$. % [Examen 1, II]
+
+  \item \dificil{} Halle tangente y normal a $\cos(x-y) = y\,x^2 + y - x^3$ en $(1,1)$. % [Examen 4, 3]
+
+  \item \dificil{} Halle tangente y normal a $(x-y)^2 + x = \operatorname{sen}(x-y)$ en $(0, \pi)$. % [Examen 7A, 2]
+
+  \item \dificil{} Halle tangente y normal a $x\operatorname{sen} y + y\cos x = 1$ en $\left(\frac{\pi}{2}, 0\right)$.
+
+  \item \dificil{} Halle tangente y normal a $x^2 + xy + y^2 = 7$ en $(1, 2)$.
+
+  \item \dificil{} Halle tangente y normal a $x^3 + y^3 = 2$ en $(1, 1)$.
+
+  \item \dificil{} Halle tangente y normal a $y = \operatorname{tg} x$ en $\left(\frac{\pi}{4}, 1\right)$.
+
+  \item \dificil{} Halle tangente y normal a $y = \dfrac{x}{x^2 + 1}$ en $(0, 0)$.
+
+  \item \dificil{} Halle tangente y normal a $x^2 y + y^3 = \cos(x+4)$ en $\left(0, -\frac{\pi}{2}\right)$. % [Examen 8B, 2]
+
+  \item \dificil{} Halle tangente y normal a $x + \operatorname{sen}(xy) = y + \frac{\pi}{2}$ en $\left(\frac{\pi}{2}, 1\right)$. % [Examen 3A, 4]
+
+  % ── ★★★★ (18─25) ─────────────────────────────────────────
+  \item \muyDificil{} Halle tangente y normal a $\sqrt{x^2+y^2} + x^2 = 5y + 6$ en $(4,3)$. % [Examen 3, 1]
+
+  \item \muyDificil{} Halle tangente y normal a $(x+y)^2 - 3x - 2y = 0$ en $(-1,-2)$. % [Examen 5, 4]
+
+  \item \muyDificil{} Halle tangente y normal a $x^2 y + y - 3x^2 = 0$ en $(1, 1)$.
+
+  \item \muyDificil{} Halle tangente y normal a $y^2 = \dfrac{x^2}{1 + x^2}$ en el punto $(1, \frac{1}{\sqrt{2}})$.
+
+  \item \muyDificil{} Halle el punto de la curva $y = x^3$ donde la tangente es paralela a la recta $y = 12x + 5$.
+
+  \item \muyDificil{} Halle $a$ para que la recta $y = 3x + 2$ sea tangente a $y = x^2 + a$.
+
+  \item \muyDificil{} Halle $m$ para que la recta $y = mx$ sea tangente a $y = x^2 + 1$.
+
+  \item \muyDificil{} Halle la ecuación de la tangente a $x^2 y^2 + \operatorname{sen}(xy) = 1$ en el punto $(1, 0)$.
+
+\end{enumerate}
+
+\newpage
+% ============================================================
+\ifmwclaves
+  \section{Clave de Respuestas}
+  % ============================================================
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \item Tangente: $y = 4x - 4$; Normal: $y = -\frac{1}{4}x + \frac{9}{2}$
+    \item Tangente: $y = 3x - 2$; Normal: $y = -\frac{1}{3}x + \frac{4}{3}$
+    \item Tangente: $y = 1$; Normal: $x = \frac{\pi}{2}$
+    \item Tangente: $4x + 3y = 25$; Normal: $3x - 4y = -7$
+    \item Tangente: $3x + 2y = 12$; Normal: $2x - 3y = -5$
+    \item Tangente: $y = -2x + 1$; Normal: $y = \frac{1}{2}x + 1$
+    \item Tangente: $y = \frac{1}{4}x + 1$; Normal: $y = -4x + 18$
+    \item Tangente: $y = 1$; Normal: $x = 1$
+    \item Tangente: $y = 2x - 1$; Normal: $y = -\frac{1}{2}x + \frac{3}{2}$
+    \item Tangente: $y = -x + \pi$; Normal: $y = x + \pi$
+    \item Tangente: $y = -\frac{1}{2}x + \frac{\pi}{4}$; Normal: $y = 2x - \pi$
+    \item Tangente: $y = -\frac{4}{5}x + \frac{14}{5}$; Normal: $y = \frac{5}{4}x + \frac{3}{4}$
+    \item Tangente: $y = -x + 2$; Normal: $y = x$
+    \item Tangente: $y = 2x + 1 - \frac{\pi}{2}$; Normal: $y = -x + 1 + \frac{\pi}{2}$
+    \item Tangente: $y = x$; Normal: $y = -x$
+    \item Tangente: $y = x + \frac{\pi}{2}$; Normal: $y = -x - \frac{\pi}{2}$
+    \item Tangente: $y = x + 1 - \frac{\pi}{2}$; Normal: $y = -x + 1 + \frac{\pi}{2}$
+    \item Tangente: $y = 2x - 5$; Normal: $y = -\frac{1}{2}x + 5$
+    \item Tangente: $y = \frac{1}{9}x - \frac{17}{9}$; Normal: $y = -9x - 11$
+    \item Tangente: $y = \frac{3}{2}x - \frac{1}{2}$; Normal: $y = -\frac{2}{3}x + \frac{5}{3}$
+    \item Tangente: $y = -\frac{3}{2}x + 4$; Normal: $y = -\frac{3}{4}x + \frac{3}{2}$ (revisar punto $(1, \frac{1}{\sqrt{2}})$: $y' = \frac{2x}{(1+x^2)^2}\cdot\frac{1}{y}$)
+    \item $m_T = 3x^2 = 12 \Rightarrow x = \pm 2$. Puntos: $(2, 8)$ y $(-2, -8)$.
+    \item $a = 3$ (tangencia: $3x+2 = x^2 + a$ y derivadas $3 = 2x \Rightarrow x = \frac{3}{2}$; verificar $a = 3$)
+    \item $m = \pm 2$ (tangencia: $mx = x^2+1$ y $m = 2x$; $x = \pm 1$, $m = \pm 2$)
+    \item En $(1,0)$: $y' = \dfrac{-2xy^2 - y\cos(xy)}{2x^2y + x\cos(xy)} = \dfrac{0}{-1} = 0$. Tangente: $y = 0$; Normal: $x = 1$.
+
+  \end{enumerate}
+\fi
+
+\end{document}

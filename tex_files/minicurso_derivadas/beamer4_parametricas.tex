@@ -1,0 +1,125 @@
+% ============================================================
+%  CLASE 4 — DERIVADAS PARAMÉTRICAS
+%  Minicurso de Derivadas · Clase de 2 horas
+% ============================================================
+\documentclass[aspectratio=169]{beamer}
+\usepackage{mathwizards-beamer}
+\mwbeamer{Clase 4}{Derivadas Paramétricas}{Minicurso de Derivadas}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Marco Teórico}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Primera Derivada Paramétrica}
+  \begin{block}{$\dfrac{dy}{dx}$ a partir de $x = f(t)$, $y = g(t)$}
+    \[
+      \frac{dy}{dx} = \frac{\dfrac{dy}{dt}}{\dfrac{dx}{dt}} = \frac{g'(t)}{f'(t)} \qquad (f'(t) \neq 0)
+    \]
+  \end{block}
+  \vspace{6pt}
+  \begin{mwextra}[Intuición]
+    Es la regla de la cadena: $\dfrac{dy}{dx} = \dfrac{dy}{dt}\cdot\dfrac{dt}{dx}$, con $\dfrac{dt}{dx} = \dfrac{1}{dx/dt}$.
+  \end{mwextra}
+\end{frame}
+
+\begin{frame}{Segunda Derivada Paramétrica}
+  \begin{block}{$\dfrac{d^2y}{dx^2}$ — ¡No es $\dfrac{d^2y/dt^2}{d^2x/dt^2}$!}
+    \[
+      \frac{d^2y}{dx^2} = \frac{\dfrac{d}{dt}\left(\dfrac{dy}{dx}\right)}{\dfrac{dx}{dt}}
+    \]
+  \end{block}
+  \vspace{6pt}
+  \begin{mwpasos}[Pasos]
+    \begin{enumerate}
+      \item Calcula $\frac{dx}{dt}$, $\frac{dy}{dt}$.
+      \item Forma $\frac{dy}{dx} = \frac{dy/dt}{dx/dt}$ (simplifica).
+      \item Deriva $\frac{dy}{dx}$ respecto a $t$.
+      \item Divide por $\frac{dx}{dt}$.
+      \item Simplifica con identidades trigonométricas.
+    \end{enumerate}
+  \end{mwpasos}
+\end{frame}
+
+\begin{frame}{Identidades para Simplificar}
+  \begin{block}{Identidades trigonométricas de uso frecuente}
+    \begin{itemize}
+      \item $\operatorname{sen}^2 t + \cos^2 t = 1$
+      \item $\sec^2 t = 1 + \tan^2 t$
+      \item $\csc^2 t = 1 + \cot^2 t$
+      \item $\operatorname{sen}(2t) = 2\operatorname{sen} t\cos t$
+      \item $\csc t = \dfrac{1}{\operatorname{sen} t}$ \quad, \quad $\cot t = \dfrac{\cos t}{\operatorname{sen} t}$
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 1}
+  \begin{mwejercicio}[Ejercicio 1 — Derivada simple \quad \medio]
+    $x = t^2$, $y = t^3$. Halle $\frac{dy}{dx}$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 2}
+  \begin{mwejercicio}[Ejercicio 2 — Paramétrica circular \quad \medio]
+    $x = \cos t$, $y = \operatorname{sen} t$. Halle $\frac{dy}{dx}$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 3}
+  \begin{mwejercicio}[Ejercicio 3 — Derivada y evaluación \quad \medio]
+    $x = 3t^2$, $y = 2t^3$. Halle $\frac{dy}{dx}$ y evalúe en $t = 1$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 4}
+  \begin{mwejercicio}[Ejercicio 4 — Primera derivada \quad \dificil]
+    Dadas $y = \frac{t\sec(t)}{4}$ y $x = \frac{\sec(t)}{2}$, halle $\frac{dy}{dx}$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 5}
+  \begin{mwejercicio}[Ejercicio 5 — Demostración \quad \dificil]
+    Dada $\begin{cases} y = \operatorname{sen}(2t) \\ x = 2\operatorname{sen}^2(2t) \end{cases}$, demuestre que $\frac{d^2y}{dx^2} = -\frac{1}{16}\csc^3(2t)$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 6}
+  \begin{mwejercicio}[Ejercicio 6 — Demostración con secante \quad \dificil]
+    Sean $x = \operatorname{tg}(2t)$, $y = \sec^3(2t)$. Demuestre que $\frac{d^2y}{dx^2} = 6\sec^2(2t) - 3$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 7}
+  \begin{mwejercicio}[Ejercicio 7 — Segunda derivada paramétrica \quad \dificil]
+    $x = t^3$, $y = t^2 + 1$. Halle $\frac{d^2y}{dx^2}$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 8}
+  \begin{mwejercicio}[Ejercicio 8 — Demostración de la cicloide \quad \muyDificil]
+    $x = t - \operatorname{sen} t$, $y = 1 - \cos t$. Halle $\frac{dy}{dx}$ y $\frac{d^2y}{dx^2}$ en $t = \frac{\pi}{2}$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 9}
+  \begin{mwejercicio}[Ejercicio 9 — Paramétrica exponencial \quad \muyDificil]
+    $x = e^t\cos t$, $y = e^t\operatorname{sen} t$. Halle $\frac{dy}{dx}$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 10}
+  \begin{mwejercicio}[Ejercicio 10 — Punto de tangente horizontal \quad \muyDificil]
+    Dado $\begin{cases} x = \operatorname{sen}^2 t \\ y = \cos t \end{cases}$, halle los puntos donde la tangente es horizontal.
+  \end{mwejercicio}
+\end{frame}
+
+\end{document}

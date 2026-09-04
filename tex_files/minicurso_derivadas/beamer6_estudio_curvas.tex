@@ -1,0 +1,134 @@
+% ============================================================
+%  CLASE 6 — ESTUDIO COMPLETO DE CURVAS
+%  Minicurso de Derivadas · Clase de 2 horas
+% ============================================================
+\documentclass[aspectratio=169]{beamer}
+\usepackage{mathwizards-beamer}
+\mwbeamer{Clase 6}{Estudio Completo de Curvas}{Minicurso de Derivadas}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Marco Teórico}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Primeros Pasos: Dominio, Cortes, Simetría}
+  \begin{block}{Dominio}
+    Conjunto de $x$ donde $f(x)$ existe. Excluir: denominadores nulos, raíces pares negativas, logaritmos de no positivos.
+  \end{block}
+  \vspace{6pt}
+  \begin{block}{Cortes y simetría}
+    \begin{itemize}
+      \item Cortes: con $x=0$ $\to$ eje $y$; con $y=0$ $\to$ eje $x$.
+      \item $f(-x)=f(x)$ $\to$ par; $f(-x)=-f(x)$ $\to$ impar.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Asíntotas}
+  \begin{block}{Tipos de asíntotas}
+    \begin{itemize}
+      \item \textbf{Vertical} ($x=a$): $\lim_{x\to a}f(x) = \pm\infty$.
+      \item \textbf{Horizontal} ($y=b$): $\lim_{x\to\infty}f(x)=b$ o $\lim_{x\to-\infty}f(x)=b$.
+      \item \textbf{Oblicua} ($y=mx+b$): $m=\lim\frac{f(x)}{x}$, $b=\lim(f(x)-mx)$.
+    \end{itemize}
+  \end{block}
+  \vspace{6pt}
+  \begin{mwextra}[Ejemplo]
+    $f(x)=\frac{x}{x^2-4}$ tiene verticales en $x=\pm2$ y horizontal $y=0$.
+  \end{mwextra}
+\end{frame}
+
+\begin{frame}{Monotonía, Extremos, Concavidad e Inflexión}
+  \begin{block}{Análisis con derivadas}
+    \begin{itemize}
+      \item Creciente: $f'(x)>0$; decreciente: $f'(x)<0$.
+      \item Punto crítico: $f'(x)=0$ o no existe.
+      \item Cóncava arriba: $f''(x)>0$; abajo: $f''(x)<0$.
+      \item Punto de inflexión: $f''$ cambia de signo.
+    \end{itemize}
+  \end{block}
+  \vspace{6pt}
+  \begin{mwpasos}[Pasos]
+    \begin{enumerate}
+      \item Dominio.
+      \item Cortes.
+      \item Simetría.
+      \item Asíntotas.
+      \item Monotonía / extremos ($f'$).
+      \item Concavidad / inflexión ($f''$).
+      \item Gráfica.
+      \item Rango.
+    \end{enumerate}
+  \end{mwpasos}
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 1}
+  \begin{mwejercicio}[Ejercicio 1 — Dominio \quad \medio]
+    Halle el dominio de $f(x) = \dfrac{x}{x^2 - 4}$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 2}
+  \begin{mwejercicio}[Ejercicio 2 — Cortes y simetría \quad \medio]
+    Halle los cortes con los ejes y la simetría de $f(x) = x^3 - x$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 3}
+  \begin{mwejercicio}[Ejercicio 3 — Asíntotas \quad \medio]
+    Halle las asíntotas de $f(x) = \dfrac{3x + 1}{2x - 5}$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 4}
+  \begin{mwejercicio}[Ejercicio 4 — Monotonía \quad \dificil]
+    Estudie $f(x) = x^3 - 6x^2 + 9x$ (dominio, cortes, simetría, monotonía y extremos).
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 5}
+  \begin{mwejercicio}[Ejercicio 5 — Concavidad \quad \dificil]
+    Estudie la concavidad y los puntos de inflexión de $f(x) = x^4 - 4x^3$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 6}
+  \begin{mwejercicio}[Ejercicio 6 — Extremos relativos \quad \dificil]
+    Halle los intervalos de crecimiento y decrecimiento de $f(x) = \dfrac{x - 2}{x^2 - 1}$ y los extremos relativos.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 7}
+  \begin{mwejercicio}[Ejercicio 7 — Concavidad e inflexión \quad \dificil]
+    Sea $f(x) = 2x^3 + 3x^2 - 12x + 5$. Halle los puntos de inflexión y los intervalos de concavidad.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 8}
+  \begin{mwejercicio}[Ejercicio 8 — Estudio completo de racional \quad \muyDificil]
+    Estudio completo de $f(x) = \dfrac{x}{x^2 - 4}$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 9}
+  \begin{mwejercicio}[Ejercicio 9 — Estudio con rango \quad \muyDificil]
+    Estudio completo de $x^2 y + y - 3x^2 = 0$; determine el rango.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 10}
+  \begin{mwejercicio}[Ejercicio 10 — Polinomio completo \quad \muyDificil]
+    Estudio completo de $f(x) = (x+2)^2(x-1)^2 + 1$ (gráfica y rango).
+  \end{mwejercicio}
+\end{frame}
+
+\end{document}

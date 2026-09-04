@@ -1,0 +1,225 @@
+% ============================================================
+%  GUÍA 6: ESTUDIO COMPLETO DE CURVAS
+%  Minicurso de Derivadas (Cálculo I · Nivel Universitario)
+%  Clase 6 · Clase de 2 horas
+%  Autor: Ing. Gabriel Astudillo
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Clase 6 — Estudio Completo de Curvas}{Ing. Gabriel Astudillo $\cdot$ Minicurso de Derivadas}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Clase 6}{Estudio Completo de Curvas}{El análisis definitivo de una función}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} Esta es la clase final: combinamos todo lo aprendido. Realizaremos el \emph{estudio completo} de funciones: dominio, cortes con los ejes, simetría, asíntotas, monotonía (primera derivada), extremos locales, concavidad y puntos de inflexión (segunda derivada), y trazaremos la gráfica para deducir el \emph{rango}. Es el ejercicio más completo y desafiante del minicurso, y el que más se parece a un examen parcial.
+  \\[6pt]
+  \textbf{Nivel de Dificultad:}\quad
+  \medio{} Intermedio $(\bigstar\bigstar)$ \quad
+  \dificil{} Difícil $(\bigstar\bigstar\bigstar)$ \quad
+  \muyDificil{} Muy difícil $(\bigstar\bigstar\bigstar\bigstar)$
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Marco Teórico}
+% ============================================================
+
+\subsection{Dominio, cortes y simetría}
+
+\begin{cuadroteoria}
+  \textbf{Primeros pasos:}
+  \begin{itemize}
+    \item \textbf{Dominio:} conjunto de $x$ donde $f(x)$ está definida (excluir denominadores nulos, raíces de índice par negativas, logaritmos de no positivos).
+    \item \textbf{Cortes con los ejes:} con $x=0$ $\to$ intersección con el eje $y$; con $y=0$ $\to$ intersección con el eje $x$.
+    \item \textbf{Simetría:} $f(-x) = f(x)$ $\to$ par (simétrica respecto al eje $y$); $f(-x) = -f(x)$ $\to$ impar (respecto al origen).
+  \end{itemize}
+\end{cuadroteoria}
+
+\subsection{Asíntotas}
+
+\begin{cuadroteoria}
+  \textbf{Asíntotas:}
+  \begin{itemize}
+    \item \textbf{Vertical:} en $x = a$ si $\lim_{x\to a}f(x) = \pm\infty$ (típico en denominadores nulos).
+    \item \textbf{Horizontal:} $y = b$ si $\lim_{x\to\infty} f(x) = b$ o $\lim_{x\to-\infty}f(x) = b$.
+    \item \textbf{Oblicua:} $y = mx + b$ con $m = \lim_{x\to\infty}\frac{f(x)}{x}$ y $b = \lim_{x\to\infty}(f(x) - mx)$ (cuando no hay horizontal).
+  \end{itemize}
+\end{cuadroteoria}
+
+\subsection{Monotonía, extremos, concavidad e inflexión}
+
+\begin{cuadroteoria}
+  \textbf{Análisis con derivadas:}
+  \begin{itemize}
+    \item \textbf{Creciente} si $f'(x) > 0$; \textbf{decreciente} si $f'(x) < 0$.
+    \item \textbf{Punto crítico} si $f'(x) = 0$ o no existe. Máximo/mínimo local.
+    \item \textbf{Cóncava hacia arriba} si $f''(x) > 0$; \textbf{hacia abajo} si $f''(x) < 0$.
+    \item \textbf{Punto de inflexión} donde $f''$ cambia de signo ($f''(x) = 0$).
+  \end{itemize}
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Pasos para el estudio completo:}
+  \begin{enumerate}
+    \item Dominio.
+    \item Cortes con los ejes.
+    \item Simetría.
+    \item Asíntotas.
+    \item Monotonía y puntos críticos ($f'$).
+    \item Concavidad y puntos de inflexión ($f''$).
+    \item Trazar la gráfica (usar todo lo anterior).
+    \item Determinar el rango.
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos:}
+  \begin{itemize}
+    \item Olvidar excluir valores que anulan el denominador del dominio.
+    \item Confundir asíntota vertical con un agujero (discontinuidad evitable).
+    \item No verificar que $f''$ cambie de signo para declarar un punto de inflexión.
+    \item Confundir máximo/mínimo local con el rango (máximo/mínimo absoluto).
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\newpage
+% ============================================================
+\section{Ejemplos Resueltos}
+% ============================================================
+
+\noindent\textbf{Ejemplo resuelto 1 (estudio de racional):} Estudie $f(x) = \dfrac{x}{x^2 - 4}$.
+
+\begin{cuadrosolucion}
+  \textbf{Dominio:} $x^2 - 4 = 0 \Rightarrow x = \pm 2$. Dominio $= \mathbb{R} \setminus \{-2, 2\}$.
+  \textbf{Cortes:} con $y$: $f(0) = 0$ $\to$ $(0,0)$; con $x$: $x = 0$ $\to$ $(0,0)$.
+  \textbf{Simetría:} $f(-x) = \frac{-x}{x^2-4} = -f(x)$ $\to$ impar.
+  \textbf{Asíntotas verticales:} $x = 2$ y $x = -2$ (el denominador se anula).
+  \textbf{Asíntota horizontal:} $\lim_{x\to\infty}\frac{x}{x^2-4} = 0$ $\to$ $y = 0$.
+  \textbf{Monotonía:} $f'(x) = \frac{(x^2-4) - x(2x)}{(x^2-4)^2} = \frac{-x^2-4}{(x^2-4)^2} = -\frac{x^2+4}{(x^2-4)^2} < 0$ siempre. Decreciente en todo su dominio. No hay extremos.
+  \textbf{Concavidad:} $f''(x) = \frac{2x(x^2+12)}{(x^2-4)^3}$. $f''=0$ en $x=0$. Punto de inflexión en $(0,0)$.
+  \textbf{Rango:} $(-\infty, \infty)$? No. Como $f$ es decreciente en cada rama: $(-\infty, 0) \cup (0, \infty)$. Por el comportamiento en los límites, el rango es $\mathbb{R}$ (la función toma todos los reales). \textbf{Rango:} $\mathbb{R}$.
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplo resuelto 2 (estudio de polinomio):} Estudie $f(x) = (x+2)^2(x-1)^2 + 1$.
+
+\begin{cuadrosolucion}
+  \textbf{Dominio:} $\mathbb{R}$.
+  \textbf{Cortes:} con $y$: $f(0) = (2)^2(-1)^2+1 = 5$ $\to$ $(0,5)$. Con $x$: como $(x+2)^2(x-1)^2 \ge 0$, $f \ge 1$, no cruza el eje $x$.
+  \textbf{Simetría:} No es par ni impar (los ceros están en $\{-2, 1\}$, no simétricos).
+  \textbf{Monotonía:} $f'(x) = 2(x+2)(x-1)^2 + 2(x+2)^2(x-1) = 2(x+2)(x-1)(2x+1)$. Ceros: $x = -2, 1, -\frac{1}{2}$. Análisis de signos $\to$ puntos críticos.
+  \textbf{Concavidad:} Requiere $f''$. Puntos de inflexión donde $f'' = 0$.
+  \textbf{Rango:} $f(x) \ge 1$ visto arriba. Mínimo absoluto en... $f(-2) = 1$ y $f(1) = 1$. \textbf{Rango:} $[1, \infty)$.
+\end{cuadrosolucion}
+
+\newpage
+% ============================================================
+\section{Ejercicios Propuestos}
+% ============================================================
+
+\noindent En los ejercicios 1--6 $(\bigstar\bigstar)$, halla dominio, cortes, simetría o asíntotas. En los 7--16 $(\bigstar\bigstar\bigstar)$ y 17--25 $(\bigstar\bigstar\bigstar\bigstar)$ realiza el análisis completo.
+
+\begin{enumerate}[leftmargin=*]
+
+  % ── ★★ (1─6) ─────────────────────────────────────────────
+  \item \medio{} Halle el dominio de $f(x) = \dfrac{x}{x^2 - 4}$.
+
+  \item \medio{} Halle el dominio de $f(x) = \sqrt{x - 3}$.
+
+  \item \medio{} Halle cortes con los ejes de $f(x) = x^2 - 4$.
+
+  \item \medio{} Estudie la simetría de $f(x) = x^3 - x$ y de $f(x) = x^2 + 1$.
+
+  \item \medio{} Halle las asíntotas verticales de $f(x) = \dfrac{2x}{x - 1}$.
+
+  \item \medio{} Halle las asíntotas horizontales de $f(x) = \dfrac{3x + 1}{2x - 5}$.
+
+  % ── ★★★ (7─16) ───────────────────────────────────────────
+  \item \dificil{} Estudie $f(x) = x^3 - 6x^2 + 9x$ (dominio, cortes, simetría, monotonía, extremos).
+
+  \item \dificil{} Halle los intervalos de crecimiento y decrecimiento de $f(x) = \dfrac{x - 2}{x^2 - 1}$ y localice extremos relativos. % [Examen 6, 5]
+
+  \item \dificil{} Halle los intervalos de crecimiento y decrecimiento de $f(x) = \dfrac{x}{x^2 - 4}$.
+
+  \item \dificil{} Estudie la concavidad y los puntos de inflexión de $f(x) = x^4 - 4x^3$.
+
+  \item \dificil{} Sea $f(x) = 2x^3 + 3x^2 - 12x + 5$. Halle los puntos de inflexión y los intervalos de concavidad. % [Examen 6, 6]
+
+  \item \dificil{} Estudie el dominio, asíntotas y monotonía de $f(x) = \dfrac{x^2}{x^2 - 4}$.
+
+  \item \dificil{} Estudie la monotonía y los extremos de $f(x) = x e^{-x}$.
+
+  \item \dificil{} Estudie la concavidad de $f(x) = \operatorname{sen} x$ en $[0, 2\pi]$ y halle los puntos de inflexión.
+
+  \item \dificil{} Estudie las asíntotas de $f(x) = \dfrac{x^2 + 1}{x}$.
+
+  \item \dificil{} Dado $f(x) = (x+2)^2(x-1)^2 + 1$, halle dominio, cortes, simetría y el rango. % [Examen 1, V — parcial]
+
+  % ── ★★★★ (17─25) ─────────────────────────────────────────
+  \item \muyDificil{} Estudio completo de $f(x) = \dfrac{x}{x^2 - 4}$. % [Examen 4, 4]
+
+  \item \muyDificil{} Estudio completo de $f(x) = (x+2)^2(x-1)^2 + 1$ (dominio, cortes, simetría, monotonía, extremos, concavidad, inflexión, gráfica, rango). % [Examen 1, V]
+
+  \item \muyDificil{} Dada $x^2 y - x^3 = 4y$, determine: dominio, cortes, simetría, asíntotas, monotonía, extremos, concavidad, inflexión, gráfica y rango. % [Examen 3, 4]
+
+  \item \muyDificil{} Estudio completo de $x^2 y + y - 3x^2 = 0$; determine el rango. % [Examen 7A, 4]
+
+  \item \muyDificil{} Estudio completo de $x^2 y + 2y - x^2 - 1 = 0$; determine el rango. % [Examen 8B, 4]
+
+  \item \muyDificil{} Estudio completo de $f(x) = \dfrac{x^2 - 1}{x^2 - 4}$.
+
+  \item \muyDificil{} Estudio completo de $f(x) = x^3 - 3x$ (incl. gráfica y rango).
+
+  \item \muyDificil{} Estudio completo de $f(x) = \dfrac{x}{x^2 + 1}$.
+
+  \item \muyDificil{} Estudio completo de $f(x) = \dfrac{x^3}{x^2 - 1}$.
+
+\end{enumerate}
+
+\newpage
+% ============================================================
+\ifmwclaves
+  \section{Clave de Respuestas}
+  % ============================================================
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \item $\mathbb{R}\setminus\{-2, 2\}$
+    \item $[3, \infty)$
+    \item Cortes: $(2,0)$, $(-2,0)$, $(0,-4)$
+    \item $f(x)=x^3-x$ impar; $f(x)=x^2+1$ par
+    \item Asíntota vertical: $x = 1$
+    \item Asíntota horizontal: $y = \frac{3}{2}$
+    \item Críticos: $x=1,3$. Crece $(-\infty,1)\cup(3,\infty)$, decrece $(1,3)$. Máx local en $x=1$ ($f=4$), mín local en $x=3$ ($f=0$).
+    \item $f'(x) = \frac{x^2-2x-2}{(x^2-1)^2}$. Críticos: $x = 1\pm\sqrt{3}$. Extremos relativos en $1\pm\sqrt{3}$.
+    \item $f'(x) = -\frac{x^2+4}{(x^2-4)^2} < 0$; decreciente en todo el dominio, sin extremos.
+    \item $f'(x) = 4x^3-12x^2 = 4x^2(x-3)$; $f''(x) = 12x^2-24x = 12x(x-2)$. Inflexión en $x=0,2$ (cambia signo); cóncava arriba $(-\infty,0)\cup(2,\infty)$ y hacia abajo $(0,2)$.
+    \item $f'(x) = 6x^2+6x-12 = 6(x+2)(x-1)$. Críticos $x=-2,1$. $f''(x)=12x+6$, inflexión en $x=-\frac{1}{2}$. Cóncava arriba $(-\frac{1}{2},\infty)$, abajo $(-\infty,-\frac{1}{2})$.
+    \item Dominio $\mathbb{R}\setminus\{\pm 2\}$. Asíntotas verticales $x=\pm2$; horizontal $y=1$. Crece/decrece: derivada con $x=0$ crítico.
+    \item $f'(x) = e^{-x}(1-x)$; crece $(-\infty,1)$, decrece $(1,\infty)$. Máximo local en $x=1$ ($f=e^{-1}$).
+    \item $f''(x) = -\operatorname{sen} x$; inflexión en $x = \pi$ (y $x=0,2\pi$ en el borde). Cóncava arriba $(\pi,2\pi)$, abajo $(0,\pi)$.
+    \item Asíntota oblicua: $y = x$ (ya que $f = x + \frac{1}{x}$); vertical en $x=0$.
+    \item Dominio $\mathbb{R}$. Cortes: $(0,5)$; sin corte en $x$. Ni par ni impar. Rango $[1,\infty)$.
+    \item Dominio $\mathbb{R}\setminus\{\pm2\}$; impar; asíntotas $x=\pm2$, $y=0$; decreciente; punto de inflexión $(0,0)$.
+    \item Ver Ejemplo 2: dominio $\mathbb{R}$, corte $(0,5)$, sin corte $x$, ni par/impar, crece/decrece alrededor de $x=-2,-\frac{1}{2},1$, concavidad, inflexión en $-\frac{1}{2}$... rango $[1,\infty)$.
+    \item Curva $x^2y - x^3 = 4y$: $y(x^2-4) = x^3 \Rightarrow y = \frac{x^3}{x^2-4}$. Dominio $\mathbb{R}\setminus\{\pm 2\}$, impar, asíntotas $x=\pm2$, $y=x$ (oblicua). Monotonía, extremos, concavidad, inflexión; rango $\mathbb{R}$.
+    \item $x^2y+y-3x^2=0 \Rightarrow y = \frac{3x^2}{x^2+1}$. Dominio $\mathbb{R}$, par, asíntota horizontal $y=3$; mínimo en $(0,0)$; rango $[0,3)$.
+    \item $x^2y+2y-x^2-1=0 \Rightarrow y = \frac{x^2+1}{x^2+2}$. Dominio $\mathbb{R}$, par, asíntota horizontal $y=1$; mínimo en $(0,\frac{1}{2})$; rango $[\frac{1}{2},1)$.
+    \item $f(x)=\frac{x^2-1}{x^2-4}$: dominio $\mathbb{R}\setminus\{\pm2\}$; par; asíntotas $x=\pm2$, $y=1$; cortes $(\pm1,0)$, $(0,\frac{1}{4})$; rango $(-\infty,\infty)$ con ramas... revisar.
+    \item $f(x)=x^3-3x$: dominio $\mathbb{R}$, impar, cortes $(0,0)$, $(\pm\sqrt{3},0)$; máx local $x=-1$ ($f=2$), mín local $x=1$ ($f=-2$); inflexión $(0,0)$; rango $\mathbb{R}$.
+    \item $f(x)=\frac{x}{x^2+1}$: dominio $\mathbb{R}$, impar, asíntota horizontal $y=0$; máx local $x=1$ ($f=\frac{1}{2}$), mín local $x=-1$ ($f=-\frac{1}{2}$); inflexión $x=0, \pm\sqrt{3}$; rango $[-\frac{1}{2},\frac{1}{2}]$.
+    \item $f(x)=\frac{x^3}{x^2-1}$: dominio $\mathbb{R}\setminus\{\pm1\}$; impar; asíntotas $x=\pm1$, $y=x$ (oblicua); cortes $(0,0)$; rango $\mathbb{R}$.
+
+  \end{enumerate}
+\fi
+
+\end{document}

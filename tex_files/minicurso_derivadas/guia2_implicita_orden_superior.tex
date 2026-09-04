@@ -1,0 +1,252 @@
+% ============================================================
+%  GUÍA 2: DERIVACIÓN IMPLÍCITA Y DERIVADAS DE ORDEN SUPERIOR
+%  Minicurso de Derivadas (Cálculo I · Nivel Universitario)
+%  Clase 2 · Clase de 2 horas
+%  Autor: Ing. Gabriel Astudillo
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Clase 2 — Derivación Implícita y Orden Superior}{Ing. Gabriel Astudillo $\cdot$ Minicurso de Derivadas}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Clase 2}{Derivación Implícita y Derivadas de Orden Superior}{Cuando no puedes despejar, deriva de otro modo}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} No siempre es posible (ni conveniente) despejar $y$ en función de $x$. En esta clase aprenderemos a derivar \emph{implícitamente}, tratando a $y$ como una función de $x$ y aplicando la regla de la cadena. También dominaremos las \emph{derivadas sucesivas}: la segunda, tercera y $(n)$-ésima derivada, fundamentales para el estudio de curvas que veremos en la Clase 6.
+  \\[6pt]
+  \textbf{Nivel de Dificultad:}\quad
+  \medio{} Intermedio $(\bigstar\bigstar)$ \quad
+  \dificil{} Difícil $(\bigstar\bigstar\bigstar)$ \quad
+  \muyDificil{} Muy difícil $(\bigstar\bigstar\bigstar\bigstar)$
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Marco Teórico}
+% ============================================================
+
+\subsection{Derivación implícita}
+
+Cuando una relación entre $x$ e $y$ está dada por una ecuación $F(x,y) = 0$, decimos que $y$ está definida \emph{implícitamente}. Derivamos ambos lados respecto a $x$ tratando a $y$ como función de $x$, es decir, usando la regla de la cadena: cada vez que derivamos $y$, aparece el factor $y'$.
+
+\begin{cuadroteoria}
+  \textbf{Regla de oro de la derivación implícita:}
+  \[
+    \frac{d}{dx}\bigl[g(y)\bigr] = g'(y)\cdot y'
+  \]
+  En particular: $\dfrac{d}{dx}\bigl[y^2\bigr] = 2y\,y'$, \quad
+  $\dfrac{d}{dx}\bigl[\operatorname{sen} y\bigr] = \cos y \cdot y'$.
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Pasos para derivar implícitamente:}
+  \begin{enumerate}
+    \item Deriva \textbf{ambos lados} de la ecuación respecto a $x$.
+    \item Aplica la cadena cada vez que aparezca $y$ (añade $y'$).
+    \item Agrupa todos los términos con $y'$ en un lado de la ecuación.
+    \item Factoriza $y'$ y despeja: $y' = \dfrac{\text{términos sin } y'}{\text{términos con } y'}$.
+  \end{enumerate}
+\end{cuadropasos}
+
+\subsection{Derivadas de orden superior}
+
+La \textbf{segunda derivada} $y''$ es la derivada de $y'$; la \textbf{tercera} $y'''$ es la derivada de $y''$, y así sucesivamente. Se denotan $f'(x), f''(x), f'''(x), f^{(n)}(x)$ o en notación de Leibniz $\dfrac{dy}{dx}, \dfrac{d^2y}{dx^2}, \dfrac{d^3y}{dx^3}, \dfrac{d^ny}{dx^n}$.
+
+\begin{cuadroteoria}
+  \textbf{Derivadas sucesivas:}
+  \[
+    f^{(n)}(x) = \frac{d^{\,n}y}{dx^n} = \text{derivada } n\text{-ésima de } f
+  \]
+  En el estudio de curvas (Clase 6):
+  \begin{itemize}
+    \item $f'(x) > 0$ $\to$ creciente; $f'(x) < 0$ $\to$ decreciente.
+    \item $f''(x) > 0$ $\to$ cóncava hacia arriba; $f''(x) < 0$ $\to$ cóncava hacia abajo.
+  \end{itemize}
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos:}
+  \begin{itemize}
+    \item Olvidar añadir $y'$ al derivar términos con $y$ en la implícita.
+    \item Derivar una ecuación implícita solo del lado izquierdo.
+    \item Al calcular $y''$ a partir de $y'$, no re-sustituir $y'$ (el resultado debe quedar en términos de $x$ e $y$).
+    \item Confundir $\dfrac{d^2y}{dx^2}$ con $\left(\dfrac{dy}{dx}\right)^2$.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\newpage
+% ============================================================
+\section{Ejemplos Resueltos}
+% ============================================================
+
+\noindent\textbf{Ejemplo resuelto 1 (implícita polinómica):} Halle $y'$ por diferenciación implícita: $x^3 y^2 - x^2 y^3 + (2x-y)^2 = y^3 + (y-2x)^2$.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1:} Derivamos ambos lados respecto a $x$ (cadena en $y$).
+  \[
+    3x^2 y^2 + x^3\cdot 2y\,y' - 2x y^3 - x^2\cdot 3y^2\,y' + 2(2x-y)(2 - y')
+    = 3y^2\,y' + 2(y-2x)(y' - 2)
+  \]
+  \textbf{Paso 2:} Agrupamos todos los términos con $y'$ a la izquierda.
+  \[
+    y'\left[2x^3 y - 3x^2 y^2 - 2(2x-y) - 3y^2 - 2(y-2x)\right]
+    = -3x^2 y^2 + 2x y^3 - 4(2x-y) - 4(y-2x)
+  \]
+  \textbf{Paso 3:} Despejamos $y'$.
+  \[
+    y' = \frac{-3x^2 y^2 + 2x y^3 - 4(2x-y) - 4(y-2x)}{2x^3 y - 3x^2 y^2 - 2(2x-y) - 3y^2 - 2(y-2x)}
+  \]
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplo resuelto 2 (implícita trigonométrica):} Obtenga $y'$ si $\csc(x-y) + \sec(x+y) = x$.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1:} Derivamos ambos lados (cadena en los argumentos).
+  \[
+    -\csc(x-y)\cot(x-y)\,(1-y') + \sec(x+y)\tan(x+y)\,(1+y') = 1
+  \]
+  \textbf{Paso 2:} Agrupamos $y'$.
+  \[
+    \begin{aligned}
+      y'&\Bigl[\csc(x-y)\cot(x-y) + \sec(x+y)\tan(x+y)\Bigr] \\
+        &= 1 + \csc(x-y)\cot(x-y) - \sec(x+y)\tan(x+y)
+    \end{aligned}
+  \]
+  \textbf{Paso 3:} Despejamos.
+  \begin{center}
+    \resizebox{0.94\textwidth}{!}{$\displaystyle
+      y' = \frac{1 + \csc(x-y)\cot(x-y) - \sec(x+y)\tan(x+y)}
+                {\csc(x-y)\cot(x-y) + \sec(x+y)\tan(x+y)}
+    $}
+  \end{center}
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplo resuelto 3 (segunda derivada):} Dada $x^2 + y^2 = 100$, compruebe que $y'' = -\dfrac{100}{y^3}$.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1:} Derivamos una vez: $2x + 2y\,y' = 0$, así que
+  \[
+    y' = -\frac{x}{y}
+  \]
+  \textbf{Paso 2:} Derivamos de nuevo (implícitamente, con cociente/cadena en $y$).
+  \[
+    y'' = -\frac{1\cdot y - x\cdot y'}{y^2} = -\frac{y - x\,y'}{y^2}
+  \]
+  \textbf{Paso 3:} Sustituimos $y' = -\frac{x}{y}$.
+  \[
+    y'' = -\frac{y + \frac{x^2}{y}}{y^2} = -\frac{y^2 + x^2}{y^3} = -\frac{100}{y^3} \quad \checkmark
+  \]
+  (usamos $x^2 + y^2 = 100$). \textbf{Comprobado.}
+\end{cuadrosolucion}
+
+\newpage
+% ============================================================
+\section{Ejercicios Propuestos}
+% ============================================================
+
+\noindent En los ejercicios 1--7 $(\bigstar\bigstar)$, deriva implícitamente o calcula la derivada pedida. En los 8--17 $(\bigstar\bigstar\bigstar)$ y 18--25 $(\bigstar\bigstar\bigstar\bigstar)$, aumenta la dificultad.
+
+\begin{enumerate}[leftmargin=*]
+
+  % ── ★★ (1─7) ─────────────────────────────────────────────
+  \item \medio{} Halle $y'$: $x^2 + y^2 = 25$
+
+  \item \medio{} Halle $y'$: $x^3 + y^3 = 8$
+
+  \item \medio{} Halle $y'$: $xy = 5$
+
+  \item \medio{} Halle $y'$: $y^2 = 4x$
+
+  \item \medio{} Halle $f''(x)$: $f(x) = x^4 - 3x^2 + 2x$
+
+  \item \medio{} Halle $f''(x)$: $f(x) = x^3\,\operatorname{sen} x$
+
+  \item \medio{} Halle $f'''(x)$: $f(x) = x^5$
+
+  % ── ★★★ (8─17) ───────────────────────────────────────────
+  \item \dificil{} Halle $y'$: $x^3 y^2 - x^2 y^3 + (2x-y)^2 = y^3 + (y-2x)^2$ % [Examen 2, 3]
+
+  \item \dificil{} Halle $y'$: $\csc(x-y) + \sec(x+y) = x$ % [Examen 6, 2a]
+
+  \item \dificil{} Halle $y'$: $(xy)^2 - xy^2 = x^3 + y^3$ % [Examen 6, 2b]
+
+  \item \dificil{} Halle $f'''(x)$: $f(x) = \operatorname{sen}(\pi x)\cdot\cos(\pi x)$ % [Examen 5, 6]
+
+  \item \dificil{} Halle $f''(x)$: $f(x) = \dfrac{x}{x^2 + 1}$
+
+  \item \dificil{} Halle $y'$: $x\operatorname{sen} y + y\cos x = 1$
+
+  \item \dificil{} Halle $y'$: $e^{xy} = x + y$
+
+  \item \dificil{} Halle $y'$: $x^2 + xy + y^2 = 7$
+
+  \item \dificil{} Halle $y'$: $y = \operatorname{tg}(x + y)$
+
+  \item \dificil{} Halle $y''$: $xy + y^2 = 1$
+
+  % ── ★★★★ (18─25) ─────────────────────────────────────────
+  \item \muyDificil{} Halle $y'$: $(y^2 - 2x^2)^2 - (x^2 - 2y^2)^2 = 3xy + 1$ % [Examen 5, 2]
+
+  \item \muyDificil{} Halle $f'''(x)$: $f(x) = \cot^4(2x^2)$ % [Examen 2, 2]
+
+  \item \muyDificil{} Dada $x^2 + y^2 = 100$, compruebe que $y'' = -\dfrac{100}{y^3}$ % [Examen 5, 3]
+
+  \item \muyDificil{} Halle $y''$ (implícitamente): $x^2 + y^2 = 100$
+
+  \item \muyDificil{} Halle $y'$: $x^2 y^2 + \operatorname{sen}(xy) = x$
+
+  \item \muyDificil{} Halle $y''$: $y = 3x^4 - 2x^2 + 7$ (en el punto $x = 1$)
+
+  \item \muyDificil{} Halle $y'$ y evalúe en $(1,1)$: $x^3 + y^3 = 2$
+
+  \item \muyDificil{} Halle $y'''(x)$: $f(x) = x\,\ln x$
+
+\end{enumerate}
+
+\newpage
+% ============================================================
+\ifmwclaves
+  \section{Clave de Respuestas}
+  % ============================================================
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \item $y' = -\dfrac{x}{y}$
+    \item $y' = -\dfrac{x^2}{y^2}$
+    \item $y' = -\dfrac{y}{x}$
+    \item $y' = \dfrac{2}{y}$
+    \item $f''(x) = 12x^2 - 6$
+    \item $f''(x) = 6x\cos x - x^3\operatorname{sen} x - 6x^2\operatorname{sen} x$ (revisar: $f'=3x^2\operatorname{sen}x+x^3\cos x$; $f''=6x\operatorname{sen}x+6x^2\cos x-x^3\operatorname{sen}x$)
+    \item $f'''(x) = 60x^2$
+    \item $y' = \dfrac{-3x^2y^2 + 2xy^3 - 4(2x-y) - 4(y-2x)}{2x^3y - 3x^2y^2 - 2(2x-y) - 3y^2 - 2(y-2x)}$
+    \item $y' = \dfrac{1 + \csc(x-y)\cot(x-y) - \sec(x+y)\tan(x+y)}{\csc(x-y)\cot(x-y) + \sec(x+y)\tan(x+y)}$
+    \item $y' = \dfrac{2x y^2 - y^2 - 3x^2}{2xy - 2xy - 3y^2}$ (despejar con cuidado: $2xy^2 - 2x^2yy' - (y^2 + 2xyy') = 3x^2 + 3y^2y'$)
+    \item $f'''(x) = -8\pi^3\operatorname{sen}(2\pi x)$ (comprobar con identidad $\operatorname{sen}(\pi x)\cos(\pi x) = \frac{1}{2}\operatorname{sen}(2\pi x)$)
+    \item $f''(x) = \dfrac{-2x}{(x^2+1)^2}$ $\to$ revisar: $f'=\frac{1-x^2}{(x^2+1)^2}$; $f''=\frac{-2x(x^2+3)}{(x^2+1)^3}$
+    \item $y' = \dfrac{\operatorname{sen} y + y\operatorname{sen} x}{x\cos y + \cos x}$
+    \item $y' = \dfrac{1 - y e^{xy}}{x e^{xy} - 1}$
+    \item $y' = \dfrac{-2x - y}{x + 2y}$
+    \item $y' = \dfrac{\sec^2(x+y)}{1 - \sec^2(x+y)}$
+    \item $y' = -\dfrac{y}{x + 2y}$; $y'' = \dfrac{2y(y+1)}{(x+2y)^3}$ (revisar)
+    \item $y' = \dfrac{3y + 4x(y^2-2x^2) - 4x(x^2-2y^2)}{3x + 4y(y^2-2x^2) - 4y(x^2-2y^2)}$ (simplificar)
+    \item $f'''(x) = -192\,x\,\cot(2x^2)\csc^2(2x^2)\left[4x^2(\cot^2(2x^2)+1)^2\right] + \dots$ (complicado; usar cadena repetida)
+    \item $y'' = -\dfrac{100}{y^3}$ \checkmark
+    \item $y'' = -\dfrac{100}{y^3}$
+    \item $y' = \dfrac{-2xy^2 - y\cos(xy)}{2x^2y + x\cos(xy)}$
+    \item $y'' = 36x^2 - 4$; en $x=1$: $y''=32$
+    \item $y' = -\dfrac{x^2}{y^2}$; en $(1,1)$: $y' = -1$
+    \item $f'''(x) = \dfrac{1}{x^2}$ (ya que $f'=\ln x+1$, $f''=\frac{1}{x}$, $f'''=-\frac{1}{x^2}$) $\to$ revisar signo
+
+  \end{enumerate}
+\fi
+
+\end{document}

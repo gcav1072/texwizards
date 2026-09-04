@@ -1,0 +1,129 @@
+% ============================================================
+%  CLASE 2 — DERIVACIÓN IMPLÍCITA Y DERIVADAS DE ORDEN SUPERIOR
+%  Minicurso de Derivadas · Clase de 2 horas
+% ============================================================
+\documentclass[aspectratio=169]{beamer}
+\usepackage{mathwizards-beamer}
+\mwbeamer{Clase 2}{Derivación Implícita y Derivadas de Orden Superior}{Minicurso de Derivadas}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Marco Teórico}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Derivación Implícita}
+  \begin{block}{La regla de oro}
+    Cuando $F(x,y) = 0$, trata $y$ como función de $x$ y usa la cadena:
+    \[
+      \frac{d}{dx}\bigl[g(y)\bigr] = g'(y)\cdot y'
+    \]
+    Ejemplos: $\dfrac{d}{dx}[y^2] = 2y\,y'$, \quad $\dfrac{d}{dx}[\operatorname{sen} y] = \cos y\cdot y'$.
+  \end{block}
+  \vspace{6pt}
+  \begin{mwpasos}[Pasos]
+    \begin{enumerate}
+      \item Deriva \textbf{ambos lados} respecto a $x$.
+      \item Aplica cadena cuando aparezca $y$ (añade $y'$).
+      \item Agrupa los términos con $y'$.
+      \item Despeja $y'$.
+    \end{enumerate}
+  \end{mwpasos}
+\end{frame}
+
+\begin{frame}{Derivadas de Orden Superior}
+  \begin{block}{Definición de derivadas sucesivas}
+    \[
+      f'(x), \quad f''(x), \quad f'''(x), \quad f^{(n)}(x)
+    \]
+    En notación de Leibniz: $\dfrac{dy}{dx}$, $\dfrac{d^2y}{dx^2}$, $\dfrac{d^3y}{dx^3}$, $\dfrac{d^ny}{dx^n}$.
+  \end{block}
+  \vspace{6pt}
+  \begin{mwextra}[Aplicación en el estudio de curvas]
+    \begin{itemize}
+      \item $f'(x) > 0$ $\to$ creciente; $f'(x) < 0$ $\to$ decreciente.
+      \item $f''(x) > 0$ $\to$ cóncava hacia arriba; $f''(x) < 0$ $\to$ cóncava hacia abajo.
+    \end{itemize}
+  \end{mwextra}
+\end{frame}
+
+\begin{frame}{Errores Clásicos}
+  \begin{alertblock}{¡Cuidado!}
+    \begin{itemize}
+      \item Olvidar añadir $y'$ al derivar términos con $y$.
+      \item Derivar solo el lado izquierdo de la ecuación.
+      \item No re-sustituir $y'$ al calcular $y''$ (debe quedar en $x$ e $y$).
+      \item Confundir $\dfrac{d^2y}{dx^2}$ con $\left(\dfrac{dy}{dx}\right)^2$.
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 1}
+  \begin{mwejercicio}[Ejercicio 1 — Implícita simple \quad \medio]
+    Halle $y'$: $x^2 + y^2 = 25$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 2}
+  \begin{mwejercicio}[Ejercicio 2 — Segunda derivada \quad \medio]
+    Halle $f''(x)$: $f(x) = x^4 - 3x^2 + 2x$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 3}
+  \begin{mwejercicio}[Ejercicio 3 — Implícita con producto \quad \medio]
+    Halle $y'$: $xy = 5$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 4}
+  \begin{mwejercicio}[Ejercicio 4 — Implícita polinómica \quad \dificil]
+    Halle $y'$: $x^3 y^2 - x^2 y^3 + (2x-y)^2 = y^3 + (y-2x)^2$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 5}
+  \begin{mwejercicio}[Ejercicio 5 — Tercera derivada \quad \dificil]
+    Halle $f'''(x)$: $f(x) = \operatorname{sen}(\pi x)\cdot\cos(\pi x)$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 6}
+  \begin{mwejercicio}[Ejercicio 6 — Implícita trigonométrica \quad \dificil]
+    Halle $y'$: $\csc(x-y) + \sec(x+y) = x$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 7}
+  \begin{mwejercicio}[Ejercicio 7 — Segunda derivada implícita \quad \dificil]
+    Dada $x^2 + y^2 = 100$, compruebe que $y'' = -\dfrac{100}{y^3}$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 8}
+  \begin{mwejercicio}[Ejercicio 8 — Implícita extensa \quad \muyDificil]
+    Halle $y'$: $(y^2 - 2x^2)^2 - (x^2 - 2y^2)^2 = 3xy + 1$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 9}
+  \begin{mwejercicio}[Ejercicio 9 — Tercera derivada con cot \quad \muyDificil]
+    Halle $f'''(x)$: $f(x) = \cot^4(2x^2)$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 10}
+  \begin{mwejercicio}[Ejercicio 10 — Implícita con exponencial \quad \muyDificil]
+    Halle $y'$: $e^{xy} = x + y$.
+  \end{mwejercicio}
+\end{frame}
+
+\end{document}

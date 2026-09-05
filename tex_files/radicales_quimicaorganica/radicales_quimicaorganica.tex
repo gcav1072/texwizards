@@ -1,0 +1,246 @@
+% ============================================================
+%  radicales_quimicaorganica.tex
+%  Guía / Key Sheet — Radicales y Grupos Funcionales
+%  Química Orgánica · Mathwizards Consultoría Educativa STEM
+%
+%  Compilar con XeLaTeX:
+%    cd tex_files/radicales_quimicaorganica && latexmk -xelatex radicales_quimicaorganica.tex
+% ============================================================
+\documentclass[12pt, letterpaper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+\usepackage{mathwizards-guia}
+\usepackage{chemfig}
+
+% ── Configuración de chemfig ─────────────────────────────────
+\setchemfig{
+  atom sep        = 1.35em,
+  bond offset     = 0.12em,
+  double bond sep = 0.22em,
+  bond style      = {line width = 0.6pt},
+  angle increment = 30
+}
+
+% ── Estilo de enlace ondulado (valencia libre) ───────────────
+\tikzset{
+  wavy/.style={decorate, decoration={snake, amplitude=0.8pt, segment length=3.5pt}}
+}
+
+\newcommand{\wavybond}{%
+  \tikz[baseline=-0.5ex]{%
+    \draw[line width=0.6pt, decorate, decoration={snake, amplitude=0.8pt, segment length=3.5pt}]
+      (0,0) -- (0.5,0);%
+  }%
+}
+
+% ── Datos de la guía ─────────────────────────────────────────
+\mwguia{Guía — Radicales y Grupos Funcionales}{Ing. Gabriel Astudillo $\cdot$ Química Orgánica}
+
+\begin{document}
+% ============================================================
+
+% ── Portada ──────────────────────────────────────────────────
+\mwportada{Radicales y Grupos Funcionales}{Key Sheet de Química Orgánica}{Nomenclatura IUPAC y común · Estructuras esqueléticas}
+
+\begin{cuadroinfo}
+\textbf{¿Qué encontrarás aquí?} Esta guía reúne, en dos secciones esenciales, las herramientas de nomenclatura y formulación más empleadas en química orgánica:
+\begin{itemize}[leftmargin=1.4em, itemsep=2pt, topsep=3pt]
+  \item \textbf{Sección 1 — Jerarquía de grupos funcionales:} el orden oficial de prioridad para seleccionar la cadena principal, el sufijo principal y los prefijos cuando actúan como sustituyentes.
+  \item \textbf{Sección 2 — Radicales (sustituyentes):} los grupos alquilo, alquenilo, alquinilo, cicloalquilo, arilo y con heteroátomos más frecuentes, con su nombre IUPAC sistemático y común.
+\end{itemize}
+\end{cuadroinfo}
+
+\vspace{0.6em}
+
+\begin{cuadroteorianobg}
+\textbf{Convenciones de representación esquelética empleadas:}
+\begin{itemize}[leftmargin=1.4em, itemsep=2pt, topsep=2pt]
+  \item \textbf{Línea ondulada (\wavybond):} indica el enlace libre o punto de unión del radical/grupo a la cadena principal.
+  \item \textbf{Estructura esquelética (zig-zag):} los vértices e intersecciones representan átomos de carbono con sus respectivos hidrógenos implícitos.
+  \item \textbf{Carbonos de los extremos:} únicamente se explicitan los extremos de cadena (grupos terminales como $-\text{CH}_3$, $=\text{CH}_2$, etc.) y heteroátomos ($-\text{OH}$, $-\text{NH}_2$, $-\text{SH}$).
+  \item \textbf{Geometría lineal de alquinos:} los enlaces triples ($\text{C}\equiv\text{C}$) mantienen el ángulo estricto de $180^\circ$ característico de la hibridación $sp$.
+\end{itemize}
+\end{cuadroteorianobg}
+
+\clearpage
+
+% ============================================================
+\section{Jerarquía de grupos funcionales}
+
+La tabla siguiente ordena los grupos funcionales de \textbf{mayor a menor prioridad}. El grupo de mayor prioridad determina el \textbf{sufijo} del nombre; los demás se nombran como \textbf{sustituyentes} (prefijos).
+
+\begin{center}
+\footnotesize
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular}{@{}c l c l l@{}}
+\toprule
+\textbf{N.º} & \textbf{Grupo funcional} & \textbf{Estructura} & \textbf{Sufijo (cadena principal)} & \textbf{Como sustituyente} \\
+\midrule
+1  & Ácidos carboxílicos      & \chemfig{R-[:30](=[::60]O)(-[::-60]OH)}                              & Ácido \dots-oico            & carboxi- \\
+2  & Anhídridos de ácido      & \chemfig{R-[:30](=[::60]O)(-[::-60]O-[:30](=[::60]O)(-[::-60]R))}    & Anhídrido \dots-oico        & — \\
+3  & Ésteres                  & \chemfig{R-[:30](=[::60]O)(-[::-60]O-[:30]R)}                        & \dots-oato de alquilo       & alcoxicarbonil- / aciloxi- \\
+4  & Halogenuros de acilo     & \chemfig{R-[:30](=[::60]O)(-[::-60]X)}                               & Halogenuro de \dots-oílo    & halocarbonil- \\
+5  & Amidas                   & \chemfig{R-[:30](=[::60]O)(-[::-60]NH_2)}                            & \dots-amida                 & carbamoil- \\
+6  & Nitrilos                 & \chemfig{R-[:30]~[0]N}                                               & \dots-nitrilo               & ciano- \\
+7  & Aldehídos                & \chemfig{R-[:30](=[::60]O)(-[::-60]H)}                               & \dots-al                    & formil- \\
+8  & Cetonas                  & \chemfig{R-[:30](=[::60]O)(-[::-60]R)}                               & \dots-ona                   & oxo- \\
+9  & Alcoholes                & \chemfig{R-[:30]OH}                                                  & \dots-ol                    & hidroxi- \\
+10 & Tioles (mercaptanos)     & \chemfig{R-[:30]SH}                                                  & \dots-tiol                  & mercapto- / sulfanil- \\
+11 & Aminas                   & \chemfig{R-[:30]NH_2}                                                & \dots-amina                 & amino- \\
+12 & Alquenos                 & \chemfig{R-[:30]=[:-30]-[:30]R}                                      & \dots-eno                   & alquenil- \\
+13 & Alquinos                 & \chemfig{R-[:30]~[0]-[:30]R}                                         & \dots-ino                   & alquinil- \\
+14 & Éteres                   & \chemfig{R-[:30]O-[:30]R}                                            & éter                        & alcoxi- \\
+15 & Sulfuros (tioéteres)     & \chemfig{R-[:30]S-[:30]R}                                            & sulfuro                     & alquiltio- \\
+16 & Halogenuros              & \chemfig{R-[:30]X}                                                   & —                           & halógeno- \\
+17 & Nitro                    & \chemfig{R-[:30]\chemabove{N}{\scriptstyle +}(=[::60]O)(-[::-60]\chemabove{O}{\scriptstyle -})} & — & nitro- \\
+18 & Alcanos                  & \chemfig{R-[:30]CH_3}                                                & \dots-ano                   & alquil- \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{cuadroextra}
+\textbf{Regla práctica:} para nombrar un compuesto polifuncional, identifica el grupo de \textbf{mayor prioridad} (más arriba en la tabla) y úsalo como sufijo principal. Los grupos de menor prioridad se citan como prefijos en orden alfabético. Los grupos 16--18 se nombran siempre como sustituyentes.
+\end{cuadroextra}
+
+\clearpage
+
+% ============================================================
+\section{Radicales (sustituyentes)}
+
+Un \textbf{radical} es un fragmento molecular que se une a una cadena principal. Se indica su punto de unión mediante la línea ondulada (\wavybond). Las estructuras se ilustran de forma esquelética limpia, explicitando únicamente los carbonos extremos.
+
+\subsection{Radicales alquilo (alcanos)}
+
+\begin{center}
+\footnotesize
+\renewcommand{\arraystretch}{1.18}
+\begin{tabular}{@{}l l c@{}}
+\toprule
+\textbf{Nombre IUPAC (sistemático)} & \textbf{Nombre común / aceptado} & \textbf{Estructura} \\
+\midrule
+Metil            & —                & \chemfig{-[0,0.7,,,wavy]CH_3} \\
+Etil             & —                & \chemfig{-[0,0.7,,,wavy]-[:30]CH_3} \\
+Propil           & $n$-propil       & \chemfig{-[0,0.7,,,wavy]-[:30]-[:-30]CH_3} \\
+Butil            & $n$-butil        & \chemfig{-[0,0.7,,,wavy]-[:30]-[:-30]-[:30]CH_3} \\
+Pentil           & $n$-pentil       & \chemfig{-[0,0.7,,,wavy]-[:30]-[:-30]-[:30]-[:-30]CH_3} \\
+1-metiletil      & Isopropil        & \chemfig{-[0,0.7,,,wavy](-[:50]CH_3)-[:-50]CH_3} \\
+2-metilpropil    & Isobutil         & \chemfig{-[0,0.7,,,wavy]-[:30](-[:90]CH_3)-[:-30]CH_3} \\
+1-metilpropil    & \emph{sec}-butil ($s$-butil) & \chemfig{H_3C-[:30](-[::90,0.7,,,wavy])-[:-30]-[:30]CH_3} \\
+1,1-dimetiletil  & \emph{terc}-butil ($t$-butil) & \chemfig{-[0,0.7,,,wavy](-[:55]CH_3)(-[0]CH_3)-[:-55]CH_3} \\
+2,2-dimetilpropil& Neopentil        & \chemfig{-[0,0.7,,,wavy]-[:30](-[:90]CH_3)(-[0]CH_3)-[:-30]CH_3} \\
+3-metilbutil     & Isopentil (isoamilo) & \chemfig{-[0,0.7,,,wavy]-[:30]-[:-30](-[:45]CH_3)-[:-75]CH_3} \\
+1-metilbutil     & \emph{sec}-pentil ($s$-pentil) & \chemfig{H_3C-[:30](-[::90,0.7,,,wavy])-[:-30]-[:30]-[:-30]CH_3} \\
+1,1-dimetilpropil& \emph{terc}-pentil ($t$-pentil)& \chemfig{H_3C-[:30](-[::90,0.7,,,wavy])(-[::-90]CH_3)-[:-30]-[:30]CH_3} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Radicales alquenilo (alquenos)}
+
+\begin{center}
+\footnotesize
+\renewcommand{\arraystretch}{1.18}
+\begin{tabular}{@{}l l c@{}}
+\toprule
+\textbf{Nombre IUPAC (sistemático)} & \textbf{Nombre común} & \textbf{Estructura} \\
+\midrule
+Etenilo          & Vinil        & \chemfig{-[0,0.7,,,wavy]=[:30]CH_2} \\
+Prop-2-enilo     & Alilo        & \chemfig{-[0,0.7,,,wavy]-[:30]=[:-30]CH_2} \\
+Prop-1-enilo     & Propenil     & \chemfig{-[0,0.7,,,wavy]=[:30]-[:-30]CH_3} \\
+2-metilprop-1-enilo & Isobutenil& \chemfig{-[0,0.7,,,wavy]=[:30](-[:80]CH_3)-[:-40]CH_3} \\
+But-2-enilo      & Crotil       & \chemfig{-[0,0.7,,,wavy]-[:30]=[:-30]-[:30]CH_3} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\clearpage
+
+% ── Fila 1: Alquinilos y Cicloalquilos (side-by-side) ────────
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\subsection{Radicales alquinilo}
+\begin{center}
+\footnotesize
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{}l l c@{}}
+\toprule
+\textbf{IUPAC} & \textbf{Común} & \textbf{Estructura} \\
+\midrule
+Etinil        & —          & \chemfig{-[0,0.7,,,wavy]~[0]CH} \\
+Prop-2-inilo  & Propargilo & \chemfig{-[0,0.7,,,wavy]-[:30]-[:-30]~[0]CH} \\
+Prop-1-inilo  & Propinilo  & \chemfig{-[0,0.7,,,wavy]~[0]-[0]CH_3} \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\subsection{Radicales cicloalquilo}
+\begin{center}
+\footnotesize
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{}l l c@{}}
+\toprule
+\textbf{IUPAC} & \textbf{Común} & \textbf{Estructura} \\
+\midrule
+Ciclopropil   & —          & \chemfig{-[0,0.7,,,wavy]*3(---)} \\
+Ciclobutil    & —          & \chemfig{-[0,0.7,,,wavy]*4(----)} \\
+Ciclopentil   & —          & \chemfig{-[0,0.7,,,wavy]*5(-----)} \\
+Ciclohexil    & —          & \chemfig{-[0,0.7,,,wavy]*6(------)} \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{minipage}
+
+\vspace{0.4em}
+
+% ── Fila 2: Arilos y Heteroátomos (side-by-side) ─────────────
+\noindent
+\begin{minipage}[t]{0.50\textwidth}
+\subsection{Radicales arilo}
+\begin{center}
+\footnotesize
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{@{}l l c@{}}
+\toprule
+\textbf{IUPAC} & \textbf{Común} & \textbf{Estructura} \\
+\midrule
+Fenil        & —               & \chemfig{-[0,0.7,,,wavy]**6(------)} \\
+Bencil       & —               & \chemfig{-[0,0.7,,,wavy]-[:30]**6(------)} \\
+2-metilfenil & $o$-tolil       & \chemfig{-[0,0.7,,,wavy]**6(-(-[:-120]CH_3)-----)} \\
+3-metilfenil & $m$-tolil       & \chemfig{-[0,0.7,,,wavy]**6(--(-[:-60]CH_3)----)} \\
+4-metilfenil & $p$-tolil       & \chemfig{-[0,0.7,,,wavy]**6(---(-[0]CH_3)---)} \\
+1-naftil     & $\alpha$-naftil & \chemfig{*6((-[::120,0.7,,,wavy])-=*6(-=-=-)-=-=)} \\
+2-naftil     & $\beta$-naftil  & \chemfig{-[0,0.7,,,wavy]*6(-=*6(-=-=-)-=-=)} \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.46\textwidth}
+\subsection{Con heteroátomos}
+\begin{center}
+\footnotesize
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{@{}l l c@{}}
+\toprule
+\textbf{IUPAC} & \textbf{Común} & \textbf{Estructura} \\
+\midrule
+Metoxi   & —        & \chemfig{-[0,0.7,,,wavy]O-[:30]CH_3} \\
+Etoxi    & —        & \chemfig{-[0,0.7,,,wavy]O-[:30]-[:-30]CH_3} \\
+Propoxi  & —        & \chemfig{-[0,0.7,,,wavy]O-[:30]-[:-30]-[:30]CH_3} \\
+Sulfanil & Mercapto & \chemfig{-[0,0.7,,,wavy]SH} \\
+Amino    & —        & \chemfig{-[0,0.7,,,wavy]NH_2} \\
+Hidroxi  & —        & \chemfig{-[0,0.7,,,wavy]OH} \\
+Oxo      & —        & \chemfig{=[0,0.7,,,wavy]O} \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{minipage}
+
+\vspace{0.4em}
+
+\begin{cuadroadvertencia}
+\textbf{Ojo con la nomenclatura y el orden alfabético:}
+los prefijos \textbf{\emph{sec}-} y \textbf{\emph{terc}-} ($s$-, $t$-) no se consideran para el orden alfabético (se toma la primera letra del grupo base: \emph{sec}-\textbf{b}util entra por la \textbf{b}). En cambio, \textbf{iso-} y \textbf{neo-} forman una sola palabra y \textbf{sí} cuentan para el orden alfabético (\textbf{i}sopropil entra por la \textbf{i}). En nomenclatura IUPAC sistemática estricta se emplean los nombres numerados entre paréntesis (p.~ej. 1,1-dimetiletil).
+\end{cuadroadvertencia}
+
+\end{document}

@@ -1,0 +1,131 @@
+\documentclass[12pt]{article}
+\usepackage{mathwizards-carrusel}
+\mwcartotal{9}
+\begin{document}
+
+% ── 1. Portada ───────────────────────────────────────────────
+\mwcarportada{Kit de arranque}{Semana 0: Cositas qué recordar}{@mathwizards.ve}
+
+% ── 2. Álgebra: los 3 errores ────────────────────────────────
+\begin{mwcarlamina}{Álgebra: 3 errores que reprueban}
+\begin{cajaerror}
+  \centering
+  $(a+b)^2 = a^2 + b^2$ \quad\mal\\[2pt]
+  {\small Correcto: } $(a+b)^2 = a^2 + 2ab + b^2$ \quad\bien
+\end{cajaerror}
+\begin{cajaerror}
+  \centering
+  $\sqrt{a^2+b^2} = a + b$ \quad\mal\\[2pt]
+  {\small La raíz no se reparte sobre la suma.}
+\end{cajaerror}
+\begin{cajaerror}
+  \centering
+  $-(x-3) = -x - 3$ \quad\mal\\[2pt]
+  {\small Correcto: } $-(x-3) = -x + 3$ \quad\bien
+\end{cajaerror}
+\end{mwcarlamina}
+
+% ── 3. Productos notables ────────────────────────────────────
+\begin{mwcarlamina}{Productos notables}
+\begin{cajateoria}
+  \centering
+  $(a+b)^2 = a^2 + 2ab + b^2$\\[4pt]
+  $(a-b)^2 = a^2 - 2ab + b^2$\\[4pt]
+  $(a+b)(a-b) = a^2 - b^2$
+\end{cajateoria}
+\begin{cajapasos}
+  \small El término central $2ab$ es el que más se olvida.
+  Siempre: cuadrado del primero, \emph{doble del primero por el
+  segundo}, cuadrado del segundo.
+\end{cajapasos}
+\end{mwcarlamina}
+
+% ── 4. Fracciones algebraicas ────────────────────────────────
+\begin{mwcarlamina}{Fracciones: cuándo cancelar}
+\begin{cajaok}
+  \centering
+  $\dfrac{3(x+2)}{3} = x+2$ \quad\bien\\[3pt]
+  {\small El 3 multiplica a \emph{todo} el numerador.}
+\end{cajaok}
+\begin{cajaerror}
+  \centering
+  $\dfrac{x+2}{x} = 2$ \quad\mal\\[3pt]
+  {\small La $x$ está sumando: no es un factor.}
+\end{cajaerror}
+\begin{cajateoria}
+  \centering\nxheav
+  Factores sí. Sumandos no.
+\end{cajateoria}
+\end{mwcarlamina}
+
+% ── 5. Trigonometría mínima ──────────────────────────────────
+\begin{mwcarlamina}{Trigonometría mínima}
+\begin{cajateoria}
+  \centering
+  $\sin\theta = \dfrac{\text{opuesto}}{\text{hipotenusa}}$\quad
+  $\cos\theta = \dfrac{\text{adyacente}}{\text{hipotenusa}}$\quad
+  $\tan\theta = \dfrac{\text{opuesto}}{\text{adyacente}}$
+\end{cajateoria}
+\begin{cajaformula}
+  \centering\small
+  \begin{tabular}{c|ccc}
+    & $30^\circ$ & $45^\circ$ & $60^\circ$\\\hline
+    $\sin$ & $\tfrac12$ & $\tfrac{\sqrt2}{2}$ & $\tfrac{\sqrt3}{2}$\\
+    $\cos$ & $\tfrac{\sqrt3}{2}$ & $\tfrac{\sqrt2}{2}$ & $\tfrac12$\\
+    $\tan$ & $\tfrac{\sqrt3}{3}$ & $1$ & $\sqrt3$
+  \end{tabular}
+\end{cajaformula}
+\end{mwcarlamina}
+
+% ── 6. Física: unidades ──────────────────────────────────────
+\begin{mwcarlamina}{Física: conversión de unidades}
+\begin{cajapasos}
+  \centering
+  $72\ \dfrac{\text{km}}{\text{h}} \times
+   \dfrac{1000\ \text{m}}{1\ \text{km}} \times
+   \dfrac{1\ \text{h}}{3600\ \text{s}} =
+   20\ \dfrac{\text{m}}{\text{s}}$
+\end{cajapasos}
+\begin{cajateoria}
+  \small Las unidades se cancelan con la misma regla:
+  \emph{factores sí, sumandos no}. Multiplica por factores que
+  valen 1 y deja que las unidades se cancelen.
+\end{cajateoria}
+\end{mwcarlamina}
+
+% ── 7. Química: el mol ───────────────────────────────────────
+\begin{mwcarlamina}{Química: el mol}
+\begin{cajateoria}
+  \centering
+  $1\ \text{mol} = 6{,}022\times 10^{23}$ partículas\\[4pt]
+  {\small Es una docena, pero gigante.}
+\end{cajateoria}
+\begin{cajapasos}
+  \centering
+  $n = \dfrac{m}{M}$\qquad
+  {\small masa $\div$ masa molar $=$ moles}
+\end{cajapasos}
+\begin{cajaformula}
+  \small Todo lo demás del semestre es aplicar factores de conversión.
+\end{cajaformula}
+\end{mwcarlamina}
+
+% ── 8. Leer una gráfica ──────────────────────────────────────
+\begin{mwcarlamina}{Cómo leer una gráfica}
+\begin{cajapasos}
+  \small
+  \textbf{1.} ¿Qué hay en cada eje? (variable y \emph{unidades})\\[3pt]
+  \textbf{2.} La pendiente $= \dfrac{\Delta y}{\Delta x}$ te da la
+  razón de cambio.\\[3pt]
+  \textbf{3.} El intercepto: ¿tiene sentido físico?
+\end{cajapasos}
+\begin{cajateoria}
+  \small Sirve para Cálculo, Física, Química y Bio: una gráfica
+  siempre cuenta cómo cambia una cosa respecto a otra.
+\end{cajateoria}
+\end{mwcarlamina}
+
+% ── 9. Cierre ────────────────────────────────────────────────
+\mwcarfin{Guárdalo · Envíaselo a tu sección}{¡Escribe \textbf{ARRANQUE} para enviarte un valioso material de apoyo!}
+
+\end{document}

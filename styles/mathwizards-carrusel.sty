@@ -1,0 +1,244 @@
+% ============================================================
+%  mathwizards-carrusel.sty
+%  Carruseles de Instagram 1:1 (1080 x 1080) — Mathwizards
+%
+%  Requisitos:
+%    * Compilar con XeLaTeX  →  latexmk -xelatex carrusel.tex
+%    * Fuentes: Cabin (cuerpo) y Nexa (títulos) instaladas
+%    * mathwizards-palette.sty accesible en TEXINPUTS
+%
+%  Formato: cada página es una lámina cuadrada de 10.8 x 10.8 cm
+%  (1080 x 1080 px). Una lámina = una página.
+%
+%  Uso:
+%    \documentclass[12pt]{article}
+%    \usepackage{mathwizards-carrusel}
+%    \mwcartotal{9}                 % total de láminas (para n/N)
+%    \begin{document}
+%    \mwcarportada{Título}{Subtítulo}{Lema}
+%    \begin{mwcarlamina}{Título de la lámina}
+%      ... contenido ...
+%    \end{mwcarlamina}
+%    \mwcarfin{Mensaje / CTA}
+%    \end{document}
+%
+%  Esquema mixto:
+%    - Portada y cierre: fondo oscuro + logo blanco (sin indicador)
+%    - Contenido: fondo claro, cabecera con barra roja y pie fijo
+%      con @mathwizards.ve (izq) e indicador n/N (der)
+% ============================================================
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mathwizards-carrusel}[2026/09/05 v1.0 Carruseles IG Mathwizards]
+
+% ── Paquetes ─────────────────────────────────────────────────
+\RequirePackage{fontspec}
+\RequirePackage[spanish,es-nodecimaldot]{babel}
+\AtBeginDocument{\shorthandoff{"}}
+\RequirePackage{icomma}
+\RequirePackage{amsmath, amssymb}
+\RequirePackage{geometry}
+\RequirePackage{mdframed}
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, calc,
+  decorations.pathmorphing, babel}
+\RequirePackage{mathwizards-palette}
+
+% ── Geometría 1:1 (10.8 x 10.8 cm) ──────────────────────────
+\geometry{paperwidth=10.8cm, paperheight=10.8cm, margin=0cm}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+% ── Fuentes ──────────────────────────────────────────────────
+\setmainfont{Cabin}[
+  Extension      = .otf,
+  UprightFont    = Cabin-Regular,
+  BoldFont       = Cabin-Bold,
+  ItalicFont     = Cabin-Italic,
+  BoldItalicFont = Cabin-BoldItalic
+]
+\newfontfamily\nxheav{Nexa Heavy}[NFSSFamily=nexaheavy]
+\newfontfamily\nxlight{Nexa Extra Light}[NFSSFamily=nexaextralight]
+
+% ── Logo (rutas relativas según profundidad) ─────────────────
+\graphicspath{
+  {assets/img/}{../assets/img/}{../../assets/img/}
+  {../../../assets/img/}{../../../../assets/img/}
+}
+
+% ── Verde para los ✓ (LOCAL a este sty; no se toca la paleta) ─
+\definecolor{mwverde}{HTML}{2E9E4F}
+
+% ── Datos del carrusel ───────────────────────────────────────
+\newcounter{mwcarlamina}              % número de lámina actual
+\newcommand{\mwcartotalN}{9}          % total (por defecto 9)
+\newcommand{\mwcartotal}[1]{\renewcommand{\mwcartotalN}{#1}}
+\newcommand{\mwcarhandle}{@mathwizards.ve}
+
+% ── Dimensiones de la página (para TikZ) ─────────────────────
+% La página mide 10.8 x 10.8 cm. TikZ se dibuja en coordenadas
+% absolutas respecto a la esquina inferior izquierda (current page).
+
+% ── Cabecera y pie de las láminas de contenido ───────────────
+% Se dibujan con tikz en cada lámina de contenido.
+\newcommand{\mwcarcabeza}[1]{%
+  \begin{tikzpicture}[remember picture, overlay]
+    % barra superior roja
+    \fill[mwprimario] (current page.north west) rectangle
+      ([yshift=-0.35cm]current page.north east);
+    % logo pequeño a la derecha (bajo la barra, separado)
+    \node[anchor=north east]
+      at ([xshift=-0.95cm, yshift=-0.48cm]current page.north east)
+      {\includegraphics[height=0.6cm]{l.png}};
+    % título: caja con ancho acotado a la izquierda del logo.
+    % Envuelve en varias líneas si hace falta (nunca desborda a la
+    % derecha ni invade el logo).
+    \node[anchor=north west, text=mwgrisoscuro, font=\nxheav\large,
+          text width=7.4cm, align=left, inner sep=0pt, outer sep=0pt]
+      at ([xshift=0.9cm, yshift=-1cm]current page.north west) {#1};
+  \end{tikzpicture}%
+}
+
+\newcommand{\mwcarpie}{%
+  \begin{tikzpicture}[remember picture, overlay]
+    % línea divisoria
+    \draw[mwgris!50, line width=0.6pt]
+      ([xshift=0.9cm, yshift=1.1cm]current page.south west) --
+      ([xshift=-0.9cm, yshift=1.1cm]current page.south east);
+    % handle a la izquierda
+    \node[anchor=south west, text=mwgris, font=\small]
+      at ([xshift=0.9cm, yshift=0.45cm]current page.south west)
+      {\mwcarhandle};
+    % indicador n/N a la derecha
+    \node[anchor=south east, text=mwgris, font=\small]
+      at ([xshift=-0.9cm, yshift=0.45cm]current page.south east)
+      {\themwcarlamina/\mwcartotalN};
+  \end{tikzpicture}%
+}
+
+% ── Entorno de lámina de contenido (clara) ───────────────────
+% La zona de contenido empieza debajo de la cabecera con un
+% margen superior generoso para que un título de 2 líneas no se
+% encime con el contenido. El margen es configurable.
+\newcommand{\mwcarconttop}{1.8cm}   % espacio tras el título
+\newenvironment{mwcarlamina}[1]{%
+  \clearpage
+  \refstepcounter{mwcarlamina}%
+  \mwcarcabeza{#1}%
+  \mwcarpie
+  % zona de texto centrada, separada de la cabecera
+  \center
+  \vspace*{\mwcarconttop}%
+  \begin{minipage}[t][7.3cm][t]{9.0cm}%
+    \vspace*{0pt}%
+}{%
+  \end{minipage}%
+  \endcenter
+}
+
+% ── Portada (oscura) ─────────────────────────────────────────
+\newcommand{\mwcarportada}[3]{%
+  \clearpage
+  \refstepcounter{mwcarlamina}%
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[mwgrisoscuro] (current page.south west) rectangle
+      (current page.north east);
+    % franja de acento
+    \fill[mwprimario] ([yshift=-6.4cm]current page.north west) rectangle
+      ([yshift=-6.55cm]current page.north east);
+    % logo blanco
+    \node at ([yshift=-3.0cm]current page.north)
+      {\includegraphics[height=2.6cm]{l_white.png}};
+    % título
+    \node[text=white, font=\nxheav\Huge, align=center]
+      at ([yshift=-5.2cm]current page.north) {#1};
+    % subtítulo
+    \node[text=white!85, font=\nxlight\Large, align=center]
+      at ([yshift=-7.0cm]current page.north) {#2};
+    % lema / handle
+    \node[text=mwprimario, font=\nxheav\large]
+      at ([yshift=1.4cm]current page.south) {#3};
+  \end{tikzpicture}%
+  \null
+}
+
+% ── Cierre (oscuro) ──────────────────────────────────────────
+% \mwcarfin{mensaje}{CTA} — dos argumentos independientes:
+% el mensaje (blanco) y la llamada a la acción (color) van en
+% nodos separados con su propio texto ajustado a la caja, por lo
+% que nunca se solapan ni desbordan (sin depender de \\).
+\newcommand{\mwcarfin}[2]{%
+  \clearpage
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[mwgrisoscuro] (current page.south west) rectangle
+      (current page.north east);
+    \fill[mwprimario] ([yshift=-4.0cm]current page.north west) rectangle
+      ([yshift=-4.15cm]current page.north east);
+    \node at ([yshift=-2.6cm]current page.north)
+      {\includegraphics[height=2.2cm]{l_white.png}};
+    % mensaje (blanco, ajusta a la caja y envuelve si hace falta)
+    \node[text=white, font=\nxheav\Large, align=center, text width=9.0cm]
+      at ([yshift=-5.5cm]current page.north) {#1};
+    % CTA (color, debajo, también ajustado a la caja)
+    \node[text=mwprimario, font=\nxheav\LARGE, align=center, text width=9.0cm]
+      at ([yshift=-8.2cm]current page.north) {#2};
+    \node[text=mwgris!70, font=\nxheav\large]
+      at ([yshift=0.8cm]current page.south) {\mwcarhandle};
+  \end{tikzpicture}%
+  \null
+}
+
+% ── Cajas de contenido (mdframed, versión carrusel) ──────────
+\newmdenv[
+  backgroundcolor = mwprimario!12,
+  linecolor       = mwprimario,
+  linewidth       = 1.4pt,
+  roundcorner     = 6pt,
+  innertopmargin  = 7pt, innerbottommargin = 7pt,
+  innerleftmargin = 10pt, innerrightmargin = 10pt,
+  skipabove = 6pt, skipbelow = 6pt
+]{cajateoria}
+
+\newmdenv[
+  backgroundcolor = mwrojonaranja!12,
+  linecolor       = mwrojonaranja,
+  linewidth       = 1.4pt,
+  roundcorner     = 6pt,
+  innertopmargin  = 7pt, innerbottommargin = 7pt,
+  innerleftmargin = 10pt, innerrightmargin = 10pt,
+  skipabove = 6pt, skipbelow = 6pt
+]{cajaerror}
+
+\newmdenv[
+  backgroundcolor = mwverde!10,
+  linecolor       = mwverde,
+  linewidth       = 1.4pt,
+  roundcorner     = 6pt,
+  innertopmargin  = 7pt, innerbottommargin = 7pt,
+  innerleftmargin = 10pt, innerrightmargin = 10pt,
+  skipabove = 6pt, skipbelow = 6pt
+]{cajaok}
+
+\newmdenv[
+  backgroundcolor = mwnaranja!12,
+  linecolor       = mwnaranja,
+  linewidth       = 1.4pt,
+  roundcorner     = 6pt,
+  innertopmargin  = 7pt, innerbottommargin = 7pt,
+  innerleftmargin = 10pt, innerrightmargin = 10pt,
+  skipabove = 6pt, skipbelow = 6pt
+]{cajapasos}
+
+\newmdenv[
+  backgroundcolor = mwgrisclaro,
+  linecolor       = mwgris,
+  linewidth       = 0.8pt,
+  roundcorner     = 4pt,
+  innertopmargin  = 6pt, innerbottommargin = 6pt,
+  innerleftmargin = 10pt, innerrightmargin = 10pt,
+  skipabove = 6pt, skipbelow = 6pt
+]{cajaformula}
+
+% ── Marcas ✓ / ✗ ─────────────────────────────────────────────
+\newcommand{\bien}{{\color{mwverde}\textbf{\checkmark}}}
+\newcommand{\mal}{{\color{mwrojonaranja}\textbf{\texttimes}}}

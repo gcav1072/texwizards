@@ -168,6 +168,12 @@
   bottom     = 3pt,
   before skip = 3pt,
   after skip  = 3pt,
+  before upper = {%
+    \setlength{\abovedisplayskip}{2pt}%
+    \setlength{\belowdisplayskip}{2pt}%
+    \setlength{\abovedisplayshortskip}{1pt}%
+    \setlength{\belowdisplayshortskip}{1pt}%
+  },
   title      = {#1}
 }
 
@@ -185,6 +191,12 @@
   bottom     = 2pt,
   before skip = 2pt,
   after skip  = 2pt,
+  before upper = {%
+    \setlength{\abovedisplayskip}{2pt}%
+    \setlength{\belowdisplayskip}{2pt}%
+    \setlength{\abovedisplayshortskip}{1pt}%
+    \setlength{\belowdisplayshortskip}{1pt}%
+  },
   title      = {#1}
 }
 
@@ -203,6 +215,7 @@
   bottom     = 2pt,
   before skip = 2pt,
   after skip  = 2pt,
+  halign     = center,
   title      = {#1}
 }
 

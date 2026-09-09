@@ -1,0 +1,671 @@
+% ============================================================
+%  LEAD MAGNET — KIT DE ARRANQUE: SEMANA 0
+%  «Todo lo que necesitas recordar antes de empezar el semestre»
+%  Guía extendida del carrusel @mathwizards.ve
+%  Autor: Ing. Gabriel Astudillo — Mathwizards Consultoría Educativa STEM
+%  V1 · 2026-12-09
+%  Compilar: latexmk -xelatex lm_kitarranque_20261209.tex
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+\usepackage{mathwizards-guia}
+\usepackage[hidelinks]{hyperref}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\mwguia{Kit de Arranque — Semana 0}{Ing. Gabriel Astudillo $\cdot$ Mathwizards STEM}
+
+% ── Llamado a la acción (CTA) ────────────────────────────────
+\newcommand{\mwcta}[2]{%
+  \begin{center}
+    \begin{minipage}{0.94\linewidth}
+      \begin{cuadroextra}
+        \centering
+        {\nxheav\Large\color{mwprimario}#1}\\[8pt]
+        {\small #2}\\[12pt]
+        {\footnotesize\color{mwgris}
+          \textbf{Instagram:} \texttt{@mathwizards.ve} \quad$\cdot$\quad
+          \textbf{WhatsApp:} \url{https://wa.me/+584148642001}}
+      \end{cuadroextra}
+    \end{minipage}
+  \end{center}
+}
+
+\begin{document}
+
+% ============================================================
+% ── Portada ─────────────────────────────────────────────────
+% ============================================================
+\mwportada{Kit de Arranque}{Todo lo que Necesitas Recordar antes de Empezar el Semestre}{Mathwizards Consultoría Educativa STEM}
+
+\vspace{6pt}
+\begin{cuadroinfo}
+  \small
+  Vas a empezar (o a reiniciar) un semestre de Cálculo, Física o Química. Antes de lanzarte al primer tema nuevo, necesitas tener un puñado de herramientas listas: álgebra limpia, trigonometría mínima, conversión de unidades y lectura de gráficas. \textbf{Esta guía es tu repaso estructurado de Semana 0:} el material que no te enseñan de nuevo, pero que necesitas dominar desde el día uno. Cada sección amplía una lámina del carrusel «Kit de arranque», con la explicación completa, ejemplos resueltos y mini-ejercicios para que practiques.
+\end{cuadroinfo}
+
+\begin{cuadroextra}
+  \small
+  \textbf{Cómo usar esta guía:}
+  \begin{enumerate}[leftmargin=*]
+    \item Lee cada sección con calma. No te saltes las que crees que «ya sabes»: el 90\,\% de los errores en parciales viene de ahí.
+    \item Resuelve los ejercicios \textbf{«Tu turno»} con lápiz y papel \emph{antes} de mirar la solución.
+    \item Marca con un $\bigstar$ las secciones donde hayas cometido errores. Esas son las que deberás repasar la noche antes de cada examen.
+    \item Guarda esta guía en tu teléfono o imprímela. Es tu compañero de todo el semestre.
+  \end{enumerate}
+\end{cuadroextra}
+
+% ============================================================
+\section{Álgebra: Los 3 Errores que Reprueban}
+% ============================================================
+
+Antes de derivar, integrar o balancear una ecuación química, tu semestre se juega en unos pocos pasos de álgebra. Los tres errores que siguen son los más frecuentes en parciales de primer semestre y, por desgracia, los más invisibles: parecen «detalles» pero destruyen el resultado final.
+
+% ─────────────────────────────────────────────────────────────
+\subsection{Error 1: El Binomio que se «Reparte»}
+
+\begin{cuadroadvertencia}
+  \textbf{El Error Fatal:} creer que el cuadrado de una suma se reparte término a término:
+  \[
+    (a+b)^2 \;\overset{\text{mal}}{=}\; a^2 + b^2
+  \]
+\end{cuadroadvertencia}
+
+Elevar al cuadrado significa multiplicar la base por sí misma. Veamos qué pasa cuando lo hacemos con rigor:
+\[
+  (a+b)^2 = (a+b)(a+b) = a \cdot a + a \cdot b + b \cdot a + b \cdot b = a^2 + 2ab + b^2
+\]
+El término $2ab$ —el \emph{doble producto}— es el gran olvidado. Comprobemos con números:
+\[
+  (2+3)^2 = 5^2 = 25 \qquad\text{pero}\qquad 2^2 + 3^2 = 4 + 9 = 13
+\]
+$25 \neq 13$: falta $2 \cdot 2 \cdot 3 = 12$.
+
+\begin{cuadrosolucion}
+  \textbf{Los productos notables bien aplicados:}
+  \[
+    (a+b)^2 = a^2 + 2ab + b^2
+  \]
+  \[
+    (a-b)^2 = a^2 - 2ab + b^2
+  \]
+  \[
+    (a+b)(a-b) = a^2 - b^2
+  \]
+  \textbf{Regla de oro:} cuadrado del primero, \emph{doble del primero por el segundo}, cuadrado del segundo. El signo del término central coincide con el signo del binomio.
+\end{cuadrosolucion}
+
+\begin{cuadropasos}
+  \textbf{Ejemplo resuelto:} expande $(3x - 5)^2$.
+  \begin{align*}
+    (3x - 5)^2 &= (3x)^2 - 2(3x)(5) + 5^2 \\
+                &= 9x^2 - 30x + 25
+  \end{align*}
+  Comprobación rápida con $x = 1$: $(3-5)^2 = 4$ y $9 - 30 + 25 = 4$. \checkmark
+\end{cuadropasos}
+
+\noindent\textbf{En Cálculo lo verás en:} la derivada por definición usa $(x+h)^2 = x^2 + 2xh + h^2$. Si olvidas el $2xh$, el límite nunca simplifica.
+
+\noindent\textbf{Tu turno:} expande $(2x + 7)^2$. \emph{Resultado:} $4x^2 + 28x + 49$.
+
+% ─────────────────────────────────────────────────────────────
+\subsection{Error 2: La Raíz que «Atraviesa» la Suma}
+
+\begin{cuadroadvertencia}
+  \textbf{El Error Fatal:} creer que la raíz se reparte sobre la suma:
+  \[
+    \sqrt{a^2 + b^2} \;\overset{\text{mal}}{=}\; a + b
+  \]
+\end{cuadroadvertencia}
+
+La raíz cuadrada solo se reparte sobre \emph{productos} y \emph{cocientes}, nunca sobre sumas. Veámoslo con el triángulo rectángulo más clásico:
+\[
+  \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5 \qquad\text{pero}\qquad 3 + 4 = 7
+\]
+La hipotenusa mide $5$, no $7$. Si la raíz se repartiera sobre sumas, el teorema de Pitágoras sería un chiste.
+
+\begin{cuadrosolucion}
+  \textbf{Propiedades correctas de la raíz:}
+  \[
+    \sqrt{ab} = \sqrt{a}\,\sqrt{b} \quad (a, b \geq 0) \qquad\qquad
+    \sqrt{\frac{a}{b}} = \frac{\sqrt{a}}{\sqrt{b}} \quad (b > 0)
+  \]
+  La expresión $\sqrt{a^2 + b^2}$ simplemente \textbf{no se simplifica}. Se deja así, o se racionaliza si el contexto lo permite.
+\end{cuadrosolucion}
+
+\noindent\textbf{En Física lo verás en:} la magnitud de un vector $\|\vec{v}\| = \sqrt{v_x^2 + v_y^2}$. El módulo siempre es menor o igual a la suma de las componentes.
+
+\noindent\textbf{Tu turno:} un triángulo rectángulo tiene catetos de $5$ y $12$. \textquestiondown Cuánto mide la hipotenusa? \emph{Resultado:} $\sqrt{25 + 144} = \sqrt{169} = 13$ (y no $17$).
+
+% ─────────────────────────────────────────────────────────────
+\subsection{Error 3: El Signo que se «Come» el Paréntesis}
+
+\begin{cuadroadvertencia}
+  \textbf{El Error Fatal:} distribuir un signo negativo solo al primer término:
+  \[
+    -(x - 3) \;\overset{\text{mal}}{=}\; -x - 3
+  \]
+\end{cuadroadvertencia}
+
+Un signo negativo delante de un paréntesis es un $(-1)$ que multiplica a \emph{todos} los términos de adentro. Multiplicar $(-1)$ invierte cada signo:
+\[
+  -(x - 3) = (-1)(x) + (-1)(-3) = -x + 3
+\]
+Con números: si $x = 5$, el original da $-(5-3) = -2$. Si aplicas mal el signo: $-5 - 3 = -8$. Eso es un error de $6$ unidades en un paso que parece trivial.
+
+\begin{cuadrosolucion}
+  \textbf{La regla completa:}
+  \[
+    -(a + b) = -a - b \qquad\qquad -(a - b) = -a + b
+  \]
+  Cada signo \emph{dentro} del paréntesis se invierte. Sin excepciones.
+\end{cuadrosolucion}
+
+\begin{cuadropasos}
+  \textbf{Ejemplo resuelto:} simplifica $4x - (2x - 7) + 3$.
+  \begin{align*}
+    4x - (2x - 7) + 3 &= 4x - 2x + 7 + 3 \\
+                       &= 2x + 10
+  \end{align*}
+\end{cuadropasos}
+
+\noindent\textbf{En Cálculo lo verás en:} al restar funciones en la derivada por definición, $f(x+h) - f(x)$: si $f(x) = 3 - 2x$, entonces $f(x+h) - f(x) = [3 - 2(x+h)] - [3 - 2x]$. Un error de signo aquí cambia el signo de la derivada.
+
+\noindent\textbf{Tu turno:} simplifica $6 - (3a - 2b + 1)$. \emph{Resultado:} $5 - 3a + 2b$.
+
+
+% ============================================================
+\section{Productos Notables: Tu Caja de Herramientas}
+% ============================================================
+
+Los productos notables no son «fórmulas para memorizar»: son atajos que el álgebra te regala para no tener que multiplicar polinomio por polinomio cada vez. Si los dominas, tus factorizaciones, tus límites y tus integrales fluyen.
+
+\begin{cuadroteoria}
+  \textbf{Los tres productos notables fundamentales:}
+  \begin{align*}
+    (a+b)^2    &= a^2 + 2ab + b^2            &&\text{(cuadrado de una suma)} \\
+    (a-b)^2    &= a^2 - 2ab + b^2            &&\text{(cuadrado de una diferencia)} \\
+    (a+b)(a-b) &= a^2 - b^2                  &&\text{(diferencia de cuadrados)}
+  \end{align*}
+\end{cuadroteoria}
+
+\subsection{\textquestiondown Por qué Funcionan?}
+
+Los tres se derivan de la propiedad distributiva. Tomemos el más importante:
+\[
+  (a+b)(a-b) = a^2 - ab + ab - b^2 = a^2 - b^2
+\]
+Los términos cruzados se cancelan. Este resultado es la clave detrás de la racionalización, la factorización y muchos límites con indeterminación $0/0$.
+
+\subsection{Aplicaciones Prácticas}
+
+\begin{cuadropasos}
+  \textbf{Ejemplo 1: Factorizar usando diferencia de cuadrados.}
+  \[
+    x^2 - 16 = x^2 - 4^2 = (x+4)(x-4)
+  \]
+  \textbf{Ejemplo 2: Racionalizar un denominador.}
+  \[
+    \frac{1}{\sqrt{5} - 2} = \frac{1}{\sqrt{5} - 2}\cdot\frac{\sqrt{5}+2}{\sqrt{5}+2}
+    = \frac{\sqrt{5}+2}{5 - 4} = \sqrt{5}+2
+  \]
+  Aquí usamos $(a-b)(a+b) = a^2 - b^2$ con $a = \sqrt{5}$ y $b = 2$.
+\end{cuadropasos}
+
+\begin{cuadroextra}
+  \textbf{Truco del doble producto:} si te dan un trinomio y quieres saber si es un cuadrado perfecto, verifica que el término central sea exactamente $2 \cdot \sqrt{\text{primero}} \cdot \sqrt{\text{último}}$. Si se cumple, factorizas directo como $(a \pm b)^2$.
+\end{cuadroextra}
+
+\noindent\textbf{Tu turno:}
+\begin{enumerate}[leftmargin=*]
+  \item Factoriza $9x^2 - 49$. \emph{Resultado:} $(3x+7)(3x-7)$.
+  \item Racionaliza $\dfrac{3}{\sqrt{7}+1}$. \emph{Resultado:} $\dfrac{3(\sqrt{7}-1)}{6} = \dfrac{\sqrt{7}-1}{2}$.
+\end{enumerate}
+
+
+% ============================================================
+\section{Fracciones Algebraicas: Cuándo Cancelar}
+% ============================================================
+
+Simplificar fracciones es quitar \emph{factores comunes} del numerador y del denominador. La palabra clave es \textbf{factor}: algo que \emph{multiplica} a todo lo de arriba o a todo lo de abajo. Si es un \emph{sumando} (algo que solo se suma), no se puede cancelar.
+
+\begin{cuadrosolucion}
+  \textbf{Sí se cancela} (el 3 es un factor de todo el numerador):
+  \[
+    \frac{3(x+2)}{3} = x+2
+  \]
+\end{cuadrosolucion}
+
+\begin{cuadroadvertencia}
+  \textbf{No se cancela} (la $x$ es un sumando, no un factor):
+  \[
+    \frac{x+2}{x} \;\overset{\text{mal}}{=}\; 2
+  \]
+  Con $x = 1$: $\frac{1+2}{1} = 3 \neq 2$.
+\end{cuadroadvertencia}
+
+\begin{cuadroteoria}
+  \textbf{Regla universal:}\\[4pt]
+  \centerline{\nxheav Factores sí. Sumandos no.}
+  \vspace{4pt}
+  Antes de cancelar, \textbf{factoriza} el numerador y el denominador. Solo después de factorizar puedes ver si hay un factor común que se va.
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Ejemplo resuelto:} simplifica $\dfrac{x^2 + 5x + 6}{x^2 - 9}$.
+
+  \textbf{Paso 1:} factoriza arriba y abajo.
+  \begin{align*}
+    x^2 + 5x + 6 &= (x+2)(x+3) \\
+    x^2 - 9       &= (x-3)(x+3)
+  \end{align*}
+
+  \textbf{Paso 2:} identifica el factor común: $(x+3)$.
+
+  \textbf{Paso 3:} cancela el factor común:
+  \[
+    \frac{(x+2)\cancel{(x+3)}}{(x-3)\cancel{(x+3)}} = \frac{x+2}{x-3} \qquad (x \neq -3,\ x \neq 3)
+  \]
+\end{cuadropasos}
+
+\noindent\textbf{Tu turno:} simplifica $\dfrac{2x^2 - 8}{4x + 8}$. \emph{Resultado:} $\dfrac{2(x-2)(x+2)}{4(x+2)} = \dfrac{x-2}{2}$ (con $x \neq -2$).
+
+
+% ============================================================
+\section{Trigonometría Mínima}
+% ============================================================
+
+No necesitas dominar toda la trigonometría para arrancar el semestre: necesitas tres definiciones, una tabla y la identidad fundamental. Con eso resuelves el 80\,\% de los problemas de primer semestre.
+
+\subsection{Las Definiciones Básicas}
+
+\begin{cuadroteoria}
+  En un triángulo rectángulo con ángulo $\theta$:
+  \[
+    \sin\theta = \frac{\text{cateto opuesto}}{\text{hipotenusa}} \qquad
+    \cos\theta = \frac{\text{cateto adyacente}}{\text{hipotenusa}} \qquad
+    \tan\theta = \frac{\text{cateto opuesto}}{\text{cateto adyacente}}
+  \]
+  Y la relación entre ellas:
+  \[
+    \tan\theta = \frac{\sin\theta}{\cos\theta}
+  \]
+\end{cuadroteoria}
+
+\begin{cuadroextra}
+  \textbf{Nemotecnia clásica:} \textbf{SOH-CAH-TOA}.\\
+  \textbf{S}eno = \textbf{O}puesto / \textbf{H}ipotenusa,
+  \textbf{C}oseno = \textbf{A}dyacente / \textbf{H}ipotenusa,
+  \textbf{T}angente = \textbf{O}puesto / \textbf{A}dyacente.
+\end{cuadroextra}
+
+\subsection{La Tabla de Valores Notables}
+
+\begin{cuadroteoria}
+  \centering
+  \begin{tabular}{c|ccc}
+    \toprule
+    $\theta$ & $30^\circ$ & $45^\circ$ & $60^\circ$ \\
+    \midrule
+    $\sin\theta$ & $\dfrac{1}{2}$ & $\dfrac{\sqrt{2}}{2}$ & $\dfrac{\sqrt{3}}{2}$ \\[10pt]
+    $\cos\theta$ & $\dfrac{\sqrt{3}}{2}$ & $\dfrac{\sqrt{2}}{2}$ & $\dfrac{1}{2}$ \\[10pt]
+    $\tan\theta$ & $\dfrac{\sqrt{3}}{3}$ & $1$ & $\sqrt{3}$ \\
+    \bottomrule
+  \end{tabular}
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Truco para recordar la tabla:} los valores de $\sin$ para $30^\circ$, $45^\circ$ y $60^\circ$ son $\frac{\sqrt{1}}{2}$, $\frac{\sqrt{2}}{2}$, $\frac{\sqrt{3}}{2}$: el numerador sigue la secuencia $\sqrt{1}, \sqrt{2}, \sqrt{3}$. Para $\cos$, es lo mismo pero en orden inverso.
+\end{cuadropasos}
+
+\subsection{La Identidad Pitagórica}
+
+\begin{cuadroteoria}
+  Para cualquier ángulo $\theta$:
+  \[
+    \sin^2\theta + \cos^2\theta = 1
+  \]
+  De aquí se derivan:
+  \[
+    \sin^2\theta = 1 - \cos^2\theta \qquad\qquad \cos^2\theta = 1 - \sin^2\theta
+  \]
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Ejemplo resuelto:} si $\cos\theta = \frac{3}{5}$ y $\theta$ está en el primer cuadrante, halla $\sin\theta$.
+  \[
+    \sin^2\theta = 1 - \cos^2\theta = 1 - \frac{9}{25} = \frac{16}{25}
+    \quad\Rightarrow\quad \sin\theta = \frac{4}{5}
+  \]
+  (Positivo porque estamos en el primer cuadrante.)
+\end{cuadropasos}
+
+\noindent\textbf{Tu turno:} si $\sin\theta = \frac{5}{13}$ (primer cuadrante), halla $\cos\theta$ y $\tan\theta$. \emph{Resultado:} $\cos\theta = \frac{12}{13}$, $\tan\theta = \frac{5}{12}$.
+
+
+% ============================================================
+\section{Conversión de Unidades}
+% ============================================================
+
+Las unidades son la gramática de la ciencia: si escribes un número sin unidades, es como escribir una oración sin verbo. Y convertir unidades no es «cambiar un número»: es multiplicar por factores que valen $1$.
+
+\subsection{El Método de los Factores de Conversión}
+
+\begin{cuadroteoria}
+  \textbf{Principio fundamental:} multiplicar por un factor que vale $1$ no cambia la magnitud, pero sí cambia las unidades. Ejemplo:
+  \[
+    \frac{1000\ \text{m}}{1\ \text{km}} = 1 \qquad\qquad
+    \frac{1\ \text{h}}{3600\ \text{s}} = 1
+  \]
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Ejemplo completo:} convertir $72\ \text{km/h}$ a $\text{m/s}$.
+  \[
+    72\ \frac{\text{km}}{\text{h}}
+    \times \frac{1000\ \text{m}}{1\ \text{km}}
+    \times \frac{1\ \text{h}}{3600\ \text{s}}
+    = \frac{72 \times 1000}{3600}\ \frac{\text{m}}{\text{s}}
+    = 20\ \frac{\text{m}}{\text{s}}
+  \]
+  Observa cómo las unidades se cancelan exactamente igual que los factores algebraicos: km con km, h con h.
+\end{cuadropasos}
+
+\begin{cuadroteoria}
+  \textbf{La misma regla de siempre:} las unidades se cancelan como factores. Multiplica por factores que valen $1$ y deja que las unidades se vayan solas.\\[4pt]
+  \centerline{\nxheav Factores sí. Sumandos no.}
+  \vspace{2pt}
+  (Sí, la misma regla del álgebra aplica aquí.)
+\end{cuadroteoria}
+
+\subsection{Conversiones Frecuentes en Primer Semestre}
+
+\begin{cuadroinfo}
+  \centering\small
+  \begin{tabular}{lcl}
+    \toprule
+    \textbf{De} & $\longrightarrow$ & \textbf{A} \\
+    \midrule
+    $1\ \text{km}$   & $=$ & $1000\ \text{m}$   \\
+    $1\ \text{m}$    & $=$ & $100\ \text{cm}$    \\
+    $1\ \text{h}$    & $=$ & $3600\ \text{s}$    \\
+    $1\ \text{min}$  & $=$ & $60\ \text{s}$      \\
+    $1\ \text{kg}$   & $=$ & $1000\ \text{g}$    \\
+    $1\ \text{L}$    & $=$ & $1000\ \text{mL}$   \\
+    $1\ \text{atm}$  & $=$ & $101\,325\ \text{Pa}$ \\
+    \bottomrule
+  \end{tabular}
+\end{cuadroinfo}
+
+\begin{cuadropasos}
+  \textbf{Ejemplo resuelto:} convertir $250\ \text{mL}$ a litros.
+  \[
+    250\ \text{mL} \times \frac{1\ \text{L}}{1000\ \text{mL}} = 0{,}25\ \text{L}
+  \]
+\end{cuadropasos}
+
+\noindent\textbf{Tu turno:} convierte $90\ \text{km/h}$ a $\text{m/s}$. \emph{Resultado:} $25\ \text{m/s}$.
+
+
+% ============================================================
+\section{El Mol: La Docena Gigante}
+% ============================================================
+
+Si la Física tiene al kilogramo y al metro, la Química tiene al \emph{mol}. Es la unidad que conecta el mundo microscópico (átomos, moléculas) con el mundo macroscópico (gramos, litros).
+
+\subsection{La Definición}
+
+\begin{cuadroteoria}
+  \[
+    1\ \text{mol} = 6{,}022 \times 10^{23}\ \text{partículas}
+  \]
+  Es el \textbf{número de Avogadro} ($N_A$). Piénsalo así: una \emph{docena} tiene 12 unidades; un \emph{mol} tiene $6{,}022 \times 10^{23}$ unidades. Es una docena, pero absurdamente gigante, diseñada para que los números de la química sean manejables.
+\end{cuadroteoria}
+
+\subsection{La Fórmula Maestra}
+
+\begin{cuadrosolucion}
+  \[
+    n = \frac{m}{M}
+  \]
+  donde:
+  \begin{itemize}[leftmargin=*]
+    \item $n$ = número de moles (mol)
+    \item $m$ = masa de la sustancia (g)
+    \item $M$ = masa molar (g/mol), que se obtiene de la tabla periódica
+  \end{itemize}
+\end{cuadrosolucion}
+
+\begin{cuadropasos}
+  \textbf{Ejemplo resuelto:} \textquestiondown cuántos moles hay en $36\ \text{g}$ de agua (H$_2$O)?
+
+  \textbf{Paso 1:} la masa molar del H$_2$O es $M = 2(1) + 16 = 18\ \text{g/mol}$.
+
+  \textbf{Paso 2:} aplica la fórmula:
+  \[
+    n = \frac{m}{M} = \frac{36\ \text{g}}{18\ \text{g/mol}} = 2\ \text{mol}
+  \]
+
+  \textbf{Paso 3:} si quieres saber cuántas moléculas son:
+  \[
+    2\ \text{mol} \times 6{,}022 \times 10^{23}\ \frac{\text{moléculas}}{\text{mol}}
+    = 1{,}204 \times 10^{24}\ \text{moléculas}
+  \]
+\end{cuadropasos}
+
+\begin{cuadroteoria}
+  \textbf{Conexión clave:} todo lo demás del semestre de Química General —estequiometría, soluciones, gases ideales— es aplicar factores de conversión con el mol como puente. Si dominas $n = m/M$ y el método de factores de conversión de la sección anterior, tienes la base.
+\end{cuadroteoria}
+
+\noindent\textbf{Tu turno:} \textquestiondown cuántos moles hay en $44\ \text{g}$ de CO$_2$ ($M = 44\ \text{g/mol}$)? \emph{Resultado:} exactamente $1\ \text{mol}$.
+
+
+% ============================================================
+\section{Cómo Leer una Gráfica}
+% ============================================================
+
+Una gráfica es un mapa: te dice cómo cambia una cosa respecto a otra. Saber leerla es una habilidad transversal: la necesitas en Cálculo (derivadas como pendientes), en Física (gráficas posición-tiempo), en Química (curvas de titulación) y en Biología (curvas de crecimiento).
+
+\subsection{Los Tres Pasos para Leer Cualquier Gráfica}
+
+\begin{cuadropasos}
+  \textbf{Paso 1: \textquestiondown Qué hay en cada eje?}\\
+  Identifica la variable y sus \emph{unidades}. Sin unidades, una gráfica es un dibujo. Ejemplo: eje $x$ = tiempo (s), eje $y$ = posición (m).
+
+  \vspace{6pt}
+  \textbf{Paso 2: La pendiente = razón de cambio.}\\
+  La pendiente de la recta (o de la tangente, si es curva) te dice la rapidez con la que cambia $y$ respecto a $x$:
+  \[
+    \text{pendiente} = \frac{\Delta y}{\Delta x} = \frac{y_2 - y_1}{x_2 - x_1}
+  \]
+  En una gráfica posición vs.\ tiempo, la pendiente es la velocidad. En una gráfica velocidad vs.\ tiempo, la pendiente es la aceleración.
+
+  \vspace{6pt}
+  \textbf{Paso 3: \textquestiondown El intercepto tiene sentido físico?}\\
+  El punto donde la curva cruza el eje $y$ (cuando $x = 0$) suele representar una condición inicial. Ejemplo: posición inicial, temperatura ambiente, concentración a tiempo cero.
+\end{cuadropasos}
+
+\begin{cuadroteoria}
+  \textbf{Conexión universal:} una gráfica siempre cuenta cómo cambia una cosa respecto a otra. Esta idea es exactamente lo que formaliza el Cálculo con la derivada:
+  \[
+    f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}
+  \]
+  La derivada \emph{es} la pendiente de la tangente. Si sabes leer una gráfica, ya entiendes la idea intuitiva detrás del Cálculo.
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Ejemplo resuelto:} la siguiente gráfica muestra la posición (m) de un objeto en función del tiempo (s). Leámosla con los tres pasos.
+\end{cuadropasos}
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+    width=0.82\linewidth,
+    height=7cm,
+    xlabel={Tiempo (s)},
+    ylabel={Posición (m)},
+    xmin=0, xmax=8,
+    ymin=0, ymax=40,
+    xtick={0,1,...,8},
+    ytick={0,5,...,40},
+    grid=major,
+    grid style={gray!25},
+    axis lines=left,
+    every axis x label/.style={at={(ticklabel* cs:1)}, anchor=west},
+    every axis y label/.style={at={(ticklabel* cs:1)}, anchor=south},
+    tick label style={font=\small},
+    label style={font=\small\bfseries},
+  ]
+    % ── Recta principal ──────────────────────────
+    \addplot[
+      domain=0:8,
+      samples=2,
+      thick,
+      color=mwprimario,
+    ] {5*x};
+
+    % ── Puntos destacados ────────────────────────
+    \addplot[only marks, mark=*, mark size=3pt, color=mwprimario]
+      coordinates {(2,10) (6,30)};
+
+    % ── Etiquetas de los puntos ──────────────────
+    \node[above left, font=\small\bfseries, color=mwprimario]
+      at (axis cs:2,10) {$(2,\ 10)$};
+    \node[above left, font=\small\bfseries, color=mwprimario]
+      at (axis cs:6,30) {$(6,\ 30)$};
+
+    % ── Líneas Δx y Δy ──────────────────────────
+    \draw[thick, dashed, color=mwnaranja]
+      (axis cs:2,10) -- (axis cs:6,10)
+      node[midway, below, font=\small\bfseries, color=mwnaranja]
+        {$\Delta t = 4\ \text{s}$};
+    \draw[thick, dashed, color=mwmagenta]
+      (axis cs:6,10) -- (axis cs:6,30)
+      node[midway, right, font=\small\bfseries, color=mwmagenta]
+        {$\Delta x = 20\ \text{m}$};
+
+    % ── Anotación de la pendiente ────────────────
+    \node[
+      draw=mwprimario, fill=mwprimario!10,
+      rounded corners=4pt, inner sep=6pt,
+      font=\small, text=black,
+      anchor=north west,
+    ] at (axis cs:4.5,38) {
+      $v = \dfrac{\Delta x}{\Delta t} = \dfrac{20}{4} = 5\ \dfrac{\text{m}}{\text{s}}$
+    };
+
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{cuadrosolucion}
+  \textbf{Lectura:}
+  \begin{enumerate}[leftmargin=*]
+    \item \textbf{Ejes:} eje horizontal = tiempo (s), eje vertical = posición (m). \checkmark
+    \item \textbf{Pendiente} $= \dfrac{\Delta x}{\Delta t} = \dfrac{30-10}{6-2} = \dfrac{20}{4} = 5\ \text{m/s}$. Es la \textbf{velocidad}.
+    \item \textbf{Intercepto:} la recta pasa por el origen, así que la posición inicial es $0\ \text{m}$.
+  \end{enumerate}
+  El objeto se mueve a $5\ \text{m/s}$ en línea recta desde el origen (MRU).
+\end{cuadrosolucion}
+
+\vspace{8pt}
+\noindent\textbf{Tu turno:} la siguiente gráfica muestra la velocidad (m/s) de un objeto en función del tiempo (s). Halla la aceleración y la velocidad inicial.
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+    width=0.82\linewidth,
+    height=7cm,
+    xlabel={Tiempo (s)},
+    ylabel={Velocidad (m/s)},
+    xmin=0, xmax=5.5,
+    ymin=0, ymax=13,
+    xtick={0,1,...,5},
+    ytick={0,2,...,12},
+    grid=major,
+    grid style={gray!25},
+    axis lines=left,
+    every axis x label/.style={at={(ticklabel* cs:1)}, anchor=west},
+    every axis y label/.style={at={(ticklabel* cs:1)}, anchor=south},
+    tick label style={font=\small},
+    label style={font=\small\bfseries},
+  ]
+    % ── Recta principal ──────────────────────────
+    \addplot[
+      domain=0:5.5,
+      samples=2,
+      thick,
+      color=mwvioleta,
+    ] {2*x + 2};
+
+    % ── Puntos destacados ────────────────────────
+    \addplot[only marks, mark=*, mark size=3pt, color=mwvioleta]
+      coordinates {(0,2) (4,10)};
+
+    % ── Etiquetas de los puntos ──────────────────
+    \node[above right, font=\small\bfseries, color=mwvioleta]
+      at (axis cs:0,2) {$(0,\ 2)$};
+    \node[above left, font=\small\bfseries, color=mwvioleta]
+      at (axis cs:4,10) {$(4,\ 10)$};
+
+    % ── Líneas Δt y Δv ──────────────────────────
+    \draw[thick, dashed, color=mwnaranja]
+      (axis cs:0,2) -- (axis cs:4,2)
+      node[midway, below, font=\small\bfseries, color=mwnaranja]
+        {$\Delta t = 4\ \text{s}$};
+    \draw[thick, dashed, color=mwmagenta]
+      (axis cs:4,2) -- (axis cs:4,10)
+      node[midway, right, font=\small\bfseries, color=mwmagenta]
+        {$\Delta v = 8\ \text{m/s}$};
+
+    % ── Anotación del intercepto ─────────────────
+    \draw[thick, ->, >=stealth, color=mwrojonaranja]
+      (axis cs:1.2,5) -- (axis cs:0.15,2.3);
+    \node[
+      draw=mwrojonaranja, fill=mwrojonaranja!10,
+      rounded corners=4pt, inner sep=5pt,
+      font=\footnotesize, text=black,
+      anchor=west,
+    ] at (axis cs:1.3,5) {
+      $v_0 = 2\ \text{m/s}$ (intercepto)
+    };
+
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+\noindent\emph{Resultado:} aceleración $= \dfrac{\Delta v}{\Delta t} = \dfrac{10-2}{4-0} = 2\ \text{m/s}^2$ (pendiente); velocidad inicial $= 2\ \text{m/s}$ (intercepto con el eje $y$).
+
+
+% ============================================================
+\section{Tu Checklist de Semana 0}
+% ============================================================
+
+\begin{cuadroinfo}
+  \small
+  \begin{enumerate}[leftmargin=*]
+    \item[$\square$] \textbf{Productos notables:} puedo expandir $(a \pm b)^2$ y $(a+b)(a-b)$ sin errores.
+    \item[$\square$] \textbf{Distribución de signos:} sé que $-(a - b) = -a + b$, no $-a - b$.
+    \item[$\square$] \textbf{Raíces:} sé que $\sqrt{a^2 + b^2} \neq a + b$.
+    \item[$\square$] \textbf{Fracciones:} factorizo antes de cancelar. «Factores sí, sumandos no.»
+    \item[$\square$] \textbf{Trigonometría:} conozco SOH-CAH-TOA y la tabla de $30^\circ$, $45^\circ$, $60^\circ$.
+    \item[$\square$] \textbf{Unidades:} convierto usando factores que valen $1$.
+    \item[$\square$] \textbf{El mol:} sé que $n = m/M$ y que el mol es el puente micro-macro.
+    \item[$\square$] \textbf{Gráficas:} sé leer ejes, calcular pendiente e interpretar el intercepto.
+  \end{enumerate}
+\end{cuadroinfo}
+
+\noindent Si marcaste las ocho casillas, tu piso está sólido. Si alguna te costó, regresa a esa sección, repite los ejercicios y márcala cuando estés listo. \textbf{No empieces el semestre sin este piso.}
+
+% ============================================================
+% ── Llamado a la Acción ─────────────────────────────────────
+% ============================================================
+\newpage
+\vspace*{\fill}
+
+\mwcta{El Kit de Arranque es solo el primer paso}{Si necesitas un acompañamiento estructurado para dominar Cálculo, Física o Química desde el primer parcial, en Mathwizards diseñamos un plan de estudio personalizado para tu caso. Agenda tu clase de diagnóstico por WhatsApp: conversemos sobre tu semestre y armemos tu estrategia.}
+
+\vspace*{\fill}
+
+\end{document}

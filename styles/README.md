@@ -12,8 +12,23 @@ Todos los estilos requieren **XeLaTeX**:
 latexmk -xelatex guia.tex
 ```
 
-El archivo `.latexmkrc` de la raíz ya configura el motor y agrega `styles/`
-a `TEXINPUTS`. Los estilos también están enlazados en `~/texmf/tex/latex/mathwizards/`.
+### Cómo se resuelven los estilos (por orden de robustez)
+
+1. **VS Code / LaTeX Workshop (Ctrl+S).** El repo incluye `.vscode/settings.json`
+   que expone `styles/` vía `TEXINPUTS` usando el placeholder `%WORKSPACE_FOLDER%`.
+   Es **portable**: cualquier PC que clone el repo compila sin configurar nada.
+   (Necesario porque LaTeX Workshop compila desde la carpeta del `.tex` y `latexmk`
+   solo lee `.latexmkrc` del cwd o de `$HOME`, nunca de carpetas padre.)
+2. **CLI desde la raíz del repo.** El `.latexmkrc` de la raíz agrega `styles/`
+   a `TEXINPUTS`.
+3. **CLI desde cualquier directorio.** Instala los estilos en `TEXMFHOME`
+   (idempotente y auto-reparable ante mudanzas del repo):
+
+   ```bash
+   ./setup_texmf.sh
+   ```
+
+   Esto enlaza `styles/*.sty` en `~/texmf/tex/latex/mathwizards/`.
 
 ### Fuentes necesarias (instaladas en el sistema)
 

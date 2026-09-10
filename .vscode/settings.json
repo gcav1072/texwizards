@@ -1,0 +1,43 @@
+{
+  // ────────────────────────────────────────────────────────────────────────
+  //  Configuración de LaTeX Workshop para el repositorio Mathwizards STEM
+  // ────────────────────────────────────────────────────────────────────────
+  //
+  //  Los estilos (.sty) viven en <repo>/styles/, fuera del directorio de cada
+  //  documento. LaTeX Workshop ejecuta latexmk con cwd = carpeta del .tex, y
+  //  latexmk SOLO lee .latexmkrc del cwd o de $HOME (nunca de carpetas padre),
+  //  por lo que el .latexmkrc de la raíz no se usa al compilar documentos en
+  //  subdirectorios.
+  //
+  //  Solución PORTABLE: exponer styles/ vía TEXINPUTS usando el placeholder
+  //  %WORKSPACE_FOLDER%. Al estar commiteado, cualquier PC que clone el repo
+  //  compila con Ctrl+S sin configurar nada manualmente ni depender de ~/texmf.
+  //
+  //  Nota kpathsea: el ":" final en TEXINPUTS conserva las rutas por defecto.
+  // ────────────────────────────────────────────────────────────────────────
+  "latex-workshop.latex.tools": [
+    {
+      "name": "xelatexmk",
+      "command": "latexmk",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-xelatex",
+        "%DOC%"
+      ],
+      "env": {
+        "TEXINPUTS": "%WORKSPACE_FOLDER%/styles//:"
+      }
+    }
+  ],
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "latexmk (xelatex)",
+      "tools": [
+        "xelatexmk"
+      ]
+    }
+  ],
+  "latex-workshop.latex.recipe.default": "latexmk (xelatex)"
+}

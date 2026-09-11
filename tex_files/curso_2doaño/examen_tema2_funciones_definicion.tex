@@ -1,0 +1,305 @@
+% ============================================================
+%  EXAMEN TEMA 2: FUNCIONES — DEFINICIÓN
+%  Curso de Introducción — 2do Año
+%  Duración: 90 minutos
+%  Temas: Conjuntos, Relaciones y Funciones, Representación,
+%         Tipos de función e Integración
+%  Autor: Ing. Gabriel Astudillo
+%  Nota: enunciado limpio (sin pistas ni desarrollo). Las
+%  soluciones están en la "Clave de Respuestas" al final.
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Examen — Tema 2: Funciones: Definición}{Ing. Gabriel Astudillo $\cdot$ Curso 2do Año}
+
+% ── Comandos propios de este examen ───────────────────
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Dom}{\operatorname{Dom}}
+\newcommand{\Cod}{\operatorname{Cod}}
+\newcommand{\Rgo}{\operatorname{Rgo}}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Examen del Tema 2}{Funciones: Definición}{Conjuntos, Relaciones, Dominio, Rango y Tipos de Función}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Nombre:} \rule{0.55\linewidth}{0.4pt} \quad \textbf{Fecha:} \rule{0.15\linewidth}{0.4pt} \\[6pt]
+  \textbf{Tiempo disponible:} 90 minutos \quad$\bullet$\quad \textbf{Puntaje total:} 100 puntos \\[4pt]
+  \textbf{Instrucciones:}
+  \begin{enumerate}[leftmargin=*]
+    \item Lee cada ejercicio con calma antes de resolverlo.
+    \item Muestra \emph{todos} tus pasos y justifica tus clasificaciones.
+    \item Recuerda: una relación es función si \emph{cada} elemento del dominio tiene \emph{una sola} imagen.
+    \item Distingue siempre dominio, codominio y rango.
+    \item No se permite el uso de calculadora.
+    \item Escribe con letra clara y revisa tu examen antes de entregarlo.
+  \end{enumerate}
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Repaso de Conjuntos (15 puntos)}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{(5 pts)} Escribe por extensión:
+        \[
+          a)\ A = \{x \in \N \;/\; x \text{ es divisor de } 36\} \qquad
+          b)\ B = \{x \in \Z \;/\; -4 < x \leq 3\}
+        \]
+
+  \item \textbf{(5 pts)} Escribe por comprensión (dos formas distintas en el inciso $a$):
+        \[
+          a)\ C = \{\pm 1, \pm 2, \pm 4, \pm 8, \pm 16\} \qquad
+          b)\ D = \{5, 10, 15, 20, 25, 30, 35\}
+        \]
+
+  \item \textbf{(5 pts)} Sean $A = \{a, b, c, d\}$ y $B = \{1, 2\}$. Escribe $A \times B$, $B \times A$ y calcula $|A \times B|$ y $|A \times A|$.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Relaciones y Funciones (20 puntos)}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{(5 pts)} Determina si cada relación es una función. Justifica:
+        \begin{enumerate}[label=\alph*)]
+          \item $R_1 = \{(1,2), (2,3), (3,4), (4,5)\}$ de $A = \{1,2,3,4\}$ en $B = \{1,2,3,4,5\}$.
+          \item $R_2 = \{(1,a), (2,a), (3,b), (1,c)\}$ de $A = \{1,2,3\}$ en $B = \{a,b,c\}$.
+          \item $R_3 = \{(0,1), (1,2), (2,3)\}$ de $A = \{0,1,2\}$ en $B = \{1,2,3\}$.
+        \end{enumerate}
+
+  \item \textbf{(5 pts)} Dados $A = \{1, 2, 3, 4\}$ y $B = \{-4, -1, 2, 5, 8\}$, la relación $f$ de $A$ en $B$ está definida por $y = 3x - 4$. Realiza el diagrama tabular y determina $\Dom f$, $\Cod f$ y $\Rgo f$. ¿Es función?
+
+  \item \textbf{(5 pts)} ¿Es función la relación $R = \{(2,1), (3,2), (4,3), (2,5)\}$ de $\{2,3,4\}$ en $\{1,2,3,5\}$? Justifica tu respuesta.
+
+  \item \textbf{(5 pts)} Sean $A = \{1,2,3,4\}$ y $B = \{2,4,6,8\}$, y la relación $R$ de $A$ en $B$ definida por $y = 2x$. Escribe $R$ como conjunto de pares ordenados y determina si es inyectiva, sobreyectiva o biyectiva.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Formas de Representar una Función (20 puntos)}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{(6 pts)} Dada $f(x) = -2x + 5$ con dominio $\{-1, 0, 1, 2, 3\}$:
+        \begin{enumerate}[label=\alph*)]
+          \item Construye el diagrama tabular.
+          \item Escribe el conjunto de pares ordenados.
+          \item Calcula el rango.
+        \end{enumerate}
+
+  \item \textbf{(6 pts)} La función $g$ tiene dominio $\{-2, -1, 0, 1, 2\}$ y regla $g(x) = x^2 + 1$. Escribe sus pares ordenados, calcula el rango e indica si es inyectiva.
+
+  \item \textbf{(8 pts)} Para la función representada en el diagrama sagital, determina $\Dom$, $\Cod$, $\Rgo$, escribe el conjunto de pares ordenados y clasifícala.
+
+        \begin{center}
+          \begin{tikzpicture}[
+              el/.style={draw, circle, minimum size=7mm, inner sep=0pt, font=\small},
+              flecha/.style={-Latex, thick, mwprimario}
+            ]
+            \draw[thick, mwprimario, rounded corners] (-1.2,-1.8) rectangle (1.2,2.3);
+            \node[font=\bfseries, mwprimario] at (0,2.8) {$A$};
+            \node[el] (1) at (0,1.5) {$1$};
+            \node[el] (2) at (0,0.6) {$2$};
+            \node[el] (3) at (0,-0.3) {$3$};
+            \node[el] (4) at (0,-1.2) {$4$};
+            \draw[thick, mwprimario, rounded corners] (4.8,-2.1) rectangle (7.2,2.6);
+            \node[font=\bfseries, mwprimario] at (6,3.1) {$B$};
+            \node[el] (a) at (6,1.9) {$a$};
+            \node[el] (b) at (6,1.0) {$b$};
+            \node[el] (c) at (6,0.1) {$c$};
+            \node[el] (d) at (6,-0.8) {$d$};
+            \node[el] (e) at (6,-1.7) {$e$};
+            \draw[flecha] (1) -- (b);
+            \draw[flecha] (2) -- (a);
+            \draw[flecha] (3) -- (c);
+            \draw[flecha] (4) -- (a);
+          \end{tikzpicture}
+        \end{center}
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Tipos de Función: Inyectiva, Sobreyectiva y Biyectiva (25 puntos)}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{(6 pts)} La función $f: \{1,2,3,4\} \rightarrow \{1,4,7,10\}$ está dada por $f(x) = 3x - 2$. Clasifícala (inyectiva, sobreyectiva o biyectiva). Justifica con el rango.
+
+  \item \textbf{(6 pts)} La función $f = \{(1,a), (2,b), (3,b), (4,c)\}$ va de $A = \{1,2,3,4\}$ en $B = \{a,b,c\}$. Clasifícala y justifica.
+
+  \item \textbf{(6 pts)} La función $f: \{-2,-1,0,1,2\} \rightarrow \{0,1,4\}$ está dada por $f(x) = x^2$. Clasifícala y justifica con el rango.
+
+  \item \textbf{(7 pts)} Diseña y escribe:
+        \begin{enumerate}[label=\alph*)]
+          \item una función \textbf{inyectiva pero no sobreyectiva} de $A = \{1,2,3,4\}$ en $B = \{a,b,c,d,e\}$;
+          \item una función \textbf{biyectiva} de $A = \{1,2,3,4\}$ en $C = \{p,q,r,s\}$.
+        \end{enumerate}
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Ejercicios Integradores (20 puntos)}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{(10 pts)} Dados $A = \{1, 2, 3, 4, 5\}$ y $B = \{-1, 0, 1, 2, 3, 5, 7\}$ y la relación $f$ de $A$ en $B$ definida por $y = 2x - 3$:
+        \begin{enumerate}[label=\alph*)]
+          \item Realiza el diagrama tabular y escribe los pares ordenados.
+          \item Determina $\Dom f$, $\Cod f$ y $\Rgo f$.
+          \item Clasifica la función (inyectiva, sobreyectiva o biyectiva). Justifica.
+        \end{enumerate}
+
+  \item \textbf{(10 pts)} Dados $A = \{0, 1, 2, 3, 4\}$ y $B = \{-6, -3, 0, 3, 6\}$ y la relación $f$ de $A$ en $B$ definida por $y = -3x + 6$:
+        \begin{enumerate}[label=\alph*)]
+          \item Realiza el diagrama tabular.
+          \item Determina $\Dom f$, $\Cod f$ y $\Rgo f$.
+          \item Clasifica la función. Justifica.
+        \end{enumerate}
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\ifmwclaves
+  \section{Clave de Respuestas}
+  % ============================================================
+
+  \subsection*{Sección 1: Repaso de Conjuntos}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \item a) $A = \{1, 2, 3, 4, 6, 9, 12, 18, 36\}$ \quad b) $B = \{-3, -2, -1, 0, 1, 2, 3\}$
+
+    \item a) $C = \{x \in \Z \;/\; x = \pm 2^k, \; k = 0, 1, 2, 3, 4\}$ \quad (o también $C = \{x \in \Z \;/\; |x| \text{ es potencia de } 2 \text{ y } |x| \leq 16\}$)
+          \\[2pt]
+          b) $D = \{x \in \N \;/\; x = 5k, \; 1 \leq k \leq 7\}$
+
+    \item $A \times B = \{(a,1), (a,2), (b,1), (b,2), (c,1), (c,2), (d,1), (d,2)\}$; \quad
+          $B \times A = \{(1,a), (1,b), (1,c), (1,d), (2,a), (2,b), (2,c), (2,d)\}$;
+          $$|A \times B| = 4 \cdot 2 = 8, \qquad |A \times A| = 4 \cdot 4 = 16.$$
+  \end{enumerate}
+
+  \newpage
+
+  \subsection*{Sección 2: Relaciones y Funciones}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \item a) \textbf{Sí} es función: cada elemento de $A$ tiene una única imagen. \quad
+          b) \textbf{No} es función: el $1$ se relaciona con $a$ y con $c$. \quad
+          c) \textbf{Sí} es función.
+
+    \item $f(1) = -1$, $f(2) = 2$, $f(3) = 5$, $f(4) = 8$. \textbf{Sí es función} (cada $x$ tiene una única imagen).
+          $$\Dom f = \{1,2,3,4\}, \quad \Cod f = \{-4,-1,2,5,8\}, \quad \Rgo f = \{-1,2,5,8\}.$$
+
+    \item \textbf{No es función}: el elemento $2$ se relaciona con $1$ y con $5$ (dos imágenes distintas).
+
+    \item $R = \{(1,2), (2,4), (3,6), (4,8)\}$.
+          Como cada elemento de $A$ tiene una única imagen, \textbf{sí es función}. Además:
+          $$\Rgo R = \{2,4,6,8\} = B \Rightarrow \text{sobreyectiva}, \qquad \text{imágenes todas distintas} \Rightarrow \text{inyectiva}.$$
+          Por lo tanto es \textbf{biyectiva}.
+  \end{enumerate}
+
+  \newpage
+
+  \subsection*{Sección 3: Formas de Representar una Función}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \item a) $f(-1) = 7$, $f(0) = 5$, $f(1) = 3$, $f(2) = 1$, $f(3) = -1$:
+          \begin{center}
+            \begin{tabular}{c|ccccc}
+              \toprule
+              $x$             & $-1$ & $0$ & $1$ & $2$ & $3$ \\
+              \midrule
+              $f(x) = -2x+5$  & $7$  & $5$ & $3$ & $1$ & $-1$ \\
+              \bottomrule
+            \end{tabular}
+          \end{center}
+          b) $\{(-1,7), (0,5), (1,3), (2,1), (3,-1)\}$ \quad
+          c) $\Rgo f = \{7, 5, 3, 1, -1\}$.
+
+    \item $g(-2) = 5$, $g(-1) = 2$, $g(0) = 1$, $g(1) = 2$, $g(2) = 5$.
+          Pares: $\{(-2,5), (-1,2), (0,1), (1,2), (2,5)\}$. \quad $\Rgo g = \{1, 2, 5\}$.
+          \textbf{No es inyectiva}: $-2$ y $2$ comparten imagen $5$ (también $-1$ y $1$ comparten $2$).
+
+    \item $\Dom f = \{1,2,3,4\}$; \quad $\Cod f = \{a,b,c,d,e\}$; \quad $\Rgo f = \{a,b,c\}$.
+          Pares ordenados: $f = \{(1,b), (2,a), (3,c), (4,a)\}$.
+          \textbf{No es inyectiva} ($2$ y $4$ comparten imagen $a$); \textbf{no es sobreyectiva} ($d$ y $e$ no son imagen). Solo es función.
+  \end{enumerate}
+
+  \newpage
+
+  \subsection*{Sección 4: Tipos de Función}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \item $f(1) = 1$, $f(2) = 4$, $f(3) = 7$, $f(4) = 10$; $\Rgo f = \{1,4,7,10\} = $ codominio.
+          Imágenes todas distintas (inyectiva) y todos los elementos del codominio son imagen (sobreyectiva) $\Rightarrow$ \textbf{biyectiva}.
+
+    \item $\Rgo f = \{a,b,c\} = B$ $\Rightarrow$ \textbf{sobreyectiva}. Pero $2$ y $3$ comparten imagen $b$ $\Rightarrow$ \textbf{no inyectiva}.
+          Clasificación: sobreyectiva (no inyectiva).
+
+    \item $f(-2) = 4$, $f(-1) = 1$, $f(0) = 0$, $f(1) = 1$, $f(2) = 4$; $\Rgo f = \{0,1,4\} = $ codominio $\Rightarrow$ \textbf{sobreyectiva}.
+          Sin embargo, $-2$ y $2$ comparten imagen $4$ (y $-1$, $1$ comparten $1$) $\Rightarrow$ \textbf{no inyectiva}. Clasificación: sobreyectiva.
+
+    \item Ejemplos válidos:
+          \begin{enumerate}[label=\alph*)]
+            \item $f = \{(1,a), (2,b), (3,c), (4,d)\}$: imágenes distintas (inyectiva); $e \in B$ no es imagen ($\Rgo = \{a,b,c,d\} \neq B$) $\Rightarrow$ no sobreyectiva.
+            \item $g = \{(1,p), (2,q), (3,r), (4,s)\}$: imágenes distintas y $\Rgo = \{p,q,r,s\} = C$ $\Rightarrow$ biyectiva.
+          \end{enumerate}
+  \end{enumerate}
+
+  \newpage
+
+  \subsection*{Sección 5: Ejercicios Integradores}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \item a) $f(1) = -1$, $f(2) = 1$, $f(3) = 3$, $f(4) = 5$, $f(5) = 7$.
+          \begin{center}
+            \begin{tabular}{c|ccccc}
+              \toprule
+              $x$             & $1$ & $2$ & $3$ & $4$ & $5$ \\
+              \midrule
+              $f(x) = 2x-3$   & $-1$ & $1$ & $3$ & $5$ & $7$ \\
+              \bottomrule
+            \end{tabular}
+          \end{center}
+          Pares: $\{(1,-1), (2,1), (3,3), (4,5), (5,7)\}$.
+          \\[2pt]
+          b) $\Dom f = \{1,2,3,4,5\}$, \quad $\Cod f = \{-1,0,1,2,3,5,7\}$, \quad $\Rgo f = \{-1,1,3,5,7\}$.
+          \\[2pt]
+          c) \textbf{Inyectiva} (imágenes todas distintas) pero \textbf{no sobreyectiva} ($0$ y $2$ no son imagen). Clasificación: inyectiva.
+
+    \item a) $f(0) = 6$, $f(1) = 3$, $f(2) = 0$, $f(3) = -3$, $f(4) = -6$:
+          \begin{center}
+            \begin{tabular}{c|ccccc}
+              \toprule
+              $x$              & $0$ & $1$ & $2$ & $3$ & $4$ \\
+              \midrule
+              $f(x) = -3x+6$   & $6$ & $3$ & $0$ & $-3$ & $-6$ \\
+              \bottomrule
+            \end{tabular}
+          \end{center}
+          \par\vspace{4pt}
+          b) $\Dom f = \{0,1,2,3,4\}$, \quad $\Cod f = \{-6,-3,0,3,6\}$, \quad $\Rgo f = \{-6,-3,0,3,6\}$.
+          \\[2pt]
+          c) $\Rgo f = \Cod f$ (sobreyectiva) e imágenes todas distintas (inyectiva) $\Rightarrow$ \textbf{biyectiva}.
+  \end{enumerate}
+
+\fi
+\end{document}

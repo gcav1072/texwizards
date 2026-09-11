@@ -180,13 +180,37 @@
   \end{block}%
 }
 
+% ── Enunciados de ejercicios: anclados ARRIBA ────────────────
+% Beamer centra verticalmente el cuerpo del frame usando pegamento
+% infinito de orden `fill`. Al cerrar el bloque se inserta un
+% `filll` (orden superior), que absorbe TODO el espacio libre: el
+% enunciado sube al tope y el espacio en blanco queda DEBAJO, listo
+% para resolver a mano sobre el PDF (OpenBoard, Xournal++, etc.).
+%
+%   \mwtopanchoroff  desactiva el anclaje (ej. si bajo el enunciado
+%                    va una solución en el mismo frame).
+%   \mwtopanchoron   vuelve a activarlo.
+%   \mwtopejercicio  separación fija entre el título del frame y el
+%                    enunciado (ajústala con \setlength). Por defecto
+%                    0pt: el bloque ya trae su propio margen interno y
+%                    así no se agrandan frames que vienen justos.
+\newlength{\mwtopejercicio}
+\setlength{\mwtopejercicio}{0pt}
+\newif\ifmwtopanchor
+\mwtopanchortrue
+\newcommand{\mwtopanchoron}{\mwtopanchortrue}
+\newcommand{\mwtopanchoroff}{\mwtopanchorfalse}
+\newcommand{\mwtopanchor}{\par\vskip 0pt plus 1filll\relax}
+
 % Bloque para ejercicios (gris oscuro)
 \newenvironment{mwejercicio}[1][Ejercicio]{%
   \setbeamercolor{block title}{bg=mwgrisoscuro, fg=white}%
   \setbeamercolor{block body}{bg=mwgrisclaro, fg=black}%
+  \ifmwtopanchor\vspace{\mwtopejercicio}\fi%
   \begin{block}{#1}%
 }{%
   \end{block}%
+  \ifmwtopanchor\mwtopanchor\fi%
 }
 
 % ── Estrellitas de dificultad ────────────────────────────────

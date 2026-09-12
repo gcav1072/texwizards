@@ -1,0 +1,703 @@
+% ============================================================
+%  GUÍA — DERIVADAS APLICADAS A LA ECONOMÍA
+%  Matemática Aplicada a la Economía · Temas 1–4
+%  Fuente: tex_files/clase_derivadas_economía_genesis/clases.md
+%  Autor: Ing. Gabriel Astudillo
+%  Compilar:  latexmk -xelatex guia_derivadas_economia.tex
+%  Nota: la definición de derivada se escribe con \Delta x.
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+\usepackage{mathwizards-guia}
+\mwguia{Guía — Derivadas Aplicadas a la Economía}{Ing. Gabriel Astudillo $\cdot$ Matemática Aplicada a la Economía}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Derivadas Aplicadas a la Economía}{Variación, modelos económicos y cálculo diferencial}{De la tasa de cambio a la derivada}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} Esta guía reúne el contenido del curso \emph{Matemática Aplicada a la Economía}. Partimos del \textbf{incremento} de una variable y de la \textbf{tasa de cambio} (Tema 1); construimos los \textbf{modelos económicos} clásicos —ingreso, costo, beneficio, equilibrio de mercado e interés compuesto— (Tema 2); formalizamos la \textbf{derivada} como límite y su interpretación geométrica (Tema 3); y cerramos con las \textbf{reglas y técnicas de derivación}: producto, cociente, cadena, exponencial, logaritmo, derivación logarítmica, implícita y sucesivas (Tema 4).
+  \\[6pt]
+  Los \textbf{Ejemplos Resueltos} provienen de las clases; los \textbf{Ejercicios Propuestos} incluyen versiones nuevas y los ejercicios de clase aún sin desarrollar, marcados con \textbf{(Clase)}.
+  \\[6pt]
+  \textbf{Notación clave:} $\Delta x$ (incremento de $x$), $\Delta y$ (incremento de $y$), $T=\Delta y/\Delta x$ (tasa de cambio media).
+  \\[6pt]
+  \textbf{Nivel de Dificultad:}\quad
+  \medio{} Intermedio $(\bigstar\bigstar)$ \quad
+  \dificil{} Difícil $(\bigstar\bigstar\bigstar)$ \quad
+  \muyDificil{} Muy difícil $(\bigstar\bigstar\bigstar\bigstar)$
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Marco Teórico}
+% ============================================================
+
+% ─────────────────────────────────────────────────────────────
+\subsection{Tema 1 · Variación e incremento de una función}
+
+\begin{cuadroteoria}
+  \textbf{Incremento de la variable independiente.} Se denota $\Delta x$ (``delta'' $=$ incremento) y se define como la diferencia entre dos valores de $x$:
+  \[
+    \Delta x = x_2 - x_1 = x_f - x_0
+    \qquad\Longrightarrow\qquad
+    x_2 = x_1 + \Delta x
+  \]
+  \textbf{Incremento de la función.} Se denota $\Delta y$ o $\Delta F$:
+  \[
+    \Delta y = y_2 - y_1 = f(x_2) - f(x_1) = f(x_1 + \Delta x) - f(x_1)
+  \]
+  \textbf{Tasa de cambio media (velocidad media).}
+  \[
+    T = \frac{\Delta y}{\Delta x} = \frac{f(x_2) - f(x_1)}{x_2 - x_1} = \frac{f(x_1 + \Delta x) - f(x_1)}{\Delta x}
+  \]
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Cómo calcular una tasa de cambio media:}
+  \begin{enumerate}
+    \item Identifica $x_1$ y $x_2$ y calcula $\Delta x = x_2 - x_1$.
+    \item Evalúa $y_1 = f(x_1)$ y $y_2 = f(x_2)$.
+    \item Calcula $\Delta y = y_2 - y_1$.
+    \item Divide: $T = \Delta y / \Delta x$.
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}
+  \textbf{Ojo con esto:} $\Delta x$ es un \emph{incremento}, no una multiplicación. Puede ser \textbf{negativo} (si $x_2 < x_1$) y siempre se calcula como \emph{valor final menos valor inicial}. Un $\Delta y$ distinto de cero indica cambio; la tasa $T$ tiene unidades de $y$ por unidad de $x$.
+\end{cuadroadvertencia}
+
+% ─────────────────────────────────────────────────────────────
+\subsection{Tema 2 · Modelos matemáticos en economía}
+
+En economía, muchas magnitudes se relacionan mediante funciones. Las más importantes son el ingreso, el costo y el beneficio.
+
+\begin{cuadroteoria}
+  \textbf{Funciones económicas básicas} ($q$ $=$ unidades producidas, $P$ $=$ precio):
+  \begin{itemize}
+    \item \textbf{Ingreso:} $I(q) = P(q)\cdot q$ \qquad (forma simple: $I(q) = q\,P$)
+    \item \textbf{Costo total:} $C(q) = C_v + C_f$ \hfill ($C_v$ $=$ costo variable, $C_f$ $=$ costo fijo)
+    \item \textbf{Beneficio:} $B(q) = I(q) - C(q)$
+  \end{itemize}
+  \textbf{Equilibrio de mercado.} La oferta y la demanda se igualan en el \emph{punto de equilibrio}:
+  \[
+    S(P) = D(P)
+  \]
+  \textbf{Interés compuesto.}
+  \[
+    P = P_0\,(1 + r)^{n}
+  \]
+  donde $P_0$ es el capital inicial, $r$ la tasa de interés por período y $n$ el número de períodos.
+\end{cuadroteoria}
+
+\begin{cuadroextra}
+  \textbf{En el equilibrio del productor.} El productor encuentra su punto de equilibrio cuando el ingreso iguala al costo: $I(q) = C(q)$. Es la intersección de ambas curvas y suele dar una ecuación cuadrática con \emph{dos} soluciones; se elige la que tenga sentido económico (la mayor, cuando $I$ crece más rápido que $C$).
+\end{cuadroextra}
+
+% ─────────────────────────────────────────────────────────────
+\subsection{Tema 3 · La derivada: definición e interpretación}
+
+\begin{cuadroteoria}
+  \textbf{De la tasa media a la tasa instantánea.} Si en $T = \dfrac{\Delta y}{\Delta x}$ hacemos que $\Delta x \to 0$, la \textbf{recta secante} que pasa por $P$ y $Q$ tiende a la \textbf{recta tangente} en $P$. Ese límite es la \textbf{derivada}:
+  \[
+    f'(x) \;=\; \lim_{\Delta x \to 0} \frac{\Delta y}{\Delta x}
+    \;=\; \lim_{\Delta x \to 0} \frac{y_2 - y_1}{\Delta x}
+    \;=\; \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x}
+  \]
+  \textbf{Condición:} $f$ debe ser \textbf{continua} (y el límite debe existir) para que $f$ sea derivable en $x$.
+\end{cuadroteoria}
+
+\begin{cuadroteoria}
+  \textbf{Interpretación de la derivada:}
+  \begin{itemize}
+    \item \textbf{Analítica:} ritmo (razón) de cambio de $f$ respecto a su variable independiente.
+    \item \textbf{Geométrica:} $f'(x_0)$ es la \textbf{pendiente de la recta tangente} a la gráfica de $f$ en $x_0$ $\bigl(m_T = f'(x_0)\bigr)$.
+    \item \textbf{Nombres equivalentes:} razón de cambio $\cdot$ tasa instantánea $\cdot$ velocidad instantánea.
+  \end{itemize}
+  \textbf{Notaciones equivalentes de la derivada:}
+  \[
+    f'(x) \qquad y' \qquad \frac{dy}{dx} \qquad \left(\frac{d}{dx}\right)y
+  \]
+\end{cuadroteoria}
+
+% ─────────────────────────────────────────────────────────────
+\subsection{Tema 4 · Reglas de derivación y técnicas avanzadas}
+
+\begin{cuadroteoria}
+  \textbf{Primeras reglas (tabla de derivadas):}
+  \begin{center}
+  \begin{tabular}{@{}ll@{\qquad}ll@{}}
+    \toprule
+    \textbf{Función} & \textbf{Derivada} & \textbf{Función} & \textbf{Derivada} \\
+    \midrule
+    $f = u + v + w$ & $f' = u' + v' + w'$ & $f(x) = ax$ & $f'(x) = a$ \\
+    $f = k$ (cte.) & $f' = 0$ & $f(x) = x^{n}$ & $f'(x) = n\,x^{n-1}$ \\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+  \textbf{Reglas de producto, cociente y cadena:}
+  \[
+    f = u\,v \;\Rightarrow\; f' = u'v + uv'
+    \qquad
+    f = \frac{u}{v} \;\Rightarrow\; f' = \frac{v\,u' - u\,v'}{v^{2}}
+    \qquad
+    f = u^{n} \;\Rightarrow\; f' = n\,u^{n-1}\,u'
+  \]
+  \textbf{Exponencial y logaritmo:}
+  \[
+    f = e^{u} \;\Rightarrow\; f' = e^{u}\,u'
+    \qquad
+    f = \ln u \;\Rightarrow\; f' = \frac{u'}{u}
+  \]
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Derivación logarítmica} (para funciones de la forma $y = u(x)^{v(x)}$):
+  \begin{enumerate}
+    \item Aplica $\ln$ en ambos lados: $\ln y = \ln\!\bigl[u^{v}\bigr]$.
+    \item Baja el exponente con $\log a^{n} = n\log a$: $\ln y = v\,\ln u$.
+    \item Deriva implícitamente usando $\dfrac{d}{dx}[\ln y] = \dfrac{y'}{y}$ y la regla del producto.
+    \item Despeja $y' = y\,[\;\cdots\;]$ y sustituye $y = u^{v}$.
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroteoria}
+  \textbf{Derivación implícita.} Si $x$ e $y$ están ligadas por una ecuación $F(x,y)=0$, se deriva término a término respecto a $x$ tratando a $y$ como función de $x$ (cada vez que se deriva $y$ aparece un factor $y'$). Luego se agrupan los términos con $y'$ y se despeja.
+  \\[6pt]
+  \textbf{Derivadas sucesivas:}
+  \begin{center}
+  \begin{tabular}{@{}ll@{}}
+    \toprule
+    \textbf{Orden} & \textbf{Notaciones} \\
+    \midrule
+    Primera derivada  & $y'$ \quad $f'(x)$ \quad $\dfrac{dy}{dx}$ \\
+    Segunda derivada  & $y''$ \quad $f''(x)$ \quad $\dfrac{d^{2}y}{dx^{2}}$ \\
+    Tercera derivada  & $y'''$ \quad $f'''(x)$ \quad $\dfrac{d^{3}y}{dx^{3}}$ \\
+    $n$-ésima derivada & $\dfrac{d^{n}y}{dx^{n}}$ \\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+\end{cuadroteoria}
+
+\begin{cuadroextra}
+  \textbf{En economía: las derivadas marginales.}
+  \begin{center}
+  \begin{tabular}{@{}llll@{}}
+    \toprule
+    \textbf{Magnitud} & \textbf{Función} & \textbf{Derivada} & \textbf{Nombre} \\
+    \midrule
+    Ingreso  & $I(q)$ & $I'(q) = \dfrac{dI}{dq}$ & \textbf{Ingreso marginal} \\
+    Costo    & $C(q)$ & $C'(q) = \dfrac{dC}{dq}$ & \textbf{Costo marginal} \\
+    Beneficio & $B(q)$ & $B'(q) = \dfrac{dB}{dq} = \dfrac{d}{dq}(I - C)$ & \textbf{Beneficio marginal} \\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+\end{cuadroextra}
+
+\newpage
+% ============================================================
+\section{Ejemplos Resueltos}
+% ============================================================
+
+\noindent\textbf{Ejemplo resuelto 1 (incrementos y tasa de cambio).} \emph{[Clase 1]}
+Hallar los incrementos de $x$ y de $y$ para $x_1 = 2$ y $x_2 = 2{,}03$ en la función $F(x) = \sqrt{3x^{2} + 1}$.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1: incremento de $x$.}
+  \[
+    \Delta x = x_2 - x_1 = 2{,}03 - 2 = 0{,}03
+  \]
+  \textbf{Paso 2: valores de la función.}
+  \begin{align*}
+    y_1 &= F(2) = \sqrt{3(2)^{2}+1} = \sqrt{13} \approx 3{,}61 \\
+    y_2 &= F(2{,}03) = \sqrt{3(2{,}03)^{2}+1} = \sqrt{13{,}3627} \approx 3{,}66
+  \end{align*}
+  \textbf{Paso 3: incremento de $y$.}
+  \[
+    \Delta y = y_2 - y_1 \approx 3{,}66 - 3{,}61 = 0{,}05
+  \]
+  \textbf{Paso 4: tasa de cambio media.}
+  \[
+    T = \frac{\Delta y}{\Delta x} = \frac{0{,}05}{0{,}03} = \frac{5}{3} \approx 1{,}67
+  \]
+  \textbf{Respuesta:} $\Delta x = 0{,}03$, $\Delta y \approx 0{,}05$ y $T \approx 1{,}67$.
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplo resuelto 2 (equilibrio de oferta y demanda).} \emph{[Clase 3]}
+Las funciones de oferta y demanda de un artículo son $S(P) = 4P + 200$ y $D(P) = -3P + 480$. Hallar el precio de equilibrio y las cantidades correspondientes. Si el precio se incrementa un $2\%$ a partir del equilibrio, ¿cuál es el incremento de la oferta y de la demanda?
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1: condición de equilibrio} $S(P) = D(P)$.
+  \[
+    4P + 200 = -3P + 480
+    \;\Longrightarrow\; 7P = 280
+    \;\Longrightarrow\; \boxed{P = 40}
+  \]
+  \textbf{Paso 2: cantidades en el equilibrio.}
+  \[
+    S(40) = 4(40) + 200 = 360
+    \qquad
+    D(40) = -3(40) + 480 = 360
+  \]
+  \[
+    \Longrightarrow\quad \text{Punto de equilibrio } (40,\;360)
+  \]
+  \textbf{Paso 3: incremento del $2\%$ en el precio.}
+  \[
+    40 \to 100\%, \quad x \leftarrow 2\%
+    \;\Longrightarrow\; \Delta P = \frac{40 \cdot 2}{100} = 0{,}8
+    \;\Longrightarrow\; P_2 = 40{,}8
+  \]
+  \textbf{Paso 4: incremento de la oferta.}
+  \[
+    S(40{,}8) = 4(40{,}8) + 200 = 363{,}2
+    \;\Longrightarrow\; \Delta S = 363{,}2 - 360 = 3{,}2
+  \]
+  \textbf{Paso 5: incremento de la demanda.}
+  \[
+    D(40{,}8) = -3(40{,}8) + 480 = 357{,}6
+    \;\Longrightarrow\; \Delta D = 357{,}6 - 360 = -2{,}4
+  \]
+  \textbf{Paso 6: tasas de cambio.}
+  \[
+    T_S = \frac{\Delta S}{\Delta P} = \frac{3{,}2}{0{,}8} = 4
+    \qquad
+    T_D = \frac{\Delta D}{\Delta P} = \frac{-2{,}4}{0{,}8} = -3
+  \]
+  \textbf{Respuesta:} $P=40$, $Q=360$; $\Delta S = 3{,}2$, $\Delta D = -2{,}4$; $T_S = 4$ y $T_D = -3$.
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplo resuelto 3 (equilibrio del productor).} \emph{[Clase 4]}
+El chocolate Savoy vende cajas de bombones a $2000$ bs c/u. Si $q$ es el número de cajas producidas en miles semanalmente, los costos son $C(q) = 100q^{2} + 1300q + 1000$. Determine el punto de equilibrio del productor. Si $q$ se incrementa un $5\%$ a partir del equilibrio, determine el incremento del costo y del ingreso.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1: función ingreso.}
+  \[
+    I(q) = q\,P = 2000q
+  \]
+  \textbf{Paso 2: equilibrio del productor} $I(q) = C(q)$.
+  \[
+    2000q = 100q^{2} + 1300q + 1000
+    \;\Longrightarrow\; 100q^{2} - 700q + 1000 = 0
+  \]
+  Dividiendo entre $100$: $\;q^{2} - 7q + 10 = 0$, con $a=1$, $b=-7$, $c=10$:
+  \[
+    q = \frac{7 \pm \sqrt{49 - 40}}{2} = \frac{7 \pm 3}{2}
+    \;\Longrightarrow\; q_1 = 5, \quad q_2 = 2
+  \]
+  \textbf{Paso 3: verificación.}
+  \[
+    I(5) = 10000 = C(5)
+    \qquad
+    I(2) = 4000 = C(2)
+  \]
+  Se toma $q_1 = 5$ (la cantidad que maximiza el beneficio).
+  \textbf{Paso 4: incremento del $5\%$ en $q$.}
+  \[
+    5 \to 100\%, \quad x \leftarrow 5\%
+    \;\Longrightarrow\; \Delta q = \frac{5 \cdot 5}{100} = 0{,}25
+    \;\Longrightarrow\; q_2 = 5{,}25
+  \]
+  \textbf{Paso 5: incremento del ingreso.}
+  \[
+    I_1 = 2000(5) = 10\,000
+    \qquad
+    I_2 = 2000(5{,}25) = 10\,500
+    \;\Longrightarrow\; \Delta I = 10\,500 - 10\,000 = 500
+  \]
+  \textbf{Paso 6: incremento del costo.}
+  \[
+    C_1 = 100(5)^{2} + 1300(5) + 1000 = 10\,000
+  \]
+  \[
+    C_2 = 100(5{,}25)^{2} + 1300(5{,}25) + 1000
+        = 2756{,}25 + 6825 + 1000 = 10\,581{,}25
+  \]
+  \[
+    \Delta C = 10\,581{,}25 - 10\,000 = 581{,}25
+  \]
+  \textbf{Respuesta:} equilibrio en $q=5$; $\Delta I = 500$ y $\Delta C = 581{,}25$.
+  \\[2pt]
+  \textit{Fe de erratas:} el cuaderno registra $C_2 = 10\,256{,}25$ y $\Delta C = 256{,}25$; el error proviene de usar $1300 \cdot 5$ en lugar de $1300 \cdot 5{,}25$.
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplo resuelto 4 (interés compuesto y logaritmos).} \emph{[Clase 5]}
+Si $\$100$ se invierten a un interés compuesto de $6\%$ anual, ¿cuánto tardará la inversión en llegar a $\$150$?
+
+\begin{cuadrosolucion}
+  \textbf{Datos:} $P_0 = 100$, $P_F = 150$, $r = 6\% = 0{,}06$, $n = ?$
+  \[
+    P_F = P_0(1+r)^{n}
+    \;\Longrightarrow\; 100(1{,}06)^{n} = 150
+    \;\Longrightarrow\; (1{,}06)^{n} = 1{,}5
+  \]
+  \textbf{Aplicamos logaritmos:}
+  \[
+    \log(1{,}06)^{n} = \log(1{,}5)
+    \;\Longrightarrow\; n\,\log(1{,}06) = \log(1{,}5)
+    \;\Longrightarrow\; n = \frac{\log 1{,}5}{\log 1{,}06} \approx \frac{0{,}1761}{0{,}0253} \approx 6{,}96
+  \]
+  \textbf{Respuesta:} $n \approx 7$ años.
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplo resuelto 5 (derivada por definición, $\Delta x$).} \emph{[Clase 7.1]}
+Hallar la derivada de $f(x) = 3x^{2} - 2x + 1$ por definición.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1:} planteamos el límite del cociente incremental con $\Delta x$.
+  \[
+    f'(x) = \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x}
+  \]
+  \textbf{Paso 2:} sustituimos y desarrollamos el numerador.
+  \[
+    = \lim_{\Delta x \to 0} \frac{\bigl[3(x+\Delta x)^{2} - 2(x+\Delta x) + 1\bigr] - \bigl[3x^{2} - 2x + 1\bigr]}{\Delta x}
+  \]
+  \[
+    = \lim_{\Delta x \to 0} \frac{3x^{2} + 6x\,\Delta x + 3(\Delta x)^{2} - 2x - 2\Delta x + 1 - 3x^{2} + 2x - 1}{\Delta x}
+  \]
+  \textbf{Paso 3:} cancelamos $3x^{2}$, $2x$ y $1$.
+  \[
+    = \lim_{\Delta x \to 0} \frac{6x\,\Delta x + 3(\Delta x)^{2} - 2\Delta x}{\Delta x}
+    = \lim_{\Delta x \to 0} \frac{\Delta x\,\bigl(6x + 3\Delta x - 2\bigr)}{\Delta x}
+  \]
+  \textbf{Paso 4:} simplificamos $\Delta x$ y tomamos el límite.
+  \[
+    f'(x) = \lim_{\Delta x \to 0} \bigl(6x + 3\Delta x - 2\bigr) = 6x + 3(0) - 2 = 6x - 2
+  \]
+  \textbf{Respuesta:} $f'(x) = 6x - 2$ \quad \textit{(coincide con la tabla: $2\cdot 3x - 2$).}
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplo resuelto 6 (derivada por definición de un cociente, $\Delta x$).} \emph{[Clase 7.2]}
+Hallar la derivada de $g(x) = \dfrac{1}{x+2}$ por definición.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1:} planteamos el límite.
+  \[
+    g'(x) = \lim_{\Delta x \to 0} \frac{g(x+\Delta x) - g(x)}{\Delta x}
+    = \lim_{\Delta x \to 0} \frac{\dfrac{1}{x + \Delta x + 2} - \dfrac{1}{x+2}}{\Delta x}
+  \]
+  \textbf{Paso 2:} común denominador $(x+\Delta x+2)(x+2)$.
+  \[
+    = \lim_{\Delta x \to 0} \frac{(x+2) - (x + \Delta x + 2)}{(x+\Delta x+2)(x+2)\,\Delta x}
+    = \lim_{\Delta x \to 0} \frac{-\Delta x}{(x+\Delta x+2)(x+2)\,\Delta x}
+  \]
+  \textbf{Paso 3:} simplificamos $\Delta x$ y tomamos el límite.
+  \[
+    = \lim_{\Delta x \to 0} \frac{-1}{(x+\Delta x+2)(x+2)}
+    = \frac{-1}{(x+0+2)(x+2)}
+  \]
+  \textbf{Respuesta:} $g'(x) = -\dfrac{1}{(x+2)^{2}}$.
+\end{cuadrosolucion}
+
+\newpage
+\noindent\textbf{Ejemplo resuelto 7 (regla del cociente).} \emph{[Clase 10.2]}
+Derivar $h(x) = \dfrac{4x^{2}+1}{3x+2}$.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1:} identificamos $u = 4x^{2}+1$ y $v = 3x+2$.
+  \[
+    u' = 8x
+    \qquad
+    v' = 3
+  \]
+  \textbf{Paso 2:} aplicamos $f' = \dfrac{v\,u' - u\,v'}{v^{2}}$.
+  \[
+    h'(x) = \frac{(3x+2)(8x) - (4x^{2}+1)(3)}{(3x+2)^{2}}
+  \]
+  \textbf{Paso 3:} desarrollamos y simplificamos el numerador.
+  \[
+    h'(x) = \frac{24x^{2} + 16x - 12x^{2} - 3}{(3x+2)^{2}}
+  \]
+  \textbf{Respuesta:} $h'(x) = \dfrac{12x^{2} + 16x - 3}{(3x+2)^{2}}$.
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplo resuelto 8 (regla del producto).} \emph{[Clase 11.1]}
+Derivar $F(t) = (2t^{3}+t^{2})(5t+1)$.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1:} identificamos $u = 2t^{3}+t^{2}$ y $v = 5t+1$.
+  \[
+    u' = 6t^{2}+2t
+    \qquad
+    v' = 5
+  \]
+  \textbf{Paso 2:} aplicamos $f' = u'v + uv'$.
+  \[
+    F'(t) = (6t^{2}+2t)(5t+1) + (2t^{3}+t^{2})(5)
+  \]
+  \textbf{Paso 3:} desarrollamos y agrupamos términos semejantes.
+  \[
+    F'(t) = 30t^{3} + 6t^{2} + 10t^{2} + 2t + 10t^{3} + 5t^{2}
+  \]
+  \textbf{Respuesta:} $F'(t) = 40t^{3} + 21t^{2} + 2t$.
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplo resuelto 9 (regla de la cadena con raíz).} \emph{[Clase 11.2]}
+Derivar $F(x) = \sqrt{3x^{2}+5x-1}$.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1:} reescribimos con exponente fraccionario.
+  \[
+    F(x) = (3x^{2}+5x-1)^{1/2}
+  \]
+  \textbf{Paso 2:} aplicamos $f' = \tfrac{1}{2}u^{-1/2}\,u'$ con $u = 3x^{2}+5x-1$ y $u' = 6x+5$.
+  \[
+    F'(x) = \frac{1}{2}(3x^{2}+5x-1)^{-1/2}\,(6x+5)
+  \]
+  \textbf{Respuesta:} $F'(x) = \dfrac{6x+5}{2\sqrt{3x^{2}+5x-1}}$.
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplo resuelto 10 (exponencial y logaritmo).} \emph{[Clase 12.2–12.3]}
+
+\begin{cuadrosolucion}
+  \textbf{(a) Exponencial:} $y = e^{3x^{2}+1}$. Con $u = 3x^{2}+1$ se tiene $u' = 6x$:
+  \[
+    y' = \frac{dy}{dx} = e^{3x^{2}+1}\,(6x) = 6x\,e^{3x^{2}+1}
+  \]
+  \textbf{(b) Logaritmo:} $P(x) = \ln(2x^{2}+x)$. Con $u = 2x^{2}+x$ se tiene $u' = 4x+1$:
+  \[
+    P'(x) = \frac{4x+1}{2x^{2}+x}
+  \]
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplo resuelto 11 (derivación logarítmica).} \emph{[Clase 15.1]}
+Derivar $y = (5x + e^{x})^{2x+1}$.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1:} aplicamos $\ln$ en ambos lados.
+  \[
+    \ln y = \ln (5x + e^{x})^{2x+1}
+  \]
+  \textbf{Paso 2:} bajamos el exponente con $\log a^{n} = n\log a$.
+  \[
+    \ln y = (2x+1)\,\ln(5x+e^{x})
+  \]
+  \textbf{Paso 3:} derivamos con la regla del producto y $\dfrac{d}{dx}[\ln y] = \dfrac{y'}{y}$.
+  \[
+    \frac{y'}{y} = (2x+1)\cdot\frac{5 + e^{x}}{5x + e^{x}} + \ln(5x+e^{x})\cdot 2
+  \]
+  \textbf{Paso 4:} despejamos $y'$ y sustituimos $y$.
+  \[
+    y' = (5x+e^{x})^{2x+1}\left[\frac{(2x+1)(5+e^{x})}{5x+e^{x}} + 2\ln(5x+e^{x})\right]
+  \]
+  \textbf{Respuesta:} $y' = (5x+e^{x})^{2x+1}\left[\dfrac{(2x+1)(5+e^{x})}{5x+e^{x}} + 2\ln(5x+e^{x})\right]$.
+\end{cuadrosolucion}
+
+\newpage
+\noindent\textbf{Ejemplo resuelto 12 (derivación implícita).} \emph{[Clase 16.1]}
+Hallar $y'$ si $a\,x^{3} + 4x^{2}y - x\,y^{3} = 0$.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1:} derivamos término a término respecto a $x$ (cada derivada de $y$ lleva factor $y'$).
+  \[
+    3a\,x^{2} + \bigl(8xy + 4x^{2}y'\bigr) - \bigl(y^{3} + x\cdot 3y^{2}y'\bigr) = 0
+  \]
+  \textbf{Paso 2:} agrupamos los términos con $y'$.
+  \[
+    3a\,x^{2} + 8xy + 4x^{2}y' - y^{3} - 3xy^{2}y' = 0
+    \;\Longrightarrow\;
+    y'\bigl(4x^{2} - 3xy^{2}\bigr) = y^{3} - 3a\,x^{2} - 8xy
+  \]
+  \textbf{Respuesta:} $y' = \dfrac{y^{3} - 3a\,x^{2} - 8xy}{4x^{2} - 3xy^{2}}$.
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplo resuelto 13 (derivadas sucesivas y demostración).} \emph{[Clase 17.3]}
+Dada $y = A\,e^{x} + B\,e^{x/2}$, demostrar que $2y'' - 3y' + y = 0$.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1:} calculamos las derivadas.
+  \[
+    y = A\,e^{x} + B\,e^{x/2}
+    \qquad
+    y' = A\,e^{x} + \tfrac{1}{2}B\,e^{x/2}
+    \qquad
+    y'' = A\,e^{x} + \tfrac{1}{4}B\,e^{x/2}
+  \]
+  \textbf{Paso 2:} sustituimos en $2y'' - 3y' + y$.
+  \[
+    2\left(Ae^{x} + \tfrac{1}{4}Be^{x/2}\right) - 3\left(Ae^{x} + \tfrac{1}{2}Be^{x/2}\right) + Ae^{x} + Be^{x/2}
+  \]
+  \[
+    = 2Ae^{x} + \tfrac{1}{2}Be^{x/2} - 3Ae^{x} - \tfrac{3}{2}Be^{x/2} + Ae^{x} + Be^{x/2}
+  \]
+  \textbf{Paso 3:} agrupamos por $e^{x}$ y $e^{x/2}$.
+  \[
+    = Ae^{x}\,(2 - 3 + 1) + Be^{x/2}\left(\tfrac{1}{2} - \tfrac{3}{2} + 1\right)
+    = Ae^{x}\cdot 0 + Be^{x/2}\cdot 0 = 0
+  \]
+  \textbf{Respuesta:} $2y'' - 3y' + y = 0$. \hfill $\blacksquare$
+\end{cuadrosolucion}
+
+\newpage
+% ============================================================
+\section{Ejercicios Propuestos}
+% ============================================================
+
+\subsection{Ejercicios nuevos}
+
+\noindent En los ejercicios 1--6 $(\bigstar\bigstar)$, 7--13 $(\bigstar\bigstar\bigstar)$ y 14--18 $(\bigstar\bigstar\bigstar\bigstar)$ la dificultad aumenta progresivamente.
+
+\begin{enumerate}[leftmargin=*]
+
+  % ── ★★ (1─6) ─────────────────────────────────────────────
+  \item \medio{} Para $f(x) = x^{2} + 3x$ con $x_1 = 1$ y $x_2 = 1{,}04$, calcule $\Delta x$, $\Delta y$ y la tasa de cambio media $T$.
+
+  \item \medio{} Si $\Delta x = -0{,}08$ y $x_1 = 12$, halle $x_2$ (despeje a partir de $\Delta x = x_2 - x_1$).
+
+  \item \medio{} Se invierten $\$500$ a interés compuesto del $4\%$ anual. ¿Cuál es el capital al cabo de $5$ años?
+
+  \item \medio{} Un artículo tiene funciones de oferta y demanda $S(P) = 5P + 120$ y $D(P) = -4P + 390$. Halle el precio y la cantidad de equilibrio.
+
+  \item \medio{} Calcule $f'(x)$ por definición (con $\Delta x$) para $f(x) = x^{2} - 5x$.
+
+  \item \medio{} Derive por la regla del cociente: $f(x) = \dfrac{2x^{2} - 3}{x + 1}$.
+
+  % ── ★★★ (7─13) ───────────────────────────────────────────
+  \item \dificil{} Derive por la regla del producto: $f(x) = (x^{2}+1)(3x-2)$.
+
+  \item \dificil{} Derive por la regla de la cadena: $f(x) = (4x^{2}-1)^{5}$.
+
+  \item \dificil{} Derive: $f(x) = \sqrt{5x^{2} + 2x}$.
+
+  \item \dificil{} Derive: $y = e^{\,x^{2} - 3x}$.
+
+  \item \dificil{} Derive: $f(x) = \ln(3x^{2} - x)$.
+
+  \item \dificil{} Derive: $h(x) = \ln\!\left(\dfrac{x^{2}+1}{x-2}\right)$.
+
+  \item \dificil{} Halle $y'$ por derivación implícita: $x^{2} + 4xy - y^{2} = 0$.
+
+  % ── ★★★★ (14─18) ─────────────────────────────────────────
+  \item \muyDificil{} Halle $y'$ por derivación logarítmica: $y = x^{x}$.
+
+  \item \muyDificil{} Halle $y'$ por derivación logarítmica: $y = (2x+1)^{3x}$.
+
+  \item \muyDificil{} Halle $y'$ por derivación implícita: $3x^{2} + 2y^{3} - \ln y = 0$.
+
+  \item \muyDificil{} Dada $f(x) = x^{4} - 3x^{3} + 2x$, calcule $f''(x)$ y $f'''(x)$.
+
+  \item \muyDificil{} Dada $y = A\,e^{3x} + B\,e^{x}$, demuestre que $y'' - 4y' + 3y = 0$.
+
+\end{enumerate}
+
+\begin{enumerate}[leftmargin=*, start=19]
+
+  \item \dificil{} \textbf{(Clase)} Derive $g(x) = \sqrt[3]{x^{2}} - 4\sqrt{x^{3}}$.
+
+  \item \dificil{} \textbf{(Clase)} Derive $Z(x) = \dfrac{1}{\sqrt{5x+3}}$.
+
+  \item \muyDificil{} \textbf{(Clase)} Derive $h(x) = \ln\sqrt{\dfrac{x^{2}+3}{2x-1}}$.
+
+  \item \dificil{} \textbf{(Clase)} Derive $f(x) = \ln\!\left[\dfrac{x^{2}-2x+1}{3x-1}\right]$.
+
+  \item \dificil{} \textbf{(Clase)} Derive $g(x) = \sqrt{3x^{2} - x + 1}$.
+
+  \item \dificil{} \textbf{(Clase)} Derive $h(x) = 2x^{p} + x^{p-1}$.
+
+  \item \dificil{} \textbf{(Clase)} Derive $M(x) = e^{-x^{2}} + \ln(2x^{n} - 3)$.
+
+  \item \muyDificil{} \textbf{(Clase)} Derive por derivación logarítmica: $J(x) = \left[\dfrac{3x^{2}-1}{2x+1}\right]^{x+2}$.
+
+  \item \muyDificil{} \textbf{(Clase)} Derive $f(p) = \dfrac{e^{-p^{2}} + \ln(p^{2})}{p^{2}+1}$.
+
+  \item \muyDificil{} \textbf{(Clase)} Derive $Q(s) = \sqrt[5]{25^{s} - e^{3s}}$.
+
+  \item \muyDificil{} \textbf{(Clase)} Derive $h(z) = \ln\!\left(\sqrt{z^{2} + e^{-z}}\right)^{3}$.
+
+  \item \muyDificil{} \textbf{(Clase)} Derive $W(x) = \dfrac{3x^{2}\,e^{2x}}{x-1}$.
+
+  \item \muyDificil{} \textbf{(Clase)} Halle $y'$ por derivación implícita: $3x^{2} + 6y^{3} - \ln y = 0$.
+
+  \item \muyDificil{} \textbf{(Clase)} Halle $y'$ por derivación implícita: $y^{2} - 3e^{-x} + \ln y = \ln(3x+1)$.
+
+  \item \muyDificil{} \textbf{(Clase)} Halle $y'$ por derivación implícita: $\sqrt{y^{2}-1} + 3xy + \sqrt{3x-2} = 0$.
+
+\end{enumerate}
+
+\newpage
+% ============================================================
+\ifmwclaves
+  \section{Clave de Respuestas}
+  % ============================================================
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+
+    % ── Nuevos 1─18 ─────────────────────────────────────────
+    \item $\Delta x = 0{,}04$; \quad $\Delta y = 0{,}2016$; \quad $T = 5{,}04$
+
+    \item $x_2 = x_1 + \Delta x = 12 - 0{,}08 = 11{,}92$
+
+    \item $P = 500(1{,}04)^{5} \approx \$608{,}33$
+
+    \item $P = 30$; \quad $Q = S(30) = D(30) = 270$
+
+    \item $f'(x) = 2x - 5$
+
+    \item $f'(x) = \dfrac{2x^{2} + 4x + 3}{(x+1)^{2}}$
+
+    \item $f'(x) = 9x^{2} - 4x + 3$
+
+    \item $f'(x) = 40x\,(4x^{2}-1)^{4}$
+
+    \item $f'(x) = \dfrac{5x+1}{\sqrt{5x^{2}+2x}}$
+
+    \item $y' = (2x-3)\,e^{\,x^{2}-3x}$
+
+    \item $f'(x) = \dfrac{6x-1}{3x^{2}-x}$
+
+    \item $h'(x) = \dfrac{x^{2} - 4x - 1}{(x^{2}+1)(x-2)}$
+
+    \item $y' = -\dfrac{x + 2y}{2x - y}$
+
+    \item $y' = x^{x}\,(1 + \ln x)$
+
+    \item $y' = (2x+1)^{3x}\left[3\ln(2x+1) + \dfrac{6x}{2x+1}\right]$
+
+    \item $y' = -\dfrac{6xy}{6y^{3} - 1}$
+
+    \item $f''(x) = 12x^{2} - 18x$; \quad $f'''(x) = 24x - 18$
+
+    \item Demostración: $y' = 3Ae^{3x} + Be^{x}$, \; $y'' = 9Ae^{3x} + Be^{x}$; \; sustituyendo, $y'' - 4y' + 3y = A(9-12+3)e^{3x} + B(1-4+3)e^{x} = 0$.
+
+    % ── De clase 19─33 ──────────────────────────────────────
+    \item $g'(x) = \dfrac{2}{3\sqrt[3]{x}} - 6\sqrt{x}$
+
+    \item $Z'(x) = -\dfrac{5}{2\,(5x+3)^{3/2}}$
+
+    \item $h'(x) = \dfrac{1}{2}\cdot\dfrac{2x^{2} - 2x - 6}{(x^{2}+3)(2x-1)} = \dfrac{x^{2} - x - 3}{(x^{2}+3)(2x-1)}$
+
+    \item $f'(x) = \dfrac{2x-2}{x^{2}-2x+1} - \dfrac{3}{3x-1}$
+
+    \item $g'(x) = \dfrac{6x-1}{2\sqrt{3x^{2}-x+1}}$
+
+    \item $h'(x) = 2p\,x^{p-1} + (p-1)\,x^{p-2}$
+
+    \item $M'(x) = -2x\,e^{-x^{2}} + \dfrac{2n\,x^{n-1}}{2x^{n}-3}$
+
+    \item $J'(x) = \left[\dfrac{3x^{2}-1}{2x+1}\right]^{x+2}\left[(x+2)\left(\dfrac{6x}{3x^{2}-1} - \dfrac{2}{2x+1}\right) + \ln(3x^{2}-1) - \ln(2x+1)\right]$
+
+    \item $f'(p) = \dfrac{-2p\,(p^{2}+2)\,e^{-p^{2}} + \dfrac{2(p^{2}+1)}{p} - 4p\ln p}{(p^{2}+1)^{2}}$
+
+    \item $Q'(s) = \dfrac{1}{5}\left(25^{s} - e^{3s}\right)^{-4/5}\left(25^{s}\ln 25 - 3e^{3s}\right)$
+
+    \item $h'(z) = \dfrac{3}{2}\cdot\dfrac{2z - e^{-z}}{z^{2} + e^{-z}}$
+
+    \item $W'(x) = \dfrac{3x\,e^{2x}\,(2x^{2} - x - 2)}{(x-1)^{2}}$
+
+    \item $y' = -\dfrac{6xy}{18y^{3} - 1}$
+
+    \item $y' = \dfrac{\dfrac{3}{3x+1} - 3e^{-x}}{2y + \dfrac{1}{y}}$
+
+    \item $y' = \dfrac{-3y - \dfrac{3}{2\sqrt{3x-2}}}{y\,(y^{2}-1)^{-1/2} + 3x}$
+
+  \end{enumerate}
+\fi
+
+\end{document}

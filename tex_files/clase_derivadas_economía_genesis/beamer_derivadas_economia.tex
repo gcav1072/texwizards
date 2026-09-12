@@ -1,0 +1,200 @@
+% ============================================================
+%  BEAMER — DERIVADAS APLICADAS A LA ECONOMÍA
+%  Matemática Aplicada a la Economía · Temas 1–4
+%  Autor: Ing. Gabriel Astudillo
+%  Compilar:  latexmk -xelatex beamer_derivadas_economia.tex
+%  Nota: la definición de derivada se escribe con \Delta x.
+% ============================================================
+\documentclass[aspectratio=169]{beamer}
+\usepackage{mathwizards-beamer}
+\mwbeamer{Matemática Aplicada a la Economía}{Derivadas}{Cálculo diferencial}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Marco Teórico}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Incrementos y Tasa de Cambio}
+  \begin{block}{Incremento de la variable y de la función}
+    \[
+      \Delta x = x_2 - x_1
+      \qquad\Longrightarrow\qquad
+      x_2 = x_1 + \Delta x
+    \]
+    \[
+      \Delta y = f(x_2) - f(x_1) = f(x_1 + \Delta x) - f(x_1)
+    \]
+  \end{block}
+  \vspace{4pt}
+  \begin{mwextra}[Tasa de cambio media]
+    \[
+      T = \frac{\Delta y}{\Delta x} = \frac{f(x_1 + \Delta x) - f(x_1)}{\Delta x}
+    \]
+    Es la \textbf{velocidad media} de cambio de $y$ respecto a $x$.
+  \end{mwextra}
+\end{frame}
+
+\begin{frame}{Modelos Matemáticos en Economía}
+  \begin{block}{Funciones económicas básicas}
+    \begin{itemize}
+      \item \textbf{Ingreso:} $I(q) = P(q)\cdot q$
+      \item \textbf{Costo total:} $C(q) = C_v + C_f$
+      \item \textbf{Beneficio:} $B(q) = I(q) - C(q)$
+    \end{itemize}
+  \end{block}
+  \vspace{4pt}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{mwpasos}[Equilibrio de mercado]
+      $S(P) = D(P)$: punto de intersección de oferta y demanda.
+    \end{mwpasos}
+    \column{0.48\textwidth}
+    \begin{mwextra}[Interés compuesto]
+      $P = P_0(1+r)^{n}$, con $n$ períodos y tasa $r$.
+    \end{mwextra}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{La Derivada: Definición e Interpretación}
+  \begin{block}{Tasa instantánea (definición)}
+    \[
+      f'(x) \;=\; \lim_{\Delta x \to 0} \frac{\Delta y}{\Delta x}
+      \;=\; \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x}
+    \]
+    Requiere que $f$ sea \textbf{continua} en el punto.
+  \end{block}
+  \vspace{4pt}
+  \begin{mwextra}[Interpretación geométrica]
+    Cuando $\Delta x \to 0$, la recta \textbf{secante} tiende a la \textbf{tangente}:
+    \[
+      f'(x_0) = m_T = \text{pendiente de la tangente en } x_0
+    \]
+    Notaciones: $f'(x)$, $y'$, $\dfrac{dy}{dx}$, $\left(\dfrac{d}{dx}\right)y$.
+  \end{mwextra}
+\end{frame}
+
+\begin{frame}{Reglas de Derivación y Derivadas Marginales}
+  \begin{block}{Reglas fundamentales}
+    \begin{columns}[T]
+      \column{0.5\textwidth}
+      \begin{itemize}
+        \item $f = k \;\Rightarrow\; f' = 0$
+        \item $f = x^{n} \;\Rightarrow\; f' = n\,x^{n-1}$
+        \item $f = u\,v \;\Rightarrow\; f' = u'v + uv'$
+        \item $f = \dfrac{u}{v} \;\Rightarrow\; f' = \dfrac{v\,u' - u\,v'}{v^{2}}$
+      \end{itemize}
+      \column{0.46\textwidth}
+      \begin{itemize}
+        \item $f = u^{n} \;\Rightarrow\; f' = n\,u^{n-1}u'$
+        \item $f = e^{u} \;\Rightarrow\; f' = e^{u}u'$
+        \item $f = \ln u \;\Rightarrow\; f' = \dfrac{u'}{u}$
+      \end{itemize}
+    \end{columns}
+  \end{block}
+  \vspace{2pt}
+  \begin{mwpasos}[Derivadas marginales en economía]
+    $I'(q)$ \textbf{ingreso marginal} \quad$\cdot$\quad $C'(q)$ \textbf{costo marginal} \quad$\cdot$\quad $B'(q)$ \textbf{beneficio marginal}
+  \end{mwpasos}
+\end{frame}
+
+\begin{frame}{Técnicas Avanzadas}
+  \begin{mwpasos}[Derivación logarítmica: $y = u(x)^{v(x)}$]
+    \begin{enumerate}
+      \item Aplicar $\ln$: $\ln y = v\,\ln u$ \quad (bajar exponente).
+      \item Derivar: $\dfrac{y'}{y} = v'\,\ln u + v\,\dfrac{u'}{u}$.
+      \item Despejar $y' = y\,[\;\cdots\;]$.
+    \end{enumerate}
+  \end{mwpasos}
+  \vspace{2pt}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{mwextra}[Implícita]
+      Derivar término a término con $y$ función de $x$ (aparece $y'$), agrupar y despejar.
+    \end{mwextra}
+    \column{0.48\textwidth}
+    \begin{mwextra}[Sucesivas]
+      $y' \;\to\; y'' \;\to\; y''' \;\to\; \dfrac{d^{n}y}{dx^{n}}$
+    \end{mwextra}
+  \end{columns}
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios de Clase}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 1}
+  \begin{mwejercicio}[Ejercicio 1 — Incrementos y tasa \quad \medio]
+    Para $f(x) = x^{2} + 3x$ con $x_1 = 1$ y $x_2 = 1{,}04$, calcule $\Delta x$, $\Delta y$ y la tasa de cambio media $T$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+\begin{frame}{Ejercicio 2}
+  \begin{mwejercicio}[Ejercicio 2 — Interés compuesto \quad \medio]
+    Se invierten $\$500$ a interés compuesto del $4\%$ anual. ¿Cuál es el capital al cabo de $5$ años?
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+\begin{frame}{Ejercicio 3}
+  \begin{mwejercicio}[Ejercicio 3 — Derivada por definición ($\Delta x$) \quad \medio]
+    Calcule $f'(x)$ por definición, con $\Delta x$, para $f(x) = x^{2} - 5x$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+\begin{frame}{Ejercicio 4}
+  \begin{mwejercicio}[Ejercicio 4 — Regla del producto \quad \dificil]
+    Derive $f(x) = (x^{2}+1)(3x-2)$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+\begin{frame}{Ejercicio 5}
+  \begin{mwejercicio}[Ejercicio 5 — Cadena con raíz \quad \dificil]
+    Derive $f(x) = \sqrt{5x^{2} + 2x}$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+\begin{frame}{Ejercicio 6}
+  \begin{mwejercicio}[Ejercicio 6 — Logaritmo \quad \dificil]
+    Derive $f(x) = \ln(3x^{2} - x)$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+\begin{frame}{Ejercicio 7}
+  \begin{mwejercicio}[Ejercicio 7 — Derivación implícita \quad \dificil]
+    Halle $y'$ si $x^{2} + 4xy - y^{2} = 0$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+\begin{frame}{Ejercicio 8}
+  \begin{mwejercicio}[Ejercicio 8 — Derivación logarítmica \quad \muyDificil]
+    Halle $y'$ por derivación logarítmica: $y = x^{x}$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+\begin{frame}{Ejercicio 9}
+  \begin{mwejercicio}[Ejercicio 9 — Implícita con logaritmo \quad \muyDificil]
+    Halle $y'$ si $3x^{2} + 2y^{3} - \ln y = 0$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+\begin{frame}{Ejercicio 10}
+  \begin{mwejercicio}[Ejercicio 10 — Derivadas sucesivas \quad \muyDificil]
+    Dada $y = A\,e^{3x} + B\,e^{x}$, demuestre que $y'' - 4y' + 3y = 0$.
+  \end{mwejercicio}
+  \vspace{3.5cm}
+\end{frame}
+
+\end{document}

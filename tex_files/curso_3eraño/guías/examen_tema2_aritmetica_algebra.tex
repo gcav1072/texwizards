@@ -1,0 +1,216 @@
+% ============================================================
+%  EXAMEN TEMA 2: ARITMÉTICA, ÁLGEBRA Y ECUACIONES
+%  Curso Introductorio — 3er Año
+%  Duración: 90 minutos
+%  Temas: Números reales y fracciones, exponentes, notación
+%         científica, ecuaciones lineales y sistemas
+%  Autor: Ing. Gabriel Astudillo
+%  Nota: enunciado limpio (sin pistas ni desarrollo). Las
+%  soluciones están en la "Clave de Respuestas" al final.
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Examen — Tema 2: Aritmética, Álgebra y Ecuaciones}{Ing. Gabriel Astudillo $\cdot$ Curso 3er Año}
+
+% ── Comandos propios de este examen ───────────────────
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\R}{\mathbb{R}}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Examen del Tema 2}{Aritmética, Álgebra y Ecuaciones}{Números Reales, Exponentes, Notación Científica y Ecuaciones}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Nombre:} \rule{0.55\linewidth}{0.4pt} \quad \textbf{Fecha:} \rule{0.15\linewidth}{0.4pt} \\[6pt]
+  \textbf{Tiempo disponible:} 90 minutos \quad$\bullet$\quad \textbf{Puntaje total:} 100 puntos \\[4pt]
+  \textbf{Instrucciones:}
+  \begin{enumerate}[leftmargin=*]
+    \item Lee cada ejercicio con calma antes de resolverlo.
+    \item Muestra \emph{todos} tus pasos y simplifica siempre el resultado.
+    \item En los sistemas, indica el método usado (sustitución o reducción).
+    \item En notación científica, respeta el formato $a \times 10^n$ con $1 \leq |a| < 10$.
+    \item No se permite el uso de calculadora.
+    \item Escribe con letra clara y revisa tu examen antes de entregarlo.
+  \end{enumerate}
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Números Reales y Fracciones (30 puntos)}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{(6 pts)} Clasifica cada número en el conjunto más pequeño al que pertenece ($\N$, $\Z$, $\Q$ o $\I$):
+        \[
+          a)\ -12 \qquad b)\ \sqrt{16} \qquad c)\ \frac{3}{8} \qquad d)\ \sqrt{5} \qquad e)\ 0{,}25 \qquad f)\ -\frac{2}{3}
+        \]
+
+  \item \textbf{(6 pts)} Calcula y simplifica:
+        \[
+          a)\ \frac{3}{4} + \frac{5}{6} - \frac{1}{3} \qquad b)\ \frac{7}{8} \div \frac{21}{16} \qquad c)\ \frac{2}{5} \cdot \frac{15}{4} - \frac{1}{2}
+        \]
+
+  \item \textbf{(6 pts)} Simplifica la fracción compleja:
+        \[
+          \frac{\frac{3}{4} + \frac{1}{2}}{\frac{5}{6} - \frac{1}{3}}
+        \]
+
+  \item \textbf{(6 pts)} Ordena de menor a mayor:
+        \[
+          \frac{5}{6}, \quad \frac{7}{9}, \quad \frac{3}{4}, \quad \frac{11}{15}
+        \]
+
+  \item \textbf{(6 pts)} Un tanque está lleno hasta $\dfrac{4}{5}$ de su capacidad. Se consume $\dfrac{1}{3}$ de la capacidad total y luego se añade $\dfrac{2}{15}$ de la capacidad total. ¿Qué fracción de la capacidad queda en el tanque?
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Exponentes y Notación Científica (30 puntos)}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{(6 pts)} Simplifica usando las propiedades de los exponentes:
+        \[
+          a)\ \frac{2^5 \cdot 2^3}{2^6} \qquad b)\ (3^2)^3 \cdot 3^{-4} \qquad c)\ \frac{4^2 \cdot 4^{-3}}{4^{-2}}
+        \]
+
+  \item \textbf{(6 pts)} Expresa en notación científica:
+        \[
+          a)\ 0{,}000\,000\,42 \qquad b)\ 5\,600\,000 \qquad c)\ 0{,}003\,05
+        \]
+
+  \item \textbf{(6 pts)} Calcula y expresa el resultado en notación científica:
+        \[
+          a)\ (4 \times 10^5)(2{,}5 \times 10^{-3}) \qquad b)\ \frac{9 \times 10^{-4}}{3 \times 10^{-7}}
+        \]
+
+  \item \textbf{(6 pts)} Simplifica completamente:
+        \[
+          \frac{(2^4)^2 \cdot 3^5}{2^5 \cdot 3^3}
+        \]
+
+  \item \textbf{(6 pts)} La masa del Sol es aproximadamente $1{,}989 \times 10^{30}$\,kg y la masa de la Tierra es $5{,}97 \times 10^{24}$\,kg. ¿Cuántas veces más masivo es el Sol que la Tierra? Expresa el resultado en notación científica.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Ecuaciones Lineales y Sistemas de Ecuaciones (40 puntos)}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{(8 pts)} Resuelve:
+        \[
+          a)\ 5x - 3 = 2x + 9 \qquad b)\ 2(x - 3) + 5 = 3(x + 1) - 7
+        \]
+
+  \item \textbf{(8 pts)} Resuelve:
+        \[
+          \frac{2x - 1}{3} = \frac{x + 4}{2}
+        \]
+
+  \item \textbf{(8 pts)} Resuelve el sistema por el método de \textbf{reducción}:
+        \[
+          \begin{cases} 3x + 2y = 20 \\ 5x - 2y = 12 \end{cases}
+        \]
+
+  \item \textbf{(8 pts)} En una papelería, $4$ cuadernos y $3$ lápices cuestan $40$\,Bs, mientras que $5$ cuadernos y $2$ lápices cuestan $43$\,Bs. Plantea el sistema de ecuaciones y halla el precio de cada artículo.
+
+  \item \textbf{(8 pts)} Resuelve:
+        \[
+          \frac{x + 2}{4} - \frac{x - 1}{3} = \frac{5}{6}
+        \]
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\ifmwclaves
+  \section{Clave de Respuestas}
+  % ============================================================
+
+  \subsection*{Sección 1: Números Reales y Fracciones}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \item a) $-12 \in \Z$ \quad b) $\sqrt{16} = 4 \in \N$ \quad c) $\dfrac{3}{8} \in \Q$ \quad d) $\sqrt{5} \in \I$ \quad e) $0{,}25 = \dfrac{1}{4} \in \Q$ \quad f) $-\dfrac{2}{3} \in \Q$
+
+    \item a) mcm$(4,6,3) = 12$: $\dfrac{9}{12} + \dfrac{10}{12} - \dfrac{4}{12} = \dfrac{15}{12} = \dfrac{5}{4}$.
+          \quad b) $\dfrac{7}{8} \cdot \dfrac{16}{21} = \dfrac{112}{168} = \dfrac{2}{3}$.
+          \quad c) $\dfrac{2}{5} \cdot \dfrac{15}{4} = \dfrac{30}{20} = \dfrac{3}{2}$; \ $\dfrac{3}{2} - \dfrac{1}{2} = 1$.
+
+    \item Numerador: $\dfrac{3}{4} + \dfrac{1}{2} = \dfrac{3}{4} + \dfrac{2}{4} = \dfrac{5}{4}$. \quad
+          Denominador: $\dfrac{5}{6} - \dfrac{1}{3} = \dfrac{5}{6} - \dfrac{2}{6} = \dfrac{3}{6} = \dfrac{1}{2}$.
+          \[
+            \frac{\frac{5}{4}}{\frac{1}{2}} = \frac{5}{4} \cdot 2 = \frac{5}{2}.
+          \]
+
+    \item Llevamos todo al mcm $= 180$:
+          \[
+            \frac{5}{6} = \frac{150}{180}, \quad \frac{7}{9} = \frac{140}{180}, \quad \frac{3}{4} = \frac{135}{180}, \quad \frac{11}{15} = \frac{132}{180}.
+          \]
+          Por lo tanto: $\dfrac{11}{15} < \dfrac{3}{4} < \dfrac{7}{9} < \dfrac{5}{6}$.
+
+    \item $\dfrac{4}{5} - \dfrac{1}{3} + \dfrac{2}{15}$. Con mcm $= 15$: $\dfrac{12}{15} - \dfrac{5}{15} + \dfrac{2}{15} = \dfrac{9}{15} = \dfrac{3}{5}$ del tanque.
+  \end{enumerate}
+
+  \newpage
+
+  \subsection*{Sección 2: Exponentes y Notación Científica}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \item a) $\dfrac{2^{5+3}}{2^6} = 2^{8-6} = 2^2 = 4$.
+          \quad b) $3^{2 \cdot 3} \cdot 3^{-4} = 3^{6-4} = 3^2 = 9$.
+          \quad c) $4^{2-3} \cdot 4^{2} = 4^{1} = 4$.
+
+    \item a) $0{,}000\,000\,42 = 4{,}2 \times 10^{-7}$. \quad b) $5\,600\,000 = 5{,}6 \times 10^{6}$. \quad c) $0{,}003\,05 = 3{,}05 \times 10^{-3}$.
+
+    \item a) $(4)(2{,}5) \times 10^{5-3} = 10 \times 10^{2} = 1 \times 10^{3}$.
+          \quad b) $\dfrac{9}{3} \times 10^{-4-(-7)} = 3 \times 10^{3}$.
+
+    \item $\dfrac{2^{8} \cdot 3^{5}}{2^{5} \cdot 3^{3}} = 2^{8-5} \cdot 3^{5-3} = 2^{3} \cdot 3^{2} = 8 \cdot 9 = 72$.
+
+    \item $\dfrac{1{,}989 \times 10^{30}}{5{,}97 \times 10^{24}} = \dfrac{1{,}989}{5{,}97} \times 10^{6} \approx 0{,}3332 \times 10^{6} = 3{,}33 \times 10^{5}$.
+          El Sol es aproximadamente $3{,}33 \times 10^5$ veces más masivo que la Tierra.
+  \end{enumerate}
+
+  \newpage
+
+  \subsection*{Sección 3: Ecuaciones Lineales y Sistemas de Ecuaciones}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \item a) $5x - 3 = 2x + 9 \Rightarrow 3x = 12 \Rightarrow x = 4$. \quad
+          b) $2x - 6 + 5 = 3x + 3 - 7 \Rightarrow 2x - 1 = 3x - 4 \Rightarrow x = 3$.
+
+    \item mcm$(3,2) = 6$: $2(2x - 1) = 3(x + 4) \Rightarrow 4x - 2 = 3x + 12 \Rightarrow x = 14$.
+          Comprobación: $\dfrac{27}{3} = 9$ y $\dfrac{18}{2} = 9$ $\checkmark$.
+
+    \item Sumando ambas ecuaciones: $(3x + 5x) + (2y - 2y) = 20 + 12 \Rightarrow 8x = 32 \Rightarrow x = 4$.
+          En la primera: $3(4) + 2y = 20 \Rightarrow 2y = 8 \Rightarrow y = 4$. \quad Solución: $x = 4$, $y = 4$.
+
+    \item Sea $c$ el precio del cuaderno y $l$ el del lápiz:
+          \[
+            \begin{cases} 4c + 3l = 40 \\ 5c + 2l = 43 \end{cases}
+          \]
+          Multiplicamos la primera por 2 y la segunda por 3: $8c + 6l = 80$ y $15c + 6l = 129$.
+          Restando: $7c = 49 \Rightarrow c = 7$. \quad Sustituyendo: $4(7) + 3l = 40 \Rightarrow 3l = 12 \Rightarrow l = 4$.
+          \textbf{El cuaderno cuesta $7$\,Bs y el lápiz $4$\,Bs.}
+
+    \item mcm$(4,3,6) = 12$: $3(x + 2) - 4(x - 1) = 10 \Rightarrow 3x + 6 - 4x + 4 = 10 \Rightarrow -x + 10 = 10 \Rightarrow x = 0$.
+          Comprobación: $\dfrac{2}{4} - \dfrac{-1}{3} = \dfrac{1}{2} + \dfrac{1}{3} = \dfrac{5}{6}$ $\checkmark$.
+  \end{enumerate}
+
+\fi
+\end{document}

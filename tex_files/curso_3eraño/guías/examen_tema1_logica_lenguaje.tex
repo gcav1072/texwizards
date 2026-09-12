@@ -1,0 +1,211 @@
+% ============================================================
+%  EXAMEN TEMA 1: RAZONAMIENTO LÓGICO Y LENGUAJE MATEMÁTICO
+%  Curso Introductorio — 3er Año
+%  Duración: 90 minutos
+%  Temas: Lógica proposicional, Método de Pólya y
+%         traducción al lenguaje algebraico
+%  Autor: Ing. Gabriel Astudillo
+%  Nota: enunciado limpio (sin pistas ni desarrollo). Las
+%  soluciones están en la "Clave de Respuestas" al final.
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+
+\usepackage{mathwizards-guia}
+\mwguia{Examen — Tema 1: Razonamiento Lógico y Lenguaje Matemático}{Ing. Gabriel Astudillo $\cdot$ Curso 3er Año}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Examen del Tema 1}{Razonamiento Lógico y Lenguaje Matemático}{Lógica Proposicional, Método de Pólya y Traducción Algebraica}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Nombre:} \rule{0.55\linewidth}{0.4pt} \quad \textbf{Fecha:} \rule{0.15\linewidth}{0.4pt} \\[6pt]
+  \textbf{Tiempo disponible:} 90 minutos \quad$\bullet$\quad \textbf{Puntaje total:} 100 puntos \\[4pt]
+  \textbf{Instrucciones:}
+  \begin{enumerate}[leftmargin=*]
+    \item Lee cada ejercicio con calma antes de resolverlo.
+    \item Justifica \emph{todos} tus razonamientos; en los acertijos, explica el paso a paso.
+    \item En los problemas de Pólya, escribe explícitamente las cuatro fases.
+    \item Define las proposiciones atómicas que uses antes de traducir.
+    \item No se permite el uso de calculadora.
+    \item Escribe con letra clara y revisa tu examen antes de entregarlo.
+  \end{enumerate}
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Introducción a la Lógica Proposicional (45 puntos)}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{(8 pts)} Determina cuáles de los siguientes enunciados son proposiciones y asígnales un valor de verdad (V o F) cuando sea posible:
+        \begin{enumerate}[label=\alph*)]
+          \item «7 es un número primo.»
+          \item «\textquestiondown Pásame el borrador?»
+          \item «$x + 3 = 10$»
+          \item «El Sol es un planeta.»
+          \item «Todo número par es divisible por 2.»
+          \item «\textquestiondown Cuántos años tienes?»
+        \end{enumerate}
+
+  \item \textbf{(8 pts)} Define las proposiciones atómicas necesarias y traduce al lenguaje simbólico:
+        \begin{enumerate}[label=\alph*)]
+          \item «Estudio y apruebo el examen.»
+          \item «Si no llueve, entonces voy a la playa.»
+          \item «Ni hace frío ni llueve.»
+          \item «Llueve o hace sol.»
+        \end{enumerate}
+
+  \item \textbf{(9 pts)} Construye la \textbf{tabla de verdad completa} de la proposición:
+        \[
+          (p \vee q) \wedge \neg p
+        \]
+
+  \item \textbf{(10 pts)} En la isla de los caballeros (siempre dicen la verdad) y los pícaros (siempre mienten), te encuentras con dos habitantes $A$ y $B$. El habitante $A$ dice: «Ambos somos pícaros.» Determina qué tipo es cada uno. Justifica paso a paso.
+
+  \item \textbf{(10 pts)} Tienes tres cajas etiquetadas «Manzanas», «Naranjas» y «Mixta», pero \textbf{todas las etiquetas están mal colocadas}. Solo puedes sacar \textbf{una fruta de una caja}. \textquestiondown De qué caja sacas la fruta y cómo determinas el contenido correcto de las tres cajas? Explica tu razonamiento paso a paso.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{El Método de George Pólya (30 puntos)}
+% ============================================================
+
+\noindent Para cada problema, aplica explícitamente las cuatro fases del Método de Pólya (comprender, planificar, ejecutar y verificar).
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{(7 pts)} En una granja hay gallinas y conejos. Se cuentan $25$ cabezas y $70$ patas. \textquestiondown Cuántas gallinas y cuántos conejos hay?
+
+  \item \textbf{(7 pts)} Tienes billetes de $5$ y de $20$ bolívares. En total son $15$ billetes que suman $180$ bolívares. \textquestiondown Cuántos billetes de cada tipo tienes?
+
+  \item \textbf{(8 pts)} Un tren sale de la ciudad $A$ hacia $B$ a $60$\,km/h. Dos horas después, otro tren sale de $B$ hacia $A$ a $90$\,km/h. Si las ciudades están a $420$\,km de distancia, \textquestiondown después de cuántas horas (desde que salió el segundo tren) se encuentran?
+
+  \item \textbf{(8 pts)} En una prueba de $30$ preguntas, cada respuesta correcta vale $5$ puntos y cada incorrecta resta $2$ puntos (no hay preguntas sin responder). Un estudiante obtuvo $80$ puntos. \textquestiondown Cuántas respuestas correctas e incorrectas tuvo?
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Del Lenguaje Natural al Lenguaje Algebraico (25 puntos)}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{(5 pts)} Traduce a una expresión o ecuación algebraica (define tus variables):
+        \begin{enumerate}[label=\alph*)]
+          \item «El cuádruple de un número, disminuido en 7.»
+          \item «La tercera parte de un número, más su cuadrado.»
+          \item «La suma de dos números consecutivos es 51.»
+        \end{enumerate}
+
+  \item \textbf{(5 pts)} «La edad de Ana es el triple de la edad de su hijo. Juntas suman 60 años.» Plantea la ecuación y determina ambas edades.
+
+  \item \textbf{(5 pts)} Un artículo cuesta $P$ bolívares y se le aplica un descuento del $20\%$.
+        \begin{enumerate}[label=\alph*)]
+          \item Escribe el precio final en función de $P$.
+          \item Si el precio final es $640$ bolívares, \textquestiondown cuál era el precio original $P$?
+        \end{enumerate}
+
+  \item \textbf{(5 pts)} Un rectángulo tiene el largo $5$\,cm mayor que el ancho y su perímetro es $46$\,cm. Plantea la ecuación y halla las dimensiones.
+
+  \item \textbf{(5 pts)} Escribe la identidad algebraica: «El cuadrado de la suma de dos números es igual a la suma de sus cuadrados más el doble de su producto.»
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\ifmwclaves
+  \section{Clave de Respuestas}
+  % ============================================================
+
+  \subsection*{Sección 1: Introducción a la Lógica Proposicional}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \item a) Proposición, \textbf{V}. \quad b) No es proposición (es una orden/petición).
+          \quad c) No es proposición (depende del valor de $x$). \quad d) Proposición, \textbf{F}.
+          \quad e) Proposición, \textbf{V}. \quad f) No es proposición (es una pregunta).
+
+    \item a) $p$: «Estudio», $q$: «Apruebo el examen» $\Rightarrow p \wedge q$. \quad
+          b) $p$: «Llueve», $q$: «Voy a la playa» $\Rightarrow \neg p \rightarrow q$. \quad
+          c) $p$: «Hace frío», $q$: «Llueve» $\Rightarrow \neg p \wedge \neg q$. \quad
+          d) $p$: «Llueve», $q$: «Hace sol» $\Rightarrow p \vee q$.
+
+    \item Tabla de verdad de $(p \vee q) \wedge \neg p$:
+          \begin{center}
+            \begin{tabular}{cc|c|c|c}
+              \toprule
+              $p$ & $q$ & $\neg p$ & $p \vee q$ & $(p \vee q) \wedge \neg p$ \\
+              \midrule
+              V   & V   & F        & V          & F                          \\
+              V   & F   & F        & V          & F                          \\
+              F   & V   & V        & V          & V                          \\
+              F   & F   & V        & F          & F                          \\
+              \bottomrule
+            \end{tabular}
+          \end{center}
+          Se observa que es verdadera solo cuando $p$ es falsa y $q$ es verdadera.
+
+    \item Supongamos que $A$ es caballero: entonces su afirmación sería verdadera, es decir, ambos serían pícaros, lo que incluiría al propio $A$: contradicción.
+          Por lo tanto, $A$ es \textbf{pícaro} y su afirmación es falsa: no es cierto que ambos sean pícaros.
+          Como $A$ ya es pícaro, necesariamente $B$ no lo es. Conclusión: $A$ es pícaro y $B$ es \textbf{caballero}.
+
+    \item Se saca una fruta de la caja etiquetada \textbf{«Mixta»}. Como la etiqueta está mal, esa caja no contiene fruta mixta: contiene un solo tipo.
+          \begin{itemize}[leftmargin=*]
+            \item Si se saca una \textbf{manzana}, la caja «Mixta» es en realidad «Manzanas».
+            \item Quedan las cajas etiquetadas «Manzanas» y «Naranjas», con contenidos Naranjas y Mixta (en algún orden). La caja «Naranjas» está mal etiquetada, así que no puede contener naranjas: es «Mixta». Por lo tanto, la caja «Manzanas» contiene «Naranjas».
+            \item (Si la fruta sacada fuera una naranja, el razonamiento es simétrico.)
+          \end{itemize}
+  \end{enumerate}
+
+  \newpage
+
+  \subsection*{Sección 2: El Método de George Pólya}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \item \textbf{Fase 1:} $25$ animales, $70$ patas. Gallinas: 2 patas; conejos: 4 patas.
+          \textbf{Fase 2:} suposición extrema: si todos fueran gallinas, habría $25 \times 2 = 50$ patas; faltan $70 - 50 = 20$. Cada conejo agrega $2$ patas.
+          \textbf{Fase 3:} conejos $= 20 \div 2 = 10$; gallinas $= 25 - 10 = 15$.
+          \textbf{Fase 4:} $15(2) + 10(4) = 30 + 40 = 70$ patas $\checkmark$ y $15 + 10 = 25$ cabezas $\checkmark$.
+          \textbf{Respuesta:} 15 gallinas y 10 conejos.
+
+    \item $x$: billetes de $5$; $y$: billetes de $20$. Sistema: $x + y = 15$, $5x + 20y = 180$.
+          $x = 15 - y \Rightarrow 5(15 - y) + 20y = 180 \Rightarrow 75 + 15y = 180 \Rightarrow y = 7$, $x = 8$.
+          \textbf{Verificación:} $8(5) + 7(20) = 40 + 140 = 180$ $\checkmark$. \quad 8 billetes de 5 y 7 de 20.
+
+    \item \textbf{Comprender:} dos trenes que se acercan; el segundo sale $2$\,h después.
+          \textbf{Plan:} al salir el segundo tren, el primero ya recorrió $60 \times 2 = 120$\,km; la distancia restante es $420 - 120 = 300$\,km. Se acercan a $60 + 90 = 150$\,km/h.
+          \textbf{Ejecutar:} $t = \dfrac{300}{150} = 2$ horas después de que sale el segundo tren.
+          \textbf{Verificar:} primer tren: $60 \times 4 = 240$\,km; segundo tren: $90 \times 2 = 180$\,km; total $240 + 180 = 420$\,km $\checkmark$.
+
+    \item $c$: correctas; $i$: incorrectas. $c + i = 30$ y $5c - 2i = 80$.
+          $i = 30 - c \Rightarrow 5c - 2(30 - c) = 80 \Rightarrow 5c - 60 + 2c = 80 \Rightarrow 7c = 140 \Rightarrow c = 20$, $i = 10$.
+          \textbf{Verificación:} $5(20) - 2(10) = 100 - 20 = 80$ $\checkmark$. \quad 20 correctas y 10 incorrectas.
+  \end{enumerate}
+
+  \newpage
+
+  \subsection*{Sección 3: Del Lenguaje Natural al Lenguaje Algebraico}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \item a) $4x - 7$ (con $x$ el número). \quad b) $\dfrac{x}{3} + x^2$. \quad c) $n + (n+1) = 51$.
+
+    \item Sea $h$ la edad del hijo; Ana tiene $3h$. \quad $h + 3h = 60 \Rightarrow 4h = 60 \Rightarrow h = 15$.
+          El hijo tiene $15$ años y Ana tiene $45$ años.
+
+    \item a) Precio final $= P - 0{,}20P = 0{,}80P$. \quad b) $0{,}80P = 640 \Rightarrow P = \dfrac{640}{0{,}80} = 800$ bolívares.
+
+    \item Sea $a$ el ancho; el largo es $a + 5$. Perímetro: $2\big(a + (a+5)\big) = 46 \Rightarrow 2a + 5 = 23 \Rightarrow a = 9$.
+          \textbf{Dimensiones:} ancho $= 9$\,cm y largo $= 14$\,cm.
+
+    \item $(a + b)^2 = a^2 + 2ab + b^2$.
+  \end{enumerate}
+
+\fi
+\end{document}

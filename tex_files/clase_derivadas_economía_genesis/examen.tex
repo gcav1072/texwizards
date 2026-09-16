@@ -1,0 +1,238 @@
+% ============================================================
+%  EXAMEN MODELO — DERIVADAS
+%  90 minutos · 20 puntos
+%  Secciones: 1) por definición  2) por teoremas  3) sucesivas  4) implícitas
+%  Autor: Ing. Gabriel Astudillo
+%  Compilar:  latexmk -xelatex examen.tex
+%  Nota: la Clave de Respuestas está envuelta en \ifmwclaves; la versión _scr
+%        (sin clave) se genera con \mwclavesoff.
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+\usepackage{mathwizards-guia}
+\mwguia{Examen Modelo — Derivadas}{Ing. Gabriel Astudillo $\cdot$ Matemática Aplicada a la Economía}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Examen de Derivadas}{Cálculo Diferencial $\cdot$ 90 minutos}{Definición, teoremas, derivadas sucesivas e implícitas}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Nombre:} \rule{0.55\linewidth}{0.4pt} \quad \textbf{Fecha:} \rule{0.15\linewidth}{0.4pt} \\[6pt]
+  \textbf{Tiempo disponible:} 90 minutos \quad$\bullet$\quad \textbf{Puntaje total:} 20 puntos \\[4pt]
+  \textbf{Instrucciones:}
+  \begin{enumerate}[leftmargin=*]
+    \item Muestra \emph{todos} los pasos: se evalúa el procedimiento, no solo el resultado.
+    \item Justifica cada regla que apliques (producto, cociente, cadena, logarítmica, implícita).
+    \item Simplifica al máximo cada resultado y cuida los signos.
+    \item En la Sección 1 debes usar la \textbf{definición}: $\displaystyle f'(x)=\lim_{h\to 0}\frac{f(x+h)-f(x)}{h}$.
+    \item Puntajes por sección: 4, 8, 4 y 4 puntos (total 20).
+    \item No se permite el uso de calculadora ni de formulario.
+  \end{enumerate}
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Derivadas por Definición (4 puntos)}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{(4 pts)} Halla $f'(x)$ a partir de la \textbf{definición} (límite del cociente incremental).
+        \begin{enumerate}[label=\alph*)]
+          \item \textbf{(2 pts)} $f(x) = \dfrac{2x-1}{x+3}$
+          \item \textbf{(2 pts)} $g(x) = \sqrt{x^{2}+1}$
+        \end{enumerate}
+\end{enumerate}
+
+% ============================================================
+\section{Derivadas por Teoremas (8 puntos)}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*]
+  \setcounter{enumi}{1}
+  \item \textbf{(4 pts)} Deriva aplicando las reglas de la cadena, del producto y del cociente.
+        \begin{enumerate}[label=\alph*)]
+          \item \textbf{(2 pts)} $h(x) = \log_5\sqrt[3]{\dfrac{x^{2}+4}{2x-1}}$
+          \item \textbf{(2 pts)} $Z(x) = \dfrac{e^{3x}}{x^{2}-2x+5}$
+        \end{enumerate}
+
+  \item \textbf{(4 pts)} Deriva:
+        \begin{enumerate}[label=\alph*)]
+          \item \textbf{(2 pts)} $f(x) = x^{2}\,e^{\sqrt{2x+1}}$
+          \item \textbf{(2 pts)} $y = \left[\dfrac{2x^{2}-1}{x+3}\right]^{\,x+1}$ \ (usa \textbf{derivación logarítmica})
+        \end{enumerate}
+\end{enumerate}
+
+% ============================================================
+\section{Derivadas Sucesivas (4 puntos)}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*]
+  \setcounter{enumi}{3}
+  \item \textbf{(4 pts)}
+        \begin{enumerate}[label=\alph*)]
+          \item \textbf{(2 pts)} Dada $f(x) = x^{3}e^{-x}$, calcula $f''(x)$.
+          \item \textbf{(2 pts)} Dada $y = A\,e^{2x} + B\,e^{-3x}$, demuestra que $y'' + y' - 6y = 0$.
+        \end{enumerate}
+\end{enumerate}
+
+% ============================================================
+\section{Derivadas Implícitas (4 puntos)}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*]
+  \setcounter{enumi}{4}
+  \item \textbf{(4 pts)} Halla $y' = \dfrac{dy}{dx}$ por \textbf{derivación implícita}.
+        \begin{enumerate}[label=\alph*)]
+          \item \textbf{(2 pts)} $x^{3} + y^{3} - 3xy^{2} = 0$
+          \item \textbf{(2 pts)} $e^{y} + \ln\!\left(y + x^{2}\right) = 3x$
+        \end{enumerate}
+\end{enumerate}
+
+\vspace{14pt}
+\begin{center}
+  {\Large\bfseries\color{mwprimario} ¡Mucho éxito!}\\[4pt]
+  {\large\color{gray} Ordena tu procedimiento, revisa los signos y confía en lo que practicaste.}
+\end{center}
+
+% ============================================================
+\ifmwclaves
+  \section{Clave de Respuestas}
+  % ============================================================
+
+  \subsection*{Sección 1 · Derivadas por Definición}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \item
+    \textbf{a)} $f'(x) = \dfrac{7}{(x+3)^{2}}$. Con $h$:
+    \[
+      \frac{f(x+h)-f(x)}{h}
+      = \frac{(2x+2h-1)(x+3) - (2x-1)(x+h+3)}{h\,(x+h+3)(x+3)}
+      = \frac{7h}{h\,(x+h+3)(x+3)}
+      = \frac{7}{(x+h+3)(x+3)}
+    \]
+    Tomando $h\to 0$:
+    \[
+      f'(x) = \frac{7}{(x+3)^{2}}
+    \]
+    \textbf{b)} $g'(x) = \dfrac{x}{\sqrt{x^{2}+1}}$. Racionalizando el numerador:
+    \[
+      \frac{\sqrt{(x+h)^{2}+1}-\sqrt{x^{2}+1}}{h}
+      = \frac{(x+h)^{2}+1-(x^{2}+1)}{h\left(\sqrt{(x+h)^{2}+1}+\sqrt{x^{2}+1}\right)}
+      = \frac{2xh+h^{2}}{h\left(\cdots\right)}
+    \]
+    \[
+      = \frac{2x+h}{\sqrt{(x+h)^{2}+1}+\sqrt{x^{2}+1}}
+    \]
+    Tomando $h\to 0$:
+    \[
+      g'(x) = \frac{2x}{2\sqrt{x^{2}+1}} = \frac{x}{\sqrt{x^{2}+1}}
+    \]
+  \end{enumerate}
+
+  \subsection*{Sección 2 · Derivadas por Teoremas}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \item
+    \textbf{a)} $h'(x) = \dfrac{2x^{2}-2x-8}{3\ln 5\,(x^{2}+4)(2x-1)}$.
+    \[
+      h(x) = \tfrac{1}{3}\log_5\!\left(\frac{x^{2}+4}{2x-1}\right)
+      = \frac{1}{3\ln 5}\Big[\ln(x^{2}+4) - \ln(2x-1)\Big]
+    \]
+    \[
+      h'(x) = \frac{1}{3\ln 5}\left(\frac{2x}{x^{2}+4} - \frac{2}{2x-1}\right)
+      = \frac{1}{3\ln 5}\cdot\frac{2x(2x-1) - 2(x^{2}+4)}{(x^{2}+4)(2x-1)}
+      = \frac{2x^{2}-2x-8}{3\ln 5\,(x^{2}+4)(2x-1)}
+    \]
+    \textbf{b)} $Z'(x) = \dfrac{e^{3x}\left(3x^{2}-8x+17\right)}{(x^{2}-2x+5)^{2}}$.
+    \[
+      Z'(x) = \frac{3e^{3x}(x^{2}-2x+5) - e^{3x}(2x-2)}{(x^{2}-2x+5)^{2}}
+      = \frac{e^{3x}\left[3x^{2}-6x+15-2x+2\right]}{(x^{2}-2x+5)^{2}}
+      = \frac{e^{3x}\left(3x^{2}-8x+17\right)}{(x^{2}-2x+5)^{2}}
+    \]
+
+    \item
+    \textbf{a)} $y' = e^{\sqrt{2x+1}}\left(2x + \dfrac{x^{2}}{\sqrt{2x+1}}\right)$.
+    Con $u = \sqrt{2x+1}$ se tiene $u' = \dfrac{1}{\sqrt{2x+1}}$ y $y = x^{2}e^{u}$:
+    \[
+      y' = 2x\,e^{u} + x^{2}e^{u}u'
+      = e^{\sqrt{2x+1}}\left(2x + \frac{x^{2}}{\sqrt{2x+1}}\right)
+    \]
+    \textbf{b)} $y' = \left[\dfrac{2x^{2}-1}{x+3}\right]^{x+1}
+    \left[\ln\!\left(\dfrac{2x^{2}-1}{x+3}\right) + (x+1)\left(\dfrac{4x}{2x^{2}-1} - \dfrac{1}{x+3}\right)\right]$.
+    Aplicando $\ln$ y derivando con la regla del producto:
+    \[
+      \ln y = (x+1)\Big[\ln(2x^{2}-1) - \ln(x+3)\Big]
+    \]
+    \[
+      \frac{y'}{y} = \ln\!\left(\frac{2x^{2}-1}{x+3}\right) + (x+1)\left(\frac{4x}{2x^{2}-1} - \frac{1}{x+3}\right)
+    \]
+    \[
+      y' = \left[\frac{2x^{2}-1}{x+3}\right]^{x+1}
+      \left[\ln\!\left(\frac{2x^{2}-1}{x+3}\right) + (x+1)\left(\frac{4x}{2x^{2}-1} - \frac{1}{x+3}\right)\right]
+    \]
+  \end{enumerate}
+
+  \subsection*{Sección 3 · Derivadas Sucesivas}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \item
+    \textbf{a)} $f''(x) = e^{-x}\left(x^{3}-6x^{2}+6x\right)$.
+    \[
+      f'(x) = 3x^{2}e^{-x} - x^{3}e^{-x} = e^{-x}\big(3x^{2} - x^{3}\big)
+    \]
+    \[
+      f''(x) = -e^{-x}\big(3x^{2}-x^{3}\big) + e^{-x}\big(6x - 3x^{2}\big)
+      = e^{-x}\big(x^{3} - 6x^{2} + 6x\big)
+    \]
+    \textbf{b)} Con $y = A\,e^{2x} + B\,e^{-3x}$:
+    \[
+      y' = 2A\,e^{2x} - 3B\,e^{-3x},
+      \qquad
+      y'' = 4A\,e^{2x} + 9B\,e^{-3x}
+    \]
+    \[
+      y'' + y' - 6y = A\,e^{2x}(4+2-6) + B\,e^{-3x}(9-3-6) = 0 \quad\blacksquare
+    \]
+  \end{enumerate}
+
+  \subsection*{Sección 4 · Derivadas Implícitas}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \item
+    \textbf{a)} $y' = \dfrac{y^{2}-x^{2}}{y^{2}-2xy} = \dfrac{(y-x)(y+x)}{y\,(y-2x)}$. Derivando término a término:
+    \[
+      3x^{2} + 3y^{2}y' - 3\big(y^{2} + 2xy\,y'\big) = 0
+    \]
+    \[
+      y'\big(3y^{2} - 6xy\big) = 3y^{2} - 3x^{2}
+      \;\Longrightarrow\;
+      y' = \frac{3y^{2}-3x^{2}}{3y^{2}-6xy} = \frac{y^{2}-x^{2}}{y^{2}-2xy}
+    \]
+    \textbf{b)} $y' = \dfrac{3\left(y+x^{2}\right) - 2x}{e^{y}\left(y+x^{2}\right) + 1}$. Derivando:
+    \[
+      e^{y}y' + \frac{y' + 2x}{y+x^{2}} = 3
+      \;\Longrightarrow\;
+      y'\left[e^{y} + \frac{1}{y+x^{2}}\right] = 3 - \frac{2x}{y+x^{2}}
+    \]
+    Multiplicando por $\left(y+x^{2}\right)$:
+    \[
+      y'\Big[e^{y}\left(y+x^{2}\right) + 1\Big] = 3\left(y+x^{2}\right) - 2x
+      \;\Longrightarrow\;
+      y' = \frac{3\left(y+x^{2}\right) - 2x}{e^{y}\left(y+x^{2}\right) + 1}
+    \]
+  \end{enumerate}
+
+  \vspace{10pt}
+  \begin{cuadrosolucion}
+    \textbf{Baremo rápido.} Sección 1: 4 pts \quad$\bullet$\quad Sección 2: 8 pts \quad$\bullet$\quad Sección 3: 4 pts \quad$\bullet$\quad Sección 4: 4 pts. Total: \textbf{20 puntos}. Las respuestas no simplificadas pero correctas reciben puntaje parcial completo si el procedimiento es válido.
+  \end{cuadrosolucion}
+\fi
+
+\end{document}

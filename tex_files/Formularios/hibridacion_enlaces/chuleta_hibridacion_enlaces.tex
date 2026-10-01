@@ -1,0 +1,242 @@
+% ============================================================
+%  chuleta_hibridacion_enlaces.tex
+%  Chuleta de Química: Hibridación y Enlaces
+%  Mathwizards Consultoría Educativa STEM
+%
+%  Compilar:  latexmk -xelatex chuleta_hibridacion_enlaces.tex
+% ============================================================
+\documentclass[9pt, landscape, letterpaper]{extarticle}
+\usepackage{mathwizards-formulario}
+
+\mwformulario{Chuleta de Química: Hibridación y Enlaces}{Química $\cdot$ Enlace Químico}
+
+\begin{document}
+
+% ════════════════════════════════════════════════════════════
+%  PÁGINA 1 — Hibridación y Tipos de Enlace
+% ════════════════════════════════════════════════════════════
+\nuevotema{Hibridación y Tipos de Enlace}
+
+\begin{multicols}{2}
+
+  \subsection{¿Qué es la hibridación?}
+
+  \begin{notabox}[Idea clave]
+    Es la \textbf{mezcla de orbitales atómicos} para formar orbitales
+    híbridos \textbf{equivalentes}. Explica la geometría real de la
+    molécula y el ángulo entre sus enlaces.
+  \end{notabox}
+
+  % ── Hibridación sp ────────────────────────────────────────
+  \subsection{Hibridación \textbf{sp} — Lineal}
+
+  \begin{formulabox}[Ángulo: $180^\circ$]
+    \centering
+    \begin{tikzpicture}[scale=0.62, baseline=(current bounding box.center)]
+      \draw[mwprimario, line width=1.2pt] (-2.0,0) -- (2.0,0);
+      \fill[mwprimario] (0,0) circle (2.8pt);
+      \node[mwprimario, font=\scriptsize] at (0,0.62) {$180^\circ$};
+    \end{tikzpicture}
+    \\[2pt]
+    {\small Se forma con \textbf{dos dobles enlaces} \textbf{o} con \textbf{un triple enlace}.}
+  \end{formulabox}
+
+  % ── Hibridación sp2 ───────────────────────────────────────
+  \subsection{Hibridación \textbf{sp\textsuperscript{2}} — Triangular Plana}
+
+  \begin{formulabox}[Ángulo: $120^\circ$]
+    \centering
+    \begin{tikzpicture}[scale=0.62, baseline=(current bounding box.center)]
+      \foreach \a in {90, 210, 330}{%
+        \draw[mwprimario, line width=1.2pt] (0,0) -- (\a:1.9);}
+      \fill[mwprimario] (0,0) circle (2.8pt);
+      \node[mwprimario, font=\scriptsize, anchor=west] at (0.12,0.55) {$120^\circ$};
+    \end{tikzpicture}
+    \\[2pt]
+    {\small Se forma con \textbf{un solo enlace doble} (el resto, simples).}
+  \end{formulabox}
+
+  % ── Hibridación sp3 ───────────────────────────────────────
+  \subsection{Hibridación \textbf{sp\textsuperscript{3}} — Tetraédrica}
+
+  \begin{formulabox}[Ángulo: $109{,}5^\circ$]
+    \centering
+    \begin{tikzpicture}[scale=0.62, baseline=(current bounding box.center)]
+      \draw[mwprimario, line width=1.2pt] (0,0) -- (90:1.8);
+      \draw[mwprimario, line width=1.2pt] (0,0) -- (210:1.8);
+      \draw[mwprimario, line width=1.2pt] (0,0) -- (330:1.8);
+      \draw[mwprimario, line width=1.0pt, dashed] (0,0) -- (48:1.05);
+      \fill[mwprimario] (0,0) circle (2.8pt);
+      \node[mwprimario, font=\scriptsize, anchor=west] at (0.12,0.18) {$109{,}5^\circ$};
+    \end{tikzpicture}
+    \\[2pt]
+    {\small Se forma cuando \textbf{todos los enlaces son simples}.}
+  \end{formulabox}
+
+  % ── Tabla resumen ─────────────────────────────────────────
+  \subsection{Resumen de Hibridaciones}
+
+  \begin{tablabox}[Geometría según hibridación]
+    \tablacompacta
+    \begin{tabular}{@{}l l c l@{}}
+      \toprule
+      Hibrid. & Geometría        & Ángulo           & Se forma con        \\
+      \midrule
+      $sp$    & Lineal           & $180^\circ$      & 2 dobles ó 1 triple \\
+      $sp^2$  & Triangular plana & $120^\circ$      & 1 enlace doble      \\
+      $sp^3$  & Tetraédrica      & $109{,}5^\circ$  & Todos simples       \\
+      \bottomrule
+    \end{tabular}
+  \end{tablabox}
+
+  % ── Tipos de enlace ───────────────────────────────────────
+  \subsection{Composición del Enlace}
+
+  \begin{tablabox}[Tipo de enlace]
+    \tablacompacta
+    \begin{tabular}{@{}l l@{}}
+      \toprule
+      Tipo de enlace & Composición     \\
+      \midrule
+      \textbf{Simple}  & 1 $\sigma$      \\
+      \textbf{Doble}   & 1 $\sigma$ + 1 $\pi$ \\
+      \textbf{Triple}  & 1 $\sigma$ + 2 $\pi$ \\
+      \bottomrule
+    \end{tabular}
+  \end{tablabox}
+
+  \begin{notabox}[Recuerda]
+    El \textbf{primer} enlace entre dos átomos siempre es \textbf{sigma}
+    ($\sigma$); los enlaces \textbf{adicionales} son \textbf{pi} ($\pi$).
+  \end{notabox}
+
+  % ── Ejemplos por hibridación ──────────────────────────────
+  \subsection{Ejemplos Típicos}
+
+  \begin{tablabox}[Moléculas según hibridación]
+    \tablacompacta
+    \begin{tabular}{@{}l l@{}}
+      \toprule
+      Hibrid. & Moléculas                      \\
+      \midrule
+      $sp$    & CO$_2$, C$_2$H$_2$ (etino)     \\
+      $sp^2$  & C$_2$H$_4$ (eteno), benceno    \\
+      $sp^3$  & CH$_4$, C$_2$H$_6$, H$_2$O, NH$_3$ \\
+      \bottomrule
+    \end{tabular}
+  \end{tablabox}
+
+  \subsection{¿Cómo determinarla?}
+
+  \begin{notabox}[Cuenta los dominios electrónicos]
+    Suma los \textbf{enlaces} ($\sigma$) más los \textbf{pares libres}
+    del átomo central:
+    \begin{itemize}
+      \item \textbf{2 dominios} $\to$ $sp$ (lineal).
+      \item \textbf{3 dominios} $\to$ $sp^2$ (triangular plana).
+      \item \textbf{4 dominios} $\to$ $sp^3$ (tetraédrica).
+    \end{itemize}
+  \end{notabox}
+
+\end{multicols}
+
+% ════════════════════════════════════════════════════════════
+%  PÁGINA 2 — Diferencia de Electronegatividad (ΔEN)
+% ════════════════════════════════════════════════════════════
+\nuevotema{Diferencia de Electronegatividad ($\Delta EN$)}
+
+\begin{multicols}{2}
+
+  \subsection{Tipo de Enlace según $\Delta EN$}
+
+  \begin{tablabox}[$\Delta EN = |EN_1 - EN_2|$]
+    \tablacompacta
+    \begin{tabular}{@{}l l l@{}}
+      \toprule
+      $\Delta EN$           & Tipo de enlace              & Ejemplo              \\
+      \midrule
+      $0$                   & Covalente no polar (puro)   & H$_2$, O$_2$, N$_2$, Cl$_2$ \\
+      $0{,}1 - 0{,}4$       & Covalente no polar          & C--H ($0{,}4$)       \\
+      $0{,}5 - 1{,}7$       & Covalente polar             & H--Cl ($0{,}9$), H$_2$O \\
+      $> 1{,}7$             & Iónico                      & NaCl ($2{,}1$), MgO  \\
+      $\approx 0$ (metal--metal) & Metálico               & Fe, Cu, Au, aleaciones \\
+      \bottomrule
+    \end{tabular}
+  \end{tablabox}
+
+  \subsection{Características de cada Enlace}
+
+  \begin{notabox}[¿Cómo se comportan los electrones?]
+    \begin{itemize}
+      \item \textbf{No polar:} los electrones se comparten
+            \emph{equitativamente}.
+      \item \textbf{Polar:} se comparten de forma \emph{desigual}
+            (el más electronegativo atrae más).
+      \item \textbf{Iónico:} hay \emph{transferencia} de electrones.
+      \item \textbf{Metálico:} ``mar de electrones'' deslocalizados.
+    \end{itemize}
+  \end{notabox}
+
+  \subsection{Escala de Pauling (Electronegatividades)}
+
+  \begin{tablabox}[Valores comunes de $EN$]
+    \tablacompacta
+    \begin{tabular}{@{}l c l c@{}}
+      \toprule
+      Elemento & EN   & Elemento & EN   \\
+      \midrule
+      F  & 4{,}0 & C  & 2{,}5 \\
+      O  & 3{,}5 & H  & 2{,}1 \\
+      N  & 3{,}0 & Na & 0{,}9 \\
+      Cl & 3{,}0 & Mg & 1{,}2 \\
+      Br & 2{,}8 & K  & 0{,}8 \\
+      I  & 2{,}5 & Ca & 1{,}0 \\
+      S  & 2{,}5 & Fe & 1{,}8 \\
+      P  & 2{,}1 & Cu & 1{,}9 \\
+      \bottomrule
+    \end{tabular}
+  \end{tablabox}
+
+  \subsection{Ejemplos de Cálculo}
+
+  \begin{despejesbox}[NaCl — $\Delta EN = 3{,}0 - 0{,}9$]
+    $$\Delta EN = \mathbf{2{,}1} \;\Rightarrow\; \text{\textbf{Enlace Iónico}}$$
+  \end{despejesbox}
+
+  \begin{despejesbox}[HCl — $\Delta EN = 3{,}0 - 2{,}1$]
+    $$\Delta EN = \mathbf{0{,}9} \;\Rightarrow\; \text{\textbf{Covalente Polar}}$$
+  \end{despejesbox}
+
+  \begin{despejesbox}[O$_2$ — $\Delta EN = 3{,}5 - 3{,}5$]
+    $$\Delta EN = \mathbf{0} \;\Rightarrow\; \text{\textbf{Covalente No Polar}}$$
+  \end{despejesbox}
+
+  \begin{despejesbox}[C--H — $\Delta EN = 2{,}5 - 2{,}1$]
+    $$\Delta EN = \mathbf{0{,}4} \;\Rightarrow\; \text{\textbf{Covalente No Polar}}$$
+  \end{despejesbox}
+
+  \begin{despejesbox}[MgO — $\Delta EN = 3{,}5 - 1{,}2$]
+    $$\Delta EN = \mathbf{2{,}3} \;\Rightarrow\; \text{\textbf{Enlace Iónico}}$$
+  \end{despejesbox}
+
+  \subsection{Regla Rápida}
+
+  \begin{notabox}[Según los elementos]
+    \begin{itemize}
+      \item \textbf{No metal + No metal} $\to$ Covalente
+            (polar o no polar según $\Delta EN$).
+      \item \textbf{Metal + No metal} $\to$ Iónico
+            (generalmente $\Delta EN > 1{,}7$).
+      \item \textbf{Metal + Metal} $\to$ Metálico.
+    \end{itemize}
+  \end{notabox}
+
+  \begin{notabox}[Enlace metálico]
+    No se forma entre átomos aislados: los cationes metálicos quedan
+    rodeados por un ``mar'' de electrones libres, lo que explica la
+    \textbf{conductividad} y el \textbf{brillo} de los metales.
+  \end{notabox}
+
+\end{multicols}
+
+\end{document}

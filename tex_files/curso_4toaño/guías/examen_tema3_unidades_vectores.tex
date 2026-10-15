@@ -2,8 +2,9 @@
 %  EXAMEN TEMA 3: TRANSFORMACIÓN DE UNIDADES Y VECTORES
 %  Curso 4to Año — Física
 %  Duración: 90 minutos
-%  Temas: Sistema Internacional, transformación de unidades y
-%         vectores (componentes, suma y reducción al 1er cuadrante)
+%  Temas: Sistema Internacional, transformación de unidades,
+%         vectores (componentes, suma, reducción al 1er cuadrante),
+%         coordenadas polares/cartesianas y despeje de fórmulas
 %  Autor: Ing. Gabriel Astudillo
 %  Nota: enunciado limpio (sin pistas ni desarrollo). Las
 %  soluciones están en la "Clave de Respuestas" al final.
@@ -23,7 +24,7 @@
 % ============================================================
 
 % ── Portada / Título ─────────────────────────────────────────
-\mwportada{Examen del Tema 3}{Transformación de Unidades e Introducción a los Vectores}{Sistema Internacional, Factores de Conversión y Magnitudes con Dirección}
+\mwportada{Examen del Tema 3}{Transformación de Unidades e Introducción a los Vectores}{Sistema Internacional, Factores de Conversión, Magnitudes con Dirección, Coordenadas y Despeje de Fórmulas}
 
 \vspace{4pt}
 \begin{cuadroinfo}
@@ -33,7 +34,7 @@
   \textbf{Instrucciones:}
   \begin{enumerate}[leftmargin=*]
     \item Lee cada ejercicio con calma antes de resolverlo.
-    \item Muestra \emph{todos} tus pasos, incluidos los factores de conversión.
+    \item Muestra \emph{todos} tus pasos, incluidos los factores de conversión y los despejes.
     \item \textbf{No olvides las unidades} en tus resultados.
     \item Usa los valores exactos de los ángulos notables cuando aparezcan.
     \item No se permite el uso de calculadora.
@@ -44,16 +45,16 @@
 \vspace{8pt}
 
 % ============================================================
-\section{Sistema Internacional de Unidades y Medición (28 puntos)}
+\section{Sistema Internacional de Unidades y Medición (22 puntos)}
 % ============================================================
 
 \begin{enumerate}[leftmargin=*]
-  \item \textbf{(8 pts)} Clasifica cada magnitud como fundamental o derivada e indica su unidad del SI:
+  \item \textbf{(5 pts)} Clasifica cada magnitud como fundamental o derivada e indica su unidad del SI:
         \[
           a)\ \text{longitud} \qquad b)\ \text{velocidad} \qquad c)\ \text{temperatura} \qquad d)\ \text{fuerza} \qquad e)\ \text{tiempo}
         \]
 
-  \item \textbf{(8 pts)} Expresa en notación científica:
+  \item \textbf{(6 pts)} Expresa en notación científica:
         \[
           a)\ 0{,}000\,000\,36 \qquad b)\ 78\,000\,000 \qquad c)\ 0{,}000\,42
         \]
@@ -63,29 +64,29 @@
           a)\ 2{,}50\;\text{m} \qquad b)\ 0{,}004\;\text{kg} \qquad c)\ 3{,}100\;\text{s}
         \]
 
-  \item \textbf{(6 pts)} \textquestiondown Cuántos milímetros hay en $3{,}2\;\text{m}$? \textquestiondown Y cuántos centímetros?
+  \item \textbf{(5 pts)} \textquestiondown Cuántos milímetros hay en $3{,}2\;\text{m}$? \textquestiondown Y cuántos centímetros?
 \end{enumerate}
 
 \newpage
 
 % ============================================================
-\section{Transformación de Unidades (34 puntos)}
+\section{Transformación de Unidades (24 puntos)}
 % ============================================================
 
 \begin{enumerate}[leftmargin=*]
-  \item \textbf{(10 pts)} Convierte usando factores de conversión:
+  \item \textbf{(8 pts)} Convierte usando factores de conversión:
         \[
           a)\ 350\;\text{cm} \to \text{m} \qquad b)\ 4{,}5\;\text{km} \to \text{m} \qquad c)\ 2\,500\;\text{g} \to \text{kg} \qquad d)\ 2\;\text{h} \to \text{s} \qquad e)\ 540\;\text{km/h} \to \text{m/s}
         \]
 
-  \item \textbf{(8 pts)} Convierte:
+  \item \textbf{(4 pts)} Convierte:
         \[
           a)\ 15\;\text{m/s} \to \text{km/h} \qquad b)\ 108\;\text{km/h} \to \text{m/s}
         \]
 
-  \item \textbf{(8 pts)} Un bloque tiene una masa de $300\;\text{g}$ y ocupa un volumen de $40\;\text{cm}^3$. Calcula su densidad en $\text{g/cm}^3$ y exprésala también en $\text{kg/m}^3$.
+  \item \textbf{(6 pts)} Un bloque tiene una masa de $300\;\text{g}$ y ocupa un volumen de $40\;\text{cm}^3$. Calcula su densidad en $\text{g/cm}^3$ y exprésala también en $\text{kg/m}^3$.
 
-  \item \textbf{(8 pts)}
+  \item \textbf{(6 pts)}
         \begin{enumerate}[label=\alph*)]
           \item Una maratón mide $42{,}195\;\text{km}$. \textquestiondown Cuántos metros son?
           \item Un tren viaja a $90\;\text{km/h}$. \textquestiondown Cuántos metros recorre en un segundo?
@@ -95,28 +96,59 @@
 \newpage
 
 % ============================================================
-\section{Vectores (38 puntos)}
+\section{Vectores y Coordenadas Polares (30 puntos)}
 % ============================================================
 
 \begin{enumerate}[leftmargin=*]
-  \item \textbf{(8 pts)} Clasifica cada magnitud como escalar (E) o vectorial (V):
+  \item \textbf{(3 pts)} Clasifica cada magnitud como escalar (E) o vectorial (V):
         \[
           a)\ \text{masa} \qquad b)\ \text{desplazamiento} \qquad c)\ \text{velocidad} \qquad d)\ \text{temperatura}
         \]
 
-  \item \textbf{(10 pts)} Un vector $\vec{v}$ tiene módulo $10$ y forma un ángulo de $30^{\circ}$ con el eje $X$ positivo. Halla sus componentes rectangulares usando los valores exactos.
+  \item \textbf{(5 pts)} Un vector $\vec{v}$ tiene módulo $10$ y forma un ángulo de $30^{\circ}$ con el eje $X$ positivo. Halla sus componentes rectangulares usando los valores exactos.
 
-  \item \textbf{(10 pts)} Suma los vectores $\vec{a} = (6, -2)$ y $\vec{b} = (-2, 5)$.
+  \item \textbf{(4 pts)} Suma los vectores $\vec{a} = (6, -2)$ y $\vec{b} = (-2, 5)$.
         \begin{enumerate}[label=\alph*)]
           \item Escribe el vector resultante como par ordenado.
           \item Calcula el módulo de la resultante.
         \end{enumerate}
 
-  \item \textbf{(10 pts)} Un vector $\vec{u}$ tiene módulo $12$ y forma un ángulo de $210^{\circ}$ con el eje $X$ positivo.
+  \item \textbf{(6 pts)} Un vector $\vec{u}$ tiene módulo $12$ y forma un ángulo de $210^{\circ}$ con el eje $X$ positivo.
         \begin{enumerate}[label=\alph*)]
           \item Indica el cuadrante y el ángulo de referencia.
           \item Halla sus componentes $u_x$ y $u_y$.
           \item Verifica que $\sqrt{u_x^2 + u_y^2} = 12$.
+        \end{enumerate}
+
+  \item \textbf{(6 pts)} \textbf{De polares a cartesianas.} Convierte los siguientes puntos, indicando en qué cuadrante quedan:
+        \[
+          a)\ P(10,\; 30^{\circ}) \qquad b)\ Q(20,\; 240^{\circ})
+        \]
+        Verifica en uno de los dos casos que $\sqrt{x^2 + y^2} = r$.
+
+  \item \textbf{(6 pts)} \textbf{De cartesianas a polares.} Convierte los siguientes puntos (ángulo exacto o con dos decimales, según corresponda):
+        \[
+          a)\ P(-1,\; \sqrt{3}) \qquad b)\ Q(-6,\; -8)
+        \]
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Despeje de Fórmulas y Evaluación Numérica (24 puntos)}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{(4 pts)} De $v = \dfrac{d}{t}$ despeja $t$ y calcula su valor si $v = 15\;\text{m/s}$ y $d = 300\;\text{m}$.
+
+  \item \textbf{(6 pts)} De la conversión $C = \dfrac{5}{9}(F - 32)$ despeja $F$. Luego calcula $F$ si $C = 25$.
+
+  \item \textbf{(6 pts)} De $v^2 = v_0^2 + 2a\,\Delta x$ despeja $v_0$ (toma la raíz positiva) y calcula su valor si $v = 25\;\text{m/s}$, $a = 3\;\text{m/s}^2$ y $\Delta x = 80\;\text{m}$.
+
+  \item \textbf{(8 pts)} De la ecuación de la altura $h = v_0\,t - \dfrac{1}{2}\,g\,t^2$ con $v_0 = 25\;\text{m/s}$ y $g = 10\;\text{m/s}^2$, determina en qué instantes el objeto está a $h = 30\;\text{m}$.
+        \begin{enumerate}[label=\alph*)]
+          \item Plantea la \textbf{ecuación de segundo grado} y resuélvela.
+          \item Interpreta físicamente cada solución (¿por qué hay dos?).
         \end{enumerate}
 \end{enumerate}
 
@@ -160,7 +192,7 @@
 
   \newpage
 
-  \subsection*{Sección 3: Vectores}
+  \subsection*{Sección 3: Vectores y Coordenadas Polares}
 
   \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
     \item a) E \quad b) V \quad c) V \quad d) E
@@ -182,6 +214,31 @@
             u_y = -12\sen 30^{\circ} = -12 \cdot \frac{1}{2} = -6.
           \]
           \quad c) $\sqrt{(-6\sqrt{3})^2 + (-6)^2} = \sqrt{108 + 36} = \sqrt{144} = 12$. \ \checkmark
+
+    \item a) $x = 10\cos 30^{\circ} = 10 \cdot \dfrac{\sqrt{3}}{2} = 5\sqrt{3} \approx 8{,}66$ y $y = 10\sen 30^{\circ} = 10 \cdot \dfrac{1}{2} = 5$, así que $P(5\sqrt{3},\, 5)$ (cuadrante I).
+          \quad b) $240^{\circ}$ está en el cuadrante III con $\theta_{\text{ref}} = 60^{\circ}$:
+          \[
+            x = -20\cos 60^{\circ} = -10, \qquad y = -20\sen 60^{\circ} = -10\sqrt{3} \approx -17{,}32 \quad \Rightarrow \quad Q(-10,\, -10\sqrt{3}).
+          \]
+          Verificación: $\sqrt{(-10)^2 + (-10\sqrt{3})^2} = \sqrt{100 + 300} = \sqrt{400} = 20$. \ \checkmark
+
+    \item a) $r = \sqrt{(-1)^2 + (\sqrt{3})^2} = \sqrt{4} = 2$; $\theta_{\text{ref}} = \arctan\dfrac{\sqrt{3}}{1} = 60^{\circ}$; como está en el cuadrante II, $\theta = 180^{\circ} - 60^{\circ} = 120^{\circ}$: $P(2,\, 120^{\circ})$.
+          \quad b) $r = \sqrt{(-6)^2 + (-8)^2} = \sqrt{100} = 10$; $\theta_{\text{ref}} = \arctan\dfrac{8}{6} \approx 53{,}13^{\circ}$; como está en el cuadrante III, $\theta = 180^{\circ} + 53{,}13^{\circ} = 233{,}13^{\circ}$: $Q(10,\, 233{,}13^{\circ})$.
+  \end{enumerate}
+
+  \newpage
+
+  \subsection*{Sección 4: Despeje de Fórmulas y Evaluación Numérica}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \item $v\,t = d \Rightarrow t = \dfrac{d}{v} = \dfrac{300}{15} = 20\;\text{s}$.
+
+    \item $\dfrac{9}{5}C = F - 32 \Rightarrow F = \dfrac{9}{5}C + 32 = \dfrac{9}{5}(25) + 32 = 45 + 32 = 77^{\circ}\text{F}$.
+
+    \item $v_0^2 = v^2 - 2a\,\Delta x \Rightarrow v_0 = \sqrt{v^2 - 2a\,\Delta x} = \sqrt{25^2 - 2(3)(80)} = \sqrt{625 - 480} = \sqrt{145} \approx 12{,}0\;\text{m/s}$.
+
+    \item a) $30 = 25t - 5t^2 \Rightarrow 5t^2 - 25t + 30 = 0 \Rightarrow t^2 - 5t + 6 = 0$. Factorizando: $(t - 2)(t - 3) = 0$, de donde $t = 2\;\text{s}$ y $t = 3\;\text{s}$.
+          \quad b) Ambas soluciones son válidas porque son tiempos positivos: a los $2\;\text{s}$ el objeto \emph{sube} pasando por los $30\;\text{m}$ y a los $3\;\text{s}$ \emph{baja} pasando otra vez por esa altura.
   \end{enumerate}
 
 \fi

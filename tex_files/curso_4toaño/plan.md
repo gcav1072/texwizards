@@ -95,7 +95,17 @@ Duración: 6 semanas - 3 clases por semana - 2h académicas p/clase (1h 30 min) 
 - Componentes rectangulares: $\vec{v} = (v_x, v_y)$ con $v_x = v\cos\theta$ y $v_y = v\sen\theta$ (refresco geométrico, sin depender de la Guía 2).
 - Suma de vectores: método del polígono (gráfico) y método analítico por componentes.
 - Multiplicación de un vector por un escalar.
+- Coordenadas polares y cartesianas: ubicación de un punto con $(x, y)$ y con $(r, \theta)$; conversión polares $\to$ cartesianas ($x = r\cos\theta$, $y = r\sen\theta$) y cartesianas $\to$ polares ($r = \sqrt{x^2 + y^2}$, ángulo de referencia $\tan\theta_{\text{ref}} = |y/x|$ ajustado al cuadrante correcto); uso de la calculadora y convención $r \ge 0$.
 - Vectores desplazamiento y velocidad (puente hacia la cinemática).
+
+##### Sección 4: Despeje de fórmulas y evaluación numérica
+- Qué significa despejar: aislar una variable y obtener una fórmula equivalente (no un número).
+- Regla de oro: la operación inversa (suma/resta, multiplicación/división, potencia/raíz, variable en el denominador).
+- Procedimiento "de afuera hacia adentro"; caso especial: la variable que aparece dos veces (reunir términos y factorizar).
+- Evaluación numérica: sustituir los valores conocidos con sus unidades y calcular el valor de la variable pedida.
+- Fórmulas de trabajo: $v = d/t$, $\rho = m/V$, $F = ma$, $P = 2\ell + 2w$, $C = \frac{5}{9}(F-32)$, $v_f = v_0 + at$, $x_f = x_0 + v_0t + \frac{1}{2}at^2$, $E_c = \frac{1}{2}mv^2$, $T = 2\pi\sqrt{\ell/g}$, $P = P_0 + \rho gh$, $F = G\frac{Mm}{r^2}$, $|\vec{v}| = \sqrt{v_x^2 + v_y^2}$.
+- Despejes que conllevan **ecuaciones de segundo grado**: cuando la incógnita aparece al cuadrado y también linealmente, el despeje termina en $ax^2 + bx + c = 0$; se resuelve factorizando o con la fórmula general $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$, y luego se descartan las raíces sin sentido físico (tiempos, longitudes, masas o rapideces negativas). Casos de dos raíces válidas y de discriminante nulo (solución única).
+- Progresión de la práctica: fácil (una operación) → medio (dos o tres operaciones, fracciones) → desafiante (potencias, raíces, variable en el denominador) → muy difícil (despejes que conllevan ecuaciones de segundo grado: factorizar o aplicar la fórmula general, interpretar las raíces y evaluar).
 
 #### Tema 2: Cinemática *(Guía 4 · Clases 13 a 15)*
 
@@ -171,7 +181,7 @@ Duración: 6 semanas - 3 clases por semana - 2h académicas p/clase (1h 30 min) 
 |---|---|---|---|---|
 | 1 | `guia1_angulos.tex` | Matemática: Ángulos | 1 a 3 | S1 concepto y clasificación · S2 sistemas de medición · S3 plano cartesiano |
 | 2 | `guia2_razones_trigonometricas.tex` | Matemática: Razones trigonométricas | 10 a 12 | S1 triángulo rectángulo · S2 ángulos notables · S3 resolución y aplicaciones |
-| 3 | `guia3_unidades_vectores.tex` | Física: Unidades y vectores | 4 a 6 | S1 SI y medición · S2 conversiones · S3 vectores |
+| 3 | `guia3_unidades_vectores.tex` | Física: Unidades y vectores | 4 a 6 | S1 SI y medición · S2 conversiones · S3 vectores y coordenadas polares · S4 despeje de fórmulas |
 | 4 | `guia4_cinematica.tex` | Física: Cinemática | 13 a 15 | S1 MRU · S2 MRUV · S3 caída libre y lanzamiento vertical |
 | 5 | `guia5_estructura_atomica.tex` | Química: Estructura atómica | 7 a 9 | S1 modelos atómicos · S2 configuración electrónica · S3 números cuánticos |
 | 6 | `guia6_estequiometria.tex` | Química: Estequiometría | 16 a 17 | S1 el mol · S2 balanceo · S3 cálculos y fórmulas |
@@ -182,17 +192,18 @@ Duración: 6 semanas - 3 clases por semana - 2h académicas p/clase (1h 30 min) 
 Cada guía se compila con XeLaTeX usando `mathwizards-guia.sty` y sigue la estructura verificada en 1er, 2do y 3er año:
 
 1. **Portada:** `\mwportada{Guía de Estudio N}{Tema}{Lema}`.
-2. **Presentación:** `cuadroinfo` con mensaje motivacional + leyenda de dificultad (`\facil` Básico/Directo · `\medio` Intermedio · `\dificil` Desafiante).
+2. **Presentación:** `cuadroinfo` con mensaje motivacional + leyenda de dificultad (`\facil` Básico/Directo · `\medio` Intermedio · `\dificil` Desafiante · `\muyDificil` Reto/Muy difícil).
 3. **Una `\section` por cada sección del tema**, con la micro-estructura:
    - Teoría en `cuadroteoria` (definiciones, leyes, fórmulas).
    - Procedimientos en `cuadropasos`.
    - Errores clásicos en `cuadroadvertencia` ("Ojo con esto").
    - Ejemplos resueltos R1–R4 en `cuadrosolucion`.
    - `\subsection{Ejercicios propuestos}` con numeración continua (`resume`) y estrellas de dificultad en orden progresivo.
-4. **Progresión de ejercicios:** ~33 por guía repartidos como:
+4. **Progresión de ejercicios:** ~33 por guía repartidos como (la Guía 3 lleva secciones extra y llega a 66):
    - Sección 1 (más directa): propuestos 1–11 (5 `\facil` · 4 `\medio` · 2 `\dificil`).
    - Sección 2 (balanceada): propuestos 12–22 (4 `\facil` · 4 `\medio` · 3 `\dificil`).
-   - Sección 3 (integradora): propuestos 23–33 (3 `\facil` · 4 `\medio` · 4 `\dificil`), cerrando con **"El reto de los campeones"**.
+   - Sección 3 (integradora): propuestos 23–33 (3 `\facil` · 4 `\medio` · 4 `\dificil`), cerrando con **"El reto de los campeones"**. **En la Guía 3** se extiende a 23–43 (8 `\facil` · 8 `\medio` · 5 `\dificil` en total) con los ejercicios de conversión entre coordenadas polares y cartesianas.
+   - **Guía 3 — Sección 4 (extra):** propuestos 44–66 dedicados al despeje de fórmulas y a su evaluación numérica (5 `\facil` · 6 `\medio` · 6 `\dificil` · 6 `\muyDificil`, estos últimos con ecuaciones de segundo grado).
 5. **Cierre:** `\section{Clave de Respuestas}` con numeración continua y un `cuadroinfo` puente "¿Cómo te fue?…".
 6. Encabezado de archivo: `% GUÍA N: TÍTULO` · `% Clases cubiertas: X a Y` · `% Autor: Gabriel Astudillo`.
 7. Compilación: `./compile_all.sh curso_4toaño`.
@@ -253,6 +264,8 @@ Cada guía se compila con XeLaTeX usando `mathwizards-guia.sty` y sigue la estru
 ### TEMA 2 (Física) — Unidades y Vectores (Clases 4 a 6)
 **Guía asociada:** `guia3_unidades_vectores.tex`
 
+> **Nota:** la Guía 3 creció con dos contenidos nuevos: las **coordenadas polares y cartesianas** (dentro de la sección de vectores) y una **sección extra de despeje de fórmulas** (sección 4, con 23 ejercicios por niveles, de fácil a muy difícil). Para no alterar la carga horaria, el despeje se trabaja **de forma transversal** entre las clases 5 y 6 (niveles fácil/medio en la clase 5, y desafiante/muy difícil junto con los vectores en la clase 6), aprovechando que sus fórmulas provienen de las secciones 1 a 3. Se mantienen los mismos 3 días (clases 4 a 6, 90 min cada una).
+
 #### Clase 4: Sistema Internacional y medición
 - **Objetivo:** Identificar magnitudes fundamentales y derivadas del SI, usar prefijos y expresar cantidades en notación científica.
 - **Contenidos:**
@@ -265,30 +278,35 @@ Cada guía se compila con XeLaTeX usando `mathwizards-guia.sty` y sigue la estru
   - Cierre: carrera de notación científica (ordenar potencias de 10).
 - **Tarea:** propuestos 7–11 de la sección 1.
 
-#### Clase 5: Transformación de unidades
-- **Objetivo:** Convertir unidades simples y compuestas mediante factores de conversión, incluyendo $\text{km/h} \leftrightarrow \text{m/s}$.
+#### Clase 5: Transformación de unidades y despeje de fórmulas (nivel fácil y medio)
+- **Objetivo:** Convertir unidades simples y compuestas mediante factores de conversión —incluyendo $\text{km/h} \leftrightarrow \text{m/s}$— y despejar una variable de una fórmula para hallar su valor numérico.
 - **Contenidos:**
   - Factor de conversión; conversiones de longitud, masa y tiempo.
   - Conversiones compuestas ($\text{km/h} \leftrightarrow \text{m/s}$).
   - Densidad como relación masa/volumen.
+  - Despeje de fórmulas (sección 4, inicio): operación inversa, procedimiento "de afuera hacia adentro", evaluación numérica con unidades y errores clásicos.
 - **Actividades:**
   - Inicio: ¿90 km/h es rápido o lento? ¿Y 25 m/s?
   - Desarrollo: ejemplos R1–R4 de la sección 2; práctica con propuestos 12–17.
+  - Desarrollo: teoría 4.1–4.2 y ejemplos R1–R4 de la sección 4 (despeje y evaluación numérica en fórmulas de las secciones 1 y 2); práctica con propuestos 44–48.
   - Cierre: convertir la velocidad de un autobús de Caracas en km/h a m/s en la pizarra.
-- **Tarea:** propuestos 18–22 de la sección 2.
+- **Tarea:** propuestos 18–22 de la sección 2 y 49–54 de la sección 4 (nivel medio).
 
-#### Clase 6: Vectores
-- **Objetivo:** Distinguir escalares de vectores, representar vectores, hallar componentes rectangulares y sumar vectores por componentes y por el polígono.
+#### Clase 6: Vectores, coordenadas polares y despeje avanzado
+- **Objetivo:** Distinguir escalares de vectores, descomponer y sumar vectores (polígono y componentes), convertir entre coordenadas polares y cartesianas, y resolver despejes que conllevan ecuaciones de segundo grado.
 - **Contenidos:**
   - Escalares vs. vectores; representación (módulo, dirección, sentido).
-  - Componentes rectangulares con seno y coseno (refresco geométrico).
-  - Suma de vectores: método del polígono y método analítico.
-  - Multiplicación por un escalar; vectores desplazamiento y velocidad.
+  - Componentes rectangulares con seno y coseno (refresco geométrico) y reducción al primer cuadrante.
+  - Suma de vectores: método del polígono y método analítico; multiplicación por un escalar.
+  - Coordenadas polares y cartesianas: conversión en ambos sentidos y ajuste del ángulo al cuadrante correcto.
+  - Vectores desplazamiento y velocidad (puente hacia la cinemática).
+  - Despeje de fórmulas (cierre de la sección 4): potencias y raíces, despejes que conllevan ecuaciones de segundo grado y descarte de raíces sin sentido físico.
 - **Actividades:**
   - Inicio: "caminé 3 km al este y 4 km al norte: ¿a cuánto estoy del punto de partida?"
-  - Desarrollo: ejemplos R1–R3 de la sección 3; práctica con propuestos 23–28.
-  - Cierre: recorrido por el aula con vectores de desplazamiento (método del polígono).
-- **Tarea:** propuestos 29–33 de la sección 3 (incluye el reto de los campeones).
+  - Desarrollo: ejemplos R1–R7 de la sección 3 (incluye polar $\leftrightarrow$ cartesianas); práctica con propuestos 23–28 y 34–38.
+  - Desarrollo: ejemplos R5–R8 de la sección 4 (desafiantes y con ecuación de segundo grado) y práctica con propuestos 55–60.
+  - Cierre: recorrido por el aula con vectores de desplazamiento (método del polígono) y mini-reto de un despeje con ecuación de segundo grado.
+- **Tarea:** propuestos 29–33 y 39–43 de la sección 3 (incluye el reto de los campeones) y 61–66 de la sección 4 (nivel muy difícil: despejes con ecuaciones de segundo grado).
 
 ---
 
@@ -451,7 +469,8 @@ Cada guía se compila con XeLaTeX usando `mathwizards-guia.sty` y sigue la estru
 
 - **Clase 18 (sesión de evaluación):** examen final con las tres materias:
   - **Matemática:** ángulos (clasificación, relaciones, conversiones, posición normal) y razones trigonométricas (seno, coseno, tangente, ángulos notables, resolución de triángulos y aplicaciones).
-  - **Física:** SI y unidades (notación científica, conversiones, $\text{km/h} \leftrightarrow \text{m/s}$), vectores (componentes y suma) y cinemática (MRU, MRUV, caída libre y lanzamiento vertical).
+  - **Física:** SI y unidades (notación científica, conversiones, $\text{km/h} \leftrightarrow \text{m/s}$), vectores (componentes, suma y reducción al primer cuadrante), coordenadas polares y cartesianas (conversión en ambos sentidos), despeje de fórmulas con evaluación numérica (incluye un caso que conlleva ecuación de segundo grado) y cinemática (MRU, MRUV, caída libre y lanzamiento vertical).
   - **Química:** estructura atómica ($Z$, $A$, isótopos, iones, configuración electrónica, números cuánticos) y estequiometría (mol, masa molar, balanceo, cálculos, composición porcentual, fórmulas).
 - **Formato:** 100 puntos, sin calculadora, en 3 bloques (Matemática 35 · Física 35 · Química 30), con dificultad progresiva de básico a desafiante.
+- **Exámenes por tema:** `examen_tema3_unidades_vectores.tex` (Tema 3, 90 min, 100 pts) cubre las cuatro secciones de la Guía 3: SI y medición (22) · transformación de unidades (24) · vectores y coordenadas polares (30) · despeje de fórmulas (24).
 - **Alternativa:** si el calendario solo permite 17 clases, el examen puede ocupar los últimos 45 min de la Clase 17 + los primeros 45 min de una sesión de recuperación, o bien sustituir la práctica final de la Clase 17.

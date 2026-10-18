@@ -1,0 +1,1298 @@
+% ============================================================
+%  BEAMER — CLASE DE APOYO: ARITMÉTICA
+%  Breve historia de los números · Conjuntos numéricos ·
+%  Potenciación · Operaciones con fracciones · Fracciones
+%  generatrices · Fracción irreducible
+%  Autor: Ing. Gabriel Astudillo
+%  Compilar: latexmk -xelatex beamer_apoyo_aritmetica.tex
+%  (o desde la raíz: ./compile_all.sh beamer_apoyo_aritmetica)
+% ============================================================
+\documentclass[aspectratio=169]{beamer}
+\usepackage{mathwizards-beamer}
+\mwbeamer{Clase de Apoyo}{Aritmética: Números, Conjuntos Numéricos y Fracciones}{3er Año}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Lo que Veremos Hoy}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Hoja de Ruta de la Clase}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{itemize}
+      \item Breve historia de los números
+      \item Conjuntos numéricos: $\mathbb{N}$, $\mathbb{Z}$ y $\mathbb{Q}$
+      \item Potenciación en $\mathbb{Q}$
+      \item Suma y resta de fracciones
+      \item Producto y división de fracciones
+    \end{itemize}
+    \column{0.48\textwidth}
+    \begin{itemize}
+      \item Fracciones generatrices
+      \item Fracción irreducible
+      \item Números reales y aproximaciones
+      \item Práctica: operaciones combinadas
+      \item \textbf{Ejercicios de repaso general}
+    \end{itemize}
+  \end{columns}
+  \vspace{4pt}
+  \begin{mwpasos}[Cómo trabajaremos]
+    Cada tema termina con \textbf{ejercicios propuestos} y con su
+    \textbf{solución explicada paso a paso}: resuélvelos primero a mano
+    sobre el PDF y luego compara tu desarrollo.
+  \end{mwpasos}
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Breve Historia de los Números}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Marcas de Cuentas y Numeraciones Antiguas}
+  \begin{block}{Marcas de cuentas}
+    El método más antiguo para contar: se agrupan marcas y se cuenta
+    cuántas hay.
+    \[
+      \underbrace{|\,|\,|\,|}_{4}\;\;\underbrace{|\,|\,|\,|}_{4} \;=\; 8
+    \]
+  \end{block}
+  \vspace{4pt}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{mwextra}[Números babilonios]
+      \textbf{Sistema posicional}: el valor de un carácter depende de
+      su \textbf{posición}. Base sexagesimal (60).
+    \end{mwextra}
+    \column{0.48\textwidth}
+    \begin{mwextra}[Números egipcios]
+      Sistema \textbf{aditivo}: los valores de cada símbolo se
+      \textbf{suman}, sin importar la posición.
+    \end{mwextra}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{De Roma a la India}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{block}{Números romanos}
+      Notación \textbf{sustractiva}: un numeral menor a la izquierda
+      se \textbf{resta} del mayor.
+      \[
+        \text{IIII} \to \text{IV}
+        \qquad
+        \text{VIIII} \to \text{IX}
+      \]
+      \textbf{Limitación}: poco aptos para el cálculo aritmético.
+    \end{block}
+    \column{0.48\textwidth}
+    \begin{block}{Números arábigo-hindúes}
+      Herencia de Babilonia e India (siglo XI): sistema
+      \textbf{posicional decimal} con el \textbf{cero}.
+      \[
+        1405 = 1\cdot10^{3}+4\cdot10^{2}+0\cdot10+5
+      \]
+      Es el sistema que usamos \textbf{hoy}.
+    \end{block}
+  \end{columns}
+  \vspace{4pt}
+  \begin{mwextra}[Legado moderno del sistema sexagesimal]
+    Seguimos usando la base 60: \textbf{60 minutos} por hora,
+    \textbf{60 segundos} por minuto, \textbf{360°} en una vuelta
+    completa.
+  \end{mwextra}
+\end{frame}
+
+\begin{frame}{Ejercicios Propuestos — Historia de los Números \textnormal{(1/2)}}
+  \begin{mwejercicio}[Cuestionario 1--4 \quad \facil]
+    \begin{enumerate}
+      \item ¿Qué importante hallazgo arqueológico está considerado
+            como una de las evidencias más antiguas del uso de marcas
+            numéricas?
+      \item ¿Qué característica distingue fundamentalmente al sistema
+            numérico inventado por Babilonia?
+      \item ¿En qué legado moderno se observa aún la influencia del
+            sistema sexagesimal?
+      \item ¿Cuál fue la principal limitación de la numeración romana
+            para el cálculo aritmético?
+    \end{enumerate}
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicios Propuestos — Historia de los Números \textnormal{(2/2)}}
+  \begin{mwejercicio}[Cuestionario 5--8 \quad \facil]
+    \begin{enumerate}
+      \setcounter{enumi}{4}
+      \item ¿Cuál fue la causa histórica por la cual fue tan versátil
+            la adaptación del sistema decimal?
+      \item ¿Qué crédito tuvo India durante el siglo VII en el
+            desarrollo de la numeración y los signos operativos?
+      \item ¿Cómo interpreta Brahmagupta la noción intuitiva de los
+            números negativos?
+      \item ¿Qué importante centro cultural del imperio selyúcida
+            sirvió de puente entre India y Europa?
+    \end{enumerate}
+  \end{mwejercicio}
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Conjuntos Numéricos: \texorpdfstring{$\mathbb{N}$}{N},
+  \texorpdfstring{$\mathbb{Z}$}{Z} y \texorpdfstring{$\mathbb{Q}$}{Q}}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Conjunto de los Números Naturales}
+  \begin{block}{Definición}
+    \[
+      \mathbb{N} = \{0,\, 1,\, 2,\, 3,\, \dots\}
+    \]
+    Son números \textbf{enteros}, \textbf{discretos} e
+    \textbf{infinitos}.
+  \end{block}
+  \vspace{4pt}
+  \begin{mwextra}[Propiedades de la suma en $\mathbb{N}$]
+    \begin{itemize}
+      \item \textbf{Conmutativa:} $a + b = b + a$
+      \item \textbf{Asociativa:} $(a + b) + c = a + (b + c)$
+      \item \textbf{Elemento neutro:} $a + 0 = a$
+    \end{itemize}
+  \end{mwextra}
+\end{frame}
+
+\begin{frame}{Conjunto de los Números Enteros}
+  \begin{block}{Definición}
+    \[
+      \mathbb{Z} = \{\dots,\, -3,\, -2,\, -1,\, 0,\, 1,\, 2,\, 3,\, \dots\}
+    \qquad \mathbb{N} \subset \mathbb{Z}
+    \]
+    \textbf{Particiones:}\quad
+    $\mathbb{Z}^{+} = \mathbb{N}$ \quad$\cdot$\quad
+    $\mathbb{Z}^{-} = -\mathbb{N}$ \quad$\cdot$\quad
+    $\mathbb{Z}^{*} = \mathbb{Z} \setminus \{0\}$
+  \end{block}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{mwextra}[Suma en $\mathbb{Z}$]
+      Además de las propiedades de $\mathbb{N}$, existe el
+      \textbf{elemento inverso aditivo}:
+      $a + (-a) = a - a = 0$.
+    \end{mwextra}
+    \column{0.48\textwidth}
+    \begin{mwextra}[Producto en $\mathbb{Z}$]
+      \begin{itemize}
+        \setlength{\itemsep}{1pt}
+        \item Conmutativa: $a \cdot b = b \cdot a$
+        \item Asociativa: $(a \cdot b) \cdot c = a \cdot (b \cdot c)$
+        \item Neutro: $a \cdot 1 = a$ \quad$\cdot$\quad $a \cdot 0 = 0$
+      \end{itemize}
+    \end{mwextra}
+  \end{columns}
+  \begin{alertblock}{Regla de signos del producto}
+    Positivo si el número de factores negativos es \textbf{par};
+    \textbf{negativo} si es \textbf{impar}:
+    $(-)\cdot(-) = (+)$, \; $(+)\cdot(-) = (-)$.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Números Racionales y Decimales}
+  \begin{block}{Conjunto de los Números Racionales}
+    \[
+      \mathbb{Q} = \left\{\frac{a}{b} \;\middle|\; a \in \mathbb{Z},\;
+      b \in \mathbb{Z}^{*}\right\}
+    \]
+    $a \to$ \textbf{numerador}, \quad $b \to$ \textbf{denominador}.
+    Todo número de $\mathbb{Z}$ es también racional:
+    $\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q}$.
+  \end{block}
+  \begin{block}{Tipos de números decimales}
+    \renewcommand{\arraystretch}{1.05}
+    \begin{tabular}{@{} p{3.8cm} p{6.4cm} p{2.8cm} @{}}
+      \toprule
+      \textbf{Tipo} & \textbf{Descripción} & \textbf{Ejemplo} \\
+      \midrule
+      Limitados & Terminan & $0{,}5$; $1{,}25$ \\
+      Periódicos puros & Ilimitado; el período empieza en la 1.ª
+        cifra decimal & $0{,}\overline{3}$ \\
+      Periódicos mixtos & Ilimitado; hay cifras antes del período &
+        $0{,}1\overline{6}$ \\
+      \bottomrule
+    \end{tabular}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Ejercicios Propuestos — Conjuntos Numéricos \textnormal{(1/3)}}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 1 \quad \facil]
+      Clasifica cada número en $\mathbb{N}$, $\mathbb{Z}$ y $\mathbb{Q}$:
+      \[
+        0,\quad 5,\quad -12,\quad \frac{3}{4},\quad
+        -\frac{7}{2},\quad 0{,}25
+      \]
+    \end{mwejercicio}
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 2 \quad \facil]
+      Completa:
+      \[
+        \mathbb{Z}^{+} = \text{\underline{\hspace{1.2cm}}},
+        \quad
+        \mathbb{Z}^{-} = \text{\underline{\hspace{1.2cm}}}
+      \]
+      \[
+        \mathbb{Z}^{*} = \text{\underline{\hspace{1.2cm}}}
+      \]
+      ¿Es cierto que $\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q}$?
+      Justifica con ejemplos.
+    \end{mwejercicio}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Ejercicios Propuestos — Conjuntos Numéricos \textnormal{(2/3)}}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 3 — Signos \quad \medio]
+      Calcula aplicando la regla de signos:
+      \begin{enumerate}
+        \item $(-2)\cdot(-3)\cdot(-4)$
+        \item $(-5)\cdot 6 \cdot (-2)$
+        \item $(-1)\cdot(-1)\cdot(-1)\cdot(-1)$
+      \end{enumerate}
+    \end{mwejercicio}
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 4 — Propiedades \quad \medio]
+      ¿Qué propiedad se está usando?
+      \begin{enumerate}
+        \item $3 + 7 = 7 + 3$
+        \item $(2 + 3) + 4 = 2 + (3 + 4)$
+        \item $5 + 0 = 5$
+        \item $8 + (-8) = 0$
+      \end{enumerate}
+    \end{mwejercicio}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Ejercicios Propuestos — Conjuntos Numéricos \textnormal{(3/3)}}
+  \begin{mwejercicio}[Ejercicio 5 — Decimales \quad \medio]
+    Clasifica cada número decimal como \textbf{limitado},
+    \textbf{ilimitado periódico puro} o \textbf{ilimitado periódico
+    mixto}:
+    \[
+      0{,}5 \qquad 0{,}333\dots \qquad 0{,}1666\dots
+      \qquad 2{,}75 \qquad 4{,}2727\dots
+    \]
+    Escribe los periódicos usando la notación con raya (barra).
+  \end{mwejercicio}
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Potenciación en \texorpdfstring{$\mathbb{Q}$}{Q}}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Potenciación de una Fracción}
+  \begin{block}{Definición}
+    \[
+      \left(\frac{a}{b}\right)^{n}
+      = \frac{a^{n}}{b^{n}}
+      = \underbrace{\frac{a}{b} \cdot \frac{a}{b} \cdots
+        \frac{a}{b}}_{n \text{ veces}},
+      \qquad n \in \mathbb{N},\; n \ge 1
+    \]
+  \end{block}
+  \vspace{4pt}
+  \begin{exampleblock}{Ejemplo}
+    \[
+      \left(\frac{2}{3}\right)^{3}
+      = \frac{2^{3}}{3^{3}}
+      = \frac{8}{27}
+    \]
+    Se eleva el numerador y el denominador al mismo exponente.
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Propiedades de la Potenciación}
+  \renewcommand{\arraystretch}{1.35}
+  \begin{tabular}{@{} p{6.6cm} l @{}}
+    \toprule
+    \textbf{Propiedad} & \textbf{Expresión} \\
+    \midrule
+    Potencia cero &
+      $\left(\frac{a}{b}\right)^{0} = 1$ \\
+    Potencia uno &
+      $\left(\frac{a}{b}\right)^{1} = \frac{a}{b}$ \\
+    Producto de potencias (misma base) &
+      $\left(\frac{a}{b}\right)^{n} \cdot
+       \left(\frac{a}{b}\right)^{m}
+       = \left(\frac{a}{b}\right)^{n+m}$ \\
+    Cociente de potencias (misma base) &
+      $\dfrac{\left(\frac{a}{b}\right)^{n}}
+            {\left(\frac{a}{b}\right)^{m}}
+       = \left(\frac{a}{b}\right)^{n-m}$ \\
+    Potencia de una potencia &
+      $\left[\left(\frac{a}{b}\right)^{n}\right]^{m}
+       = \left(\frac{a}{b}\right)^{n \cdot m}$ \\
+    Potencia del inverso &
+      $\left(\frac{a}{b}\right)^{-n}
+       = \left(\frac{b}{a}\right)^{n}$ \\
+    \bottomrule
+  \end{tabular}
+\end{frame}
+
+\begin{frame}{Ejercicios Propuestos — Potenciación \textnormal{(1/2)}}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 1 \quad \facil]
+      Calcula:
+      \[
+        \left(\frac{2}{5}\right)^{2},
+        \qquad
+        \left(-\frac{3}{4}\right)^{2},
+        \qquad
+        \left(\frac{1}{2}\right)^{4}
+      \]
+    \end{mwejercicio}
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 2 \quad \facil]
+      Aplica potencia cero y potencia uno:
+      \[
+        \left(\frac{7}{9}\right)^{0},
+        \qquad
+        \left(-\frac{5}{6}\right)^{1},
+        \qquad
+        \left(\frac{2}{3}\right)^{0} +
+        \left(\frac{2}{3}\right)^{1}
+      \]
+    \end{mwejercicio}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Ejercicios Propuestos — Potenciación \textnormal{(2/2)}}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 3 \quad \medio]
+      Simplifica usando las propiedades:
+      \[
+        \left(\frac{2}{3}\right)^{3} \cdot
+        \left(\frac{2}{3}\right)^{2},
+        \qquad
+        \frac{\left(\frac{2}{3}\right)^{5}}
+             {\left(\frac{2}{3}\right)^{2}},
+        \qquad
+        \left[\left(\frac{3}{4}\right)^{2}\right]^{3}
+      \]
+    \end{mwejercicio}
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 4 \quad \medio]
+      Escribe con exponente \textbf{positivo} y luego calcula:
+      \[
+        \left(\frac{2}{3}\right)^{-2},
+        \qquad
+        \left(\frac{5}{4}\right)^{-1},
+        \qquad
+        \left(\frac{1}{2}\right)^{-3}
+      \]
+    \end{mwejercicio}
+  \end{columns}
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Suma y Resta de Fracciones}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Fracciones con Igual Denominador}
+  \begin{block}{Regla}
+    \[
+      \frac{a}{b} + \frac{c}{b} = \frac{a + c}{b}
+    \]
+    \textbf{Ejemplo:}\quad
+    $\dfrac{3}{5} + \dfrac{1}{5} = \dfrac{4}{5}$
+  \end{block}
+  \vspace{4pt}
+  \begin{mwextra}[Propiedades que se cumplen en $\mathbb{Q}$]
+    \begin{enumerate}
+      \item \textbf{Conmutativa:} $\frac{a}{b} + \frac{c}{d}
+            = \frac{c}{d} + \frac{a}{b}$
+      \item \textbf{Asociativa:} $\left(\frac{a}{b} +
+            \frac{c}{d}\right) + \frac{e}{f}
+            = \frac{a}{b} + \left(\frac{c}{d} + \frac{e}{f}\right)$
+      \item \textbf{Elemento neutro:} $\frac{a}{b} + 0 = \frac{a}{b}$
+      \item \textbf{Elemento inverso (opuesto):}
+            $\frac{a}{b} + \left(-\frac{a}{b}\right) = 0$
+    \end{enumerate}
+  \end{mwextra}
+\end{frame}
+
+\begin{frame}{Denominadores Distintos: el M.C.M.}
+  \begin{mwpasos}[Procedimiento]
+    \begin{enumerate}
+      \item Calcular el \textbf{m.c.m.} de los denominadores.
+      \item Convertir cada fracción en una equivalente con ese
+            denominador.
+      \item Sumar (o restar) los numeradores y mantener el
+            denominador.
+      \item Simplificar el resultado si es posible.
+    \end{enumerate}
+  \end{mwpasos}
+  \vspace{4pt}
+  \begin{exampleblock}{Ejemplo de clase}
+    \[
+      \frac{2}{5} - \left(\frac{1}{3} + \frac{1}{2}\right)
+      = \frac{12 - (10 + 15)}{30}
+      = \frac{12 - 25}{30}
+      = -\frac{13}{30}
+    \]
+    $\text{m.c.m.}\{5,\, 3,\, 2\} = 30$
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Ejercicios Propuestos — Suma y Resta \textnormal{(1/3)}}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 1 — Igual denominador \quad \facil]
+      Calcula:
+      \[
+        \frac{3}{7} + \frac{2}{7},
+        \qquad
+        \frac{5}{9} - \frac{7}{9}
+      \]
+    \end{mwejercicio}
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 2 — Distinto denominador \quad \facil]
+      Calcula usando el m.c.m.:
+      \[
+        \frac{1}{2} + \frac{1}{3},
+        \qquad
+        \frac{3}{4} - \frac{2}{5}
+      \]
+    \end{mwejercicio}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Ejercicios Propuestos — Suma y Resta \textnormal{(2/3)}}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 3 \quad \medio]
+      Calcula y simplifica:
+      \[
+        \frac{7}{12} + \frac{5}{18} - \frac{1}{4}
+      \]
+      \textit{Pista:} $\text{m.c.m.}\{12,\, 18,\, 4\} = 36$.
+    \end{mwejercicio}
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 4 \quad \medio]
+      Resuelve respetando la jerarquía de operaciones:
+      \[
+        \frac{2}{5} - \left(\frac{1}{3} + \frac{1}{2}\right)
+      \]
+      \textit{Pista:} $\text{m.c.m.}\{5,\, 3,\, 2\} = 30$.
+    \end{mwejercicio}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Ejercicios Propuestos — Suma y Resta \textnormal{(3/3)}}
+  \begin{mwejercicio}[Ejercicio 5 — Elementos neutro e inverso \quad \medio]
+    \begin{enumerate}
+      \item Escribe el \textbf{elemento inverso} de $\dfrac{3}{4}$ y
+            verifica que la suma de ambos da $0$.
+      \item ¿Qué número debes sumar a $-\dfrac{7}{10}$ para obtener
+            $0$?
+      \item Demuestra que $0$ es el elemento neutro usando
+            $\dfrac{5}{8}$.
+    \end{enumerate}
+  \end{mwejercicio}
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Producto y División de Fracciones}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Producto y División de Fracciones}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{block}{Producto}
+      \[
+        \frac{a}{b} \cdot \frac{c}{d}
+        = \frac{a \cdot c}{b \cdot d}
+      \]
+      \textbf{Ejemplo:}
+      \[
+        \frac{3}{5} \cdot \left(-\frac{1}{9}\right)
+        = \frac{-3}{45} = -\frac{1}{15}
+      \]
+    \end{block}
+    \column{0.48\textwidth}
+    \begin{block}{División}
+      \[
+        \frac{a}{b} \div \frac{c}{d}
+        = \frac{a \cdot d}{b \cdot c}
+      \]
+      \textbf{Ejemplo:}
+      \[
+        \frac{4}{5} \div \frac{2}{15}
+        = \frac{4 \cdot 15}{5 \cdot 2}
+        = \frac{60}{10} = 6
+      \]
+    \end{block}
+  \end{columns}
+  \vspace{4pt}
+  \begin{mwpasos}[Consejo]
+    Multiplica los numeradores y los denominadores; al final,
+    \textbf{simplifica} la fracción resultante hasta que sea
+    irreducible.
+  \end{mwpasos}
+\end{frame}
+
+\begin{frame}{Ejercicios Propuestos — Producto y División \textnormal{(1/2)}}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 1 — Producto \quad \facil]
+      Multiplica y simplifica:
+      \[
+        \frac{3}{5} \cdot \left(-\frac{1}{9}\right),
+        \quad
+        \frac{7}{10} \cdot \frac{5}{21},
+        \quad
+        \left(-\frac{2}{3}\right) \cdot \left(-\frac{9}{8}\right)
+      \]
+    \end{mwejercicio}
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 2 — División \quad \facil]
+      Divide y simplifica:
+      \[
+        \frac{4}{5} \div \frac{2}{15},
+        \quad
+        \frac{2}{3} \div \frac{4}{9},
+        \quad
+        \frac{5}{6} \div \frac{10}{3}
+      \]
+    \end{mwejercicio}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Ejercicios Propuestos — Producto y División \textnormal{(2/2)}}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 3 — Mixtas \quad \medio]
+      Resuelve respetando la jerarquía de operaciones:
+      \[
+        \left(\frac{3}{4} \div \frac{3}{8}\right) \cdot \frac{2}{5}
+      \]
+      \[
+        \frac{1}{2} \cdot \frac{3}{4} + \frac{1}{3} \cdot \frac{9}{10}
+      \]
+    \end{mwejercicio}
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 4 — Problema \quad \medio]
+      Para una receta se necesitan $\dfrac{3}{4}$ de taza de harina.
+      \begin{enumerate}
+        \item ¿Cuánta harina se necesita para $\dfrac{1}{2}$ receta?
+        \item ¿Y para 3 recetas?
+      \end{enumerate}
+    \end{mwejercicio}
+  \end{columns}
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Fracciones Generatrices}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Decimales Limitados}
+  \begin{block}{Definición}
+    Para pasar un decimal \textbf{limitado} a fracción: coloca el
+    número completo \textbf{sin la coma} en el numerador y la unidad
+    seguida de \textbf{tantos ceros como cifras decimales} tenga en el
+    denominador.
+  \end{block}
+  \vspace{4pt}
+  \begin{exampleblock}{Ejemplos}
+    \[
+      0{,}145 = \frac{145}{1000} = \frac{29}{200}
+      \qquad\qquad
+      4{,}75 = \frac{475}{100} = \frac{19}{4}
+    \]
+  \end{exampleblock}
+  \vspace{4pt}
+  \begin{mwpasos}[Clave]
+    La fracción generatriz \textbf{equivale exactamente} al decimal
+    original: $29/200 = 0{,}145$.
+  \end{mwpasos}
+\end{frame}
+
+\begin{frame}{Ilimitados Periódicos Puros}
+  \begin{block}{Regla}
+    El período empieza justo después de la coma.
+    \begin{itemize}
+      \item \textbf{Numerador:} el número sin la coma, \textbf{menos}
+            la parte entera.
+      \item \textbf{Denominador:} tantos \textbf{9} como cifras tenga
+            el período.
+    \end{itemize}
+  \end{block}
+  \vspace{4pt}
+  \begin{exampleblock}{Ejemplos}
+    \[
+      13{,}\overline{9} = \frac{139 - 13}{9} = \frac{126}{9} = 14
+      \qquad\qquad
+      0{,}\overline{36} = \frac{36}{99} = \frac{4}{11}
+    \]
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Ilimitados Periódicos Mixtos}
+  \begin{block}{Regla}
+    Hay cifras decimales \textbf{antes} del período (parte
+    anteperiódica).
+    \begin{itemize}
+      \item \textbf{Numerador:} el número sin la coma, \textbf{menos}
+            las cifras no periódicas (parte entera + decimales
+            anteperiódicos).
+      \item \textbf{Denominador:} tantos \textbf{9} como cifras tenga
+            el período y tantos \textbf{0} como cifras decimales
+            anteperiódicas.
+    \end{itemize}
+  \end{block}
+  \vspace{4pt}
+  \begin{exampleblock}{Ejemplos}
+    \[
+      1{,}3\overline{5} = \frac{135 - 13}{90} = \frac{122}{90}
+        = \frac{61}{45}
+      \qquad
+      31{,}0\overline{36} = \frac{31036 - 310}{990}
+        = \frac{30726}{990} = \frac{1707}{55}
+    \]
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Ejercicios Propuestos — Fracciones Generatrices \textnormal{(1/2)}}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 1 — Limitados \quad \facil]
+      Pasa a fracción generatriz y simplifica:
+      \[
+        0{,}25 \qquad 0{,}145 \qquad 3{,}2
+      \]
+    \end{mwejercicio}
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 2 — Periódicos puros \quad \medio]
+      Pasa a fracción generatriz y simplifica:
+      \[
+        0{,}\overline{36} \qquad 5{,}\overline{18}
+        \qquad 13{,}\overline{9}
+      \]
+    \end{mwejercicio}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Ejercicios Propuestos — Fracciones Generatrices \textnormal{(2/2)}}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 3 — Periódicos mixtos \quad \dificil]
+      Pasa a fracción generatriz y simplifica:
+      \[
+        1{,}3\overline{5} \qquad 2{,}1\overline{6}
+        \qquad 31{,}0\overline{36}
+      \]
+    \end{mwejercicio}
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 4 — Ida y vuelta \quad \medio]
+      ¿Qué decimal periódico representa $\dfrac{4}{11}$?
+      Comprueba tu resultado convirtiendo el decimal de vuelta a
+      fracción.
+    \end{mwejercicio}
+  \end{columns}
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Fracción Irreducible}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{¿Cuándo es Irreducible una Fracción?}
+  \begin{block}{Definición}
+    Una fracción es \textbf{irreducible} cuando su numerador y su
+    denominador \textbf{no tienen divisores comunes} (distintos de 1).
+    Si los tienen, es \textbf{reducible}: se simplifica dividiendo
+    ambos por el común divisor.
+  \end{block}
+  \vspace{4pt}
+  \begin{exampleblock}{Ejemplos de simplificación}
+    \[
+      \frac{33}{27} = \frac{33 \div 3}{27 \div 3} = \frac{11}{9}
+      \qquad
+      \frac{22}{72} = \frac{22 \div 2}{72 \div 2} = \frac{11}{36}
+      \qquad
+      \frac{42}{54} = \frac{14}{18} = \frac{7}{9}
+    \]
+    \[
+      \frac{6}{8} = \frac{3}{4} = 0{,}75
+    \]
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{De Fracción a Decimal}
+  \begin{mwpasos}[Procedimiento]
+    Divide el numerador entre el denominador. El resultado es un
+    decimal \textbf{limitado} o \textbf{periódico}, según el tipo de
+    fracción.
+  \end{mwpasos}
+  \vspace{4pt}
+  \begin{exampleblock}{Verificación con fracciones generatrices}
+    \[
+      \frac{4}{3} = 1{,}\overline{3}
+      \qquad
+      \frac{5}{6} = 0{,}8\overline{3}
+      \qquad
+      \frac{1}{10} = 0{,}1
+    \]
+  \end{exampleblock}
+  \vspace{4pt}
+  \begin{mwextra}[Comprobación inversa]
+    \[
+      1{,}\overline{3} = \frac{13 - 1}{9} = \frac{12}{9} = \frac{4}{3}
+      \quad \checkmark
+    \]
+  \end{mwextra}
+\end{frame}
+
+\begin{frame}{Ejercicios Propuestos — Fracción Irreducible \textnormal{(1/2)}}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 1 \quad \facil]
+      Simplifica hasta llegar a la fracción irreducible:
+      \[
+        \frac{33}{27}, \quad \frac{22}{72}, \quad
+        \frac{42}{54}, \quad \frac{45}{60}
+      \]
+    \end{mwejercicio}
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 2 \quad \facil]
+      ¿Cuáles de estas fracciones ya son irreducibles?
+      \[
+        \frac{4}{5}, \quad \frac{7}{9}, \quad
+        \frac{13}{20}, \quad \frac{6}{8}
+      \]
+    \end{mwejercicio}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Ejercicios Propuestos — Fracción Irreducible \textnormal{(2/2)}}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 3 \quad \medio]
+      Escribe cada fracción como número decimal:
+      \[
+        \frac{4}{3}, \quad \frac{5}{6}, \quad
+        \frac{1}{10}, \quad \frac{3}{8}
+      \]
+    \end{mwejercicio}
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 4 \quad \medio]
+      Verifica, usando fracciones generatrices, que se cumple:
+      \[
+        \frac{4}{3} = 1{,}\overline{3},
+        \quad
+        \frac{5}{6} = 0{,}8\overline{3},
+        \quad
+        \frac{1}{10} = 0{,}1
+      \]
+    \end{mwejercicio}
+  \end{columns}
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+% ============================================================
+\section{Números Reales y Aproximaciones}
+% ============================================================
+
+\begin{frame}{El Conjunto de los Números Reales}
+  \begin{block}{Definición}
+    \[
+      \mathbb{R} = \mathbb{Q} \cup \mathbb{I}
+      \qquad\qquad
+      \mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}
+    \]
+  \end{block}
+  \vspace{2pt}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{exampleblock}{Racionales ($\mathbb{Q}$)}
+      Se escriben como $\dfrac{a}{b}$: decimales \textbf{limitados} o
+      \textbf{periódicos}.
+      \[
+        \frac{3}{4} = 0{,}75, \quad
+        \frac{1}{3} = 0{,}\overline{3}
+      \]
+    \end{exampleblock}
+    \column{0.48\textwidth}
+    \begin{mwextra}[Irracionales ($\mathbb{I}$)]
+      Decimales \textbf{infinitos no periódicos}: \textbf{no} se
+      pueden escribir como fracción.
+      \[
+        \sqrt{2} = 1{,}4142\dots, \quad
+        \pi = 3{,}1415\dots
+      \]
+    \end{mwextra}
+  \end{columns}
+  \vspace{2pt}
+  \begin{mwpasos}[Recta real]
+    Cada punto de la recta numérica representa un número real y
+    viceversa: $\mathbb{R}$ \textbf{llena} la recta.
+  \end{mwpasos}
+\end{frame}
+
+\begin{frame}{Aproximación por Exceso y por Defecto}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{block}{Por exceso}
+      El valor de precisión \textbf{aumenta una unidad}: se corta el
+      número y se suma $1$ a la última cifra conservada.
+      \vspace{2pt}
+
+      \textbf{Ejemplo:} $0{,}4325$ a la milésima
+      \[
+        0{,}4325 \approx 0{,}433
+      \]
+      La cifra siguiente ($5$) obliga a subir.
+    \end{block}
+    \column{0.48\textwidth}
+    \begin{mwextra}[Por defecto]
+      Se deja \textbf{igual} el valor de precisión y se \textbf{corta}
+      el número (truncamiento).
+      \vspace{2pt}
+
+      \textbf{Ejemplo:} $1{,}4324$ a la centésima
+      \[
+        1{,}4324 \approx 1{,}43
+      \]
+      Se conservan $2$ cifras decimales.
+    \end{mwextra}
+  \end{columns}
+  \begin{alertblock}{El mismo número, dos resultados}
+    $0{,}4325$ a la milésima: por \textbf{defecto} $0{,}432$
+    \quad$\cdot$\quad por \textbf{exceso} $0{,}433$.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Ejercicios Propuestos — Aproximaciones \textnormal{(1/2)}}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 1 — Por exceso \quad \facil]
+      Aproxima a la precisión indicada \textbf{por exceso}:
+      \begin{enumerate}
+        \item $0{,}4325$ a la milésima
+        \item $2{,}7381$ a la centésima
+        \item $\pi = 3{,}14159\dots$ a la diezmilésima
+      \end{enumerate}
+    \end{mwejercicio}
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 2 — Por defecto \quad \facil]
+      Aproxima a la precisión indicada \textbf{por defecto}:
+      \begin{enumerate}
+        \item $1{,}4324$ a la centésima
+        \item $7{,}9998$ a la décima
+        \item $\sqrt{2} = 1{,}41421\dots$ a la milésima
+      \end{enumerate}
+    \end{mwejercicio}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Ejercicios Propuestos — Aproximaciones \textnormal{(2/2)}}
+  \begin{mwejercicio}[Ejercicio 3 — Tabla comparativa \quad \medio]
+    Completa la tabla con la aproximación de cada número en la
+    precisión indicada:
+    \vspace{4pt}
+
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{@{} l c c c @{}}
+      \toprule
+      \textbf{Número} & \textbf{Precisión} & \textbf{Por defecto}
+        & \textbf{Por exceso} \\
+      \midrule
+      $0{,}4325$ & milésima & & \\
+      $1{,}4324$ & centésima & & \\
+      $3{,}14159\dots$ & diezmilésima & & \\
+      $9{,}8765$ & décima & & \\
+      \bottomrule
+    \end{tabular}
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Soluciones — Aproximaciones \textnormal{(1/2)}}
+  \mwtopanchoroff
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{exampleblock}{Ejercicio 1 — Por exceso}
+      \begin{itemize}
+        \item $0{,}4325 \approx 0{,}433$
+        \item $2{,}7381 \approx 2{,}74$
+        \item $\pi \approx 3{,}1416$
+      \end{itemize}
+      \small (se corta y se sube una unidad en la última cifra)
+    \end{exampleblock}
+    \column{0.48\textwidth}
+    \begin{mwextra}[Ejercicio 2 — Por defecto]
+      \begin{itemize}
+        \item $1{,}4324 \approx 1{,}43$
+        \item $7{,}9998 \approx 7{,}9$
+        \item $\sqrt{2} \approx 1{,}414$
+      \end{itemize}
+      \small (solo se corta: las cifras restantes se descartan)
+    \end{mwextra}
+  \end{columns}
+  \mwtopanchoron
+\end{frame}
+
+\begin{frame}{Soluciones — Aproximaciones \textnormal{(2/2)}}
+  \mwtopanchoroff
+  \begin{block}{Ejercicio 3 — Tabla completa}
+    \renewcommand{\arraystretch}{1.25}
+    \begin{tabular}{@{} l c c c @{}}
+      \toprule
+      \textbf{Número} & \textbf{Precisión} & \textbf{Por defecto}
+        & \textbf{Por exceso} \\
+      \midrule
+      $0{,}4325$ & milésima & $0{,}432$ & $0{,}433$ \\
+      $1{,}4324$ & centésima & $1{,}43$ & $1{,}44$ \\
+      $3{,}14159\dots$ & diezmilésima & $3{,}1415$ & $3{,}1416$ \\
+      $9{,}8765$ & décima & $9{,}8$ & $9{,}9$ \\
+      \bottomrule
+    \end{tabular}
+  \end{block}
+  \vspace{2pt}
+  \begin{mwpasos}[Cómo revisar tu tabla]
+    Cuenta las cifras decimales de la precisión: debe haber exactamente
+    esas cifras. La diferencia entre ambas columnas es \textbf{una
+    unidad} en la última posición.
+  \end{mwpasos}
+  \mwtopanchoron
+\end{frame}
+
+% ============================================================
+\section{Práctica: Operaciones Combinadas}
+% ============================================================
+
+\begin{frame}{Operaciones Combinadas: Plan de Ataque}
+  \begin{mwpasos}[Procedimiento]
+    \begin{enumerate}
+      \item Convierte \textbf{cada decimal} a fracción generatriz
+            (limitado, periódico puro o mixto).
+      \item Simplifica cada fracción antes de operar.
+      \item Respeta la \textbf{jerarquía}: paréntesis $\to$
+            potencias $\to$ $\times$ y $\div$ $\to$ $+$ y $-$.
+      \item Lleva el resultado a \textbf{fracción irreducible} y, si se
+            pide, a decimal.
+    \end{enumerate}
+  \end{mwpasos}
+  \begin{alertblock}{Cuidado con la división de decimales}
+    $6{,}2 \div 3{,}1$: convierte primero a fracciones
+    $\dfrac{62}{10} \div \dfrac{31}{10} = \dfrac{62}{31} = 2$.
+  \end{alertblock}
+  \vspace{2pt}
+  \begin{mwextra}[Generatrices que necesitarás]
+    $0{,}2 = \dfrac{2}{10}$ \quad$\cdot$\quad
+    $0{,}6 = \dfrac{6}{10}$ \quad$\cdot$\quad
+    $0{,}\overline{3} = \dfrac{3}{9}$ \quad$\cdot$\quad
+    $0{,}\overline{5} = \dfrac{5}{9}$ \quad$\cdot$\quad
+    $3{,}\overline{9} = \dfrac{39 - 3}{9}$
+  \end{mwextra}
+\end{frame}
+
+\begin{frame}{Ejercicio Resuelto — Del Cuaderno}
+  \mwtopanchoroff
+  \begin{mwpasos}[Calcula el valor exacto]
+    \textbf{Enunciado: } $1 - 6{,}2 \div 3{,}1 + (0{,}6)^{2}$.
+    \begin{align*}
+      (0{,}6)^{2} &= 0{,}36 = \frac{36}{100} = \frac{9}{25} \\
+      6{,}2 \div 3{,}1
+        &= \frac{62}{10} \div \frac{31}{10}
+         = \frac{62}{31} = 2 \\
+      1 - 6{,}2 \div 3{,}1 + (0{,}6)^{2}
+        &= 1 - 2 + 0{,}36 = -1 + 0{,}36 \\
+        &= -0{,}64 = -\frac{64}{100} = -\frac{16}{25}
+    \end{align*}
+  \end{mwpasos}
+  \mwtopanchoron
+\end{frame}
+
+\begin{frame}{Ejercicios Propuestos — Valor Exacto en $\mathbb{Q}$}
+  \begin{mwejercicio}[Del cuaderno \quad \dificil]
+    Convierte cada decimal en fracción generatriz y calcula el
+    \textbf{valor exacto}:
+    \begin{enumerate}
+      \item[a)] $1 - 6{,}2 \div 3{,}1 + (0{,}6)^{2}$
+      \item[b)] $\dfrac{0{,}\overline{3} - 0{,}\overline{5} - 0{,}1}
+                       {3{,}5 - 2}$
+      \item[c)] $\dfrac{6{,}5 + 2{,}7 + 3{,}\overline{9}}{4{,}5}$
+    \end{enumerate}
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Solución Explicada — Ejercicio b)}
+  \mwtopanchoroff
+  \begin{block}{b) \; $\dfrac{0{,}\overline{3} - 0{,}\overline{5} - 0{,}1}
+                                  {3{,}5 - 2}$}
+    \textbf{Paso 1 — generatrices:}
+    $0{,}\overline{3} = \frac{3}{9} = \frac{1}{3}$,\quad
+    $0{,}\overline{5} = \frac{5}{9}$,\quad
+    $0{,}1 = \frac{1}{10}$,\quad
+    $3{,}5 - 2 = \frac{3}{2}$.
+    \[
+      \text{Paso 2 — numerador (m.c.m.\ } 90\text{):}\quad
+      \frac{1}{3} - \frac{5}{9} - \frac{1}{10}
+      = \frac{30 - 50 - 9}{90}
+      = -\frac{29}{90}
+    \]
+    \[
+      \text{Paso 3 — cociente:}\quad
+      \frac{-29/90}{3/2}
+      = -\frac{29}{90} \cdot \frac{2}{3}
+      = -\frac{58}{270}
+      = -\frac{29}{135}
+    \]
+  \end{block}
+  \mwtopanchoron
+\end{frame}
+
+\begin{frame}{Solución Explicada — Ejercicio c)}
+  \mwtopanchoroff
+  \begin{block}{c) \; $\dfrac{6{,}5 + 2{,}7 + 3{,}\overline{9}}{4{,}5}$}
+    \textbf{Paso 1 — el periódico puro:}
+    $3{,}\overline{9} = \dfrac{39 - 3}{9} = 4$,
+    \qquad $4{,}5 = \dfrac{9}{2}$.
+    \[
+      \text{Paso 2:}\quad 6{,}5 + 2{,}7 + 4 = 13{,}2 = \frac{132}{10}
+      = \frac{66}{5}
+    \]
+    \[
+      \text{Paso 3:}\quad \frac{66/5}{9/2}
+      = \frac{66}{5} \cdot \frac{2}{9}
+      = \frac{132}{45}
+      = \frac{44}{15} \approx 2{,}9\overline{3}
+    \]
+    \small Comprobación: $13{,}2 \div 4{,}5 = 2{,}9333\dots
+    = 2{,}9\overline{3}$ \;\checkmark
+  \end{block}
+  \mwtopanchoron
+\end{frame}
+
+\begin{frame}{Ejercicios Propuestos — Más Práctica \textnormal{(1/2)}}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 1 \quad \medio]
+      Calcula el valor exacto:
+      \[
+        1{,}5 + 0{,}\overline{3} \cdot 3
+      \]
+    \end{mwejercicio}
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 2 \quad \dificil]
+      Calcula el valor exacto:
+      \[
+        \frac{0{,}4 - 0{,}\overline{1}}{1{,}\overline{2}}
+      \]
+    \end{mwejercicio}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Ejercicios Propuestos — Más Práctica \textnormal{(2/2)}}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 3 \quad \medio]
+      Calcula el valor exacto:
+      \[
+        (2 - 1{,}\overline{3}) \div 0{,}5
+      \]
+    \end{mwejercicio}
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Ejercicio 4 \quad \medio]
+      Escribe $\dfrac{1}{7}$ como decimal y aproxímalo a la centésima
+      \textbf{por defecto} y \textbf{por exceso}. ¿Cuál está más cerca
+      del valor real?
+    \end{mwejercicio}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Soluciones — Más Práctica \textnormal{(1/2)}}
+  \mwtopanchoroff
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{exampleblock}{Ejercicio 1}
+      \[
+        1{,}5 = \frac{3}{2}, \qquad
+        0{,}\overline{3} \cdot 3 = \frac{1}{3} \cdot 3 = 1
+      \]
+      \[
+        \frac{3}{2} + 1 = \frac{5}{2} = 2{,}5
+      \]
+    \end{exampleblock}
+    \column{0.48\textwidth}
+    \begin{mwextra}[Ejercicio 2]
+      \[
+        0{,}4 = \frac{2}{5}, \quad
+        0{,}\overline{1} = \frac{1}{9}, \quad
+        1{,}\overline{2} = \frac{11}{9}
+      \]
+      \[
+        \frac{\frac{2}{5} - \frac{1}{9}}{\frac{11}{9}}
+        = \frac{13}{45} \cdot \frac{9}{11}
+        = \frac{13}{55}
+      \]
+    \end{mwextra}
+  \end{columns}
+  \mwtopanchoron
+\end{frame}
+
+\begin{frame}{Soluciones — Más Práctica \textnormal{(2/2)}}
+  \mwtopanchoroff
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{exampleblock}{Ejercicio 3}
+      \[
+        1{,}\overline{3} = \frac{12 - 1}{9} = \frac{4}{3},
+        \qquad
+        0{,}5 = \frac{1}{2}
+      \]
+      \[
+        \frac{2 - \frac{4}{3}}{\frac{1}{2}}
+        = \frac{2}{3} \cdot 2 = \frac{4}{3} = 1{,}\overline{3}
+      \]
+    \end{exampleblock}
+    \column{0.48\textwidth}
+    \begin{mwextra}[Ejercicio 4]
+      \[
+        \frac{1}{7} = 0{,}142857\dots
+      \]
+      \[
+        \text{defecto: } 0{,}14 \qquad
+        \text{exceso: } 0{,}15
+      \]
+      \small Está más cerca $0{,}14$: la diferencia es $0{,}0028\dots$
+      frente a $0{,}0071\dots$
+    \end{mwextra}
+  \end{columns}
+  \mwtopanchoron
+\end{frame}
+
+% ============================================================
+\section{Ejercicios de Repaso General}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Cuadro Resumen — Jerarquía de Conjuntos}
+  \[
+    \mathbb{N} = \{0, 1, 2, \dots\}
+    \;\subset\;
+    \mathbb{Z} = \{\dots, -2, -1, 0, 1, \dots\}
+    \;\subset\;
+    \mathbb{Q} = \left\{\frac{a}{b} : a \in \mathbb{Z},\,
+    b \in \mathbb{Z}^{*}\right\}
+  \]
+  \vspace{4pt}
+  \begin{columns}[T]
+    \column{0.32\textwidth}
+    \begin{block}{Naturales}
+      Enteros, discretos e infinitos.\\
+      Neutro: $a + 0 = a$
+    \end{block}
+    \column{0.32\textwidth}
+    \begin{mwextra}[Enteros]
+      Incluyen los negativos.\\
+      Inverso: $a + (-a) = 0$
+    \end{mwextra}
+    \column{0.32\textwidth}
+    \begin{exampleblock}{Racionales}
+      Fracciones $\dfrac{a}{b}$ y todos los decimales.
+    \end{exampleblock}
+  \end{columns}
+  \vspace{2pt}
+  \begin{center}\small
+    Además $\mathbb{Q} \subset \mathbb{R} = \mathbb{Q} \cup \mathbb{I}$,
+    donde $\mathbb{I}$ son los irracionales
+    ($\sqrt{2}$, $\pi$, $e$): decimales infinitos no periódicos.
+  \end{center}
+\end{frame}
+
+\begin{frame}{Repaso General \textnormal{(1/5)} — Conjuntos y Signos}
+  \begin{mwejercicio}[Repaso 1 \quad \medio]
+    \begin{enumerate}
+      \item Clasifica cada número en $\mathbb{N}$, $\mathbb{Z}$ y
+            $\mathbb{Q}$: $0$;\; $-7$;\; $\dfrac{22}{7}$;\;
+            $0{,}25$;\; $15$.
+      \item Calcula aplicando la regla de signos:
+            $(-3)\cdot(-4)\cdot(-2)$ \; y \;
+            $(-5)\cdot 6 \cdot (-1)$.
+      \item Completa: $\mathbb{Z}^{+} = \_\_\_$,\;
+            $\mathbb{Z}^{-} = \_\_\_$,\; $\mathbb{Z}^{*} = \_\_\_$.
+    \end{enumerate}
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Repaso General \textnormal{(2/5)} — Potenciación}
+  \begin{mwejercicio}[Repaso 2 \quad \medio]
+    \begin{enumerate}
+      \item Calcula: $\left(\dfrac{2}{5}\right)^{2}$,\;
+            $\left(-\dfrac{3}{4}\right)^{3}$,\;
+            $\left(\dfrac{7}{8}\right)^{0}$.
+      \item Simplifica: $\left(\dfrac{2}{3}\right)^{4} \cdot
+            \left(\dfrac{2}{3}\right)^{2}$,\;
+            $\dfrac{\left(\frac{3}{5}\right)^{7}}
+                   {\left(\frac{3}{5}\right)^{4}}$,\;
+            $\left[\left(\dfrac{1}{2}\right)^{2}\right]^{3}$.
+      \item Escribe con exponente positivo: $\left(\dfrac{3}{4}\right)^{-2}$
+            y calcula su valor.
+    \end{enumerate}
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Repaso General \textnormal{(3/5)} — Operaciones con Fracciones}
+  \begin{mwejercicio}[Repaso 3 \quad \medio]
+    Realiza las operaciones y simplifica:
+    \[
+      \text{a)}\;\; \frac{5}{12} + \frac{7}{18} - \frac{1}{4}
+      \qquad
+      \text{b)}\;\; \frac{3}{5} \cdot \left(-\frac{1}{9}\right)
+    \]
+    \[
+      \text{c)}\;\; \frac{4}{5} \div \frac{2}{15}
+      \qquad
+      \text{d)}\;\; \frac{2}{5} - \left(\frac{1}{3} + \frac{1}{2}\right)
+    \]
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Repaso General \textnormal{(4/5)} — Generatrices e Irreducibles}
+  \begin{mwejercicio}[Repaso 4 \quad \dificil]
+    \begin{enumerate}
+      \item Pasa a fracción generatriz y simplifica: $0{,}145$;\;
+            $1{,}3\overline{5}$;\; $31{,}0\overline{36}$.
+      \item Escribe como número decimal: $\dfrac{4}{3}$;\;
+            $\dfrac{5}{6}$;\; $\dfrac{1}{10}$.
+      \item Simplifica hasta la fracción irreducible:
+            $\dfrac{33}{27}$,\; $\dfrac{22}{72}$,\; $\dfrac{42}{54}$.
+    \end{enumerate}
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Repaso General \textnormal{(5/5)} — Problemas}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Repaso 5 — Galletas \quad \medio]
+      Un paquete tiene 24 galletas. Ana come $\dfrac{1}{4}$ del
+      paquete y Luis come $\dfrac{1}{6}$.
+      \begin{enumerate}
+        \item ¿Qué fracción del paquete comieron juntos?
+        \item ¿Cuántas galletas quedan?
+      \end{enumerate}
+    \end{mwejercicio}
+    \column{0.48\textwidth}
+    \begin{mwejercicio}[Repaso 6 — Oferta \quad \medio]
+      El precio de un libro baja $\dfrac{2}{9}$ de su valor. Si el
+      libro costaba $\$9.000$:
+      \begin{enumerate}
+        \item ¿Cuánto baja el precio?
+        \item ¿Cuál es el precio final?
+      \end{enumerate}
+    \end{mwejercicio}
+  \end{columns}
+\end{frame}
+
+\end{document}

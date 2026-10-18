@@ -14,6 +14,7 @@
 
 % ── Comandos propios de esta guía ───────────────────
 \providecommand{\sen}{\sin}
+\usetikzlibrary{3d}   % ejes x, y, z para los gráficos en perspectiva
 
 \begin{document}
 % ============================================================
@@ -24,7 +25,7 @@
 \vspace{4pt}
 \begin{cuadroinfo}
   \small
-  \textbf{Presentación:} ¡Hola! La física es la ciencia de \emph{medir}: medimos velocidades, masas, distancias y fuerzas. Pero medir no sirve de nada si no podemos \emph{comparar} nuestras medidas, y para eso necesitamos un idioma común de unidades. En esta guía aprenderás a moverte con soltura en el Sistema Internacional, a transformar unidades (¡como convertir 90 km/h a m/s!) y conocerás la primera gran herramienta de la física: los \textbf{vectores}, que nos permiten trabajar con magnitudes que tienen dirección, como el viento o la velocidad de un avión. Cerramos con una sección especial de \textbf{despeje de fórmulas}, la herramienta que te permitirá calcular \emph{cualquier} variable de una fórmula, desde lo más fácil hasta verdaderos retos. ¡Allá vamos!
+  \textbf{Presentación:} ¡Hola! La física es la ciencia de \emph{medir}: medimos velocidades, masas, distancias y fuerzas. Pero medir no sirve de nada si no podemos \emph{comparar} nuestras medidas, y para eso necesitamos un idioma común de unidades. En esta guía aprenderás a moverte con soltura en el Sistema Internacional, a transformar unidades (¡como convertir 90 km/h a m/s!) y conocerás la primera gran herramienta de la física: los \textbf{vectores}, que nos permiten trabajar con magnitudes que tienen dirección, como el viento o la velocidad de un avión. Después daremos el salto al \textbf{espacio de tres dimensiones}: aprenderás a graficar vectores en 3D, a describir su dirección con los \textbf{cosenos directores} y a sumarlos, restarlos y multiplicarlos por un escalar. Cerramos con una sección especial de \textbf{despeje de fórmulas}, la herramienta que te permitirá calcular \emph{cualquier} variable de una fórmula, desde lo más fácil hasta verdaderos retos. ¡Allá vamos!
   \\[4pt]
   \textbf{Nivel de Dificultad:}\quad
   \facil{} Básico / Directo \quad
@@ -621,6 +622,540 @@
 \newpage
 
 % ============================================================
+\section{Álgebra de vectores en 3 dimensiones}
+% ============================================================
+
+\subsection{Vectores en el espacio}
+
+\begin{cuadroteoria}
+  Hasta ahora trabajamos en el plano, donde bastaban dos números para ubicar un punto. El mundo real tiene \textbf{tres dimensiones}, así que un vector en el espacio se escribe con \textbf{tres componentes}, una por cada eje:
+  $$\vec{v} = (v_x,\; v_y,\; v_z)$$
+  \begin{itemize}[leftmargin=*]
+    \item $v_x$: cuánto avanza sobre el eje $X$ (el \emph{ancho});
+    \item $v_y$: cuánto avanza sobre el eje $Y$ (la \emph{profundidad});
+    \item $v_z$: cuánto avanza sobre el eje $Z$ (la \emph{altura}).
+  \end{itemize}
+
+  \textbf{Módulo (Pitágoras extendido):}
+  $$|\vec{v}| = \sqrt{v_x^2 + v_y^2 + v_z^2}$$
+
+  \textbf{Los versores} $\hat{\imath}$, $\hat{\jmath}$ y $\hat{k}$ son los vectores de módulo $1$ que apuntan sobre cada eje, así que un vector también se escribe
+  $$\vec{v} = v_x\,\hat{\imath} + v_y\,\hat{\jmath} + v_z\,\hat{k}$$
+\end{cuadroteoria}
+
+\begin{cuadroteoria}
+  \textbf{Casos particulares que conviene reconocer:}
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Vector nulo:} $\vec{0} = (0, 0, 0)$; no avanza en ninguna dirección.
+    \item \textbf{Vector opuesto:} $-\vec{v} = (-v_x, -v_y, -v_z)$; tiene el mismo módulo y la misma dirección, pero sentido contrario.
+    \item Si \emph{dos} componentes son cero, el vector está sobre uno de los ejes (por ejemplo, $(0,0,4)$ es vertical).
+    \item Si $v_z = 0$, el vector está ``acostado'' en el plano $xy$: es un vector plano, como los de la sección anterior.
+  \end{itemize}
+\end{cuadroteoria}
+
+\subsection{Cosenos directores}
+
+\begin{cuadroteoria}
+  Un vector del espacio no forma un solo ángulo con ``los ejes'': forma \textbf{tres}. Los \textbf{ángulos directores} $\alpha$, $\beta$ y $\gamma$ son los ángulos que el vector forma con los semiejes positivos $+x$, $+y$ y $+z$ (se miden desde el vector hasta cada eje, y están entre $0^{\circ}$ y $180^{\circ}$).
+
+  Sus \textbf{cosenos directores} se obtienen dividiendo cada componente entre el módulo:
+  $$\cos\alpha = \frac{v_x}{|\vec{v}|}, \qquad \cos\beta = \frac{v_y}{|\vec{v}|}, \qquad \cos\gamma = \frac{v_z}{|\vec{v}|}$$
+  Y al revés, conociendo el módulo y los cosenos directores se recuperan las componentes:
+  $$v_x = |\vec{v}|\cos\alpha, \qquad v_y = |\vec{v}|\cos\beta, \qquad v_z = |\vec{v}|\cos\gamma$$
+
+  \textbf{Identidad fundamental} (sirve para calcular el tercer coseno o para verificar):
+  $$\cos^2\alpha + \cos^2\beta + \cos^2\gamma = 1$$
+  \begin{center}
+    \begin{tikzpicture}[x={(1cm,0cm)}, y={(0.62cm,0.42cm)}, z={(0cm,1cm)}, scale=0.9]
+      \draw[thick, -Latex] (0,0,0) -- (5,0,0) node[below left] {$x$};
+      \draw[thick, -Latex] (0,0,0) -- (0,4.6,0) node[right] {$y$};
+      \draw[thick, -Latex] (0,0,0) -- (0,0,4.4) node[above] {$z$};
+      \draw[mwprimario, very thick, -Latex] (0,0,0) -- (3,2.5,2.5) node[right] {$\vec{v}$};
+      \draw[gray, dashed, thin] (3,2.5,2.5) -- (3,2.5,0);
+      \draw[gray, dashed, thin] (3,2.5,0) -- (3,0,0);
+      \draw[gray, dashed, thin] (3,2.5,0) -- (0,2.5,0);
+      \draw[gray, dashed, thin] (3,0,0) -- (3,0,2.5) -- (3,2.5,2.5);
+      \draw[gray, dashed, thin] (0,2.5,0) -- (0,2.5,2.5) -- (3,2.5,2.5);
+      \begin{scope}[canvas is xy plane at z=0]
+        \draw[mwvioleta, thick] (1.05,0) arc (0:39.8:1.05);
+        \node[mwvioleta, font=\small] at (1.45,0.42) {$\alpha$};
+      \end{scope}
+      \begin{scope}[canvas is xz plane at y=0]
+        \draw[mwmagenta, thick] (0,1.05) arc (90:39.8:1.05);
+        \node[mwmagenta, font=\small] at (0.42,1.45) {$\gamma$};
+      \end{scope}
+      \begin{scope}[canvas is yz plane at x=0]
+        \draw[mwnaranja, thick] (0,1.05) arc (90:45:1.05);
+        \node[mwnaranja, font=\small] at (0.32,0.62) {$\beta$};
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+\end{cuadroteoria}
+
+\begin{cuadroteoria}
+  \textbf{Signo de los cosenos directores.} El signo del coseno es el signo de la componente correspondiente:
+  \begin{itemize}[leftmargin=*]
+    \item Si la componente es \emph{positiva}, el ángulo es \emph{agudo} ($< 90^{\circ}$) y el coseno es positivo.
+    \item Si la componente es \emph{negativa}, el ángulo es \emph{obtuso} ($> 90^{\circ}$) y el coseno es negativo.
+  \end{itemize}
+
+  \textbf{Los cosenos directores son las componentes del vector unitario.} Al dividir un vector entre su módulo se obtiene el \textbf{versor} (vector de módulo $1$) con su misma dirección y sentido:
+  $$\hat{u} = \frac{\vec{v}}{|\vec{v}|} = (\cos\alpha,\; \cos\beta,\; \cos\gamma)$$
+  \begin{center}
+    \begin{tabular}{ccc}
+      \toprule
+      Componente & Coseno director & Ángulo (con la calculadora) \\
+      \midrule
+      $v_x$ & $\cos\alpha = \dfrac{v_x}{|\vec{v}|}$ & $\alpha = \arccos\!\left(\dfrac{v_x}{|\vec{v}|}\right)$ \\
+      $v_y$ & $\cos\beta = \dfrac{v_y}{|\vec{v}|}$  & $\beta = \arccos\!\left(\dfrac{v_y}{|\vec{v}|}\right)$  \\
+      $v_z$ & $\cos\gamma = \dfrac{v_z}{|\vec{v}|}$ & $\gamma = \arccos\!\left(\dfrac{v_z}{|\vec{v}|}\right)$ \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Cómo hallar los cosenos y los ángulos directores:}
+  \begin{enumerate}[leftmargin=*]
+    \item Calcula el módulo $|\vec{v}| = \sqrt{v_x^2 + v_y^2 + v_z^2}$.
+    \item Divide cada componente entre el módulo: esos son los tres cosenos directores.
+    \item Verifica con $\cos^2\alpha + \cos^2\beta + \cos^2\gamma = 1$: si no da $1$, hay un error de cálculo.
+    \item Si piden los \emph{ángulos}, aplica $\arccos$ a cada coseno (la calculadora en grados).
+    \item Si piden el vector unitario, escríbelo directamente como $(\cos\alpha, \cos\beta, \cos\gamma)$.
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos con los cosenos directores:}
+  \begin{itemize}[leftmargin=*]
+    \item Confundir $\alpha$ con el ángulo $\theta$ del plano $xy$: $\alpha$ es el ángulo con el eje $X$, $\beta$ con el eje $Y$ y $\gamma$ con el eje $Z$.
+    \item Dividir al revés: los cosenos directores son $\dfrac{\text{componente}}{\text{módulo}}$, nunca $\dfrac{\text{módulo}}{\text{componente}}$.
+    \item Creer que los tres ángulos son siempre agudos: si una componente es negativa, su ángulo es mayor de $90^{\circ}$.
+    \item Suponer que $\alpha + \beta + \gamma = 90^{\circ}$: eso es falso; la relación correcta es la de los cosenos al cuadrado.
+    \item Olvidar que la identidad da \emph{dos} soluciones al despejar un coseno (el signo $\pm$): hay que decidirlo según el cuadrante u octante donde esté el vector.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\begin{cuadroextra}
+  \textbf{Truco: hallar la componente que falta.} Si conoces dos cosenos directores, el tercero sale de la identidad fundamental:
+  $$\cos\gamma = \pm\sqrt{1 - \cos^2\alpha - \cos^2\beta}$$
+  El signo lo decide el octante en que está el vector. En física esto se usa, por ejemplo, para conocer la altura de una fuerza cuando solo se conocen dos de sus ángulos.
+\end{cuadroextra}
+
+\subsection{Cómo graficar un vector en 3 dimensiones}
+
+\begin{cuadroteoria}
+  Graficar en 3D es dibujar en \textbf{perspectiva}: los tres ejes son perpendiculares en la realidad, pero en el papel uno de ellos se inclina para ``dar profundidad''.
+  \begin{itemize}[leftmargin=*]
+    \item Eje $X$: horizontal, hacia la derecha.
+    \item Eje $Z$: vertical, hacia arriba.
+    \item Eje $Y$: inclinado \emph{hacia adentro} del papel (diagonal hacia arriba y a la derecha), como si se alejara del observador.
+  \end{itemize}
+  Para llegar a la punta de $\vec{v} = (v_x, v_y, v_z)$ se hace un recorrido ``en escalera'': $v_x$ sobre el eje $X$, después $v_y$ paralelo al eje $Y$ y por último $v_z$ paralelo al eje $Z$. El vector va del origen hasta ese punto final.
+  \begin{center}
+    \begin{tikzpicture}[x={(1cm,0cm)}, y={(0.62cm,0.42cm)}, z={(0cm,1cm)}, scale=0.95]
+      % piso (plano xy)
+      \foreach \i in {0,...,4} {%
+        \draw[gray!25, thin] (\i,0,0) -- (\i,4,0);
+        \draw[gray!25, thin] (0,\i,0) -- (4,\i,0);
+      }
+      % ejes
+      \draw[thick, -Latex] (0,0,0) -- (4.5,0,0) node[below left] {$x$};
+      \draw[thick, -Latex] (0,0,0) -- (0,3.4,0) node[right] {$y$};
+      \draw[thick, -Latex] (0,0,0) -- (0,0,3.4) node[above] {$z$};
+      % recorrido en escalera
+      \draw[mwmagenta, thick, -Latex] (0,0,0) -- (3,0,0) node[midway, below] {\small $v_x$};
+      \draw[mwmagenta, thick, -Latex] (3,0,0) -- (3,2,0) node[midway, below right] {\small $v_y$};
+      \draw[mwmagenta, thick, -Latex] (3,2,0) -- (3,2,2) node[midway, left] {\small $v_z$};
+      \draw[gray, dashed] (0,0,0) -- (3,2,0);
+      \draw[mwprimario, very thick, -Latex] (0,0,0) -- (3,2,2) node[right] {$\vec{v}$};
+      \filldraw[mwprimario] (3,2,2) circle (1.6pt);
+    \end{tikzpicture}
+  \end{center}
+  El ``piso'' punteado es la \textbf{proyección} del vector sobre el plano $xy$: ayuda a ver dónde está parado el vector.
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Cómo graficar un vector en 3D:}
+  \begin{enumerate}[leftmargin=*]
+    \item Dibuja los tres ejes con su flecha y rotúlalos: $X$ horizontal, $Y$ inclinado y $Z$ vertical.
+    \item Elige una escala (por ejemplo, 1 unidad = 1 cm).
+    \item Desde el origen avanza $v_x$ sobre el eje $X$ (si es negativo, hacia la izquierda).
+    \item Desde ese punto avanza $v_y$ \emph{paralelo al eje $Y$} (si es negativo, hacia afuera, hacia el observador).
+    \item Desde ahí sube (o baja) $v_z$ paralelo al eje $Z$: ese es el punto final.
+    \item Traza la flecha del origen al punto final: ese es el vector $\vec{v}$.
+    \item Si te ayuda, dibuja punteada la proyección sobre el plano $xy$ (el ``piso'').
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos al graficar en 3D:}
+  \begin{itemize}[leftmargin=*]
+    \item Dibujar el eje $Y$ perpendicular al $X$ sobre el papel: el dibujo se ve ``plano'' y se pierde la profundidad.
+    \item Confundir profundidad con altura: el eje $Z$ es siempre el vertical.
+    \item Olvidar los signos: una componente negativa se recorre en sentido contrario al eje, así que la punta termina del otro lado.
+    \item Trazar la flecha en el último tramo de la escalera en lugar de dibujar el vector completo desde el origen.
+    \item Desordenar la escalera: si te pierdes, vuelve al origen y repite el recorrido $X \to Y \to Z$ (el orden no cambia el punto final).
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\subsection{Suma y resta de vectores en 3D}
+
+\begin{cuadroteoria}
+  Se opera \textbf{componente a componente}: las $x$ con las $x$, las $y$ con las $y$ y las $z$ con las $z$.
+  $$\vec{a} + \vec{b} = (a_x + b_x,\; a_y + b_y,\; a_z + b_z)$$
+  $$\vec{a} - \vec{b} = (a_x - b_x,\; a_y - b_y,\; a_z - b_z)$$
+
+  \textbf{Interpretación gráfica:}
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Suma (método del polígono):} se dibuja $\vec{b}$ con su origen en la punta de $\vec{a}$; la resultante une el origen de $\vec{a}$ con la punta de $\vec{b}$.
+    \item \textbf{Resta:} $\vec{a} - \vec{b} = \vec{a} + (-\vec{b})$, es decir, se suma el opuesto de $\vec{b}$. Si los dos vectores salen del origen, $\vec{a}-\vec{b}$ es la flecha que va \textbf{de la punta de $\vec{b}$ a la punta de $\vec{a}$}.
+  \end{itemize}
+  \begin{center}
+    \begin{tikzpicture}[x={(1cm,0cm)}, y={(0.62cm,0.42cm)}, z={(0cm,1cm)}, scale=0.85]
+      \draw[thick, -Latex] (0,0,0) -- (4.4,0,0) node[below left] {$x$};
+      \draw[thick, -Latex] (0,0,0) -- (0,3,0) node[right] {$y$};
+      \draw[thick, -Latex] (0,0,0) -- (0,0,3.4) node[above] {$z$};
+      \draw[mwprimario, thick, -Latex] (0,0,0) -- (3,1,0.8) node[right] {$\vec{a}$};
+      \draw[mwnaranja, thick, -Latex] (3,1,0.8) -- (4,3.5,2.4) node[right] {$\vec{b}$};
+      \draw[gray, dashed] (0,0,0) -- (1,2.5,1.6);
+      \draw[gray, dashed] (1,2.5,1.6) -- (3,1,0.8);
+      \draw[mwmagenta, very thick, -Latex] (0,0,0) -- (4,3.5,2.4) node[above left] {$\vec{a}+\vec{b}$};
+      \node[below, font=\small\bfseries, mwprimario] at (current bounding box.south) {Suma (polígono)};
+    \end{tikzpicture}
+  \end{center}
+\end{cuadroteoria}
+
+\begin{cuadroteoria}
+  \textbf{El vector entre dos puntos.} Para ir del punto $A$ al punto $B$ (punta $-$ cola):
+  $$\overrightarrow{AB} = B - A = (x_B - x_A,\; y_B - y_A,\; z_B - z_A)$$
+  Es la resta de siempre: se restan las coordenadas del punto final menos las del punto inicial.
+\end{cuadroteoria}
+
+\begin{cuadroteoria}
+  \textbf{Propiedades de la suma} (las mismas del plano):
+  \begin{center}
+    \begin{tabular}{ll}
+      \toprule
+      Conmutativa      & $\vec{a} + \vec{b} = \vec{b} + \vec{a}$ \\
+      Asociativa       & $(\vec{a}+\vec{b}) + \vec{c} = \vec{a} + (\vec{b}+\vec{c})$ \\
+      Elemento neutro  & $\vec{a} + \vec{0} = \vec{a}$ \\
+      Elemento opuesto & $\vec{a} + (-\vec{a}) = \vec{0}$ \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Sumar o restar vectores en 3D:}
+  \begin{enumerate}[leftmargin=*]
+    \item Escribe los vectores alineados: $(a_x, a_y, a_z)$ junto a $(b_x, b_y, b_z)$.
+    \item Opera la primera componente, después la segunda y por último la tercera. \emph{¡Nunca olvides la tercera!}
+    \item Escribe el resultado como terna ordenada.
+    \item Si piden el módulo, aplica $|\vec{r}| = \sqrt{r_x^2 + r_y^2 + r_z^2}$.
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos con sumas y restas:}
+  \begin{itemize}[leftmargin=*]
+    \item Sumar módulos en lugar de componentes: $|\vec{a}+\vec{b}|$ casi nunca es $|\vec{a}| + |\vec{b}|$ (solo si ambos van en la misma dirección y sentido).
+    \item Olvidar la componente $z$: si copias solo $(x,y)$ estás resolviendo un problema de 2D.
+    \item Restar mal: al calcular $\vec{a}-\vec{b}$ hay que cambiarle el signo a \emph{las tres} componentes de $\vec{b}$.
+    \item Invertir el orden: $\vec{b}-\vec{a} = -(\vec{a}-\vec{b})$; no es lo mismo (apunta al revés).
+    \item Confundir $\overrightarrow{AB}$ con $A-B$: siempre es punta $-$ cola.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\subsection{Multiplicación por un escalar}
+
+\begin{cuadroteoria}
+  Al multiplicar un vector por un número $k$ (el \textbf{escalar}) se multiplica \textbf{cada componente}:
+  $$k\,\vec{v} = (k\,v_x,\; k\,v_y,\; k\,v_z), \qquad |k\,\vec{v}| = |k| \cdot |\vec{v}|$$
+  El resultado es \emph{siempre} un vector con la misma dirección que $\vec{v}$; lo que cambia es:
+  \begin{itemize}[leftmargin=*]
+    \item el \textbf{módulo}: si $|k| > 1$ el vector se alarga; si $0 < |k| < 1$ se acorta; si $k = 0$ resulta el vector nulo;
+    \item el \textbf{sentido}: si $k < 0$ apunta al lado contrario. En particular, $(-1)\vec{v} = -\vec{v}$.
+  \end{itemize}
+  \begin{center}
+    \begin{tikzpicture}[x={(1cm,0cm)}, y={(0.62cm,0.42cm)}, z={(0cm,1cm)}, scale=0.95]
+      \draw[thick, -Latex] (0,0,0) -- (3.9,0,0) node[below left] {$x$};
+      \draw[thick, -Latex] (0,0,0) -- (0,3,0) node[right] {$y$};
+      \draw[thick, -Latex] (0,0,0) -- (0,0,3.2) node[above] {$z$};
+      \draw[gray, dashed, thin] (3,1.5,1.5) -- (-1.6,-0.8,-0.8);
+      \draw[very thick, -Latex, mwmagenta] (0,0,0) -- (-1.6,-0.8,-0.8) node[left] {$-0{,}8\vec{v}$};
+      \draw[very thick, -Latex, mwprimario] (0,0,0) -- (2,1,1) node[below right] {$\vec{v}$};
+      \draw[very thick, -Latex, mwnaranja] (0,0,0) -- (3,1.5,1.5) node[right] {$1{,}5\vec{v}$};
+    \end{tikzpicture}
+  \end{center}
+  \textbf{Propiedades:}
+  $$k(\vec{a}+\vec{b}) = k\vec{a} + k\vec{b}, \qquad (k+m)\vec{v} = k\vec{v} + m\vec{v}, \qquad (k\,m)\vec{v} = k(m\vec{v})$$
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Multiplicar un vector por un escalar:}
+  \begin{enumerate}[leftmargin=*]
+    \item Multiplica el escalar por la primera componente (cuidado con el signo).
+    \item Repite con las otras dos: \emph{todas} las componentes se multiplican.
+    \item Si piden el módulo, calcula el del vector original y multiplícalo por $|k|$ (o aplica Pitágoras a las nuevas componentes).
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos con escalares:}
+  \begin{itemize}[leftmargin=*]
+    \item Multiplicar solo una componente: $3(2,1,5) = (6,3,15)$, no $(6,1,5)$.
+    \item ``Sumar'' el escalar: $k + \vec{v}$ \textbf{no existe} (no se puede sumar un número con un vector); solo se multiplica.
+    \item Creer que el módulo puede ser negativo: $|-2\vec{v}| = 2|\vec{v}|$; el módulo nunca es negativo.
+    \item Pensar que $k\vec{v}$ tiene otra dirección: sigue sobre la misma recta (cambia el tamaño y, si $k<0$, el sentido).
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\subsection{Operaciones combinadas}
+
+\begin{cuadroteoria}
+  Una \textbf{combinación lineal} mezcla las operaciones anteriores:
+  $$\vec{r} = \alpha\,\vec{a} + \beta\,\vec{b} + \gamma\,\vec{c}$$
+  donde $\alpha$, $\beta$ y $\gamma$ son escalares (pueden ser negativos, como en $\vec{r} = 2\vec{a} - 3\vec{b}$).
+  Se opera \textbf{por partes}: primero las multiplicaciones por escalar (una por una) y al final las sumas y restas, componente a componente:
+  $$\vec{r} = \big(\alpha a_x + \beta b_x + \gamma c_x,\; \alpha a_y + \beta b_y + \gamma c_y,\; \alpha a_z + \beta b_z + \gamma c_z\big)$$
+  \begin{center}
+    \begin{tikzpicture}[x={(1cm,0cm)}, y={(0.62cm,0.42cm)}, z={(0cm,1cm)}, scale=0.95]
+      \draw[thick, -Latex] (0,0,0) -- (4.8,0,0) node[below left] {$x$};
+      \draw[thick, -Latex] (0,0,0) -- (0,4,0) node[right] {$y$};
+      \draw[thick, -Latex] (0,0,0) -- (0,0,3.2) node[above] {$z$};
+      \draw[gray, dashed] (0,0,0) -- (0.5,1.5,0.5) node[midway, above left, black] {\small $\vec{b}$};
+      \draw[mwprimario, thick, -Latex] (0,0,0) -- (3,0.5,0.5) node[midway, below] {$\vec{a}$};
+      \draw[mwnaranja, thick, -Latex] (3,0.5,0.5) -- (4,3.5,1.5) node[midway, right] {$2\vec{b}$};
+      \draw[mwmagenta, very thick, -Latex] (0,0,0) -- (4,3.5,1.5) node[above left] {$\vec{a}+2\vec{b}$};
+      \draw[gray, dashed, thin] (0.5,1.5,0.5) -- (2.5,2.5,1) -- (4,3.5,1.5);
+    \end{tikzpicture}
+  \end{center}
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Resolver una combinación de vectores:}
+  \begin{enumerate}[leftmargin=*]
+    \item Multiplica cada vector por su escalar y escríbelos uno debajo del otro.
+    \item Suma las primeras componentes (con sus signos), luego las segundas y después las terceras.
+    \item Escribe el resultado como terna ordenada y, si lo piden, calcula su módulo.
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos en las combinaciones:}
+  \begin{itemize}[leftmargin=*]
+    \item Olvidar el signo del escalar negativo: $-3\vec{b}$ cambia el signo de \emph{todas} las componentes de $\vec{b}$.
+    \item Mezclar el orden de las componentes: no se puede sumar una $x$ con una $y$.
+    \item Sumar primero y multiplicar después: los resultados no coinciden (salvo que todos los términos tengan el mismo escalar).
+    \item Dejar la tercera componente ``para el final'' y equivocarse: escríbela siempre junto a las otras dos.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\begin{cuadroextra}
+  \textbf{El vector equilibrante.} En muchos problemas de física (fuerzas, velocidades) se pide el vector que deja el sistema en equilibrio. Es el \emph{opuesto de la suma}:
+  $$\vec{c}_{\text{eq}} = -(\vec{a} + \vec{b} + \cdots)$$
+  Es decir, se suma todo y luego se multiplica por $-1$ (o, lo que es lo mismo, se cambian los signos del resultado).
+\end{cuadroextra}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Halla el módulo de $\vec{v} = (2, 3, 6)$ e interpreta el resultado.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$|\vec{v}| = \sqrt{2^2 + 3^2 + 6^2} = \sqrt{4 + 9 + 36} = \sqrt{49} = 7.$$
+  El vector ``mide'' $7$ unidades: si sus componentes estuvieran en metros, su longitud sería de $7$ m.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Grafica en el espacio el vector $\vec{u} = (-3, -2, 2)$ y describe hacia dónde apunta.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} las tres componentes son ``especiales'': $u_x < 0$ (hacia la izquierda), $u_y < 0$ (hacia afuera, hacia el observador) y $u_z > 0$ (hacia arriba).
+  \begin{enumerate}[leftmargin=*, label=\arabic*.]
+    \item Dibujamos los tres ejes en perspectiva.
+    \item Desde el origen avanzamos $3$ unidades hacia la \emph{izquierda} sobre el eje $X$ (porque $u_x = -3$).
+    \item Desde ahí avanzamos $2$ unidades \emph{hacia afuera} (contrario al eje $Y$), porque $u_y = -2$.
+    \item Desde ahí subimos $2$ unidades paralelas al eje $Z$: ese es el punto final.
+    \item La flecha del origen a ese punto es $\vec{u}$.
+  \end{enumerate}
+  \begin{center}
+    \begin{tikzpicture}[x={(1cm,0cm)}, y={(0.62cm,0.42cm)}, z={(0cm,1cm)}, scale=0.95]
+      \foreach \i in {0,...,3} {%
+        \draw[gray!25, thin] (-\i,0,0) -- (-\i,-3,0);
+        \draw[gray!25, thin] (0,-\i,0) -- (-3,-\i,0);
+      }
+      \draw[thick, -Latex] (-3.6,0,0) -- (2,0,0) node[below left] {$x$};
+      \draw[thick, -Latex] (0,-3.4,0) -- (0,2,0) node[right] {$y$};
+      \draw[thick, -Latex] (0,0,0) -- (0,0,3.2) node[above] {$z$};
+      \draw[mwmagenta, thick, -Latex] (0,0,0) -- (-3,0,0) node[midway, above] {\small $u_x$};
+      \draw[mwmagenta, thick, -Latex] (-3,0,0) -- (-3,-2,0) node[midway, above left] {\small $u_y$};
+      \draw[mwmagenta, thick, -Latex] (-3,-2,0) -- (-3,-2,2) node[midway, right] {\small $u_z$};
+      \draw[gray, dashed] (0,0,0) -- (-3,-2,0);
+      \draw[mwprimario, very thick, -Latex] (0,0,0) -- (-3,-2,2) node[above left] {$\vec{u}$};
+      \filldraw[mwprimario] (-3,-2,2) circle (1.6pt);
+    \end{tikzpicture}
+  \end{center}
+  \textbf{Resumen:} $\vec{u}$ apunta a la izquierda, hacia afuera y hacia arriba. Su módulo es $\sqrt{9 + 4 + 4} = \sqrt{17} \approx 4{,}12$.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} Suma $\vec{a} = (3, 2, 1)$ y $\vec{b} = (-1, 4, 2)$ y calcula el módulo de la resultante.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$\vec{a} + \vec{b} = (3 + (-1),\; 2 + 4,\; 1 + 2) = (2, 6, 3).$$
+  $$|\vec{a} + \vec{b}| = \sqrt{2^2 + 6^2 + 3^2} = \sqrt{4 + 36 + 9} = \sqrt{49} = 7.$$
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R4.} Con los mismos vectores del ejemplo anterior, calcula $\vec{a} - \vec{b}$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} le cambiamos el signo a las tres componentes de $\vec{b}$ y sumamos:
+  $$\vec{a} - \vec{b} = (3 - (-1),\; 2 - 4,\; 1 - 2) = (4, -2, -1).$$
+  \textbf{Verificación:} $(\vec{a}-\vec{b}) + \vec{b} = (4 + (-1),\; -2 + 4,\; -1 + 2) = (3, 2, 1) = \vec{a}$. \checkmark
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R5.} Dado $\vec{v} = (3, -1, 2)$, calcula $2\vec{v}$ y $-3\vec{v}$, y comprueba que $|2\vec{v}| = 2|\vec{v}|$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:}
+  $$2\vec{v} = (2 \cdot 3,\; 2 \cdot (-1),\; 2 \cdot 2) = (6, -2, 4), \qquad -3\vec{v} = (-9, 3, -6).$$
+  $$|\vec{v}| = \sqrt{9 + 1 + 4} = \sqrt{14}, \qquad |2\vec{v}| = \sqrt{36 + 4 + 16} = \sqrt{56} = 2\sqrt{14} = 2|\vec{v}|. \quad \checkmark$$
+  Ojo: $2\vec{v}$ tiene el mismo sentido que $\vec{v}$, pero $-3\vec{v}$ apunta al lado contrario.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R6.} Calcula $\vec{r} = 2\vec{a} - 3\vec{b} + \vec{c}$ con $\vec{a} = (1, 2, -1)$, $\vec{b} = (2, 0, 1)$ y $\vec{c} = (0, 1, 3)$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} primero las multiplicaciones por escalar y luego las sumas, componente a componente.
+  \begin{center}
+    \begin{tabular}{rrrr}
+      \toprule
+      & $x$ & $y$ & $z$ \\
+      \midrule
+      $2\vec{a}$  & $2$  & $4$  & $-2$ \\
+      $-3\vec{b}$ & $-6$ & $0$  & $-3$ \\
+      $\vec{c}$   & $0$  & $1$  & $3$  \\
+      \midrule
+      $\vec{r}$   & $-4$ & $5$  & $-2$ \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  Entonces $\vec{r} = (-4, 5, -2)$ y su módulo es $|\vec{r}| = \sqrt{16 + 25 + 4} = \sqrt{45} = 3\sqrt{5} \approx 6{,}71$.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R7 (reto).} Halla los escalares $\alpha$ y $\beta$ sabiendo que $\alpha(2, 1, 0) + \beta(-1, 1, 2) = (0, 3, 4)$.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} la igualdad debe cumplirse \emph{componente a componente}, así que se obtiene una ecuación por cada eje:
+  $$\begin{cases} 2\alpha - \beta = 0 & (x) \\ \alpha + \beta = 3 & (y) \\ 2\beta = 4 & (z) \end{cases}$$
+  De la ecuación $z$: $\beta = 2$. Sustituyendo en la $x$: $2\alpha = \beta = 2 \Rightarrow \alpha = 1$. \textbf{Verificación} en la ecuación $y$: $1 + 2 = 3$ \checkmark.
+  Resultado: $\alpha = 1$ y $\beta = 2$.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R8.} Halla los cosenos directores y los ángulos directores de $\vec{v} = (2, 3, 6)$. Escribe también su vector unitario.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} el módulo ya lo calculamos: $|\vec{v}| = \sqrt{4 + 9 + 36} = \sqrt{49} = 7$.
+  \begin{enumerate}[leftmargin=*, label=\arabic*.]
+    \item Cosenos directores:
+          $$\cos\alpha = \frac{2}{7} \approx 0{,}286, \qquad \cos\beta = \frac{3}{7} \approx 0{,}429, \qquad \cos\gamma = \frac{6}{7} \approx 0{,}857.$$
+    \item Ángulos directores:
+          $$\alpha = \arccos(0{,}286) \approx 73{,}4^{\circ}, \quad \beta = \arccos(0{,}429) \approx 64{,}6^{\circ}, \quad \gamma = \arccos(0{,}857) \approx 31{,}0^{\circ}.$$
+    \item Vector unitario: $\hat{u} = \left(\dfrac{2}{7},\; \dfrac{3}{7},\; \dfrac{6}{7}\right)$.
+  \end{enumerate}
+  \textbf{Verificación:} $\dfrac{4 + 9 + 36}{49} = \dfrac{49}{49} = 1$ \checkmark. Observa que el vector ``sube'' más que nada (el ángulo con el eje $Z$ es el más pequeño).
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R9.} Un vector de módulo $10$ forma $60^{\circ}$ con el eje $X$ y $60^{\circ}$ con el eje $Y$. Halla el ángulo que forma con el eje $Z$ y sus componentes.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} usamos la identidad fundamental con $\cos 60^{\circ} = \tfrac{1}{2}$:
+  $$\cos^2\gamma = 1 - \cos^2\alpha - \cos^2\beta = 1 - \frac{1}{4} - \frac{1}{4} = \frac{1}{2} \qquad \Longrightarrow \qquad \cos\gamma = \pm\frac{\sqrt{2}}{2}.$$
+  Hay dos posibilidades: $\gamma = 45^{\circ}$ (el vector apunta hacia arriba) o $\gamma = 135^{\circ}$ (apunta hacia abajo).
+  \begin{itemize}[leftmargin=*]
+    \item Si $\gamma = 45^{\circ}$: $\vec{v} = 10\left(\tfrac{1}{2},\; \tfrac{1}{2},\; \tfrac{\sqrt{2}}{2}\right) = (5,\; 5,\; 5\sqrt{2})$.
+    \item Si $\gamma = 135^{\circ}$: $\vec{v} = (5,\; 5,\; -5\sqrt{2})$.
+  \end{itemize}
+  \textbf{Verificación:} $\sqrt{25 + 25 + 50} = \sqrt{100} = 10$. \checkmark
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\noindent\textbf{Parte A --- Primeros pasos en 3D \facil}\quad \emph{Componentes, módulo y las operaciones básicas.}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Escribe las componentes del vector que va del origen al punto $(3, 2, 5)$. ¿Qué componente representa la altura?
+
+  \item \facil{} Calcula el módulo de $\vec{v} = (1, 2, 2)$.
+
+  \item \facil{} Dado $\vec{a} = (2, 3, 1)$, escribe su opuesto $-\vec{a}$ y comprueba que tiene el mismo módulo.
+
+  \item \facil{} Suma $\vec{a} = (2, 3, 1)$ y $\vec{b} = (1, 1, 4)$.
+
+  \item \facil{} Multiplica $\vec{v} = (2, -1, 3)$ por $3$ y por $-1$.
+
+  \item \facil{} Resta $\vec{a} = (5, 2, 3)$ menos $\vec{b} = (1, 2, 1)$ y calcula el módulo de la diferencia.
+\end{enumerate}
+
+\medskip
+\noindent\textbf{Parte B --- Gráficos en el espacio \medio}\quad \emph{Dibuja siempre los tres ejes en perspectiva y la ``escalera'' de las componentes.}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \medio{} Dibuja los ejes $x$, $y$, $z$ y ubica el punto $P(4, 3, 2)$. Después traza el vector $\vec{v}$ que va del origen a $P$, con sus tres componentes punteadas y su proyección sobre el plano $xy$.
+
+  \item \medio{} Dibuja $\vec{a} = (3, 2, 1)$ y $\vec{b} = (1, 3, 2)$ con origen común y traza la suma por el método del polígono. ¿Qué vector resulta?
+
+  \item \medio{} Dibuja $\vec{a} = (4, 1, 2)$, $\vec{b} = (1, 4, 2)$ y traza $\vec{a} - \vec{b}$. ¿La flecha va de la punta de $\vec{a}$ a la de $\vec{b}$, o al revés? Explica.
+
+  \item \medio{} Dibuja $\vec{v} = (2, 2, 2)$ y, en el mismo sistema, $2\vec{v}$ y $-\tfrac{1}{2}\vec{v}$. Escribe las componentes de cada uno y di qué cambia y qué no.
+
+  \item \medio{} Dibuja el vector $\vec{w} = (-2, -3, 1)$ y describe hacia dónde apunta (derecha/izquierda, adentro/afuera, arriba/abajo). ¿En qué se parece al vector $\vec{u} = (2, 3, 1)$ y en qué se diferencia?
+\end{enumerate}
+
+\medskip
+\noindent\textbf{Parte C --- Sumas, restas y escalares \medio}\quad \emph{Opera componente a componente y comprueba los resultados.}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \medio{} Suma $\vec{a} = (4, -1, 2)$, $\vec{b} = (0, 3, 5)$ y $\vec{c} = (-2, 1, -1)$, y calcula el módulo de la resultante.
+
+  \item \medio{} Calcula $\vec{a} - \vec{b}$ y $|\vec{a} - \vec{b}|$ con $\vec{a} = (6, 4, -2)$ y $\vec{b} = (2, -1, 3)$.
+
+  \item \medio{} Dado $\vec{v} = (3, -2, 0)$, calcula $4\vec{v}$ y $-2\vec{v}$, y comprueba con números que $|4\vec{v}| = 4|\vec{v}|$.
+
+  \item \medio{} Sobre un cuerpo actúan tres fuerzas: $\vec{F}_1 = (10, 0, -5)$ N, $\vec{F}_2 = (-4, 8, 3)$ N y $\vec{F}_3 = (2, -3, 4)$ N. Halla la fuerza resultante y su módulo.
+
+  \item \medio{} Un dron se desplaza $\vec{d}_1 = (10, 8, 6)$ m y luego $\vec{d}_2 = (-8, -2, 3)$ m. ¿Cuál es su desplazamiento total? ¿A qué distancia del punto de partida queda?
+
+  \item \medio{} Un punto está en $A(1, 1, 1)$ y otro en $B(3, 5, 5)$. Escribe el vector $\overrightarrow{AB} = B - A$ y calcula su módulo.
+
+  \item \medio{} Halla los cosenos directores del vector $\vec{v} = (1, 2, 2)$ y verifica la identidad fundamental.
+
+  \item \medio{} Un vector tiene módulo $14$ y sus cosenos directores con los ejes $X$ e $Y$ son $\cos\alpha = \tfrac{3}{7}$ y $\cos\beta = \tfrac{2}{7}$. ¿Cuánto vale $\cos\gamma$? Escribe las dos ternas posibles y explica qué las diferencia.
+\end{enumerate}
+
+\medskip
+\noindent\textbf{Parte D --- Combinaciones y retos \dificil}\quad \emph{Piensa antes de calcular: identifica escalares, signos e incógnitas.}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \dificil{} Calcula $\vec{r} = 2\vec{a} - \vec{b} + \vec{c}$ y su módulo, con $\vec{a} = (2, 1, -1)$, $\vec{b} = (1, 2, 1)$ y $\vec{c} = (1, -1, 2)$.
+
+  \item \dificil{} Halla el \textbf{vector equilibrante} del sistema formado por $\vec{a} = (3, -2, 5)$ y $\vec{b} = (-1, 4, -2)$, es decir, el vector $\vec{c}$ tal que $\vec{a} + \vec{b} + \vec{c} = \vec{0}$. Verifica la suma.
+
+  \item \dificil{} Determina el valor del escalar $k$ para que $\vec{r} = \vec{a} + k\vec{b}$, con $\vec{a} = (2, 1, 6)$ y $\vec{b} = (0, 2, 3)$, tenga su tercera componente igual a cero. ¿Cuánto vale entonces $|\vec{r}|$?
+
+  \item \dificil{} Halla $\alpha$ y $\beta$ para que $\alpha(1, 1, 2) + \beta(2, 1, -1) = (5, 3, 0)$.
+
+  \item \muyDificil{} \textbf{Reto:} los puntos $A(1, 0, 2)$, $B(3, 2, 3)$ y $C(5, 4, 4)$ ¿están alineados? Comprueba calculando $\overrightarrow{AB}$ y $\overrightarrow{AC}$ y comparándolos como escalares.
+
+  \item \muyDificil{} \textbf{Reto:} halla el vector de módulo $5$ que tenga la misma dirección y el mismo sentido que $\vec{v} = (2, -1, 2)$. \emph{(Pista: multiplica $\vec{v}$ por el escalar adecuado $k$.)}
+
+  \item \muyDificil{} \textbf{Reto:} un vector de módulo $6$ forma $60^{\circ}$ con el eje $Y$ y $60^{\circ}$ con el eje $Z$. Halla sus posibles componentes y los ángulos directores que faltan. ¿Cuántas soluciones hay?
+\end{enumerate}
+
+\newpage
+
+% ============================================================
 \section{Despeje de fórmulas y evaluación numérica}
 % ============================================================
 
@@ -939,10 +1474,48 @@
     \item $\vec{a} + \vec{b} = (6, -2)$; $r = \sqrt{6^2 + (-2)^2} = \sqrt{40} = 2\sqrt{10} \approx 6{,}32$; $\theta_{\text{ref}} = \arctan\frac{2}{6} \approx 18{,}43^{\circ}$ (C.IV) $\Rightarrow \theta = 360^{\circ} - 18{,}43^{\circ} = 341{,}57^{\circ}$.
   \end{enumerate}
 
-  \subsection*{Sección 4: Despeje de fórmulas (Ejercicios 44--66)}
+  \subsection*{Sección 4: Álgebra de vectores en 3 dimensiones (Ejercicios 44--69)}
 
   \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
     \setcounter{enumi}{43}
+    \item $\vec{v} = (3, 2, 5)$; la altura es la tercera componente, $v_z = 5$.
+    \item $|\vec{v}| = \sqrt{1 + 4 + 4} = \sqrt{9} = 3$.
+    \item $-\vec{a} = (-2, -3, -1)$; $|-\vec{a}| = \sqrt{4 + 9 + 1} = \sqrt{14} = |\vec{a}|$. \checkmark
+    \item $\vec{a} + \vec{b} = (3, 4, 5)$.
+    \item $3\vec{v} = (6, -3, 9)$; \ $-\vec{v} = (-2, 1, -3)$.
+    \item $\vec{a} - \vec{b} = (4, 0, 2)$; \ $|\vec{a} - \vec{b}| = \sqrt{16 + 0 + 4} = \sqrt{20} = 2\sqrt{5} \approx 4{,}47$.
+    \item $\vec{v} = (4, 3, 2)$: $4$ a la derecha, $3$ hacia adentro y $2$ hacia arriba; la proyección sobre el plano $xy$ es $(4, 3, 0)$. Módulo: $\sqrt{16 + 9 + 4} = \sqrt{29} \approx 5{,}39$.
+    \item Al dibujar $\vec{b}$ con su origen en la punta de $\vec{a}$ se obtiene $\vec{a} + \vec{b} = (4, 5, 3)$.
+    \item $\vec{a} - \vec{b} = (3, -3, 0)$: la flecha va \emph{de la punta de $\vec{b}$ a la punta de $\vec{a}$} (porque $\vec{a} - \vec{b} = \vec{a} + (-\vec{b})$). Módulo: $\sqrt{9 + 9} = \sqrt{18} = 3\sqrt{2} \approx 4{,}24$. El vector $\vec{b} - \vec{a} = (-3, 3, 0)$ tiene el mismo módulo, pero sentido contrario.
+    \item $2\vec{v} = (4, 4, 4)$; \ $-\tfrac{1}{2}\vec{v} = (-1, -1, -1)$. Cambian el módulo ($2|\vec{v}|$ y $\tfrac{1}{2}|\vec{v}|$) y, en el segundo caso, el sentido; \emph{no} cambia la dirección: los tres están sobre la misma recta.
+    \item $\vec{w} = (-2, -3, 1)$ apunta a la izquierda, \emph{hacia afuera} (hacia el observador) y hacia arriba. $\vec{u} = (2, 3, 1)$ apunta a la derecha, hacia adentro y hacia arriba. Tienen el \emph{mismo módulo} ($\sqrt{14}$) y la misma componente $z$; se diferencian en el signo de $x$ e $y$ (son opuestos en el ``piso'' $xy$).
+    \item $\vec{a} + \vec{b} + \vec{c} = (2, 3, 6)$; \ $|\vec{r}| = \sqrt{4 + 9 + 36} = \sqrt{49} = 7$.
+    \item $\vec{a} - \vec{b} = (4, 5, -5)$; \ $|\vec{a} - \vec{b}| = \sqrt{16 + 25 + 25} = \sqrt{66} \approx 8{,}12$.
+    \item $4\vec{v} = (12, -8, 0)$; \ $-2\vec{v} = (-6, 4, 0)$. Además $|\vec{v}| = \sqrt{9 + 4} = \sqrt{13}$ y $|4\vec{v}| = \sqrt{144 + 64} = \sqrt{208} = 4\sqrt{13} = 4|\vec{v}|$. \checkmark
+    \item $\vec{R} = (10 - 4 + 2,\; 0 + 8 - 3,\; -5 + 3 + 4) = (8, 5, 2)$ N; \ $|\vec{R}| = \sqrt{64 + 25 + 4} = \sqrt{93} \approx 9{,}64$ N.
+    \item Desplazamiento total: $\vec{d} = (10 - 8,\; 8 - 2,\; 6 + 3) = (2, 6, 9)$ m; \ distancia: $|\vec{d}| = \sqrt{4 + 36 + 81} = \sqrt{121} = 11$ m.
+    \item $\overrightarrow{AB} = (3 - 1,\; 5 - 1,\; 5 - 1) = (2, 4, 4)$; \ $|\overrightarrow{AB}| = \sqrt{4 + 16 + 16} = \sqrt{36} = 6$.
+    \item $|\vec{v}| = \sqrt{1 + 4 + 4} = 3$, así que $\cos\alpha = \tfrac{1}{3} \approx 0{,}333$, $\cos\beta = \tfrac{2}{3} \approx 0{,}667$ y $\cos\gamma = \tfrac{2}{3} \approx 0{,}667$. Verificación: $\dfrac{1 + 4 + 4}{9} = 1$ \checkmark. (Los ángulos son $\alpha \approx 70{,}5^{\circ}$ y $\beta = \gamma \approx 48{,}2^{\circ}$.)
+    \item $\cos\gamma = \pm\sqrt{1 - \left(\tfrac{3}{7}\right)^2 - \left(\tfrac{2}{7}\right)^2} = \pm\sqrt{1 - \tfrac{9}{49} - \tfrac{4}{49}} = \pm\sqrt{\tfrac{36}{49}} = \pm\tfrac{6}{7}$.
+
+          Componentes: $v_x = 14 \cdot \tfrac{3}{7} = 6$, $v_y = 14 \cdot \tfrac{2}{7} = 4$ y $v_z = 14 \cdot \left(\pm\tfrac{6}{7}\right) = \pm 12$. Las dos ternas son $\vec{v} = (6, 4, 12)$ y $\vec{v} = (6, 4, -12)$: se diferencian en el sentido vertical (arriba o abajo) y ambas tienen módulo $14$ \checkmark.
+    \item $2\vec{a} = (4, 2, -2)$, $-\vec{b} = (-1, -2, -1)$ y $\vec{c} = (1, -1, 2)$: \ $\vec{r} = (4, -1, -1)$; \ $|\vec{r}| = \sqrt{16 + 1 + 1} = \sqrt{18} = 3\sqrt{2} \approx 4{,}24$.
+    \item $\vec{a} + \vec{b} = (2, 2, 3)$, luego el equilibrante es $\vec{c} = -(2, 2, 3) = (-2, -2, -3)$. Verificación: $(3 - 1 - 2,\; -2 + 4 - 2,\; 5 - 2 - 3) = (0, 0, 0)$ \checkmark
+    \item $\vec{r} = (2,\; 1 + 2k,\; 6 + 3k)$; la tercera componente es cero si $6 + 3k = 0$, es decir $k = -2$. Entonces $\vec{r} = (2, -3, 0)$ y $|\vec{r}| = \sqrt{4 + 9} = \sqrt{13} \approx 3{,}61$.
+    \item Planteando el sistema $\begin{cases} \alpha + 2\beta = 5 \\ \alpha + \beta = 3 \\ 2\alpha - \beta = 0 \end{cases}$ se obtiene $\alpha = 1$ y $\beta = 2$. Verificación con la última ecuación: $2(1) - 2 = 0$ \checkmark
+    \item \textbf{Reto:} $\overrightarrow{AB} = (2, 2, 1)$ y $\overrightarrow{AC} = (4, 4, 2) = 2\,\overrightarrow{AB}$. Como uno es múltiplo escalar del otro y ambos salen de $A$, \emph{los tres puntos están alineados}. Además $|\overrightarrow{AB}| = 3$ y $|\overrightarrow{AC}| = 6$ (el punto $C$ está al doble de distancia de $A$ que $B$).
+    \item \textbf{Reto:} $|\vec{v}| = \sqrt{4 + 1 + 4} = 3$. El escalar es $k = \dfrac{5}{3}$, así que
+          $$\vec{u} = \frac{5}{3}(2, -1, 2) = \left(\frac{10}{3},\; -\frac{5}{3},\; \frac{10}{3}\right).$$
+          Verificación: $\sqrt{\tfrac{100 + 25 + 100}{9}} = \sqrt{\tfrac{225}{9}} = \sqrt{25} = 5$ \checkmark
+    \item \textbf{Reto:} con $\cos\beta = \cos\gamma = \tfrac{1}{2}$: $\cos^2\alpha = 1 - \tfrac{1}{4} - \tfrac{1}{4} = \tfrac{1}{2} \Rightarrow \cos\alpha = \pm\tfrac{\sqrt{2}}{2}$, o sea $\alpha = 45^{\circ}$ o $\alpha = 135^{\circ}$.
+
+          Componentes (módulo $6$): $v_y = 6\cos 60^{\circ} = 3$, $v_z = 3$ y $v_x = 6\left(\pm\tfrac{\sqrt{2}}{2}\right) = \pm 3\sqrt{2}$. Hay \textbf{dos soluciones}: $\vec{v} = (3\sqrt{2},\, 3,\, 3)$ y $\vec{v} = (-3\sqrt{2},\, 3,\, 3)$. Verificación: $\sqrt{18 + 9 + 9} = \sqrt{36} = 6$ \checkmark
+  \end{enumerate}
+
+  \subsection*{Sección 5: Despeje de fórmulas (Ejercicios 70--92)}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \setcounter{enumi}{69}
     \item $d = v\,t$; $d = 20 \cdot 3 = 60$ m.
     \item $a = \dfrac{F}{m}$; $a = \dfrac{30}{6} = 5$ m/s$^2$.
     \item $h = \dfrac{A}{b}$; $h = \dfrac{24}{6} = 4$ cm.

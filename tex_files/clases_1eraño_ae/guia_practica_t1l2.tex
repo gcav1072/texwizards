@@ -1,0 +1,756 @@
+% ============================================================
+%  GUÍA DE PRÁCTICA — T1L2 — 10 SESIONES DE 90 MINUTOS
+%  Curso: 1er Año — CELAM
+%  Autor: Ing. Gabriel Astudillo
+%  Basada en la Guía 2 — Números Enteros y sus Operaciones
+%  (guia2_numeros_enteros.tex) del Prof. Gabriel Astudillo.
+%
+%  DISEÑO DE LA GUÍA
+%  Las 10 sesiones son idénticas en estructura:
+%     90 min = Calentamiento (15) + Desarrollo (50) + Cierre (25)
+%     20 ejercicios = 5 + 10 + 5
+%  y cada sesión recorre LOS CINCO BLOQUES de la Guía 2, con
+%  4 ejercicios por bloque (uno de ellos en el calentamiento):
+%
+%     Bloque A (§1 Suma y resta) .............. 1 + 2 + 1
+%     Bloque B (§2 Multiplicación y división) . 1 + 2 + 1
+%     Bloque C (§3 Operaciones combinadas) .... 1 + 2 + 1
+%     Bloque D (§4 Valor absoluto) ............ 1 + 2 + 1
+%     Bloque E (§5 Propiedades y razonamiento)  1 + 2 + 1
+%
+%  Los 20 "casilleros" son siempre los mismos; sólo cambian los
+%  números y los contextos de una sesión a otra.
+%  Incluye clave de respuestas entre \ifmwclaves ... \fi
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+\usepackage{mathwizards-guia}
+\mwguia{Guía de Práctica — T1L2 (10 sesiones de 90 min)}{Ing. Gabriel Astudillo $\cdot$ 1er Año}
+
+% ── Comandos propios de esta guía ────────────────────────────
+\newcommand{\Z}{\mathbb{Z}}
+
+% ── Plantilla única de sesión ────────────────────────────────
+% 90 min = Calentamiento (15) + Desarrollo (50) + Cierre (25)
+% 20 ejercicios = 5 + 10 + 5, siempre 4 por cada bloque de la Guía 2.
+% Si un bloque no tiene la cantidad exacta de ejercicios, la
+% compilación emite una advertencia «MW Warning».
+\newcommand{\mwsession}[2]{%
+  \clearpage
+  \refstepcounter{section}%
+  \section*{Sesión \thesection\ — #1}%
+  \begin{cuadroinfo}
+    \small
+    \textbf{Objetivo:} #2\\[2pt]
+    \textbf{Estructura (idéntica en las 10 sesiones):}
+    Calentamiento 15 min (5 ejercicios) $\cdot$
+    Desarrollo 50 min (10 ejercicios) $\cdot$
+    Cierre y desafío 25 min (5 ejercicios).
+    \hfill\textbf{Total: 90 min}\\[2pt]
+    \textbf{Contenido:} 20 ejercicios, \textbf{4 de cada bloque} de la Guía 2:
+    suma y resta $\cdot$ multiplicación y división $\cdot$ operaciones combinadas
+    $\cdot$ valor absoluto $\cdot$ propiedades y razonamiento.
+  \end{cuadroinfo}
+}
+\newcommand{\mwrecordatorio}[2]{%
+  \begin{cuadroteoria}
+    \small
+    \textbf{Recordatorio — #1:} #2
+  \end{cuadroteoria}
+}
+% Etiqueta gris que indica el bloque temático de cada ejercicio.
+\newcommand{\mwtag}[1]{{\scriptsize\color{mwgris}#1}\hspace{5pt}}
+% Reglas clave: idénticas en las 10 sesiones.
+\newcommand{\mwreglas}{%
+  \begin{cuadroteoria}
+    \small
+    \textbf{Reglas clave de la Guía 2:} en suma y resta, igual signo se suma y se conserva el signo; con signos distintos se restan los valores absolutos y gana el signo del mayor. En producto y división: $(+)\cdot(+)=(+)$, $(+)\cdot(-)=(-)$, $(-)\cdot(+)=(-)$, $(-)\cdot(-)=(+)$; la misma regla vale al dividir. Con varios factores, una cantidad \textbf{par} de negativos da positivo y una cantidad \textbf{impar} da negativo. $|a|$ es la distancia al $0$. Jerarquía: primero multiplicaciones y divisiones, luego sumas y restas; con agrupación, de adentro hacia afuera.
+  \end{cuadroteoria}
+}
+\newcommand{\mwcierrebloque}[2]{%
+  \end{enumerate}%
+  \ifnum\value{enumi}=#2\relax
+    \typeout{MW: #1 correcto}%
+  \else
+    \GenericWarning{}{MW Warning: #1 termina en el ejercicio \the\value{enumi}; se esperaba #2}%
+  \fi
+}
+% Autoevaluación: idéntica al final de las 10 sesiones.
+\newcommand{\mwautoevaluacion}{%
+  \begin{cuadroinfo}
+    \small
+    \textbf{Autoevaluación:} marca los bloques que resolviste sin errores\\[2pt]
+    $\square$ suma y resta \quad
+    $\square$ multiplicación y división \quad
+    $\square$ combinadas \quad
+    $\square$ valor absoluto \quad
+    $\square$ propiedades\\[4pt]
+    \textbf{Para repasar:} anota los números de los ejercicios que te costaron\\[2pt]
+    \noindent\rule{\linewidth}{0.4pt}\\[8pt]
+    \noindent\rule{\linewidth}{0.4pt}
+  \end{cuadroinfo}
+}
+\newenvironment{mwcalentamiento}
+  {\subsection*{Calentamiento (15 min)}\begin{enumerate}[leftmargin=*, start=1]}
+  {\mwcierrebloque{Calentamiento}{5}}
+\newenvironment{mwdesarrollo}
+  {\subsection*{Desarrollo (50 min)}\begin{enumerate}[leftmargin=*, start=6]}
+  {\mwcierrebloque{Desarrollo}{15}}
+\newenvironment{mwcierre}
+  {\subsection*{Cierre y desafío (25 min)}\begin{enumerate}[leftmargin=*, start=16]}
+  {\mwcierrebloque{Cierre}{20}\mwautoevaluacion}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Práctica — T1L2}{Diez sesiones de 90 minutos}{Números Enteros: los cinco bloques de la Guía 2 en cada sesión}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} esta guía contiene \textbf{10 sesiones de 90 minutos}. Cada sesión repasa \emph{todos} los bloques de la Guía 2 (números enteros): suma y resta, multiplicación y división, operaciones combinadas, valor absoluto, propiedades y razonamiento. La estructura es \textbf{idéntica} en las diez sesiones; lo que cambia son los ejercicios: cada sesión trae problemas nuevos de cada bloque.
+  \\[4pt]
+  \textbf{Rejilla fija de cada sesión (20 ejercicios):}
+  \begin{center}
+    \small
+    \begin{tabular}{@{}l ccc c@{}}
+      \toprule
+      \textbf{Bloque de la Guía 2} & \textbf{Calentamiento} & \textbf{Desarrollo} & \textbf{Cierre} & \textbf{Total} \\
+      \midrule
+      §1 Suma y resta                     & 1 & 2 & 1 & 4 \\
+      §2 Multiplicación y división        & 1 & 2 & 1 & 4 \\
+      §3 Operaciones combinadas           & 1 & 2 & 1 & 4 \\
+      §4 Valor absoluto                   & 1 & 2 & 1 & 4 \\
+      §5 Propiedades y razonamiento       & 1 & 2 & 1 & 4 \\
+      \midrule
+      \textbf{Tiempo}                     & 15 min & 50 min & 25 min & \textbf{90 min} \\
+      \textbf{Ejercicios}                 & 5 & 10 & 5 & \textbf{20} \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \textbf{Cómo leer cada ejercicio:} la etiqueta gris que lo precede indica el bloque al que pertenece, de modo que el estudiante siempre reconoce el tipo de tarea que está practicando.
+  \\[4pt]
+  \textbf{Cómo usar la guía:} resuelve \emph{sin calculadora} y muestra \emph{todos} los pasos. Si una sesión se alarga, termina el \emph{Cierre} como tarea y corrige con la clave del final. En total son \textbf{200 ejercicios} y \textbf{30 horas} de práctica. El nivel va de \medio{}\hspace{7pt}intermedio a \dificil{}\hspace{7pt}desafiante.
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+%  SESIÓN 1
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar los cinco bloques de la Guía 2 con ejercicios nuevos: suma y resta, multiplicación y división, operaciones combinadas, valor absoluto y propiedades.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{Suma y resta} $-18 + 7 - (-5)$
+  \item \mwtag{Mult. y división} $(-6) \cdot 4 \div (-3)$
+  \item \mwtag{Combinadas} $5 - 3 \cdot (-4)$
+  \item \mwtag{Valor absoluto} $|-9| - |-4|$
+  \item \mwtag{Propiedades} Nombra la propiedad que justifica: $-17 + 0 = -17$.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{Suma y resta} $-(-8) + (-3) - (+5) - (-(-2))$
+  \item \mwtag{Mult. y división} $(-2) \cdot (-3) \cdot (-4) \div 6$
+  \item \mwtag{Combinadas} $(7 - 12) \cdot (-3) + 8$
+  \item \mwtag{Valor absoluto} $|-6 + 2| \cdot 3 - |5 - 9|$
+  \item \mwtag{Propiedades} Aplica la propiedad distributiva: $(-7) \cdot (3 + 5)$.
+  \item \mwtag{Suma y resta} Calcula agrupando convenientemente: $-23 + 45 + 23 + (-45)$.
+  \item \mwtag{Mult. y división} Un buzo desciende $6$ m cada minuto durante $5$ minutos y luego asciende $18$ m. \textquestiondown A qué profundidad queda?
+  \item \mwtag{Combinadas} $[8 - (-4) \cdot 3] \div (-5)$
+  \item \mwtag{Valor absoluto} Compara $|5 - 11|$ y $|5| - |11|$. \textquestiondown Son iguales?
+  \item \mwtag{Propiedades} Calcula usando la propiedad distributiva: $(-12) \cdot 101$.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{Suma y resta} La temperatura era de $-5\,^{\circ}$C, subió $9\,^{\circ}$C y bajó $14\,^{\circ}$C. \textquestiondown Cuál es la temperatura final?
+  \item \mwtag{Mult. y división} Saca factor común y calcula: $(-9) \cdot 7 + (-9) \cdot 13$.
+  \item \mwtag{Combinadas} $-2 \cdot \{6 - [(-3) \cdot (-4) + 2]\}$
+  \item \mwtag{Valor absoluto} Si $|x| = 6$, \textquestiondown qué valores puede tomar $x$?
+  \item \mwtag{Propiedades} Encuentra dos enteros cuyo producto sea $-18$ y cuya suma sea $7$.
+\end{mwcierre}
+
+% ============================================================
+%  SESIÓN 2
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar los cinco bloques de la Guía 2 con ejercicios nuevos: suma y resta, multiplicación y división, operaciones combinadas, valor absoluto y propiedades.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{Suma y resta} $14 - 9 + (-6)$
+  \item \mwtag{Mult. y división} $(-8) \cdot (-5) \div (-4)$
+  \item \mwtag{Combinadas} $-7 + 4 \cdot (-2)$
+  \item \mwtag{Valor absoluto} $|6 - 15|$
+  \item \mwtag{Propiedades} Nombra la propiedad que justifica: $25 \cdot 1 = 25$.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{Suma y resta} $-(-6) - (-4) + (-9) - (+2)$
+  \item \mwtag{Mult. y división} $(-3) \cdot (-2) \cdot 5 \div (-6)$
+  \item \mwtag{Combinadas} $(15 - 21) \div (-3) - 6$
+  \item \mwtag{Valor absoluto} $|15 - 8| - |3 - 10|$
+  \item \mwtag{Propiedades} Aplica la propiedad distributiva: $(-5) \cdot (8 - 3)$.
+  \item \mwtag{Suma y resta} Calcula agrupando convenientemente: $-38 + 27 + 41 + (-27)$.
+  \item \mwtag{Mult. y división} Una cuenta bancaria disminuye $12$ Bs. cada día durante $7$ días. \textquestiondown Cuál es la variación total?
+  \item \mwtag{Combinadas} $[(-6) \cdot 4 - 8] \div (-8)$
+  \item \mwtag{Valor absoluto} Compara $|2 - 9|$ y $|2| - |9|$. \textquestiondown Son iguales?
+  \item \mwtag{Propiedades} Calcula usando la propiedad distributiva: $15 \cdot 102$.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{Suma y resta} Un ascensor está en el piso $-2$, sube $7$ pisos, baja $9$ y sube $3$. \textquestiondown En qué piso queda?
+  \item \mwtag{Mult. y división} Saca factor común y calcula: $(-14) \cdot 6 + (-14) \cdot 4$.
+  \item \mwtag{Combinadas} $3 \cdot \{-4 + 2 \cdot [5 - (-2)]\}$
+  \item \mwtag{Valor absoluto} Si $|a| = 3$ y $|b| = 8$, \textquestiondown cuáles son todos los valores posibles de $a + b$?
+  \item \mwtag{Propiedades} Encuentra dos enteros cuyo producto sea $-24$ y cuya suma sea $2$.
+\end{mwcierre}
+
+% ============================================================
+%  SESIÓN 3
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar los cinco bloques de la Guía 2 con ejercicios nuevos: suma y resta, multiplicación y división, operaciones combinadas, valor absoluto y propiedades.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{Suma y resta} $-11 - 6 - (-8)$
+  \item \mwtag{Mult. y división} $(-4) \cdot 9 \div (-6)$
+  \item \mwtag{Combinadas} $8 - 5 \cdot (-3)$
+  \item \mwtag{Valor absoluto} $|-17| + |-3|$
+  \item \mwtag{Propiedades} Nombra la propiedad que justifica: $(-8) + 8 = 0$.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{Suma y resta} $-(-9) + (-5) - (+8) - (-(-4))$
+  \item \mwtag{Mult. y división} $(-5) \cdot 4 \cdot (-3) \div (-10)$
+  \item \mwtag{Combinadas} $(9 - 17) \cdot (-2) + 5$
+  \item \mwtag{Valor absoluto} $|9 - 15| + |(-4) \cdot 2|$
+  \item \mwtag{Propiedades} Aplica la propiedad distributiva: $(-9) \cdot (6 - 2)$.
+  \item \mwtag{Suma y resta} Calcula agrupando convenientemente: $-52 + 19 + 52 + (-14)$.
+  \item \mwtag{Mult. y división} Una persona gasta $9$ Bs. diarios durante $6$ días y luego recibe $20$ Bs. \textquestiondown Cuál es su saldo?
+  \item \mwtag{Combinadas} $[-15 + 6 \cdot (-3)] \div (-11)$
+  \item \mwtag{Valor absoluto} Compara $|6 - 14|$ y $|6| - |14|$. \textquestiondown Son iguales?
+  \item \mwtag{Propiedades} Calcula usando la propiedad distributiva: $(-8) \cdot 99$.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{Suma y resta} Un buzo está a $-15$ m, sube $6$ m, baja $11$ m y sube $4$ m. \textquestiondown A qué profundidad termina?
+  \item \mwtag{Mult. y división} Saca factor común y calcula: $17 \cdot (-4) + 17 \cdot 9$.
+  \item \mwtag{Combinadas} $5 - \{[-3 + (-2) \cdot 4] \div (-11)\}$
+  \item \mwtag{Valor absoluto} Si $|x| = 12$, \textquestiondown qué valores puede tomar $x$?
+  \item \mwtag{Propiedades} Encuentra dos enteros cuyo producto sea $-36$ y cuya suma sea $5$.
+\end{mwcierre}
+
+% ============================================================
+%  SESIÓN 4
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar los cinco bloques de la Guía 2 con ejercicios nuevos: suma y resta, multiplicación y división, operaciones combinadas, valor absoluto y propiedades.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{Suma y resta} $19 - 24 + (-3)$
+  \item \mwtag{Mult. y división} $(-9) \cdot (-6) \div 3$
+  \item \mwtag{Combinadas} $-12 - 8 \div (-4)$
+  \item \mwtag{Valor absoluto} $|-16| \div |4|$
+  \item \mwtag{Propiedades} Nombra la propiedad que justifica: $0 \cdot (-31) = 0$.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{Suma y resta} $-(-7) + (-12) - (+4) - (-(-3))$
+  \item \mwtag{Mult. y división} $(-2) \cdot (-6) \cdot (-5) \div (-4)$
+  \item \mwtag{Combinadas} $(13 - 25) \div (-4) + 7$
+  \item \mwtag{Valor absoluto} $|23 - 8| - |(-3) \cdot (-4)|$
+  \item \mwtag{Propiedades} Aplica la propiedad distributiva: $(-11) \cdot (9 - 4)$.
+  \item \mwtag{Suma y resta} Calcula agrupando convenientemente: $-64 + 37 + 58 + (-37)$.
+  \item \mwtag{Mult. y división} Un buzo está a $-40$ m y asciende $8$ m cada minuto durante $3$ minutos. \textquestiondown A qué profundidad queda?
+  \item \mwtag{Combinadas} $[24 - (-3) \cdot 7] \div (-9)$
+  \item \mwtag{Valor absoluto} Compara $|11 - 4|$ y $|11| - |4|$. \textquestiondown Son iguales?
+  \item \mwtag{Propiedades} Calcula usando la propiedad distributiva: $25 \cdot 98$.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{Suma y resta} La temperatura era de $-12\,^{\circ}$C, subió $5\,^{\circ}$C, subió $8\,^{\circ}$C y bajó $3\,^{\circ}$C. \textquestiondown Cuál es la temperatura final?
+  \item \mwtag{Mult. y división} Saca factor común y calcula: $(-6) \cdot 15 + (-6) \cdot (-5)$.
+  \item \mwtag{Combinadas} $-4 \cdot \{7 - [(-6) \cdot 2 + 5]\}$
+  \item \mwtag{Valor absoluto} Si $|a| = 5$ y $|b| = 2$, \textquestiondown cuáles son todos los valores posibles de $a + b$?
+  \item \mwtag{Propiedades} Encuentra dos enteros cuyo producto sea $-24$ y cuya suma sea $-2$.
+\end{mwcierre}
+
+% ============================================================
+%  SESIÓN 5
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar los cinco bloques de la Guía 2 con ejercicios nuevos: suma y resta, multiplicación y división, operaciones combinadas, valor absoluto y propiedades.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{Suma y resta} $-27 + 13 - (-9)$
+  \item \mwtag{Mult. y división} $(-7) \cdot 5 \div (-5)$
+  \item \mwtag{Combinadas} $6 \cdot (-2) - 9$
+  \item \mwtag{Valor absoluto} $-|-13|$
+  \item \mwtag{Propiedades} Nombra la propiedad que justifica: $-13 + 27 = 27 + (-13)$.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{Suma y resta} $-(-4) - (+9) + (-7) - (-(-6))$
+  \item \mwtag{Mult. y división} $(-4) \cdot (-3) \cdot 2 \div (-8)$
+  \item \mwtag{Combinadas} $(16 - 7) \cdot (-4) + 10$
+  \item \mwtag{Valor absoluto} $|18 - 25| \cdot |-2|$
+  \item \mwtag{Propiedades} Aplica la propiedad distributiva: $(-13) \cdot (4 + 3)$.
+  \item \mwtag{Suma y resta} Calcula agrupando convenientemente: $-37 + 62 - 13 + 38$.
+  \item \mwtag{Mult. y división} Un producto baja $20$ Bs. por semana durante $6$ semanas y luego sube $55$ Bs. \textquestiondown Cuál es la variación total?
+  \item \mwtag{Combinadas} $[35 - (-5) \cdot 6] \div (-13)$
+  \item \mwtag{Valor absoluto} Si $|a| = 4$ y $|b| = 10$, \textquestiondown cuáles son todos los valores posibles de $a + b$?
+  \item \mwtag{Propiedades} Calcula usando la propiedad distributiva: $(-16) \cdot 98$.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{Suma y resta} Un ascensor parte del piso $3$, baja $8$, sube $5$ y baja $6$. \textquestiondown En qué piso termina?
+  \item \mwtag{Mult. y división} Saca factor común y calcula: $12 \cdot (-9) + 12 \cdot 4$.
+  \item \mwtag{Combinadas} $2 \cdot \{9 - [(-4) \cdot 3 - 6]\}$
+  \item \mwtag{Valor absoluto} Si $|x| = 15$, \textquestiondown qué valores puede tomar $x$?
+  \item \mwtag{Propiedades} Encuentra dos enteros cuyo producto sea $-30$ y cuya suma sea $7$.
+\end{mwcierre}
+
+% ============================================================
+%  SESIÓN 6
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar los cinco bloques de la Guía 2 con ejercicios nuevos: suma y resta, multiplicación y división, operaciones combinadas, valor absoluto y propiedades.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{Suma y resta} $15 - 28 + (-7)$
+  \item \mwtag{Mult. y división} $(-3) \cdot (-8) \div (-6)$
+  \item \mwtag{Combinadas} $-9 - 6 \cdot (-2)$
+  \item \mwtag{Valor absoluto} $|6 - 21|$
+  \item \mwtag{Propiedades} Nombra la propiedad que justifica: $[(-4) + 9] + 3 = (-4) + [9 + 3]$.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{Suma y resta} $-(-11) + (-6) - (+3) - (-(-8))$
+  \item \mwtag{Mult. y división} $(-5) \cdot (-2) \cdot (-3) \div (-6)$
+  \item \mwtag{Combinadas} $(22 - 30) \cdot (-3) - 4$
+  \item \mwtag{Valor absoluto} $|12 - 19| + |(-5) \cdot (-2)|$
+  \item \mwtag{Propiedades} Aplica la propiedad distributiva: $(-9) \cdot (4 - 9)$.
+  \item \mwtag{Suma y resta} Calcula agrupando convenientemente: $-56 + 41 - 44 + 29$.
+  \item \mwtag{Mult. y división} Un buzo desciende $4$ m cada minuto durante $7$ minutos. \textquestiondown A qué profundidad queda?
+  \item \mwtag{Combinadas} $[-18 - 5 \cdot (-4)] \div (-2)$
+  \item \mwtag{Valor absoluto} Compara $|9 - 3|$ y $|9| - |3|$. \textquestiondown Son iguales?
+  \item \mwtag{Propiedades} Calcula usando la propiedad distributiva: $(-24) \cdot 101$.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{Suma y resta} La temperatura era de $8\,^{\circ}$C, bajó $11\,^{\circ}$C, bajó $6\,^{\circ}$C y subió $4\,^{\circ}$C. \textquestiondown Cuál es la temperatura final?
+  \item \mwtag{Mult. y división} Saca factor común y calcula: $(-18) \cdot 7 + (-18) \cdot 3$.
+  \item \mwtag{Combinadas} $-3 \cdot \{8 - [(-7) \cdot 2 + 4]\}$
+  \item \mwtag{Valor absoluto} Si $|a| = 7$ y $|b| = 6$, \textquestiondown cuáles son todos los valores posibles de $a + b$?
+  \item \mwtag{Propiedades} Encuentra dos enteros cuyo producto sea $-42$ y cuya suma sea $-1$.
+\end{mwcierre}
+
+% ============================================================
+%  SESIÓN 7
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar los cinco bloques de la Guía 2 con ejercicios nuevos: suma y resta, multiplicación y división, operaciones combinadas, valor absoluto y propiedades.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{Suma y resta} $-13 + 26 - (-4)$
+  \item \mwtag{Mult. y división} $(-6) \cdot 7 \div (-3)$
+  \item \mwtag{Combinadas} $7 - 9 \cdot (-3)$
+  \item \mwtag{Valor absoluto} $-|-21|$
+  \item \mwtag{Propiedades} Nombra la propiedad que justifica: $(-14) \cdot 1 = -14$.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{Suma y resta} $-(-8) - (+12) + (-5) - (-(-6))$
+  \item \mwtag{Mult. y división} $(-3) \cdot (-4) \cdot (-5) \div (-10)$
+  \item \mwtag{Combinadas} $(11 - 18) \cdot (-5) + 9$
+  \item \mwtag{Valor absoluto} $|27 - 34| - |(-6) \cdot (-1)|$
+  \item \mwtag{Propiedades} Aplica la propiedad distributiva: $(-7) \cdot (6 + 8)$.
+  \item \mwtag{Suma y resta} Calcula agrupando convenientemente: $-58 + 34 - 12 + 26$.
+  \item \mwtag{Mult. y división} Una cuenta pierde $25$ Bs. cada mes durante $5$ meses y luego recibe $90$ Bs. \textquestiondown Cuál es el saldo?
+  \item \mwtag{Combinadas} $[(-4) \cdot 9 - 12] \div (-12)$
+  \item \mwtag{Valor absoluto} Si $|a| = 8$ y $|b| = 5$, \textquestiondown cuáles son todos los valores posibles de $a + b$?
+  \item \mwtag{Propiedades} Calcula usando la propiedad distributiva: $19 \cdot 99$.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{Suma y resta} Un ascensor está en el piso $-4$, sube $9$, baja $12$ y sube $6$. \textquestiondown En qué piso queda?
+  \item \mwtag{Mult. y división} Saca factor común y calcula: $(-25) \cdot 12 + (-25) \cdot 8$.
+  \item \mwtag{Combinadas} $4 \cdot \{-5 + 2 \cdot [6 - (-3)]\}$
+  \item \mwtag{Valor absoluto} Si $|x| = 20$, \textquestiondown qué valores puede tomar $x$?
+  \item \mwtag{Propiedades} Encuentra dos enteros cuyo producto sea $-20$ y cuya suma sea $8$.
+\end{mwcierre}
+
+% ============================================================
+%  SESIÓN 8
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar los cinco bloques de la Guía 2 con ejercicios nuevos: suma y resta, multiplicación y división, operaciones combinadas, valor absoluto y propiedades.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{Suma y resta} $-21 - (-14) + 6$
+  \item \mwtag{Mult. y división} $(-12) \cdot (-3) \div 9$
+  \item \mwtag{Combinadas} $14 - 6 \cdot (-4)$
+  \item \mwtag{Valor absoluto} $|13 - 29|$
+  \item \mwtag{Propiedades} Nombra la propiedad que justifica: $(-6) \cdot (-9) = (-9) \cdot (-6)$.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{Suma y resta} $-(-5) + (-13) - (+7) - (-(-4))$
+  \item \mwtag{Mult. y división} $(-2) \cdot 9 \cdot (-5) \div (-3)$
+  \item \mwtag{Combinadas} $(31 - 24) \cdot (-6) - 8$
+  \item \mwtag{Valor absoluto} $|16 - 9| \cdot |3 - 8|$
+  \item \mwtag{Propiedades} Aplica la propiedad distributiva: $(-6) \cdot (12 - 5)$.
+  \item \mwtag{Suma y resta} Calcula agrupando convenientemente: $-48 + 63 + 52 + (-37)$.
+  \item \mwtag{Mult. y división} Un avión desciende $30$ m cada minuto durante $4$ minutos y luego asciende $75$ m. \textquestiondown Cuál es su altitud final?
+  \item \mwtag{Combinadas} $[-27 + 6 \cdot (-5)] \div (-19)$
+  \item \mwtag{Valor absoluto} Compara $|4 - 16|$ y $|4| - |16|$. \textquestiondown Son iguales?
+  \item \mwtag{Propiedades} Calcula usando la propiedad distributiva: $(-14) \cdot 102$.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{Suma y resta} La temperatura era de $-3\,^{\circ}$C, bajó $7\,^{\circ}$C, subió $12\,^{\circ}$C y bajó $9\,^{\circ}$C. \textquestiondown Cuál es la temperatura final?
+  \item \mwtag{Mult. y división} Saca factor común y calcula: $19 \cdot (-6) + 19 \cdot (-4)$.
+  \item \mwtag{Combinadas} $-5 \cdot \{6 - [(-9) \cdot 2 + 8]\}$
+  \item \mwtag{Valor absoluto} Si $|a| = 6$ y $|b| = 9$, \textquestiondown cuáles son todos los valores posibles de $a + b$?
+  \item \mwtag{Propiedades} Encuentra dos enteros cuyo producto sea $-32$ y cuya suma sea $4$.
+\end{mwcierre}
+
+% ============================================================
+%  SESIÓN 9
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar los cinco bloques de la Guía 2 con ejercicios nuevos: suma y resta, multiplicación y división, operaciones combinadas, valor absoluto y propiedades.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{Suma y resta} $-16 + 5 - (-12)$
+  \item \mwtag{Mult. y división} $(-9) \cdot 4 \div (-12)$
+  \item \mwtag{Combinadas} $-15 - 7 \cdot (-2)$
+  \item \mwtag{Valor absoluto} $-|-17| + |9|$
+  \item \mwtag{Propiedades} Nombra la propiedad que justifica: $(-37) + 37 = 0$.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{Suma y resta} $-(-15) + (-8) - (+11) - (-(-2))$
+  \item \mwtag{Mult. y división} $(-4) \cdot (-2) \cdot (-3) \div (-8)$
+  \item \mwtag{Combinadas} $(19 - 27) \cdot (-4) + 6$
+  \item \mwtag{Valor absoluto} $|21 - 13| + |(-2) \cdot (-7)|$
+  \item \mwtag{Propiedades} Aplica la propiedad distributiva: $(-12) \cdot (7 - 3)$.
+  \item \mwtag{Suma y resta} Calcula agrupando convenientemente: $-76 + 45 + 24 - 55$.
+  \item \mwtag{Mult. y división} Un buzo está a $-50$ m y asciende $6$ m cada minuto durante $4$ minutos. \textquestiondown A qué profundidad queda?
+  \item \mwtag{Combinadas} $[(-8) \cdot 5 - 20] \div (-15)$
+  \item \mwtag{Valor absoluto} Compara $|7 - 15|$ y $|7| - |15|$. \textquestiondown Son iguales?
+  \item \mwtag{Propiedades} Calcula usando la propiedad distributiva: $(-21) \cdot 99$.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{Suma y resta} Un ascensor parte del piso $6$, baja $11$, sube $3$ y baja $8$. \textquestiondown En qué piso termina?
+  \item \mwtag{Mult. y división} Saca factor común y calcula: $(-8) \cdot 13 + (-8) \cdot (-3)$.
+  \item \mwtag{Combinadas} $3 \cdot \{-7 + 4 \cdot [5 - (-2)]\}$
+  \item \mwtag{Valor absoluto} Si $|x| = 14$, \textquestiondown qué valores puede tomar $x$?
+  \item \mwtag{Propiedades} Encuentra dos enteros cuyo producto sea $-40$ y cuya suma sea $3$.
+\end{mwcierre}
+
+% ============================================================
+%  SESIÓN 10 — SIMULACRO
+% ============================================================
+\mwsession{Simulacro integrador de 90 minutos}{resolver, en condiciones de evaluación, la misma rejilla de 20 ejercicios con todos los contenidos de la Guía 2. Cinco puntos por ejercicio, cien puntos en total.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{Suma y resta} $-32 + 19 - (-8)$
+  \item \mwtag{Mult. y división} $(-8) \cdot (-9) \div (-6)$
+  \item \mwtag{Combinadas} $11 - 8 \cdot (-3)$
+  \item \mwtag{Valor absoluto} $|18 - 31|$
+  \item \mwtag{Propiedades} Nombra la propiedad que justifica: $8 \cdot (5 + (-3)) = 8 \cdot 5 + 8 \cdot (-3)$.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{Suma y resta} $-(-9) + (-14) - (+6) - (-(-7))$
+  \item \mwtag{Mult. y división} $(-3) \cdot (-5) \cdot (-2) \div (-6)$
+  \item \mwtag{Combinadas} $(17 - 29) \cdot (-5) + 7$
+  \item \mwtag{Valor absoluto} $|24 - 16| \cdot |(-3) \cdot (-2)|$
+  \item \mwtag{Propiedades} Aplica la propiedad distributiva: $(-15) \cdot (6 - 2)$.
+  \item \mwtag{Suma y resta} Calcula agrupando convenientemente: $-84 + 57 + 16 - 43$.
+  \item \mwtag{Mult. y división} Un submarino desciende $12$ m cada minuto durante $5$ minutos y luego asciende $35$ m. \textquestiondown A qué profundidad queda?
+  \item \mwtag{Combinadas} $[-36 - 4 \cdot (-7)] \div (-8)$
+  \item \mwtag{Valor absoluto} Si $|a| = 9$ y $|b| = 4$, \textquestiondown cuáles son todos los valores posibles de $a + b$?
+  \item \mwtag{Propiedades} Calcula usando la propiedad distributiva: $(-17) \cdot 101$.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{Suma y resta} Andrés tiene una deuda de $45$ Bs. Paga $18$ Bs., luego pide prestados $12$ Bs. más y finalmente paga $20$ Bs. \textquestiondown Cuál es su saldo al final?
+  \item \mwtag{Mult. y división} Saca factor común y calcula: $(-12) \cdot 25 + (-12) \cdot 75$.
+  \item \mwtag{Combinadas} $-2 \cdot \{9 - [(-5) \cdot 4 + 6]\}$
+  \item \mwtag{Valor absoluto} Si $|x| = 11$, \textquestiondown qué valores puede tomar $x$?
+  \item \mwtag{Propiedades} Encuentra dos enteros cuyo producto sea $-48$ y cuya suma sea $-2$.
+\end{mwcierre}
+
+% ============================================================
+\ifmwclaves
+\newpage
+\section*{Clave de Respuestas}
+% ============================================================
+
+\subsection*{Sesión 1}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $-18 + 7 + 5 = -6$
+  \item $-24 \div (-3) = 8$
+  \item $5 + 12 = 17$
+  \item $9 - 4 = 5$
+  \item \textbf{Elemento neutro} de la suma.
+  \item $8 - 3 - 5 - 2 = -2$
+  \item $6 \cdot (-4) = -24$; $-24 \div 6 = -4$
+  \item $(-5) \cdot (-3) = 15$; $15 + 8 = 23$
+  \item $|-4| \cdot 3 - |-4| = 12 - 4 = 8$
+  \item $(-7) \cdot 8 = -56$
+  \item $(-23 + 23) + (45 - 45) = 0$
+  \item $5 \cdot (-6) = -30$; $-30 + 18 = -12$ m
+  \item $(-4) \cdot 3 = -12$; $8 + 12 = 20$; $20 \div (-5) = -4$
+  \item $|5 - 11| = 6$ y $|5| - |11| = -6$. \textbf{No} son iguales: uno es positivo y el otro negativo.
+  \item $(-12) \cdot (100 + 1) = -1200 - 12 = -1212$
+  \item $-5 + 9 - 14 = -10\,^{\circ}$C
+  \item $(-9) \cdot (7 + 13) = (-9) \cdot 20 = -180$
+  \item $(-3) \cdot (-4) = 12$; $12 + 2 = 14$; $6 - 14 = -8$; $(-2) \cdot (-8) = 16$
+  \item $x = 6$ o $x = -6$
+  \item $9$ y $-2$: $9 \cdot (-2) = -18$ y $9 + (-2) = 7$.
+\end{enumerate}
+
+\subsection*{Sesión 2}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $14 - 9 = 5$; $5 - 6 = -1$
+  \item $40 \div (-4) = -10$
+  \item $-7 - 8 = -15$
+  \item $|-9| = 9$
+  \item \textbf{Elemento neutro} de la multiplicación.
+  \item $6 + 4 - 9 - 2 = -1$
+  \item $6 \cdot 5 = 30$; $30 \div (-6) = -5$
+  \item $-6 \div (-3) = 2$; $2 - 6 = -4$
+  \item $7 - 7 = 0$
+  \item $(-5) \cdot 5 = -25$
+  \item $(-38 + 41) + (27 - 27) = 3$
+  \item $7 \cdot (-12) = -84$ Bs.
+  \item $(-6) \cdot 4 = -24$; $-24 - 8 = -32$; $-32 \div (-8) = 4$
+  \item $|2 - 9| = 7$ y $|2| - |9| = -7$. \textbf{No} son iguales.
+  \item $15 \cdot (100 + 2) = 1500 + 30 = 1530$
+  \item $-2 + 7 - 9 + 3 = -1$ (piso $-1$)
+  \item $(-14) \cdot (6 + 4) = (-14) \cdot 10 = -140$
+  \item $5 - (-2) = 7$; $2 \cdot 7 = 14$; $-4 + 14 = 10$; $3 \cdot 10 = 30$
+  \item $a \in \{3, -3\}$ y $b \in \{8, -8\}$: $11$, $-5$, $5$ y $-11$.
+  \item $6$ y $-4$: $6 \cdot (-4) = -24$ y $6 + (-4) = 2$.
+\end{enumerate}
+
+\subsection*{Sesión 3}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $-11 - 6 = -17$; $-17 + 8 = -9$
+  \item $-36 \div (-6) = 6$
+  \item $8 + 15 = 23$
+  \item $17 + 3 = 20$
+  \item \textbf{Elemento opuesto} (también llamado inverso aditivo).
+  \item $9 - 5 - 8 - 4 = -8$
+  \item $(-5) \cdot 4 = -20$; $(-20) \cdot (-3) = 60$; $60 \div (-10) = -6$
+  \item $-8 \cdot (-2) = 16$; $16 + 5 = 21$
+  \item $|-6| + |-8| = 6 + 8 = 14$
+  \item $(-9) \cdot 4 = -36$
+  \item $(-52 + 52) + (19 - 14) = 5$
+  \item $6 \cdot (-9) = -54$; $-54 + 20 = -34$ Bs.
+  \item $6 \cdot (-3) = -18$; $-15 - 18 = -33$; $-33 \div (-11) = 3$
+  \item $|6 - 14| = 8$ y $|6| - |14| = -8$. \textbf{No} son iguales.
+  \item $(-8) \cdot (100 - 1) = -800 + 8 = -792$
+  \item $-15 + 6 - 11 + 4 = -16$ m
+  \item $17 \cdot (-4 + 9) = 17 \cdot 5 = 85$
+  \item $(-2) \cdot 4 = -8$; $-3 - 8 = -11$; $-11 \div (-11) = 1$; $5 - 1 = 4$
+  \item $x = 12$ o $x = -12$
+  \item $9$ y $-4$: $9 \cdot (-4) = -36$ y $9 + (-4) = 5$.
+\end{enumerate}
+
+\subsection*{Sesión 4}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $19 - 24 = -5$; $-5 - 3 = -8$
+  \item $54 \div 3 = 18$
+  \item $-12 + 2 = -10$
+  \item $16 \div 4 = 4$
+  \item \textbf{Factor cero}.
+  \item $7 - 12 - 4 - 3 = -12$
+  \item $(-2) \cdot (-6) = 12$; $12 \cdot (-5) = -60$; $-60 \div (-4) = 15$
+  \item $-12 \div (-4) = 3$; $3 + 7 = 10$
+  \item $|15| - |12| = 15 - 12 = 3$
+  \item $(-11) \cdot 5 = -55$
+  \item $(-64 + 58) + (37 - 37) = -6$
+  \item $3 \cdot 8 = 24$; $-40 + 24 = -16$ m
+  \item $(-3) \cdot 7 = -21$; $24 + 21 = 45$; $45 \div (-9) = -5$
+  \item $|11 - 4| = 7$ y $|11| - |4| = 7$. \textbf{Sí} son iguales en este caso.
+  \item $25 \cdot (100 - 2) = 2500 - 50 = 2450$
+  \item $-12 + 5 + 8 - 3 = -2\,^{\circ}$C
+  \item $(-6) \cdot (15 - 5) = (-6) \cdot 10 = -60$
+  \item $(-6) \cdot 2 = -12$; $-12 + 5 = -7$; $7 - (-7) = 14$; $(-4) \cdot 14 = -56$
+  \item $7$, $3$, $-3$ y $-7$.
+  \item $-6$ y $4$: $(-6) \cdot 4 = -24$ y $(-6) + 4 = -2$.
+\end{enumerate}
+
+\subsection*{Sesión 5}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $-27 + 13 = -14$; $-14 + 9 = -5$
+  \item $-35 \div (-5) = 7$
+  \item $-12 - 9 = -21$
+  \item $-13$
+  \item \textbf{Propiedad conmutativa} de la suma.
+  \item $4 - 9 - 7 - 6 = -18$
+  \item $12 \cdot 2 = 24$; $24 \div (-8) = -3$
+  \item $9 \cdot (-4) = -36$; $-36 + 10 = -26$
+  \item $|-7| \cdot 2 = 7 \cdot 2 = 14$
+  \item $(-13) \cdot 7 = -91$
+  \item $(-37 + 62) + (-13 + 38) = 25 + 25 = 50$
+  \item $6 \cdot (-20) = -120$; $-120 + 55 = -65$ Bs.
+  \item $(-5) \cdot 6 = -30$; $35 + 30 = 65$; $65 \div (-13) = -5$
+  \item $14$, $6$, $-6$ y $-14$.
+  \item $(-16) \cdot (100 - 2) = -1600 + 32 = -1568$
+  \item $3 - 8 + 5 - 6 = -6$ (piso $-6$)
+  \item $12 \cdot (-9 + 4) = 12 \cdot (-5) = -60$
+  \item $(-4) \cdot 3 = -12$; $-12 - 6 = -18$; $9 - (-18) = 27$; $2 \cdot 27 = 54$
+  \item $x = 15$ o $x = -15$
+  \item $10$ y $-3$: $10 \cdot (-3) = -30$ y $10 + (-3) = 7$.
+\end{enumerate}
+
+\subsection*{Sesión 6}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $15 - 28 = -13$; $-13 - 7 = -20$
+  \item $24 \div (-6) = -4$
+  \item $-9 + 12 = 3$
+  \item $|-15| = 15$
+  \item \textbf{Propiedad asociativa} de la suma.
+  \item $11 - 6 - 3 - 8 = -6$
+  \item $(-5) \cdot (-2) = 10$; $10 \cdot (-3) = -30$; $-30 \div (-6) = 5$
+  \item $-8 \cdot (-3) = 24$; $24 - 4 = 20$
+  \item $|-7| + |10| = 7 + 10 = 17$
+  \item $(-9) \cdot (-5) = 45$
+  \item $(-56 + 29) + (41 - 44) = -27 - 3 = -30$
+  \item $7 \cdot (-4) = -28$ m
+  \item $(-5) \cdot (-4) = 20$; $-18 + 20 = 2$; $2 \div (-2) = -1$
+  \item $|9 - 3| = 6$ y $|9| - |3| = 6$. \textbf{Sí} son iguales en este caso.
+  \item $(-24) \cdot (100 + 1) = -2400 - 24 = -2424$
+  \item $8 - 11 - 6 + 4 = -5\,^{\circ}$C
+  \item $(-18) \cdot (7 + 3) = (-18) \cdot 10 = -180$
+  \item $(-7) \cdot 2 = -14$; $-14 + 4 = -10$; $8 - (-10) = 18$; $(-3) \cdot 18 = -54$
+  \item $13$, $1$, $-1$ y $-13$.
+  \item $-7$ y $6$: $(-7) \cdot 6 = -42$ y $(-7) + 6 = -1$.
+\end{enumerate}
+
+\subsection*{Sesión 7}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $-13 + 26 = 13$; $13 + 4 = 17$
+  \item $-42 \div (-3) = 14$
+  \item $7 + 27 = 34$
+  \item $-21$
+  \item \textbf{Elemento neutro} de la multiplicación.
+  \item $8 - 12 - 5 - 6 = -15$
+  \item $(-3) \cdot (-4) = 12$; $12 \cdot (-5) = -60$; $-60 \div (-10) = 6$
+  \item $-7 \cdot (-5) = 35$; $35 + 9 = 44$
+  \item $|-7| - |6| = 7 - 6 = 1$
+  \item $(-7) \cdot 14 = -98$
+  \item $(-58 - 12) + (34 + 26) = -70 + 60 = -10$
+  \item $5 \cdot (-25) = -125$; $-125 + 90 = -35$ Bs.
+  \item $(-4) \cdot 9 = -36$; $-36 - 12 = -48$; $-48 \div (-12) = 4$
+  \item $13$, $3$, $-3$ y $-13$.
+  \item $19 \cdot (100 - 1) = 1900 - 19 = 1881$
+  \item $-4 + 9 - 12 + 6 = -1$ (piso $-1$)
+  \item $(-25) \cdot (12 + 8) = (-25) \cdot 20 = -500$
+  \item $6 - (-3) = 9$; $2 \cdot 9 = 18$; $-5 + 18 = 13$; $4 \cdot 13 = 52$
+  \item $x = 20$ o $x = -20$
+  \item $10$ y $-2$: $10 \cdot (-2) = -20$ y $10 + (-2) = 8$.
+\end{enumerate}
+
+\subsection*{Sesión 8}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $-21 + 14 + 6 = -1$
+  \item $36 \div 9 = 4$
+  \item $14 + 24 = 38$
+  \item $|-16| = 16$
+  \item \textbf{Propiedad conmutativa} de la multiplicación.
+  \item $5 - 13 - 7 - 4 = -19$
+  \item $(-2) \cdot 9 = -18$; $(-18) \cdot (-5) = 90$; $90 \div (-3) = -30$
+  \item $7 \cdot (-6) = -42$; $-42 - 8 = -50$
+  \item $|7| \cdot |-5| = 7 \cdot 5 = 35$
+  \item $(-6) \cdot 7 = -42$
+  \item $(-48 + 52) + (63 - 37) = 4 + 26 = 30$
+  \item $4 \cdot (-30) = -120$; $-120 + 75 = -45$ m
+  \item $6 \cdot (-5) = -30$; $-27 - 30 = -57$; $-57 \div (-19) = 3$
+  \item $|4 - 16| = 12$ y $|4| - |16| = -12$. \textbf{No} son iguales.
+  \item $(-14) \cdot (100 + 2) = -1400 - 28 = -1428$
+  \item $-3 - 7 + 12 - 9 = -7\,^{\circ}$C
+  \item $19 \cdot (-6 - 4) = 19 \cdot (-10) = -190$
+  \item $(-9) \cdot 2 = -18$; $-18 + 8 = -10$; $6 - (-10) = 16$; $(-5) \cdot 16 = -80$
+  \item $15$, $3$, $-3$ y $-15$.
+  \item $8$ y $-4$: $8 \cdot (-4) = -32$ y $8 + (-4) = 4$.
+\end{enumerate}
+
+\subsection*{Sesión 9}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $-16 + 5 + 12 = 1$
+  \item $-36 \div (-12) = 3$
+  \item $-15 + 14 = -1$
+  \item $-17 + 9 = -8$
+  \item \textbf{Elemento opuesto}.
+  \item $15 - 8 - 11 - 2 = -6$
+  \item $(-4) \cdot (-2) = 8$; $8 \cdot (-3) = -24$; $-24 \div (-8) = 3$
+  \item $-8 \cdot (-4) = 32$; $32 + 6 = 38$
+  \item $|8| + |14| = 8 + 14 = 22$
+  \item $(-12) \cdot 4 = -48$
+  \item $(-76 + 45) + (24 - 55) = -31 - 31 = -62$
+  \item $4 \cdot 6 = 24$; $-50 + 24 = -26$ m
+  \item $(-8) \cdot 5 = -40$; $-40 - 20 = -60$; $-60 \div (-15) = 4$
+  \item $|7 - 15| = 8$ y $|7| - |15| = -8$. \textbf{No} son iguales.
+  \item $(-21) \cdot (100 - 1) = -2100 + 21 = -2079$
+  \item $6 - 11 + 3 - 8 = -10$ (piso $-10$)
+  \item $(-8) \cdot (13 - 3) = (-8) \cdot 10 = -80$
+  \item $5 - (-2) = 7$; $4 \cdot 7 = 28$; $-7 + 28 = 21$; $3 \cdot 21 = 63$
+  \item $x = 14$ o $x = -14$
+  \item $8$ y $-5$: $8 \cdot (-5) = -40$ y $8 + (-5) = 3$.
+\end{enumerate}
+
+\subsection*{Sesión 10 — Simulacro}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $-32 + 19 + 8 = -5$
+  \item $72 \div (-6) = -12$
+  \item $11 + 24 = 35$
+  \item $|-13| = 13$
+  \item \textbf{Propiedad distributiva}: $8 \cdot 5 + 8 \cdot (-3) = 40 - 24 = 16$ y $8 \cdot (5 - 3) = 16$.
+  \item $9 - 14 - 6 - 7 = -18$
+  \item $(-3) \cdot (-5) = 15$; $15 \cdot (-2) = -30$; $-30 \div (-6) = 5$
+  \item $-12 \cdot (-5) = 60$; $60 + 7 = 67$
+  \item $|8| \cdot |6| = 8 \cdot 6 = 48$
+  \item $(-15) \cdot 4 = -60$
+  \item $(-84 + 57) + (16 - 43) = -27 - 27 = -54$
+  \item $5 \cdot (-12) = -60$; $-60 + 35 = -25$ m
+  \item $(-4) \cdot (-7) = 28$; $-36 + 28 = -8$; $-8 \div (-8) = 1$
+  \item $13$, $5$, $-5$ y $-13$.
+  \item $(-17) \cdot (100 + 1) = -1700 - 17 = -1717$
+  \item $-45 + 18 - 12 + 20 = -19$; debe $19$ Bs.
+  \item $(-12) \cdot (25 + 75) = (-12) \cdot 100 = -1200$
+  \item $(-5) \cdot 4 = -20$; $-20 + 6 = -14$; $9 - (-14) = 23$; $(-2) \cdot 23 = -46$
+  \item $x = 11$ o $x = -11$
+  \item $-8$ y $6$: $(-8) \cdot 6 = -48$ y $(-8) + 6 = -2$.
+\end{enumerate}
+
+\vspace{10pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{¡Mucho éxito!} Si completaste las diez sesiones, trabajaste los cinco bloques de la Guía 2 ochenta veces cada uno: suma y resta, multiplicación y división, operaciones combinadas, valor absoluto y propiedades. Repite cualquiera de las sesiones cronometrándote y revisa solo los errores: ahí está tu mayor mejora.
+\end{cuadroinfo}
+
+\fi
+% ============================================================
+
+\end{document}

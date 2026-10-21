@@ -114,6 +114,39 @@ El conjunto de los \textbf{números enteros} (que se escribe $\Z$) está formado
 
 \noindent La nueva temperatura es $6\,^{\circ}$C.
 
+\subsection{Propiedades de la suma en $\Z$}
+
+\begin{cuadroteoria}
+  \textbf{Propiedades de la adición de números enteros:}
+  \begin{itemize}
+    \item \textbf{Conmutativa:} el orden de los sumandos no altera la suma.
+          \[
+            a + b = b + a
+          \]
+          Ejemplo: $(-8) + (-7) = -15$ \ y \ $(-7) + (-8) = -15$.
+    \item \textbf{Asociativa:} la forma de agrupar los sumandos no altera la suma.
+          \[
+            (a + b) + c = a + (b + c)
+          \]
+          Ejemplo: $[(-5) + (-3)] + 8 = (-8) + 8 = 0$ \ y \ $(-5) + [(-3) + 8] = (-5) + 5 = 0$.
+    \item \textbf{Elemento neutro:} el $0$ es el neutro de la suma, porque no cambia el resultado.
+          \[
+            a + 0 = 0 + a = a
+          \]
+          Ejemplo: $(-3) + 0 = 0 + (-3) = -3$.
+    \item \textbf{Elemento opuesto:} todo entero $a$ tiene un opuesto $-a$, y la suma de ambos es $0$.
+          \[
+            a + (-a) = (-a) + a = 0
+          \]
+          Ejemplo: $(-5) + 5 = 5 + (-5) = 0$.
+  \end{itemize}
+\end{cuadroteoria}
+
+\noindent Estas propiedades son las que nos permiten \emph{reagrupar} y \emph{reordenar} los sumandos para calcular más rápido. Por ejemplo, en $-13 + 29 - 17 + 1$ conviene agrupar los negativos y los positivos:
+\[
+  (-13 - 17) + (29 + 1) = -30 + 30 = 0.
+\]
+
 \subsection{Ejercicios: Suma y Resta en $\Z$}
 
 \begin{enumerate}[leftmargin=*]
@@ -207,6 +240,53 @@ Multiplicar es sumar repetido. Por ejemplo, $3 \times (-2)$ significa \emph{tres
 \noindent\textbf{Ejemplo resuelto 2:} $(-20) \div (-4) = 5$ (menos entre menos da más).
 
 \noindent\textbf{Ejemplo resuelto 3:} Un buceador desciende $3$ metros cada minuto. \textquestiondown A qué profundidad estará después de $4$ minutos? Si llamamos «bajar» a restar (negativo): $4 \times (-3) = -12$. Estará a $-12$ m (es decir, $12$ m bajo el agua).
+
+\subsection{Propiedades de la multiplicación en $\Z$}
+
+\begin{cuadroteoria}
+  \textbf{Propiedades de la multiplicación de números enteros:}
+  \begin{itemize}
+    \item \textbf{Conmutativa:} el orden de los factores no altera el producto.
+          \[
+            a \cdot b = b \cdot a
+          \]
+          Ejemplo: $(-3) \cdot (-12) = 36$ \ y \ $(-12) \cdot (-3) = 36$.
+    \item \textbf{Asociativa:} la forma de agrupar los factores no altera el producto.
+          \[
+            (a \cdot b) \cdot c = a \cdot (b \cdot c)
+          \]
+          Ejemplo: $[(-2) \cdot 5] \cdot (-3) = (-10) \cdot (-3) = 30$ \ y \
+          $(-2) \cdot [5 \cdot (-3)] = (-2) \cdot (-15) = 30$.
+    \item \textbf{Elemento neutro:} el $1$ es el neutro de la multiplicación.
+          \[
+            a \cdot 1 = 1 \cdot a = a
+          \]
+          Ejemplo: $(-30) \cdot 1 = 1 \cdot (-30) = -30$.
+    \item \textbf{Factor cero:} todo número multiplicado por $0$ da $0$.
+          \[
+            a \cdot 0 = 0 \cdot a = 0
+          \]
+          Ejemplo: $45 \cdot 0 = 0 \cdot 45 = 0$.
+    \item \textbf{Distributiva respecto a la adición y a la sustracción:}
+          \[
+            a \cdot (b + c) = a \cdot b + a \cdot c
+            \qquad
+            a \cdot (b - c) = a \cdot b - a \cdot c
+          \]
+          Ejemplo: $5 \cdot (7 - 3) = 5 \cdot 7 - 5 \cdot 3 = 35 - 15 = 20$.
+  \end{itemize}
+\end{cuadroteoria}
+
+\noindent\textbf{Ejemplo resuelto (propiedad distributiva):}
+\[
+  -23 \cdot (-16 - 28) = (-23) \cdot (-16) - (-23) \cdot (-28) = 368 + 644 = 1012.
+\]
+Comprobamos: $-16 - 28 = -44$ y $-23 \cdot (-44) = 1012$. \ \textquestiondown Se cumple!
+
+\noindent La propiedad distributiva también sirve para calcular mentalmente productos grandes:
+\[
+  15 \cdot 99 = 15 \cdot (100 - 1) = 1500 - 15 = 1485.
+\]
 
 \subsection{Ejercicios: Multiplicación y División en $\Z$}
 
@@ -387,6 +467,169 @@ Cuando en una misma expresión aparecen sumas, restas, multiplicaciones y divisi
 \newpage
 
 % ============================================================
+\section{Valor Absoluto}
+% ============================================================
+
+\subsection{Recordemos el valor absoluto}
+
+\begin{cuadroteoria}
+  El \textbf{valor absoluto} de un entero $a$, escrito $|a|$, es su distancia al cero en la recta numérica. Por eso \emph{nunca es negativo}:
+  \[
+    |a| =
+    \begin{cases}
+      a,  & \text{si } a \ge 0, \\
+      -a, & \text{si } a < 0.
+    \end{cases}
+  \]
+  Ejemplos: $|8| = 8$, \ $|-8| = 8$, \ $|0| = 0$.
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+  \textbf{Ojo:} las barras de valor absoluto actúan como un \emph{paréntesis}. Primero se resuelve todo lo que está dentro y \emph{después} se toma el valor absoluto:
+  \[
+    |4 - 11| = |-7| = 7,
+    \qquad \text{pero} \qquad
+    |4| - |11| = 4 - 11 = -7.
+  \]
+  No son lo mismo: en el primer caso las barras encierran toda la resta; en el segundo, cada número tiene sus propias barras.
+\end{cuadroadvertencia}
+
+\noindent\textbf{Ejemplo resuelto:}
+\[
+  |-12 + 5| - 3 \cdot |-4| = |-7| - 3 \cdot 4 = 7 - 12 = -5.
+\]
+
+\subsection{Ejercicios: Valor Absoluto en $\Z$}
+
+\begin{enumerate}[leftmargin=*]
+  \item \medio{} $|-7| + |15| - |-9|$
+
+  \item \medio{} $|23 - 5| - |4 - 11|$
+
+  \item \medio{} $|-12 + 7| \cdot |-3|$
+
+  \item \medio{} $\dfrac{|-40|}{|-8|} + |-6|$
+
+  \item \dificil{} $|-8 - 5| - |-10 + 4|$
+
+  \item \dificil{} $|(-6) \cdot 3| \div |-9|$
+
+  \item \dificil{} $\big|\,|-5| - |10|\,\big|$
+
+  \item \dificil{} $3 \cdot |-2| - 5 \cdot |4 - 6|$
+
+  \item \dificil{} $-|-7 - (-2)| + |(-5) \cdot 3|$
+
+  \item \dificil{} $|100 \div (-25)| - |(-2) \cdot (-3)| + |-4|$
+
+  \item \dificil{} Si $|x| = 7$, \textquestiondown qué valores puede tomar $x$? Encuentra \emph{todas} las soluciones.
+
+  \item \dificil{} Si $|a| = 5$ y $|b| = 3$, \textquestiondown cuáles son todos los valores posibles de $a + b$?
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Propiedades de la Suma y de la Multiplicación}
+% ============================================================
+
+\subsection{Ejercicios: Verificar y aplicar propiedades}
+
+\begin{enumerate}[leftmargin=*]
+  \item \medio{} Verifica si se cumple la igualdad y nombra la propiedad:
+        \[
+          (-8) + 15 = 15 + (-8)
+        \]
+
+  \item \medio{} Verifica si se cumple la igualdad y nombra la propiedad:
+        \[
+          [(-3) + 5] + (-9) = (-3) + [5 + (-9)]
+        \]
+
+  \item \medio{} Verifica si se cumple la igualdad y nombra la propiedad:
+        \[
+          12 \cdot (-5) = (-5) \cdot 12
+        \]
+
+  \item \medio{} Verifica si se cumple la igualdad y nombra la propiedad:
+        \[
+          5 \cdot [(-3) + 8] = [5 \cdot (-3)] + [5 \cdot 8]
+        \]
+
+  \item \medio{} Escribe el nombre de la propiedad que justifica cada igualdad:
+        \begin{enumerate}[label=\alph*)]
+          \item $(-10) + 0 = -10$
+          \item $25 \cdot 1 = 25$
+          \item $14 + (-14) = 0$
+          \item $(-9) \cdot 0 = 0$
+        \end{enumerate}
+
+  \item \dificil{} Calcula de la forma más sencilla posible, aplicando las propiedades:
+        \[
+          25 \cdot (-7) \cdot 4
+        \]
+
+  \item \dificil{} Calcula agrupando convenientemente:
+        \[
+          (-13) + 29 + (-17) + 1
+        \]
+
+  \item \dificil{} Calcula aplicando las propiedades:
+        \[
+          50 \cdot (-12) \cdot (-2)
+        \]
+
+  \item \dificil{} Calcula aplicando la propiedad distributiva:
+        \[
+          9 \cdot 15 + 9 \cdot (-5)
+        \]
+
+  \item \dificil{} Calcula agrupando convenientemente:
+        \[
+          -125 + 350 - 75
+        \]
+
+  \item \dificil{} Calcula aplicando la propiedad distributiva:
+        \[
+          17 \cdot (-25) + (-75) \cdot 17
+        \]
+
+  \item \dificil{} Calcula aplicando las propiedades:
+        \[
+          4 \cdot 37 \cdot (-25)
+        \]
+
+  \item \dificil{} Calcula aplicando la propiedad distributiva:
+        \[
+          (-8) \cdot 13 + (-8) \cdot 7
+        \]
+
+  \item \dificil{} Calcula usando la propiedad distributiva:
+        \[
+          (-11) \cdot 101
+        \]
+
+  \item \dificil{} Calcula usando la propiedad distributiva:
+        \[
+          15 \cdot 99
+        \]
+\end{enumerate}
+
+\subsection{Ejercicios de razonamiento}
+
+\begin{enumerate}[leftmargin=*, start=16]
+  \item \dificil{} Si $a$ y $b$ son números enteros negativos, \textquestiondown el resultado de $a + b$ es siempre negativo? Justifica con un ejemplo.
+
+  \item \dificil{} Si $a$ y $b$ son números enteros negativos, \textquestiondown el resultado de $a \cdot b$ es positivo o negativo? Justifica con un ejemplo.
+
+  \item \dificil{} \textquestiondown Existe un elemento neutro para la resta? \textquestiondown Y para la división? Explica tu respuesta.
+
+  \item \dificil{} \textquestiondown Se cumple la propiedad conmutativa para la resta en $\Z$? Es decir, \textquestiondown es $a - b = b - a$ para cualquier par de enteros? Demuéstralo con un contraejemplo.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
 \ifmwclaves
 \section{Clave de Respuestas}
 % ============================================================
@@ -471,6 +714,48 @@ Cuando en una misma expresión aparecen sumas, restas, multiplicaciones y divisi
   \item $[-6 + (-12)] = -18$; $(-18) : (-2) = 9$; $\{9 - (-5)\} = 14$; luego $-14 \cdot (-3) - 14 = 42 - 14 = 28$
   \item a) $(-3 + 5) \cdot (-2) = -4$. \quad b) $16 : (8 - 4) \cdot (-3) = -12$
   \item $(-12 : 3 + 1) = -3$; $[-4 - (-3)] = -1$; $\{-5 + 3 \cdot (-1)\} = -8$; $-2 \cdot (-8) = 16$; luego $16 - (-10) = 26$
+\end{enumerate}
+
+\subsection*{Valor Absoluto (Ejercicios 1--12)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $7 + 15 - 9 = 13$
+  \item $|18| - |-7| = 18 - 7 = 11$
+  \item $|-5| \cdot 3 = 5 \cdot 3 = 15$
+  \item $\dfrac{40}{8} + 6 = 5 + 6 = 11$
+  \item $|-13| - |-6| = 13 - 6 = 7$
+  \item $|-18| \div 9 = 18 \div 9 = 2$
+  \item $|5 - 10| = |-5| = 5$
+  \item $3 \cdot 2 - 5 \cdot 2 = 6 - 10 = -4$
+  \item $-|-5| + |-15| = -5 + 15 = 10$
+  \item $|-4| - |6| + 4 = 4 - 6 + 4 = 2$
+  \item $x = 7$ \ o \ $x = -7$ (ambos están a distancia $7$ del cero)
+  \item $a \in \{5, -5\}$ y $b \in \{3, -3\}$. Las sumas posibles son:
+        $5 + 3 = 8$; \ $5 + (-3) = 2$; \ $(-5) + 3 = -2$; \ $(-5) + (-3) = -8$.
+\end{enumerate}
+
+\subsection*{Propiedades de la Suma y de la Multiplicación (Ejercicios 1--19)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $7 = 7$. \textbf{Conmutativa} de la suma.
+  \item $2 + (-9) = -7$ \ y \ $(-3) + (-4) = -7$. \textbf{Asociativa} de la suma.
+  \item $-60 = -60$. \textbf{Conmutativa} de la multiplicación.
+  \item $5 \cdot 5 = 25$ \ y \ $(-15) + 40 = 25$. \textbf{Distributiva} respecto a la adición.
+  \item a) \textbf{Elemento neutro} de la suma. \quad b) \textbf{Elemento neutro} de la multiplicación. \quad c) \textbf{Elemento opuesto}. \quad d) \textbf{Factor cero}.
+  \item $25 \cdot 4 = 100$; luego $100 \cdot (-7) = -700$ (conmutativa y asociativa).
+  \item $(-13 - 17) + (29 + 1) = -30 + 30 = 0$ (conmutativa y asociativa).
+  \item $(-12) \cdot (-2) = 24$; luego $50 \cdot 24 = 1200$ (asociativa).
+  \item $9 \cdot (15 - 5) = 9 \cdot 10 = 90$ (distributiva).
+  \item $350 - (125 + 75) = 350 - 200 = 150$ (conmutativa y asociativa).
+  \item $17 \cdot (-25 - 75) = 17 \cdot (-100) = -1700$ (distributiva).
+  \item $4 \cdot (-25) = -100$; luego $37 \cdot (-100) = -3700$ (conmutativa y asociativa).
+  \item $(-8) \cdot (13 + 7) = (-8) \cdot 20 = -160$ (distributiva).
+  \item $(-11) \cdot (100 + 1) = -1100 - 11 = -1111$ (distributiva).
+  \item $15 \cdot (100 - 1) = 1500 - 15 = 1485$ (distributiva).
+  \item Sí. La suma de dos negativos siempre es negativa: por ejemplo, $(-4) + (-6) = -10$.
+  \item Es \textbf{positivo}. El producto de dos números negativos es positivo: $(-4) \cdot (-6) = 24$.
+  \item No existe elemento neutro para la resta: $a - 0 = a$, pero $0 - a = -a \neq a$ (salvo si $a = 0$). Tampoco para la división: $a \div 1 = a$, pero $1 \div a \neq a$ en general. Por eso la resta y la división \emph{no} tienen neutro en $\Z$.
+  \item No se cumple. Contraejemplo: $7 - 3 = 4$, pero $3 - 7 = -4$; como $4 \neq -4$, la resta no es conmutativa.
 \end{enumerate}
 
 \vspace{10pt}

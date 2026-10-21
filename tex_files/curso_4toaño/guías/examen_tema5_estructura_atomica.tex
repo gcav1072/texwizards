@@ -5,8 +5,10 @@
 %  Temas: Modelos atómicos, partículas subatómicas, configuración
 %         electrónica y números cuánticos
 %  Autor: Ing. Gabriel Astudillo
-%  Nota: enunciado limpio (sin pistas ni desarrollo). Las
-%  soluciones están en la "Clave de Respuestas" al final.
+%  Nota: formato de examen por partes (relacionar columnas, modelos
+%        con figuras, identificar orbitales por diagramas y tabla de
+%        partículas). Las soluciones están en la "Clave de Respuestas"
+%        al final.
 % ============================================================
 
 \documentclass[12pt, letterpaper]{article}
@@ -29,82 +31,240 @@
   \textbf{Tiempo disponible:} 90 minutos \quad$\bullet$\quad \textbf{Puntaje total:} 100 puntos \\[4pt]
   \textbf{Instrucciones:}
   \begin{enumerate}[leftmargin=*]
-    \item Lee cada ejercicio con calma antes de resolverlo.
-    \item Muestra \emph{todos} tus pasos: configuración electrónica antes de responder.
-    \item Recuerda: $A - Z$ da los neutrones y $Z$ identifica al elemento.
-    \item Aplica el principio de Aufbau y la regla de Hund.
-    \item No se permite el uso de calculadora.
-    \item Escribe con letra clara y revisa tu examen antes de entregarlo.
+    \item Lea con calma cada parte del examen antes de responder.
+    \item Escriba su nombre y la fecha en el recuadro; use letra clara y ordenada.
+    \item En la Primera Parte escriba la letra de la respuesta correcta en el paréntesis.
+    \item En las partes de diagramas y tabla, escriba sus respuestas de forma clara.
+    \item Muestre \emph{todos} sus pasos en la Quinta Parte: configuración electrónica antes de responder.
+    \item Recuerde: $N = A - Z$ y, en los iones, los electrones cambian con la carga.
+    \item No se permite el uso de calculadora ni de dispositivos electrónicos.
+    \item Revise su examen antes de entregarlo.
   \end{enumerate}
 \end{cuadroinfo}
 
+\newpage
+
+% ============================================================
+\section*{Primera Parte — Relacione Columna A con Columna B (24 puntos)}
+% ============================================================
+
+\noindent\textbf{Instrucciones:} escriba en el paréntesis \textbf{( \ \ )} la letra de la columna B que corresponde a cada descripción de la columna A. \textbf{2 puntos cada uno.}
+
+\vspace{6pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.28}
+\small
+\begin{tabular}{|p{0.53\linewidth}|p{0.30\linewidth}|}
+\hline
+\multicolumn{1}{|c|}{\textbf{COLUMNA A}} & \multicolumn{1}{c|}{\textbf{COLUMNA B}} \\
+\hline
+\textbf{1. ( \ \ )} Partícula subatómica con carga negativa & a. Protón \\
+\hline
+\textbf{2. ( \ \ )} Partícula del núcleo con carga positiva & b. Electrón \\
+\hline
+\textbf{3. ( \ \ )} Partícula del núcleo sin carga eléctrica & c. Número atómico ($Z$) \\
+\hline
+\textbf{4. ( \ \ )} Suma de los protones y neutrones del átomo & d. Neutrón \\
+\hline
+\textbf{5. ( \ \ )} Cantidad de protones del núcleo atómico & e. Modelo atómico de Bohr \\
+\hline
+\textbf{6. ( \ \ )} Modelo que considera al átomo una esfera maciza e indivisible & f. Número másico ($A$) \\
+\hline
+\textbf{7. ( \ \ )} Modelo que ubica los electrones en una masa positiva («pan de pasas») & g. Principio de Aufbau \\
+\hline
+\textbf{8. ( \ \ )} Modelo que descubrió el núcleo con el experimento de la lámina de oro & h. Modelo atómico de Dalton \\
+\hline
+\textbf{9. ( \ \ )} Modelo con órbitas definidas y niveles de energía & i. Regla de Hund \\
+\hline
+\textbf{10. ( \ \ )} Regla: los electrones ocupan primero los orbitales de menor energía & j. Modelo atómico de Rutherford \\
+\hline
+\textbf{11. ( \ \ )} Regla: los electrones se colocan primero sueltos y con espines paralelos & k. Principio de exclusión de Pauli \\
+\hline
+\textbf{12. ( \ \ )} Principio: dos electrones no pueden tener los mismos cuatro números cuánticos & l. Modelo atómico de Thomson \\
+\hline
+\end{tabular}
+\end{center}
+
+\newpage
+
+% ============================================================
+\section*{Segunda Parte — Modelos Atómicos (16 puntos)}
+% ============================================================
+
+\noindent\textbf{Instrucciones:} observe las figuras de los modelos atómicos. Para cada descripción escriba la \textbf{letra} de la figura correcta y el \textbf{nombre} del modelo. \textbf{4 puntos cada uno.}
+
 \vspace{8pt}
+\begin{center}
+\begin{tabular}{@{}c@{\hspace{1.1cm}}c@{\hspace{1.1cm}}c@{\hspace{1.1cm}}c@{}}
+  \begin{tikzpicture}[scale=0.82]
+    \shade[ball color=mwprimario!70] (-0.48,0.30) circle (0.52);
+    \shade[ball color=mwprimario!70] (0.48,0.12) circle (0.52);
+    \shade[ball color=mwprimario!70] (0.00,-0.58) circle (0.52);
+  \end{tikzpicture} &
+  \begin{tikzpicture}[scale=0.82]
+    \shade[ball color=mwprimario!18] (0,0) circle (1.05);
+    \foreach \x/\y in {-0.58/0.40, -0.02/0.56, 0.52/0.34, -0.60/-0.16, -0.08/-0.02, 0.48/-0.18, 0.10/-0.56, -0.42/-0.58}
+      \node[mwprimario, font=\scriptsize\bfseries] at (\x,\y) {$+$};
+    \foreach \x/\y in {-0.30/0.16, 0.26/0.18, -0.02/-0.34, 0.54/-0.44, -0.58/0.02}
+      \fill[mwrojonaranja] (\x,\y) circle (2pt);
+  \end{tikzpicture} &
+  \begin{tikzpicture}[scale=0.82]
+    \shade[ball color=mwrojonaranja] (0,0) circle (0.24);
+    \fill[mwprimario] (35:0.98) circle (2.4pt);
+    \fill[mwprimario] (148:1.02) circle (2.4pt);
+    \fill[mwprimario] (255:0.95) circle (2.4pt);
+  \end{tikzpicture} &
+  \begin{tikzpicture}[scale=0.82]
+    \draw[mwgris, thick] (0,0) circle (0.62);
+    \draw[mwgris, thick] (0,0) circle (1.02);
+    \shade[ball color=mwrojonaranja] (0,0) circle (0.22);
+    \fill[mwprimario] (60:0.62) circle (2.4pt);
+    \fill[mwprimario] (205:0.62) circle (2.4pt);
+    \fill[mwprimario] (312:1.02) circle (2.4pt);
+  \end{tikzpicture} \\
+  \textbf{(A)} & \textbf{(B)} & \textbf{(C)} & \textbf{(D)} \\
+\end{tabular}
+\end{center}
 
-% ============================================================
-\section{Modelos Atómicos y Partículas Subatómicas (34 puntos)}
-% ============================================================
-
+\vspace{6pt}
 \begin{enumerate}[leftmargin=*]
-  \item \textbf{(10 pts)} Un átomo de fósforo tiene $Z = 15$ y $A = 31$.
-        \begin{enumerate}[label=\alph*)]
-          \item \textquestiondown Cuántos protones, neutrones y electrones tiene el átomo neutro?
-          \item Escribe su notación ${}^{A}_{Z}X$.
-        \end{enumerate}
+  \item Modelo que considera al átomo como una \textbf{esfera maciza e indivisible} de materia. \\[2pt]
+        \textbf{Respuesta:} letra \textbf{( \ \ )} \qquad \textbf{Nombre del modelo:} \rule{4.6cm}{0.4pt}
 
-  \item \textbf{(8 pts)} Compara los isótopos ${}^{35}_{17}\text{Cl}$ y ${}^{37}_{17}\text{Cl}$. \textquestiondown Qué tienen en común y en qué se diferencian? Calcula los neutrones de cada uno.
+  \item Modelo que distribuye a los electrones dentro de una esfera de carga positiva, como pasas en un pudín. \\[2pt]
+        \textbf{Respuesta:} letra \textbf{( \ \ )} \qquad \textbf{Nombre del modelo:} \rule{4.6cm}{0.4pt}
 
-  \item \textbf{(8 pts)} Indica cuántos protones y electrones tienen:
-        \[
-          a)\ \text{Mg}^{2+} \ (Z = 12) \qquad b)\ \text{O}^{2-} \ (Z = 8)
-        \]
-        Además, indica si cada uno es un \textbf{catión} o un \textbf{anión}.
+  \item Modelo que demostró que el átomo tiene un \textbf{núcleo pequeño, denso y de carga positiva}, con los electrones a su alrededor. \\[2pt]
+        \textbf{Respuesta:} letra \textbf{( \ \ )} \qquad \textbf{Nombre del modelo:} \rule{4.6cm}{0.4pt}
 
-  \item \textbf{(8 pts)}
-        \begin{enumerate}[label=\alph*)]
-          \item Ordena cronológicamente los modelos atómicos de Dalton, Thomson, Rutherford y Bohr.
-          \item \textquestiondown Qué descubrió Rutherford con su experimento de la lámina de oro?
-        \end{enumerate}
+  \item Modelo que plantea que los electrones se desplazan en \textbf{órbitas definidas}, cada una con un nivel de energía. \\[2pt]
+        \textbf{Respuesta:} letra \textbf{( \ \ )} \qquad \textbf{Nombre del modelo:} \rule{4.6cm}{0.4pt}
 \end{enumerate}
 
 \newpage
 
 % ============================================================
-\section{Configuración Electrónica (34 puntos)}
+\section*{Tercera Parte — Diagramas de Orbitales (20 puntos)}
+% ============================================================
+
+\noindent\textbf{Instrucciones:} identifique el orbital de cada diagrama. Escriba el \textbf{tipo} de orbital ($s$, $p$, $d$ o $f$) y, cuando corresponda, el \textbf{subnivel u orientación} ($p_x$, $p_z$, $d_{xy}$, \ldots). \textbf{4 puntos cada uno:} 2 por el tipo y 2 por el detalle indicado.
+
+\vspace{10pt}
+\begin{center}
+\begin{tikzpicture}[scale=0.72]
+  % lóbulo de fase positiva (+x)
+  \begin{scope}[rotate=38]
+    \shade[ball color=red!85] (1.3,0) ellipse (1.3 and 0.82);
+  \end{scope}
+  % lóbulo de fase negativa (-x)
+  \begin{scope}[rotate=218]
+    \shade[ball color=blue!85] (1.3,0) ellipse (1.3 and 0.82);
+  \end{scope}
+  % ejes de coordenadas
+  \draw[->, thick] (0,0) -- (2.45,0) node[right] {\small $y$};
+  \draw[->, thick] (0,0) -- (0,2.45) node[above] {\small $z$};
+  \draw[->, thick] (0,0) -- (2.35,1.86) node[above right=-1pt] {\small $x$};
+  \draw[->, thick, red!85] (0,0) -- (-2.35,-1.86);
+\end{tikzpicture} \\[2pt]
+\textbf{(a)}
+\end{center}
+
+\vspace{8pt}
+\begin{center}
+\begin{tabular}{@{}c@{\hspace{1.1cm}}c@{\hspace{1.1cm}}c@{\hspace{1.1cm}}c@{}}
+  \begin{tikzpicture}[scale=0.62]
+    \shade[ball color=mwprimario!70] (0,0) circle (1.15);
+  \end{tikzpicture} &
+  \begin{tikzpicture}[scale=0.62]
+    \draw[->, thick, mwgrisoscuro] (0,-2.3) -- (0,2.35) node[above] {\small $z$};
+    \shade[ball color=mwmagenta!75] (0,1.02) ellipse (0.6 and 1.08);
+    \shade[ball color=mwmagenta!75] (0,-1.02) ellipse (0.6 and 1.08);
+  \end{tikzpicture} &
+  \begin{tikzpicture}[scale=0.62]
+    \foreach \a in {45,135,225,315}
+      \shade[ball color=mwnaranja!75, rotate=\a] (0,1.02) ellipse (0.5 and 1.05);
+  \end{tikzpicture} &
+  \begin{tikzpicture}[scale=0.62]
+    \foreach \a in {0,45,...,315}
+      \shade[ball color=mwvioleta!75, rotate=\a] (0,0.92) ellipse (0.33 and 0.98);
+  \end{tikzpicture} \\
+  \textbf{(b)} & \textbf{(c)} & \textbf{(d)} & \textbf{(e)} \\
+\end{tabular}
+\end{center}
+
+\vspace{8pt}
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Diagrama (a).} Este diagrama representa un orbital con sus fases (rojo y azul). \textquestiondown Qué tipo de orbital es ($s$, $p$, $d$ o $f$)? \textquestiondown Sobre qué eje se orienta? \\[2pt]
+        \textbf{Tipo:} \rule{3.2cm}{0.4pt} \qquad \textbf{Eje:} \rule{3.2cm}{0.4pt}
+
+  \item \textbf{Diagrama (b).} \textquestiondown Qué tipo de orbital es? \\[2pt]
+        \textbf{Respuesta:} \rule{6.5cm}{0.4pt}
+
+  \item \textbf{Diagrama (c).} \textquestiondown Qué tipo de orbital es y sobre qué eje se orienta? \\[2pt]
+        \textbf{Tipo:} \rule{3.2cm}{0.4pt} \qquad \textbf{Eje:} \rule{3.2cm}{0.4pt}
+
+  \item \textbf{Diagrama (d).} \textquestiondown Qué tipo de orbital es? \textquestiondown Cuántos orbitales tiene este subnivel? \\[2pt]
+        \textbf{Tipo:} \rule{3.2cm}{0.4pt} \qquad \textbf{Orbitales:} \rule{3.2cm}{0.4pt}
+
+  \item \textbf{Diagrama (e).} \textquestiondown Qué tipo de orbital es? \textquestiondown Cuántos electrones aloja como máximo este subnivel? \\[2pt]
+        \textbf{Tipo:} \rule{3.2cm}{0.4pt} \qquad \textbf{Electrones:} \rule{3.2cm}{0.4pt}
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section*{Cuarta Parte — Partículas Subatómicas (20 puntos)}
+% ============================================================
+
+\noindent\textbf{Instrucciones:} complete la tabla. Determine el número de protones, neutrones y electrones de cada especie e indique si es \textbf{catión}, \textbf{anión} o \textbf{neutro}. \textbf{4 puntos cada fila.}
+
+\vspace{8pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.55}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\textbf{Símbolo} & $Z$ & $A$ & \textbf{Protones} & \textbf{Neutrones} & \textbf{Electrones} & \textbf{Tipo} \\
+\hline
+${}^{31}_{15}\text{P}$ & & & & & & \\
+\hline
+${}^{35}_{17}\text{Cl}$ & & & & & & \\
+\hline
+$\text{Mg}^{2+}$ \ ($A = 24$) & & & & & & \\
+\hline
+$\text{O}^{2-}$ \ ($A = 16$) & & & & & & \\
+\hline
+${}^{40}_{20}\text{Ca}^{2+}$ & & & & & & \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{6pt}
+\begin{cuadroinfo}
+  \small \textbf{Recuerde:} el número de neutrones es $N = A - Z$. En un \textbf{catión} el átomo perdió electrones (carga positiva); en un \textbf{anión} ganó electrones (carga negativa).
+\end{cuadroinfo}
+
+\newpage
+
+% ============================================================
+\section*{Quinta Parte — Configuración Electrónica y Números Cuánticos (20 puntos)}
 % ============================================================
 
 \begin{enumerate}[leftmargin=*]
-  \item \textbf{(8 pts)} Escribe la configuración electrónica de:
+  \item \textbf{(4 pts)} Escribe la configuración electrónica de:
         \[
           a)\ \text{Cl} \ (Z = 17) \qquad b)\ \text{Ca} \ (Z = 20)
         \]
 
-  \item \textbf{(8 pts)} Escribe la configuración electrónica y determina el número de electrones de valencia de:
-        \[
-          a)\ \text{azufre} \ (Z = 16) \qquad b)\ \text{argón} \ (Z = 18)
-        \]
+  \item \textbf{(4 pts)} Escribe la configuración electrónica del azufre ($Z = 16$) e indica cuántos \textbf{electrones de valencia} tiene.
 
-  \item \textbf{(9 pts)} Escribe la configuración electrónica del fósforo ($Z = 15$) y representa los orbitales $3p$ usando cajas y flechas, aplicando la \textbf{regla de Hund}.
+  \item \textbf{(4 pts)} Escribe la configuración electrónica del fósforo ($Z = 15$) y representa los orbitales $3p$ usando cajas y flechas, aplicando la \textbf{regla de Hund}.
 
-  \item \textbf{(9 pts)} El ion $\text{S}^{2-}$ proviene del azufre ($Z = 16$). Escribe su configuración electrónica y compárala con la del argón ($Z = 18$). \textquestiondown Qué observas?
-\end{enumerate}
+  \item \textbf{(4 pts)} El ion $\text{S}^{2-}$ proviene del azufre ($Z = 16$). Escribe su configuración electrónica y compárala con la del argón ($Z = 18$). \textquestiondown Qué observas?
 
-\newpage
-
-% ============================================================
-\section{Números Cuánticos y Tabla Periódica (32 puntos)}
-% ============================================================
-
-\begin{enumerate}[leftmargin=*]
-  \item \textbf{(8 pts)} Determina los cuatro números cuánticos $(n, l, m_l, m_s)$ del último electrón del fósforo ($Z = 15$).
-
-  \item \textbf{(8 pts)} El calcio tiene $Z = 20$. Escribe su configuración electrónica y determina en qué \textbf{periodo} y \textbf{grupo} de la tabla periódica se encuentra.
-
-  \item \textbf{(8 pts)} Un elemento está en el \textbf{periodo 3, grupo 16}. \textquestiondown Cuál es su configuración electrónica y su número atómico $Z$? \textquestiondown De qué elemento se trata?
-
-  \item \textbf{(8 pts)} El oxígeno tiene $Z = 8$.
+  \item \textbf{(4 pts)}
         \begin{enumerate}[label=\alph*)]
-          \item Escribe su configuración electrónica.
-          \item Aplicando la regla de Hund, \textquestiondown cuántos electrones desapareados tiene en el subnivel $2p$?
+          \item Determina los cuatro números cuánticos $(n, l, m_l, m_s)$ del último electrón del fósforo ($Z = 15$).
+          \item El calcio tiene $Z = 20$: \textquestiondown en qué \textbf{periodo} y \textbf{grupo} de la tabla periódica se encuentra?
         \end{enumerate}
 \end{enumerate}
 
@@ -115,32 +275,63 @@
   \section{Clave de Respuestas}
   % ============================================================
 
-  \subsection*{Sección 1: Modelos Atómicos y Partículas Subatómicas}
+  \subsection*{Primera Parte — Relacione Columna A con Columna B}
 
   \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-    \item a) Protones $= Z = 15$; neutrones $= A - Z = 31 - 15 = 16$; electrones $= 15$ (átomo neutro).
-          \quad b) ${}^{31}_{15}\text{P}$.
-
-    \item Ambos tienen el mismo $Z = 17$: 17 protones y 17 electrones. Difieren en los neutrones:
-          ${}^{35}\text{Cl}$ tiene $35 - 17 = 18$ neutrones y ${}^{37}\text{Cl}$ tiene $37 - 17 = 20$ neutrones.
-
-    \item a) $\text{Mg}^{2+}$: 12 protones y $12 - 2 = 10$ electrones (perdió 2); es un \textbf{catión}.
-          \quad b) $\text{O}^{2-}$: 8 protones y $8 + 2 = 10$ electrones (ganó 2); es un \textbf{anión}.
-
-    \item a) Dalton (1803) $\rightarrow$ Thomson (1897) $\rightarrow$ Rutherford (1911) $\rightarrow$ Bohr (1913).
-          \quad b) Rutherford descubrió el \textbf{núcleo} atómico: pequeño, denso y positivo. En su experimento, la mayoría de las partículas alfa atravesaban la lámina de oro sin desviarse (el átomo es mayormente vacío), pero algunas rebotaban al chocar con el núcleo.
+    \item \textbf{b} — Electrón.
+    \item \textbf{a} — Protón.
+    \item \textbf{d} — Neutrón.
+    \item \textbf{f} — Número másico ($A$).
+    \item \textbf{c} — Número atómico ($Z$).
+    \item \textbf{h} — Modelo atómico de Dalton.
+    \item \textbf{l} — Modelo atómico de Thomson.
+    \item \textbf{j} — Modelo atómico de Rutherford.
+    \item \textbf{e} — Modelo atómico de Bohr.
+    \item \textbf{g} — Principio de Aufbau.
+    \item \textbf{i} — Regla de Hund.
+    \item \textbf{k} — Principio de exclusión de Pauli.
   \end{enumerate}
 
   \newpage
 
-  \subsection*{Sección 2: Configuración Electrónica}
+  \subsection*{Segunda Parte — Modelos Atómicos}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \item \textbf{(A)} Dalton: el átomo es una esfera maciza e indivisible de materia.
+    \item \textbf{(B)} Thomson: los electrones están incrustados en una masa de carga positiva («pan de pasas»).
+    \item \textbf{(C)} Rutherford: el átomo tiene un núcleo pequeño, denso y positivo, con los electrones a su alrededor.
+    \item \textbf{(D)} Bohr: los electrones se desplazan en órbitas definidas, cada una con un nivel de energía.
+  \end{enumerate}
+
+  \subsection*{Tercera Parte — Diagramas de Orbitales}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{(\alph*)}]
+    \item Orbital \textbf{$p$} orientado sobre el eje $x$: orbital $p_x$. (El color rojo representa la fase positiva de la función de onda y el azul la negativa).
+    \item Orbital \textbf{$s$}: de forma esférica.
+    \item Orbital \textbf{$p$} orientado sobre el eje $z$: orbital $p_z$.
+    \item Orbital \textbf{$d$}: cuatro lóbulos (por ejemplo $d_{xy}$). El subnivel $d$ tiene \textbf{5 orbitales}.
+    \item Orbital \textbf{$f$}: ocho lóbulos. El subnivel $f$ tiene 7 orbitales y aloja como máximo \textbf{14 electrones}.
+  \end{enumerate}
+
+  \newpage
+
+  \subsection*{Cuarta Parte — Partículas Subatómicas}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \item ${}^{31}_{15}\text{P}$: $Z = 15$, $A = 31$, $p = 15$, $n = 31 - 15 = 16$, $e = 15$ — \textbf{neutro}.
+    \item ${}^{35}_{17}\text{Cl}$: $Z = 17$, $A = 35$, $p = 17$, $n = 35 - 17 = 18$, $e = 17$ — \textbf{neutro}.
+    \item $\text{Mg}^{2+}$: $Z = 12$, $A = 24$, $p = 12$, $n = 24 - 12 = 12$, $e = 12 - 2 = 10$ — \textbf{catión}.
+    \item $\text{O}^{2-}$: $Z = 8$, $A = 16$, $p = 8$, $n = 16 - 8 = 8$, $e = 8 + 2 = 10$ — \textbf{anión}.
+    \item ${}^{40}_{20}\text{Ca}^{2+}$: $Z = 20$, $A = 40$, $p = 20$, $n = 40 - 20 = 20$, $e = 20 - 2 = 18$ — \textbf{catión}.
+  \end{enumerate}
+
+  \subsection*{Quinta Parte — Configuración Electrónica y Números Cuánticos}
 
   \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
     \item a) Cl ($17$ e$^-$): $1s^{2}\,2s^{2}\,2p^{6}\,3s^{2}\,3p^{5}$.
           \quad b) Ca ($20$ e$^-$): $1s^{2}\,2s^{2}\,2p^{6}\,3s^{2}\,3p^{6}\,4s^{2}$.
 
-    \item a) Azufre ($16$ e$^-$): $1s^{2}\,2s^{2}\,2p^{6}\,3s^{2}\,3p^{4}$ $\Rightarrow$ valencia $= 2 + 4 = 6$.
-          \quad b) Argón ($18$ e$^-$): $1s^{2}\,2s^{2}\,2p^{6}\,3s^{2}\,3p^{6}$ $\Rightarrow$ valencia $= 2 + 6 = 8$.
+    \item Azufre ($16$ e$^-$): $1s^{2}\,2s^{2}\,2p^{6}\,3s^{2}\,3p^{4}$ $\Rightarrow$ electrones de valencia $= 2 + 4 = 6$.
 
     \item Fósforo ($15$ e$^-$): $1s^{2}\,2s^{2}\,2p^{6}\,3s^{2}\,3p^{3}$.
           \\[2pt]
@@ -154,29 +345,12 @@
             \text{S}^{2-}:\ 1s^{2}\,2s^{2}\,2p^{6}\,3s^{2}\,3p^{6}.
           \]
           Esta es \textbf{exactamente} la configuración del argón ($Z = 18$): se dice que son \textbf{isoelectrónicos}.
-  \end{enumerate}
 
-  \newpage
-
-  \subsection*{Sección 3: Números Cuánticos y Tabla Periódica}
-
-  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-    \item Configuración del fósforo: $1s^{2}\,2s^{2}\,2p^{6}\,3s^{2}\,3p^{3}$. El último subnivel es $3p$, con $n = 3$ y $l = 1$.
+    \item a) Configuración del fósforo: $1s^{2}\,2s^{2}\,2p^{6}\,3s^{2}\,3p^{3}$. El último subnivel es $3p$, con $n = 3$ y $l = 1$.
           Los tres electrones $3p$ van sueltos en los orbitales $-1, 0, +1$ con espín $+\tfrac{1}{2}$.
           Último electrón: $(n, l, m_l, m_s) = (3, 1, +1, +\tfrac{1}{2})$.
-
-    \item Configuración: $1s^{2}\,2s^{2}\,2p^{6}\,3s^{2}\,3p^{6}\,4s^{2}$.
+          \quad b) Configuración del calcio: $1s^{2}\,2s^{2}\,2p^{6}\,3s^{2}\,3p^{6}\,4s^{2}$.
           Último nivel: $4$ $\Rightarrow$ \textbf{periodo 4}. Electrones de valencia: $4s^{2}$ $\Rightarrow$ 2 electrones $\Rightarrow$ \textbf{grupo 2} (alcalinotérreos).
-
-    \item Periodo 3 y grupo 16 $\Rightarrow$ 6 electrones de valencia en el nivel 3: $3s^{2}\,3p^{4}$.
-          Configuración completa: $1s^{2}\,2s^{2}\,2p^{6}\,3s^{2}\,3p^{4}$, con $Z = 16$. Se trata del \textbf{azufre (S)}.
-
-    \item a) Oxígeno ($8$ e$^-$): $1s^{2}\,2s^{2}\,2p^{4}$.
-          \quad b) En $2p^{4}$, primero se llenan los tres orbitales con un electrón cada uno ($-1, 0, +1$) y el cuarto se aparea:
-          \[
-            2p:\ \boxed{\uparrow\downarrow}\ \boxed{\uparrow}\ \boxed{\uparrow}
-          \]
-          Por lo tanto, el oxígeno tiene \textbf{2 electrones desapareados} en $2p$.
   \end{enumerate}
 
 \fi

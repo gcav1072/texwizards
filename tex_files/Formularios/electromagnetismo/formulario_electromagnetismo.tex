@@ -107,18 +107,35 @@
     \vspace{-6pt}
   \end{formulabox}
 
-  \begin{tablabox}[Corrección de Cuadrante ($\theta_0 = \tan^{-1}\!\left|\frac{A_y}{A_x}\right|$)]
-    \tablacompacta
-    \begin{tabular}{@{}ccc@{}}
-      \toprule
-      Cuad. & Signos $(A_x, A_y)$ & Dirección Real $\theta$         \\
-      \midrule
-      I     & $(+, +)$            & $\theta = \theta_0$             \\
-      II    & $(-, +)$            & $\theta = 180^\circ - \theta_0$ \\
-      III   & $(-, -)$            & $\theta = 180^\circ + \theta_0$ \\
-      IV    & $(+, -)$            & $\theta = 360^\circ - \theta_0$ \\
-      \bottomrule
-    \end{tabular}
+  \begin{tablabox}[Dirección de $\hat{\imath}$ y $\hat{\jmath}$]
+    \begin{center}
+      % babel español activa «>»; se usa -latex en vez de -> para las flechas
+      \begin{tikzpicture}[
+          x=0.75cm, y=0.95cm,
+          every node/.style={inner sep=0.5pt}
+        ]
+        % Ejes: proporción visual cuadrada (unidades x/y distintas para compensar
+        % el largo de las etiquetas y evitar el efecto "estirado")
+        \draw[-latex, line width=1.1pt] (-2.45,0) -- (2.45,0);
+        \draw[-latex, line width=1.1pt] (0,-1.45) -- (0,1.45);
+        \node[anchor=west]  at (2.5,0)   {\scriptsize $\hat{\imath}+$};
+        \node[anchor=east]  at (-2.5,0)  {\scriptsize $\hat{\imath}-$};
+        \node[anchor=south] at (0,1.48)  {\scriptsize $\hat{\jmath}+$};
+        \node[anchor=north] at (0,-1.48) {\scriptsize $\hat{\jmath}-$};
+        % Componentes según el cuadrante
+        \node[anchor=west] at (0.12,0.78)
+          {\tiny $+\!\cos\theta\hat{\imath}+\sen\theta\hat{\jmath}$};
+        \node[anchor=east] at (-0.12,0.78)
+          {\tiny $-\!\cos\theta\hat{\imath}+\sen\theta\hat{\jmath}$};
+        \node[anchor=west] at (0.12,-0.78)
+          {\tiny $+\!\cos\theta\hat{\imath}-\sen\theta\hat{\jmath}$};
+        \node[anchor=east] at (-0.12,-0.78)
+          {\tiny $-\!\cos\theta\hat{\imath}-\sen\theta\hat{\jmath}$};
+      \end{tikzpicture}
+    \end{center}
+    {\tiny $\theta_0 = \tan^{-1}\!\left|\frac{A_y}{A_x}\right|$}\\[1pt]
+    {\tiny I: $\theta_0$ \quad II: $180^\circ{-}\theta_0$}\\[1pt]
+    {\tiny III: $180^\circ{+}\theta_0$ \quad IV: $360^\circ{-}\theta_0$}
   \end{tablabox}
 
   \begin{notabox}[Calculadora: $\mathrm{Rec}$ y $\mathrm{Pol}$]

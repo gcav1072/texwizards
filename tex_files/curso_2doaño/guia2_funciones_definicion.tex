@@ -16,6 +16,64 @@
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 
+% ── Diagrama tabular: plano cartesiano con los puntos ────────
+% Uso:  \mwtabular{1/2, 2/4, 3/6, 4/8}
+%       \mwtabular[Relación: ``$A$ es la mitad de $B$'']{1/2,2/4}
+\newcommand{\mwlistapares}[1]{%
+  \foreach \mwPx/\mwPy [count=\mwPi] in {#1} {%
+    \ifnum\mwPi>1\relax\enspace\fi
+    $(\mwPx,\mwPy)$%
+  }%
+}
+% Solo el plano (sin título ni pie). Escala opcional.
+% Solo se rotulan y se trazan las líneas de los valores que
+% REALMENTE aparecen: así no se sugiere que otros números
+% formen parte del dominio o del codominio.
+\newcommand{\mwplano}[2][0.42]{%
+  \def\mwGx{0}\def\mwGy{0}%
+  \foreach \mwPx/\mwPy in {#2} {%
+    \ifnum\mwPx>\mwGx\relax\xdef\mwGx{\mwPx}\fi
+    \ifnum\mwPy>\mwGy\relax\xdef\mwGy{\mwPy}\fi
+  }%
+  \xdef\mwXl{}\xdef\mwYl{}%
+  \foreach \mwV in {0,...,\mwGx} {%
+    \xdef\mwHit{0}%
+    \foreach \mwPx/\mwPy in {#2} {\ifnum\mwPx=\mwV\relax\xdef\mwHit{1}\fi}%
+    \ifnum\mwHit=1\relax
+      \ifx\mwXl\empty\xdef\mwXl{\mwV}\else\xdef\mwXl{\mwXl,\mwV}\fi
+    \fi
+  }%
+  \foreach \mwV in {0,...,\mwGy} {%
+    \xdef\mwHit{0}%
+    \foreach \mwPx/\mwPy in {#2} {\ifnum\mwPy=\mwV\relax\xdef\mwHit{1}\fi}%
+    \ifnum\mwHit=1\relax
+      \ifx\mwYl\empty\xdef\mwYl{\mwV}\else\xdef\mwYl{\mwYl,\mwV}\fi
+    \fi
+  }%
+  \begin{tikzpicture}[scale=#1,
+      every node/.style={font=\scriptsize, inner sep=1.6pt}]
+    \foreach \mwV in \mwYl {%
+      \ifnum\mwV>0\relax\draw[gray!45, thin] (0,\mwV) -- (\mwGx,\mwV);\fi}
+    \foreach \mwV in \mwXl {%
+      \ifnum\mwV>0\relax\draw[gray!45, thin] (\mwV,0) -- (\mwV,\mwGy);\fi}
+    \draw[-Latex, thick] (0,0) -- (\mwGx+0.9,0) node[right] {$x$};
+    \draw[-Latex, thick] (0,0) -- (0,\mwGy+0.9) node[above] {$y$};
+    \foreach \mwV in \mwXl {%
+      \ifnum\mwV=0\relax\node[below left] at (0,0) {0};\else\node[below] at (\mwV,0) {\mwV};\fi}
+    \foreach \mwV in \mwYl {%
+      \ifnum\mwV=0\relax\else\node[left] at (0,\mwV) {\mwV};\fi}
+    \foreach \mwPx/\mwPy in {#2} {\fill (\mwPx,\mwPy) circle [radius=0.19];}
+  \end{tikzpicture}%
+}
+\newcommand{\mwtabular}[2][\relax]{%
+  \par\nobreak
+  \noindent\begin{minipage}{\linewidth}\centering
+    \ifx\relax#1\relax\else{\scriptsize\textbf{#1}}\\[4pt]\fi
+    \mwplano{#2}\\[3pt]
+    {\scriptsize\textbf{Diagrama tabular:} \mwlistapares{#2}}
+  \end{minipage}\par\nobreak\smallskip
+}
+
 \begin{document}
 % ============================================================
 
@@ -25,7 +83,7 @@
 \vspace{4pt}
 \begin{cuadroinfo}
   \small
-  \textbf{Presentación:} Antes de graficar cualquier función debemos saber exactamente qué es una función. En esta guía repasarás los conjuntos matemáticos, aprenderás a distinguir una relación de una función, a identificar sus partes (dominio, codominio y rango), a representarla de tres formas distintas (diagrama sagital, diagrama tabular y pares ordenados) y a clasificarla en inyectiva, sobreyectiva o biyectiva. Cada sección incluye \textbf{ejercicios resueltos} y \textbf{ejercicios propuestos}, y al final hay una sección de \textbf{ejercicios integradores}.
+  \textbf{Presentación:} Antes de graficar cualquier función debemos saber exactamente qué es una función. En esta guía repasarás los conjuntos matemáticos, aprenderás a distinguir una relación de una función, a identificar sus partes (dominio, codominio y rango), a representarla de tres formas distintas (diagrama sagital, diagrama tabular y gráfica en el plano cartesiano) y a clasificarla en inyectiva, sobreyectiva o biyectiva. Cada sección incluye \textbf{ejercicios resueltos} y \textbf{ejercicios propuestos}, y al final hay una sección de \textbf{ejercicios integradores}.
   \\[4pt]
   \textbf{Nivel de Dificultad:}\quad
   \facil{} Básico / Directo \quad
@@ -166,16 +224,7 @@
 \begin{cuadrosolucion}
   \textbf{Solución:}
   \begin{enumerate}
-    \item Calculamos la imagen de cada elemento de $A$:
-          \begin{center}
-            \begin{tabular}{c|ccccc}
-              \toprule
-              $x$          & 1    & 2   & 3   & 4   & 5   \\
-              \midrule
-              $y = 2x - 3$ & $-1$ & $1$ & $3$ & $5$ & $7$ \\
-              \bottomrule
-            \end{tabular}
-          \end{center}
+    \item Calculamos la imagen de cada elemento de $A$: $1\mapsto-1$, $2\mapsto1$, $3\mapsto3$, $4\mapsto5$, $5\mapsto7$.
     \item Cada elemento de $A$ tiene \emph{exactamente una} imagen, por lo tanto \textbf{sí es función}.
     \item $\operatorname{Dom} f = \{1, 2, 3, 4, 5\}$.
     \item $\operatorname{Cod} f = \{-1, 0, 1, 2, 3, 5, 7\}$ (el conjunto de llegada $B$).
@@ -222,9 +271,14 @@
   Una función se puede representar de tres formas equivalentes:
   \begin{itemize}[leftmargin=*]
     \item \textbf{Diagrama sagital:} dos conjuntos dibujados como elipses o rectángulos y \emph{flechas} que unen cada elemento del dominio con su imagen.
-    \item \textbf{Diagrama tabular:} una tabla con los valores de $x$ (dominio) y sus imágenes $y = f(x)$.
-    \item \textbf{Pares ordenados:} el conjunto $\{(x, f(x)) \;/\; x \in \operatorname{Dom} f\}$.
+    \item \textbf{Diagrama tabular:} los puntos $(x, f(x))$ de la relación marcados sobre una cuadrícula, junto con sus pares ordenados.
+    \item \textbf{Gráfica en el plano cartesiano:} los puntos $(x, f(x))$ ubicados sobre los ejes.
   \end{itemize}
+
+  \textbf{En este curso}, el \emph{diagrama tabular} se dibuja sobre una cuadrícula: se marcan los ejes y se coloca un \textbf{punto negro} por cada par ordenado de la relación. En cada eje se escriben \textbf{solo los números que pertenecen} al dominio (eje $x$) y al codominio (eje $y$), para no confundir con elementos que no forman parte de los conjuntos.
+
+  \smallskip
+  \mwtabular[Relación: ``$A$ es la mitad de $B$'']{1/2, 2/4, 3/6, 4/8}
 \end{cuadroteoria}
 
 \begin{cuadropasos}
@@ -269,7 +323,7 @@
   \end{tikzpicture}
 \end{center}
 
-Determina dominio, codominio, rango y el conjunto de pares ordenados.
+Determina dominio, codominio, rango y su diagrama tabular (lista de pares ordenados).
 
 \newpage %ajuste pag
 
@@ -279,21 +333,11 @@ Determina dominio, codominio, rango y el conjunto de pares ordenados.
     \item $\operatorname{Dom} f = \{a, b, c, d\}$.
     \item $\operatorname{Cod} f = \{1, 2, 3, 4, 5\}$.
     \item $\operatorname{Rgo} f = \{1, 3, 4\}$ (los elementos que reciben flechas).
-    \item Pares ordenados: $f = \{(a, 3), (b, 1), (c, 4), (d, 4)\}$.
-    \item \textbf{Diagrama tabular:}
-          \begin{center}
-            \begin{tabular}{c|cccc}
-              \toprule
-              $x$    & $a$ & $b$ & $c$ & $d$ \\
-              \midrule
-              $f(x)$ & 3   & 1   & 4   & 4   \\
-              \bottomrule
-            \end{tabular}
-          \end{center}
+    \item \textbf{Diagrama tabular:} $(a,3)\quad (b,1)\quad (c,4)\quad (d,4)$.
   \end{itemize}
 \end{cuadrosolucion}
 
-\textbf{Ejemplo R2.} Representa la función $f(x) = 2x + 3$ con dominio $\{0, 1, 2, 3\}$ mediante un diagrama tabular y pares ordenados, y traza su diagrama sagital.
+\textbf{Ejemplo R2.} Representa la función $f(x) = 2x + 3$ con dominio $\{0, 1, 2, 3\}$ mediante un diagrama tabular y traza su diagrama sagital.
 
 \begin{cuadrosolucion}
   \textbf{Solución:}
@@ -301,15 +345,9 @@ Determina dominio, codominio, rango y el conjunto de pares ordenados.
     \item Calculamos las imágenes: $f(0) = 3$, $f(1) = 5$, $f(2) = 7$, $f(3) = 9$.
     \item \textbf{Diagrama tabular:}
           \begin{center}
-            \begin{tabular}{c|cccc}
-              \toprule
-              $x$             & 0 & 1 & 2 & 3 \\
-              \midrule
-              $f(x) = 2x + 3$ & 3 & 5 & 7 & 9 \\
-              \bottomrule
-            \end{tabular}
+            \mwplano[0.34]{0/3, 1/5, 2/7, 3/9}\\[2pt]
+            {\scriptsize$(0,3)\quad(1,5)\quad(2,7)\quad(3,9)$}
           \end{center}
-    \item \textbf{Pares ordenados:} $\{(0, 3), (1, 5), (2, 7), (3, 9)\}$.
     \item \textbf{Diagrama sagital:}
           \begin{center}
             \begin{tikzpicture}[
@@ -346,7 +384,7 @@ Determina dominio, codominio, rango y el conjunto de pares ordenados.
   \item \facil{} Dada la función $f(x) = x + 2$ con dominio $\{1, 2, 3, 4\}$:
         \begin{enumerate}[label=\alph*)]
           \item Escribe el diagrama tabular.
-          \item Escribe el conjunto de pares ordenados.
+          \item Ubica esos puntos en el plano cartesiano.
           \item Calcula el rango.
         \end{enumerate}
 
@@ -356,7 +394,7 @@ Determina dominio, codominio, rango y el conjunto de pares ordenados.
 
   \item \medio{} A partir del diagrama sagital del Ejemplo R1, responde: ¿cuál es el rango? ¿Existe algún elemento del codominio que no sea imagen? ¿Cuáles?
 
-  \item \dificil{} Crea un ejemplo de una función con dominio $\{a, b, c\}$ y codominio $\{1, 2, 3, 4\}$ que NO use el 4 como imagen. Escríbela de las tres formas (sagital, tabular y pares ordenados).
+  \item \dificil{} Crea un ejemplo de una función con dominio $\{a, b, c\}$ y codominio $\{1, 2, 3, 4\}$ que NO use el 4 como imagen. Escríbela de las tres formas (sagital, tabular y gráfica).
 \end{enumerate}
 
 %\newpage %ajuste pag
@@ -411,9 +449,11 @@ Determina dominio, codominio, rango y el conjunto de pares ordenados.
 \begin{cuadrosolucion}
   \textbf{Solución:}
   \begin{itemize}
-    \item $\operatorname{Dom} f = \{1, 2, 3, 4\}$; \quad $\operatorname{Cod} f = \{a, b, c, d, e\}$; \quad $\operatorname{Rgo} f = \{a, b, c, e\}$.
-    \item \textbf{Inyectiva:} sí, cada elemento del codominio recibe a lo más una flecha (imágenes todas distintas).
-    \item \textbf{Sobreyectiva:} no, porque el elemento $d$ del codominio no recibe ninguna flecha ($\operatorname{Rgo} f \neq \operatorname{Cod} f$).
+    \item $\operatorname{Dom} f = \{1, 2, 3, 4\}$;\\[2pt]
+          $\operatorname{Cod} f = \{a, b, c, d, e\}$;\\[2pt]
+          $\operatorname{Rgo} f = \{a, b, c, e\}$.
+    \item \textbf{Inyectiva:} sí: las imágenes $a,b,c,e$ son todas distintas.
+    \item \textbf{Sobreyectiva:} no: el elemento $d$ del codominio no recibe flecha ($\operatorname{Rgo} f \neq \operatorname{Cod} f$).
     \item \textbf{Clasificación:} función \textbf{inyectiva} (no sobreyectiva).
   \end{itemize}
 \end{cuadrosolucion}
@@ -646,7 +686,7 @@ $$1 \mapsto b, \quad 2 \mapsto a, \quad 3 \mapsto c, \quad 4 \mapsto e, \quad 5 
 
   \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
     \setcounter{enumi}{14}
-    \item a) Tabla: $x: 1,2,3,4$; $f(x): 3,4,5,6$ \quad b) $\{(1,3), (2,4), (3,5), (4,6)\}$ \quad c) $\operatorname{Rgo} = \{3,4,5,6\}$
+    \item a) Diagrama tabular: $(1,3)$, $(2,4)$, $(3,5)$, $(4,6)$ \quad b) Puntos $(1,3)$, $(2,4)$, $(3,5)$ y $(4,6)$ en el plano \quad c) $\operatorname{Rgo} = \{3,4,5,6\}$
 
     \item $\{(2,1), (4,3), (6,5), (8,7)\}$
 
@@ -654,7 +694,7 @@ $$1 \mapsto b, \quad 2 \mapsto a, \quad 3 \mapsto c, \quad 4 \mapsto e, \quad 5 
 
     \item $\operatorname{Rgo} = \{1,3,4\}$; el elemento que no es imagen es el $2$ (y el $5$).
 
-    \item Ejemplo: $f = \{(a,1), (b,2), (c,3)\}$. Tabular: $x: a,b,c$; $f(x): 1,2,3$. Sagital con flechas $a\to1$, $b\to2$, $c\to3$.
+    \item Ejemplo: $f = \{(a,1), (b,2), (c,3)\}$. Diagrama tabular: $(a,1)$, $(b,2)$, $(c,3)$. Sagital con flechas $a\to1$, $b\to2$, $c\to3$.
   \end{enumerate}
 
   \newpage
@@ -681,11 +721,11 @@ $$1 \mapsto b, \quad 2 \mapsto a, \quad 3 \mapsto c, \quad 4 \mapsto e, \quad 5 
   \subsection*{Sección 5: Ejercicios Integradores}
 
   \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-    \item \textbf{Diagrama 1:} $\operatorname{Dom} = \{a,b,c,d\}$, $\operatorname{Cod} = \{1,2,3,4,5\}$, $\operatorname{Rgo} = \{1,3,4\}$; no inyectiva ($c$ y $d$ comparten imagen $4$), no sobreyectiva ($2$ y $5$ no reciben flechas). Solo función. Tabular: $a\to3, b\to1, c\to4, d\to4$.
+    \item \textbf{Diagrama 1:} $\operatorname{Dom} = \{a,b,c,d\}$, $\operatorname{Cod} = \{1,2,3,4,5\}$, $\operatorname{Rgo} = \{1,3,4\}$; no inyectiva ($c$ y $d$ comparten imagen $4$), no sobreyectiva ($2$ y $5$ no reciben flechas). Solo función. Diagrama tabular: $(a,3)$, $(b,1)$, $(c,4)$, $(d,4)$.
 
-          \textbf{Diagrama 2:} $\operatorname{Dom} = \{2,4,6,8,10,12\}$, $\operatorname{Cod} = \{a,b,c,d,e\}$, $\operatorname{Rgo} = \{a,b,c,e\}$; no inyectiva ($6,8 \to c$ y $10,12 \to e$), no sobreyectiva ($d$ sin flechas). Solo función. Tabular: $2\to b, 4\to a, 6\to c, 8\to c, 10\to e, 12\to e$.
+          \textbf{Diagrama 2:} $\operatorname{Dom} = \{2,4,6,8,10,12\}$, $\operatorname{Cod} = \{a,b,c,d,e\}$, $\operatorname{Rgo} = \{a,b,c,e\}$; no inyectiva ($6,8 \to c$ y $10,12 \to e$), no sobreyectiva ($d$ sin flechas). Solo función. Diagrama tabular: $(2,b)$, $(4,a)$, $(6,c)$, $(8,c)$, $(10,e)$, $(12,e)$.
 
-          \textbf{Diagrama 3:} $\operatorname{Dom} = \{1,2,3,4,5\}$, $\operatorname{Cod} = \{a,b,c,d,e\}$, $\operatorname{Rgo} = \{a,b,c,d,e\}$; inyectiva (todas las imágenes distintas) y sobreyectiva ($\operatorname{Rgo} = \operatorname{Cod}$) $\Rightarrow$ \textbf{biyectiva}. Tabular: $1\to b, 2\to a, 3\to c, 4\to e, 5\to d$.
+          \textbf{Diagrama 3:} $\operatorname{Dom} = \{1,2,3,4,5\}$, $\operatorname{Cod} = \{a,b,c,d,e\}$, $\operatorname{Rgo} = \{a,b,c,d,e\}$; inyectiva (todas las imágenes distintas) y sobreyectiva ($\operatorname{Rgo} = \operatorname{Cod}$) $\Rightarrow$ \textbf{biyectiva}. Diagrama tabular: $(1,b)$, $(2,a)$, $(3,c)$, $(4,e)$, $(5,d)$.
 
     \item $f(1)=-1$, $f(2)=1$, $f(3)=3$, $f(4)=5$, $f(5)=7$: inyectiva (imágenes distintas); no sobreyectiva ($0$ y $2$ no son imagen); $\operatorname{Dom} = \{1,2,3,4,5\}$, $\operatorname{Cod} = \{-1,0,1,2,3,5,7\}$, $\operatorname{Rgo} = \{-1,1,3,5,7\}$.
 

@@ -1,0 +1,2274 @@
+% ============================================================
+%  JUEGOS DIDÁCTICOS — CONJUNTO DE LOS NÚMEROS ENTEROS (Z)
+%  Curso: 1er Año — Educación Media General
+%  Documento para el docente: fabricación y aplicación en el aula
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+\usepackage{mathwizards-guia}
+\usepackage{longtable}
+
+\mwguia{Juegos Didácticos — Números Enteros}{Matemáticas $\cdot$ 1er Año}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\abs}[1]{\lvert #1\rvert}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\renewcommand{\arraystretch}{1.18}
+
+\begin{document}
+
+\mwportada{Juegos Didácticos — Números Enteros}{Diez juegos para el aula}{Orden $\cdot$ Valor absoluto $\cdot$ Operaciones $\cdot$ Propiedades $\cdot$ Agrupación}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación.} Este documento reúne diez juegos para enseñar el conjunto de los números enteros $\Z$ en 1er año. Cada juego sigue \emph{siempre la misma estructura}: ficha rápida, idea central, resumen en cinco pasos, reglas, turno paso a paso, final y puntuación, ejemplo resuelto, materiales, construcción, \textbf{patrones explícitos de fabricación} y configuración inicial. Todos los mazos, tableros, dados y tarjetas están resueltos y verificados: el docente solo recorta y juega.\\[4pt]
+  \textbf{Dos niveles.} Los \textbf{juegos 1 a 5} son de entrada: una comparación, una operación o, como máximo, dos pasos por turno. Los \textbf{juegos 6 a 10} profundizan el mismo contenido con más reglas, más piezas y auditoría entre compañeros.\\[4pt]
+  \textbf{Regla de oro:} el estudiante debe \emph{decir en voz alta la operación y el resultado} antes de mover una pieza. El juego evalúa la justificación, no la velocidad.
+\end{cuadroinfo}
+
+\setcounter{tocdepth}{1}
+\newpage
+\tableofcontents
+\newpage
+
+% ============================================================
+\section*{Cómo usar este documento}
+\addcontentsline{toc}{section}{Cómo usar este documento}
+% ============================================================
+
+Cada juego se presenta con los mismos diez bloques, para que el docente pueda preparar cualquiera de los diez sin releer todo:
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Ficha rápida:} jugadores, duración, objetivo y subtemas.
+  \item \textbf{La idea en una frase:} el «gancho» que se dice a los estudiantes.
+  \item \textbf{Cómo se juega en cinco pasos:} el resumen que cabe en el pizarrón.
+  \item \textbf{Reglas:} numeradas y sin ambigüedades.
+  \item \textbf{Turno paso a paso:} el procedimiento exacto del jugador.
+  \item \textbf{Final y puntuación:} cuándo termina y cómo se gana.
+  \item \textbf{Ejemplo resuelto:} una jugada completa con los cálculos a la vista.
+  \item \textbf{Materiales y construcción:} qué comprar, qué reciclar y cómo armarlo.
+  \item \textbf{Patrones explícitos:} todos los mazos, tableros y tarjetas ya resueltos, más la regla para fabricar más.
+  \item \textbf{Configuración inicial:} cómo se dispone la mesa antes de la primera jugada.
+\end{enumerate}
+
+\section*{Mapa general de los diez juegos}
+\addcontentsline{toc}{section}{Mapa general de los diez juegos}
+
+\subsection*{Juegos de entrada (1 a 5)}
+
+\begin{center}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}c l p{3.6cm} p{4.6cm} c c@{}}
+\toprule
+\textbf{\#} & \textbf{Juego} & \textbf{Subtemas de $\Z$} & \textbf{Mecánica central} & \textbf{Jug.} & \textbf{Tiempo}\\
+\midrule
+1 & \textbf{Guerra de pisos} & Orden y comparación & Guerra de cartas sobre la recta vertical & 2--4 & 15--20 min\\
+2 & \textbf{Memoria de opuestos} & Opuestos y valor absoluto & Memoria de parejas & 2--4 & 15--20 min\\
+3 & \textbf{La serpiente de los enteros} & Suma y resta de una operación & Tablero de 30 casillas con saltos & 2--4 & 20--25 min\\
+4 & \textbf{Bingo de productos} & Producto, cociente exacto y signos & Bingo de $4\times 4$ con dos mazos & 2--4 & 20--25 min\\
+5 & \textbf{La escalera de dos peldaños} & Combinadas de dos pasos & Carrera de 8 peldaños & 2--4 & 20--25 min\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Juegos de profundización (6 a 10)}
+
+\begin{center}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}c l p{3.6cm} p{4.6cm} c c@{}}
+\toprule
+\textbf{\#} & \textbf{Juego} & \textbf{Subtemas de $\Z$} & \textbf{Mecánica central} & \textbf{Jug.} & \textbf{Tiempo}\\
+\midrule
+6 & \textbf{Abismo y Cumbre} & Orden, opuestos, valor absoluto & Recta numérica y captura por simetría & 2--4 & 30--40 min\\
+7 & \textbf{Laboratorio de Antimateria} & Adición, sustracción, propiedades & Reactor de cargas y pares nulos & 2--4 & 25--35 min\\
+8 & \textbf{Vectores de Invasión} & Producto, cociente, signos, distributiva & Conquista de una matriz $6\times 6$ & 2 o 2 eq. & 30--45 min\\
+9 & \textbf{Cortocircuito $\Z$} & Combinadas sin agrupación & Dominó de expresiones con auditoría & 2--4 & 25--35 min\\
+10 & \textbf{Código Bóveda} & Combinadas con agrupación & Tres anillos concéntricos & 2--4 & 30--45 min\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Orden pedagógico sugerido:} $1\to2\to3\to4\to5\to6\to7\to8\to9\to10$. Cada juego supone dominado el anterior. Si el grupo ya domina lo básico, se puede empezar directamente en el Juego 6.
+
+\section*{Acuerdos comunes}
+\addcontentsline{toc}{section}{Acuerdos comunes}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Sin calculadora.} Cada jugador tiene una hoja de borrador (bitácora, multímetro o bloc de criptografía).
+  \item \textbf{Se canta la jugada.} Antes de mover o colocar una pieza se anuncia la operación y el resultado.
+  \item \textbf{El error se corrige, no se castiga dos veces.} Se pierde el turno o la pieza según la regla, pero siempre se explica dónde estuvo el error.
+  \item \textbf{Los roles rotan.} En equipos: operador, auditor, cronometrador y escriba.
+  \item \textbf{El material se cuida.} Cada mazo se guarda en un sobre rotulado para reutilizarlo en otros cursos.
+  \item \textbf{Se puede subir o bajar de nivel.} Los juegos 1 a 5 preparan los juegos 6 a 10; si un estudiante falla en un juego de profundización, conviene volver al juego de entrada equivalente.
+\end{enumerate}
+
+% ============================================================
+\clearpage
+\section{Juego 1 — Guerra de pisos: el ascensor y los sótanos}
+% ============================================================
+
+\subsection{Ficha rápida}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{3cm} p{12.2cm}@{}}
+\toprule
+\textbf{Jugadores} & 2 a 4 (con 2 es el más fluido)\\
+\textbf{Duración} & 15--20 minutos\\
+\textbf{Objetivo} & Comparar enteros y justificar el orden usando la recta numérica vertical del edificio.\\
+\textbf{Subtemas} & Relación de orden ($<$, $>$, $=$) y ubicación en la recta numérica.\\
+\textbf{Qué se evalúa} & Que el estudiante diga la relación correcta y la explique con la posición en la recta.\\
+\textbf{Nivel} & Entrada (más sencillo que el Juego 6).\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{La idea en una frase}
+
+\begin{cuadroextra}
+  «Cada carta es un piso del edificio: los negativos son sótanos y los positivos son pisos altos. En cada ronda se voltea una carta y gana el piso más alto. Lo importante no es la suerte: es saber leer el edificio.»
+\end{cuadroextra}
+
+\subsection{Cómo se juega en cinco pasos}
+
+\begin{enumerate}[leftmargin=*]
+  \item Se barajan las 40 cartas y se reparten en partes iguales, \textbf{boca abajo}.
+  \item Todos voltean a la vez la carta superior de su montón.
+  \item Quien tiene la carta \textbf{mayor} dice la relación en voz alta y la justifica.
+  \item Ese jugador se lleva las cartas de la ronda y las coloca al fondo de su montón.
+  \item Gana quien se quede con todas las cartas (o quien tenga más al terminar el tiempo).
+\end{enumerate}
+
+\subsection{Reglas}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Reparto.} Con 40 cartas: 20 y 20 si juegan 2; 13 y 13 con 14 aparte si juegan 3; 10 cada uno si juegan 4.
+  \item \textbf{Volteo simultáneo.} Todas las cartas se voltean a la vez; nadie puede mirar antes.
+  \item \textbf{Comparación obligatoria.} Quien tiene la carta mayor anuncia la relación completa: «$+3>-5$ porque $+3$ está más arriba en la recta». Si no la justifica, la ronda se anula.
+  \item \textbf{Error en la comparación.} Si el jugador con la carta mayor se equivoca al comparar o al justificar, \textbf{el rival se lleva las cartas} de la ronda.
+  \item \textbf{Empate (guerra de pisos).} Si dos o más cartas son iguales, cada jugador coloca una carta boca abajo y voltea otra. Quien gane esa segunda comparación se lleva \textbf{todas} las cartas acumuladas. No se pueden encadenar más de 3 guerras seguidas: en la cuarta, las cartas se apartan y se sigue.
+  \item \textbf{El $0$ es la planta baja.} Se compara como cualquier otro entero: pierde con los positivos y gana a los negativos.
+  \item \textbf{Cartas apartadas.} Si se anula una ronda o se llega al límite de guerras, las cartas van a un montón aparte y no vuelven al juego.
+  \item \textbf{Sin jugadas.} Si un jugador se queda sin cartas, sigue jugando con las que gane en las rondas siguientes; si no tiene ninguna, queda eliminado y gana el último que quede.
+\end{enumerate}
+
+\subsection{Turno paso a paso}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Voltea} tu carta superior.
+  \item \textbf{Mira} las cartas de los demás.
+  \item \textbf{Compara} mentalmente usando el edificio: más arriba, mayor.
+  \item Si tu carta es la mayor, \textbf{di la relación} y \textbf{justifícala}.
+  \item \textbf{Recoge} las cartas de la ronda (o entrégalas si te equivocaste).
+  \item \textbf{Coloca} las cartas ganadas al fondo de tu montón.
+\end{enumerate}
+
+\subsection{Final y puntuación}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{7.4cm} p{6.6cm}@{}}
+\toprule
+\textbf{Final} & \textbf{Quién gana}\\
+\midrule
+Un jugador reúne las 40 cartas & Ese jugador\\
+Se acaba el tiempo acordado (10 min) & Quien tenga más cartas\\
+Empate en cantidad & Quien tenga la carta de mayor valor\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Ejemplo resuelto}
+
+Voltean tres jugadores: $+3$, $-5$ y $0$.
+
+\begin{cuadrosolucion}
+\begin{enumerate}[leftmargin=*]
+  \item Orden en la recta: $-5<0<+3$.
+  \item Gana el jugador del $+3$ y debe decir: «$+3>0$ y $+3>-5$, porque $+3$ está más arriba».
+  \item Si dijera «$+3<-5$», el jugador del $0$ (el siguiente mayor) se lleva las tres cartas.
+  \item El ganador coloca las tres cartas al fondo de su montón.
+\end{enumerate}
+\end{cuadrosolucion}
+
+\subsection{Materiales}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{5.0cm} c p{7.4cm}@{}}
+\toprule
+\textbf{Material} & \textbf{Cantidad} & \textbf{Uso}\\
+\midrule
+Cartulina o cartón & 2 pliegos & 40 cartas\\
+Marcador negro y rojo & 1 de cada uno & Positivos y negativos\\
+Regla, lápiz y tijera & 1 de cada uno & Trazado y corte\\
+Reloj o cronómetro & 1 & Controlar los 10 minutos\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Construcción paso a paso}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Corte.} Divide la cartulina en \textbf{40 rectángulos de $6\text{ cm}\times 9\text{ cm}$}.
+  \item \textbf{Rotulado.} Escribe en el centro de cada carta un entero, en negro si es positivo o cero y en rojo si es negativo. Usa el Patrón A.
+  \item \textbf{Reverso.} Dibuja en el dorso un pequeño edificio con sótanos y pisos, para que todas las cartas se vean iguales por detrás.
+  \item \textbf{Control.} Verifica que haya exactamente \textbf{dos cartas de cada valor} y ninguna repetida de más.
+\end{enumerate}
+
+\subsection{Patrones explícitos (fabricación)}
+
+\subsubsection{Patrón A — Composición del mazo (40 cartas)}
+
+El mazo es \textbf{dos copias de cada entero desde $-10$ hasta $+9$}: 20 valores distintos, 40 cartas.
+
+\begin{center}
+\small
+\begin{tabular}{@{}r r@{\hspace{1.4cm}} r r@{\hspace{1.4cm}} r r@{\hspace{1.4cm}} r r@{}}
+\toprule
+\textbf{\#} & \textbf{Valor} & \textbf{\#} & \textbf{Valor} & \textbf{\#} & \textbf{Valor} & \textbf{\#} & \textbf{Valor}\\
+\midrule
+1 & $-10$ & 6 & $-5$ & 11 & $0$ & 16 & $+5$\\
+2 & $-9$ & 7 & $-4$ & 12 & $+1$ & 17 & $+6$\\
+3 & $-8$ & 8 & $-3$ & 13 & $+2$ & 18 & $+7$\\
+4 & $-7$ & 9 & $-2$ & 14 & $+3$ & 19 & $+8$\\
+5 & $-6$ & 10 & $-1$ & 15 & $+4$ & 20 & $+9$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{cuadroadvertencia}
+\textbf{Cómo fabricar otra baraja.} Elige 20 enteros consecutivos y haz dos copias de cada uno. Si quieres un juego más largo, usa 30 valores; si quieres uno más corto, usa 12.
+\end{cuadroadvertencia}
+
+\subsubsection{Patrón B — Las tres justificaciones válidas}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{4.4cm} p{9.6cm}@{}}
+\toprule
+\textbf{Situación} & \textbf{Justificación que debe decir el estudiante}\\
+\midrule
+Ambos positivos & «El de mayor valor numérico está más arriba».\\
+Un positivo y un negativo & «Todo positivo está por encima de todo negativo».\\
+Ambos negativos & «El de mayor valor absoluto está más abajo, así que es el menor».\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection{Patrón C — Regla de desempate}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{5.4cm} p{8.6cm}@{}}
+\toprule
+\textbf{Ronda} & \textbf{Qué se hace}\\
+\midrule
+Empate simple & Una carta boca abajo y se voltea otra.\\
+Empate en la guerra & Se repite una vez más.\\
+Tercera guerra seguida & Las cartas se apartan y se inicia una ronda nueva.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Configuración inicial}
+
+\begin{enumerate}[leftmargin=*]
+  \item Baraja las 40 cartas.
+  \item Reparte en partes iguales y coloca cada montón \textbf{boca abajo} frente a su jugador.
+  \item Deja el montón de cartas apartadas en el centro.
+  \item Prepara el cronómetro en 10 minutos.
+\end{enumerate}
+
+% ============================================================
+\clearpage
+\section{Juego 2 — Memoria de opuestos: el espejo del cero}
+% ============================================================
+
+\subsection{Ficha rápida}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{3cm} p{12.2cm}@{}}
+\toprule
+\textbf{Jugadores} & 2 a 4\\
+\textbf{Duración} & 15--20 minutos\\
+\textbf{Objetivo} & Reconocer números opuestos e iguales valores absolutos, y explicar por qué son equivalentes.\\
+\textbf{Subtemas} & Números opuestos (simétricos), valor absoluto $\abs{a}$, suma de opuestos igual a cero.\\
+\textbf{Qué se evalúa} & Que el estudiante justifique la pareja: opuestos o mismo valor absoluto.\\
+\textbf{Nivel} & Entrada (versión simple del radar del Juego 6).\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{La idea en una frase}
+
+\begin{cuadroextra}
+  «Cada pareja es un reflejo en el espejo del cero: dos números opuestos, o un número y su distancia al cero. Encuentra el reflejo y explícalo.»
+\end{cuadroextra}
+
+\subsection{Cómo se juega en cinco pasos}
+
+\begin{enumerate}[leftmargin=*]
+  \item Se colocan las 40 cartas \textbf{boca abajo} en una cuadrícula de $8\times 5$.
+  \item En tu turno volteas \textbf{dos cartas}.
+  \item Si forman una pareja válida, te las quedas y explicas por qué.
+  \item Si no forman pareja, las vuelves a tapar y pasa el turno.
+  \item Gana quien reúna más parejas.
+\end{enumerate}
+
+\subsection{Reglas}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Parejas válidas.} Hay dos tipos:
+  \begin{itemize}
+    \item \textbf{Opuestos:} $x$ y $-x$ (por ejemplo, $+7$ y $-7$). Se justifica diciendo «son opuestos porque suman $0$».
+    \item \textbf{Mismo valor absoluto:} una carta escrita como $\abs{-15}$ y otra con $+15$. Se justifica diciendo «$\abs{-15}=15$, es el mismo valor».
+  \end{itemize}
+  \item \textbf{Dos cartas por turno.} Solo se voltean dos cartas; si no son pareja, se tapan en el mismo lugar.
+  \item \textbf{Pareja con explicación.} Si el jugador no puede explicar la pareja, las cartas se vuelven a tapar y pierde el turno.
+  \item \textbf{Turno extra.} Quien acierta una pareja juega otra vez.
+  \item \textbf{Puntos.} Cada pareja vale \textbf{1 punto}; cada pareja de valor absoluto explicada correctamente vale \textbf{2 puntos}.
+  \item \textbf{Sin pistas.} No se puede señalar ni soplar la ubicación de las cartas; si ocurre, la pareja se aparta.
+\end{enumerate}
+
+\subsection{Turno paso a paso}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Elige} dos cartas y voltéalas.
+  \item \textbf{Comprueba} si son opuestos o si tienen el mismo valor absoluto.
+  \item \textbf{Explica} en voz alta la razón.
+  \item Si es pareja, \textbf{retíralas} y suma los puntos; repite turno.
+  \item Si no es pareja, \textbf{tápalas} y pasa el turno.
+\end{enumerate}
+
+\subsection{Final y puntuación}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{8.6cm} c@{}}
+\toprule
+\textbf{Concepto} & \textbf{Puntos}\\
+\midrule
+Pareja de opuestos & $1$\\
+Pareja de valor absoluto (bien explicada) & $2$\\
+Pareja mal explicada & $0$ (se vuelve a tapar)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Gana quien sume más puntos cuando se acaban las 20 parejas. Desempate: más parejas de valor absoluto.
+
+\subsection{Ejemplo resuelto}
+
+El jugador voltea $\mathbf{-9}$ y $\mathbf{+9}$.
+
+\begin{cuadrosolucion}
+\begin{enumerate}[leftmargin=*]
+  \item Comprueba: $-9+9=0$.
+  \item Explica: «Son opuestos: están a la misma distancia del cero y suman $0$».
+  \item Retira la pareja y gana $1$ punto. Como acertó, juega otra vez.
+\end{enumerate}
+En el siguiente turno voltea $\abs{-15}$ y $+15$:
+\begin{enumerate}[leftmargin=*]
+  \item Resuelve: $\abs{-15}=15$.
+  \item Explica: «Es el mismo valor, porque el valor absoluto es la distancia al cero».
+  \item Retira la pareja y gana $2$ puntos.
+\end{enumerate}
+\end{cuadrosolucion}
+
+\subsection{Materiales}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{5.0cm} c p{7.4cm}@{}}
+\toprule
+\textbf{Material} & \textbf{Cantidad} & \textbf{Uso}\\
+\midrule
+Cartulina blanca & 2 pliegos & 40 cartas\\
+Cartulina de color (opcional) & 1 pliego & Cartas de valor absoluto\\
+Marcadores negro y rojo & 1 de cada uno & Rotular\\
+Regla, lápiz y tijera & 1 de cada uno & Trazado y corte\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Construcción paso a paso}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Corte.} Divide la cartulina en \textbf{40 rectángulos de $6\text{ cm}\times 9\text{ cm}$}.
+  \item \textbf{Cartas de opuestos (24).} Escribe los pares $\pm1$ a $\pm12$ del Patrón A, en rojo los negativos y en negro los positivos.
+  \item \textbf{Cartas de valor absoluto (16).} En cartulina de color escribe las 8 expresiones $\abs{-v}$ del Patrón B y sus 8 resultados $+v$.
+  \item \textbf{Reverso.} Dibuja el mismo símbolo del espejo en el dorso de las 40 cartas.
+\end{enumerate}
+
+\subsection{Patrones explícitos (fabricación)}
+
+\subsubsection{Patrón A — 12 pares de opuestos (24 cartas)}
+
+\begin{center}
+\small
+\begin{tabular}{@{}c l@{\hspace{1.2cm}} c l@{\hspace{1.2cm}} c l@{}}
+\toprule
+\textbf{Par} & \textbf{Cartas} & \textbf{Par} & \textbf{Cartas} & \textbf{Par} & \textbf{Cartas}\\
+\midrule
+1 & $+1$ y $-1$ & 5 & $+5$ y $-5$ & 9 & $+9$ y $-9$\\
+2 & $+2$ y $-2$ & 6 & $+6$ y $-6$ & 10 & $+10$ y $-10$\\
+3 & $+3$ y $-3$ & 7 & $+7$ y $-7$ & 11 & $+11$ y $-11$\\
+4 & $+4$ y $-4$ & 8 & $+8$ y $-8$ & 12 & $+12$ y $-12$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection{Patrón B — 8 pares de valor absoluto (16 cartas)}
+
+\begin{center}
+\small
+\begin{tabular}{@{}r c c l@{}}
+\toprule
+\textbf{\#} & \textbf{Carta A} & \textbf{Carta B} & \textbf{Verificación}\\
+\midrule
+1 & $\abs{-15}$ & $+15$ & $\abs{-15}=15$\\
+2 & $\abs{-18}$ & $+18$ & $\abs{-18}=18$\\
+3 & $\abs{-20}$ & $+20$ & $\abs{-20}=20$\\
+4 & $\abs{-25}$ & $+25$ & $\abs{-25}=25$\\
+5 & $\abs{-30}$ & $+30$ & $\abs{-30}=30$\\
+6 & $\abs{-40}$ & $+40$ & $\abs{-40}=40$\\
+7 & $\abs{-50}$ & $+50$ & $\abs{-50}=50$\\
+8 & $\abs{-100}$ & $+100$ & $\abs{-100}=100$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{cuadroadvertencia}
+\textbf{Cómo fabricar nuevos pares.} Usa valores que no aparezcan en el Patrón A, para que no haya dos cartas iguales en el mazo. En el Patrón B, todos los valores son mayores que 12.
+\end{cuadroadvertencia}
+
+\subsubsection{Patrón C — Cuadrícula de colocación}
+
+Las 40 cartas se colocan en \textbf{8 columnas por 5 filas}. Al final de cada turno, cada carta vuelve exactamente a su posición: así el juego es de memoria y no de azar.
+
+\subsection{Configuración inicial}
+
+\begin{enumerate}[leftmargin=*]
+  \item Baraja las 40 cartas.
+  \item Colócalas boca abajo en una cuadrícula de 8 columnas por 5 filas.
+  \item Deja una hoja de puntos por jugador.
+  \item Acuerda quién empieza.
+\end{enumerate}
+
+% ============================================================
+\clearpage
+\section{Juego 3 — La serpiente de los enteros: suma y resta en un salto}
+% ============================================================
+
+\subsection{Ficha rápida}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{3cm} p{12.2cm}@{}}
+\toprule
+\textbf{Jugadores} & 2 a 4\\
+\textbf{Duración} & 20--25 minutos\\
+\textbf{Objetivo} & Resolver sumas y restas de enteros de una sola operación y usar el resultado para avanzar o retroceder en un tablero.\\
+\textbf{Subtemas} & Adición y sustracción de enteros, signo del resultado, desplazamiento en la recta.\\
+\textbf{Qué se evalúa} & Que el estudiante resuelva la operación y explique si avanza o retrocede.\\
+\textbf{Nivel} & Entrada (una sola operación; el Juego 7 trabaja las propiedades).\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{La idea en una frase}
+
+\begin{cuadroextra}
+  «La serpiente es una recta numérica del 0 al 30. Cada carta te da un salto: si el resultado es positivo avanzas, si es negativo retrocedes, y si es cero te quedas quieto.»
+\end{cuadroextra}
+
+\subsection{Cómo se juega en cinco pasos}
+
+\begin{enumerate}[leftmargin=*]
+  \item Todos los jugadores colocan su ficha en la casilla \textbf{0}.
+  \item En tu turno sacas una carta del mazo y resuelves la operación en voz alta.
+  \item Avanzas tantas casillas como indique el resultado; si es negativo, retrocedes.
+  \item Si el salto te pasa del 30, rebotas: el exceso se cuenta hacia atrás.
+  \item Gana quien caiga \textbf{exactamente} en la casilla 30.
+\end{enumerate}
+
+\subsection{Reglas}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Un salto por turno.} Se saca una sola carta y se resuelve una sola operación.
+  \item \textbf{Cálculo en voz alta.} El jugador dice la operación y el resultado antes de mover: «$2-(-3)=+5$, avanzo 5».
+  \item \textbf{Resultado positivo o negativo.} Positivo: avanza. Negativo: retrocede. Cero: no se mueve.
+  \item \textbf{Suelo y techo.} Nadie puede quedar por debajo de la casilla 0: si el retroceso lo llevaría allí, se queda en 0.
+  \item \textbf{Rebote en el 30.} Si el salto supera el 30, se cuenta el exceso hacia atrás: desde 28 con $+5$ se llega a 29, 30, 29, 28, 27, es decir, a la casilla 27.
+  \item \textbf{Error de cálculo.} Si el resultado es incorrecto, el jugador \textbf{no mueve} y el turno pasa. Los rivales pueden pedir la comprobación en la recta del tablero.
+  \item \textbf{Mazo agotado.} Cuando se acaban las 24 cartas, se barajan otra vez.
+  \item \textbf{Empate.} Si dos jugadores llegan al 30 en la misma ronda, gana quien haya usado menos cartas.
+\end{enumerate}
+
+\subsection{Turno paso a paso}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Saca} la carta superior del mazo.
+  \item \textbf{Resuelve} la operación y di el resultado.
+  \item \textbf{Decide} si avanzas, retrocedes o te quedas.
+  \item \textbf{Mueve} la ficha contando las casillas en voz alta.
+  \item \textbf{Comprueba} si llegaste exactamente al 30.
+\end{enumerate}
+
+\subsection{Final y puntuación}
+
+Gana quien llegue \textbf{exactamente} a la casilla 30. Si se acaba el tiempo acordado, gana quien esté más cerca del 30 (y, en caso de empate, quien tenga el turno).
+
+\subsection{Ejemplo resuelto}
+
+El jugador está en la casilla 12 y saca la carta $2-(-3)$.
+
+\begin{cuadrosolucion}
+\begin{enumerate}[leftmargin=*]
+  \item Resuelve: $2-(-3)=2+3=+5$.
+  \item Explica: «Restar un negativo es sumar; avanzo 5».
+  \item Cuenta: 13, 14, 15, 16, 17. Queda en la casilla 17.
+\end{enumerate}
+Otro ejemplo con retroceso: está en 8 y saca $-6+2$.
+\begin{enumerate}[leftmargin=*]
+  \item Resuelve: $-6+2=-4$.
+  \item Explica: «El resultado es negativo; retrocedo 4».
+  \item Cuenta: 7, 6, 5, 4. Queda en la casilla 4.
+\end{enumerate}
+\end{cuadrosolucion}
+
+\subsection{Materiales}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{5.0cm} c p{7.4cm}@{}}
+\toprule
+\textbf{Material} & \textbf{Cantidad} & \textbf{Uso}\\
+\midrule
+Cartulina o cartón & 1 pliego grande & Tablero de 30 casillas\\
+Cartulina & 1 pliego & 24 cartas\\
+Fichas o tapas & 1 por jugador & Marcadores de posición\\
+Marcadores negro y rojo & 1 de cada uno & Rotular\\
+Regla, lápiz y tijera & 1 de cada uno & Trazado y corte\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Construcción paso a paso}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Tablero.} Dibuja una serpiente o un camino de \textbf{30 casillas numeradas del 0 al 30}, con curvas amplias para que quepan las fichas.
+  \item \textbf{Casillas especiales.} Marca en color el 0 («inicio») y el 30 («meta»).
+  \item \textbf{Cartas.} Recorta 24 tarjetas de $6\text{ cm}\times 9\text{ cm}$ y copia las operaciones del Patrón A.
+  \item \textbf{Control.} Comprueba que ninguna operación dé un resultado mayor que 8 ni menor que $-6$.
+\end{enumerate}
+
+\subsection{Patrones explícitos (fabricación)}
+
+\subsubsection{Patrón A — Las 24 cartas (mazo completo)}
+
+\begin{center}
+\footnotesize
+\begin{tabular}{@{}r l r c@{\hspace{0.7cm}} r l r c@{}}
+\toprule
+\textbf{\#} & \textbf{Operación} & \textbf{Result.} & \textbf{Tipo} & \textbf{\#} & \textbf{Operación} & \textbf{Result.} & \textbf{Tipo}\\
+\midrule
+1 & $3+(-8)$ & $-5$ & Suma & 13 & $-4-(-3)$ & $-1$ & Resta\\
+2 & $-6+2$ & $-4$ & Suma & 14 & $6-9$ & $-3$ & Resta\\
+3 & $7+(-7)$ & $0$ & Suma & 15 & $0-6$ & $-6$ & Resta\\
+4 & $5+(-2)$ & $+3$ & Suma & 16 & $-1-5$ & $-6$ & Resta\\
+5 & $-2+7$ & $+5$ & Suma & 17 & $2-(-3)$ & $+5$ & Resta\\
+6 & $-5+3$ & $-2$ & Suma & 18 & $-8-(-4)$ & $-4$ & Resta\\
+7 & $8+(-5)$ & $+3$ & Suma & 19 & $3-(-4)$ & $+7$ & Resta\\
+8 & $-6+8$ & $+2$ & Suma & 20 & $1-(-1)$ & $+2$ & Resta\\
+9 & $4+(-4)$ & $0$ & Suma & 21 & $4-6$ & $-2$ & Resta\\
+10 & $2+5$ & $+7$ & Suma & 22 & $-7-(-3)$ & $-4$ & Resta\\
+11 & $-9+4$ & $-5$ & Suma & 23 & $6-2$ & $+4$ & Resta\\
+12 & $1+6$ & $+7$ & Suma & 24 & $-1-(-1)$ & $0$ & Resta\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Composición:} 12 sumas y 12 restas; resultados entre $-6$ y $+7$; tres cartas con resultado $0$.
+
+\subsubsection{Patrón B — Regla del salto}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{5.2cm} p{9cm}@{}}
+\toprule
+\textbf{Resultado} & \textbf{Movimiento}\\
+\midrule
+Positivo & Avanza esa cantidad de casillas.\\
+Negativo & Retrocede esa cantidad de casillas (sin bajar de 0).\\
+Cero & No se mueve.\\
+Se pasa del 30 & Rebote: el exceso se cuenta hacia atrás.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{cuadroadvertencia}
+\textbf{Cómo fabricar nuevas cartas.} Elige dos enteros entre $-9$ y $+9$ y una operación (suma o resta). Comprueba que el resultado quede entre $-6$ y $+8$ para que el tablero de 30 casillas siga siendo jugable.
+\end{cuadroadvertencia}
+
+\subsection{Configuración inicial}
+
+\begin{enumerate}[leftmargin=*]
+  \item Extiende el tablero en el centro de la mesa.
+  \item Cada jugador coloca su ficha en la casilla \textbf{0}.
+  \item Baraja las 24 cartas y déjalas boca abajo junto al tablero.
+  \item Acuerda el orden de turno y deja una hoja de borrador por jugador.
+\end{enumerate}
+
+% ============================================================
+\clearpage
+\section{Juego 4 — Bingo de productos: la fábrica de signos}
+% ============================================================
+
+\subsection{Ficha rápida}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{3cm} p{12.2cm}@{}}
+\toprule
+\textbf{Jugadores} & 2 a 4\\
+\textbf{Duración} & 20--25 minutos\\
+\textbf{Objetivo} & Calcular productos y cocientes exactos de enteros y aplicar la regla de los signos.\\
+\textbf{Subtemas} & Multiplicación y división exacta en $\Z$, regla de los signos, divisor distinto de cero.\\
+\textbf{Qué se evalúa} & Que el estudiante anuncie el resultado y justifique el signo.\\
+\textbf{Nivel} & Entrada (una sola operación; el Juego 8 incluye distributiva y estrategia).\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{La idea en una frase}
+
+\begin{cuadroextra}
+  «Dos cartas deciden la operación: una da el primer factor y la otra el segundo. Si el resultado está en tu cartón, lo marcas; el primero en completar una línea gana.»
+\end{cuadroextra}
+
+\subsection{Cómo se juega en cinco pasos}
+
+\begin{enumerate}[leftmargin=*]
+  \item Cada jugador recibe un \textbf{cartón de $4\times 4$} con 16 resultados.
+  \item Se barajan los dos mazos: \textbf{mazo A} y \textbf{mazo B}, con los enteros de $-6$ a $+6$ sin el cero.
+  \item En cada ronda se voltea una carta de cada mazo y una moneda decide: \textbf{cara = multiplicar}, \textbf{sello = dividir}.
+  \item Todos calculan la operación; quien tenga ese resultado en su cartón lo marca.
+  \item Gana quien complete primero una fila, una columna o una diagonal.
+\end{enumerate}
+
+\subsection{Reglas}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Dos cartas, una operación.} Se usan los dos números volteados; no se puede elegir otro.
+  \item \textbf{División exacta.} Si sale dividir y el cociente no es exacto, \textbf{se multiplica obligatoriamente}. No se permite dividir entre cero (el mazo no tiene ceros).
+  \item \textbf{Canto obligatorio.} El jugador que marca debe decir la operación y el signo: «$-4\cdot 3=-12$, menos por más da menos». Si no lo dice, no puede marcar.
+  \item \textbf{Marcado.} Se marca con una ficha o una X. Si el resultado no está en el cartón, no se marca nada.
+  \item \textbf{Una casilla por ronda.} Aunque el resultado aparezca dos veces en el cartón, solo se marca una casilla por ronda.
+  \item \textbf{Verificación.} Cualquier jugador puede pedir la comprobación; si el que marcó se equivocó, retira la ficha.
+  \item \textbf{Mazos agotados.} Se barajan de nuevo y se continúa.
+  \item \textbf{Empate.} Si dos jugadores completan línea en la misma ronda, gana quien tenga más casillas marcadas.
+\end{enumerate}
+
+\subsection{Turno paso a paso}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Mira} las dos cartas volteadas.
+  \item \textbf{Decide} la operación según la moneda.
+  \item \textbf{Comprueba} que la división sea exacta; si no, multiplica.
+  \item \textbf{Di} el resultado y justifica el signo.
+  \item \textbf{Marca} la casilla si el resultado está en tu cartón.
+  \item \textbf{Comprueba} si completaste una línea.
+\end{enumerate}
+
+\subsection{Final y puntuación}
+
+Gana quien complete primero \textbf{una fila, una columna o una diagonal} de 4 casillas marcadas. En caso de empate, gana quien tenga más casillas marcadas en total.
+
+\subsection{Ejemplo resuelto}
+
+Se voltean las cartas $A=-4$ y $B=3$, y la moneda sale \textbf{cara (multiplicar)}.
+
+\begin{cuadrosolucion}
+\begin{enumerate}[leftmargin=*]
+  \item Operación: $(-4)\cdot 3$.
+  \item Signo: menos por más da menos.
+  \item Resultado: $-12$.
+  \item Si el cartón tiene el $-12$, el jugador lo marca y dice: «$-4$ por $3$ es $-12$».
+\end{enumerate}
+Si la moneda hubiera salido \textbf{sello (dividir)}: $(-4)\div 3$ no es exacta, así que se multiplica obligatoriamente y el resultado vuelve a ser $-12$.
+\end{cuadrosolucion}
+
+\subsection{Materiales}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{5.0cm} c p{7.4cm}@{}}
+\toprule
+\textbf{Material} & \textbf{Cantidad} & \textbf{Uso}\\
+\midrule
+Cartulina & 3 pliegos & 4 cartones y los mazos A y B\\
+Fichas, tapas o botones & 20 por jugador & Marcar casillas\\
+Moneda & 1 & Elegir multiplicar o dividir\\
+Marcadores & 2 & Rotular cartones y cartas\\
+Regla, lápiz y tijera & 1 de cada uno & Trazado y corte\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Construcción paso a paso}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Cartones.} Recorta 4 cartones de $16\text{ cm}\times 16\text{ cm}$ y divide cada uno en una cuadrícula $4\times 4$ de $4\text{ cm}$ por lado.
+  \item \textbf{Valores.} Copia en cada cartón los 16 valores del Patrón B.
+  \item \textbf{Mazos.} Recorta 24 cartas de $5\text{ cm}\times 7\text{ cm}$: 12 para el mazo A y 12 para el mazo B, con los valores del Patrón A.
+  \item \textbf{Reverso.} Usa un color para el mazo A y otro para el mazo B.
+\end{enumerate}
+
+\subsection{Patrones explícitos (fabricación)}
+
+\subsubsection{Patrón A — Los dos mazos (12 cartas cada uno)}
+
+\begin{center}
+\small
+\begin{tabular}{@{}l c c c c c c c c c c c c@{}}
+\toprule
+\textbf{Mazo A} & $-6$ & $-5$ & $-4$ & $-3$ & $-2$ & $-1$ & $+1$ & $+2$ & $+3$ & $+4$ & $+5$ & $+6$\\
+\textbf{Mazo B} & $-6$ & $-5$ & $-4$ & $-3$ & $-2$ & $-1$ & $+1$ & $+2$ & $+3$ & $+4$ & $+5$ & $+6$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Los dos mazos son \textbf{idénticos}: cada uno tiene una carta de cada entero de $-6$ a $+6$, sin el cero.
+
+\subsubsection{Patrón B — Los 4 cartones}
+
+Cada cartón es una cuadrícula $4\times 4$ y se lee por filas.
+
+\begin{center}
+\begin{minipage}{0.46\linewidth}\centering\small
+  \textbf{Cartón 1}\\[2pt]
+  \begin{tabular}{|c|c|c|c|}\hline
+    $-16$ & $-4$ & $-12$ & $-2$\\\hline
+    $-5$ & $-1$ & $+16$ & $+10$\\\hline
+    $+5$ & $+12$ & $-9$ & $-15$\\\hline
+    $+4$ & $+2$ & $+9$ & $-10$\\\hline
+  \end{tabular}
+\end{minipage}\hfill
+\begin{minipage}{0.46\linewidth}\centering\small
+  \textbf{Cartón 2}\\[2pt]
+  \begin{tabular}{|c|c|c|c|}\hline
+    $-15$ & $+1$ & $+12$ & $+10$\\\hline
+    $+16$ & $+5$ & $-4$ & $-3$\\\hline
+    $-20$ & $-9$ & $+8$ & $-6$\\\hline
+    $-2$ & $-10$ & $+2$ & $-16$\\\hline
+  \end{tabular}
+\end{minipage}
+\end{center}
+
+\vspace{6pt}
+
+\begin{center}
+\begin{minipage}{0.46\linewidth}\centering\small
+  \textbf{Cartón 3}\\[2pt]
+  \begin{tabular}{|c|c|c|c|}\hline
+    $-16$ & $-3$ & $+2$ & $+10$\\\hline
+    $+3$ & $-4$ & $-8$ & $+1$\\\hline
+    $-25$ & $-12$ & $-1$ & $+6$\\\hline
+    $+4$ & $-5$ & $+9$ & $+8$\\\hline
+  \end{tabular}
+\end{minipage}\hfill
+\begin{minipage}{0.46\linewidth}\centering\small
+  \textbf{Cartón 4}\\[2pt]
+  \begin{tabular}{|c|c|c|c|}\hline
+    $+10$ & $+2$ & $-1$ & $+3$\\\hline
+    $-10$ & $-20$ & $+9$ & $+1$\\\hline
+    $-15$ & $-12$ & $-5$ & $-6$\\\hline
+    $-8$ & $+12$ & $+5$ & $+16$\\\hline
+  \end{tabular}
+\end{minipage}
+\end{center}
+
+\subsubsection{Patrón C — Clave de operaciones (para el docente)}
+
+Todos los valores de los cartones se pueden obtener con una operación de los dos mazos.
+
+\begin{center}
+\small
+\begin{tabular}{@{}r l@{\hspace{1.1cm}} r l@{\hspace{1.1cm}} r l@{}}
+\toprule
+\textbf{Valor} & \textbf{Operación} & \textbf{Valor} & \textbf{Operación} & \textbf{Valor} & \textbf{Operación}\\
+\midrule
+$-25$ & $-5\cdot 5$ & $-5$ & $-5\cdot 1$ & $+3$ & $1\cdot 3$\\
+$-20$ & $-5\cdot 4$ & $-4$ & $-2\cdot 2$ & $+4$ & $2\cdot 2$\\
+$-16$ & $-4\cdot 4$ & $-3$ & $-3\cdot 1$ & $+5$ & $1\cdot 5$\\
+$-15$ & $-5\cdot 3$ & $-2$ & $-2\cdot 1$ & $+6$ & $2\cdot 3$\\
+$-12$ & $-4\cdot 3$ & $-1$ & $-1\cdot 1$ & $+8$ & $2\cdot 4$\\
+$-10$ & $-5\cdot 2$ & $+1$ & $1\cdot 1$ & $+9$ & $3\cdot 3$\\
+$-9$ & $-3\cdot 3$ & $+2$ & $1\cdot 2$ & $+10$ & $2\cdot 5$\\
+$-8$ & $-4\cdot 2$ & $+12$ & $3\cdot 4$ & $+16$ & $4\cdot 4$\\
+$-6$ & $-3\cdot 2$ & & & & \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{cuadroadvertencia}
+\textbf{Cómo fabricar otros cartones.} Elige 16 valores de la clave y repártelos en la cuadrícula sin repetir ninguno dentro del mismo cartón. Cualquier valor que no aparezca en la clave hace el cartón imposible de completar.
+\end{cuadroadvertencia}
+
+\subsection{Configuración inicial}
+
+\begin{enumerate}[leftmargin=*]
+  \item Entrega un cartón y 16 fichas a cada jugador.
+  \item Baraja el mazo A y el mazo B por separado y colócalos boca abajo.
+  \item Deja la moneda en el centro.
+  \item Acuerda quién voltea las cartas en la primera ronda (se rota en cada ronda).
+\end{enumerate}
+
+% ============================================================
+\clearpage
+\section{Juego 5 — La escalera de dos peldaños: sube calculando}
+% ============================================================
+
+\subsection{Ficha rápida}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{3cm} p{12.2cm}@{}}
+\toprule
+\textbf{Jugadores} & 2 a 4\\
+\textbf{Duración} & 20--25 minutos\\
+\textbf{Objetivo} & Resolver operaciones combinadas de \textbf{dos pasos} sin signos de agrupación, respetando la jerarquía.\\
+\textbf{Subtemas} & Adición, sustracción, multiplicación y división exacta; prioridad de la multiplicación y la división.\\
+\textbf{Qué se evalúa} & Que el estudiante resuelva primero el producto o cociente y después la suma o resta.\\
+\textbf{Nivel} & Entrada (dos operaciones; el Juego 9 llega a cuatro operaciones con auditoría).\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{La idea en una frase}
+
+\begin{cuadroextra}
+  «Cada jugador tiene una escalera de 8 peldaños. Cada peldaño es una operación de dos pasos: si la resuelves bien, subes; si te equivocas, te quedas donde estás.»
+\end{cuadroextra}
+
+\subsection{Cómo se juega en cinco pasos}
+
+\begin{enumerate}[leftmargin=*]
+  \item Cada jugador recibe una \textbf{escalera} con 8 peldaños (una de las cuatro variantes).
+  \item En tu turno resuelves el peldaño en el que estás.
+  \item Si el resultado es correcto, \textbf{subes un peldaño}; si no, te quedas y pasa el turno.
+  \item Los demás verifican la respuesta en la clave.
+  \item Gana quien llegue primero al peldaño 8.
+\end{enumerate}
+
+\subsection{Reglas}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Un peldaño por turno.} Solo se resuelve el peldaño actual; no se puede saltar.
+  \item \textbf{Dos pasos, en orden.} Primero multiplicación o división; después adición o sustracción. El jugador debe decir el paso intermedio: «$4\cdot(-2)=-8$; luego $3-8=-5$».
+  \item \textbf{Sin calculadora.} Se permite una hoja de borrador.
+  \item \textbf{Respuesta correcta.} Si el resultado coincide con la clave, sube un peldaño. Si es incorrecto, no sube y pasa el turno.
+  \item \textbf{Ayuda.} Si un jugador se traba, puede pedir una pista al docente, pero pierde el turno aunque acierte después.
+  \item \textbf{Empate.} Si dos jugadores llegan al peldaño 8 en la misma ronda, gana quien lo haya resuelto con menos pistas.
+\end{enumerate}
+
+\subsection{Turno paso a paso}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Lee} la expresión del peldaño actual.
+  \item \textbf{Identifica} la operación de mayor jerarquía (producto o cociente).
+  \item \textbf{Resuélvela} y escribe el resultado parcial.
+  \item \textbf{Resuelve} la suma o resta final.
+  \item \textbf{Di} el resultado en voz alta.
+  \item \textbf{Sube} un peldaño si es correcto.
+\end{enumerate}
+
+\subsection{Final y puntuación}
+
+Gana quien llegue primero al \textbf{peldaño 8}. No hay puntos: la escalera mide avance.
+
+\subsection{Ejemplo resuelto}
+
+Peldaño: $3+4\cdot(-2)$.
+
+\begin{cuadrosolucion}
+\begin{enumerate}[leftmargin=*]
+  \item Primero el producto: $4\cdot(-2)=-8$.
+  \item Después la suma: $3+(-8)=-5$.
+  \item El jugador dice: «$3+4\cdot(-2)=-5$» y sube un peldaño.
+\end{enumerate}
+\textbf{Error típico:} resolver de izquierda a derecha, $3+4=7$ y $7\cdot(-2)=-14$. Ese resultado no está en la clave.
+\end{cuadrosolucion}
+
+\subsection{Materiales}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{5.0cm} c p{7.4cm}@{}}
+\toprule
+\textbf{Material} & \textbf{Cantidad} & \textbf{Uso}\\
+\midrule
+Cartulina & 2 pliegos & 4 escaleras (una por jugador)\\
+Marcadores & 2 & Rotular peldaños\\
+Regla, lápiz y tijera & 1 de cada uno & Trazado\\
+Hoja de borrador & 1 por jugador & Cálculos\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Construcción paso a paso}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Escaleras.} Recorta 4 tiras de $10\text{ cm}\times 28\text{ cm}$ y dibuja 8 peldaños numerados de abajo hacia arriba.
+  \item \textbf{Expresiones.} Escribe una expresión del Patrón A, B, C o D en cada peldaño (una variante por escalera).
+  \item \textbf{Clave.} Copia la tabla de resultados del Patrón E en el reverso de cada escalera, para la verificación.
+  \item \textbf{Forrado.} Si quieres reutilizarlas, pega las tiras sobre cartón y cúbrelas con cinta transparente.
+\end{enumerate}
+
+\subsection{Patrones explícitos (fabricación)}
+
+\subsubsection{Patrón A — Escalera A (peldaños de abajo hacia arriba)}
+
+\begin{center}
+\small
+\begin{tabular}{@{}r l r@{}}
+\toprule
+\textbf{Peldaño} & \textbf{Expresión} & \textbf{Resultado}\\
+\midrule
+1 & $-3+4\cdot 2$ & $+5$\\
+2 & $5-3\cdot(-2)$ & $+11$\\
+3 & $-2\cdot 3+8$ & $+2$\\
+4 & $7+(-2)\cdot 4$ & $-1$\\
+5 & $4\cdot(-1)-6$ & $-10$\\
+6 & $-8+(-3)\cdot(-2)$ & $-2$\\
+7 & $2\cdot 5-7$ & $+3$\\
+8 & $-6-3\cdot(-2)$ & $0$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection{Patrón B — Escalera B}
+
+\begin{center}
+\small
+\begin{tabular}{@{}r l r@{}}
+\toprule
+\textbf{Peldaño} & \textbf{Expresión} & \textbf{Resultado}\\
+\midrule
+1 & $-12\div 4+5$ & $+2$\\
+2 & $8\div(-2)-3$ & $-7$\\
+3 & $18\div(-3)+1$ & $-5$\\
+4 & $-20\div 5-2$ & $-6$\\
+5 & $6+(-15)\div 3$ & $+1$\\
+6 & $-10\div(-2)-8$ & $-3$\\
+7 & $3-(-24)\div 6$ & $+7$\\
+8 & $-9+12\div(-4)$ & $-12$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection{Patrón C — Escalera C}
+
+\begin{center}
+\small
+\begin{tabular}{@{}r l r@{}}
+\toprule
+\textbf{Peldaño} & \textbf{Expresión} & \textbf{Resultado}\\
+\midrule
+1 & $-5+3\cdot 4$ & $+7$\\
+2 & $6-2\cdot(-2)$ & $+10$\\
+3 & $-2\cdot(-3)+2$ & $+8$\\
+4 & $9+(-4)\cdot 3$ & $-3$\\
+5 & $-7-(-2)\cdot 5$ & $+3$\\
+6 & $3\cdot(-3)+11$ & $+2$\\
+7 & $-1+6\cdot 2$ & $+11$\\
+8 & $8-(-4)\cdot(-2)$ & $0$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection{Patrón D — Escalera D}
+
+\begin{center}
+\small
+\begin{tabular}{@{}r l r@{}}
+\toprule
+\textbf{Peldaño} & \textbf{Expresión} & \textbf{Resultado}\\
+\midrule
+1 & $15\div(-3)+7$ & $+2$\\
+2 & $-8+20\div 4$ & $-3$\\
+3 & $4-(-6)\div 2$ & $+7$\\
+4 & $-2\cdot 4+11$ & $+3$\\
+5 & $3+(-8)\cdot(-1)$ & $+11$\\
+6 & $-14\div 2-(-3)$ & $-4$\\
+7 & $6\cdot(-2)+11$ & $-1$\\
+8 & $-5-9\div(-3)$ & $-2$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection{Patrón E — Regla de diseño}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{4.6cm} p{9.4cm}@{}}
+\toprule
+\textbf{Elemento} & \textbf{Regla}\\
+\midrule
+Cantidad de operaciones & Exactamente dos: un producto o cociente y una suma o resta.\\
+Rango de los resultados & Entre $-12$ y $+12$.\\
+Divisiones & Siempre exactas y con divisor distinto de cero.\\
+Dificultad & Los dos primeros peldaños son directos; del 5 al 8 incluyen más signos negativos.\\
+Verificación & Cada escalera debe tener 8 resultados distintos.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{cuadroadvertencia}
+\textbf{Cómo fabricar una escalera nueva.} Elige 8 resultados distintos entre $-12$ y $+12$; para cada uno construye una expresión de dos operaciones que lo produzca; comprueba el orden de las operaciones antes de escribirla en el peldaño.
+\end{cuadroadvertencia}
+
+\subsection{Configuración inicial}
+
+\begin{enumerate}[leftmargin=*]
+  \item Entrega una escalera distinta a cada jugador (A, B, C o D).
+  \item Cada jugador coloca su ficha en el peldaño 0 («base»).
+  \item Deja la clave de resultados boca abajo en el centro, para la verificación.
+  \item Reparte una hoja de borrador y un lápiz a cada jugador.
+\end{enumerate}
+
+% ============================================================
+\clearpage
+\section{Juego 6 — Abismo y Cumbre: el radar del cero}
+% ============================================================
+
+\subsection{Ficha rápida}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{3cm} p{12.2cm}@{}}
+\toprule
+\textbf{Jugadores} & 2 a 4\\
+\textbf{Duración} & 30--40 minutos\\
+\textbf{Objetivo} & Ubicar enteros en la recta numérica respetando el orden y reconocer opuestos y valor absoluto como distancia al cero.\\
+\textbf{Subtemas} & Relación de orden ($<$, $>$, $=$), recta numérica, números opuestos, valor absoluto $\abs{a}$.\\
+\textbf{Qué se evalúa} & Que el estudiante resuelva la expresión, anticipe el orden y explique por qué dos números son simétricos.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{La idea en una frase}
+
+\begin{cuadroextra}
+  «Somos operadores de un sonar: las tarjetas son coordenadas del fondo marino y la cuerda es la recta numérica. Si dos coordenadas están a la misma distancia del cero, el radar resuena.»
+\end{cuadroextra}
+
+\begin{center}
+\begin{tikzpicture}[x=0.8cm]
+  \draw[->, thick, mwprimario] (-7,0) -- (7,0);
+  \foreach \x in {-6,-5,...,6} {
+    \draw[mwprimario] (\x,0.12) -- (\x,-0.12);
+  }
+  \foreach \x in {-6,-4,-2,0,2,4,6} {
+    \node[below, font=\scriptsize, color=mwgris] at (\x,-0.15) {$\x$};
+  }
+  \node[above, font=\scriptsize, color=mwprimario] at (0,0.35) {origen};
+\end{tikzpicture}
+\end{center}
+
+\subsection{Cómo se juega en cinco pasos}
+
+\begin{enumerate}[leftmargin=*]
+  \item Se tensa la cuerda y se cuelga el $\mathbf{0}$ (origen) justo en el centro.
+  \item Cada jugador recibe \textbf{4 tarjetas}, mirando solo la cara de la \textbf{expresión}.
+  \item En tu turno eliges una tarjeta, \textbf{anuncias el hueco} donde la colocarás y resuelves la expresión.
+  \item Volteas la tarjeta: si el valor cae dentro del hueco anunciado, la cuelgas y ganas \textbf{1 punto}; si su valor absoluto coincide con el de otra tarjeta ya colgada, ganas una \textbf{ficha de radar} (2 puntos).
+  \item Robas hasta volver a tener 4 tarjetas. La partida termina cuando se agota el mazo y todos juegan su última mano.
+\end{enumerate}
+
+\subsection{Reglas}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Ley del orden estricto.} Toda tarjeta a la izquierda de otra debe tener un valor estrictamente menor; toda tarjeta a la derecha, un valor estrictamente mayor. No se repiten valores en la cuerda.
+  \item \textbf{Prohibición de revelación previa.} No se voltea la tarjeta antes de anunciar el hueco. Solo se mira la cara de la expresión.
+  \item \textbf{Resonancia de radar.} Si la tarjeta colocada tiene el \textbf{mismo valor absoluto} que otra tarjeta ya presente en la cuerda (de cualquier jugador), se activa la resonancia: se canta «¡Misma distancia al cero!», se explica el valor absoluto y se toma \textbf{1 ficha de radar}. Cada tarjeta activa la resonancia una sola vez, al ser colgada.
+  \item \textbf{Error de estimación.} Si el valor no cae dentro del hueco anunciado, la tarjeta se descarta, no hay puntos y termina el turno. Se comprueba el \emph{hueco anunciado}, no solo el valor.
+  \item \textbf{Sondas de rango.} Las 6 tarjetas de sonda se resuelven al salir del mazo: el jugador gana \textbf{1 punto por cada tarjeta ya colgada en la cuerda} que cumpla la condición, aparta la sonda y roba otra tarjeta.
+  \item \textbf{Extremos.} También se puede anunciar «en el extremo izquierdo» o «en el extremo derecho»; la desigualdad se cumple contra la única tarjeta vecina.
+  \item \textbf{Desempate.} Más puntos; si hay empate: (a) más fichas de radar; (b) más puntos de sondas; (c) más tarjetas propias en la cuerda.
+\end{enumerate}
+
+\subsection{Turno paso a paso}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Mira} tus 4 tarjetas por la cara de la expresión.
+  \item \textbf{Elige} una y anuncia el hueco: «La coloco entre el $-25$ y el $-12$».
+  \item \textbf{Resuelve} la expresión y di el valor.
+  \item \textbf{Voltea} la tarjeta y compara: si respeta la desigualdad, la enganchas; si no, la descartas y pierdes el turno.
+  \item \textbf{Comprueba la resonancia:} si $\abs{\text{valor}}$ coincide con el de otra tarjeta en la cuerda, toma una ficha de radar y explica por qué.
+  \item \textbf{Roba} hasta tener 4 tarjetas; si sale una sonda, resuélvela, apártala y sigue robando.
+\end{enumerate}
+
+\subsection{Final y puntuación}
+
+La partida termina cuando \textbf{se agota el mazo de coordenadas y todos han jugado las tarjetas que les quedan en la mano}.
+
+\begin{center}
+\small
+\begin{tabular}{@{}l c@{}}
+\toprule
+\textbf{Concepto} & \textbf{Puntos}\\
+\midrule
+Cada tarjeta propia correctamente colgada & $1$\\
+Cada ficha de radar obtenida & $2$\\
+Cada tarjeta que cumpla la condición de una sonda (al salir la sonda) & $1$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Gana quien sume más puntos. Para partidas de 2 jugadores se pueden retirar al azar 8 coordenadas antes de empezar.
+
+\subsection{Ejemplo resuelto}
+
+En la cuerda están: $-25,\ -12,\ 0,\ +8,\ +18$. El jugador tiene la tarjeta «el opuesto de $\abs{-8}$».
+
+\begin{cuadrosolucion}
+\begin{enumerate}[leftmargin=*]
+  \item Anuncia: «La coloco entre el $-12$ y el $0$».
+  \item Resuelve: $\abs{-8}=8$; el opuesto de $8$ es $-8$.
+  \item Comprueba: $-12<-8<0$. (\checkmark) Cuelga la tarjeta y gana $1$ punto.
+  \item Radar: $\abs{-8}=8$ y en la cuerda está el $+8$, luego $\abs{-8}=\abs{+8}$. Toma una ficha de radar y explica: «$-8$ y $+8$ están a la misma distancia del cero». Gana $2$ puntos más.
+  \item Roba una tarjeta.
+\end{enumerate}
+\textbf{Total de la jugada: $3$ puntos.}
+\end{cuadrosolucion}
+
+\subsection{Materiales}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{5.0cm} c p{7.4cm}@{}}
+\toprule
+\textbf{Material} & \textbf{Cantidad} & \textbf{Uso}\\
+\midrule
+Cartulina blanca & 2 pliegos & 30 tarjetas (origen + coordenadas)\\
+Cartulina de color & 1 pliego & 6 tarjetas de sonda\\
+Pabilo, estambre grueso o cuerda fina & $1{,}5$ m & Recta numérica\\
+Clips metálicos o ganchos pequeños & 36 & Sujetar tarjetas\\
+Tapas plásticas marcadas con valor absoluto & 15 & Fichas de radar\\
+Marcadores & negro, azul, rojo & Positivos y negativos\\
+Regla de $30$ cm, tijera punta roma, lápiz & 1 cada uno & Trazado y corte\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Construcción paso a paso}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Mazo base.} Divide la cartulina blanca en \textbf{36 rectángulos de $6\text{ cm}\times 9\text{ cm}$} y recórtalos.
+  \item \textbf{Origen.} Pinta un borde grueso negro en una tarjeta y escribe \textbf{0} en ambas caras: «Nivel del Mar / Origen».
+  \item \textbf{Coordenadas (29 tarjetas).} En la \textbf{cara A} va la expresión; en la \textbf{cara B}, el valor entero simplificado. Dobla el borde superior $1$ cm para sujetarla con el clip.
+  \item \textbf{Sondas (6 tarjetas).} En cartulina de color, recorta 6 tarjetas de $6\text{ cm}\times 9\text{ cm}$ y copia las condiciones del Patrón D.
+  \item \textbf{Cuerda.} Corta $1{,}5$ m de pabilo, haz un lazo en cada extremo y fíjalo a dos sillas o al borde de la mesa.
+\end{enumerate}
+
+\subsection{Patrones explícitos (fabricación)}
+
+\subsubsection{Patrón A — Tipos de expresión de la cara A}
+
+\begin{center}
+\small
+\begin{tabular}{@{}c l l c@{}}
+\toprule
+\textbf{Código} & \textbf{Patrón} & \textbf{Ejemplo} & \textbf{Resultado}\\
+\midrule
+P1 & $-\abs{a}$ con $a>0$ & $-\abs{7}$ & $-7$\\
+P2 & $\abs{-a}$ & $\abs{-9}$ & $+9$\\
+P3 & $-\abs{-a}$ & $-\abs{-6}$ & $-6$\\
+P4 & $\abs{a}$ & $\abs{5}$ & $+5$\\
+P5 & «el opuesto de $x$» & opuesto de $(-14)$ & $+14$\\
+P6 & $-(-a)$ & $-(-8)$ & $+8$\\
+P7 & $-(+a)$ & $-(+5)$ & $-5$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection{Patrón B — Las 29 tarjetas de coordenadas}
+
+\begin{longtable}{@{}r l c c@{}}
+\toprule
+\textbf{\#} & \textbf{Cara A (expresión)} & \textbf{Cara B} & \textbf{Patrón}\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+1 & $-\abs{25}$ & $-25$ & P1\\
+2 & $\abs{25}$ & $+25$ & P4\\
+3 & opuesto de $\abs{20}$ & $-20$ & P5\\
+4 & $\abs{-20}$ & $+20$ & P2\\
+5 & $-\abs{-18}$ & $-18$ & P3\\
+6 & $\abs{-18}$ & $+18$ & P2\\
+7 & $-(+16)$ & $-16$ & P7\\
+8 & $-(-16)$ & $+16$ & P6\\
+9 & opuesto de $(-14)$ & $+14$ & P5\\
+10 & $-\abs{14}$ & $-14$ & P1\\
+11 & opuesto de $(+12)$ & $-12$ & P5\\
+12 & $\abs{-12}$ & $+12$ & P2\\
+13 & $-\abs{-9}$ & $-9$ & P3\\
+14 & $\abs{-9}$ & $+9$ & P2\\
+15 & opuesto de $\abs{-8}$ & $-8$ & P5\\
+16 & $-(-8)$ & $+8$ & P6\\
+17 & $-\abs{7}$ & $-7$ & P1\\
+18 & opuesto de $(-7)$ & $+7$ & P5\\
+19 & $-\abs{-6}$ & $-6$ & P3\\
+20 & $\abs{-6}$ & $+6$ & P2\\
+21 & $-(+5)$ & $-5$ & P7\\
+22 & $\abs{5}$ & $+5$ & P4\\
+23 & opuesto de $(-4)$ & $+4$ & P5\\
+24 & $-(+4)$ & $-4$ & P7\\
+25 & $-\abs{3}$ & $-3$ & P1\\
+26 & opuesto de $(-3)$ & $+3$ & P5\\
+27 & $-\abs{-2}$ & $-2$ & P3\\
+28 & opuesto de $(-2)$ & $+2$ & P5\\
+29 & $-\abs{30}$ & $-30$ & P1\\
+\end{longtable}
+
+\subsubsection{Patrón C — Pares simétricos del mazo}
+
+El radar funciona porque el mazo contiene \textbf{14 pares de opuestos}. La tarjeta 29 ($-30$) no tiene pareja y es la «fosa abisal» de un solo uso.
+\[
+(\pm 25),\ (\pm 20),\ (\pm 18),\ (\pm 16),\ (\pm 14),\ (\pm 12),\ (\pm 9),\ (\pm 8),\ (\pm 7),\ (\pm 6),\ (\pm 5),\ (\pm 4),\ (\pm 3),\ (\pm 2).
+\]
+
+\subsubsection{Patrón D — Las 6 tarjetas de sonda}
+
+\begin{center}
+\small
+\begin{tabular}{@{}c p{6.2cm} p{6.6cm}@{}}
+\toprule
+\textbf{\#} & \textbf{Condición de la sonda} & \textbf{Tarjetas del mazo que la cumplen}\\
+\midrule
+S1 & $\abs{x}\le 8$ y $x<0$ & $-8,-7,-6,-5,-4,-3,-2$ (7)\\
+S2 & $\abs{x}\ge 12$ y $x>0$ & $+12,+14,+16,+18,+20,+25$ (6)\\
+S3 & $x<0$ y $\abs{x}>10$ & $-30,-25,-20,-18,-16,-14,-12$ (7)\\
+S4 & $x>0$ y $x<\abs{-9}$ & $+2,+3,+4,+5,+6,+7,+8$ (7)\\
+S5 & $\abs{x}=\abs{-12}$ & $-12,+12$ (2)\\
+S6 & $x<0$ y $\abs{x}\le 5$ & $-5,-4,-3,-2$ (4)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{cuadroadvertencia}
+\textbf{Cómo fabricar nuevas sondas.} Elige una condición de signo y una de distancia; comprueba cuántas tarjetas del mazo la cumplen y escribe ese número al dorso como control. Si la cumplen más de 8 tarjetas, la sonda es demasiado fácil: cambia el umbral.
+\end{cuadroadvertencia}
+
+\subsection{Configuración inicial}
+
+\begin{enumerate}[leftmargin=*]
+  \item Tensa el pabilo horizontalmente a lo largo de la mesa.
+  \item Cuelga la tarjeta del \textbf{0} exactamente en el centro.
+  \item Baraja las 29 coordenadas y las 6 sondas juntas, con la cara A hacia arriba.
+  \item Reparte \textbf{4 tarjetas de coordenadas} a cada jugador (si sale una sonda al repartir, se resuelve y se roba otra).
+  \item Coloca las 15 tapas (fichas de radar) en el centro.
+\end{enumerate}
+
+
+% ============================================================
+\clearpage
+\section{Juego 7 — Laboratorio de Antimateria: caos en el reactor}
+% ============================================================
+
+\subsection{Ficha rápida}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{3cm} p{12.2cm}@{}}
+\toprule
+\textbf{Jugadores} & 2 a 4\\
+\textbf{Duración} & 25--35 minutos\\
+\textbf{Objetivo} & Comprender la adición y la sustracción de enteros como inyección y extracción de cargas, y usar las propiedades del $0$, del opuesto y de la asociatividad.\\
+\textbf{Subtemas} & Adición y sustracción en $\Z$, $-(-a)=+a$, elemento neutro, inverso aditivo, conmutativa y asociativa.\\
+\textbf{Qué se evalúa} & Que el estudiante traduzca la operación a un movimiento físico de tapas y explique el resultado.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{La idea en una frase}
+
+\begin{cuadroextra}
+  «Tu vaso es un reactor: las tapas azules son protones ($+1$) y las rojas son antiprotones ($-1$). Inyectar cambia la carga; extraer también. La meta es estabilizar el reactor en la carga exacta.»
+\end{cuadroextra}
+
+\subsection{Cómo se juega en cinco pasos}
+
+\begin{enumerate}[leftmargin=*]
+  \item Cada jugador recibe un vaso vacío y lo carga con 3 tapas al azar; anula los pares y anuncia su carga inicial.
+  \item Se revela una \textbf{Carta de Meta} (por ejemplo, $-4$).
+  \item En tu turno lanzas el \textbf{dado de operación} y el \textbf{dado de partícula}.
+  \item Ejecutas el movimiento: inyectas, extraes o creas vacío; cancelas pares y anuncias la carga neta.
+  \item Si tu carga coincide con la meta, reclamas la carta. Gana quien reúna \textbf{5 Cartas de Meta}.
+\end{enumerate}
+
+\subsection{Reglas}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Carga neta.} Carga $=$ (tapas azules) $-$ (tapas rojas).
+  \item \textbf{Aniquilación.} Un par azul-rojo vale $0$: se retira en cualquier momento sin cambiar la carga.
+  \item \textbf{Inyectar es sumar.} Con $+$, se introducen las tapas que indique el dado de partícula (azules si es positivo, rojas si es negativo).
+  \item \textbf{Extraer es restar.} Con $-$, se sacan del vaso las tapas indicadas. Extraer negativas \emph{aumenta} la carga; extraer positivas la \emph{disminuye}.
+  \item \textbf{Creación de vacío (cero fértil).} Si debes extraer $k$ tapas de un color y no tienes suficientes, añades primero $k$ pares nulos ($k$ azules y $k$ rojas, que suman $0$) y luego extraes las $k$ tapas pedidas. Queda prohibido decir «menos por menos da más» sin hacer la maniobra física.
+  \item \textbf{Dado asociativo.} Si sale «Asociativa», lanzas dos veces el dado de partícula y aplicas ambos valores; demuestras con las tapas que $(a+b)+c$ y $a+(b+c)$ dejan la misma carga neta.
+  \item \textbf{Escudo neutro.} Cada propiedad declarada correctamente (neutro, opuesto o asociativa) da un \textbf{escudo}. Un escudo permite repetir una tirada desfavorable del dado de partícula (una vez por turno).
+  \item \textbf{Meta.} Si al final del turno la carga coincide exactamente con la Carta de Meta, la reclamas y se revela otra. El reactor \textbf{no se vacía}.
+  \item \textbf{Mazo agotado.} Si se acaban las Cartas de Meta, se barajan las reclamadas y se continúa.
+\end{enumerate}
+
+\subsection{Turno paso a paso}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Lanza} el dado de operación y el dado de partícula.
+  \item \textbf{Anuncia} la operación: «Tengo $+2$ y me salió extraer $-3$; es decir, $(+2)-(-3)$».
+  \item \textbf{Ejecuta}: inyectar, extraer (con vacío si falta) o asociativa (dos tiradas y dos agrupaciones).
+  \item \textbf{Aniquila} todos los pares nulos posibles.
+  \item \textbf{Declara} la carga neta: «Quedan 5 azules: carga $+5$».
+  \item \textbf{Comprueba la meta.} Si coincide, reclama la carta y revela otra.
+  \item \textbf{Reclama escudos} si declaraste una propiedad y pasa el turno.
+\end{enumerate}
+
+\subsection{Final y puntuación}
+
+Gana el primero que reúna \textbf{5 Cartas de Meta de Estabilidad} («Jefe del Laboratorio»).
+
+\begin{center}
+\small
+\begin{tabular}{@{}l l@{}}
+\toprule
+\textbf{Concepto} & \textbf{Efecto}\\
+\midrule
+Carta de Meta reclamada & $1$ punto de estabilidad\\
+Escudo neutro & Permite repetir una tirada del dado de partícula\\
+Empate & Meta extra; gana quien la alcance primero\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Ejemplo resuelto}
+
+El reactor tiene carga $-1$ (una tapa roja). La meta es $+2$.
+
+\begin{cuadrosolucion}
+\begin{enumerate}[leftmargin=*]
+  \item Lanza: operación \textbf{extraer ($-$)} y partícula $\mathbf{-3}$.
+  \item Anuncia: «Tengo $-1$ y debo extraer $-3$; es decir, $(-1)-(-3)$».
+  \item No tiene 3 tapas rojas. \textbf{Crea vacío}: añade 2 pares nulos (2 azules y 2 rojas). Ahora hay 2 azules y 3 rojas.
+  \item \textbf{Extrae} las 3 rojas. Quedan 2 azules.
+  \item Carga neta: $+2$. Coincide con la meta: reclama la carta.
+  \item Explica: $(-1)-(-3)=-1+3=+2$; al quitar cargas negativas el reactor sube.
+\end{enumerate}
+\end{cuadrosolucion}
+
+\subsection{Materiales}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{5.0cm} c p{7.4cm}@{}}
+\toprule
+\textbf{Material} & \textbf{Cantidad} & \textbf{Uso}\\
+\midrule
+Vasos plásticos transparentes o de cartón & 4 & Reactores\\
+Tapas azules marcadas $+1$ & 40 & Protones\\
+Tapas rojas marcadas $-1$ & 40 & Antiprotones\\
+Dados & 2 & Operación y partícula\\
+Etiquetas blancas o tirro & 1 rollo & Modificar las caras\\
+Cartulina & 1 lámina & 20 Cartas de Meta\\
+Marcadores & azul, rojo, negro & Rotular\\
+Tijera, regla, pega & 1 cada uno & Armado\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Construcción paso a paso}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Partículas.} Escribe $+1$ en las 40 tapas azules y $-1$ en las 40 rojas. Si no hay tapas, recorta 80 círculos de cartulina de $3$ cm de diámetro.
+  \item \textbf{Dado de operación.} Cubre las 6 caras de un dado con tirro y escribe: $+$ en 3 caras, $-$ en 2 caras y «Asociativa» en 1 cara.
+  \item \textbf{Dado de partícula.} Cubre el segundo dado y escribe: $+1,\ -2,\ +3,\ -4,\ +5,\ 0$.
+  \item \textbf{Cartas de Meta.} Recorta 20 rectángulos de $5\text{ cm}\times 7\text{ cm}$ y copia las metas del Patrón B.
+  \item \textbf{Reactores.} Rotula cada vaso con tirro: «Reactor $\Z$».
+\end{enumerate}
+
+\subsection{Patrones explícitos (fabricación)}
+
+\subsubsection{Patrón A — Caras de los dados}
+
+\begin{center}
+\small
+\begin{tabular}{@{}l l@{}}
+\toprule
+\textbf{Dado} & \textbf{Caras}\\
+\midrule
+Operación & $+,\ +,\ +,\ -,\ -,\ \text{Asociativa}$\\
+Partícula & $+1,\ -2,\ +3,\ -4,\ +5,\ 0$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Por qué estos valores:} el $0$ permite demostrar el elemento neutro; hay dos negativos y tres positivos para que la carga no se dispare siempre en un mismo sentido; ningún valor supera $5$ en magnitud para que la meta sea alcanzable en pocos turnos.
+
+\subsubsection{Patrón B — Las 20 Cartas de Meta}
+
+\begin{center}
+\small
+\begin{tabular}{@{}r r@{\hspace{1.6cm}} r r@{\hspace{1.6cm}} r r@{\hspace{1.6cm}} r r@{}}
+\toprule
+\textbf{\#} & \textbf{Meta} & \textbf{\#} & \textbf{Meta} & \textbf{\#} & \textbf{Meta} & \textbf{\#} & \textbf{Meta}\\
+\midrule
+1 & $-10$ & 6 & $-5$ & 11 & $0$ & 16 & $+5$\\
+2 & $-9$  & 7 & $-4$ & 12 & $+1$ & 17 & $+6$\\
+3 & $-8$  & 8 & $-3$ & 13 & $+2$ & 18 & $+7$\\
+4 & $-7$  & 9 & $-2$ & 14 & $+3$ & 19 & $+8$\\
+5 & $-6$  & 10 & $-1$ & 15 & $+4$ & 20 & $+9$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{cuadroadvertencia}
+\textbf{Cómo fabricar nuevas metas.} Usa enteros entre $-10$ y $+10$ y comprueba que la meta sea alcanzable en pocos turnos con los valores del dado. Evita metas que solo se alcancen con un valor exacto: el juego debe permitir varios caminos.
+\end{cuadroadvertencia}
+
+\subsubsection{Patrón C — La maniobra de creación de vacío}
+
+Para extraer $k$ tapas de un color del que solo hay $m<k$:
+
+\begin{enumerate}[leftmargin=*]
+  \item Añade $k$ tapas del color contrario y $k$ tapas del color pedido (son $k$ pares nulos).
+  \item Extrae las $k$ tapas del color pedido.
+  \item Aniquila los pares que queden.
+\end{enumerate}
+
+\textbf{Resultado neto:} la carga aumenta en $k$ si el color pedido era rojo (negativo) y disminuye en $k$ si era azul (positivo).
+
+\subsection{Configuración inicial}
+
+\begin{enumerate}[leftmargin=*]
+  \item Cada jugador recibe un vaso vacío.
+  \item Cada jugador toma \textbf{3 tapas al azar} de una bolsa opaca, las echa en su vaso, aniquila pares y anuncia su carga inicial.
+  \item Las tapas restantes forman el \textbf{Banco de Materia y Antimateria}.
+  \item Se barajan las 20 Cartas de Meta y se revela la primera.
+  \item Se dejan los dos dados y una hoja de borrador por jugador.
+\end{enumerate}
+
+% ============================================================
+\clearpage
+\section{Juego 8 — Vectores de Invasión: la matriz de los signos}
+% ============================================================
+
+\subsection{Ficha rápida}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{3cm} p{12.2cm}@{}}
+\toprule
+\textbf{Jugadores} & 2 jugadores o 2 equipos de 2 integrantes\\
+\textbf{Duración} & 30--45 minutos\\
+\textbf{Objetivo} & Conquistar casillas de una matriz $6\times 6$ multiplicando o dividiendo exactamente los dos números señalados por dos clips.\\
+\textbf{Subtemas} & Multiplicación y división exacta en $\Z$, regla de los signos, propiedad distributiva, factor común, elemento absorbente ($0$).\\
+\textbf{Qué se evalúa} & Que el estudiante anuncie la operación, justifique el signo y verifique que el cociente sea exacto.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{La idea en una frase}
+
+\begin{cuadroextra}
+  «Dos cursores sobre dos regletas de enteros deciden tu jugada: mueve solo uno, multiplica o divide, y conquista la casilla del resultado. Cuatro en línea o un bloque $2\times 2$ y la matriz es tuya.»
+\end{cuadroextra}
+
+\subsection{Cómo se juega en cinco pasos}
+
+\begin{enumerate}[leftmargin=*]
+  \item El tablero $6\times 6$ está en el centro; las regletas $A$ y $B$, abajo, con un clip cada una.
+  \item El Jugador 1 coloca \textbf{los dos clips} donde quiera, hace la operación y coloca su primera ficha.
+  \item En los turnos siguientes, cada jugador mueve \textbf{solo uno} de los dos clips.
+  \item Anuncia la operación (producto o cociente exacto), justifica el signo y coloca su ficha en la casilla del resultado.
+  \item Gana quien logre \textbf{4 fichas en línea} (horizontal, vertical o diagonal) o un \textbf{bloque $2\times 2$}.
+\end{enumerate}
+
+\subsection{Reglas}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Movimiento único.} En cada turno se desliza \textbf{un solo} clip; el otro queda donde lo dejó el jugador anterior.
+  \item \textbf{Operación libre.} Con los dos números señalados se puede hacer $A\cdot B$, $A\div B$ o $B\div A$, siempre que el cociente sea exacto y el divisor sea distinto de $0$.
+  \item \textbf{Signo obligatorio.} Antes de colocar la ficha se dice el resultado y se justifica el signo: «$(-3)\cdot(-4)=+12$ porque menos por menos da más».
+  \item \textbf{Casilla ocupada o inexistente.} Si el resultado no está en el tablero o la casilla está ocupada, se prueba la otra operación o el otro orden. Si ninguna opción sirve, \textbf{se devuelve el clip a su posición anterior y se pierde el turno}.
+  \item \textbf{Cero.} Multiplicar por $0$ permite conquistar una de las dos casillas $0$. \textbf{Dividir entre $0$ está prohibido.}
+  \item \textbf{Fichas.} Cada jugador tiene 18 fichas. Si se le acaban, pasa hasta que el juego termine.
+  \item \textbf{Victoria.} Gana de inmediato quien alinee 4 fichas propias o forme un cuadrado $2\times 2$.
+  \item \textbf{Desempate (matriz llena).} Cada jugador suma los \textbf{valores absolutos} de las casillas de las \textbf{cuatro esquinas} que controle; gana la suma mayor. Si persiste el empate, gana quien tenga más casillas.
+\end{enumerate}
+
+\subsection{Turno paso a paso}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Observa} la posición de los dos clips.
+  \item \textbf{Elige} cuál mover y a qué número de su regleta.
+  \item \textbf{Prueba} las operaciones posibles: $A\cdot B$, $A\div B$, $B\div A$.
+  \item \textbf{Verifica} que el cociente sea exacto y que la casilla esté libre.
+  \item \textbf{Anuncia} la operación y el signo.
+  \item \textbf{Coloca} la ficha. Si no hay jugada legal, devuelve el clip y pierde el turno.
+\end{enumerate}
+
+\subsection{Hackeo Distributivo (carta especial)}
+
+Cada jugador recibe \textbf{2 cartas}. Cada carta se usa \textbf{una sola vez} (máximo 2 usos por partida y nunca dos en el mismo turno) y sustituye el movimiento normal del turno.
+
+\begin{cuadropasos}
+\begin{enumerate}[leftmargin=*]
+  \item Elige uno de los dos números señalados; llámalo $a$. El otro es $d$.
+  \item Descompón $a=b+c$, con $b$ y $c$ enteros \textbf{distintos de cero} y $b\ne a$.
+  \item Escribe y resuelve en la hoja de auditoría:
+  \[
+    d\cdot a=d\cdot(b+c)=d\cdot b+d\cdot c.
+  \]
+  \item Si el resultado final es una casilla libre, la conquistas. Si no, pierdes la carta y el turno.
+\end{enumerate}
+\end{cuadropasos}
+
+\textbf{Ejemplo.} Clips en $A=-4$ y $B=+3$. El jugador elige $a=-4$ y lo descompone como $-4=-5+1$:
+\[
+3\cdot(-4)=3\cdot(-5)+3\cdot(1)=-15+3=-12.
+\]
+Si la casilla $-12$ está libre, la conquista.
+
+\subsection{Final y puntuación}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{7.2cm} p{6.8cm}@{}}
+\toprule
+\textbf{Situación} & \textbf{Resultado}\\
+\midrule
+Alinea 4 fichas (horizontal, vertical o diagonal) & Gana de inmediato.\\
+Forma un bloque $2\times 2$ & Gana de inmediato.\\
+Se llenan las 36 casillas sin ganador & Suma los valores absolutos de sus cuatro esquinas; gana la suma mayor.\\
+Persiste el empate & Gana quien tenga más casillas ocupadas.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Ganar no da puntos: la partida termina en el momento en que se logra la línea o el bloque.
+
+\subsection{Ejemplo resuelto}
+
+Clips en $A=-12$ y $B=+3$.
+
+\begin{itemize}[leftmargin=*]
+  \item Producto: $(-12)\cdot 3=-36$. Si la casilla $-36$ está libre, puede conquistarla.
+  \item Cociente: $(-12)\div 3=-4$. También es exacto.
+  \item Cociente inverso: $3\div(-12)$ no es exacto; no vale.
+\end{itemize}
+
+El jugador mueve el clip $B$ de $+3$ a $-2$ (solo mueve un clip). Ahora:
+\[
+(-12)\div(-2)=+6.
+\]
+Anuncia: «$-12$ entre $-2$ es $+6$, porque menos entre menos da más». Si $+6$ está libre, coloca la ficha.
+
+\subsection{Materiales}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{5.0cm} c p{7.4cm}@{}}
+\toprule
+\textbf{Material} & \textbf{Cantidad} & \textbf{Uso}\\
+\midrule
+Cartulina gruesa o cartón reciclado & $30\times 30$ cm & Tablero y regletas\\
+Clips metálicos & 2 & Cursores\\
+Fichas verdes & 18 & Jugador 1\\
+Fichas naranjas & 18 & Jugador 2\\
+Tarjetas de $6\times 9$ cm & 4 & Cartas de Hackeo\\
+Marcadores de punta fina y gruesa & 3 & Rotular\\
+Regla, escuadra, tijera, lápiz & 1 cada uno & Trazado\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Construcción paso a paso}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Matriz.} Dibuja un cuadrado de $24\times 24$ cm y divídelo en una cuadrícula $6\times 6$ (casillas de $4\times 4$ cm).
+  \item \textbf{Regletas.} Debajo del tablero dibuja dos tiras de $2{,}5$ cm de alto, divididas en 9 casillas cada una (o recórtalas aparte para deslizar los clips).
+  \item \textbf{Regleta $A$.} De izquierda a derecha: $-12,\ -6,\ -4,\ -3,\ -2,\ 0,\ +2,\ +4,\ +6$.
+  \item \textbf{Regleta $B$.} De izquierda a derecha: $-6,\ -4,\ -3,\ -2,\ -1,\ +1,\ +2,\ +3,\ +5$.
+  \item \textbf{Matriz.} Copia la cuadrícula del Patrón B, celda por celda.
+  \item \textbf{Fichas.} Recorta 18 círculos verdes y 18 naranjas de $2{,}5$ cm de diámetro.
+\end{enumerate}
+
+\subsection{Patrones explícitos (fabricación)}
+
+\subsubsection{Patrón A — Las dos regletas}
+
+\begin{center}
+\small
+\begin{tabular}{@{}c l@{}}
+\toprule
+\textbf{Regleta} & \textbf{Valores (9 casillas)}\\
+\midrule
+$A$ & $-12,\ -6,\ -4,\ -3,\ -2,\ 0,\ +2,\ +4,\ +6$\\
+$B$ & $-6,\ -4,\ -3,\ -2,\ -1,\ +1,\ +2,\ +3,\ +5$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection{Patrón B — La matriz $6\times 6$ completa}
+
+\begin{center}
+\small
+\begin{tabular}{@{}c|r|r|r|r|r|r@{}}
+\toprule
+ & \textbf{C1} & \textbf{C2} & \textbf{C3} & \textbf{C4} & \textbf{C5} & \textbf{C6}\\
+\midrule
+\textbf{F1} & $-36$ & $+10$ & $-15$ & $+24$ & $-4$ & $+8$\\
+\midrule
+\textbf{F2} & $+18$ & $-8$ & $0$ & $-30$ & $+12$ & $-1$\\
+\midrule
+\textbf{F3} & $-20$ & $+6$ & $+72$ & $+2$ & $-16$ & $+36$\\
+\midrule
+\textbf{F4} & $+9$ & $-12$ & $+20$ & $-6$ & $+48$ & $+4$\\
+\midrule
+\textbf{F5} & $-3$ & $+16$ & $-10$ & $+30$ & $-2$ & $-24$\\
+\midrule
+\textbf{F6} & $0$ & $-18$ & $+3$ & $-9$ & $+1$ & $-60$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Propiedades de esta matriz:}
+\begin{itemize}[leftmargin=*]
+  \item Contiene los \textbf{35 resultados distintos} que se pueden formar con las dos regletas.
+  \item El $0$ aparece \textbf{dos veces} (F2-C3 y F6-C1): hay dos formas de bloquear con el elemento absorbente.
+  \item Las cuatro esquinas son $-36$, $+8$, $0$ y $-60$; se usan en el desempate.
+\end{itemize}
+
+\subsubsection{Patrón C — Clave de operaciones (una por casilla)}
+
+\begin{longtable}{@{}r l r l@{}}
+\toprule
+\textbf{Valor} & \textbf{Operación válida} & \textbf{Valor} & \textbf{Operación válida}\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+$-60$ & $-12\cdot 5$ & $+1$ & $-6\div(-6)$\\
+$-36$ & $-12\cdot 3$ & $+2$ & $-12\div(-6)$\\
+$-30$ & $-6\cdot 5$ & $+3$ & $6\div 2$\\
+$-24$ & $-12\cdot 2$ & $+4$ & $2\cdot 2$\\
+$-20$ & $-4\cdot 5$ & $+6$ & $2\cdot 3$\\
+$-18$ & $-6\cdot 3$ & $+8$ & $4\cdot 2$\\
+$-16$ & $4\cdot(-4)$ & $+9$ & $-3\cdot(-3)$\\
+$-15$ & $-3\cdot 5$ & $+10$ & $2\cdot 5$\\
+$-12$ & $-4\cdot 3$ & $+12$ & $4\cdot 3$\\
+$-10$ & $-2\cdot 5$ & $+16$ & $-4\cdot(-4)$\\
+$-9$ & $-3\cdot 3$ & $+18$ & $6\cdot 3$\\
+$-8$ & $-4\cdot 2$ & $+20$ & $4\cdot 5$\\
+$-6$ & $-3\cdot 2$ & $+24$ & $-6\cdot(-4)$\\
+$-4$ & $-2\cdot 2$ & $+30$ & $6\cdot 5$\\
+$-3$ & $-6\div 2$ & $+36$ & $-6\cdot(-6)$\\
+$-2$ & $-6\div 3$ & $+48$ & $-12\cdot(-4)$\\
+$-1$ & $-6\div 6$ & $+72$ & $-12\cdot(-6)$\\
+$0$ & $0\cdot 5$ & & \\
+\end{longtable}
+
+\begin{cuadroadvertencia}
+\textbf{Cómo fabricar otra matriz.} Enumera todos los productos y cocientes exactos de las dos regletas; elimina los repetidos; elige 34 valores y añade dos veces el $0$; reparte los 36 valores evitando que los extremos queden juntos. Cualquier celda que no pertenezca al conjunto de resultados hace el tablero injugable.
+\end{cuadroadvertencia}
+
+\subsubsection{Patrón D — Carta de Hackeo Distributivo}
+
+\begin{center}
+\small
+\begin{tabular}{@{}l p{10cm}@{}}
+\toprule
+\textbf{Elemento} & \textbf{Regla}\\
+\midrule
+Cuándo se usa & Una vez por carta (máximo 2 por partida), en lugar del movimiento normal.\\
+Qué se descompone & Uno de los dos números señalados: $a=b+c$.\\
+Restricciones & $b\ne 0$, $c\ne 0$, $b\ne a$.\\
+Qué se escribe & $d\cdot a=d\cdot(b+c)=d\cdot b+d\cdot c$.\\
+Qué se conquista & La casilla del resultado final, si está libre.\\
+Si falla & Se pierde la carta y el turno.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Configuración inicial}
+
+\begin{enumerate}[leftmargin=*]
+  \item Coloca el tablero en el centro.
+  \item Sitúa las regletas $A$ y $B$ al pie del tablero, con un clip fuera de las casillas.
+  \item Entrega 18 fichas de un color a cada jugador y 2 cartas de Hackeo a cada uno.
+  \item Deja una hoja de borrador por jugador para auditorías y hackeos.
+\end{enumerate}
+
+% ============================================================
+\clearpage
+\section{Juego 9 — Cortocircuito $\Z$: jerarquía de voltaje}
+% ============================================================
+
+\subsection{Ficha rápida}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{3cm} p{12.2cm}@{}}
+\toprule
+\textbf{Jugadores} & 2 a 4\\
+\textbf{Duración} & 25--35 minutos\\
+\textbf{Objetivo} & Resolver operaciones combinadas \textbf{sin signos de agrupación} respetando la jerarquía y auditar las jugadas rivales.\\
+\textbf{Subtemas} & Adición, sustracción, multiplicación y división exacta en $\Z$; prioridad de operaciones; izquierda a derecha entre operaciones del mismo nivel.\\
+\textbf{Qué se evalúa} & Que el estudiante resuelva primero productos y cocientes y justifique el orden.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{La idea en una frase}
+
+\begin{cuadroextra}
+  «Cada loseta es un tramo de red eléctrica: a la izquierda entra un voltaje y a la derecha sale un circuito. Si calculas mal la jerarquía, la red hace cortocircuito y los auditores te lo cobran.»
+\end{cuadroextra}
+
+\subsection{Cómo se juega en cinco pasos}
+
+\begin{enumerate}[leftmargin=*]
+  \item Se reparten las losetas y se destapa una para iniciar la red.
+  \item En tu turno, mira los dos extremos abiertos de la cadena.
+  \item Elige una loseta cuya \textbf{Entrada} coincida con el \textbf{valor} de una expresión abierta (o cuya expresión valga el número abierto).
+  \item Coloca la loseta y da \textbf{10 segundos} para que los rivales auditen.
+  \item Si nadie grita «¡Cortocircuito!», pasa el turno. Gana quien coloque su última loseta.
+\end{enumerate}
+
+\subsection{Reglas}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Jerarquía inquebrantable.} Primero multiplicación y división (de izquierda a derecha); después adición y sustracción (de izquierda a derecha).
+  \item \textbf{Conexión silenciosa.} El jugador \textbf{no dice} el resultado en voz alta; lo calcula en su borrador y coloca la loseta. La auditoría es de los rivales.
+  \item \textbf{Orientación fija.} Las losetas no se giran: la \textbf{Entrada} (número) queda a la izquierda y el \textbf{Circuito de Salida} (expresión), a la derecha.
+  \item \textbf{Cómo se conecta.}
+  \begin{itemize}
+    \item Por la \textbf{derecha}: la Entrada de la nueva loseta debe ser igual al valor de la expresión abierta.
+    \item Por la \textbf{izquierda}: la expresión de la nueva loseta debe valer el número abierto; se coloca a la izquierda.
+  \end{itemize}
+  \item \textbf{Auditoría «¡Cortocircuito!».} Cualquier rival puede gritarlo dentro de los 10 segundos. Se abre la \textbf{Hoja de Multímetro} y ambos resuelven paso a paso:
+  \begin{itemize}
+    \item si la conexión era \textbf{incorrecta}, el jugador retira su loseta, roba \textbf{2 losetas de penalización} (si quedan en el pozo) y el auditor gana \textbf{1 ficha de Fusible};
+    \item si la conexión era \textbf{correcta} (falsa alarma), el auditor roba \textbf{2 losetas de penalización}.
+  \end{itemize}
+  \item \textbf{Sin jugada.} Si no tienes loseta que conecte, robas de a una del \textbf{Generador Reserva} hasta poder jugar o hasta que se agote. Si el pozo está vacío y no puedes jugar, pasas.
+  \item \textbf{Final.} La partida termina cuando un jugador coloca su última loseta («¡Red Estable!») o cuando nadie puede conectar. Si se bloquea, cada jugador cuenta sus losetas restantes y \textbf{resta 1 por cada ficha de Fusible}; gana quien tenga el menor total.
+\end{enumerate}
+
+\subsection{Turno paso a paso}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Mira} los dos extremos abiertos: uno es un número y el otro, una expresión (o al revés).
+  \item \textbf{Evalúa} mentalmente la expresión abierta.
+  \item \textbf{Busca} en tu mano una loseta compatible.
+  \item \textbf{Colócala} sin decir el resultado.
+  \item \textbf{Espera} 10 segundos de auditoría.
+  \item \textbf{Si hay reclamo}, resuelve en la Hoja de Multímetro y aplica la sanción o la falsa alarma.
+  \item \textbf{Roba o pasa} según corresponda.
+\end{enumerate}
+
+\subsection{Final y puntuación}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{7.2cm} p{6.8cm}@{}}
+\toprule
+\textbf{Situación} & \textbf{Resultado}\\
+\midrule
+Un jugador coloca su última loseta & Gana («¡Red Estable!»).\\
+La cadena se bloquea y nadie puede conectar & Gana quien tenga menos losetas restantes, restando 1 por cada ficha de Fusible.\\
+Empate en losetas restantes & Gana quien tenga más fichas de Fusible.\\
+Sin losetas en la mano y sin jugada posible & Pasa el turno; no pierde por ello.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Ejemplo resuelto (con trampa incluida)}
+
+En la mesa está abierto el número $-7$. Un jugador coloca la loseta:
+\[
+\text{Entrada }[6]\quad|\quad\text{Salida }[\,9+4\cdot(-1)\,].
+\]
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Resolución correcta:} primero $4\cdot(-1)=-4$; luego $9+(-4)=+5$. La loseta vale $5$, no $-7$: \textbf{la conexión es incorrecta}.
+  \item \textbf{Trampa:} quien resuelve de izquierda a derecha sin jerarquía hace $(9+4)\cdot(-1)=-13$. Ese $-13$ sí es un número del juego (es la Entrada de otra loseta), así que el error «encaja» y solo se descubre auditando.
+\end{itemize}
+
+\subsection{Materiales}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{5.0cm} c p{7.4cm}@{}}
+\toprule
+\textbf{Material} & \textbf{Cantidad} & \textbf{Uso}\\
+\midrule
+Cartón reciclado o cartulina doble faz & 2 cajas o 2 pliegos & 28 losetas\\
+Hojas blancas recicladas & 2 & Forrar el cartón\\
+Marcadores & negro, rojo, verde & Rotular\\
+Hojas de reciclaje y lápices & 1 por jugador & Hoja de Multímetro\\
+Regla, tijera, pega & 1 cada uno & Armado\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Construcción paso a paso}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Forrado.} Pega las hojas blancas sobre el cartón y deja secar.
+  \item \textbf{Corte.} Traza 28 rectángulos de $4\times 8$ cm y recórtalos.
+  \item \textbf{División.} Traza una línea vertical a los $4$ cm: lado izquierdo, ícono de enchufe (Entrada); lado derecho, ícono de rayo (Salida).
+  \item \textbf{Rotulado.} Copia la tabla del Patrón B: cada loseta lleva su Entrada y su expresión.
+  \item \textbf{Control de calidad.} Verifica que el resultado de cada loseta sea la Entrada de la siguiente (incluida la última, que cierra con la primera).
+\end{enumerate}
+
+\subsection{Patrones explícitos (fabricación)}
+
+\subsubsection{Patrón A — Regla del bucle cerrado}
+
+El mazo es \textbf{un ciclo de 28 losetas}:
+\[
+\text{Salida de la loseta }k=\text{Entrada de la loseta }k+1,\qquad
+\text{Salida de la 28}=\text{Entrada de la 1}.
+\]
+Para fabricar otro mazo: elige 28 resultados distintos entre $-20$ y $+20$, asigna una expresión a cada uno y ordena las losetas de modo que cada Salida sea la Entrada de la siguiente.
+
+\subsubsection{Patrón B — Las 28 losetas (mazo completo)}
+
+{\small
+\begin{longtable}{@{}r c l c c@{}}
+\toprule
+\textbf{\#} & \textbf{Entrada} & \textbf{Circuito de Salida} & \textbf{Resultado} & \textbf{Trampa}\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+1 & $+1$ & $2-1+(-1)\cdot(-1)$ & $+2$ & $0$\\
+2 & $+2$ & $-10-(-7)\cdot 4$ & $+18$ & $-12$\\
+3 & $+18$ & $-3-3+3\cdot(-4)$ & $-18$ & $+12$\\
+4 & $-18$ & $-6+12\div 3$ & $-2$ & $+2$\\
+5 & $-2$ & $3+3\cdot(-3)$ & $-6$ & $-18$\\
+6 & $-6$ & $-5-(-2)+4\cdot 3$ & $+9$ & $+3$\\
+7 & $+9$ & $11-1\cdot(-4)$ & $+15$ & $-40$\\
+8 & $+15$ & $5-(-3)\cdot 2$ & $+11$ & $+16$\\
+9 & $+11$ & $3-(-1)\cdot 3$ & $+6$ & $+12$\\
+10 & $+6$ & $9+4\cdot(-1)$ & $+5$ & $-13$\\
+11 & $+5$ & $0-(-4)+(-4)\cdot(-1)$ & $+8$ & $0$\\
+12 & $+8$ & $-3-(-4)\cdot 5$ & $+17$ & $+5$\\
+13 & $+17$ & $-11+9\cdot 2$ & $+7$ & $-4$\\
+14 & $+7$ & $7-(-2)+4\cdot(-3)$ & $-3$ & $-39$\\
+15 & $-3$ & $-4-8\div 2$ & $-8$ & $-6$\\
+16 & $-8$ & $-12-(-8)\div 4$ & $-10$ & $-1$\\
+17 & $-10$ & $-1+(-6)\cdot 3$ & $-19$ & $-21$\\
+18 & $-19$ & $6+9\div(-3)$ & $+3$ & $-5$\\
+19 & $+3$ & $5+4\cdot(-5)$ & $-15$ & $-45$\\
+20 & $-15$ & $2-(-6)\cdot(-1)$ & $-4$ & $-8$\\
+21 & $-4$ & $11+(-6)\cdot 4$ & $-13$ & $+20$\\
+22 & $-13$ & $8-(-1)\cdot 4$ & $+12$ & $+36$\\
+23 & $+12$ & $-1-2+(-2)\cdot 3$ & $-9$ & $-15$\\
+24 & $-9$ & $-8-(-6)\div 2$ & $-5$ & $-1$\\
+25 & $-5$ & $-3+6\div 3$ & $-1$ & $+1$\\
+26 & $-1$ & $1+(-3)\cdot 5$ & $-14$ & $-10$\\
+27 & $-14$ & $-3-7+(-1)\cdot 2$ & $-12$ & $-22$\\
+28 & $-12$ & $2+(-2)\div 2$ & $+1$ & $0$\\
+\end{longtable}
+}
+
+\textbf{Verificación rápida:} el Resultado de la loseta 28 es $+1$, que es la Entrada de la loseta 1. El bucle cierra.
+
+\subsubsection{Patrón C — Tipos de trampa de jerarquía}
+
+\begin{center}
+\small
+\begin{tabular}{@{}c l l l@{}}
+\toprule
+\textbf{Código} & \textbf{Expresión} & \textbf{Error típico} & \textbf{Resultado correcto}\\
+\midrule
+T1 & $a+b\cdot c$ & $(a+b)\cdot c$ & $a+bc$\\
+T2 & $a-b\cdot c$ & $(a-b)\cdot c$ & $a-bc$\\
+T3 & $a+b\div c$ & $(a+b)\div c$ & $a+b/c$\\
+T4 & $a-b\div c$ & $(a-b)\div c$ & $a-b/c$\\
+T5 & $a-b+c\cdot d$ & $(a-b+c)\cdot d$ & $a-b+cd$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{cuadroadvertencia}
+\textbf{Cómo fabricar nuevas losetas.} Elige un tipo de trampa, números pequeños (entre $-12$ y $+12$), comprueba que todas las divisiones sean exactas y que la trampa no coincida con el resultado correcto. Después encadena la Salida con la Entrada de otra loseta.
+\end{cuadroadvertencia}
+
+\subsubsection{Patrón D — Mecánica de auditoría}
+
+\begin{center}
+\small
+\begin{tabular}{@{}l p{9.6cm}@{}}
+\toprule
+\textbf{Situación} & \textbf{Consecuencia}\\
+\midrule
+Nadie reclama en 10 s & La jugada vale y pasa el turno.\\
+Reclamo y la conexión era incorrecta & El jugador retira la loseta, roba 2 de penalización; el auditor gana 1 Fusible.\\
+Reclamo y la conexión era correcta & El auditor roba 2 de penalización.\\
+Se acaba el pozo y no hay jugada & El jugador pasa.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Configuración inicial}
+
+\begin{enumerate}[leftmargin=*]
+  \item Coloca las 28 losetas boca abajo y revuélvelas.
+  \item Reparte \textbf{5 losetas} a cada jugador (7 si son solo 2 jugadores).
+  \item Las sobrantes forman el \textbf{Generador Reserva}.
+  \item Destapa una loseta en el centro para inaugurar la red.
+  \item Entrega media hoja de borrador («Multímetro») y un lápiz a cada jugador.
+\end{enumerate}
+
+% ============================================================
+\clearpage
+\section{Juego 10 — Código Bóveda: desactivación concéntrica}
+% ============================================================
+
+\subsection{Ficha rápida}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{3cm} p{12.2cm}@{}}
+\toprule
+\textbf{Jugadores} & Cooperativo (2--4) o duelo por equipos (2 vs. 2)\\
+\textbf{Duración} & 30--45 minutos\\
+\textbf{Objetivo} & Resolver operaciones combinadas con signos de agrupación anidados, de adentro hacia afuera, girando tres anillos concéntricos.\\
+\textbf{Subtemas} & Paréntesis $(~)$, corchetes $[~]$, llaves $\{~\}$, valor absoluto $\abs{~}$; supresión de signos de agrupación precedidos por $+$, por $-$ o por un factor.\\
+\textbf{Qué se evalúa} & Que el estudiante respete el orden de las capas y el cambio de signo delante de un grupo.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{La idea en una frase}
+
+\begin{cuadroextra}
+  «La bóveda tiene tres anillos: paréntesis, corchetes y llaves. Solo se abre resolviendo desde el núcleo hacia afuera y girando cada anillo hasta el número exacto.»
+\end{cuadroextra}
+
+\subsection{Cómo se juega en cinco pasos}
+
+\begin{enumerate}[leftmargin=*]
+  \item Se coloca el disco de tres anillos en el centro, alineado en el $0$.
+  \item Se revela una \textbf{Tarjeta de Bóveda} y arranca el cronómetro ($3$ min).
+  \item El \textbf{Operador de Paréntesis} resuelve el núcleo y gira el anillo central.
+  \item El \textbf{Operador de Corchetes} sustituye ese valor, resuelve y gira el anillo medio.
+  \item El \textbf{Operador de Llaves} hace lo mismo con el anillo exterior y el equipo calcula la \textbf{Clave Final}. Si los tres anillos y la clave coinciden, la bóveda se abre.
+\end{enumerate}
+
+\subsection{Reglas}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{De adentro hacia afuera.} No se mueve el anillo de corchetes sin haber fijado el de paréntesis; no se mueve el de llaves sin haber fijado el de corchetes.
+  \item \textbf{Cambio de polaridad.} Si un signo de agrupación está precedido por un signo $-$, el operador de esa capa anuncia «¡Inversión de polaridad!» y cambia el signo de \textbf{todos} los términos internos (o toma el opuesto del resultado del grupo).
+  \item \textbf{Valor absoluto.} Las barras $\abs{~}$ son una capa más: primero se calcula su contenido y luego se toma el valor no negativo.
+  \item \textbf{Roles.} En equipos de 3 o 2, cada integrante es responsable de una capa; el cuarto integrante (si lo hay) es \textbf{verificador} y revisa la Clave Final.
+  \item \textbf{Tiempo.} Cada bóveda dura $3$ minutos. Al agotarse, se considera fallo.
+  \item \textbf{Cascada.} Si el anillo central es incorrecto, los anillos exteriores quedan automáticamente inválidos: el error se arrastra.
+  \item \textbf{Auditoría.} Al terminar, el equipo voltea la tarjeta y compara los tres valores parciales y la clave final. La tarjeta muestra el «Código Triple de Alineación».
+\end{enumerate}
+
+\subsection{Turno paso a paso}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Lee} la expresión completa y localiza la capa más interna: $(~)$.
+  \item \textbf{Resuelve} el paréntesis respetando la jerarquía interna.
+  \item \textbf{Gira} el anillo central hasta ese valor.
+  \item \textbf{Sustituye} el valor en el corchete, resuelve y gira el anillo medio.
+  \item \textbf{Sustituye} el valor en la llave, resuelve y gira el anillo exterior.
+  \item \textbf{Calcula} las operaciones externas (incluido el valor absoluto) y obtén la Clave Final.
+  \item \textbf{Verifica} con el dorso de la tarjeta.
+\end{enumerate}
+
+\subsection{Final y puntuación}
+
+\subsubsection{Modo cooperativo}
+
+El equipo debe abrir \textbf{4 bóvedas} (Bronce, Plata, Oro y Diamante) antes de acumular \textbf{3 alarmas}.
+
+\begin{center}
+\small
+\begin{tabular}{@{}l c p{9cm}@{}}
+\toprule
+\textbf{Nivel} & \textbf{Dificultad} & \textbf{Contenido}\\
+\midrule
+Bronce & 1 estrella & Solo adición y sustracción con paréntesis y corchetes.\\
+Plata & 1--2 estrellas & Paréntesis, corchetes y un signo negativo delante de un grupo.\\
+Oro & 2 estrellas & Multiplicación o división delante de un grupo.\\
+Diamante & 3 estrellas & Llaves anidadas y valor absoluto.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Cada fallo (código incorrecto o tiempo agotado) suma \textbf{1 alarma}. Con \textbf{3 alarmas}, la bóveda queda sellada y el equipo pierde.
+
+\subsubsection{Modo competitivo (2 vs. 2)}
+
+Se juegan \textbf{5 rondas simultáneas}; cada equipo tiene su propio disco y recibe una tarjeta del mismo nivel.
+
+\begin{center}
+\small
+\begin{tabular}{@{}l c@{}}
+\toprule
+\textbf{Logro en la ronda} & \textbf{Puntos}\\
+\midrule
+Cada anillo correctamente posicionado, con las capas interiores correctas & $1$ (máximo $3$)\\
+Clave Final correcta & $2$\\
+\textbf{Máximo por ronda} & $5$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Gana el equipo con más puntos tras las 5 rondas. Desempate: (a) más Claves Finales exactas; (b) menor tiempo total.
+
+\subsection{Ejemplo resuelto}
+
+Tarjeta:
+\[
+-2\cdot\{5-[3+(-8+12\div(-3))-(-2)]\}-\abs{-6}
+\]
+
+\begin{center}
+\small
+\begin{tabular}{@{}l l r l@{}}
+\toprule
+\textbf{Capa} & \textbf{Operación} & \textbf{Valor} & \textbf{Anillo}\\
+\midrule
+Paréntesis $(~)$ & $-8+12\div(-3)=-8+(-4)$ & $-12$ & Central\\
+Corchetes $[~]$ & $3+(-12)-(-2)=3-12+2$ & $-7$ & Medio\\
+Llaves $\{~\}$ & $5-(-7)=5+7$ & $+12$ & Exterior\\
+Clave Final & $-2\cdot(+12)-\abs{-6}=-24-6$ & $-30$ & ---\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Código Triple de Alineación:} $(-12)\rightarrow[-7]\rightarrow\{+12\}$; \textbf{Clave Final: $-30$}.
+
+\subsection{Materiales}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{5.0cm} c p{7.4cm}@{}}
+\toprule
+\textbf{Material} & \textbf{Cantidad} & \textbf{Uso}\\
+\midrule
+Cartulinas de colores & 3 (6 si es competitivo) & Un disco por capa y por equipo\\
+Chinche de dos patas o botón + clip + pabilo & 1 & Eje giratorio\\
+Cartulina blanca & 1 & 12 Tarjetas de Bóveda\\
+Marcadores de punta fina y gruesa & 3 & Rotular\\
+Reloj de arena o cronómetro & 1 & 3 minutos por bóveda\\
+Compás, regla, lápiz, tijera & 1 cada uno & Trazado\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Construcción paso a paso}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Discos.} Traza y recorta tres círculos: exterior (llaves) de $10$ cm de radio, intermedio (corchetes) de $7{,}5$ cm y central (paréntesis) de $5$ cm.
+  \item \textbf{Sectores.} Divide el borde de cada disco en \textbf{16 sectores} iguales (cuartos, octavos y dieciseisavos).
+  \item \textbf{Numeración.} En el borde de los tres discos escribe los mismos 16 números del Patrón A. En el centro del disco pequeño escribe $(~)$, en la franja visible del mediano $[~]$ y en la del grande $\{~\}$.
+  \item \textbf{Eje.} Perfora el centro de los tres discos, apílalos de mayor a menor y atraviesa el chinche (o pasa el pabilo con dos botones) para que giren de forma independiente.
+  \item \textbf{Tarjetas.} Recorta 12 tarjetas de $8\times 12$ cm. En la cara frontal va la expresión y el nivel; en el dorso, el código paso a paso.
+\end{enumerate}
+
+\subsection{Patrones explícitos (fabricación)}
+
+\subsubsection{Patrón A — Los 16 números de los anillos}
+
+Todos los resultados parciales de las tarjetas deben pertenecer a este conjunto, porque son los únicos números impresos en los discos:
+\[
+\{-20,-15,-12,-10,-8,-7,-5,-3,\ 0,\ +2,+4,+6,+8,+12,+15,+18\}.
+\]
+
+\subsubsection{Patrón B — Las 12 Tarjetas de Bóveda}
+
+{\footnotesize
+\begin{longtable}{@{}r c >{\raggedright\arraybackslash}p{6.1cm} c c c c@{}}
+\toprule
+\textbf{\#} & \textbf{Nivel} & \textbf{Expresión} & $\boldsymbol{(~)}$ & $\boldsymbol{[~]}$ & $\boldsymbol{\{~\}}$ & \textbf{Clave}\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+V1 & 1 & $-3+\{12-[5+(2-7)]\}$ & $-5$ & $0$ & $+12$ & $+9$\\
+V2 & 1 & $4-\{-10-[2+(2-7)]\}$ & $-5$ & $-3$ & $-7$ & $+11$\\
+V3 & 1 & $\{15-[-3-(5-8)]\}+6$ & $-3$ & $0$ & $+15$ & $+21$\\
+V4 & 1 & $-8-\{-10-[5+(2-10)]\}$ & $-8$ & $-3$ & $-7$ & $-1$\\
+V5 & 2 & $2\cdot\{2+[4\cdot(-2)-(9\div(-3))]\}$ & $-3$ & $-5$ & $-3$ & $-6$\\
+V6 & 2 & $-3\cdot\{-3+[(12\div(-4))\cdot 2-1]\}$ & $-3$ & $-7$ & $-10$ & $+30$\\
+V7 & 2 & $\{8-[(-15\div 5)\cdot(-2)]\}\div 2$ & $-3$ & $+6$ & $+2$ & $+1$\\
+V8 & 2 & $2\cdot\{-6-[(-24\div 3)-4]\}$ & $-8$ & $-12$ & $+6$ & $+12$\\
+V9 & 3 & $-2\cdot\{5-[3+(-8+12\div(-3))-(-2)]\}-\abs{-6}$ & $-12$ & $-7$ & $+12$ & $-30$\\
+V10 & 3 & $\abs{-3}\cdot\{-6+[-6-(2-14)]\}$ & $-12$ & $+6$ & $0$ & $0$\\
+V11 & 3 & $-\abs{-5}+\{15-[(-4)\cdot 3-(4-16)]\}$ & $-12$ & $0$ & $+15$ & $+10$\\
+V12 & 3 & $\{[((-6)\cdot 2)\div(-2)]\div 3\}\cdot\abs{-7}$ & $-12$ & $+6$ & $+2$ & $+14$\\
+\end{longtable}
+}
+
+\subsubsection{Patrón C — Cómo diseñar una tarjeta nueva}
+
+\begin{enumerate}[leftmargin=*]
+  \item Elige un valor final cualquiera.
+  \item Construye de afuera hacia adentro: decide el valor de las llaves ($B$), luego el de los corchetes ($b$) y luego el de los paréntesis ($p$), \textbf{los tres dentro del conjunto de 16 números}.
+  \item Escribe cada capa como una operación que produzca exactamente el valor elegido.
+  \item Añade, si es nivel 2 o 3, un factor o un valor absoluto externo.
+  \item Verifica el código: $p\rightarrow b\rightarrow B\rightarrow$ Clave Final.
+\end{enumerate}
+
+\subsubsection{Patrón D — Cambio de polaridad}
+
+\begin{center}
+\small
+\begin{tabular}{@{}l l l@{}}
+\toprule
+\textbf{Expresión} & \textbf{Error frecuente} & \textbf{Procedimiento correcto}\\
+\midrule
+$-\{5-[3-8]\}$ & Cambiar solo el primer término & $-\{5-(-5)\}=-\{10\}=-10$\\
+$-[\,-7+2\,]$ & Dejar el $2$ con el mismo signo & $7-2=+5$\\
+$-2\cdot\{5-[-7]\}$ & Multiplicar solo el $5$ & $-2\cdot\{12\}=-24$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{cuadroextra}
+\textbf{Regla mnemotécnica:} «El menos de afuera cambia el signo de todo lo de adentro; el factor de afuera multiplica todo el grupo, no solo el primer término».
+\end{cuadroextra}
+
+\subsection{Configuración inicial}
+
+\begin{enumerate}[leftmargin=*]
+  \item Coloca el disco con los tres anillos alineados en el $0$ («Bóveda Bloqueada»).
+  \item Separa las tarjetas por nivel: Nivel 1 (V1--V4), Nivel 2 (V5--V8) y Nivel 3 (V9--V12).
+  \item Entrega una hoja de cálculo («Bloc de Criptografía») por jugador o equipo.
+  \item Prepara el cronómetro en $3$ minutos.
+  \item En modo competitivo, entrega un disco y un juego de tarjetas a cada equipo.
+\end{enumerate}
+
+% ============================================================
+\appendix
+% ============================================================
+\clearpage
+
+\section{Resumen comparativo}
+
+\begin{center}
+\footnotesize
+\begin{tabular}{@{}c l p{3.0cm} p{3.4cm} p{3.6cm}@{}}
+\toprule
+\textbf{\#} & \textbf{Juego} & \textbf{Subtemas} & \textbf{Mecánica} & \textbf{Señal de aprendizaje}\\
+\midrule
+1 & Guerra de pisos & Orden y comparación & Guerra de cartas con la recta vertical & Justifica la comparación con la posición.\\
+2 & Memoria de opuestos & Opuestos y valor absoluto & Memoria de parejas & Explica por qué dos cartas son equivalentes.\\
+3 & La serpiente de los enteros & Suma y resta de una operación & Saltos en un tablero de 30 casillas & Decide si avanza o retrocede y por qué.\\
+4 & Bingo de productos & Producto, cociente y signos & Bingo $4\times 4$ con dos mazos & Justifica el signo del resultado.\\
+5 & La escalera de dos peldaños & Combinadas de dos pasos & Carrera de 8 peldaños & Resuelve primero el producto o cociente.\\
+6 & Abismo y Cumbre & Orden, opuestos, valor absoluto & Recta numérica y captura por simetría & Justifica por qué dos números son simétricos.\\
+7 & Laboratorio de Antimateria & Adición, sustracción, propiedades & Reactor de cargas y pares nulos & Explica por qué restar un negativo suma.\\
+8 & Vectores de Invasión & Producto, cociente, signos, distributiva & Conquista de matriz $6\times 6$ & Anuncia la operación y justifica el signo.\\
+9 & Cortocircuito $\Z$ & Combinadas sin agrupación & Dominó con auditoría & Resuelve primero productos y cocientes.\\
+10 & Código Bóveda & Combinadas con agrupación & Tres anillos concéntricos & Respeta las capas y el cambio de signo.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Todos los patrones en un solo lugar}
+
+\begin{longtable}{@{}c l l@{}}
+\toprule
+\textbf{Juego} & \textbf{Patrón} & \textbf{Dónde está}\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+1 & Composición del mazo: 20 valores $\times$ 2 & Sección 1.10, Patrón A\\
+1 & Las tres justificaciones válidas & Sección 1.10, Patrón B\\
+1 & Regla de desempate & Sección 1.10, Patrón C\\
+2 & 12 pares de opuestos (24 cartas) & Sección 2.10, Patrón A\\
+2 & 8 pares de valor absoluto (16 cartas) & Sección 2.10, Patrón B\\
+2 & Cuadrícula de colocación $8\times 5$ & Sección 2.10, Patrón C\\
+3 & Las 24 cartas de suma y resta & Sección 3.10, Patrón A\\
+3 & Regla del salto y del rebote & Sección 3.10, Patrón B\\
+4 & Los dos mazos ($-6$ a $+6$) & Sección 4.10, Patrón A\\
+4 & Los 4 cartones de $4\times 4$ & Sección 4.10, Patrón B\\
+4 & Clave de operaciones por valor & Sección 4.10, Patrón C\\
+5 & Escaleras A, B, C y D & Sección 5.10, Patrones A--D\\
+5 & Regla de diseño de una escalera & Sección 5.10, Patrón E\\
+6 & P1--P7: tipos de expresión de la cara A & Sección 6.10, Patrón A\\
+6 & 29 tarjetas de coordenadas (mazo completo) & Sección 6.10, Patrón B\\
+6 & 14 pares de opuestos + la tarjeta $-30$ & Sección 6.10, Patrón C\\
+6 & 6 tarjetas de sonda con su conjunto solución & Sección 6.10, Patrón D\\
+7 & Caras de los dos dados & Sección 7.10, Patrón A\\
+7 & 20 Cartas de Meta & Sección 7.10, Patrón B\\
+7 & Maniobra de creación de vacío & Sección 7.10, Patrón C\\
+8 & Valores de las regletas $A$ y $B$ & Sección 8.11, Patrón A\\
+8 & Matriz $6\times 6$ completa & Sección 8.11, Patrón B\\
+8 & Clave de operaciones por casilla & Sección 8.11, Patrón C\\
+8 & Hackeo Distributivo & Sección 8.11, Patrón D\\
+9 & Regla del bucle cerrado & Sección 9.10, Patrón A\\
+9 & 28 losetas completas & Sección 9.10, Patrón B\\
+9 & Tipos de trampa T1--T5 & Sección 9.10, Patrón C\\
+9 & Auditoría y sanciones & Sección 9.10, Patrón D\\
+10 & 16 números de los anillos & Sección 10.10, Patrón A\\
+10 & 12 Tarjetas de Bóveda & Sección 10.10, Patrón B\\
+10 & Diseño de una tarjeta nueva & Sección 10.10, Patrón C\\
+10 & Cambio de polaridad & Sección 10.10, Patrón D\\
+\end{longtable}
+
+\section{Plantilla de tarjeta en blanco}
+
+\begin{center}
+\small
+\begin{tabular}{@{}l p{10.5cm}@{}}
+\toprule
+\textbf{Campo} & \textbf{Qué escribir}\\
+\midrule
+Juego & 1 a 10.\\
+Nivel / dificultad & 1 a 3 estrellas.\\
+Cara A & Expresión, condición o reto (sin el resultado).\\
+Cara B & Resultado, solución paso a paso o código de auditoría.\\
+Patrón usado & P1--P7, T1--T5, etc.\\
+Verificación & Firma del docente que comprobó la operación.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Rúbrica de observación}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{3.4cm} p{3.6cm} p{3.6cm} p{3.6cm}@{}}
+\toprule
+\textbf{Indicador} & \textbf{1 (En inicio)} & \textbf{2 (En proceso)} & \textbf{3 (Logrado)}\\
+\midrule
+Resolución de la operación & Se equivoca y no detecta el error. & Llega al resultado con ayuda. & Resuelve solo y verifica.\\
+Justificación & No explica el procedimiento. & Explica parcialmente. & Explica el orden y la regla aplicada.\\
+Uso del material & Manipula sin relación con la operación. & Usa el material con apoyo. & Traduce la operación al material con autonomía.\\
+Auditoría & No detecta errores ajenos. & Detecta el error pero no lo explica. & Detecta, explica y corrige.\\
+Trabajo en equipo & Interrumpe o no participa. & Participa si se le pide. & Cumple su rol y ayuda a los demás.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\end{document}

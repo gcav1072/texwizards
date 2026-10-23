@@ -1,0 +1,1037 @@
+% ============================================================
+%  GUÍA DE PRÁCTICA — FUNCIONES — 10 SESIONES DE 90 MINUTOS
+%  Curso: 2do Año — CELAM
+%  Autor: Ing. Gabriel Astudillo
+%
+%  DISEÑO DE LA GUÍA
+%  Las 10 sesiones son idénticas en estructura:
+%     90 min = Calentamiento (15) + Desarrollo (50) + Cierre (25)
+%     20 ejercicios = 5 + 10 + 5
+%  y cada sesión recorre LOS CINCO BLOQUES:
+%
+%     Bloque A: Conjuntos (extensión ↔ comprensión) ....... 1 + 2 + 1
+%     Bloque B: ¿Es función? (pares o sagital) ............ 1 + 2 + 1
+%     Bloque C: Inyectiva, sobreyectiva o biyectiva ....... 1 + 2 + 1
+%     Bloque D: Sagital ↔ tabular ......................... 1 + 2 + 1
+%     Bloque E: Función lineal: rango y representación .... 1 + 2 + 1
+%
+%  Los 20 "casilleros" son siempre los mismos; sólo cambian los
+%  conjuntos, las funciones y las representaciones de una sesión a otra.
+%  Incluye clave de respuestas entre \ifmwclaves ... \fi
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+\usepackage{mathwizards-guia}
+\mwguia{Guía de Práctica — Funciones (10 sesiones)}{Ing. Gabriel Astudillo $\cdot$ 2do Año}
+
+% Permite estirar un poco más las líneas con muchas fórmulas
+% (por ejemplo, las respuestas con dominio, codominio y rango)
+% para que no se salgan del margen.
+\setlength{\emergencystretch}{2em}
+
+% ── Comandos propios de esta guía ────────────────────────────
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+% ── Diagrama tabular: plano cartesiano con los puntos ───────
+% Igual que en el material de clase, el «diagrama tabular» se
+% dibuja como una cuadrícula con ejes, los números y un punto
+% negro por cada par ordenado de la relación. Solo se rotulan
+% (y se trazan) los valores que aparecen: el eje x muestra el
+% dominio y el eje y el codominio, sin números «de más».
+% Uso:  \mwtabular{1/2, 2/4, 3/6, 4/8}
+%       \mwtabular[Relación: ``$A$ es la mitad de $B$'']{1/2,2/4,3/6,4/8}
+\newcommand{\mwlistapares}[1]{%
+  \foreach \mwPx/\mwPy [count=\mwPi] in {#1} {%
+    \ifnum\mwPi>1\relax\enspace\fi
+    $(\mwPx,\mwPy)$%
+  }%
+}
+% Solo el plano (sin título ni pie). Escala opcional.
+% Solo se rotulan y se trazan las líneas de los valores que
+% REALMENTE aparecen: así no se sugiere que otros números
+% formen parte del dominio o del codominio.
+\newcommand{\mwplano}[2][0.42]{%
+  \def\mwGx{0}\def\mwGy{0}%
+  \foreach \mwPx/\mwPy in {#2} {%
+    \ifnum\mwPx>\mwGx\relax\xdef\mwGx{\mwPx}\fi
+    \ifnum\mwPy>\mwGy\relax\xdef\mwGy{\mwPy}\fi
+  }%
+  \xdef\mwXl{}\xdef\mwYl{}%
+  \foreach \mwV in {0,...,\mwGx} {%
+    \xdef\mwHit{0}%
+    \foreach \mwPx/\mwPy in {#2} {\ifnum\mwPx=\mwV\relax\xdef\mwHit{1}\fi}%
+    \ifnum\mwHit=1\relax
+      \ifx\mwXl\empty\xdef\mwXl{\mwV}\else\xdef\mwXl{\mwXl,\mwV}\fi
+    \fi
+  }%
+  \foreach \mwV in {0,...,\mwGy} {%
+    \xdef\mwHit{0}%
+    \foreach \mwPx/\mwPy in {#2} {\ifnum\mwPy=\mwV\relax\xdef\mwHit{1}\fi}%
+    \ifnum\mwHit=1\relax
+      \ifx\mwYl\empty\xdef\mwYl{\mwV}\else\xdef\mwYl{\mwYl,\mwV}\fi
+    \fi
+  }%
+  \begin{tikzpicture}[scale=#1,
+      every node/.style={font=\scriptsize, inner sep=1.6pt}]
+    \foreach \mwV in \mwYl {%
+      \ifnum\mwV>0\relax\draw[gray!45, thin] (0,\mwV) -- (\mwGx,\mwV);\fi}
+    \foreach \mwV in \mwXl {%
+      \ifnum\mwV>0\relax\draw[gray!45, thin] (\mwV,0) -- (\mwV,\mwGy);\fi}
+    \draw[-Latex, thick] (0,0) -- (\mwGx+0.9,0) node[right] {$x$};
+    \draw[-Latex, thick] (0,0) -- (0,\mwGy+0.9) node[above] {$y$};
+    \foreach \mwV in \mwXl {%
+      \ifnum\mwV=0\relax\node[below left] at (0,0) {0};\else\node[below] at (\mwV,0) {\mwV};\fi}
+    \foreach \mwV in \mwYl {%
+      \ifnum\mwV=0\relax\else\node[left] at (0,\mwV) {\mwV};\fi}
+    \foreach \mwPx/\mwPy in {#2} {\fill (\mwPx,\mwPy) circle [radius=0.19];}
+  \end{tikzpicture}%
+}
+\newcommand{\mwtabular}[2][\relax]{%
+  \par\nobreak
+  \noindent\begin{minipage}{\linewidth}\centering
+    \ifx\relax#1\relax\else{\scriptsize\textbf{#1}}\\[4pt]\fi
+    \mwplano{#2}\\[3pt]
+    {\scriptsize\textbf{Diagrama tabular:} \mwlistapares{#2}}
+  \end{minipage}\par\nobreak\smallskip
+}
+
+% ── Diagrama sagital compacto ────────────────────────────────
+% Uso: \mwsagital{etiqueta izquierda}{elementos izquierda}%
+%                 {etiqueta derecha}{elementos derecha}{flechas}
+% Las flechas se escriben con índices base 0: 0/0,1/2,...
+\newcounter{mwsagL}
+\newcounter{mwsagR}
+\newcommand{\mwsagital}[5]{%
+  \begin{tikzpicture}[
+      el/.style={draw, circle, minimum size=6.5mm, inner sep=0pt, font=\scriptsize},
+      flecha/.style={-Latex, thick, mwprimario}
+    ]
+    \setcounter{mwsagL}{0}%
+    \foreach \e in {#2} {%
+      \pgfmathsetmacro{\yL}{-\themwsagL*0.72}%
+      \node[el] (L\themwsagL) at (0,\yL) {\e};%
+      \stepcounter{mwsagL}%
+    }%
+    \setcounter{mwsagR}{0}%
+    \foreach \e in {#4} {%
+      \pgfmathsetmacro{\yR}{-\themwsagR*0.72}%
+      \node[el] (R\themwsagR) at (2.9,\yR) {\e};%
+      \stepcounter{mwsagR}%
+    }%
+    \pgfmathsetmacro{\botL}{-(\themwsagL-1)*0.72-0.55}%
+    \pgfmathsetmacro{\botR}{-(\themwsagR-1)*0.72-0.55}%
+    \draw[thick, mwprimario, rounded corners] (-0.55,0.55) rectangle (0.55,\botL);
+    \draw[thick, mwprimario, rounded corners] (2.35,0.55) rectangle (3.45,\botR);
+    \node[font=\bfseries\scriptsize, mwprimario] at (0,0.85) {#1};
+    \node[font=\bfseries\scriptsize, mwprimario] at (2.9,0.85) {#3};
+    \foreach \a/\b in {#5} {\draw[flecha] (L\a) -- (R\b);}%
+  \end{tikzpicture}%
+}
+
+% ── Plantilla única de sesión ────────────────────────────────
+% 90 min = Calentamiento (15) + Desarrollo (50) + Cierre (25)
+% 20 ejercicios = 5 + 10 + 5, siempre 4 por cada bloque.
+\newcommand{\mwsession}[2]{%
+  \clearpage
+  \refstepcounter{section}%
+  \section*{Sesión \thesection\ — #1}%
+  \begin{cuadroinfo}
+    \small
+    \textbf{Objetivo:} #2\\[2pt]
+    \textbf{Estructura (idéntica en las 10 sesiones):}
+    Calentamiento 15 min (5 ejercicios) $\cdot$
+    Desarrollo 50 min (10 ejercicios) $\cdot$
+    Cierre y desafío 25 min (5 ejercicios).
+    \hfill\textbf{Total: 90 min}\\[2pt]
+    \textbf{Contenido:} 20 ejercicios, \textbf{4 de cada bloque}:
+    conjuntos $\cdot$ ¿es función? $\cdot$ clasificación
+    $\cdot$ representaciones $\cdot$ función lineal.
+  \end{cuadroinfo}
+}
+% Etiqueta gris que indica el bloque temático de cada ejercicio.
+\newcommand{\mwtag}[1]{{\scriptsize\color{mwgris}#1}\hspace{5pt}}
+% Reglas clave: idénticas en las 10 sesiones.
+\newcommand{\mwreglas}{%
+  \begin{cuadroteoria}
+    \small
+    \textbf{Reglas clave:} un conjunto se escribe por \textbf{extensión} listando sus elementos entre llaves, y por \textbf{comprensión} describiendo la propiedad que los caracteriza. Una \textbf{relación} es \textbf{función} si cada elemento del dominio tiene \emph{exactamente una} imagen. Una función es \textbf{inyectiva} si elementos distintos del dominio tienen imágenes distintas; es \textbf{sobreyectiva} si su rango es igual al codominio; es \textbf{biyectiva} si cumple las dos condiciones anteriores. El \textbf{rango} está formado por las imágenes que realmente se usan. Las tres representaciones son el \textbf{diagrama sagital} (flechas entre los dos conjuntos), el \textbf{diagrama tabular} (los puntos sobre una cuadrícula, con sus pares ordenados) y la \textbf{gráfica en el plano cartesiano}.
+  \end{cuadroteoria}
+}
+\newcommand{\mwcierrebloque}[2]{%
+  \end{enumerate}%
+  \ifnum\value{enumi}=#2\relax
+    \typeout{MW: #1 correcto}%
+  \else
+    \GenericWarning{}{MW Warning: #1 termina en el ejercicio \the\value{enumi}; se esperaba #2}%
+  \fi
+}
+% Autoevaluación: idéntica al final de las 10 sesiones.
+\newcommand{\mwautoevaluacion}{%
+  \begin{cuadroinfo}[nobreak=true]
+    \small
+    \textbf{Autoevaluación:} marca los bloques que resolviste sin errores\\[2pt]
+    $\square$ conjuntos \quad
+    $\square$ ¿es función? \quad
+    $\square$ clasificación \quad
+    $\square$ representaciones \quad
+    $\square$ función lineal\\[4pt]
+    \textbf{Para repasar:} anota los números de los ejercicios que te costaron\\[2pt]
+    \noindent\rule{\linewidth}{0.4pt}\\[8pt]
+    \noindent\rule{\linewidth}{0.4pt}
+  \end{cuadroinfo}
+}
+\newenvironment{mwcalentamiento}
+  {\subsection*{Calentamiento (15 min)}\begin{enumerate}[leftmargin=*, start=1]}
+  {\mwcierrebloque{Calentamiento}{5}}
+\newenvironment{mwdesarrollo}
+  {\subsection*{Desarrollo (50 min)}\begin{enumerate}[leftmargin=*, start=6]}
+  {\mwcierrebloque{Desarrollo}{15}}
+\newenvironment{mwcierre}
+  {\subsection*{Cierre y desafío (25 min)}\begin{enumerate}[leftmargin=*, start=16]}
+  {\mwcierrebloque{Cierre}{20}\mwautoevaluacion}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Práctica — Funciones}{Diez sesiones de 90 minutos}{Conjuntos, relaciones, clasificación y representación de funciones}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} esta guía contiene \textbf{10 sesiones de 90 minutos}. Cada sesión repasa los cinco bloques básicos: conjuntos, identificación de funciones, clasificación (inyectiva, sobreyectiva, biyectiva), conversión entre diagrama sagital y tabular, y funciones lineales con su rango. La estructura es \textbf{idéntica} en las diez sesiones; lo que cambia son los ejercicios.
+  \\[4pt]
+  \textbf{Rejilla fija de cada sesión (20 ejercicios):}
+  \begin{center}
+    \small
+    \begin{tabular}{@{}l ccc c@{}}
+      \toprule
+      \textbf{Bloque} & \textbf{Calentamiento} & \textbf{Desarrollo} & \textbf{Cierre} & \textbf{Total} \\
+      \midrule
+      A. Conjuntos (extensión $\leftrightarrow$ comprensión)     & 1 & 2 & 1 & 4 \\
+      B. ¿Es función?                             & 1 & 2 & 1 & 4 \\
+      C. Inyectiva, sobreyectiva o biyectiva      & 1 & 2 & 1 & 4 \\
+      D. Sagital $\leftrightarrow$ tabular        & 1 & 2 & 1 & 4 \\
+      E. Función lineal: rango y representación   & 1 & 2 & 1 & 4 \\
+      \midrule
+      \textbf{Tiempo}                             & 15 min & 50 min & 25 min & \textbf{90 min} \\
+      \textbf{Ejercicios}                         & 5 & 10 & 5 & \textbf{20} \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \textbf{Cómo leer cada ejercicio:} la etiqueta gris que lo precede indica el bloque al que pertenece, de modo que el estudiante siempre reconoce el tipo de tarea que está practicando. En la mitad de los ejercicios de clasificación se pide además \textbf{hallar el dominio, el codominio, el rango y los pares ordenados}.
+  \\[4pt]
+  \textbf{Cómo usar la guía:} resuelve \emph{sin calculadora} y muestra \emph{todos} los pasos. Si una sesión se alarga, termina el \emph{Cierre} como tarea y corrige con la clave del final. En total son \textbf{200 ejercicios} y \textbf{30 horas} de práctica. El nivel va de \medio{}\hspace{7pt}básico a \dificil{}\hspace{7pt}intermedio.
+  \par\medskip
+  \noindent\begin{minipage}{\linewidth}
+    \begin{minipage}[c]{0.53\linewidth}
+      \scriptsize
+      \textbf{Convención:} el \textbf{diagrama tabular} se dibuja como en el material de clase: una cuadrícula con sus ejes, un \textbf{punto negro} por cada par ordenado y, en cada eje, \textbf{solo los números que pertenecen} al dominio (eje $x$) y al codominio (eje $y$). Debajo se escriben los pares. Ejemplo con ``$A$ es la mitad de $B$'' ($A=\{1,2,3,4\}$, $B=\{2,4,6,8\}$):
+    \end{minipage}\hfill
+    \begin{minipage}[c]{0.44\linewidth}
+      \centering
+      {\scriptsize\textbf{Relación: ``$A$ es la mitad de $B$''}}\\[2pt]
+      \mwplano[0.36]{1/2, 2/4, 3/6, 4/8}\\[2pt]
+      {\scriptsize\textbf{Diagrama tabular:} \mwlistapares{1/2, 2/4, 3/6, 4/8}}
+    \end{minipage}
+  \end{minipage}
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+%  SESIÓN 1
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar conjuntos, identificación de funciones, clasificación, representaciones y función lineal con ejercicios nuevos.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{Conjuntos} Escribe por extensión: $A=\{x\in\N \;/\; x\le 5\}$.
+  \item \mwtag{¿Es función?} $R=\{(1,a),(2,b),(3,c)\}$ de $\{1,2,3\}$ en $\{a,b,c\}$. \textquestiondown Es función?
+  \item \mwtag{Clasificación} Clasifica $f=\{(1,a),(2,b),(3,c)\}$ de $\{1,2,3\}$ en $\{a,b,c\}$ y halla dominio, codominio y rango.
+  \item \mwtag{Representaciones} Convierte el siguiente diagrama sagital a diagrama tabular.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{2,4,6}{0/0,1/1,2/2}
+        \end{center}
+  \item \mwtag{Función lineal} Para $f(x)=x+1$ con $\operatorname{Dom} f=\{1,2,3,4\}$, halla el rango y escribe el diagrama tabular.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{Conjuntos} Escribe por comprensión: $A=\{2,4,6,8\}$.
+  \item \mwtag{¿Es función?} $R=\{(1,a),(1,b),(2,c)\}$ de $\{1,2\}$ en $\{a,b,c\}$. \textquestiondown Es función?
+  \item \mwtag{Clasificación} Clasifica $f=\{(1,a),(2,a),(3,b)\}$ de $\{1,2,3\}$ en $\{a,b\}$.
+  \item \mwtag{Representaciones} Convierte este diagrama tabular a diagrama sagital.
+        \mwtabular{1/3, 2/5, 3/7}
+  \item \mwtag{Función lineal} Para $f(x)=2x$ con $\operatorname{Dom} f=\{0,1,2,3\}$, halla el rango y traza el diagrama sagital.
+  \item \mwtag{Conjuntos} Escribe por extensión: $B=\{x\in\Z \;/\; -2\le x<3\}$.
+  \item \mwtag{¿Es función?} Observa el diagrama sagital. \textquestiondown Es función?
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{a,b,c,d}{0/0,1/1,2/1}
+        \end{center}
+  \item \mwtag{Clasificación} Clasifica la función dada por el diagrama tabular (codominio $\{4,5,6,7\}$) y halla dominio, codominio, rango y pares ordenados.
+        \mwtabular{1/4, 2/5, 3/6}
+  \item \mwtag{Representaciones} Convierte el diagrama sagital a diagrama tabular.
+        \begin{center}
+          \mwsagital{$A$}{a,b,c}{$B$}{1,2,3}{0/1,1/0,2/2}
+        \end{center}
+  \item \mwtag{Función lineal} Sea $A=\{x\in\N \;/\; x\le 4\}$ y $f(x)=3x-1$. Halla el rango y escribe el diagrama tabular.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{Conjuntos} Escribe por comprensión: $C=\{1,3,5,7,9\}$.
+  \item \mwtag{¿Es función?} Observa el diagrama sagital. \textquestiondown Es función? Justifica.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{a,b,c}{0/0,1/1,1/2}
+        \end{center}
+  \item \mwtag{Clasificación} Clasifica $f=\{(1,a),(2,b),(3,c),(4,d)\}$ de $\{1,2,3,4\}$ en $\{a,b,c,d\}$.
+  \item \mwtag{Representaciones} Convierte este diagrama tabular a diagrama sagital.
+        \mwtabular{2/1, 4/2, 6/3}
+  \item \mwtag{Función lineal} Para $f(x)=x-3$ con $\operatorname{Dom} f=\{3,4,5,6\}$, halla el rango y traza el diagrama sagital.
+\end{mwcierre}
+
+% ============================================================
+%  SESIÓN 2
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar conjuntos, identificación de funciones, clasificación, representaciones y función lineal con ejercicios nuevos.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{Conjuntos} Escribe por extensión: $A=\{x\in\N \;/\; x<6\}$.
+  \item \mwtag{¿Es función?} $R=\{(2,a),(4,b),(6,c)\}$ de $\{2,4,6\}$ en $\{a,b,c\}$. \textquestiondown Es función?
+  \item \mwtag{Clasificación} Clasifica la función del diagrama (codominio $\{a,b,c,d\}$) y halla dominio, codominio, rango y pares ordenados.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{a,b,c,d}{0/0,1/1,2/2}
+        \end{center}
+  \item \mwtag{Representaciones} Convierte el diagrama sagital a diagrama tabular.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3,4}{$B$}{0,1,2,3}{0/0,1/1,2/2,3/3}
+        \end{center}
+  \item \mwtag{Función lineal} Para $f(x)=x+2$ con $\operatorname{Dom} f=\{0,1,2,3\}$, halla el rango y escribe el diagrama tabular.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{Conjuntos} Escribe por comprensión: $B=\{-3,-2,-1,0,1\}$.
+  \item \mwtag{¿Es función?} $R=\{(1,a),(2,a),(3,b),(4,b)\}$ de $\{1,2,3,4\}$ en $\{a,b\}$. \textquestiondown Es función?
+  \item \mwtag{Clasificación} Clasifica $f=\{(1,a),(2,b),(3,c)\}$ de $\{1,2,3\}$ en $\{a,b,c,d\}$.
+  \item \mwtag{Representaciones} Convierte este diagrama tabular a diagrama sagital.
+        \mwtabular[Relación: ``$A$ es la mitad de $B$'']{1/2, 2/4, 3/6, 4/8}
+  \item \mwtag{Función lineal} Sea $A=\{x\in\N \;/\; x<4\}$ y $f(x)=2x+1$. Halla el rango y traza el diagrama sagital.
+  \item \mwtag{Conjuntos} Escribe por extensión: $C=\{x\in\N \;/\; x \text{ es divisor de } 8\}$.
+  \item \mwtag{¿Es función?} Observa el diagrama sagital. \textquestiondown Es función?
+        \begin{center}
+          \mwsagital{$A$}{a,b,c}{$B$}{1,2,3,4}{0/0,1/1,2/1}
+        \end{center}
+  \item \mwtag{Clasificación} Clasifica la función dada por el diagrama tabular (codominio $\{3,6,9\}$) y halla dominio, codominio, rango y pares ordenados.
+        \mwtabular{1/3, 2/6, 3/9}
+  \item \mwtag{Representaciones} Convierte el diagrama sagital a diagrama tabular.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{a,b,c}{0/1,1/0,2/2}
+        \end{center}
+  \item \mwtag{Función lineal} Sea $A=\{x\in\N \;/\; x\le 3\}$ y $f(x)=4x-1$. Halla el rango y escribe el diagrama tabular.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{Conjuntos} Escribe por comprensión: $D=\{5,10,15,20\}$.
+  \item \mwtag{¿Es función?} Observa el diagrama sagital. \textquestiondown Es función? Justifica.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{a,b,c}{0/0,0/1,1/2}
+        \end{center}
+  \item \mwtag{Clasificación} Clasifica $f=\{(1,b),(2,a),(3,c)\}$ de $\{1,2,3\}$ en $\{a,b,c\}$.
+  \item \mwtag{Representaciones} Convierte este diagrama tabular a diagrama sagital.
+        \mwtabular{1/1, 2/3, 3/5}
+  \item \mwtag{Función lineal} Para $f(x)=x-1$ con $\operatorname{Dom} f=\{1,2,3,4\}$, halla el rango y traza el diagrama sagital.
+\end{mwcierre}
+
+% ============================================================
+%  SESIÓN 3
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar conjuntos, identificación de funciones, clasificación, representaciones y función lineal con ejercicios nuevos.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{Conjuntos} Escribe por extensión: $A=\{x\in\N \;/\; x\le 4\}$.
+  \item \mwtag{¿Es función?} $R=\{(1,a),(2,b),(3,c),(4,d)\}$ de $\{1,2,3,4\}$ en $\{a,b,c,d\}$. \textquestiondown Es función?
+  \item \mwtag{Clasificación} Clasifica la función del diagrama (codominio $\{a,b,c\}$) y halla dominio, codominio, rango y pares ordenados.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{a,b,c}{0/0,1/1,2/1}
+        \end{center}
+  \item \mwtag{Representaciones} Convierte el diagrama sagital a diagrama tabular.
+        \begin{center}
+          \mwsagital{$A$}{0,1,2}{$B$}{1,3,5}{0/0,1/1,2/2}
+        \end{center}
+  \item \mwtag{Función lineal} Para $f(x)=x+3$ con $\operatorname{Dom} f=\{1,2,3\}$, halla el rango y escribe el diagrama tabular.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{Conjuntos} Escribe por comprensión: $A=\{2,4,6,8,10\}$.
+  \item \mwtag{¿Es función?} $R=\{(1,a),(1,b),(2,c),(3,d)\}$ de $\{1,2,3\}$ en $\{a,b,c,d\}$. \textquestiondown Es función?
+  \item \mwtag{Clasificación} Clasifica $f=\{(1,a),(2,b),(3,c),(4,a)\}$ de $\{1,2,3,4\}$ en $\{a,b,c,d\}$.
+  \item \mwtag{Representaciones} Convierte este diagrama tabular a diagrama sagital.
+        \mwtabular{2/1, 4/3, 6/5}
+  \item \mwtag{Función lineal} Para $f(x)=2x-1$ con $\operatorname{Dom} f=\{1,2,3,4\}$, halla el rango y traza el diagrama sagital.
+  \item \mwtag{Conjuntos} Escribe por extensión: $B=\{x\in\Z \;/\; -1\le x\le 2\}$.
+  \item \mwtag{¿Es función?} Observa el diagrama sagital. \textquestiondown Es función?
+        \begin{center}
+          \mwsagital{$A$}{1,2,3,4}{$B$}{a,b,c}{0/0,1/1,2/2,3/2}
+        \end{center}
+  \item \mwtag{Clasificación} Clasifica la función dada por el diagrama tabular (codominio $\{2,3,4\}$) y halla dominio, codominio, rango y pares ordenados.
+        \mwtabular{1/2, 2/2, 3/3}
+  \item \mwtag{Representaciones} Convierte el diagrama sagital a diagrama tabular.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3,4}{$B$}{a,b,c,d}{0/3,1/2,2/1,3/0}
+        \end{center}
+  \item \mwtag{Función lineal} Sea $A=\{x\in\Z \;/\; 0\le x\le 2\}$ y $f(x)=3x$. Halla el rango y escribe el diagrama tabular.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{Conjuntos} Escribe por comprensión: $C=\{1,4,9,16\}$.
+  \item \mwtag{¿Es función?} Observa el diagrama sagital. \textquestiondown Es función? Justifica.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{a,b,c}{0/0,0/2,1/1}
+        \end{center}
+  \item \mwtag{Clasificación} Clasifica $f=\{(1,c),(2,a),(3,b)\}$ de $\{1,2,3\}$ en $\{a,b,c\}$.
+  \item \mwtag{Representaciones} Convierte este diagrama tabular a diagrama sagital.
+        \mwtabular{1/5, 2/7, 3/9}
+  \item \mwtag{Función lineal} Para $f(x)=5x$ con $\operatorname{Dom} f=\{0,1,2\}$, halla el rango y traza el diagrama sagital.
+\end{mwcierre}
+
+% ============================================================
+%  SESIÓN 4
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar conjuntos, identificación de funciones, clasificación, representaciones y función lineal con ejercicios nuevos.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{Conjuntos} Escribe por extensión: $A=\{x\in\N \;/\; x\le 6\}$.
+  \item \mwtag{¿Es función?} $R=\{(2,a),(4,b),(6,c)\}$ de $\{2,4,6\}$ en $\{a,b,c\}$. \textquestiondown Es función?
+  \item \mwtag{Clasificación} Clasifica la función del diagrama (codominio $\{a,b,c\}$) y halla dominio, codominio, rango y pares ordenados.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3,4}{$B$}{a,b,c}{0/0,1/1,2/2,3/2}
+        \end{center}
+  \item \mwtag{Representaciones} Convierte el diagrama sagital a diagrama tabular.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{2,4,6}{0/0,1/1,2/2}
+        \end{center}
+  \item \mwtag{Función lineal} Para $f(x)=x+4$ con $\operatorname{Dom} f=\{0,1,2\}$, halla el rango y escribe el diagrama tabular.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{Conjuntos} Escribe por comprensión: $A=\{-2,0,2,4\}$.
+  \item \mwtag{¿Es función?} $R=\{(1,a),(2,b),(1,c)\}$ de $\{1,2\}$ en $\{a,b,c\}$. \textquestiondown Es función?
+  \item \mwtag{Clasificación} Clasifica $f=\{(1,a),(2,b),(3,c),(4,d)\}$ de $\{1,2,3,4\}$ en $\{a,b,c,d,e\}$.
+  \item \mwtag{Representaciones} Convierte este diagrama tabular a diagrama sagital.
+        \mwtabular{2/1, 3/2, 4/3}
+  \item \mwtag{Función lineal} Para $f(x)=2x+3$ con $\operatorname{Dom} f=\{0,1,2\}$, halla el rango y traza el diagrama sagital.
+  \item \mwtag{Conjuntos} Escribe por extensión: $C=\{x\in\N \;/\; x \text{ es divisor de } 10\}$.
+  \item \mwtag{¿Es función?} Observa el diagrama sagital. \textquestiondown Es función?
+        \begin{center}
+          \mwsagital{$A$}{a,b,c}{$B$}{1,2,3}{0/2,1/0,2/1}
+        \end{center}
+  \item \mwtag{Clasificación} Clasifica la función dada por el diagrama tabular (codominio $\{3,5,7,9,11\}$) y halla dominio, codominio, rango y pares ordenados.
+        \mwtabular{1/3, 2/5, 3/7, 4/9}
+  \item \mwtag{Representaciones} Convierte el diagrama sagital a diagrama tabular.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3,4}{$B$}{a,b}{0/0,1/0,2/1,3/1}
+        \end{center}
+  \item \mwtag{Función lineal} Sea $A=\{x\in\N \;/\; x\le 3\}$ y $f(x)=3x+1$. Halla el rango y escribe el diagrama tabular.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{Conjuntos} Escribe por comprensión: $D=\{3,6,9,12,15\}$.
+  \item \mwtag{¿Es función?} Observa el diagrama sagital. \textquestiondown Es función? Justifica.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{a,b,c}{0/1,1/0,1/2}
+        \end{center}
+  \item \mwtag{Clasificación} Clasifica $f=\{(1,a),(2,b),(3,a)\}$ de $\{1,2,3\}$ en $\{a,b\}$.
+  \item \mwtag{Representaciones} Convierte este diagrama tabular a diagrama sagital.
+        \mwtabular{1/2, 2/4, 3/6}
+  \item \mwtag{Función lineal} Para $f(x)=x-4$ con $\operatorname{Dom} f=\{4,5,6\}$, halla el rango y traza el diagrama sagital.
+\end{mwcierre}
+
+% ============================================================
+%  SESIÓN 5
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar conjuntos, identificación de funciones, clasificación, representaciones y función lineal con ejercicios nuevos.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{Conjuntos} Escribe por extensión: $A=\{x\in\Z \;/\; -3\le x\le -1\}$.
+  \item \mwtag{¿Es función?} $R=\{(1,a),(2,b),(3,c),(4,d)\}$ de $\{1,2,3,4\}$ en $\{a,b,c,d\}$. \textquestiondown Es función?
+  \item \mwtag{Clasificación} Clasifica la función del diagrama (codominio $\{a,b\}$) y halla dominio, codominio, rango y pares ordenados.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{a,b}{0/0,1/1,2/1}
+        \end{center}
+  \item \mwtag{Representaciones} Convierte el diagrama sagital a diagrama tabular.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{a,b,c}{0/2,1/0,2/1}
+        \end{center}
+  \item \mwtag{Función lineal} Para $f(x)=x+5$ con $\operatorname{Dom} f=\{1,2,3\}$, halla el rango y escribe el diagrama tabular.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{Conjuntos} Escribe por comprensión: $A=\{0,1,2,3,4\}$.
+  \item \mwtag{¿Es función?} $R=\{(1,a),(2,b),(3,c),(3,d)\}$ de $\{1,2,3\}$ en $\{a,b,c,d\}$. \textquestiondown Es función?
+  \item \mwtag{Clasificación} Clasifica $f=\{(1,a),(2,b),(3,c)\}$ de $\{1,2,3\}$ en $\{a,b,c,d\}$.
+  \item \mwtag{Representaciones} Convierte este diagrama tabular a diagrama sagital.
+        \mwtabular{1/2, 2/3, 3/4, 4/5}
+  \item \mwtag{Función lineal} Para $f(x)=2x-3$ con $\operatorname{Dom} f=\{2,3,4\}$, halla el rango y traza el diagrama sagital.
+  \item \mwtag{Conjuntos} Escribe por extensión: $C=\{x\in\N \;/\; x \text{ es divisor de } 12\}$.
+  \item \mwtag{¿Es función?} Observa el diagrama sagital. \textquestiondown Es función?
+        \begin{center}
+          \mwsagital{$A$}{1,2,3,4}{$B$}{a,b,c}{0/0,1/1,2/2,3/0}
+        \end{center}
+  \item \mwtag{Clasificación} Clasifica la función dada por el diagrama tabular (codominio $\{5,6,7\}$) y halla dominio, codominio, rango y pares ordenados.
+        \mwtabular{1/5, 2/6, 3/7}
+  \item \mwtag{Representaciones} Convierte el diagrama sagital a diagrama tabular.
+        \begin{center}
+          \mwsagital{$A$}{a,b,c}{$B$}{1,2,3}{0/0,1/2,2/1}
+        \end{center}
+  \item \mwtag{Función lineal} Sea $A=\{x\in\Z \;/\; -1\le x\le 1\}$ y $f(x)=4x$. Halla el rango y escribe el diagrama tabular.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{Conjuntos} Escribe por comprensión: $D=\{1,2,4,8,16\}$.
+  \item \mwtag{¿Es función?} Observa el diagrama sagital. \textquestiondown Es función? Justifica.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{a,b,c}{0/0,0/1,1/2}
+        \end{center}
+  \item \mwtag{Clasificación} Clasifica $f=\{(1,c),(2,a),(3,d),(4,b)\}$ de $\{1,2,3,4\}$ en $\{a,b,c,d\}$.
+  \item \mwtag{Representaciones} Convierte este diagrama tabular a diagrama sagital.
+        \mwtabular{2/5, 4/7, 6/9}
+  \item \mwtag{Función lineal} Para $f(x)=3x-2$ con $\operatorname{Dom} f=\{1,2,3\}$, halla el rango y traza el diagrama sagital.
+\end{mwcierre}
+
+% ============================================================
+%  SESIÓN 6
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar conjuntos, identificación de funciones, clasificación, representaciones y función lineal con ejercicios nuevos.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{Conjuntos} Escribe por extensión: $A=\{x\in\N \;/\; x\le 3\}$.
+  \item \mwtag{¿Es función?} $R=\{(1,a),(2,b),(3,c)\}$ de $\{1,2,3\}$ en $\{a,b,c\}$. \textquestiondown Es función?
+  \item \mwtag{Clasificación} Clasifica la función del diagrama (codominio $\{a,b,c,d\}$) y halla dominio, codominio, rango y pares ordenados.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3,4}{$B$}{a,b,c,d}{0/1,1/0,2/3,3/2}
+        \end{center}
+  \item \mwtag{Representaciones} Convierte el diagrama sagital a diagrama tabular.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3,4}{$B$}{1,2,3,4}{0/1,1/3,2/0,3/2}
+        \end{center}
+  \item \mwtag{Función lineal} Para $f(x)=x+6$ con $\operatorname{Dom} f=\{1,2,3\}$, halla el rango y escribe el diagrama tabular.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{Conjuntos} Escribe por comprensión: $A=\{-4,-2,0,2\}$.
+  \item \mwtag{¿Es función?} $R=\{(1,a),(2,b),(1,c)\}$ de $\{1,2\}$ en $\{a,b,c\}$. \textquestiondown Es función?
+  \item \mwtag{Clasificación} Clasifica $f=\{(1,a),(2,a),(3,b),(4,b)\}$ de $\{1,2,3,4\}$ en $\{a,b\}$.
+  \item \mwtag{Representaciones} Convierte este diagrama tabular a diagrama sagital.
+        \mwtabular{1/3, 2/6, 3/9}
+  \item \mwtag{Función lineal} Para $f(x)=2x+2$ con $\operatorname{Dom} f=\{1,2,3\}$, halla el rango y traza el diagrama sagital.
+  \item \mwtag{Conjuntos} Escribe por extensión: $B=\{x\in\Z \;/\; -2<x\le 2\}$.
+  \item \mwtag{¿Es función?} Observa el diagrama sagital. \textquestiondown Es función?
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{a,b,c}{0/0,1/1,2/2}
+        \end{center}
+  \item \mwtag{Clasificación} Clasifica la función dada por el diagrama tabular (codominio $\{1,2,3,4,5\}$) y halla dominio, codominio, rango y pares ordenados.
+        \mwtabular{1/1, 2/2, 3/3, 4/4}
+  \item \mwtag{Representaciones} Convierte el diagrama sagital a diagrama tabular.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{a,b,c}{0/1,1/2,2/0}
+        \end{center}
+  \item \mwtag{Función lineal} Sea $A=\{x\in\N \;/\; x<4\}$ y $f(x)=5x-1$. Halla el rango y escribe el diagrama tabular.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{Conjuntos} Escribe por comprensión: $D=\{10,20,30,40\}$.
+  \item \mwtag{¿Es función?} Observa el diagrama sagital. \textquestiondown Es función? Justifica.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{a,b,c}{0/0,1/0,1/1}
+        \end{center}
+  \item \mwtag{Clasificación} Clasifica $f=\{(1,a),(2,b),(3,c)\}$ de $\{1,2,3\}$ en $\{a,b,c\}$.
+  \item \mwtag{Representaciones} Convierte este diagrama tabular a diagrama sagital.
+        \mwtabular{1/5, 2/6, 3/7, 4/8}
+  \item \mwtag{Función lineal} Para $f(x)=x-2$ con $\operatorname{Dom} f=\{2,3,4\}$, halla el rango y traza el diagrama sagital.
+\end{mwcierre}
+
+% ============================================================
+%  SESIÓN 7
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar conjuntos, identificación de funciones, clasificación, representaciones y función lineal con ejercicios nuevos.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{Conjuntos} Escribe por extensión: $A=\{x\in\N \;/\; x<4\}$.
+  \item \mwtag{¿Es función?} $R=\{(1,a),(2,b),(3,b),(4,c)\}$ de $\{1,2,3,4\}$ en $\{a,b,c\}$. \textquestiondown Es función?
+  \item \mwtag{Clasificación} Clasifica la función del diagrama (codominio $\{a,b,c\}$) y halla dominio, codominio, rango y pares ordenados.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{a,b,c}{0/0,1/0,2/1}
+        \end{center}
+  \item \mwtag{Representaciones} Convierte el diagrama sagital a diagrama tabular.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{2,3,4}{0/0,1/1,2/2}
+        \end{center}
+  \item \mwtag{Función lineal} Para $f(x)=x+7$ con $\operatorname{Dom} f=\{1,2,3\}$, halla el rango y escribe el diagrama tabular.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{Conjuntos} Escribe por comprensión: $A=\{1,3,5,7\}$.
+  \item \mwtag{¿Es función?} $R=\{(1,a),(1,b),(2,c)\}$ de $\{1,2\}$ en $\{a,b,c\}$. \textquestiondown Es función?
+  \item \mwtag{Clasificación} Clasifica $f=\{(1,a),(2,b),(3,c),(4,d)\}$ de $\{1,2,3,4\}$ en $\{a,b,c,d,e\}$.
+  \item \mwtag{Representaciones} Convierte este diagrama tabular a diagrama sagital.
+        \mwtabular{1/9, 2/7, 3/5, 4/3}
+  \item \mwtag{Función lineal} Para $f(x)=2x-1$ con $\operatorname{Dom} f=\{0,1,2\}$, halla el rango y traza el diagrama sagital.
+  \item \mwtag{Conjuntos} Escribe por extensión: $B=\{x\in\Z \;/\; -3\le x\le 0\}$.
+  \item \mwtag{¿Es función?} Observa el diagrama sagital. \textquestiondown Es función?
+        \begin{center}
+          \mwsagital{$A$}{1,2,3,4}{$B$}{a,b,c}{0/2,1/1,2/0,3/2}
+        \end{center}
+  \item \mwtag{Clasificación} Clasifica la función dada por el diagrama tabular (codominio $\{2,4,6\}$) y halla dominio, codominio, rango y pares ordenados.
+        \mwtabular{1/2, 2/6, 3/4}
+  \item \mwtag{Representaciones} Convierte el diagrama sagital a diagrama tabular.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3,4}{$B$}{a,b,c,d}{0/0,1/1,2/2,3/2}
+        \end{center}
+  \item \mwtag{Función lineal} Sea $A=\{x\in\Z \;/\; -1\le x\le 1\}$ y $f(x)=3x+2$. Halla el rango y escribe el diagrama tabular.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{Conjuntos} Escribe por comprensión: $C=\{2,3,5,7,11\}$.
+  \item \mwtag{¿Es función?} Observa el diagrama sagital. \textquestiondown Es función? Justifica.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{a,b,c}{0/0,2/1,2/2}
+        \end{center}
+  \item \mwtag{Clasificación} Clasifica $f=\{(1,d),(2,b),(3,a),(4,c)\}$ de $\{1,2,3,4\}$ en $\{a,b,c,d\}$.
+  \item \mwtag{Representaciones} Convierte este diagrama tabular a diagrama sagital.
+        \mwtabular{1/4, 2/5, 3/6}
+  \item \mwtag{Función lineal} Para $f(x)=4x-2$ con $\operatorname{Dom} f=\{1,2,3\}$, halla el rango y traza el diagrama sagital.
+\end{mwcierre}
+
+% ============================================================
+%  SESIÓN 8
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar conjuntos, identificación de funciones, clasificación, representaciones y función lineal con ejercicios nuevos.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{Conjuntos} Escribe por extensión: $A=\{x\in\N \;/\; x\le 7\}$.
+  \item \mwtag{¿Es función?} $R=\{(2,a),(3,b),(4,c)\}$ de $\{2,3,4\}$ en $\{a,b,c\}$. \textquestiondown Es función?
+  \item \mwtag{Clasificación} Clasifica la función del diagrama (codominio $\{a,b,c,d\}$) y halla dominio, codominio, rango y pares ordenados.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3,4}{$B$}{a,b,c,d}{0/0,1/1,2/2,3/3}
+        \end{center}
+  \item \mwtag{Representaciones} Convierte el diagrama sagital a diagrama tabular.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{a,b,c}{0/2,1/1,2/0}
+        \end{center}
+  \item \mwtag{Función lineal} Para $f(x)=x+8$ con $\operatorname{Dom} f=\{0,1,2\}$, halla el rango y escribe el diagrama tabular.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{Conjuntos} Escribe por comprensión: $A=\{-1,1,3,5\}$.
+  \item \mwtag{¿Es función?} $R=\{(1,a),(2,b),(1,c)\}$ de $\{1,2\}$ en $\{a,b,c\}$. \textquestiondown Es función?
+  \item \mwtag{Clasificación} Clasifica $f=\{(1,a),(2,b),(3,c),(4,c)\}$ de $\{1,2,3,4\}$ en $\{a,b,c,d\}$.
+  \item \mwtag{Representaciones} Convierte este diagrama tabular a diagrama sagital.
+        \mwtabular{2/2, 4/4, 6/6}
+  \item \mwtag{Función lineal} Para $f(x)=2x+4$ con $\operatorname{Dom} f=\{0,1,2\}$, halla el rango y traza el diagrama sagital.
+  \item \mwtag{Conjuntos} Escribe por extensión: $C=\{x\in\N \;/\; x \text{ es divisor de } 6\}$.
+  \item \mwtag{¿Es función?} Observa el diagrama sagital. \textquestiondown Es función?
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{a,b,c}{0/1,1/2,2/0}
+        \end{center}
+  \item \mwtag{Clasificación} Clasifica la función dada por el diagrama tabular (codominio $\{1,2,3,4\}$) y halla dominio, codominio, rango y pares ordenados.
+        \mwtabular{1/1, 2/2, 3/3}
+  \item \mwtag{Representaciones} Convierte el diagrama sagital a diagrama tabular.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3,4}{$B$}{a,b,c}{0/0,1/1,2/1,3/2}
+        \end{center}
+  \item \mwtag{Función lineal} Sea $A=\{x\in\N \;/\; x\le 3\}$ y $f(x)=3x-3$. Halla el rango y escribe el diagrama tabular.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{Conjuntos} Escribe por comprensión: $D=\{4,8,12,16,20\}$.
+  \item \mwtag{¿Es función?} Observa el diagrama sagital. \textquestiondown Es función? Justifica.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{a,b,c}{0/0,1/1,2/1,2/2}
+        \end{center}
+  \item \mwtag{Clasificación} Clasifica $f=\{(1,b),(2,d),(3,a),(4,c)\}$ de $\{1,2,3,4\}$ en $\{a,b,c,d\}$.
+  \item \mwtag{Representaciones} Convierte este diagrama tabular a diagrama sagital.
+        \mwtabular{1/3, 2/1, 3/2}
+  \item \mwtag{Función lineal} Para $f(x)=5x$ con $\operatorname{Dom} f=\{1,2,3\}$, halla el rango y traza el diagrama sagital.
+\end{mwcierre}
+
+% ============================================================
+%  SESIÓN 9
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar conjuntos, identificación de funciones, clasificación, representaciones y función lineal con ejercicios nuevos.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{Conjuntos} Escribe por extensión: $A=\{x\in\Z \;/\; -1\le x\le 1\}$.
+  \item \mwtag{¿Es función?} $R=\{(1,a),(2,b),(3,c),(4,c)\}$ de $\{1,2,3,4\}$ en $\{a,b,c\}$. \textquestiondown Es función?
+  \item \mwtag{Clasificación} Clasifica la función del diagrama (codominio $\{a,b,c\}$) y halla dominio, codominio, rango y pares ordenados.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{a,b,c}{0/0,1/2,2/2}
+        \end{center}
+  \item \mwtag{Representaciones} Convierte el diagrama sagital a diagrama tabular.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3,4}{$B$}{a,b,c,d}{0/3,1/2,2/1,3/0}
+        \end{center}
+  \item \mwtag{Función lineal} Para $f(x)=x+9$ con $\operatorname{Dom} f=\{1,2,3\}$, halla el rango y escribe el diagrama tabular.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{Conjuntos} Escribe por comprensión: $A=\{0,2,4,6\}$.
+  \item \mwtag{¿Es función?} $R=\{(1,a),(2,b),(3,c),(1,d)\}$ de $\{1,2,3\}$ en $\{a,b,c,d\}$. \textquestiondown Es función?
+  \item \mwtag{Clasificación} Clasifica $f=\{(1,a),(2,b),(3,c)\}$ de $\{1,2,3\}$ en $\{a,b,c\}$.
+  \item \mwtag{Representaciones} Convierte este diagrama tabular a diagrama sagital.
+        \mwtabular{1/7, 2/8, 3/9}
+  \item \mwtag{Función lineal} Para $f(x)=2x-5$ con $\operatorname{Dom} f=\{3,4,5\}$, halla el rango y traza el diagrama sagital.
+  \item \mwtag{Conjuntos} Escribe por extensión: $C=\{x\in\N \;/\; x \text{ es divisor de } 16\}$.
+  \item \mwtag{¿Es función?} Observa el diagrama sagital. \textquestiondown Es función?
+        \begin{center}
+          \mwsagital{$A$}{1,2,3,4}{$B$}{a,b,c,d}{0/0,1/1,2/2,3/3}
+        \end{center}
+  \item \mwtag{Clasificación} Clasifica la función dada por el diagrama tabular (codominio $\{2,4,6,8\}$) y halla dominio, codominio, rango y pares ordenados.
+        \mwtabular{1/2, 2/4, 3/6, 4/6}
+  \item \mwtag{Representaciones} Convierte el diagrama sagital a diagrama tabular.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{a,b,c}{0/0,1/1,2/1}
+        \end{center}
+  \item \mwtag{Función lineal} Sea $A=\{x\in\Z \;/\; -1\le x\le 1\}$ y $f(x)=4x+1$. Halla el rango y escribe el diagrama tabular.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{Conjuntos} Escribe por comprensión: $C=\{1,5,9,13\}$.
+  \item \mwtag{¿Es función?} Observa el diagrama sagital. \textquestiondown Es función? Justifica.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{a,b,c}{0/0,1/2,1/1}
+        \end{center}
+  \item \mwtag{Clasificación} Clasifica $f=\{(1,c),(2,d),(3,a),(4,b)\}$ de $\{1,2,3,4\}$ en $\{a,b,c,d\}$.
+  \item \mwtag{Representaciones} Convierte este diagrama tabular a diagrama sagital.
+        \mwtabular{1/3, 2/1, 3/4, 4/2}
+  \item \mwtag{Función lineal} Para $f(x)=3x+3$ con $\operatorname{Dom} f=\{1,2,3\}$, halla el rango y traza el diagrama sagital.
+\end{mwcierre}
+
+% ============================================================
+%  SESIÓN 10 — SIMULACRO
+% ============================================================
+\mwsession{Simulacro integrador de 90 minutos}{resolver, en condiciones de evaluación, la misma rejilla de 20 ejercicios con todos los contenidos de la guía. Cinco puntos por ejercicio, cien puntos en total.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{Conjuntos} Escribe por extensión: $A=\{x\in\N \;/\; x\le 8\}$.
+  \item \mwtag{¿Es función?} $R=\{(1,a),(2,b),(3,c),(4,d),(5,e)\}$ de $\{1,2,3,4,5\}$ en $\{a,b,c,d,e\}$. \textquestiondown Es función?
+  \item \mwtag{Clasificación} Clasifica la función del diagrama (codominio $\{a,b,c\}$) y halla dominio, codominio, rango y pares ordenados.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3,4}{$B$}{a,b,c}{0/0,1/1,2/2,3/2}
+        \end{center}
+  \item \mwtag{Representaciones} Convierte el diagrama sagital a diagrama tabular.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{2,4,6}{0/2,1/1,2/0}
+        \end{center}
+  \item \mwtag{Función lineal} Para $f(x)=x+10$ con $\operatorname{Dom} f=\{0,1,2\}$, halla el rango y escribe el diagrama tabular.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{Conjuntos} Escribe por comprensión: $A=\{-3,-1,1,3,5\}$.
+  \item \mwtag{¿Es función?} $R=\{(1,a),(2,b),(1,c)\}$ de $\{1,2\}$ en $\{a,b,c\}$. \textquestiondown Es función?
+  \item \mwtag{Clasificación} Clasifica $f=\{(1,a),(2,b),(3,c),(4,d)\}$ de $\{1,2,3,4\}$ en $\{a,b,c,d,e\}$.
+  \item \mwtag{Representaciones} Convierte este diagrama tabular a diagrama sagital.
+        \mwtabular{1/1, 2/2, 3/3, 4/4}
+  \item \mwtag{Función lineal} Para $f(x)=2x+5$ con $\operatorname{Dom} f=\{0,1,2\}$, halla el rango y traza el diagrama sagital.
+  \item \mwtag{Conjuntos} Escribe por extensión: $B=\{x\in\Z \;/\; -2\le x<3\}$.
+  \item \mwtag{¿Es función?} Observa el diagrama sagital. \textquestiondown Es función?
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{a,b,c}{0/0,1/1,2/0}
+        \end{center}
+  \item \mwtag{Clasificación} Clasifica la función dada por el diagrama tabular (codominio $\{1,2,3\}$) y halla dominio, codominio, rango y pares ordenados.
+        \mwtabular{1/1, 2/2, 3/3}
+  \item \mwtag{Representaciones} Convierte el diagrama sagital a diagrama tabular.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3,4}{$B$}{a,b,c}{0/0,1/1,2/2,3/1}
+        \end{center}
+  \item \mwtag{Función lineal} Sea $A=\{x\in\N \;/\; x\le 4\}$ y $f(x)=3x-4$. Halla el rango y escribe el diagrama tabular.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{Conjuntos} Escribe por comprensión: $D=\{6,12,18,24\}$.
+  \item \mwtag{¿Es función?} Observa el diagrama sagital. \textquestiondown Es función? Justifica.
+        \begin{center}
+          \mwsagital{$A$}{1,2,3}{$B$}{a,b,c}{0/0,1/1,2/0,2/2}
+        \end{center}
+  \item \mwtag{Clasificación} Clasifica $f=\{(1,d),(2,a),(3,c),(4,b)\}$ de $\{1,2,3,4\}$ en $\{a,b,c,d\}$.
+  \item \mwtag{Representaciones} Convierte este diagrama tabular a diagrama sagital.
+        \mwtabular{1/4, 2/3, 3/2, 4/1}
+  \item \mwtag{Función lineal} Para $f(x)=4x-3$ con $\operatorname{Dom} f=\{1,2,3\}$, halla el rango y traza el diagrama sagital.
+\end{mwcierre}
+
+% ============================================================
+\ifmwclaves
+\newpage
+\section*{Clave de Respuestas}
+% ============================================================
+
+\subsection*{Sesión 1}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $A=\{1,2,3,4,5\}$.
+  \item Sí es función: cada elemento de $\{1,2,3\}$ tiene una única imagen.
+  \item Biyectiva: las imágenes son distintas y el rango $\{a,b,c\}$ es igual al codominio. $\operatorname{Dom} f=\{1,2,3\}$; $\operatorname{Cod} f=\{a,b,c\}$; $\operatorname{Rgo} f=\{a,b,c\}$.
+  \item $(1,2)$, $(2,4)$, $(3,6)$.
+  \item $f(1)=2$, $f(2)=3$, $f(3)=4$, $f(4)=5$; rango $\{2,3,4,5\}$. Diagrama tabular: $(1,2)$, $(2,3)$, $(3,4)$, $(4,5)$.
+  \item $A=\{x\in\N \;/\; x \text{ es par y } 2\le x\le 8\}$ (o $x=2k$, $1\le k\le 4$).
+  \item No es función: el $1$ tiene dos imágenes, $a$ y $b$.
+  \item Sobreyectiva: $\operatorname{Rgo} f=\{a,b\}=\operatorname{Cod} f$; no es inyectiva porque $1$ y $2$ comparten la imagen $a$.
+  \item Diagrama sagital: $1\to 3$, $2\to 5$, $3\to 7$.
+  \item $f(0)=0$, $f(1)=2$, $f(2)=4$, $f(3)=6$; rango $\{0,2,4,6\}$. Sagital: $0\to0$, $1\to2$, $2\to4$, $3\to6$.
+  \item $B=\{-2,-1,0,1,2\}$.
+  \item Sí es función: cada elemento del dominio tiene exactamente una flecha.
+  \item Inyectiva, porque las imágenes $4,5,6$ son distintas; no es sobreyectiva porque $7$ no es imagen. $\operatorname{Dom} f=\{1,2,3\}$; $\operatorname{Cod} f=\{4,5,6,7\}$; $\operatorname{Rgo} f=\{4,5,6\}$; pares: $(1,4)$, $(2,5)$, $(3,6)$.
+  \item $(a,2)$, $(b,1)$, $(c,3)$.
+  \item Dominio $\{1,2,3,4\}$; $f(1)=2$, $f(2)=5$, $f(3)=8$, $f(4)=11$; rango $\{2,5,8,11\}$.
+  \item $C=\{x\in\N \;/\; x \text{ es impar y } x\le 9\}$.
+  \item No es función: el $2$ tiene dos imágenes, $b$ y $c$.
+  \item Biyectiva: imágenes distintas y rango igual al codominio.
+  \item Diagrama sagital: $2\to1$, $4\to2$, $6\to3$.
+  \item Dominio $\{3,4,5,6\}$; $f(3)=0$, $f(4)=1$, $f(5)=2$, $f(6)=3$; rango $\{0,1,2,3\}$. Sagital: $3\to0$, $4\to1$, $5\to2$, $6\to3$.
+\end{enumerate}
+
+\subsection*{Sesión 2}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $A=\{1,2,3,4,5\}$.
+  \item Sí es función.
+  \item Inyectiva, porque las imágenes son distintas; no es sobreyectiva porque $d$ no es imagen. $\operatorname{Dom} f=\{1,2,3\}$; $\operatorname{Cod} f=\{a,b,c,d\}$; $\operatorname{Rgo} f=\{a,b,c\}$; pares: $(1,a)$, $(2,b)$, $(3,c)$.
+  \item Diagrama tabular: $(1,0)$, $(2,1)$, $(3,2)$, $(4,3)$.
+  \item Dominio $\{0,1,2,3\}$; $f(0)=2$, $f(1)=3$, $f(2)=4$, $f(3)=5$; rango $\{2,3,4,5\}$.
+  \item $B=\{x\in\Z \;/\; -3\le x\le 1\}$.
+  \item Sí es función.
+  \item Inyectiva, porque $a,b,c$ son imágenes distintas; no es sobreyectiva porque $d$ no es imagen.
+  \item Sagital: $1\to2$, $2\to4$, $3\to6$, $4\to8$.
+  \item Dominio $\{1,2,3\}$; $f(1)=3$, $f(2)=5$, $f(3)=7$; rango $\{3,5,7\}$. Sagital: $1\to3$, $2\to5$, $3\to7$.
+  \item $C=\{1,2,4,8\}$.
+  \item Sí es función.
+  \item Biyectiva: $\operatorname{Rgo} f=\{3,6,9\}=\operatorname{Cod} f$ y las imágenes son distintas. $\operatorname{Dom} f=\{1,2,3\}$; pares: $(1,3)$, $(2,6)$, $(3,9)$.
+  \item Diagrama tabular: $(1,b)$, $(2,a)$, $(3,c)$.
+  \item Dominio $\{1,2,3\}$; $f(1)=3$, $f(2)=7$, $f(3)=11$; rango $\{3,7,11\}$.
+  \item $D=\{x\in\N \;/\; x \text{ es múltiplo de } 5,\ 5\le x\le 20\}$.
+  \item No es función: el $1$ tiene dos imágenes, $a$ y $b$.
+  \item Biyectiva.
+  \item Sagital: $1\to1$, $2\to3$, $3\to5$.
+  \item Dominio $\{1,2,3,4\}$; $f(1)=0$, $f(2)=1$, $f(3)=2$, $f(4)=3$; rango $\{0,1,2,3\}$. Sagital: $1\to0$, $2\to1$, $3\to2$, $4\to3$.
+\end{enumerate}
+
+\subsection*{Sesión 3}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $A=\{1,2,3,4\}$.
+  \item Sí es función.
+  \item Rango $\{a,b\}$; no es inyectiva porque $2$ y $3$ comparten la imagen $b$; no es sobreyectiva porque $c$ no es imagen. Solo es función. $\operatorname{Dom} f=\{1,2,3\}$; $\operatorname{Cod} f=\{a,b,c\}$; pares: $(1,a)$, $(2,b)$, $(3,b)$.
+  \item Diagrama tabular: $(0,1)$, $(1,3)$, $(2,5)$.
+  \item Dominio $\{1,2,3\}$; $f(1)=4$, $f(2)=5$, $f(3)=6$; rango $\{4,5,6\}$.
+  \item $A=\{x\in\N \;/\; x \text{ es par y } 2\le x\le 10\}$.
+  \item No es función: el $1$ tiene dos imágenes, $a$ y $b$.
+  \item Rango $\{a,b,c\}$; no es inyectiva porque $1$ y $4$ comparten $a$; no es sobreyectiva porque $d$ no es imagen.
+  \item Sagital: $2\to1$, $4\to3$, $6\to5$.
+  \item Dominio $\{1,2,3,4\}$; $f(1)=1$, $f(2)=3$, $f(3)=5$, $f(4)=7$; rango $\{1,3,5,7\}$.
+  \item $B=\{-1,0,1,2\}$.
+  \item Sí es función.
+  \item Rango $\{2,3\}$; no es inyectiva porque $1$ y $2$ comparten la imagen $2$; no es sobreyectiva porque $4$ no es imagen. $\operatorname{Dom} f=\{1,2,3\}$; $\operatorname{Cod} f=\{2,3,4\}$; pares: $(1,2)$, $(2,2)$, $(3,3)$.
+  \item Diagrama tabular: $(1,d)$, $(2,c)$, $(3,b)$, $(4,a)$.
+  \item Dominio $\{1,2,3\}$; $f(1)=3$, $f(2)=6$, $f(3)=9$; rango $\{3,6,9\}$.
+  \item $C=\{x\in\N \;/\; x=n^2,\ 1\le n\le 4\}$.
+  \item No es función: el $1$ tiene dos imágenes, $a$ y $c$.
+  \item Biyectiva.
+  \item Sagital: $1\to5$, $2\to7$, $3\to9$.
+  \item Dominio $\{0,1,2\}$; $f(0)=0$, $f(1)=5$, $f(2)=10$; rango $\{0,5,10\}$.
+\end{enumerate}
+
+\subsection*{Sesión 4}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $A=\{1,2,3,4,5,6\}$.
+  \item Sí es función.
+  \item Sobreyectiva: $\operatorname{Rgo} f=\{a,b,c\}=\operatorname{Cod} f$; no es inyectiva porque $3$ y $4$ comparten la imagen $c$. $\operatorname{Dom} f=\{1,2,3,4\}$; pares: $(1,a)$, $(2,b)$, $(3,c)$, $(4,c)$.
+  \item Diagrama tabular: $(1,2)$, $(2,4)$, $(3,6)$.
+  \item Dominio $\{0,1,2\}$; $f(0)=4$, $f(1)=5$, $f(2)=6$; rango $\{4,5,6\}$.
+  \item $A=\{x\in\Z \;/\; x \text{ es par y } -2\le x\le 4\}$.
+  \item No es función: el $1$ tiene dos imágenes, $a$ y $c$.
+  \item Inyectiva, porque $a,b,c,d$ son imágenes distintas; no es sobreyectiva porque $e$ no es imagen.
+  \item Sagital: $2\to1$, $3\to2$, $4\to3$.
+  \item Dominio $\{0,1,2\}$; $f(0)=3$, $f(1)=5$, $f(2)=7$; rango $\{3,5,7\}$. Sagital: $0\to3$, $1\to5$, $2\to7$.
+  \item $C=\{1,2,5,10\}$.
+  \item Sí es función.
+  \item Inyectiva, porque $3,5,7,9$ son imágenes distintas; no es sobreyectiva porque $11$ no es imagen. $\operatorname{Dom} f=\{1,2,3,4\}$; $\operatorname{Cod} f=\{3,5,7,9,11\}$; $\operatorname{Rgo} f=\{3,5,7,9\}$; pares: $(1,3)$, $(2,5)$, $(3,7)$, $(4,9)$.
+  \item Diagrama tabular: $(1,a)$, $(2,a)$, $(3,b)$, $(4,b)$.
+  \item Dominio $\{1,2,3\}$; $f(1)=4$, $f(2)=7$, $f(3)=10$; rango $\{4,7,10\}$.
+  \item $D=\{x\in\N \;/\; x \text{ es múltiplo de } 3,\ 3\le x\le 15\}$.
+  \item No es función: el $2$ tiene dos imágenes, $a$ y $c$.
+  \item Sobreyectiva: $\operatorname{Rgo} f=\{a,b\}=\operatorname{Cod} f$; no es inyectiva porque $1$ y $3$ comparten $a$.
+  \item Sagital: $1\to2$, $2\to4$, $3\to6$.
+  \item Dominio $\{4,5,6\}$; $f(4)=0$, $f(5)=1$, $f(6)=2$; rango $\{0,1,2\}$. Sagital: $4\to0$, $5\to1$, $6\to2$.
+\end{enumerate}
+
+\subsection*{Sesión 5}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $A=\{-3,-2,-1\}$.
+  \item Sí es función.
+  \item Sobreyectiva: $\operatorname{Rgo} f=\{a,b\}=\operatorname{Cod} f$; no es inyectiva porque $2$ y $3$ comparten la imagen $b$. $\operatorname{Dom} f=\{1,2,3\}$; pares: $(1,a)$, $(2,b)$, $(3,b)$.
+  \item Diagrama tabular: $(1,c)$, $(2,a)$, $(3,b)$.
+  \item Dominio $\{1,2,3\}$; $f(1)=6$, $f(2)=7$, $f(3)=8$; rango $\{6,7,8\}$.
+  \item $A=\{x\in\Z \;/\; 0\le x\le 4\}$.
+  \item No es función: el $3$ tiene dos imágenes, $c$ y $d$.
+  \item Inyectiva, porque $a,b,c$ son distintas; no es sobreyectiva porque $d$ no es imagen.
+  \item Sagital: $1\to2$, $2\to3$, $3\to4$, $4\to5$.
+  \item Dominio $\{2,3,4\}$; $f(2)=1$, $f(3)=3$, $f(4)=5$; rango $\{1,3,5\}$. Sagital: $2\to1$, $3\to3$, $4\to5$.
+  \item $C=\{1,2,3,4,6,12\}$.
+  \item Sí es función.
+  \item Biyectiva. $\operatorname{Dom} f=\{1,2,3\}$; $\operatorname{Cod} f=\{5,6,7\}$; $\operatorname{Rgo} f=\{5,6,7\}$; pares: $(1,5)$, $(2,6)$, $(3,7)$.
+  \item Diagrama tabular: $(a,1)$, $(b,3)$, $(c,2)$.
+  \item Dominio $\{-1,0,1\}$; $f(-1)=-4$, $f(0)=0$, $f(1)=4$; rango $\{-4,0,4\}$.
+  \item $D=\{x\in\N \;/\; x=2^k,\ 0\le k\le 4\}=\{1,2,4,8,16\}$.
+  \item No es función: el $1$ tiene dos imágenes, $a$ y $b$.
+  \item Biyectiva.
+  \item Sagital: $2\to5$, $4\to7$, $6\to9$.
+  \item Dominio $\{1,2,3\}$; $f(1)=1$, $f(2)=4$, $f(3)=7$; rango $\{1,4,7\}$. Sagital: $1\to1$, $2\to4$, $3\to7$.
+\end{enumerate}
+
+\subsection*{Sesión 6}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $A=\{1,2,3\}$.
+  \item Sí es función.
+  \item Biyectiva: cada elemento del codominio recibe exactamente una flecha. $\operatorname{Dom} f=\{1,2,3,4\}$; $\operatorname{Cod} f=\{a,b,c,d\}$; $\operatorname{Rgo} f=\{a,b,c,d\}$; pares: $(1,b)$, $(2,a)$, $(3,d)$, $(4,c)$.
+  \item Diagrama tabular: $(1,2)$, $(2,4)$, $(3,1)$, $(4,3)$.
+  \item Dominio $\{1,2,3\}$; $f(1)=7$, $f(2)=8$, $f(3)=9$; rango $\{7,8,9\}$.
+  \item $A=\{x\in\Z \;/\; x \text{ es par y } -4\le x\le 2\}$.
+  \item No es función: el $1$ tiene dos imágenes, $a$ y $c$.
+  \item Sobreyectiva: $\operatorname{Rgo} f=\{a,b\}=\operatorname{Cod} f$; no es inyectiva porque $1,2\to a$ y $3,4\to b$.
+  \item Sagital: $1\to3$, $2\to6$, $3\to9$.
+  \item Dominio $\{1,2,3\}$; $f(1)=4$, $f(2)=6$, $f(3)=8$; rango $\{4,6,8\}$. Sagital: $1\to4$, $2\to6$, $3\to8$.
+  \item $B=\{-1,0,1,2\}$.
+  \item Sí es función.
+  \item Inyectiva, porque $1,2,3,4$ son imágenes distintas; no es sobreyectiva porque $5$ no es imagen. $\operatorname{Dom} f=\{1,2,3,4\}$; $\operatorname{Cod} f=\{1,2,3,4,5\}$; $\operatorname{Rgo} f=\{1,2,3,4\}$; pares: $(1,1)$, $(2,2)$, $(3,3)$, $(4,4)$.
+  \item Diagrama tabular: $(1,b)$, $(2,c)$, $(3,a)$.
+  \item Dominio $\{1,2,3\}$; $f(1)=4$, $f(2)=9$, $f(3)=14$; rango $\{4,9,14\}$.
+  \item $D=\{x\in\N \;/\; x \text{ es múltiplo de } 10,\ 10\le x\le 40\}$.
+  \item No es función: el $2$ tiene dos imágenes, $a$ y $b$.
+  \item Biyectiva.
+  \item Sagital: $1\to5$, $2\to6$, $3\to7$, $4\to8$.
+  \item Dominio $\{2,3,4\}$; $f(2)=0$, $f(3)=1$, $f(4)=2$; rango $\{0,1,2\}$. Sagital: $2\to0$, $3\to1$, $4\to2$.
+\end{enumerate}
+
+\subsection*{Sesión 7}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $A=\{1,2,3\}$.
+  \item Sí es función.
+  \item Rango $\{a,b\}$; no es inyectiva porque $1$ y $2$ comparten $a$; no es sobreyectiva porque $c$ no es imagen. $\operatorname{Dom} f=\{1,2,3\}$; $\operatorname{Cod} f=\{a,b,c\}$; pares: $(1,a)$, $(2,a)$, $(3,b)$.
+  \item Diagrama tabular: $(1,2)$, $(2,3)$, $(3,4)$.
+  \item Dominio $\{1,2,3\}$; $f(1)=8$, $f(2)=9$, $f(3)=10$; rango $\{8,9,10\}$.
+  \item $A=\{x\in\N \;/\; x \text{ es impar y } 1\le x\le 7\}$.
+  \item No es función: el $1$ tiene dos imágenes, $a$ y $b$.
+  \item Inyectiva, porque $a,b,c,d$ son distintas; no es sobreyectiva porque $e$ no es imagen.
+  \item Sagital: $1\to9$, $2\to7$, $3\to5$, $4\to3$.
+  \item Dominio $\{0,1,2\}$; $f(0)=-1$, $f(1)=1$, $f(2)=3$; rango $\{-1,1,3\}$. Sagital: $0\to-1$, $1\to1$, $2\to3$.
+  \item $B=\{-3,-2,-1,0\}$.
+  \item Sí es función.
+  \item Biyectiva. $\operatorname{Dom} f=\{1,2,3\}$; $\operatorname{Cod} f=\{2,4,6\}$; $\operatorname{Rgo} f=\{2,4,6\}$; pares: $(1,2)$, $(2,6)$, $(3,4)$.
+  \item Diagrama tabular: $(1,a)$, $(2,b)$, $(3,c)$, $(4,c)$.
+  \item Dominio $\{-1,0,1\}$; $f(-1)=-1$, $f(0)=2$, $f(1)=5$; rango $\{-1,2,5\}$.
+  \item $C=\{x\in\N \;/\; x \text{ es primo y } x\le 11\}$.
+  \item No es función: el $3$ tiene dos imágenes, $b$ y $c$.
+  \item Biyectiva.
+  \item Sagital: $1\to4$, $2\to5$, $3\to6$.
+  \item Dominio $\{1,2,3\}$; $f(1)=2$, $f(2)=6$, $f(3)=10$; rango $\{2,6,10\}$. Sagital: $1\to2$, $2\to6$, $3\to10$.
+\end{enumerate}
+
+\subsection*{Sesión 8}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $A=\{1,2,3,4,5,6,7\}$.
+  \item Sí es función.
+  \item Biyectiva. $\operatorname{Dom} f=\{1,2,3,4\}$; $\operatorname{Cod} f=\{a,b,c,d\}$; $\operatorname{Rgo} f=\{a,b,c,d\}$; pares: $(1,a)$, $(2,b)$, $(3,c)$, $(4,d)$.
+  \item Diagrama tabular: $(1,c)$, $(2,b)$, $(3,a)$.
+  \item Dominio $\{0,1,2\}$; $f(0)=8$, $f(1)=9$, $f(2)=10$; rango $\{8,9,10\}$.
+  \item $A=\{x\in\Z \;/\; x \text{ es impar y } -1\le x\le 5\}$.
+  \item No es función: el $1$ tiene dos imágenes, $a$ y $c$.
+  \item Rango $\{a,b,c\}$; no es inyectiva porque $3$ y $4$ comparten $c$; no es sobreyectiva porque $d$ no es imagen.
+  \item Sagital: $2\to2$, $4\to4$, $6\to6$.
+  \item Dominio $\{0,1,2\}$; $f(0)=4$, $f(1)=6$, $f(2)=8$; rango $\{4,6,8\}$. Sagital: $0\to4$, $1\to6$, $2\to8$.
+  \item $C=\{1,2,3,6\}$.
+  \item Sí es función.
+  \item Inyectiva, porque $1,2,3$ son imágenes distintas; no es sobreyectiva porque $4$ no es imagen. $\operatorname{Dom} f=\{1,2,3\}$; $\operatorname{Cod} f=\{1,2,3,4\}$; $\operatorname{Rgo} f=\{1,2,3\}$; pares: $(1,1)$, $(2,2)$, $(3,3)$.
+  \item Diagrama tabular: $(1,a)$, $(2,b)$, $(3,b)$, $(4,c)$.
+  \item Dominio $\{1,2,3\}$; $f(1)=0$, $f(2)=3$, $f(3)=6$; rango $\{0,3,6\}$.
+  \item $D=\{x\in\N \;/\; x \text{ es múltiplo de } 4,\ 4\le x\le 20\}$.
+  \item No es función: el $3$ tiene dos imágenes, $b$ y $c$.
+  \item Biyectiva.
+  \item Sagital: $1\to3$, $2\to1$, $3\to2$.
+  \item Dominio $\{1,2,3\}$; $f(1)=5$, $f(2)=10$, $f(3)=15$; rango $\{5,10,15\}$. Sagital: $1\to5$, $2\to10$, $3\to15$.
+\end{enumerate}
+
+\subsection*{Sesión 9}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $A=\{-1,0,1\}$.
+  \item Sí es función.
+  \item Rango $\{a,c\}$; no es inyectiva porque $2$ y $3$ comparten $c$; no es sobreyectiva porque $b$ no es imagen. $\operatorname{Dom} f=\{1,2,3\}$; $\operatorname{Cod} f=\{a,b,c\}$; pares: $(1,a)$, $(2,c)$, $(3,c)$.
+  \item Diagrama tabular: $(1,d)$, $(2,c)$, $(3,b)$, $(4,a)$.
+  \item Dominio $\{1,2,3\}$; $f(1)=10$, $f(2)=11$, $f(3)=12$; rango $\{10,11,12\}$.
+  \item $A=\{x\in\Z \;/\; x \text{ es par y } 0\le x\le 6\}$.
+  \item No es función: el $1$ tiene dos imágenes, $a$ y $d$.
+  \item Biyectiva.
+  \item Sagital: $1\to7$, $2\to8$, $3\to9$.
+  \item Dominio $\{3,4,5\}$; $f(3)=1$, $f(4)=3$, $f(5)=5$; rango $\{1,3,5\}$. Sagital: $3\to1$, $4\to3$, $5\to5$.
+  \item $C=\{1,2,4,8,16\}$.
+  \item Sí es función.
+  \item No inyectiva ($3$ y $4$ comparten la imagen $6$); no sobreyectiva ($8$ no es imagen). Solo es función. $\operatorname{Dom} f=\{1,2,3,4\}$; $\operatorname{Cod} f=\{2,4,6,8\}$; $\operatorname{Rgo} f=\{2,4,6\}$; pares: $(1,2)$, $(2,4)$, $(3,6)$, $(4,6)$.
+  \item Diagrama tabular: $(1,a)$, $(2,b)$, $(3,b)$.
+  \item Dominio $\{-1,0,1\}$; $f(-1)=-3$, $f(0)=1$, $f(1)=5$; rango $\{-3,1,5\}$.
+  \item $C=\{x\in\N \;/\; x=4k+1,\ 0\le k\le 3\}=\{1,5,9,13\}$.
+  \item No es función: el $2$ tiene dos imágenes, $c$ y $b$.
+  \item Biyectiva.
+  \item Sagital: $1\to3$, $2\to1$, $3\to4$, $4\to2$.
+  \item Dominio $\{1,2,3\}$; $f(1)=6$, $f(2)=9$, $f(3)=12$; rango $\{6,9,12\}$. Sagital: $1\to6$, $2\to9$, $3\to12$.
+\end{enumerate}
+
+\subsection*{Sesión 10 — Simulacro}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $A=\{1,2,3,4,5,6,7,8\}$.
+  \item Sí es función.
+  \item Sobreyectiva: $\operatorname{Rgo} f=\{a,b,c\}=\operatorname{Cod} f$; no es inyectiva porque $3$ y $4$ comparten $c$. $\operatorname{Dom} f=\{1,2,3,4\}$; pares: $(1,a)$, $(2,b)$, $(3,c)$, $(4,c)$.
+  \item Diagrama tabular: $(1,6)$, $(2,4)$, $(3,2)$.
+  \item Dominio $\{0,1,2\}$; $f(0)=10$, $f(1)=11$, $f(2)=12$; rango $\{10,11,12\}$.
+  \item $A=\{x\in\Z \;/\; x \text{ es impar y } -3\le x\le 5\}$.
+  \item No es función: el $1$ tiene dos imágenes, $a$ y $c$.
+  \item Inyectiva, porque $a,b,c,d$ son distintas; no es sobreyectiva porque $e$ no es imagen.
+  \item Sagital: $1\to1$, $2\to2$, $3\to3$, $4\to4$.
+  \item Dominio $\{0,1,2\}$; $f(0)=5$, $f(1)=7$, $f(2)=9$; rango $\{5,7,9\}$. Sagital: $0\to5$, $1\to7$, $2\to9$.
+  \item $B=\{-2,-1,0,1,2\}$.
+  \item Sí es función.
+  \item Biyectiva. $\operatorname{Dom} f=\{1,2,3\}$; $\operatorname{Cod} f=\{1,2,3\}$; $\operatorname{Rgo} f=\{1,2,3\}$; pares: $(1,1)$, $(2,2)$, $(3,3)$.
+  \item Diagrama tabular: $(1,a)$, $(2,b)$, $(3,c)$, $(4,b)$.
+  \item Dominio $\{1,2,3,4\}$; $f(1)=-1$, $f(2)=2$, $f(3)=5$, $f(4)=8$; rango $\{-1,2,5,8\}$.
+  \item $D=\{x\in\N \;/\; x \text{ es múltiplo de } 6,\ 6\le x\le 24\}$.
+  \item No es función: el $3$ tiene dos imágenes, $a$ y $c$.
+  \item Biyectiva.
+  \item Sagital: $1\to4$, $2\to3$, $3\to2$, $4\to1$.
+  \item Dominio $\{1,2,3\}$; $f(1)=1$, $f(2)=5$, $f(3)=9$; rango $\{1,5,9\}$. Sagital: $1\to1$, $2\to5$, $3\to9$.
+\end{enumerate}
+
+\vspace{10pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{¡Mucho éxito!} Si completaste las diez sesiones, trabajaste los cinco bloques ochenta veces cada uno: conjuntos, identificación de funciones, clasificación, representaciones y función lineal. Repite cualquiera de las sesiones cronometrándote y revisa solo los errores: ahí está tu mayor mejora.
+\end{cuadroinfo}
+
+\fi
+% ============================================================
+
+\end{document}

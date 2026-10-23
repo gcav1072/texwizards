@@ -1,0 +1,1012 @@
+% ============================================================
+%  GUÍA DE ESTUDIO — HISTORIA CONTEMPORÁNEA (4.º AÑO)
+%  Guía 2: Gobierno de Juan Vicente Gómez (1908–1935)
+%  Reedición de estudio de la guía del Prof. José Rambert
+%  (reestructurada con su permiso, en sesiones Pomodoro)
+%  Centro Educativo Las Américas — Maturín, Edo. Monagas
+%  Compilar:  latexmk -xelatex guia_1_2_gomez.tex
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+\usepackage{mathwizards-guia}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{needspace}
+
+% Evitar títulos de sesión huérfanos al final de la página:
+% si queda menos de 7 cm, la sesión empieza en página nueva.
+\makeatletter
+\let\mw@oldsection\section
+\newcommand{\mw@prepage}{%
+  \par
+  \ifdim\pagegoal=\maxdimen\else
+    \ifdim\dimexpr\pagegoal-\pagetotal\relax<7cm\relax
+      \newpage
+    \fi
+  \fi}
+\renewcommand{\section}{\mw@prepage\mw@oldsection}
+\makeatother
+
+% ── Comandos propios de esta guía ────────────────────────────
+
+% Etiquetas de nivel de dificultad
+\newcommand{\nUno}{\textcolor{mwnaranja}{\textbf{N1}}}
+\newcommand{\nDos}{\textcolor{mwrojonaranja}{\textbf{N2}}}
+\newcommand{\nTres}{\textcolor{mwmagenta}{\textbf{N3}}}
+\newcommand{\nCuatro}{\textcolor{mwvioleta}{\textbf{N4}}}
+
+% Cabecera de sesión (meta + tiempo)
+\newmdenv[
+  backgroundcolor = mwgrisclaro,
+  linecolor       = mwprimario,
+  linewidth       = 2pt,
+  topline         = false,
+  bottomline      = false,
+  rightline       = false,
+  leftline        = true,
+  innertopmargin  = 6pt,
+  innerbottommargin = 6pt,
+  innerleftmargin = 10pt,
+  innerrightmargin = 8pt,
+  skipabove       = 6pt,
+  skipbelow       = 8pt
+]{cabecerasesion}
+
+% Caja de descanso
+\newmdenv[
+  backgroundcolor = mwnaranja!10,
+  linecolor       = mwnaranja,
+  linewidth       = 1pt,
+  roundcorner     = 4pt,
+  innertopmargin  = 5pt,
+  innerbottommargin = 5pt,
+  innerleftmargin = 10pt,
+  innerrightmargin = 10pt,
+  skipabove       = 8pt,
+  skipbelow       = 6pt
+]{descanso}
+
+% Preguntas de análisis
+\newlist{preguntas}{enumerate}{1}
+\setlist[preguntas]{
+  label     = \textbf{\arabic*.},
+  leftmargin= *,
+  itemsep   = 4pt,
+  topsep    = 4pt
+}
+
+% Ficha de sesión
+\newcommand{\metasesion}[2]{%
+  \begin{cabecerasesion}
+    \small
+    \textbf{\color{mwprimario}Tiempo:} #1 \quad$\cdot$\quad
+    \textbf{\color{mwprimario}Meta:} #2
+  \end{cabecerasesion}%
+}
+
+\newcommand{\pausa}[1]{%
+  \begin{descanso}
+    \small\textbf{\color{mwnaranja}Descanso (5 min).} #1
+  \end{descanso}%
+}
+
+\mwguia{Guía 2 — Juan Vicente Gómez (1908--1935)}%
+       {Prof. José Rambert $\cdot$ 4.º Año}
+
+\begin{document}
+% ============================================================
+
+% ── Portada ─────────────────────────────────────────────────
+\mwportada{Guía 2 — Juan Vicente Gómez}
+          {Historia Contemporánea de Venezuela (1908--1935)}
+          {10 sesiones Pomodoro para estudiar con método}
+
+\vspace{2pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Institución:} Centro Educativo Las Américas --- Maturín, Edo. Monagas
+  \quad$\cdot$\quad \textbf{Secciones:} B, C, D \quad$\cdot$\quad
+  \textbf{Fecha:} 16/10/26 \\[3pt]
+  \textbf{Docente:} Prof. José Rambert \\[3pt]
+  \textbf{Objetivo 2.1:} Analizar el proceso político vivido en Venezuela con la
+  llegada de los Andinos al Poder entre 1908 y 1935 con el gobierno de
+  Juan Vicente Gómez.
+\end{cuadroinfo}
+
+\vspace{6pt}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{Créditos y honestidad intelectual.} Esta guía es una
+  \textbf{reedición de estudio} de la guía original del
+  \textbf{Prof. José Rambert}. No se altera el
+  contenido histórico: se \textbf{reorganiza} la información en sesiones de
+  25/5 minutos (Pomodoro) y se añaden \textbf{preguntas de análisis} al final de
+  cada sesión. Si algún dato de esta versión no coincide con lo explicado en
+  clase, \textbf{prevalece la versión del profesor}.
+\end{cuadroadvertencia}
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Cómo usar esta guía.}
+  \begin{itemize}[leftmargin=*, itemsep=2pt, topsep=2pt]
+    \item Cada sesión dura \textbf{25 min de trabajo + 5 min de descanso}.
+    \item Dentro de los 25 min: $\approx$ 16--18 min de lectura y
+          $\approx$ 7--9 min para responder.
+    \item Cada sesión deja un \textbf{producto} (tabla, línea de tiempo,
+          esquema o párrafo). No avances sin escribirlo.
+    \item Después de \textbf{4 sesiones}, toma un descanso largo de 15--20 min.
+    \item Materiales: cuaderno, lápiz, cronómetro y esta guía.
+  \end{itemize}
+  \vspace{2pt}
+  \textbf{Niveles de las preguntas:}\quad
+  \nUno{} recordar / localizar \quad
+  \nDos{} comprender / explicar \quad
+  \nTres{} analizar / comparar \quad
+  \nCuatro{} evaluar / argumentar (reto)
+  \\[3pt]
+  \textit{Regla de oro:} si no puedes responder una pregunta \nUno{}, vuelve al
+  texto antes de intentar la \nCuatro{}. El análisis sin datos es opinión.
+\end{cuadroteoria}
+
+\vspace{4pt}
+
+\begin{center}
+\small
+\begin{tabular}{@{}c p{12.4cm} r@{}}
+  \toprule
+  \textbf{\#} & \textbf{Sesión} & \textbf{Tiempo} \\
+  \midrule
+  1  & El escenario: de Cipriano Castro a Gómez (1899--1908) & 30 min \\
+  2  & El hombre: biografía de Juan Vicente Gómez            & 30 min \\
+  3  & El sistema: cómo se sostenía el poder                 & 30 min \\
+  4  & La ley como herramienta: períodos y reelección        & 30 min \\
+  5  & La fuerza: ejército, represión y nepotismo            & 30 min \\
+  6  & La economía I: la Venezuela agrícola (1908--1921)     & 30 min \\
+  7  & La economía II: petróleo, crisis de 1929 y deuda      & 30 min \\
+  8  & La sociedad: población, éxodo y estratos              & 30 min \\
+  9  & La cultura: educación, positivismo y prensa           & 30 min \\
+  10 & La oposición y la Generación del 28                   & 30 min \\
+  11 & Cierre: síntesis, cronología y simulacro              & 30 min \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\noindent\small\textbf{Tiempo total:} $\approx$ 5 h 30 min, incluidos los
+descansos.
+
+\newpage
+
+% ============================================================
+\section{El escenario: de Castro a Gómez (1899--1908)}
+% ============================================================
+
+\metasesion{25 + 5 min}{explicar cómo la carrera militar de Gómez y la ausencia
+de Castro crearon la oportunidad política de 1908.}
+
+Antes de estudiar a Gómez hay que entender el terreno:
+
+\begin{itemize}[leftmargin=*, itemsep=3pt]
+  \item \textbf{1899:} la \textbf{Revolución Liberal Restauradora} lleva a
+        \textbf{Cipriano Castro} al poder. Gómez participa y queda dentro del
+        nuevo grupo gobernante.
+  \item \textbf{1902:} frente a la \textbf{Revolución Libertadora}, Gómez
+        obtiene la victoria y gana \textbf{prestigio militar}. Ese prestigio es
+        su capital político.
+  \item \textbf{1908:} Castro viaja \textbf{enfermo a Europa} y le deja el
+        poder. Desde el \textbf{19 de diciembre de 1908} y hasta el día de su
+        muerte, Gómez gobierna de forma dictatorial.
+\end{itemize}
+
+\begin{cuadropasos}
+  \small
+  \textbf{Producto de la sesión.} Línea de tiempo con cuatro hitos
+  (1899 -- 1902 -- 1908 -- 1935) y una frase por hito.
+\end{cuadropasos}
+
+\subsection*{Preguntas de análisis}
+\begin{preguntas}
+  \item \nUno{} ¿Qué dos hechos militares consolidaron la carrera de Gómez antes
+        de 1908?
+  \item \nUno{} ¿Por qué Gómez queda al mando de la presidencia en diciembre de
+        1908?
+  \item \nDos{} Explica con tus palabras la diferencia entre ser
+        \textbf{presidente provisional} y ser \textbf{presidente
+        constitucional} en el caso de Gómez.
+  \item \nTres{} ¿La enfermedad de Castro fue solo una casualidad? Analiza qué
+        condiciones tenía ya Gómez preparadas antes de 1908.
+  \item \nCuatro{} ¿Se puede afirmar que sin Castro no habría existido Gómez
+        como dictador? Responde usando al menos \textbf{dos datos} de esta
+        sesión.
+\end{preguntas}
+
+\pausa{Antes de continuar, di en voz alta la respuesta a la pregunta 1.}
+
+% ============================================================
+\section{El hombre: biografía de Juan Vicente Gómez}
+% ============================================================
+
+\metasesion{25 + 5 min}{reconstruir la trayectoria de Gómez y reconocer cómo su
+biografía anticipa su forma de gobernar.}
+
+{\small
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{3.3cm} >{\raggedright\arraybackslash}p{12.3cm}@{}}
+  \toprule
+  \textbf{Etapa} & \textbf{Datos clave} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \textbf{Etapa} & \textbf{Datos clave} \\
+  \midrule
+  \endhead
+
+  \textbf{Origen} &
+  Nace el \textbf{24 de julio de 1857} en la hacienda \textbf{La Mulera}, cerca
+  de San Antonio del Táchira. Hijo de \textbf{Pedro Cornelio Gómez} y
+  \textbf{Hermenegilda Chacón Alarcón}; tuvo \textbf{12 hermanos} más. \\
+
+  \textbf{Familia y tierra} &
+  Al morir su padre (\textbf{14 de enero de 1883}) se convierte en
+  \guillemotleft cabeza de familia\guillemotright{} y se dedica al campo y a la
+  cría de ganado. \\
+
+  \textbf{Política regional} &
+  En \textbf{1888} se hace amigo de \textbf{Cipriano Castro}, gobernador del
+  Táchira. \\
+
+  \textbf{Guerra} &
+  En \textbf{1892}, como comisario de Guerra y con rango de coronel, defiende al
+  gobierno de \textbf{Raimundo Andueza Palacio}, derrocado por la
+  \guillemotleft Revolución Legalista\guillemotright. Pasa \textbf{siete años
+  exiliado} cerca de Cúcuta. \\
+
+  \textbf{Poder} &
+  Apoya la Revolución Liberal Restauradora (\textbf{1899}). Vence en la
+  Revolución Libertadora (\textbf{1902}). \\
+
+  \textbf{Dictadura} &
+  Gobierna del \textbf{19/12/1908} hasta su muerte, durante
+  \textbf{tres mandatos presidenciales}, con varias reformas constitucionales
+  para alargar el período y permitir la reelección. \\
+
+  \textbf{Presidencias} &
+  Presidente Provisional (1908); luego constitucional en
+  \textbf{1910--1915}, \textbf{1915--1922}, \textbf{1922--1929} y
+  \textbf{1929--1936}. Para el último período fingió no aceptar y recomendó a
+  \textbf{Juan Bautista Pérez}; en \textbf{1931} lo hizo renunciar y asumió
+  hasta su muerte. \\
+
+  \textbf{Ausencias del cargo} &
+  Se separó varias veces de la Presidencia, pero conservó la
+  \textbf{Comandancia en Jefe del Ejército}: \textbf{agosto 1913--enero 1914}
+  (Dr. José Gil Fortoul) y \textbf{1915--1922} (Dr. Victoriano Márquez
+  Bustillos). \\
+
+  \textbf{Riqueza} &
+  Mayor propietario territorial: hatos de \textbf{centenares de miles de
+  hectáreas}, principal proveedor de carne del país, \textbf{más del 60\,\%} del
+  ganado nacional. Monopolizó el \textbf{juego} (legalizado), la
+  \textbf{navegación fluvial y costanera}, la \textbf{electricidad} en varias
+  ciudades, \textbf{ingenios de azúcar}, haciendas de \textbf{café y cacao} y
+  pequeñas industrias (telas, jabones, cigarrillos, velas, vidrio, aceites,
+  hoteles). \\
+
+  \textbf{Otros hechos} &
+  En \textbf{1930} cancela la deuda externa como homenaje a Bolívar en el
+  centenario de su muerte. Inhabilitó los partidos de oposición y castigó
+  duramente la delincuencia. Hermanos, hijos y familiares ocuparon altos
+  cargos. \\
+
+  \textbf{Muerte} &
+  \textbf{18 de diciembre de 1935}, en \textbf{Maracay}. \\
+  \bottomrule
+\end{longtable}
+}
+
+\begin{cuadropasos}
+  \small
+  \textbf{Producto de la sesión.} Ficha biográfica de 8 líneas que contenga las
+  palabras: \textit{Táchira -- Castro -- 1902 -- 1908 -- Ejército -- ganado --
+  Maracay}.
+\end{cuadropasos}
+
+\subsection*{Preguntas de análisis}
+\begin{preguntas}
+  \item \nUno{} Localiza fecha y lugar de nacimiento, y fecha y lugar de muerte.
+  \item \nUno{} Enumera \textbf{tres} negocios que Gómez monopolizó.
+  \item \nDos{} ¿Cómo pasa de \guillemotleft cabeza de familia\guillemotright{} a
+        caudillo nacional? Ordena: 1883, 1888, 1892, 1899, 1902.
+  \item \nTres{} ¿Por qué controlar el ganado y la venta de carne era también
+        una forma de poder \textbf{político} y no solo económico?
+  \item \nCuatro{} El texto afirma que Gómez
+        \guillemotleft superó a los caudillos que le precedieron\guillemotright.
+        ¿En qué aspectos la superación es real y en cuáles es solo una dictadura
+        más eficiente? Argumenta.
+\end{preguntas}
+
+\pausa{Bebe agua y repite mentalmente las cuatro fechas de la pregunta 3.}
+
+% ============================================================
+\section{El sistema: cómo se sostenía el poder}
+% ============================================================
+
+\metasesion{25 + 5 min}{identificar los mecanismos políticos que hicieron
+posible 27 años de gobierno.}
+
+\begin{description}[leftmargin=1.2em, itemsep=5pt, style=nextline]
+  \item[\textbf{a) La duración.}]
+  Gobernó \textbf{27 años (1908--1935)}, unas veces como presidente directo y
+  otras colocando en el poder, de forma nominal, a un amigo suyo.
+
+  \item[\textbf{b) El Congreso.}]
+  Estuvo \textbf{siempre a su servicio} y reformó la Constitución en varias
+  ocasiones con \textbf{dos objetivos básicos}:
+  \begin{enumerate}[leftmargin=*, itemsep=1pt, topsep=2pt]
+    \item \textbf{variar el período presidencial} y \textbf{permitir la
+          reelección};
+    \item dar a la \textbf{Comandancia de las Fuerzas Armadas} el rango de
+          \textbf{co-presidencia} / jefatura separada. Así, en algunas
+          ocasiones Gómez era el Comandante de las Fuerzas Armadas y en otras
+          tenía ese cargo junto con el de presidente.
+  \end{enumerate}
+
+  \item[\textbf{c) El Consejo de Gobierno.}]
+  Lo mantuvo y después lo eliminó. En él estuvieron inicialmente
+  \textbf{generales amarillos y nacionalistas}; luego desistió de ellos y anuló
+  su acción, igual que a los \textbf{conservadores azules}.
+  \textbf{No hubo partidos políticos} durante el gomecismo.
+
+  \item[\textbf{d) La infraestructura del control.}]
+  Organizó la defensa con un \textbf{ejército modernizado y bien equipado}
+  (reforma iniciada por Castro). Desarrolló una \textbf{red de carreteras de
+  macadán} ---algunas de asfalto--- que unía las ciudades con las
+  \textbf{plazas militares}.
+
+  \item[\textbf{e) Represión legal e ilegal.}]
+  La dictadura se manifestó en el \textbf{manejo del Congreso} y en la
+  \textbf{mano dura}: \textbf{cadenas de exilio}, cárceles
+  (\textbf{La Rotunda} en Caracas, \textbf{Las Tres Torres} en Barquisimeto,
+  \textbf{Castillo de Puerto Cabello}), \textbf{trabajos forzados} en la
+  construcción de carreteras y \textbf{torturas} frecuentes.
+
+  \item[\textbf{f) Las alianzas.}]
+  Se puso del lado de las llamadas \textbf{«fuerzas vivas»} (la burguesía
+  capitalista), tuvo el \textbf{apoyo constante del gobierno norteamericano} y
+  de otros países, y aplicó una política de \textbf{grandes concesiones}, sobre
+  todo petroleras, para obtener respaldo extranjero.
+\end{description}
+
+\begin{cuadropasos}
+  \small
+  \textbf{Producto de la sesión.} Esquema de cinco flechas:
+  \textit{Congreso $\rightarrow$ Constitución $\rightarrow$ reelección
+  $\rightarrow$ Ejército $\rightarrow$ concesiones}.
+\end{cuadropasos}
+
+\subsection*{Preguntas de análisis}
+\begin{preguntas}
+  \item \nUno{} ¿Cuántos años gobernó y cuántos partidos políticos existieron en
+        ese período?
+  \item \nUno{} ¿Qué era el Consejo de Gobierno y qué ocurrió con él?
+  \item \nDos{} Explica los \textbf{dos objetivos} de las reformas
+        constitucionales.
+  \item \nTres{} ¿Cómo un Congreso \guillemotleft a su servicio\guillemotright{}
+        le da \textbf{apariencia de legalidad} a la dictadura?
+  \item \nCuatro{} ¿Qué diferencia hay entre una dictadura que
+        \textbf{elimina} las instituciones y otra que las \textbf{vacía por
+        dentro}? Aplica el concepto al Congreso y al Consejo de Gobierno
+        gomecistas.
+\end{preguntas}
+
+\pausa{Compara tu esquema con el de un compañero o repítelo en voz alta.}
+
+% ============================================================
+\section{La ley como herramienta: períodos y reelección}
+% ============================================================
+
+\metasesion{25 + 5 min}{leer la cronología como un mecanismo: cada reforma
+constitucional resuelve un problema de poder.}
+
+{\small
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{2.6cm}
+                       >{\raggedright\arraybackslash}p{5.2cm}
+                       >{\raggedright\arraybackslash}p{7.8cm}@{}}
+  \toprule
+  \textbf{Período} & \textbf{Gobernante} & \textbf{Reforma y qué cambió} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \textbf{Período} & \textbf{Gobernante} & \textbf{Reforma y qué cambió} \\
+  \midrule
+  \endhead
+
+  \textbf{1908--1913} & Gral. Juan Vicente Gómez (1.ª vez) &
+  \textbf{1909:} reduce el período presidencial a \textbf{4 años} (también el de
+  senadores y diputados). Crea el \textbf{Consejo de Gobierno}, que elige a los
+  miembros del Congreso. \\
+
+  \textbf{1913} & Dr. José Gil Fortoul (encargado por Gómez) & --- \\
+
+  \textbf{1914} & Dr. Victoriano Márquez Bustillo (encargado) &
+  Aumenta el período presidencial a \textbf{7 años} y \textbf{permite la
+  reelección}. Las \textbf{faltas temporales} las suple el ministro que el
+  presidente elija; las \textbf{faltas absolutas}, el presidente de la
+  \textbf{Alta Corte Federal y de Casación}, que convoca al Congreso a nueva
+  elección. \\
+
+  \textbf{1914--1922} & Gral. Gómez (2.ª vez) &
+  Crea los cargos de \textbf{Primer y Segundo Vicepresidente}.
+  \textbf{Elimina} el cargo de Comandante General del Ejército. \\
+
+  \textbf{1922--1929} & Gral. Gómez (3.ª vez) &
+  \textbf{1925:} el Poder Ejecutivo se sitúa \textbf{en cualquier estado donde
+  esté el presidente}. \textbf{Despoja a los estados} del derecho a elegir a sus
+  gobernadores. \\
+
+  \textbf{1929--1931} & Dr. Juan Bautista Pérez (puesto por Gómez; debió
+  renunciar por disposición del mismo Gómez) &
+  \textbf{1928:} introduce el \textbf{Artículo 32, inciso G}: prohíbe las
+  actividades con \textbf{propaganda comunista} y declara \textbf{traidor a la
+  patria} a quien la haga. Vuelve a crear los cargos de \textbf{Presidente} y de
+  \textbf{Comandante General del Ejército}. \\
+
+  \textbf{1931--1935} & Gral. Gómez (4.ª vez; muere en la presidencia) &
+  Instituye que el \textbf{presidente de la República sea a la vez Comandante
+  General del Ejército}. \\
+  \bottomrule
+\end{longtable}
+}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{Ojo con las fechas.} En la biografía, la fuente también habla de los
+  períodos \textbf{1910--1915}, \textbf{1915--1922}, \textbf{1922--1929} y
+  \textbf{1929--1936}. Es normal que las cronologías de un mismo período no
+  coincidan exactamente: en un examen usa la secuencia que indique el profesor y
+  \textbf{explica} el cambio de período con la reforma correspondiente.
+\end{cuadroadvertencia}
+
+\begin{cuadropasos}
+  \small
+  \textbf{Producto de la sesión.} Tabla de cuatro columnas en tu cuaderno:
+  \textit{año -- norma -- qué cambió -- a quién benefició}.
+\end{cuadropasos}
+
+\subsection*{Preguntas de análisis}
+\begin{preguntas}
+  \item \nUno{} ¿En qué año el período presidencial pasó a \textbf{7 años} y se
+        permitió la reelección?
+  \item \nUno{} ¿Quién fue Juan Bautista Pérez y por qué debió renunciar?
+  \item \nDos{} Explica la función del \textbf{presidente de la Alta Corte
+        Federal y de Casación} en la reforma de 1914.
+  \item \nTres{} Compara las reformas de \textbf{1909} y \textbf{1925}: ¿qué
+        gana el Ejecutivo en cada una?
+  \item \nTres{} ¿Por qué unas reformas \textbf{crean} el cargo de Comandante
+        General del Ejército y otras lo \textbf{eliminan}? ¿Qué revela eso sobre
+        dónde estaba el poder real?
+  \item \nCuatro{} Detecta la discrepancia entre las dos cronologías que ofrece
+        el texto. ¿Cómo la resolverías en un examen escrito sin contradecir al
+        profesor?
+\end{preguntas}
+
+\pausa{Di en voz alta: \guillemotleft la reforma de \rule{1.6cm}{0.4pt} sirvió
+para \rule{3cm}{0.4pt}\guillemotright.}
+
+% ============================================================
+\section{La fuerza: ejército, mano dura y nepotismo}
+% ============================================================
+
+\metasesion{25 + 5 min}{distinguir los tres pilares de coerción del régimen y
+evaluar el costo social de cada uno.}
+
+\begin{description}[leftmargin=1.2em, itemsep=5pt, style=nextline]
+  \item[\textbf{Profesionalización militar.}]
+  \textbf{Escuela Militar (1911)} y \textbf{Escuela de Aviación Militar (1920)}.
+  \textbf{Ley del Servicio Militar Obligatorio (1926)} para contar con un
+  ejército permanente.
+
+  \item[\textbf{Control del territorio.}]
+  Carreteras de \textbf{macadán} (algunas de asfalto) que unían ciudades y
+  \textbf{plazas militares}.
+
+  \item[\textbf{Desarme del pueblo.}]
+  Desarmó a la población alegando que así \textbf{evitaba la delincuencia}.
+
+  \item[\textbf{Represión.}]
+  Exilio; cárceles: \textbf{La Rotunda} (Caracas), \textbf{Las Tres Torres}
+  (Barquisimeto) y \textbf{Castillo de Puerto Cabello}; \textbf{trabajos
+  forzados} en la construcción de carreteras y \textbf{torturas} frecuentes.
+
+  \item[\textbf{Nepotismo.}]
+  \textbf{Primera y segunda vicepresidencia} entregadas a su hermano
+  \textbf{Juan Crisóstomo Gómez} (\guillemotleft Juancho\guillemotright) y a su
+  hijo (\guillemotleft Vicentino\guillemotright).
+\end{description}
+
+\begin{cuadropasos}
+  \small
+  \textbf{Producto de la sesión.} Tres columnas ---\textit{coerción militar /
+  coerción policial / coerción económica}--- con dos ejemplos en cada una.
+\end{cuadropasos}
+
+\subsection*{Preguntas de análisis}
+\begin{preguntas}
+  \item \nUno{} Menciona las dos escuelas militares creadas y el año de la Ley
+        del Servicio Militar Obligatorio.
+  \item \nUno{} ¿Qué tres cárceles se mencionan en la guía?
+  \item \nDos{} ¿Qué relación existe entre \textbf{carreteras},
+        \textbf{plazas militares} y control del territorio?
+  \item \nTres{} ¿Qué función cumplían el \textbf{desarme del pueblo} y el
+        argumento de \guillemotleft evitar la delincuencia\guillemotright?
+        ¿A quién protegía realmente?
+  \item \nCuatro{} ¿Por qué colocar a un hermano y a un hijo en las
+        vicepresidencias es más que un privilegio económico? Relaciónalo con la
+        \textbf{sucesión} del poder.
+\end{preguntas}
+
+\pausa{Nombra las tres cárceles sin mirar la guía.}
+
+% ============================================================
+\section{La economía I: la Venezuela agrícola (1908--1921)}
+% ============================================================
+
+\metasesion{25 + 5 min}{explicar cómo funcionaba la economía antes del petróleo
+y quién se beneficiaba.}
+
+\begin{itemize}[leftmargin=*, itemsep=3pt]
+  \item El país seguía \textbf{dependiendo de los precios del café} en el mercado
+        mundial: estos \textbf{cayeron}, mientras los del \textbf{cacao se
+        mantuvieron}.
+  \item Gómez \textbf{favoreció la agricultura} y buscó \textbf{acceso de los
+        cultivadores al mercado internacional}.
+  \item \textbf{Eliminó el monopolio de venta de tabaco}.
+  \item Favoreció la \textbf{inversión extranjera} con facilidades para
+        instalarse y \textbf{exención de impuestos} a los inversionistas.
+  \item En \textbf{tenencia de tierras} fue el \textbf{mayor latifundista}:
+        tenía tierras en \textbf{doce estados} del país y una parte estaban
+        \textbf{ociosas}.
+  \item La \textbf{industria ganadera} podía controlarse fácilmente: durante el
+        período, la \textbf{venta de carne fue monopolizada} por el dictador y
+        su camarilla. El General y sus amigos habían adquirido \textbf{tierras
+        de cultivo y los mejores pastos}, \guillemotleft valiéndose de medios
+        legales o de la fuerza\guillemotright.
+\end{itemize}
+
+\begin{cuadropasos}
+  \small
+  \textbf{Producto de la sesión.} Párrafo de cinco líneas:
+  \guillemotleft La economía agrícola de Gómez benefició a
+  \rule{1.8cm}{0.4pt} porque \rule{3.2cm}{0.4pt}\guillemotright.
+\end{cuadropasos}
+
+\subsection*{Preguntas de análisis}
+\begin{preguntas}
+  \item \nUno{} ¿De qué producto dependía la economía antes del petróleo y qué
+        pasó con su precio?
+  \item \nUno{} ¿Qué monopolio eliminó Gómez en la agricultura?
+  \item \nDos{} ¿Qué tipo de facilidades ofrecía a los inversionistas
+        extranjeros?
+  \item \nTres{} ¿Cómo se relacionan \textbf{latifundio}, \textbf{monopolio de
+        la carne} y \textbf{poder político}? Usa la frase
+        \guillemotleft medios legales o de la fuerza\guillemotright.
+  \item \nCuatro{} ¿La política agrícola de Gómez favoreció el
+        \textbf{desarrollo nacional} o profundizó la \textbf{dependencia}? Toma
+        posición con tres datos.
+\end{preguntas}
+
+\pausa{Repite la cadena: café $\rightarrow$ precios $\rightarrow$ exportaciones
+$\rightarrow$ ingresos.}
+
+% ============================================================
+\section{La economía II: petróleo, crisis de 1929 y deuda}
+% ============================================================
+
+\metasesion{25 + 5 min}{explicar el cambio de modelo económico y evaluar la
+paradoja de un país sin deuda pero dependiente.}
+
+\subsection*{El modelo petrolero (desde 1921)}
+\begin{itemize}[leftmargin=*, itemsep=3pt]
+  \item Continúa la misma política de \textbf{ofertas y facilidades} al capital
+        extranjero.
+  \item \textbf{Derechos de exploración bajos}; \textbf{no} establece normas de
+        \textbf{refinación ni perforación}.
+  \item \textbf{Exenciones de impuestos de aduana} para maquinarias y equipos.
+  \item \textbf{Plazos de concesión muy largos} y beneficiosos para las
+        compañías.
+  \item Concesiones a compañías \textbf{holandesas, norteamericanas e inglesas}.
+  \item \textbf{1925:} el petróleo \textbf{desplaza al café} como primer producto
+        de exportación.
+  \item \textbf{1928:} Venezuela es \textbf{primer exportador mundial} de
+        petróleo y \textbf{segundo productor}, después de Estados Unidos. Estados
+        Unidos es el \textbf{primer inversionista} en el país.
+\end{itemize}
+
+\subsection*{La crisis económica de 1929}
+\begin{center}
+\small
+\begin{tabularx}{0.85\linewidth}{@{}X l@{}}
+  \toprule
+  \textbf{Indicador} & \textbf{Efecto} \\
+  \midrule
+  Empleo petrolero             & Despidieron el \textbf{66\,\%} de los obreros \\
+  Exportaciones petroleras     & Bajaron \\
+  Ingresos fiscales            & Bajaron \\
+  Exportaciones agrícolas      & Disminuyeron \\
+  Importaciones                & Bajaron \\
+  \bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection*{La deuda del país}
+\begin{center}
+\small
+\begin{tabular}{@{}l r r@{}}
+  \toprule
+  \textbf{Año} & \textbf{Deuda externa} & \textbf{Deuda interna} \\
+  \midrule
+  1 de enero de 1909       & Bs.\ 161.138.109 & Bs.\ 71.958.383 \\
+  1929                     & Bs.\ 29.249.416  & Bs.\ 28.735.884 \\
+  1935 (muerte de Gómez)   & \multicolumn{2}{c}{\textbf{Saldada}} \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\noindent Gómez se comportó como \guillemotleft el mejor pagador\guillemotright:
+a su muerte \textbf{ya no había deuda}.
+
+\begin{cuadropasos}
+  \small
+  \textbf{Producto de la sesión.} Gráfico simple de barras comparando la deuda
+  total de 1909 (Bs.\ 233.096.492) con la de 1929 (Bs.\ 57.985.300).
+\end{cuadropasos}
+
+\subsection*{Preguntas de análisis}
+\begin{preguntas}
+  \item \nUno{} ¿En qué año el petróleo desplazó al café y en qué año Venezuela
+        fue primer exportador mundial?
+  \item \nUno{} Enumera \textbf{tres} efectos de la crisis de 1929 en Venezuela.
+  \item \nDos{} Explica por qué los \textbf{plazos largos} y los
+        \textbf{derechos de exploración bajos} beneficiaban a las compañías
+        extranjeras.
+  \item \nTres{} Analiza la aparente contradicción: un país que \textbf{paga
+        toda su deuda} y, al mismo tiempo, \textbf{entrega concesiones} y no fija
+        normas de refinación. ¿Cómo se sostiene ese equilibrio?
+  \item \nTres{} ¿Qué muestra el dato del \textbf{66\,\% de obreros
+        despedidos} sobre quién pagaba realmente la crisis?
+  \item \nCuatro{} ¿Puede un país estar \textbf{sin deuda} y ser
+        \textbf{dependiente} al mismo tiempo? Defiende tu respuesta con datos de
+        esta sesión.
+\end{preguntas}
+
+\pausa{Escribe de memoria las cuatro cifras de la deuda.}
+
+% ============================================================
+\section{La sociedad: población, éxodo y estratos}
+% ============================================================
+
+\metasesion{25 + 5 min}{relacionar los cambios demográficos con la llegada del
+petróleo.}
+
+\subsection*{Población}
+\begin{itemize}[leftmargin=*, itemsep=3pt]
+  \item \textbf{Aumenta} de 1908 a 1911, \textbf{desciende} hasta 1920 y desde
+        ahí \textbf{crece sin detenerse}.
+  \item Causas del descenso (\textbf{1911--1920}): \textbf{mortalidad infantil},
+        \textbf{desatención sanitaria}, la \textbf{epidemia de paludismo de 1916}
+        y la \textbf{gripe española de 1918}.
+  \item Causas del aumento (desde \textbf{1920}): inicio de la \textbf{época
+        petrolera}, mejores condiciones sanitarias y \textbf{servicios de
+        prevención y curación} instalados por las compañías petroleras para
+        empleados y obreros.
+\end{itemize}
+
+\subsection*{Territorio}
+\begin{itemize}[leftmargin=*, itemsep=3pt]
+  \item Cambia la relación \textbf{población urbana / población rural}: se
+        produce el \textbf{éxodo campesino}.
+  \item El \textbf{área occidental} del país (donde empezó la exploración y
+        explotación) y la ciudad de \textbf{Maracaibo} se hacen populosas.
+\end{itemize}
+
+\subsection*{Caudillismo}
+\begin{itemize}[leftmargin=*, itemsep=3pt]
+  \item \textbf{Desaparece el caudillismo regional}: el dictador es el gran
+        caudillo. La propaganda lo presenta como \textbf{«Gómez Único»},
+        \textbf{«el Rehabilitador»} y \textbf{«el Pacificador»}.
+\end{itemize}
+
+\subsection*{Estratos sociales}
+\begin{enumerate}[leftmargin=*, itemsep=2pt]
+  \item \textbf{Terratenientes} (con Gómez, sus familiares y amigos).
+  \item \textbf{Comerciantes, banqueros e industriales}, nacionales y
+        extranjeros.
+  \item \textbf{Burocracia} de altos empleados gubernamentales.
+  \item \textbf{Empleados y profesionales} en general.
+  \item \textbf{Obreros}.
+  \item \textbf{Campesinos y peones} de haciendas y hatos.
+\end{enumerate}
+
+\begin{cuadropasos}
+  \small
+  \textbf{Producto de la sesión.} Pirámide social dibujada con los seis estratos
+  y una palabra que describa la situación de cada uno.
+\end{cuadropasos}
+
+\subsection*{Preguntas de análisis}
+\begin{preguntas}
+  \item \nUno{} ¿Qué epidemias se mencionan y en qué años?
+  \item \nUno{} ¿Qué dos zonas del país se hicieron populosas con el petróleo?
+  \item \nDos{} Explica con tus palabras qué es el \textbf{éxodo campesino} y por
+        qué ocurre.
+  \item \nTres{} ¿Qué relación hay entre \textbf{crecimiento demográfico},
+        \textbf{petróleo} y \textbf{servicios de salud}?
+  \item \nTres{} ¿Por qué la desaparición del caudillismo regional puede
+        describirse como \textbf{concentración} y no como \textbf{fin} del
+        caudillismo?
+  \item \nCuatro{} ¿Quiénes \textbf{no} aparecen en la lista de estratos con
+        poder? ¿Qué te dice esa ausencia sobre la sociedad gomecista?
+\end{preguntas}
+
+\pausa{Ordena los seis estratos de arriba a abajo sin mirar.}
+
+% ============================================================
+\section{La cultura: educación, positivismo y prensa}
+% ============================================================
+
+\metasesion{25 + 5 min}{explicar la contradicción entre modernización material y
+atraso educativo.}
+
+\subsection*{Educación}
+\begin{itemize}[leftmargin=*, itemsep=3pt]
+  \item Estuvo \textbf{desasistida} durante el gomecismo: la \textbf{Universidad
+        Central permaneció cerrada desde 1912 hasta 1925}.
+  \item El \textbf{analfabetismo adulto} se situaba entre el \textbf{70\,\%} y
+        el \textbf{90\,\%}: la fuente indica que hasta el 90\,\% de la población
+        no sabía leer ni escribir.
+  \item Los \textbf{presupuestos anuales} del Ministerio de Educación eran
+        \textbf{ínfimos}.
+  \item La \textbf{inscripción escolar en primaria} fue considerablemente
+        \textbf{inferior} a la de la época guzmancista: en \textbf{1883} había
+        \textbf{91.462 alumnos} inscritos, un \textbf{4,45\,\%} de la población
+        total.
+\end{itemize}
+
+\subsection*{Pensamiento}
+\begin{itemize}[leftmargin=*, itemsep=3pt]
+  \item Continúa el movimiento histórico-sociológico del \textbf{positivismo},
+        presente desde Castro, con \textbf{José Gil Fortoul}, \textbf{Laureano
+        Vallenilla Lanz}, \textbf{César Funesta}, \textbf{Pedro Manuel Arcaya} y
+        \textbf{Lisandro Alvarado}.
+\end{itemize}
+
+\subsection*{Literatura y prensa}
+\begin{itemize}[leftmargin=*, itemsep=3pt]
+  \item La \textbf{novela} tiene en \textbf{Rómulo Gallegos} a su máximo
+        representante.
+  \item Revistas importantes: \textbf{Válvula} y \textbf{El Cojo Ilustrado}
+        (esta última dura hasta \textbf{1915}).
+  \item \textbf{Periodismo humorístico} como vía de crítica indirecta:
+        \textbf{Fantoches}, de \textbf{Leoncio Martínez} («Leo»), y
+        \textbf{Pitorreos}, de \textbf{Francisco Pimentel} («Job Pim»).
+  \item Prensa oficial: \textbf{El Nuevo Diario}. En el interior,
+        \textbf{El Impulso} de Barquisimeto era uno de los diarios más
+        importantes.
+\end{itemize}
+
+\begin{cuadropasos}
+  \small
+  \textbf{Producto de la sesión.} Cuadro de dos columnas:
+  \textit{lo que modernizó Gómez / lo que dejó atrasado}.
+\end{cuadropasos}
+
+\subsection*{Preguntas de análisis}
+\begin{preguntas}
+  \item \nUno{} ¿Cuántos años estuvo cerrada la Universidad Central?
+  \item \nUno{} Menciona \textbf{tres} representantes del positivismo
+        venezolano.
+  \item \nDos{} ¿Qué papel cumplía el \textbf{periodismo humorístico} en un
+        régimen sin partidos ni libertad de prensa?
+  \item \nTres{} Relaciona el dato de \textbf{1883} (91.462 alumnos =
+        4,45\,\%) con la idea de una educación \guillemotleft
+        desasistida\guillemotright. ¿Qué te dice la comparación con la época
+        anterior?
+  \item \nTres{} ¿Por qué el cierre de la Universidad Central es un dato
+        \textbf{político} y no solo educativo?
+  \item \nCuatro{} Gómez modernizó el ejército y las carreteras, pero no la
+        escuela. Formula una \textbf{hipótesis} que explique esa elección y
+        respáldala con dos datos de la guía.
+\end{preguntas}
+
+\pausa{Escribe el nombre de las dos revistas y de los dos periódicos
+humorísticos.}
+
+% ============================================================
+\section{La oposición y la Generación del 28}
+% ============================================================
+
+\metasesion{25 + 5 min}{comparar las tres corrientes opositoras y explicar por
+qué solo una tuvo proyección histórica.}
+
+La oposición tuvo \textbf{tres matices} según sus protagonistas.
+
+\subsection*{a) Los antiguos caudillos}
+\begin{itemize}[leftmargin=*, itemsep=3pt]
+  \item Posición \textbf{aislada, sin fuerza y sin consenso}; varios líderes
+        insistentes en invasiones y alzamientos.
+  \item Fracasan por la \textbf{cohesión, preparación y equipamiento} del
+        ejército del dictador.
+  \item Terminan en el \textbf{exilio}, fusilados, en la cárcel o torturados.
+\end{itemize}
+
+{\small
+\begin{tabular}{@{}c >{\raggedright\arraybackslash}p{2.7cm}
+                    >{\raggedright\arraybackslash}p{5.5cm}
+                    >{\raggedright\arraybackslash}p{6.3cm}@{}}
+  \toprule
+  \textbf{Año} & \textbf{Caudillo} & \textbf{Acción} & \textbf{Resultado} \\
+  \midrule
+  1913 & Gral. Román Chalbaud &
+  Gran conspiración en Caracas &
+  Fracasa; encerrado en La Rotunda hasta 1927, luego exiliado \\
+  1914 & Gral. Emilio Arévalo Cedeño &
+  Invasión por la frontera de Colombia (Táchira) &
+  Fracasa; repite en 1915 y 1920 con el mismo resultado \\
+  1918 & Gral. Juan Pablo Peñaloza &
+  Invasión por el Táchira &
+  Fracasa \\
+  1927 & Gral. Rafael Simón Urbina &
+  Invasión por Coro &
+  Fracasa \\
+  \bottomrule
+\end{tabular}
+}
+
+\subsection*{b) Los oficiales jóvenes}
+Conspiraciones dentro de los cuarteles de Caracas:
+\begin{itemize}[leftmargin=*, itemsep=3pt]
+  \item \textbf{1919:} figura principal \textbf{Luis Rafael Pimentel}.
+  \item \textbf{1922:} participan, entre otros, \textbf{Alejandro Rascaniere} y
+        \textbf{Francisco Angarita Arvelo}.
+  \item En ambos casos los conspiradores terminaron en la \textbf{cárcel}.
+\end{itemize}
+
+\subsection*{c) Los estudiantes: la Generación del 28}
+\begin{itemize}[leftmargin=*, itemsep=3pt]
+  \item Grupo de universitarios que protagonizaron en el \textbf{carnaval
+        caraqueño de 1928} un movimiento \textbf{académico y estudiantil},
+        iniciado con la \textbf{semana del estudiante} y que culminó en un
+        \textbf{enfrentamiento con el régimen}.
+  \item Lo que empezó como un proyecto \textbf{restringido a la Universidad} se
+        transformó en una propuesta de \textbf{cambio del régimen político} y de
+        los \textbf{fundamentos de la sociedad y la cultura} venezolanas.
+  \item Participaron, entre otros: \textbf{Rómulo Betancourt}, \textbf{Jóvito
+        Villalba}, \textbf{Andrés Eloy Blanco} y \textbf{Raúl Leoni}.
+  \item De ella salieron los fundadores de \textbf{Acción Democrática (AD)},
+        \textbf{Unión Republicana Democrática (URD)} y el \textbf{Partido
+        Comunista}.
+\end{itemize}
+
+\begin{cuadropasos}
+  \small
+  \textbf{Producto de la sesión.} Cuadro comparativo de las tres corrientes:
+  \textit{¿quiénes? / ¿cómo actuaron? / ¿por qué fracasaron o triunfaron?}
+\end{cuadropasos}
+
+\subsection*{Preguntas de análisis}
+\begin{preguntas}
+  \item \nUno{} ¿Cuáles son las tres corrientes de oposición al gomecismo?
+  \item \nUno{} Menciona \textbf{dos} invasiones fallidas con año y caudillo.
+  \item \nDos{} ¿Por qué fracasaban los alzamientos caudillistas?
+  \item \nTres{} ¿Qué tuvo de \textbf{distinto} la Generación del 28 frente a los
+        caudillos y frente a los oficiales jóvenes?
+  \item \nTres{} ¿Por qué un movimiento que comenzó como \guillemotleft semana
+        del estudiante\guillemotright{} pudo convertirse en un proyecto político
+        nacional?
+  \item \nCuatro{} Explica cómo la Generación del 28 conecta con el nacimiento de
+        \textbf{AD}, \textbf{URD} y el \textbf{PCV}. ¿Qué continuidad hay entre
+        la protesta estudiantil y los partidos del siglo XX?
+\end{preguntas}
+
+\pausa{Nombra los cuatro estudiantes citados.}
+
+% ============================================================
+\section{Cierre: síntesis, cronología y simulacro}
+% ============================================================
+
+\metasesion{25 + 5 min}{integrar todo el objetivo 2.1 en una sola respuesta
+escrita.}
+
+\subsection*{1. Cronología integradora (complétala sin mirar)}
+
+{\small
+\begin{tabular}{@{}c p{14.2cm}@{}}
+  \toprule
+  \textbf{Año} & \textbf{Hecho} \\
+  \midrule
+  1857 & \dotfill \\
+  1883 & \dotfill \\
+  1899 & \dotfill \\
+  1902 & \dotfill \\
+  1908 & \dotfill \\
+  1911 & \dotfill \\
+  1912--1925 & \dotfill \\
+  1916 y 1918 & \dotfill \\
+  1920 & \dotfill \\
+  1921 & \dotfill \\
+  1925 & \dotfill \\
+  1926 & \dotfill \\
+  1928 & \dotfill \\
+  1929 & \dotfill \\
+  1930 & \dotfill \\
+  1931 & \dotfill \\
+  1935 & \dotfill \\
+  \bottomrule
+\end{tabular}
+}
+
+\subsection*{2. Glosario mínimo}
+\noindent\small
+\textbf{Gomecismo} · \textbf{caudillismo} · \textbf{fuerzas vivas} ·
+\textbf{nepotismo} · \textbf{latifundio} · \textbf{concesión} ·
+\textbf{macadán} · \textbf{La Rotunda} · \textbf{positivismo} ·
+\textbf{Generación del 28} · \textbf{co-presidencia} ·
+\textbf{propaganda comunista (Art.\ 32, inciso G)}.
+
+\subsection*{3. Preguntas integradoras}
+\begin{preguntas}
+  \item \nCuatro{} ¿Cómo se relacionan \textbf{reforma constitucional},
+        \textbf{ejército} y \textbf{petróleo} para sostener 27 años de
+        dictadura? Responde en un párrafo con las tres ideas conectadas.
+  \item \nCuatro{} La guía muestra un país que \textbf{moderniza} carreteras y
+        ejército, \textbf{paga} su deuda y, a la vez, \textbf{cierra} la
+        universidad y \textbf{monopoliza} la carne. ¿Qué tipo de modernización
+        es esa? Defínela con tus palabras.
+  \item \nCuatro{} ¿Por qué la \textbf{oposición armada} fracasó y la
+        \textbf{oposición estudiantil} tuvo proyección? Compara recursos,
+        organización y discurso.
+  \item \nCuatro{} ¿Qué cambió y qué permaneció entre \textbf{1908} y
+        \textbf{1935} en la economía venezolana? Usa la idea de
+        \textit{transición} (agrícola $\rightarrow$ petrolera) sin simplificar.
+  \item \nCuatro{} Evalúa el legado: ¿Gómez dejó un \textbf{Estado} más fuerte o
+        un \textbf{país} más débil? Argumenta con dos datos económicos y dos
+        sociales.
+\end{preguntas}
+
+\subsection*{4. Autoevaluación}
+\noindent\small
+Marca \textbf{\checkmark} solo lo que puedas hacer \textbf{sin mirar la guía}:
+
+\begin{itemize}[leftmargin=*, itemsep=2pt, label=$\square$]
+  \item Explico por qué Gómez llega al poder en 1908.
+  \item Ordeno las reformas constitucionales y digo qué cambió en cada una.
+  \item Diferencio la Venezuela agrícola de la petrolera con tres datos cada una.
+  \item Explico la crisis de 1929 con cuatro efectos.
+  \item Describo los seis estratos sociales.
+  \item Explico la contradicción entre modernización material y atraso educativo.
+  \item Comparo las tres corrientes de oposición.
+  \item Escribo en 10 líneas una respuesta completa al objetivo 2.1.
+\end{itemize}
+
+\begin{cuadroextra}
+  \small
+  \textbf{Cierre del objetivo.} Si marcaste menos de 6 casillas, repite las
+  sesiones de los temas sin marcar. Si marcaste 6 o más, estás listo para el
+  examen.
+\end{cuadroextra}
+
+% ============================================================
+\subsection*{Fuentes citadas por la guía original}
+\noindent\small
+Rena (Red Educativa Nacional) · Venezuela Tuya · Monografías.com · Ensayos en
+línea (Espacio IsaurajRiver).
+
+\vspace{6pt}
+\begin{cuadroinfo}
+  \footnotesize
+  \textbf{Nota final.} Esta versión reordena, titula y añade preguntas;
+  \textbf{no} sustituye la explicación del Prof.\ José Rambert ni sus fuentes.
+  Reedición elaborada con su autorización.
+\end{cuadroinfo}
+
+\end{document}

@@ -2,7 +2,7 @@
 %  GUÍA 2: NÚMEROS ENTEROS Y SUS OPERACIONES
 %  Curso Introductorio de Matemáticas — 1er Año
 %  Autor: Ing. Gabriel Astudillo
-%  Sesiones cubiertas: Semana 2 (clases 5 a 8)
+%  Sesiones cubiertas: Semana 2 (clases 4 a 6)
 % ============================================================
 
 \documentclass[12pt, letterpaper]{article}
@@ -15,6 +15,22 @@
 % ── Comandos propios de esta guía ───────────────────
 \newcommand{\Z}{\mathbb{Z}}
 
+% Recta numérica reutilizable (ejercicios de relación de orden).
+% Uso: \rectaenteros{-4,2,-1,5,0}  ·  \rectaenteros{} = recta en blanco
+\newcommand{\rectaenteros}[1]{%
+  \begin{tikzpicture}[x=0.75cm]
+    \draw[<->, thick] (-7.6,0) -- (7.6,0);
+    \foreach \x in {-7,-6,...,7} {
+        \draw (\x,0.14) -- (\x,-0.14);
+        \node[below, font=\scriptsize, text=mwgrisoscuro] at (\x,-0.16) {$\x$};
+      }
+    \foreach \p in {#1} {
+        \draw[mwprimario, thick, densely dashed] (\p,0) -- (\p,0.52);
+        \fill[mwprimario] (\p,0.68) circle (3.2pt);
+      }
+  \end{tikzpicture}%
+}
+
 \begin{document}
 % ============================================================
 
@@ -24,7 +40,7 @@
 \vspace{4pt}
 \begin{cuadroinfo}
   \small
-  \textbf{Presentación:} \textquestiondown Sabías que hay números \emph{por debajo de cero}? Los usamos todos los días: cuando hace frío en la sierra ($-3\,^{\circ}$C), cuando el ascensor baja a un sótano (piso $-2$) o cuando debes dinero en una alcancía ($-15$ Bs.). Esos números se llaman \textbf{enteros negativos}, y en esta guía aprenderás a operar con ellos como un verdadero experto. También descubrirás la famosa \emph{regla de los signos} y el orden correcto para hacer operaciones combinadas.
+  \textbf{Presentación:} \textquestiondown Sabías que hay números \emph{por debajo de cero}? Los usamos todos los días: cuando hace frío en la sierra ($-3\,^{\circ}$C), cuando el ascensor baja a un sótano (piso $-2$) o cuando debes dinero en una alcancía ($-15$ Bs.). Esos números se llaman \textbf{enteros negativos}, y en esta guía aprenderás a ubicarlos en la recta, a \emph{compararlos} para saber cuál es mayor (\textquestiondown quién debe más, el que debe $8$ o el que debe $15$?), a operar con ellos usando la famosa \emph{regla de los signos} y, por último, a respetar el orden correcto de las \emph{operaciones combinadas}.
   \\[4pt]
   \textbf{Nivel de Dificultad:}\quad
   \facil{} Básico / Directo \quad
@@ -35,12 +51,12 @@
 \vspace{8pt}
 
 % ============================================================
-\section{Suma y Resta de Números Enteros}
+\section{El Conjunto de los Números Enteros}
 % ============================================================
 
 \subsection{\textquestiondown Qué es el conjunto de los enteros?}
 
-El conjunto de los \textbf{números enteros} (que se escribe $\Z$) está formado por:
+El conjunto de los \textbf{números enteros} (que se escribe $\Z$) está formado por todos los números que necesitamos para contar, para quedarnos sin nada\ldots\ y para estar \emph{por debajo de cero}:
 
 \begin{cuadroteoria}
   \textbf{Definición:}
@@ -54,11 +70,13 @@ El conjunto de los \textbf{números enteros} (que se escribe $\Z$) está formado
   \end{itemize}
 \end{cuadroteoria}
 
+\noindent Cada entero tiene un \textbf{opuesto}: el mismo número con el signo cambiado. El opuesto de $7$ es $-7$; el opuesto de $-12$ es $12$; y el opuesto de $0$ es $0$.
+
 \noindent Podemos dibujarlos en la \textbf{recta numérica}, una recta donde cada número tiene su casita:
 
 \begin{center}
   \begin{tikzpicture}[x=0.9cm]
-    \draw[->, thick] (-5.5,0) -- (5.5,0) node[below left] {};
+    \draw[<->, thick] (-5.8,0) -- (5.8,0);
     \foreach \x in {-5,-4,...,5} {
         \draw (\x,0.15) -- (\x,-0.15) node[below] {$\x$};
       }
@@ -66,17 +84,273 @@ El conjunto de los \textbf{números enteros} (que se escribe $\Z$) está formado
   \end{tikzpicture}
 \end{center}
 
-\noindent Caminar a la \textbf{derecha} es sumar; caminar a la \textbf{izquierda} es restar. Por ejemplo, para calcular $-3 + 5$: partimos de $-3$ y damos $5$ pasos a la derecha... llegamos a $2$.
+\noindent Caminar a la \textbf{derecha} es sumar; caminar a la \textbf{izquierda} es restar. Por ejemplo, para calcular $-3 + 5$: partimos de $-3$ y damos $5$ pasos a la derecha\ldots\ llegamos a $2$. Esta misma recta nos servirá, un poco más adelante, para \emph{comparar} números.
 
-\subsection{El valor absoluto}
+\subsection{Ejercicios: El Conjunto de los Enteros}
+
+\begin{enumerate}[leftmargin=*]
+  \item \facil{} Escribe el opuesto de $7$.
+
+  \item \facil{} Escribe el opuesto de $-12$.
+
+  \item \facil{} \textquestiondown Cuál es el único entero que no es positivo ni negativo?
+
+  \item \facil{} Escribe tres números enteros negativos y tres números enteros positivos.
+
+  \item \medio{} Dibuja una recta numérica en tu cuaderno y ubica en ella los enteros $-3$, $1$, $-5$ y $4$.
+
+  \item \medio{} \textquestiondown Cuál es el opuesto de $0$? \textquestiondown Y el opuesto del opuesto de $-8$?
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Valor Absoluto}
+% ============================================================
+
+\subsection{La distancia al cero}
 
 \begin{cuadroteoria}
-  \textbf{Definición:} el \textbf{valor absoluto} de un número entero $a$ se escribe $|a|$ y es \emph{la distancia} desde $a$ hasta el cero en la recta. La distancia siempre es positiva o cero.
+  \textbf{Definición:} el \textbf{valor absoluto} de un número entero $a$ se escribe $|a|$ y es \emph{la distancia} desde $a$ hasta el cero en la recta numérica. La distancia siempre es positiva o cero.
 
   Ejemplos: $|5| = 5$, $|-5| = 5$, $|0| = 0$.
 \end{cuadroteoria}
 
 \noindent Los números $-5$ y $5$ están a la misma distancia del cero, por eso $|-5| = |5| = 5$.
+
+\begin{cuadroadvertencia}
+  \textbf{Ojo:} el valor absoluto \emph{nunca} es negativo. Las barras no «borran» el signo: solo miden cuánto se aleja el número del cero. Por eso $|-9| = 9$ (y no $-9$), y por eso $|a| = -4$ es imposible.
+\end{cuadroadvertencia}
+
+\noindent En esta guía el valor absoluto nos servirá para dos cosas: medir \emph{distancias} al cero y decidir \emph{cuál de dos negativos es mayor} (lo veremos en la sección siguiente).
+
+\subsection{Ejercicios: Valor Absoluto}
+
+\begin{enumerate}[leftmargin=*, start=7]
+  \item \facil{} $|-7|$
+
+  \item \facil{} $|15|$
+
+  \item \facil{} $|0|$
+
+  \item \facil{} $|-23|$ \ y \ $|23|$
+
+  \item \medio{} \textquestiondown Cuáles de estos números tienen valor absoluto igual a $6$? \quad $-6$, \ $6$, \ $-3$, \ $12$, \ $0$
+
+  \item \medio{} Si $|x| = 9$, \textquestiondown qué valores puede tomar $x$?
+
+  \item \medio{} \textquestiondown Puede el valor absoluto de un número entero ser negativo? Explica con un ejemplo.
+
+  \item \dificil{} \textquestiondown Qué enteros están a distancia $4$ del cero? Escríbelos y ordénalos de menor a mayor.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Relación de Orden en $\Z$}
+% ============================================================
+
+\subsection{Los símbolos de comparación}
+
+Comparar dos números es decidir \emph{cuál es mayor}. Para eso usamos estos símbolos:
+
+\begin{cuadroteoria}
+  \begin{center}
+    \renewcommand{\arraystretch}{1.25}
+    \begin{tabular}{cl}
+      \toprule
+      \textbf{Símbolo} & \textbf{Se lee} \\
+      \midrule
+      $=$    & «igual a» \\
+      $\neq$ & «distinto de» \\
+      $<$    & «menor que» \\
+      $>$    & «mayor que» \\
+      $\leq$ & «menor o igual que» \\
+      $\geq$ & «mayor o igual que» \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+
+  \smallskip
+  \noindent \textbf{Truco para no confundirlos:} la \emph{boca abierta} siempre mira al número \textbf{mayor}. Así, $3 > 1$ se lee «$3$ es mayor que $1$», y $-7 < -3$ se lee «$-7$ es menor que $-3$».
+\end{cuadroteoria}
+
+\subsection{La regla de la recta numérica}
+
+\begin{cuadroteoria}
+  \textbf{Regla de oro del orden:}
+  \[
+    a < b \quad \Longleftrightarrow \quad a \text{ está a la \textbf{izquierda} de } b \text{ en la recta.}
+  \]
+  Por eso \textbf{avanzar hacia la derecha} siempre es \textbf{crecer}: cada número es mayor que todos los que quedan a su izquierda.
+\end{cuadroteoria}
+
+\begin{center}
+  \begin{tikzpicture}[x=1.05cm]
+    \draw[<->, thick] (-6.2,0) -- (6.2,0);
+    \foreach \x in {-6,-5,...,6} {
+        \draw (\x,0.14) -- (\x,-0.14);
+        \node[below=2pt, font=\scriptsize] at (\x,0) {$\x$};
+      }
+    \node[above=6pt, font=\small] at (0,0) {$0$};
+    \fill[mwnaranja!18] (-6.2,-1.02) rectangle (0,-0.78);
+    \node[font=\scriptsize, text=mwrojonaranja] at (-3.1,-0.90) {NÚMEROS MENORES QUE $0$};
+    \fill[mwprimario!12] (0,-1.02) rectangle (6.2,-0.78);
+    \node[font=\scriptsize, text=mwprimario] at (3.1,-0.90) {NÚMEROS MAYORES QUE $0$};
+  \end{tikzpicture}
+\end{center}
+
+\noindent De esta regla salen tres consecuencias que conviene memorizar:
+
+\begin{cuadroextra}
+  \begin{itemize}
+    \item \textbf{Todo negativo es menor que cero} y \textbf{todo positivo es mayor que cero}:
+          \[
+            -100 < 0 < 1
+          \]
+    \item \textbf{Entre dos negativos es mayor el que está más cerca del cero} (el de \emph{menor} valor absoluto):
+          \[
+            -7 < -3 \qquad \text{porque } |-7| = 7 > 3 = |-3|.
+          \]
+    \item \textbf{Entre dos positivos es mayor el que está más lejos del cero} (el de \emph{mayor} valor absoluto):
+          \[
+            3 < 7 \qquad \text{porque } |3| = 3 < 7 = |7|.
+          \]
+  \end{itemize}
+\end{cuadroextra}
+
+\begin{cuadroadvertencia}
+  \textbf{La trampa clásica:} en los negativos el orden del valor absoluto se \emph{invierte}. $9$ es mayor que $3$, pero $-9$ es \textbf{menor} que $-3$. Y en los contextos pasa lo mismo: una deuda de $15$ Bs. ($-15$) es \emph{peor} que una deuda de $8$ Bs. ($-8$), y $-12\,^{\circ}$C es \emph{más frío} que $-5\,^{\circ}$C.
+\end{cuadroadvertencia}
+
+\subsection{Propiedades del orden}
+
+\begin{cuadroteoria}
+  \textbf{Propiedades de la relación de orden en $\Z$:}
+  \begin{itemize}
+    \item \textbf{Tricotomía:} dados dos enteros $a$ y $b$, se cumple \emph{exactamente una} de estas tres posibilidades:
+          \[
+            a < b, \qquad a = b, \qquad a > b.
+          \]
+    \item \textbf{Transitiva:} si $a < b$ y $b < c$, entonces $a < c$.
+          Ejemplo: $-8 < -3$ y $-3 < 2$, luego $-8 < 2$.
+    \item \textbf{Monotonía de la suma:} si sumamos el \textbf{mismo} número a ambos lados de una desigualdad, esta se conserva:
+          \[
+            a < b \quad \Longrightarrow \quad a + c < b + c.
+          \]
+          Ejemplo: como $-5 < 2$, al sumar $-7$ en ambos lados queda $-12 < -5$.
+    \item \textbf{Monotonía del producto:}
+          \begin{itemize}
+            \item Si multiplicamos por un número \textbf{positivo}, la desigualdad se conserva:
+                  \[
+                    a < b \ \text{ y }\ c > 0 \quad \Longrightarrow \quad a \cdot c < b \cdot c.
+                  \]
+            \item Si multiplicamos por un número \textbf{negativo}, la desigualdad \textbf{se invierte}:
+                  \[
+                    a < b \ \text{ y }\ c < 0 \quad \Longrightarrow \quad a \cdot c > b \cdot c.
+                  \]
+          \end{itemize}
+          Ejemplo: $2 < 5$, y al multiplicar por $-3$ resulta $-6 > -15$.
+  \end{itemize}
+\end{cuadroteoria}
+
+\subsection{Ejemplos en contexto}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{Ejemplo \arabic*.}]
+  \item \textbf{(temperaturas)} En la madrugada el termómetro marcó $-6\,^{\circ}$C y al mediodía $5\,^{\circ}$C. Para saber cuál fue la temperatura menor comparamos:
+        \[
+          -6 < 5
+        \]
+        La madrugada fue más fría.
+
+  \item \textbf{(deudas)} Mario debe $15$ Bs. ($-15$) y Ana debe $8$ Bs. ($-8$). \textquestiondown Quién está en peor situación? Como
+        \[
+          -15 < -8,
+        \]
+        Mario debe más.
+
+  \item \textbf{(alturas)} Un ascensor está en el piso $5$ y otro en el sótano $-2$. Como $-2 < 5$, el segundo está más abajo.
+\end{enumerate}
+
+\subsection{Ejercicios: Relación de Orden en $\Z$}
+
+\begin{enumerate}[leftmargin=*, start=15]
+  \item \facil{} Completa con $<$ o $>$ según corresponda:
+        \begin{enumerate}[label=\alph*)]
+          \item $6 \quad (\hspace{1.4cm}) \quad 2$
+          \item $-3 \quad (\hspace{1.4cm}) \quad -7$
+          \item $-12 \quad (\hspace{1.4cm}) \quad 4$
+          \item $|-9| \quad (\hspace{1.4cm}) \quad |-3|$
+        \end{enumerate}
+
+  \item \facil{} Completa con $\leq$ o $\geq$ según corresponda:
+        \begin{enumerate}[label=\alph*)]
+          \item $-4 \quad (\hspace{1.4cm}) \quad 2$
+          \item $5 \quad (\hspace{1.4cm}) \quad 5$
+          \item $-10 \quad (\hspace{1.4cm}) \quad -1$
+          \item $8 \quad (\hspace{1.4cm}) \quad 0$
+        \end{enumerate}
+
+  \item \facil{} Ordena de \textbf{menor a mayor}: $\ -3, \ 4, \ -7, \ 0, \ 2$.
+
+  \item \facil{} Ordena de \textbf{mayor a menor}: $\ -1, \ -6, \ 3, \ -9, \ 5$.
+
+  \item \medio{} Escribe los \textbf{tres enteros inmediatamente mayores} que $-9$.
+
+  \item \medio{} Escribe los \textbf{tres enteros inmediatamente menores} que $-2$.
+
+  \item \medio{} \textquestiondown Cuántos números enteros hay \textbf{entre} $-4$ y $3$ (sin contar los extremos)? Escríbelos.
+
+  \item \medio{} Escribe todos los enteros $x$ que cumplen $-3 < x \leq 2$.
+
+  \item \medio{} Escribe todos los enteros $x$ que cumplen $-5 \leq x < -1$.
+
+  \item \medio{} En la sierra la temperatura de la madrugada fue $-6\,^{\circ}$C y la del mediodía $5\,^{\circ}$C. \textquestiondown Cuál fue menor? Escribe la desigualdad.
+
+  \item \medio{} El termómetro de una cámara de frío marca $-12\,^{\circ}$C y el de otra $-5\,^{\circ}$C. \textquestiondown Cuál cámara está más fría? Escribe la desigualdad.
+
+  \item \medio{} Mario debe $15$ Bs. y Ana debe $8$ Bs. Representa cada deuda como un número entero y decide quién debe más.
+
+  \item \medio{} Un ascensor está en el piso $5$ y otro en el sótano $-2$. \textquestiondown Cuál está más abajo? Escribe la desigualdad.
+
+  \item \medio{} Un buzo está a $-6$ m y una boya flota en la superficie ($0$ m). \textquestiondown Cuál está más profundo? Escríbelo con una desigualdad.
+
+  \item \medio{} \begin{minipage}[t]{0.92\linewidth}
+          Ubica en la recta los enteros $-4$, $2$, $-1$, $5$ y $0$. Luego escríbelos de menor a mayor.
+          \par\vspace{4pt}\centering\rectaenteros{}
+        \end{minipage}
+
+  \item \medio{} \begin{minipage}[t]{0.92\linewidth}
+          Escribe el entero que corresponde a cada punto marcado y ordénalos de menor a mayor.
+          \par\vspace{4pt}\centering\rectaenteros{-5,-2,1,4}
+        \end{minipage}
+
+  \item \dificil{} \begin{minipage}[t]{0.92\linewidth}
+          Representa en la recta las temperaturas $-6\,^{\circ}$C y $5\,^{\circ}$C y escribe la desigualdad correspondiente.
+          \par\vspace{4pt}\centering\rectaenteros{}
+        \end{minipage}
+
+  \item \dificil{} Si $|x| = 5$, \textquestiondown qué valores puede tomar $x$? Escríbelos ordenados y señala cuál es el menor.
+
+  \item \dificil{} \textbf{:} \textquestiondown Es verdadero que $-12 < -20$? Justifica tu respuesta usando el valor absoluto.
+
+  \item \dificil{} \textbf{:} Decide si cada afirmación es verdadera o falsa y justifica:
+        \begin{enumerate}[label=\alph*)]
+          \item Si sumamos $-7$ a ambos lados de una desigualdad, el orden se conserva.
+          \item Si multiplicamos ambos lados de una desigualdad por $-2$, el orden se invierte.
+          \item Todo número negativo es menor que $0$.
+          \item Entre dos números negativos es mayor el de mayor valor absoluto.
+        \end{enumerate}
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Suma y Resta de Números Enteros}
+% ============================================================
+
+\noindent Ya sabemos ubicar, medir distancias y comparar enteros. Ahora vamos a \emph{operar} con ellos, empezando por la suma y la resta.
+
 
 \subsection{Regla de los signos para sumar y restar}
 
@@ -149,7 +423,7 @@ El conjunto de los \textbf{números enteros} (que se escribe $\Z$) está formado
 
 \subsection{Ejercicios: Suma y Resta en $\Z$}
 
-\begin{enumerate}[leftmargin=*]
+\begin{enumerate}[leftmargin=*, start=35]
   \item \facil{} $-3 + 5$
 
   \item \facil{} $7 + (-2)$
@@ -207,21 +481,27 @@ Multiplicar es sumar repetido. Por ejemplo, $3 \times (-2)$ significa \emph{tres
 
 \begin{cuadroteoria}
   \textbf{Regla de los signos (multiplicación y división):}
-  \[
-    \begin{array}{c|c|c}
-      \text{signo} & \text{signo} & \text{resultado} \\ \hline
-      +            & \times       & +                \\[2pt]
-      +            & \times       & -                \\[2pt]
-      -            & \times       & +                \\[2pt]
-      -            & \times       & -                \\[2pt]
-    \end{array}
-  \]
-  \noindent En palabras:
+
+  \begin{center}
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{cc|cc}
+      \toprule
+      \textbf{1.\textsuperscript{er} signo} & \textbf{2.\textsuperscript{o} signo} & \textbf{Producto} & \textbf{Cociente} \\
+      \midrule
+      $+$ & $+$ & $+$ & $+$ \\
+      $+$ & $-$ & $-$ & $-$ \\
+      $-$ & $+$ & $-$ & $-$ \\
+      $-$ & $-$ & $+$ & $+$ \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+
+  \noindent En palabras: \textbf{signos iguales} dan resultado \textbf{positivo}; \textbf{signos distintos} dan resultado \textbf{negativo}. Y con el truco de los amigos y enemigos:
   \begin{itemize}
-    \item $+ \times + = +$ \quad (amigo de mi amigo, mi amigo)
-    \item $+ \times - = -$ \quad (amigo de mi enemigo, mi enemigo)
-    \item $- \times + = -$ \quad (enemigo de mi amigo, mi enemigo)
-    \item $- \times - = +$ \quad (enemigo de mi enemigo, mi amigo)
+    \item $+ \cdot + = +$ \quad y \quad $+ : + = +$ \quad (amigo de mi amigo, mi amigo)
+    \item $+ \cdot - = -$ \quad y \quad $+ : - = -$ \quad (amigo de mi enemigo, mi enemigo)
+    \item $- \cdot + = -$ \quad y \quad $- : + = -$ \quad (enemigo de mi amigo, mi enemigo)
+    \item $- \cdot - = +$ \quad y \quad $- : - = +$ \quad (enemigo de mi enemigo, mi amigo)
   \end{itemize}
 \end{cuadroteoria}
 
@@ -290,7 +570,7 @@ Comprobamos: $-16 - 28 = -44$ y $-23 \cdot (-44) = 1012$. \ \textquestiondown Se
 
 \subsection{Ejercicios: Multiplicación y División en $\Z$}
 
-\begin{enumerate}[leftmargin=*]
+\begin{enumerate}[leftmargin=*, start=55]
   \item \facil{} $4 \times (-3)$
 
   \item \facil{} $-5 \times 2$
@@ -335,207 +615,14 @@ Comprobamos: $-16 - 28 = -44$ y $-23 \cdot (-44) = 1012$. \ \textquestiondown Se
 \newpage
 
 % ============================================================
-\section{Operaciones Combinadas}
-% ============================================================
-
-\subsection{La jerarquía de las operaciones}
-
-Cuando en una misma expresión aparecen sumas, restas, multiplicaciones y divisiones con números enteros, \textbf{no} operamos de izquierda a derecha sin importar el tipo de operación. Para resolver correctamente, debemos seguir la \textbf{jerarquía de las operaciones}:
-
-\begin{cuadroteoria}
-  \textbf{Reglas de jerarquía:}
-  \begin{enumerate}
-    \item \textbf{Sin signos de agrupación:}
-          \begin{itemize}
-            \item Primero se resuelven las \textbf{multiplicaciones y divisiones} de izquierda a derecha.
-            \item Luego se resuelven las \textbf{sumas y restas} de izquierda a derecha.
-          \end{itemize}
-    \item \textbf{Con signos de agrupación:}
-          \begin{itemize}
-            \item Se resuelven las operaciones dentro de los símbolos de agrupación \textbf{de adentro hacia afuera}: primero paréntesis $(\ )$, luego corchetes $[\ ]$ y finalmente llaves $\{\ \}$.
-            \item Dentro de cada nivel de agrupación, se respeta la jerarquía estándar (multiplicaciones/divisiones antes que sumas/restas).
-          \end{itemize}
-  \end{enumerate}
-\end{cuadroteoria}
-
-\noindent\textbf{Ejemplo resuelto 1 (Sin signos de agrupación):}
-\[
-  (-4) - (-6) : (-3)
-\]
-\begin{itemize}
-  \item Primero realizamos la división: $(-6) : (-3) = 2$.
-  \item Luego la resta: $(-4) - 2 = -6$.
-\end{itemize}
-
-\noindent\textbf{Ejemplo resuelto 2 (Con signos de agrupación):}
-\[
-  [6 - (-1) - (-13)] : (-5)
-\]
-\begin{itemize}
-  \item Primero resolvemos el interior del corchete: $6 - (-1) - (-13) = 6 + 1 + 13 = 20$.
-  \item Finalmente dividimos: $20 : (-5) = -4$.
-\end{itemize}
-
-\noindent\textbf{Ejemplo resuelto 3 (Multinivel con paréntesis y corchetes):}
-\[
-  18 : [6 - 3 \cdot (-4 : 2 + 1)] - 3
-\]
-\begin{itemize}
-  \item Paréntesis interior (división primero): $-4 : 2 + 1 = -2 + 1 = -1$.
-  \item Corchete (multiplicación primero): $6 - 3 \cdot (-1) = 6 - (-3) = 6 + 3 = 9$.
-  \item División externa: $18 : 9 = 2$.
-  \item Resta final: $2 - 3 = -1$.
-\end{itemize}
-
-\begin{cuadroadvertencia}
-  \textbf{\textquestiondown Multiplicación o División primero?} Si aparecen consecutivamente sin paréntesis que alteren el orden, se resuelven estrictamente \textbf{de izquierda a derecha}. Ejemplo: $4 \cdot (-3) : (-2) : (-6) = (-12) : (-2) : (-6) = 6 : (-6) = -1$.
-\end{cuadroadvertencia}
-
-\subsection{Ejercicios: Operaciones Combinadas en $\Z$}
-
-\subsubsection*{Bloque A: Operaciones sin signos de agrupación}
-\textit{Resuelve las siguientes operaciones respetando la jerarquía entre multiplicación/división y suma/resta.}
-
-\begin{enumerate}[leftmargin=*]
-  \item \facil{} $6 - 4 \cdot (-3) + 5$
-
-  \item \facil{} $(-15) : 3 + (-8) \cdot (-2)$
-
-  \item \medio{} $(-4) - (-6) : (-3)$
-
-  \item \medio{} $5 : (-5) - (-7) \cdot 2$
-
-  \item \medio{} $12 : (-4) \cdot 3 - (-8) + 5$
-
-  \item \medio{} $(-11) - 3 \cdot (-4) : (-6) - (-9)$
-
-  \item \dificil{} $(-18) : 3 \cdot (-2) + (-5) \cdot (-4) : 10 - 7$
-
-  \item \dificil{} $(-5) - (-9) - 4 \cdot (-3) : (-2) : (-6)$
-
-  \item \dificil{} $-4 + 6 \cdot (-3) : (-2) - 8 \cdot (-5) : (-4)$
-
-  \item \dificil{} $(-36) : (-4) \cdot (-2) - (-24) : 6 \cdot (-5) + (-12)$
-\end{enumerate}
-
-\subsubsection*{Bloque B: Operaciones con signos de agrupación}
-\textit{Resuelve las siguientes operaciones evaluando de adentro hacia afuera (paréntesis, corchetes y llaves).}
-
-\begin{enumerate}[leftmargin=*, start=11]
-  \item \facil{} $(-3 + 6 + 18) : (-3)$
-
-  \item \facil{} $(15 - 9) \cdot (-4) + 18 : (-2)$
-
-  \item \medio{} $[2 - (-5) - 3] \cdot (-2)$
-
-  \item \medio{} $[6 - (-1) - (-13)] : (-5)$
-
-  \item \medio{} $-18 - [4 + (-6)] : 2 + 5$
-
-  \item \medio{} $-4 + 6 \cdot (-2 + 5) : (-9) + 2 \cdot 3$
-
-  \item \dificil{} $[(-7 + 5 - 2) - (6 - 8) + 5] : (-3)$
-
-  \item \dificil{} $[(-5) \cdot (-3) \cdot 4 + 12] : [-12 - (-3)]$
-
-  \item \dificil{} $18 : [6 - 3 \cdot (-4 : 2 + 1)] - 3$
-
-  \item \dificil{} $\{[-4 + 6 \cdot (-2 + 5)] : (-7) + 2\} \cdot 3$
-\end{enumerate}
-
-\subsubsection*{Bloque C: Ejercicios desafiantes y Retos de los Campeones}
-
-\begin{enumerate}[leftmargin=*, start=21]
-  \item \dificil{} $(-2) \cdot \{15 - [(-8 + 2) \cdot (-3) - 10]\} : (-7)$
-
-  \item \dificil{} $[(-3) \cdot (4 - 9) + (-14) : 2] \cdot [(-5 + 1) : (-2)]$
-
-  \item \dificil{} $-\{[-6 + 4 \cdot (-3)] : (-2) - (-5)\} \cdot (-3) - 14$
-
-  \item \dificil{} Coloca los signos de agrupación (paréntesis y/o corchetes) necesarios para que cada igualdad sea verdadera:
-        \begin{enumerate}[label=\alph*)]
-          \item $-3 + 5 \cdot (-2) = -4$
-          \item $16 : 8 - 4 \cdot (-3) = -12$
-        \end{enumerate}
-
-  \item \dificil{} \textbf{:} Resuelve la siguiente operación multinivel:
-        \[
-          -2 \cdot \{ -5 + 3 \cdot [ -4 - (-12 : 3 + 1) ] \} - (-10)
-        \]
-\end{enumerate}
-
-\newpage
-
-% ============================================================
-\section{Valor Absoluto}
-% ============================================================
-
-\subsection{Recordemos el valor absoluto}
-
-\begin{cuadroteoria}
-  El \textbf{valor absoluto} de un entero $a$, escrito $|a|$, es su distancia al cero en la recta numérica. Por eso \emph{nunca es negativo}:
-  \[
-    |a| =
-    \begin{cases}
-      a,  & \text{si } a \ge 0, \\
-      -a, & \text{si } a < 0.
-    \end{cases}
-  \]
-  Ejemplos: $|8| = 8$, \ $|-8| = 8$, \ $|0| = 0$.
-\end{cuadroteoria}
-
-\begin{cuadroadvertencia}
-  \textbf{Ojo:} las barras de valor absoluto actúan como un \emph{paréntesis}. Primero se resuelve todo lo que está dentro y \emph{después} se toma el valor absoluto:
-  \[
-    |4 - 11| = |-7| = 7,
-    \qquad \text{pero} \qquad
-    |4| - |11| = 4 - 11 = -7.
-  \]
-  No son lo mismo: en el primer caso las barras encierran toda la resta; en el segundo, cada número tiene sus propias barras.
-\end{cuadroadvertencia}
-
-\noindent\textbf{Ejemplo resuelto:}
-\[
-  |-12 + 5| - 3 \cdot |-4| = |-7| - 3 \cdot 4 = 7 - 12 = -5.
-\]
-
-\subsection{Ejercicios: Valor Absoluto en $\Z$}
-
-\begin{enumerate}[leftmargin=*]
-  \item \medio{} $|-7| + |15| - |-9|$
-
-  \item \medio{} $|23 - 5| - |4 - 11|$
-
-  \item \medio{} $|-12 + 7| \cdot |-3|$
-
-  \item \medio{} $\dfrac{|-40|}{|-8|} + |-6|$
-
-  \item \dificil{} $|-8 - 5| - |-10 + 4|$
-
-  \item \dificil{} $|(-6) \cdot 3| \div |-9|$
-
-  \item \dificil{} $\big|\,|-5| - |10|\,\big|$
-
-  \item \dificil{} $3 \cdot |-2| - 5 \cdot |4 - 6|$
-
-  \item \dificil{} $-|-7 - (-2)| + |(-5) \cdot 3|$
-
-  \item \dificil{} $|100 \div (-25)| - |(-2) \cdot (-3)| + |-4|$
-
-  \item \dificil{} Si $|x| = 7$, \textquestiondown qué valores puede tomar $x$? Encuentra \emph{todas} las soluciones.
-
-  \item \dificil{} Si $|a| = 5$ y $|b| = 3$, \textquestiondown cuáles son todos los valores posibles de $a + b$?
-\end{enumerate}
-
-\newpage
-
-% ============================================================
 \section{Propiedades de la Suma y de la Multiplicación}
 % ============================================================
 
+\noindent Las propiedades no son un adorno: son las reglas que nos permiten calcular \emph{más rápido} y comprobar resultados. Aquí aprendemos a reconocerlas por su nombre y a usarlas para simplificar cuentas.
+
 \subsection{Ejercicios: Verificar y aplicar propiedades}
 
-\begin{enumerate}[leftmargin=*]
+\begin{enumerate}[leftmargin=*, start=75]
   \item \medio{} Verifica si se cumple la igualdad y nombra la propiedad:
         \[
           (-8) + 15 = 15 + (-8)
@@ -617,7 +704,7 @@ Cuando en una misma expresión aparecen sumas, restas, multiplicaciones y divisi
 
 \subsection{Ejercicios de razonamiento}
 
-\begin{enumerate}[leftmargin=*, start=16]
+\begin{enumerate}[leftmargin=*, start=90]
   \item \dificil{} Si $a$ y $b$ son números enteros negativos, \textquestiondown el resultado de $a + b$ es siempre negativo? Justifica con un ejemplo.
 
   \item \dificil{} Si $a$ y $b$ son números enteros negativos, \textquestiondown el resultado de $a \cdot b$ es positivo o negativo? Justifica con un ejemplo.
@@ -630,13 +717,247 @@ Cuando en una misma expresión aparecen sumas, restas, multiplicaciones y divisi
 \newpage
 
 % ============================================================
+\section{Operaciones Combinadas}
+% ============================================================
+
+\subsection{La jerarquía de las operaciones}
+
+Cuando en una misma expresión aparecen sumas, restas, multiplicaciones y divisiones con números enteros, \textbf{no} operamos de izquierda a derecha sin importar el tipo de operación. Para resolver correctamente, debemos seguir la \textbf{jerarquía de las operaciones}:
+
+\begin{cuadroteoria}
+  \textbf{Reglas de jerarquía:}
+  \begin{enumerate}
+    \item \textbf{Sin signos de agrupación:}
+          \begin{itemize}
+            \item Primero se resuelven las \textbf{multiplicaciones y divisiones} de izquierda a derecha.
+            \item Luego se resuelven las \textbf{sumas y restas} de izquierda a derecha.
+          \end{itemize}
+    \item \textbf{Con signos de agrupación:}
+          \begin{itemize}
+            \item Se resuelven las operaciones dentro de los símbolos de agrupación \textbf{de adentro hacia afuera}: primero paréntesis $(\ )$, luego corchetes $[\ ]$ y finalmente llaves $\{\ \}$.
+            \item Dentro de cada nivel de agrupación, se respeta la jerarquía estándar (multiplicaciones/divisiones antes que sumas/restas).
+          \end{itemize}
+  \end{enumerate}
+\end{cuadroteoria}
+
+\noindent\textbf{Ejemplo resuelto 1 (Sin signos de agrupación):}
+\[
+  (-4) - (-6) : (-3)
+\]
+\begin{itemize}
+  \item Primero realizamos la división: $(-6) : (-3) = 2$.
+  \item Luego la resta: $(-4) - 2 = -6$.
+\end{itemize}
+
+\noindent\textbf{Ejemplo resuelto 2 (Con signos de agrupación):}
+\[
+  [6 - (-1) - (-13)] : (-5)
+\]
+\begin{itemize}
+  \item Primero resolvemos el interior del corchete: $6 - (-1) - (-13) = 6 + 1 + 13 = 20$.
+  \item Finalmente dividimos: $20 : (-5) = -4$.
+\end{itemize}
+
+\noindent\textbf{Ejemplo resuelto 3 (Multinivel con paréntesis y corchetes):}
+\[
+  18 : [6 - 3 \cdot (-4 : 2 + 1)] - 3
+\]
+\begin{itemize}
+  \item Paréntesis interior (división primero): $-4 : 2 + 1 = -2 + 1 = -1$.
+  \item Corchete (multiplicación primero): $6 - 3 \cdot (-1) = 6 - (-3) = 6 + 3 = 9$.
+  \item División externa: $18 : 9 = 2$.
+  \item Resta final: $2 - 3 = -1$.
+\end{itemize}
+
+\begin{cuadroadvertencia}
+  \textbf{\textquestiondown Multiplicación o División primero?} Si aparecen consecutivamente sin paréntesis que alteren el orden, se resuelven estrictamente \textbf{de izquierda a derecha}. Ejemplo: $4 \cdot (-3) : (-2) : (-6) = (-12) : (-2) : (-6) = 6 : (-6) = -1$.
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios: Operaciones Combinadas en $\Z$}
+
+\subsubsection*{Bloque A: Operaciones sin signos de agrupación}
+\textit{Resuelve respetando la jerarquía entre multiplicación/división y suma/resta.}
+
+\begin{enumerate}[leftmargin=*, start=94]
+  \item \facil{} $6 - 4 \cdot (-3) + 5$
+
+  \item \facil{} $(-15) : 3 + (-8) \cdot (-2)$
+
+  \item \medio{} $(-4) - (-6) : (-3)$
+
+  \item \medio{} $5 : (-5) - (-7) \cdot 2$
+
+  \item \medio{} $12 : (-4) \cdot 3 - (-8) + 5$
+
+  \item \medio{} $(-11) - 3 \cdot (-4) : (-6) - (-9)$
+
+  \item \dificil{} $(-18) : 3 \cdot (-2) + (-5) \cdot (-4) : 10 - 7$
+
+  \item \dificil{} $(-5) - (-9) - 4 \cdot (-3) : (-2) : (-6)$
+
+  \item \dificil{} $-4 + 6 \cdot (-3) : (-2) - 8 \cdot (-5) : (-4)$
+
+  \item \dificil{} $(-36) : (-4) \cdot (-2) - (-24) : 6 \cdot (-5) + (-12)$
+\end{enumerate}
+
+\subsubsection*{Bloque B: Operaciones con signos de agrupación}
+\textit{Resuelve las siguientes operaciones evaluando de adentro hacia afuera (paréntesis, corchetes y llaves).}
+
+\begin{enumerate}[leftmargin=*, start=104]
+  \item \facil{} $(-3 + 6 + 18) : (-3)$
+
+  \item \facil{} $(15 - 9) \cdot (-4) + 18 : (-2)$
+
+  \item \medio{} $[2 - (-5) - 3] \cdot (-2)$
+
+  \item \medio{} $[6 - (-1) - (-13)] : (-5)$
+
+  \item \medio{} $-18 - [4 + (-6)] : 2 + 5$
+
+  \item \medio{} $-4 + 6 \cdot (-2 + 5) : (-9) + 2 \cdot 3$
+
+  \item \dificil{} $[(-7 + 5 - 2) - (6 - 8) + 5] : (-3)$
+
+  \item \dificil{} $[(-5) \cdot (-3) \cdot 4 + 12] : [-12 - (-3)]$
+
+  \item \dificil{} $18 : [6 - 3 \cdot (-4 : 2 + 1)] - 3$
+
+  \item \dificil{} $\{[-4 + 6 \cdot (-2 + 5)] : (-7) + 2\} \cdot 3$
+\end{enumerate}
+
+\subsubsection*{Bloque C: Ejercicios desafiantes y Retos de los Campeones}
+
+\begin{enumerate}[leftmargin=*, start=114]
+  \item \dificil{} $(-2) \cdot \{15 - [(-8 + 2) \cdot (-3) - 10]\} : (-7)$
+
+  \item \dificil{} $[(-3) \cdot (4 - 9) + (-14) : 2] \cdot [(-5 + 1) : (-2)]$
+
+  \item \dificil{} $-\{[-6 + 4 \cdot (-3)] : (-2) - (-5)\} \cdot (-3) - 14$
+
+  \item \dificil{} Coloca los signos de agrupación (paréntesis y/o corchetes) necesarios para que cada igualdad sea verdadera:
+        \begin{enumerate}[label=\alph*)]
+          \item $-3 + 5 \cdot (-2) = -4$
+          \item $16 : 8 - 4 \cdot (-3) = -12$
+        \end{enumerate}
+
+  \item \dificil{} \textbf{:} Resuelve la siguiente operación multinivel:
+        \[
+          -2 \cdot \{ -5 + 3 \cdot [ -4 - (-12 : 3 + 1) ] \} - (-10)
+        \]
+\end{enumerate}
+
+\subsubsection*{Bloque D: Operaciones con valor absoluto}
+
+\textit{Recuerda: las barras de valor absoluto actúan como un \emph{paréntesis}. Primero se resuelve todo lo que está dentro y \emph{después} se toma el valor absoluto.}
+
+\begin{cuadroadvertencia}
+  \[
+    |4 - 11| = |-7| = 7,
+    \qquad \text{pero} \qquad
+    |4| - |11| = 4 - 11 = -7.
+  \]
+  No son lo mismo: en el primer caso las barras encierran toda la resta; en el segundo, cada número tiene sus propias barras.
+\end{cuadroadvertencia}
+
+\noindent\textbf{Ejemplo resuelto:}
+\[
+  |-12 + 5| - 3 \cdot |-4| = |-7| - 3 \cdot 4 = 7 - 12 = -5.
+\]
+
+\begin{enumerate}[leftmargin=*, start=119]
+  \item \medio{} $|-7| + |15| - |-9|$
+
+  \item \medio{} $|23 - 5| - |4 - 11|$
+
+  \item \medio{} $|-12 + 7| \cdot |-3|$
+
+  \item \medio{} $\dfrac{|-40|}{|-8|} + |-6|$
+
+  \item \dificil{} $|-8 - 5| - |-10 + 4|$
+
+  \item \dificil{} $|(-6) \cdot 3| \div |-9|$
+
+  \item \dificil{} $\big|\,|-5| - |10|\,\big|$
+
+  \item \dificil{} $3 \cdot |-2| - 5 \cdot |4 - 6|$
+
+  \item \dificil{} $-|-7 - (-2)| + |(-5) \cdot 3|$
+
+  \item \dificil{} $|100 \div (-25)| - |(-2) \cdot (-3)| + |-4|$
+
+  \item \dificil{} Si $|x| = 7$, \textquestiondown qué valores puede tomar $x$? Encuentra \emph{todas} las soluciones.
+
+  \item \dificil{} Si $|a| = 5$ y $|b| = 3$, \textquestiondown cuáles son todos los valores posibles de $a + b$?
+\end{enumerate}
+
+\newpage
+
+% ============================================================
 \ifmwclaves
 \section{Clave de Respuestas}
 % ============================================================
 
-\subsection*{Suma y Resta en $\Z$ (Ejercicios 1--20)}
+\subsection*{El Conjunto de los Enteros (Ejercicios 1--6)}
 
 \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $-7$
+  \item $12$
+  \item El $0$.
+  \item Por ejemplo, negativos: $-1$, $-2$, $-3$; positivos: $1$, $2$, $3$.
+  \item La ubicación es $-5 < -3 < 1 < 4$ (cada uno a la izquierda del siguiente).
+  \item El opuesto de $0$ es $0$. El opuesto del opuesto de $-8$ es $-8$.
+\end{enumerate}
+
+\subsection*{Valor Absoluto (Ejercicios 7--14)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{6}
+  \item $7$
+  \item $15$
+  \item $0$
+  \item $23$ y $23$ (ambos están a $23$ unidades del cero).
+  \item Solo $-6$ y $6$, porque $|-6| = 6$ y $|6| = 6$.
+  \item $x = 9$ \ o \ $x = -9$.
+  \item No. El valor absoluto es una \emph{distancia}, y una distancia nunca es negativa: $|a| \ge 0$ siempre.
+  \item Los enteros $-4$ y $4$. Ordenados: $-4 < 4$.
+\end{enumerate}
+
+\subsection*{Relación de Orden en $\Z$ (Ejercicios 15--34)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{14}
+  \item a) $6 > 2$. \quad b) $-3 > -7$. \quad c) $-12 < 4$. \quad d) $|-9| > |-3|$ (es decir, $9 > 3$).
+  \item a) $-4 \leq 2$. \quad b) $5 \geq 5$. \quad c) $-10 \leq -1$. \quad d) $8 \geq 0$.
+  \item $-7 < -3 < 0 < 2 < 4$.
+  \item $5 > 3 > -1 > -6 > -9$.
+  \item $-8$, $-7$ y $-6$.
+  \item $-3$, $-4$ y $-5$.
+  \item Hay $6$: $-3$, $-2$, $-1$, $0$, $1$ y $2$.
+  \item $-2$, $-1$, $0$, $1$ y $2$ (el $-3$ no entra porque la desigualdad es estricta).
+  \item $-5$, $-4$, $-3$ y $-2$ (el $-1$ no entra porque la desigualdad es estricta).
+  \item $-6 < 5$: la madrugada fue la temperatura menor.
+  \item $-12 < -5$: la cámara que marca $-12\,^{\circ}$C está más fría.
+  \item Deudas: $-15$ Bs. y $-8$ Bs. Como $-15 < -8$, Mario debe más.
+  \item $-2 < 5$: el ascensor del sótano está más abajo.
+  \item $-6 < 0$: el buzo está más profundo.
+  \item Ordenados: $-4 < -1 < 0 < 2 < 5$.
+        \begin{center}
+          \rectaenteros{-4,-1,0,2,5}
+        \end{center}
+  \item Los puntos marcados son $-5$, $-2$, $1$ y $4$; ordenados: $-5 < -2 < 1 < 4$.
+  \item La recta queda así, con $-6$ a la izquierda de $5$; la desigualdad es $-6 < 5$.
+        \begin{center}
+          \rectaenteros{-6,5}
+        \end{center}
+  \item $x = 5$ \ o \ $x = -5$. El menor es $-5$.
+  \item \textbf{Falso.} $|-12| = 12$ y $|-20| = 20$; como $12 < 20$, el $-12$ está más cerca del cero. Entre negativos es mayor el de \emph{menor} valor absoluto, así que en realidad $-20 < -12$.
+  \item a) \textbf{Verdadera} (monotonía de la suma). \quad b) \textbf{Verdadera} (monotonía del producto con $c < 0$, el orden se invierte). \quad c) \textbf{Verdadera}. \quad d) \textbf{Falsa}: es mayor el de \emph{menor} valor absoluto, por ejemplo $-3 > -7$ aunque $|-3| < |-7|$.
+\end{enumerate}
+
+\subsection*{Suma y Resta en $\Z$ (Ejercicios 35--54)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{34}
   \item $2$
   \item $5$
   \item $-7$
@@ -659,10 +980,10 @@ Cuando en una misma expresión aparecen sumas, restas, multiplicaciones y divisi
   \item Si $n + (-7) = -2$, entonces $n = -2 + 7 = 5$
 \end{enumerate}
 
-\subsection*{Multiplicación y División en $\Z$ (Ejercicios 21--40)}
+\subsection*{Multiplicación y División en $\Z$ (Ejercicios 55--74)}
 
 \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-  \setcounter{enumi}{20}
+  \setcounter{enumi}{54}
   \item $-12$
   \item $-10$
   \item $12$
@@ -685,10 +1006,35 @@ Cuando en una misma expresión aparecen sumas, restas, multiplicaciones y divisi
   \item Hay tres números negativos (cantidad impar), así que el resultado es \textbf{negativo}. Verifiquemos: $(-3) \times (-4) = 12$; $12 \times 5 = 60$; $60 \times (-2) = -120$. El resultado es $-120$, negativo, como predijimos.
 \end{enumerate}
 
-\subsection*{Operaciones Combinadas (Ejercicios 41--65)}
+\subsection*{Propiedades de la Suma y de la Multiplicación (Ejercicios 75--93)}
 
 \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-  \setcounter{enumi}{40}
+  \setcounter{enumi}{74}
+  \item $7 = 7$. \textbf{Conmutativa} de la suma.
+  \item $2 + (-9) = -7$ \ y \ $(-3) + (-4) = -7$. \textbf{Asociativa} de la suma.
+  \item $-60 = -60$. \textbf{Conmutativa} de la multiplicación.
+  \item $5 \cdot 5 = 25$ \ y \ $(-15) + 40 = 25$. \textbf{Distributiva} respecto a la adición.
+  \item a) \textbf{Elemento neutro} de la suma. \quad b) \textbf{Elemento neutro} de la multiplicación. \quad c) \textbf{Elemento opuesto}. \quad d) \textbf{Factor cero}.
+  \item $25 \cdot 4 = 100$; luego $100 \cdot (-7) = -700$ (conmutativa y asociativa).
+  \item $(-13 - 17) + (29 + 1) = -30 + 30 = 0$ (conmutativa y asociativa).
+  \item $(-12) \cdot (-2) = 24$; luego $50 \cdot 24 = 1200$ (asociativa).
+  \item $9 \cdot (15 - 5) = 9 \cdot 10 = 90$ (distributiva).
+  \item $350 - (125 + 75) = 350 - 200 = 150$ (conmutativa y asociativa).
+  \item $17 \cdot (-25 - 75) = 17 \cdot (-100) = -1700$ (distributiva).
+  \item $4 \cdot (-25) = -100$; luego $37 \cdot (-100) = -3700$ (conmutativa y asociativa).
+  \item $(-8) \cdot (13 + 7) = (-8) \cdot 20 = -160$ (distributiva).
+  \item $(-11) \cdot (100 + 1) = -1100 - 11 = -1111$ (distributiva).
+  \item $15 \cdot (100 - 1) = 1500 - 15 = 1485$ (distributiva).
+  \item Sí. La suma de dos negativos siempre es negativa: por ejemplo, $(-4) + (-6) = -10$.
+  \item Es \textbf{positivo}. El producto de dos números negativos es positivo: $(-4) \cdot (-6) = 24$.
+  \item No existe elemento neutro para la resta: $a - 0 = a$, pero $0 - a = -a \neq a$ (salvo si $a = 0$). Tampoco para la división: $a \div 1 = a$, pero $1 \div a \neq a$ en general. Por eso la resta y la división \emph{no} tienen neutro en $\Z$.
+  \item No se cumple. Contraejemplo: $7 - 3 = 4$, pero $3 - 7 = -4$; como $4 \neq -4$, la resta no es conmutativa.
+\end{enumerate}
+
+\subsection*{Operaciones Combinadas (Ejercicios 94--118)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{93}
   \item $4 \cdot (-3) = -12$; luego $6 - (-12) + 5 = 6 + 12 + 5 = 23$
   \item $(-15) : 3 = -5$; $(-8) \cdot (-2) = 16$; luego $-5 + 16 = 11$
   \item $(-6) : (-3) = 2$; luego $(-4) - 2 = -6$
@@ -716,9 +1062,10 @@ Cuando en una misma expresión aparecen sumas, restas, multiplicaciones y divisi
   \item $(-12 : 3 + 1) = -3$; $[-4 - (-3)] = -1$; $\{-5 + 3 \cdot (-1)\} = -8$; $-2 \cdot (-8) = 16$; luego $16 - (-10) = 26$
 \end{enumerate}
 
-\subsection*{Valor Absoluto (Ejercicios 1--12)}
+\subsection*{Bloque D: Operaciones con Valor Absoluto (Ejercicios 119--130)}
 
 \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{118}
   \item $7 + 15 - 9 = 13$
   \item $|18| - |-7| = 18 - 7 = 11$
   \item $|-5| \cdot 3 = 5 \cdot 3 = 15$
@@ -732,30 +1079,6 @@ Cuando en una misma expresión aparecen sumas, restas, multiplicaciones y divisi
   \item $x = 7$ \ o \ $x = -7$ (ambos están a distancia $7$ del cero)
   \item $a \in \{5, -5\}$ y $b \in \{3, -3\}$. Las sumas posibles son:
         $5 + 3 = 8$; \ $5 + (-3) = 2$; \ $(-5) + 3 = -2$; \ $(-5) + (-3) = -8$.
-\end{enumerate}
-
-\subsection*{Propiedades de la Suma y de la Multiplicación (Ejercicios 1--19)}
-
-\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-  \item $7 = 7$. \textbf{Conmutativa} de la suma.
-  \item $2 + (-9) = -7$ \ y \ $(-3) + (-4) = -7$. \textbf{Asociativa} de la suma.
-  \item $-60 = -60$. \textbf{Conmutativa} de la multiplicación.
-  \item $5 \cdot 5 = 25$ \ y \ $(-15) + 40 = 25$. \textbf{Distributiva} respecto a la adición.
-  \item a) \textbf{Elemento neutro} de la suma. \quad b) \textbf{Elemento neutro} de la multiplicación. \quad c) \textbf{Elemento opuesto}. \quad d) \textbf{Factor cero}.
-  \item $25 \cdot 4 = 100$; luego $100 \cdot (-7) = -700$ (conmutativa y asociativa).
-  \item $(-13 - 17) + (29 + 1) = -30 + 30 = 0$ (conmutativa y asociativa).
-  \item $(-12) \cdot (-2) = 24$; luego $50 \cdot 24 = 1200$ (asociativa).
-  \item $9 \cdot (15 - 5) = 9 \cdot 10 = 90$ (distributiva).
-  \item $350 - (125 + 75) = 350 - 200 = 150$ (conmutativa y asociativa).
-  \item $17 \cdot (-25 - 75) = 17 \cdot (-100) = -1700$ (distributiva).
-  \item $4 \cdot (-25) = -100$; luego $37 \cdot (-100) = -3700$ (conmutativa y asociativa).
-  \item $(-8) \cdot (13 + 7) = (-8) \cdot 20 = -160$ (distributiva).
-  \item $(-11) \cdot (100 + 1) = -1100 - 11 = -1111$ (distributiva).
-  \item $15 \cdot (100 - 1) = 1500 - 15 = 1485$ (distributiva).
-  \item Sí. La suma de dos negativos siempre es negativa: por ejemplo, $(-4) + (-6) = -10$.
-  \item Es \textbf{positivo}. El producto de dos números negativos es positivo: $(-4) \cdot (-6) = 24$.
-  \item No existe elemento neutro para la resta: $a - 0 = a$, pero $0 - a = -a \neq a$ (salvo si $a = 0$). Tampoco para la división: $a \div 1 = a$, pero $1 \div a \neq a$ en general. Por eso la resta y la división \emph{no} tienen neutro en $\Z$.
-  \item No se cumple. Contraejemplo: $7 - 3 = 4$, pero $3 - 7 = -4$; como $4 \neq -4$, la resta no es conmutativa.
 \end{enumerate}
 
 \vspace{10pt}

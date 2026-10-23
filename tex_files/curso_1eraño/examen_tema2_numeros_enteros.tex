@@ -2,7 +2,7 @@
 %  EXAMEN TEMA 2: NÚMEROS ENTEROS Y SUS OPERACIONES
 %  Curso Introductorio de Matemáticas — 1er Año
 %  Autor: Ing. Gabriel Astudillo
-%  Sesiones cubiertas: Semana 2 (clases 5 a 8)
+%  Sesiones cubiertas: Semana 2 (clases 4 a 6)
 %  Nota: enunciado limpio (sin pistas ni desarrollo). Las
 %  soluciones están en la "Clave de Respuestas" al final.
 % ============================================================
@@ -21,24 +21,52 @@
 % ============================================================
 
 % ── Portada / Título ─────────────────────────────────────────
-\mwportada{Examen del Tema 2}{Los Números Enteros y sus Operaciones}{Suma, Resta, Multiplicación y División en $\Z$ con Jerarquía}
+\mwportada{Examen del Tema 2}{Los Números Enteros y sus Operaciones}{Orden, Suma, Resta, Multiplicación y División en $\Z$ con Jerarquía}
 
 \vspace{4pt}
 \begin{cuadroinfo}
   \small
   \textbf{Nombre:} \rule{0.55\linewidth}{0.4pt} \quad \textbf{Fecha:} \rule{0.15\linewidth}{0.4pt} \\[6pt]
-  \textbf{Tiempo sugerido:} 60 minutos \quad$\bullet$\quad \textbf{Puntaje total:} 100 puntos \\[4pt]
+  \textbf{Tiempo sugerido:} 80 minutos \quad$\bullet$\quad \textbf{Puntaje total:} 100 puntos \\[4pt]
   \textbf{Instrucciones:}
   \begin{enumerate}[leftmargin=*]
     \item Lee cada ejercicio con calma antes de resolverlo.
     \item Muestra \emph{todos} tus pasos: se evalúa cómo llegas a la respuesta, no solo la respuesta.
     \item Aplica siempre la \emph{regla de los signos} y la \emph{jerarquía de las operaciones}.
     \item En las operaciones combinadas, resuelve de adentro hacia afuera (paréntesis, corchetes, llaves).
+    \item Para comparar enteros usa los símbolos $<$, $>$, $\leq$ y $\geq$, y apóyate en la recta numérica.
     \item No se permite el uso de calculadora.
   \end{enumerate}
 \end{cuadroinfo}
 
 \vspace{8pt}
+
+% ============================================================
+\section{Relación de Orden en $\Z$}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*]
+  \item Complete con el símbolo $<$, $>$ o $=$ según corresponda:
+        \[
+          \text{a) } -8 \;\rule[-2pt]{1cm}{0.4pt}\; -3 \qquad \qquad
+          \text{b) } 0 \;\rule[-2pt]{1cm}{0.4pt}\; -5
+        \]
+        \[
+          \text{c) } |-9| \;\rule[-2pt]{1cm}{0.4pt}\; |3| \qquad \qquad
+          \text{d) } -4 \;\rule[-2pt]{1cm}{0.4pt}\; 4
+        \]
+
+  \item Ordene de \textbf{menor a mayor} los siguientes enteros:
+        \[
+          -12, \quad 5, \quad -1, \quad 0, \quad -7, \quad 3
+        \]
+
+  \item En una ciudad de la sierra se registraron estas temperaturas: madrugada $-9\,^{\circ}$C, mediodía $4\,^{\circ}$C y noche $-2\,^{\circ}$C. Ordene las temperaturas de menor a mayor e indique en qué momento hizo más frío.
+
+  \item \textquestiondown Es verdadero que $-15 > -8$? Justifique su respuesta usando el valor absoluto.
+\end{enumerate}
+
+\newpage
 
 % ============================================================
 \section{Suma y Resta en $\Z$}
@@ -226,6 +254,10 @@
   \item Si $|x| = 6$, \textquestiondown qué valores puede tomar $x$?
 
   \item Calcula $15 \cdot 99$ usando la propiedad distributiva.
+
+  \item Ordena de \textbf{mayor a menor}: $\ 7, \ -2, \ -11, \ 0, \ 5, \ -8$.
+
+  \item Una persona debe $18$ Bs. y otra debe $25$ Bs. Representa cada deuda como un número entero, compáralas y decide cuál es la peor situación.
 \end{enumerate}
 
 \newpage
@@ -234,6 +266,15 @@
 \ifmwclaves
   \section{Clave de Respuestas}
   % ============================================================
+
+  \subsection*{Relación de Orden en $\Z$ (Ejercicios 1--4)}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \item a) $-8 < -3$ \quad b) $0 > -5$ \quad c) $|-9| = 9 > 3 = |3|$, luego $>$ \quad d) $-4 < 4$
+    \item $-12 < -7 < -1 < 0 < 3 < 5$
+    \item $-9 < -2 < 4$. Hizo más frío en la madrugada ($-9\,^{\circ}$C): entre negativos, $-9$ es el menor porque $|-9| = 9 > 2 = |-2|$.
+    \item \textbf{Falso}. $-15 < -8$, porque $|-15| = 15 > 8 = |-8|$: entre dos negativos es mayor el que está más cerca del cero, es decir, el de \emph{menor} valor absoluto.
+  \end{enumerate}
 
   \subsection*{Suma y Resta en $\Z$ (Ejercicios 1--4)}
 
@@ -299,6 +340,8 @@
     \item No. Contraejemplo: $8 - 5 = 3$, pero $5 - 8 = -3$; como $3 \neq -3$, la resta no es conmutativa.
     \item $x = 6$ \ o \ $x = -6$.
     \item $15 \cdot (100 - 1) = 1500 - 15 = 1485$.
+    \item $7 > 5 > 0 > -2 > -8 > -11$.
+    \item Deudas: $-18$ y $-25$. Como $-25 < -18$ (pues $|-25| = 25 > 18 = |-18|$), la peor situación es la de quien debe $25$ Bs.
   \end{enumerate}
 
   \vspace{10pt}

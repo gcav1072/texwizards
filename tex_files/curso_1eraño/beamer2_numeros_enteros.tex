@@ -63,6 +63,37 @@
 \end{frame}
 
 % ════════════════════════════════════════════════════════════
+\section{Relación de Orden en $\Z$}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Relación de Orden en $\Z$}
+  \begin{block}{Regla de la recta numérica}
+    \[
+      a < b \quad \Longleftrightarrow \quad a \text{ está a la \textbf{izquierda} de } b
+    \]
+    \begin{itemize}
+      \item Todo negativo es menor que $0$ y todo positivo es mayor que $0$: \ $-100 < 0 < 1$.
+      \item Entre dos negativos es mayor el que está \textbf{más cerca del cero}:
+            $-7 < -3$ porque $|-7| > |-3|$.
+      \item \textbf{La trampa:} en los negativos el orden del valor absoluto se invierte;
+            $9 > 3$, pero $-9 < -3$.
+    \end{itemize}
+  \end{block}
+  \begin{center}
+    \begin{tikzpicture}[x=0.82cm]
+      \draw[<->, thick] (-5.6,0) -- (5.6,0);
+      \foreach \x in {-5,-4,...,5} {
+          \draw (\x,0.15) -- (\x,-0.15) node[below=3pt, font=\scriptsize] {$\x$};
+        }
+      \fill[mwprimario] (-4,0) circle (3.6pt);
+      \fill[mwprimario] (3,0) circle (3.6pt);
+      \node[above=3pt, font=\scriptsize, text=mwprimario] at (-4,0.15) {$-4$};
+      \node[above=3pt, font=\scriptsize, text=mwprimario] at (3,0.15) {$3$};
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
 \section{Suma y Resta en $\Z$}
 % ════════════════════════════════════════════════════════════
 
@@ -290,6 +321,13 @@
 \begin{frame}{Ejercicio 10}
   \begin{mwejercicio}[Operaciones combinadas \quad \dificil]
     $-2 \cdot \{\,-5 + 3 \cdot [-4 - (-12 : 3 + 1)]\,\} - (-10)$
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 11}
+  \begin{mwejercicio}[Relación de orden \quad \medio]
+    Ordena de \textbf{menor a mayor}: $\ -8, \ 3, \ -1, \ 0, \ -5$.\\[8pt]
+    Luego completa: $-12 \;\rule[-1pt]{0.8cm}{0.4pt}\; 4$ \qquad y \qquad $|-7| \;\rule[-1pt]{0.8cm}{0.4pt}\; |-2|$
   \end{mwejercicio}
 \end{frame}
 

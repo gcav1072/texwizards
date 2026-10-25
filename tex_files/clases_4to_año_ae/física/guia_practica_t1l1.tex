@@ -1,0 +1,768 @@
+% ============================================================
+%  GUÍA DE PRÁCTICA — T1L1 — 10 SESIONES DE 90 MINUTOS
+%  Curso: 4to Año — Física
+%  Autor: Ing. Gabriel Astudillo
+%  Basada en la Guía 3 — Unidades y Vectores
+%  (guia3_unidades_vectores.tex) del Prof. Gabriel Astudillo.
+%
+%  DISEÑO DE LA GUÍA
+%  Las 10 sesiones son idénticas en estructura:
+%     90 min = Calentamiento (15) + Desarrollo (50) + Cierre (25)
+%     20 ejercicios = 5 + 10 + 5
+%  y cada sesión recorre LOS CINCO BLOQUES de la Guía 3, con
+%  4 ejercicios por bloque (uno de ellos en el calentamiento):
+%
+%     Bloque A (§1 SI y medición) ................. 1 + 2 + 1
+%     Bloque B (§2 Transformación de unidades) .... 1 + 2 + 1
+%     Bloque C (§3 Vectores en el plano) .......... 1 + 2 + 1
+%     Bloque D (§4 Vectores en el espacio, 3D) .... 1 + 2 + 1
+%     Bloque E (§5 Despeje de fórmulas) ........... 1 + 2 + 1
+%
+%  Los 20 "casilleros" son siempre los mismos; sólo cambian los
+%  números y los contextos de una sesión a otra.
+%  Incluye clave de respuestas entre \ifmwclaves ... \fi
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+\usepackage{mathwizards-guia}
+\mwguia{Guía de Práctica — T1L1 (10 sesiones de 90 min)}{Ing. Gabriel Astudillo $\cdot$ 4to Año — Física}
+\providecommand{\sen}{\sin}
+\setlength{\emergencystretch}{2em}
+
+% ── Plantilla única de sesión ────────────────────────────────
+% 90 min = Calentamiento (15) + Desarrollo (50) + Cierre (25)
+% 20 ejercicios = 5 + 10 + 5, siempre 4 por cada bloque de la Guía 3.
+% Si un bloque no tiene la cantidad exacta de ejercicios, la
+% compilación emite una advertencia «MW Warning».
+\newcommand{\mwsession}[2]{%
+  \clearpage
+  \refstepcounter{section}%
+  \section*{Sesión \thesection\ — #1}%
+  \begin{cuadroinfo}
+    \small
+    \textbf{Objetivo:} #2\\[2pt]
+    \textbf{Estructura (idéntica en las 10 sesiones):}
+    Calentamiento 15 min (5 ejercicios) $\cdot$
+    Desarrollo 50 min (10 ejercicios) $\cdot$
+    Cierre y desafío 25 min (5 ejercicios).
+    \hfill\textbf{Total: 90 min}\\[2pt]
+    \textbf{Contenido:} 20 ejercicios, \textbf{4 de cada bloque} de la Guía 3:
+    SI y medición $\cdot$ transformación de unidades $\cdot$ vectores en el plano
+    $\cdot$ vectores en el espacio $\cdot$ despeje de fórmulas.
+  \end{cuadroinfo}
+}
+% Etiqueta gris que indica el bloque temático de cada ejercicio.
+\newcommand{\mwtag}[1]{{\scriptsize\color{mwgris}#1}\hspace{5pt}}
+% Reglas clave: idénticas en las 10 sesiones.
+\newcommand{\mwreglas}{%
+  \begin{cuadroteoria}
+    \small
+    \textbf{Reglas clave de la Guía 3:} en el SI, longitud (m), masa (kg), tiempo (s) y temperatura (K) son magnitudes fundamentales; velocidad, fuerza, densidad y energía son derivadas. Los prefijos multiplican: kilo $=10^{3}$, centi $=10^{-2}$, mili $=10^{-3}$, micro $=10^{-6}$. Convertir es multiplicar por un factor que vale $1$ y cancela la unidad de partida. De km/h a m/s se divide entre $3{,}6$; de m/s a km/h se multiplica por $3{,}6$. Densidad: $\rho=m/V$. En el plano, $v_x=|\vec v|\cos\theta$ y $v_y=|\vec v|\sen\theta$, con el signo según el cuadrante. En 3D, $|\vec v|=\sqrt{v_x^2+v_y^2+v_z^2}$ y $\cos^2\alpha+\cos^2\beta+\cos^2\gamma=1$. Despejar es aplicar la misma operación inversa en ambos lados; si la incógnita queda al cuadrado y además lineal, se resuelve con la fórmula general.
+  \end{cuadroteoria}
+}
+\newcommand{\mwcierrebloque}[2]{%
+  \end{enumerate}%
+  \ifnum\value{enumi}=#2\relax
+    \typeout{MW: #1 correcto}%
+  \else
+    \GenericWarning{}{MW Warning: #1 termina en el ejercicio \the\value{enumi}; se esperaba #2}%
+  \fi
+}
+% Autoevaluación: idéntica al final de las 10 sesiones.
+\newcommand{\mwautoevaluacion}{%
+  \begin{cuadroinfo}
+    \small
+    \textbf{Autoevaluación:} marca los bloques que resolviste sin errores\\[2pt]
+    $\square$ SI y medición \quad
+    $\square$ conversión de unidades \quad
+    $\square$ vectores en el plano \quad
+    $\square$ vectores en 3D \quad
+    $\square$ despeje\\[4pt]
+    \textbf{Para repasar:} anota los números de los ejercicios que te costaron\\[2pt]
+    \noindent\rule{\linewidth}{0.4pt}\\[8pt]
+    \noindent\rule{\linewidth}{0.4pt}
+  \end{cuadroinfo}
+}
+\newenvironment{mwcalentamiento}
+  {\subsection*{Calentamiento (15 min)}\begin{enumerate}[leftmargin=*, start=1]}
+  {\mwcierrebloque{Calentamiento}{5}}
+\newenvironment{mwdesarrollo}
+  {\subsection*{Desarrollo (50 min)}\begin{enumerate}[leftmargin=*, start=6]}
+  {\mwcierrebloque{Desarrollo}{15}}
+\newenvironment{mwcierre}
+  {\subsection*{Cierre y desafío (25 min)}\begin{enumerate}[leftmargin=*, start=16]}
+  {\mwcierrebloque{Cierre}{20}\mwautoevaluacion}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Práctica — T1L1}{Diez sesiones de 90 minutos}{Unidades, vectores y despeje de fórmulas: los cinco bloques de la Guía 3 en cada sesión}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} esta guía contiene \textbf{10 sesiones de 90 minutos}. Cada sesión repasa \emph{todos} los bloques de la Guía 3: el Sistema Internacional y la medición, la transformación de unidades, los vectores en el plano, los vectores en el espacio y el despeje de fórmulas. La estructura es \textbf{idéntica} en las diez sesiones; lo que cambia son los ejercicios: cada sesión trae problemas nuevos de cada bloque.
+  \\[4pt]
+  \textbf{Rejilla fija de cada sesión (20 ejercicios):}
+  \begin{center}
+    \small
+    \begin{tabular}{@{}l ccc c@{}}
+      \toprule
+      \textbf{Bloque de la Guía 3} & \textbf{Calentamiento} & \textbf{Desarrollo} & \textbf{Cierre} & \textbf{Total} \\
+      \midrule
+      §1 SI y medición                   & 1 & 2 & 1 & 4 \\
+      §2 Transformación de unidades      & 1 & 2 & 1 & 4 \\
+      §3 Vectores en el plano            & 1 & 2 & 1 & 4 \\
+      §4 Vectores en el espacio (3D)     & 1 & 2 & 1 & 4 \\
+      §5 Despeje de fórmulas             & 1 & 2 & 1 & 4 \\
+      \midrule
+      \textbf{Tiempo}                    & 15 min & 50 min & 25 min & \textbf{90 min} \\
+      \textbf{Ejercicios}                & 5 & 10 & 5 & \textbf{20} \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \textbf{Cómo leer cada ejercicio:} la etiqueta gris que lo precede indica el bloque al que pertenece, de modo que el estudiante siempre reconoce el tipo de tarea que está practicando.
+  \\[4pt]
+  \textbf{Cómo usar la guía:} resuelve \emph{sin calculadora} los ejercicios de unidades y deja la calculadora solo para los ángulos y las raíces no exactas. Muestra \emph{todos} los pasos. Si una sesión se alarga, termina el \emph{Cierre} como tarea y corrige con la clave del final. En total son \textbf{200 ejercicios} y \textbf{30 horas} de práctica.
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+%  SESIÓN 1
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar los cinco bloques de la Guía 3 con ejercicios nuevos: el Sistema Internacional y la medición, la transformación de unidades, los vectores en el plano, los vectores en el espacio y el despeje de fórmulas.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{SI y medición} Clasifica en fundamental o derivada e indica su unidad del SI: \textbf{a)} masa \quad \textbf{b)} velocidad \quad \textbf{c)} densidad \quad \textbf{d)} volumen.
+  \item \mwtag{Conversión} Convierte: \textbf{a)} $250$ cm a m \quad \textbf{b)} $4$ km a m \quad \textbf{c)} $500$ mm a m.
+  \item \mwtag{Vectores} Un vector tiene módulo $10$ y forma $60^{\circ}$ con el eje $X$ positivo. Halla sus componentes.
+  \item \mwtag{Vectores 3D} Calcula el módulo de $\vec v=(1,\; 2,\; 2)$.
+  \item \mwtag{Despeje} De $v=\dfrac{d}{t}$ despeja $t$ y calcula su valor si $v=15$ m/s y $d=300$ m.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{SI y medición} Escribe en notación científica: \textbf{a)} $300\,000$ \quad \textbf{b)} $0{,}0005$ \quad \textbf{c)} $25\,000\,000$.
+  \item \mwtag{Conversión} Convierte: \textbf{a)} $72$ km/h a m/s; \quad \textbf{b)} $10$ m/s a km/h.
+  \item \mwtag{Vectores} Un vector de módulo $20$ apunta en la dirección $150^{\circ}$ (medida desde el eje $+x$). Halla sus componentes, el cuadrante y el ángulo de referencia.
+  \item \mwtag{Vectores 3D} Suma $\vec a=(3,\; 2,\; 1)$ y $\vec b=(-1,\; 4,\; 2)$ y calcula el módulo de la resultante.
+  \item \mwtag{Despeje} De $v_f=v_0+a\,t$ despeja $a$ y calcula su valor si $v_f=20$ m/s, $v_0=8$ m/s y $t=3$ s.
+  \item \mwtag{SI y medición} Expresa en metros: \textbf{a)} $5$ km \quad \textbf{b)} $2500$ mm \quad \textbf{c)} $75$ cm.
+  \item \mwtag{Conversión} Una pieza de metal tiene una masa de $400$ g y un volumen de $50$ cm$^3$. Calcula su densidad en g/cm$^3$ y en kg/m$^3$.
+  \item \mwtag{Vectores} Suma $\vec a=(3,\; 4)$ y $\vec b=(1,\; 2)$ y calcula el módulo de la resultante.
+  \item \mwtag{Vectores 3D} Halla los cosenos directores de $\vec v=(2,\; 3,\; 6)$ y verifica la identidad fundamental.
+  \item \mwtag{Despeje} De $E_c=\dfrac{1}{2}m\,v^2$ despeja $v$ (raíz positiva) y calcula su valor si $E_c=100$ J y $m=8$ kg.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{SI y medición} \textquestiondown Cuántas cifras significativas tiene cada medida? \textbf{a)} $3{,}50$ m \quad \textbf{b)} $0{,}025$ kg \quad \textbf{c)} $4{,}500$ s.
+  \item \mwtag{Conversión} Convierte $2{,}5$ h a segundos.
+  \item \mwtag{Vectores} Convierte a coordenadas cartesianas el punto $P(8,\; 120^{\circ})$.
+  \item \mwtag{Vectores 3D} Dado $\vec v=(3,\; -1,\; 2)$, calcula $2\vec v$ y $-3\vec v$, y comprueba que $|2\vec v|=2|\vec v|$.
+  \item \mwtag{Despeje} Una pelota se lanza hacia arriba con $v_0=25$ m/s y su altura cumple $h=25t-5t^2$. \textquestiondown En qué instantes está a $30$ m?
+\end{mwcierre}
+
+
+% ============================================================
+%  SESIÓN 2
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar los cinco bloques de la Guía 3 con ejercicios nuevos: el Sistema Internacional y la medición, la transformación de unidades, los vectores en el plano, los vectores en el espacio y el despeje de fórmulas.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{SI y medición} Clasifica en fundamental o derivada e indica su unidad del SI: \textbf{a)} longitud \quad \textbf{b)} fuerza \quad \textbf{c)} energía \quad \textbf{d)} potencia.
+  \item \mwtag{Conversión} Convierte: \textbf{a)} $3500$ g a kg \quad \textbf{b)} $0{,}5$ t a kg \quad \textbf{c)} $3$ min a s.
+  \item \mwtag{Vectores} Un vector tiene módulo $12$ y forma $30^{\circ}$ con el eje $X$ positivo. Halla sus componentes.
+  \item \mwtag{Vectores 3D} Calcula el módulo de $\vec v=(2,\; 3,\; 6)$.
+  \item \mwtag{Despeje} De $F=m\,a$ despeja $m$ y calcula su valor si $F=48$ N y $a=6$ m/s$^2$.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{SI y medición} Escribe en notación científica: \textbf{a)} $0{,}0000002$ \quad \textbf{b)} $9\,460\,000\,000\,000$ \quad \textbf{c)} $72\,000$.
+  \item \mwtag{Conversión} Convierte: \textbf{a)} $36$ km/h a m/s; \quad \textbf{b)} $25$ m/s a km/h.
+  \item \mwtag{Vectores} Un vector de módulo $20$ apunta en la dirección $240^{\circ}$ (medida desde el eje $+x$). Halla sus componentes, el cuadrante y el ángulo de referencia.
+  \item \mwtag{Vectores 3D} Suma $\vec a=(5,\; -1,\; 2)$ y $\vec b=(2,\; 3,\; -4)$ y calcula el módulo de la resultante.
+  \item \mwtag{Despeje} De $C=\dfrac{5}{9}(F-32)$ despeja $F$ y calcula su valor si $C=25$.
+  \item \mwtag{SI y medición} Expresa en metros: \textbf{a)} $3$ km \quad \textbf{b)} $750$ cm \quad \textbf{c)} $12$ mm.
+  \item \mwtag{Conversión} Un bloque de $2$ kg ocupa un volumen de $0{,}004$ m$^3$. Calcula su densidad.
+  \item \mwtag{Vectores} Suma $\vec a=(5,\; -2)$ y $\vec b=(-3,\; 4)$ y calcula el módulo de la resultante.
+  \item \mwtag{Vectores 3D} Halla los cosenos directores de $\vec v=(1,\; 2,\; 2)$ y verifica la identidad fundamental.
+  \item \mwtag{Despeje} De $T=2\pi\sqrt{\dfrac{\ell}{g}}$ despeja $g$ y calcula su valor si $\ell=1$ m y $T=2$ s.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{SI y medición} \textquestiondown Cuántas cifras significativas tiene cada medida? \textbf{a)} $120{,}0$ m \quad \textbf{b)} $0{,}0003$ kg \quad \textbf{c)} $6{,}02$ s.
+  \item \mwtag{Conversión} Una maratón mide $42{,}195$ km. \textquestiondown Cuántos metros son? \textquestiondown Y cuántos centímetros?
+  \item \mwtag{Vectores} Convierte a coordenadas polares el punto $P(3,\; 4)$.
+  \item \mwtag{Vectores 3D} Halla el vector equilibrante de $\vec a=(3,\; -2,\; 5)$ y $\vec b=(-1,\; 4,\; -2)$.
+  \item \mwtag{Despeje} Un auto $A$ viaja a $20$ m/s; cuando pasa por el origen, un auto $B$ arranca $75$ m más adelante con $a=2$ m/s$^2$. Igualando $20t=75+t^2$, \textquestiondown en qué instantes coinciden?
+\end{mwcierre}
+
+
+% ============================================================
+%  SESIÓN 3
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar los cinco bloques de la Guía 3 con ejercicios nuevos: el Sistema Internacional y la medición, la transformación de unidades, los vectores en el plano, los vectores en el espacio y el despeje de fórmulas.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{SI y medición} Clasifica en fundamental o derivada e indica su unidad del SI: \textbf{a)} tiempo \quad \textbf{b)} temperatura \quad \textbf{c)} aceleración \quad \textbf{d)} presión.
+  \item \mwtag{Conversión} Convierte: \textbf{a)} $90$ min a s \quad \textbf{b)} $1$ h a s \quad \textbf{c)} $1500$ m a km.
+  \item \mwtag{Vectores} Un vector tiene módulo $8$ y forma $45^{\circ}$ con el eje $X$ positivo. Halla sus componentes.
+  \item \mwtag{Vectores 3D} Calcula el módulo de $\vec v=(1,\; 4,\; 8)$.
+  \item \mwtag{Despeje} De $A=b\,h$ despeja $b$ y calcula su valor si $A=72$ cm$^2$ y $h=9$ cm.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{SI y medición} Escribe en notación científica: \textbf{a)} $4\,500\,000$ \quad \textbf{b)} $0{,}00025$ \quad \textbf{c)} $0{,}0034$.
+  \item \mwtag{Conversión} Convierte: \textbf{a)} $108$ km/h a m/s; \quad \textbf{b)} $12$ m/s a km/h.
+  \item \mwtag{Vectores} Un vector de módulo $20$ apunta en la dirección $315^{\circ}$ (medida desde el eje $+x$). Halla sus componentes, el cuadrante y el ángulo de referencia.
+  \item \mwtag{Vectores 3D} Suma $\vec a=(-2,\; 4,\; 1)$ y $\vec b=(6,\; -3,\; 2)$ y calcula el módulo de la resultante.
+  \item \mwtag{Despeje} De $\dfrac{1}{R_T}=\dfrac{1}{R_1}+\dfrac{1}{R_2}$ despeja $R_T$ y calcula su valor si $R_1=6\ \Omega$ y $R_2=3\ \Omega$.
+  \item \mwtag{SI y medición} Expresa en metros: \textbf{a)} $0{,}5$ km \quad \textbf{b)} $120$ cm \quad \textbf{c)} $4500$ mm.
+  \item \mwtag{Conversión} Una muestra de $540$ g ocupa $200$ cm$^3$. Calcula su densidad en g/cm$^3$ y en kg/m$^3$.
+  \item \mwtag{Vectores} Suma $\vec a=(6,\; 1)$ y $\vec b=(-2,\; 7)$ y calcula el módulo de la resultante.
+  \item \mwtag{Vectores 3D} Halla los cosenos directores de $\vec v=(3,\; 4,\; 12)$ y verifica la identidad fundamental.
+  \item \mwtag{Despeje} De $v^2=v_0^2+2a\,\Delta x$ despeja $\Delta x$ y calcula su valor si $v=20$ m/s, $v_0=0$ y $a=2$ m/s$^2$.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{SI y medición} \textquestiondown Cuántas cifras significativas tiene cada medida? \textbf{a)} $9{,}80$ m \quad \textbf{b)} $0{,}070$ kg \quad \textbf{c)} $1{,}50$ s.
+  \item \mwtag{Conversión} Un tren viaja a $144$ km/h. \textquestiondown Cuántos metros recorre en un segundo?
+  \item \mwtag{Vectores} Convierte a coordenadas cartesianas el punto $P(10,\; 240^{\circ})$.
+  \item \mwtag{Vectores 3D} Escribe el vector $\overrightarrow{AB}$ con $A(1,\; 1,\; 1)$ y $B(3,\; 5,\; 5)$ y calcula su módulo.
+  \item \mwtag{Despeje} Un proyectil lleva $v_0=40$ m/s y su altura es $h=40t-5t^2$. \textquestiondown Cuándo está a $75$ m?
+\end{mwcierre}
+
+
+% ============================================================
+%  SESIÓN 4
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar los cinco bloques de la Guía 3 con ejercicios nuevos: el Sistema Internacional y la medición, la transformación de unidades, los vectores en el plano, los vectores en el espacio y el despeje de fórmulas.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{SI y medición} Clasifica en fundamental o derivada e indica su unidad del SI: \textbf{a)} masa \quad \textbf{b)} fuerza \quad \textbf{c)} volumen \quad \textbf{d)} temperatura.
+  \item \mwtag{Conversión} Convierte: \textbf{a)} $7500$ g a kg \quad \textbf{b)} $2{,}5$ t a kg \quad \textbf{c)} $0{,}75$ km a m.
+  \item \mwtag{Vectores} Un vector tiene módulo $20$ y forma $120^{\circ}$ con el eje $X$ positivo. Halla sus componentes.
+  \item \mwtag{Vectores 3D} Calcula el módulo de $\vec v=(3,\; 4,\; 12)$.
+  \item \mwtag{Despeje} De $\rho=\dfrac{m}{V}$ despeja $V$ y calcula su valor si $m=250$ g y $\rho=5$ g/cm$^3$.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{SI y medición} Escribe en notación científica: \textbf{a)} $15\,000\,000$ \quad \textbf{b)} $0{,}0000007$ \quad \textbf{c)} $9\,800$.
+  \item \mwtag{Conversión} Convierte: \textbf{a)} $54$ km/h a m/s; \quad \textbf{b)} $15$ m/s a km/h.
+  \item \mwtag{Vectores} Un vector de módulo $16$ apunta en la dirección $120^{\circ}$ (medida desde el eje $+x$). Halla sus componentes, el cuadrante y el ángulo de referencia.
+  \item \mwtag{Vectores 3D} Suma $\vec a=(1,\; 1,\; 1)$ y $\vec b=(2,\; -3,\; 5)$ y calcula el módulo de la resultante.
+  \item \mwtag{Despeje} De $P\,V=n\,R\,T$ despeja $T$ y calcula su valor si $P=2$ atm, $V=10$ L, $n=0{,}5$ mol y $R=0{,}082$ atm$\cdot$L/(mol$\cdot$K).
+  \item \mwtag{SI y medición} Expresa en metros: \textbf{a)} $2{,}5$ km \quad \textbf{b)} $8$ dm \quad \textbf{c)} $35$ cm.
+  \item \mwtag{Conversión} El vidrio tiene una densidad de $2{,}5$ g/cm$^3$. \textquestiondown Cuál es la masa de $40$ cm$^3$ de vidrio?
+  \item \mwtag{Vectores} Suma $\vec a=(-3,\; 5)$ y $\vec b=(8,\; -1)$ y calcula el módulo de la resultante.
+  \item \mwtag{Vectores 3D} Halla los cosenos directores de $\vec v=(1,\; 4,\; 8)$ y verifica la identidad fundamental.
+  \item \mwtag{Despeje} De $\dfrac{1}{f}=\dfrac{1}{d_o}+\dfrac{1}{d_i}$ despeja $d_i$ y calcula su valor si $f=10$ cm y $d_o=15$ cm.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{SI y medición} \textquestiondown Cuántas cifras significativas tiene cada medida? \textbf{a)} $2{,}003$ m \quad \textbf{b)} $0{,}45$ kg \quad \textbf{c)} $10{,}0$ s.
+  \item \mwtag{Conversión} Convierte $1{,}5$ h a minutos y a segundos.
+  \item \mwtag{Vectores} Convierte a coordenadas polares el punto $P(-1,\; \sqrt{3})$.
+  \item \mwtag{Vectores 3D} Halla $k$ para que $\vec r=(2,\; 1,\; 6)+k(0,\; 2,\; 3)$ tenga su tercera componente igual a $0$. \textquestiondown Cuánto vale entonces $|\vec r|$?
+  \item \mwtag{Despeje} Los catetos de un triángulo rectángulo son enteros consecutivos y el área es $6$ m$^2$. De $\dfrac{1}{2}b(b+1)=6$, halla $b$ y la hipotenusa.
+\end{mwcierre}
+
+
+% ============================================================
+%  SESIÓN 5
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar los cinco bloques de la Guía 3 con ejercicios nuevos: el Sistema Internacional y la medición, la transformación de unidades, los vectores en el plano, los vectores en el espacio y el despeje de fórmulas.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{SI y medición} Clasifica en fundamental o derivada e indica su unidad del SI: \textbf{a)} longitud \quad \textbf{b)} velocidad \quad \textbf{c)} densidad \quad \textbf{d)} presión.
+  \item \mwtag{Conversión} Convierte: \textbf{a)} $45$ min a s \quad \textbf{b)} $2$ h a min \quad \textbf{c)} $800$ cm a m.
+  \item \mwtag{Vectores} Un vector tiene módulo $10$ y forma $150^{\circ}$ con el eje $X$ positivo. Halla sus componentes.
+  \item \mwtag{Vectores 3D} Calcula el módulo de $\vec v=(2,\; 6,\; 9)$.
+  \item \mwtag{Despeje} De $P=2\ell+2w$ despeja $w$ y calcula su valor si $P=36$ m y $\ell=10$ m.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{SI y medición} Escribe en notación científica: \textbf{a)} $620\,000$ \quad \textbf{b)} $0{,}000045$ \quad \textbf{c)} $300\,000\,000$.
+  \item \mwtag{Conversión} Convierte: \textbf{a)} $144$ km/h a m/s; \quad \textbf{b)} $30$ m/s a km/h.
+  \item \mwtag{Vectores} Un vector de módulo $10$ apunta en la dirección $210^{\circ}$ (medida desde el eje $+x$). Halla sus componentes, el cuadrante y el ángulo de referencia.
+  \item \mwtag{Vectores 3D} Suma $\vec a=(4,\; 0,\; -2)$ y $\vec b=(-1,\; 5,\; 3)$ y calcula el módulo de la resultante.
+  \item \mwtag{Despeje} De $x_f=x_0+v\,t$ despeja $v$ y calcula su valor si $x_f=130$ m, $x_0=10$ m y $t=8$ s.
+  \item \mwtag{SI y medición} Expresa en metros: \textbf{a)} $0{,}75$ km \quad \textbf{b)} $90$ mm \quad \textbf{c)} $6$ dm.
+  \item \mwtag{Conversión} El hierro tiene una densidad de $7{,}8$ g/cm$^3$. \textquestiondown Cuánta masa hay en $100$ cm$^3$ de hierro?
+  \item \mwtag{Vectores} Suma $\vec a=(2,\; -7)$ y $\vec b=(6,\; 3)$ y calcula el módulo de la resultante.
+  \item \mwtag{Vectores 3D} Halla los cosenos directores de $\vec v=(2,\; 6,\; 9)$ y verifica la identidad fundamental.
+  \item \mwtag{Despeje} De $x_f=x_0+v_0\,t+\dfrac{1}{2}a\,t^2$ despeja $a$ y calcula su valor si $x_f=100$ m, $x_0=0$, $v_0=10$ m/s y $t=5$ s.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{SI y medición} \textquestiondown Cuántas cifras significativas tiene cada medida? \textbf{a)} $0{,}005$ m \quad \textbf{b)} $12{,}30$ kg \quad \textbf{c)} $8{,}0$ s.
+  \item \mwtag{Conversión} \textquestiondown Cuántas horas y cuántos minutos hay en $3$ días?
+  \item \mwtag{Vectores} Convierte a coordenadas polares el punto $P(-6,\; -8)$.
+  \item \mwtag{Vectores 3D} Calcula $\vec r=2\vec a-3\vec b+\vec c$ con $\vec a=(1,\; 2,\; -1)$, $\vec b=(2,\; 0,\; 1)$ y $\vec c=(0,\; 1,\; 3)$.
+  \item \mwtag{Despeje} Una moneda se lanza con $v_0=25$ m/s y $h=25t-5t^2$. \textquestiondown Cuándo está a $20$ m?
+\end{mwcierre}
+
+
+% ============================================================
+%  SESIÓN 6
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar los cinco bloques de la Guía 3 con ejercicios nuevos: el Sistema Internacional y la medición, la transformación de unidades, los vectores en el plano, los vectores en el espacio y el despeje de fórmulas.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{SI y medición} Clasifica en fundamental o derivada e indica su unidad del SI: \textbf{a)} tiempo \quad \textbf{b)} energía \quad \textbf{c)} aceleración \quad \textbf{d)} volumen.
+  \item \mwtag{Conversión} Convierte: \textbf{a)} $1200$ g a kg \quad \textbf{b)} $0{,}25$ t a kg \quad \textbf{c)} $5$ min a s.
+  \item \mwtag{Vectores} Un vector tiene módulo $6$ y forma $240^{\circ}$ con el eje $X$ positivo. Halla sus componentes.
+  \item \mwtag{Vectores 3D} Calcula el módulo de $\vec v=(4,\; 4,\; 7)$.
+  \item \mwtag{Despeje} De $v=\dfrac{d}{t}$ despeja $d$ y calcula su valor si $v=12$ m/s y $t=7$ s.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{SI y medición} Escribe en notación científica: \textbf{a)} $0{,}0000000125$ \quad \textbf{b)} $7\,400\,000$ \quad \textbf{c)} $0{,}0006$.
+  \item \mwtag{Conversión} Convierte: \textbf{a)} $18$ km/h a m/s; \quad \textbf{b)} $20$ m/s a km/h.
+  \item \mwtag{Vectores} Un vector de módulo $24$ apunta en la dirección $225^{\circ}$ (medida desde el eje $+x$). Halla sus componentes, el cuadrante y el ángulo de referencia.
+  \item \mwtag{Vectores 3D} Suma $\vec a=(7,\; -2,\; 3)$ y $\vec b=(2,\; 2,\; -6)$ y calcula el módulo de la resultante.
+  \item \mwtag{Despeje} De $v_f=v_0+a\,t$ despeja $t$ y calcula su valor si $v_f=25$ m/s, $v_0=5$ m/s y $a=4$ m/s$^2$.
+  \item \mwtag{SI y medición} Expresa en metros: \textbf{a)} $4$ km \quad \textbf{b)} $1500$ mm \quad \textbf{c)} $18$ cm.
+  \item \mwtag{Conversión} Un líquido de densidad $3$ g/cm$^3$ tiene una masa de $900$ g. \textquestiondown Qué volumen ocupa?
+  \item \mwtag{Vectores} Suma $\vec a=(4,\; 4)$ y $\vec b=(-1,\; 2)$ y calcula el módulo de la resultante.
+  \item \mwtag{Vectores 3D} Halla los cosenos directores de $\vec v=(6,\; 6,\; 7)$ y verifica la identidad fundamental.
+  \item \mwtag{Despeje} De $E_c=\dfrac{1}{2}m\,v^2$ despeja $m$ y calcula su valor si $E_c=144$ J y $v=6$ m/s.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{SI y medición} \textquestiondown Cuántas cifras significativas tiene cada medida? \textbf{a)} $7{,}00$ m \quad \textbf{b)} $0{,}125$ kg \quad \textbf{c)} $30{,}50$ s.
+  \item \mwtag{Conversión} Convierte $0{,}75$ h a segundos.
+  \item \mwtag{Vectores} Convierte a coordenadas cartesianas el punto $P(20,\; 315^{\circ})$.
+  \item \mwtag{Vectores 3D} Dado $\vec v=(2,\; -3,\; 1)$, calcula $4\vec v$ y $-2\vec v$.
+  \item \mwtag{Despeje} Dos resistencias en paralelo cumplen $R_1+R_2=9\ \Omega$ y $R_T=2\ \Omega$. Sustituye $R_2=9-R_1$ y halla ambas.
+\end{mwcierre}
+
+
+% ============================================================
+%  SESIÓN 7
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar los cinco bloques de la Guía 3 con ejercicios nuevos: el Sistema Internacional y la medición, la transformación de unidades, los vectores en el plano, los vectores en el espacio y el despeje de fórmulas.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{SI y medición} Clasifica en fundamental o derivada e indica su unidad del SI: \textbf{a)} masa \quad \textbf{b)} aceleración \quad \textbf{c)} fuerza \quad \textbf{d)} densidad.
+  \item \mwtag{Conversión} Convierte: \textbf{a)} $2500$ m a km \quad \textbf{b)} $180$ s a min \quad \textbf{c)} $900$ mm a m.
+  \item \mwtag{Vectores} Un vector tiene módulo $10$ y forma $315^{\circ}$ con el eje $X$ positivo. Halla sus componentes.
+  \item \mwtag{Vectores 3D} Calcula el módulo de $\vec v=(2,\; 10,\; 11)$.
+  \item \mwtag{Despeje} De $F=m\,a$ despeja $a$ y calcula su valor si $F=90$ N y $m=12$ kg.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{SI y medición} Escribe en notación científica: \textbf{a)} $88\,000$ \quad \textbf{b)} $0{,}000000003$ \quad \textbf{c)} $1\,200\,000$.
+  \item \mwtag{Conversión} Convierte: \textbf{a)} $45$ km/h a m/s; \quad \textbf{b)} $8$ m/s a km/h.
+  \item \mwtag{Vectores} Un vector de módulo $30$ apunta en la dirección $300^{\circ}$ (medida desde el eje $+x$). Halla sus componentes, el cuadrante y el ángulo de referencia.
+  \item \mwtag{Vectores 3D} Suma $\vec a=(0,\; 3,\; 4)$ y $\vec b=(5,\; -1,\; 0)$ y calcula el módulo de la resultante.
+  \item \mwtag{Despeje} De $C=\dfrac{5}{9}(F-32)$ despeja $F$ y calcula su valor si $C=30$.
+  \item \mwtag{SI y medición} Expresa en metros: \textbf{a)} $1{,}2$ km \quad \textbf{b)} $250$ cm \quad \textbf{c)} $7$ mm.
+  \item \mwtag{Conversión} Un cuerpo de $1{,}2$ kg ocupa $0{,}0015$ m$^3$. Calcula su densidad en kg/m$^3$.
+  \item \mwtag{Vectores} Suma $\vec a=(7,\; -1)$ y $\vec b=(2,\; 8)$ y calcula el módulo de la resultante.
+  \item \mwtag{Vectores 3D} Halla los cosenos directores de $\vec v=(4,\; 4,\; 7)$ y verifica la identidad fundamental.
+  \item \mwtag{Despeje} De $T=2\pi\sqrt{\dfrac{\ell}{g}}$ despeja $\ell$ y calcula su valor si $g=9{,}8$ m/s$^2$ y $T=4$ s.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{SI y medición} \textquestiondown Cuántas cifras significativas tiene cada medida? \textbf{a)} $0{,}040$ m \quad \textbf{b)} $5{,}6$ kg \quad \textbf{c)} $100{,}0$ s.
+  \item \mwtag{Conversión} Convierte $5$ km a metros y a centímetros.
+  \item \mwtag{Vectores} Convierte a coordenadas cartesianas el punto $P(12,\; 150^{\circ})$.
+  \item \mwtag{Vectores 3D} Halla el vector equilibrante de $\vec a=(2,\; 5,\; -1)$ y $\vec b=(-4,\; 1,\; 3)$.
+  \item \mwtag{Despeje} Un objeto con $v_0=40$ m/s sigue $h=40t-5t^2$. \textquestiondown Cuándo está a $60$ m?
+\end{mwcierre}
+
+
+% ============================================================
+%  SESIÓN 8
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar los cinco bloques de la Guía 3 con ejercicios nuevos: el Sistema Internacional y la medición, la transformación de unidades, los vectores en el plano, los vectores en el espacio y el despeje de fórmulas.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{SI y medición} Clasifica en fundamental o derivada e indica su unidad del SI: \textbf{a)} longitud \quad \textbf{b)} densidad \quad \textbf{c)} energía \quad \textbf{d)} temperatura.
+  \item \mwtag{Conversión} Convierte: \textbf{a)} $6000$ g a kg \quad \textbf{b)} $1{,}5$ h a s \quad \textbf{c)} $300$ cm a m.
+  \item \mwtag{Vectores} Un vector tiene módulo $8$ y forma $225^{\circ}$ con el eje $X$ positivo. Halla sus componentes.
+  \item \mwtag{Vectores 3D} Calcula el módulo de $\vec v=(6,\; 6,\; 7)$.
+  \item \mwtag{Despeje} De $A=b\,h$ despeja $h$ y calcula su valor si $A=54$ cm$^2$ y $b=12$ cm.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{SI y medición} Escribe en notación científica: \textbf{a)} $0{,}00032$ \quad \textbf{b)} $55\,000\,000$ \quad \textbf{c)} $0{,}00000008$.
+  \item \mwtag{Conversión} Convierte: \textbf{a)} $63$ km/h a m/s; \quad \textbf{b)} $40$ m/s a km/h.
+  \item \mwtag{Vectores} Un vector de módulo $12$ apunta en la dirección $150^{\circ}$ (medida desde el eje $+x$). Halla sus componentes, el cuadrante y el ángulo de referencia.
+  \item \mwtag{Vectores 3D} Suma $\vec a=(6,\; 2,\; -3)$ y $\vec b=(-4,\; 6,\; 1)$ y calcula el módulo de la resultante.
+  \item \mwtag{Despeje} De $\dfrac{1}{R_T}=\dfrac{1}{R_1}+\dfrac{1}{R_2}$ despeja $R_T$ y calcula su valor si $R_1=4\ \Omega$ y $R_2=12\ \Omega$.
+  \item \mwtag{SI y medición} Expresa en metros: \textbf{a)} $0{,}3$ km \quad \textbf{b)} $5000$ mm \quad \textbf{c)} $45$ cm.
+  \item \mwtag{Conversión} El aceite tiene una densidad de $0{,}8$ g/cm$^3$. \textquestiondown Cuál es la masa de $250$ cm$^3$ de aceite?
+  \item \mwtag{Vectores} Suma $\vec a=(-6,\; 2)$ y $\vec b=(10,\; 3)$ y calcula el módulo de la resultante.
+  \item \mwtag{Vectores 3D} Halla los cosenos directores de $\vec v=(3,\; 6,\; 6)$ y verifica la identidad fundamental.
+  \item \mwtag{Despeje} De $v^2=v_0^2+2a\,\Delta x$ despeja $v_0$ y calcula su valor si $v=25$ m/s, $a=3$ m/s$^2$ y $\Delta x=80$ m.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{SI y medición} \textquestiondown Cuántas cifras significativas tiene cada medida? \textbf{a)} $3{,}005$ m \quad \textbf{b)} $0{,}8$ kg \quad \textbf{c)} $0{,}090$ s.
+  \item \mwtag{Conversión} Un avión vuela a $900$ km/h. Expresa su rapidez en m/s y los metros que recorre en un minuto.
+  \item \mwtag{Vectores} Convierte a coordenadas polares el punto $P(-3,\; -3)$.
+  \item \mwtag{Vectores 3D} Escribe el vector $\overrightarrow{AB}$ con $A(-2,\; 0,\; 3)$ y $B(4,\; 6,\; -1)$ y calcula su módulo.
+  \item \mwtag{Despeje} Un globo de agua se lanza con $v_0=45$ m/s y $h=45t-5t^2$. \textquestiondown Cuándo está a $100$ m?
+\end{mwcierre}
+
+
+% ============================================================
+%  SESIÓN 9
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar los cinco bloques de la Guía 3 con ejercicios nuevos: el Sistema Internacional y la medición, la transformación de unidades, los vectores en el plano, los vectores en el espacio y el despeje de fórmulas.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{SI y medición} Clasifica en fundamental o derivada e indica su unidad del SI: \textbf{a)} tiempo \quad \textbf{b)} velocidad \quad \textbf{c)} potencia \quad \textbf{d)} presión.
+  \item \mwtag{Conversión} Convierte: \textbf{a)} $150$ cm a m \quad \textbf{b)} $3{,}5$ t a kg \quad \textbf{c)} $7200$ s a h.
+  \item \mwtag{Vectores} Un vector tiene módulo $14$ y forma $30^{\circ}$ con el eje $X$ positivo. Halla sus componentes.
+  \item \mwtag{Vectores 3D} Calcula el módulo de $\vec v=(3,\; 6,\; 6)$.
+  \item \mwtag{Despeje} De $\rho=\dfrac{m}{V}$ despeja $m$ y calcula su valor si $\rho=2{,}7$ g/cm$^3$ y $V=30$ cm$^3$.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{SI y medición} Escribe en notación científica: \textbf{a)} $2\,700\,000$ \quad \textbf{b)} $0{,}0000095$ \quad \textbf{c)} $640\,000$.
+  \item \mwtag{Conversión} Convierte: \textbf{a)} $90$ km/h a m/s; \quad \textbf{b)} $5$ m/s a km/h.
+  \item \mwtag{Vectores} Un vector de módulo $18$ apunta en la dirección $240^{\circ}$ (medida desde el eje $+x$). Halla sus componentes, el cuadrante y el ángulo de referencia.
+  \item \mwtag{Vectores 3D} Suma $\vec a=(2,\; -5,\; 1)$ y $\vec b=(3,\; 1,\; 7)$ y calcula el módulo de la resultante.
+  \item \mwtag{Despeje} De $P\,V=n\,R\,T$ despeja $P$ y calcula su valor si $V=8$ L, $n=2$ mol, $R=0{,}082$ atm$\cdot$L/(mol$\cdot$K) y $T=300$ K.
+  \item \mwtag{SI y medición} Expresa en metros: \textbf{a)} $6$ km \quad \textbf{b)} $80$ mm \quad \textbf{c)} $2{,}5$ dm.
+  \item \mwtag{Conversión} Una masa de $1500$ g de un material de densidad $2{,}5$ g/cm$^3$: \textquestiondown qué volumen ocupa?
+  \item \mwtag{Vectores} Suma $\vec a=(8,\; -3)$ y $\vec b=(-5,\; 9)$ y calcula el módulo de la resultante.
+  \item \mwtag{Vectores 3D} Halla los cosenos directores de $\vec v=(2,\; 10,\; 11)$ y verifica la identidad fundamental.
+  \item \mwtag{Despeje} De $\dfrac{1}{f}=\dfrac{1}{d_o}+\dfrac{1}{d_i}$ despeja $d_o$ y calcula su valor si $f=12$ cm y $d_i=24$ cm.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{SI y medición} \textquestiondown Cuántas cifras significativas tiene cada medida? \textbf{a)} $15{,}00$ m \quad \textbf{b)} $0{,}0030$ kg \quad \textbf{c)} $4{,}5$ s.
+  \item \mwtag{Conversión} Convierte $45$ min a segundos y a horas.
+  \item \mwtag{Vectores} Convierte a coordenadas polares el punto $P(7,\; 24)$.
+  \item \mwtag{Vectores 3D} Calcula $\vec r=3\vec a-\vec b$ con $\vec a=(2,\; -1,\; 4)$ y $\vec b=(1,\; 3,\; -2)$ y halla su módulo.
+  \item \mwtag{Despeje} Un dardo se lanza con $v_0=35$ m/s y $h=35t-5t^2$. \textquestiondown Cuándo está a $60$ m?
+\end{mwcierre}
+
+
+% ============================================================
+%  SESIÓN 10
+% ============================================================
+\mwsession{Simulacro integrador de 90 minutos}{resolver, en condiciones de evaluación, la misma rejilla de 20 ejercicios con todos los contenidos de la Guía 3. Cinco puntos por ejercicio, cien puntos en total.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item \mwtag{SI y medición} Clasifica en fundamental o derivada e indica su unidad del SI: \textbf{a)} masa \quad \textbf{b)} fuerza \quad \textbf{c)} energía \quad \textbf{d)} aceleración.
+  \item \mwtag{Conversión} Convierte: \textbf{a)} $4000$ mm a m \quad \textbf{b)} $2{,}25$ h a min \quad \textbf{c)} $500$ g a kg.
+  \item \mwtag{Vectores} Un vector tiene módulo $16$ y forma $300^{\circ}$ con el eje $X$ positivo. Halla sus componentes.
+  \item \mwtag{Vectores 3D} Calcula el módulo de $\vec v=(4,\; 4,\; 8)$.
+  \item \mwtag{Despeje} De $P=2\ell+2w$ despeja $\ell$ y calcula su valor si $P=50$ m y $w=13$ m.
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item \mwtag{SI y medición} Escribe en notación científica: \textbf{a)} $0{,}0000005$ \quad \textbf{b)} $39\,000\,000\,000$ \quad \textbf{c)} $0{,}00075$.
+  \item \mwtag{Conversión} Convierte: \textbf{a)} $27$ km/h a m/s; \quad \textbf{b)} $35$ m/s a km/h.
+  \item \mwtag{Vectores} Un vector de módulo $40$ apunta en la dirección $135^{\circ}$ (medida desde el eje $+x$). Halla sus componentes, el cuadrante y el ángulo de referencia.
+  \item \mwtag{Vectores 3D} Suma $\vec a=(-3,\; 8,\; 2)$ y $\vec b=(1,\; -2,\; 6)$ y calcula el módulo de la resultante.
+  \item \mwtag{Despeje} De $x_f=x_0+v\,t$ despeja $t$ y calcula su valor si $x_f=180$ m, $x_0=20$ m y $v=8$ m/s.
+  \item \mwtag{SI y medición} Expresa en metros: \textbf{a)} $0{,}9$ km \quad \textbf{b)} $350$ cm \quad \textbf{c)} $9$ mm.
+  \item \mwtag{Conversión} Un objeto de $0{,}9$ kg ocupa $1200$ cm$^3$. Calcula su densidad en g/cm$^3$ y en kg/m$^3$.
+  \item \mwtag{Vectores} Suma $\vec a=(2,\; 6)$ y $\vec b=(7,\; -2)$ y calcula el módulo de la resultante.
+  \item \mwtag{Vectores 3D} Halla los cosenos directores de $\vec v=(6,\; 10,\; 15)$ y verifica la identidad fundamental.
+  \item \mwtag{Despeje} De $x_f=x_0+v_0\,t+\dfrac{1}{2}a\,t^2$ despeja $a$ y calcula su valor si $x_f=60$ m, $x_0=0$, $v_0=5$ m/s y $t=4$ s.
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item \mwtag{SI y medición} \textquestiondown Cuántas cifras significativas tiene cada medida? \textbf{a)} $2{,}50$ m \quad \textbf{b)} $0{,}0070$ kg \quad \textbf{c)} $12{,}00$ s.
+  \item \mwtag{Conversión} Convierte $2{,}25$ h a minutos y a segundos.
+  \item \mwtag{Vectores} Convierte a coordenadas cartesianas el punto $P(16,\; 210^{\circ})$.
+  \item \mwtag{Vectores 3D} Halla el vector equilibrante del sistema $\vec a=(1,\; 2,\; 3)$, $\vec b=(-2,\; 1,\; 0)$ y $\vec c=(3,\; -1,\; 2)$.
+  \item \mwtag{Despeje} Un objeto se lanza con $v_0=30$ m/s y $h=30t-5t^2$. \textquestiondown Cuándo alcanza $45$ m? Interpreta.
+\end{mwcierre}
+
+% ============================================================
+\ifmwclaves
+\newpage
+\section*{Clave de Respuestas}
+% ============================================================
+
+
+\subsection*{Sesión 1}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item \textbf{a)} fundamental, kg; \textbf{b)} derivada, m/s; \textbf{c)} derivada, kg/m$^3$; \textbf{d)} derivada, m$^3$.
+  \item \textbf{a)} $2{,}5$ m; \textbf{b)} $4000$ m; \textbf{c)} $0{,}5$ m.
+  \item $v_x=10\cos 60^{\circ}=5$ y $v_y=10\sen 60^{\circ}=5\sqrt{3}\approx 8{,}66$; $\vec v=(5,\; 5\sqrt{3})$.
+  \item $|\vec v|=\sqrt{1^2+2^2+2^2}=\sqrt{9}=3$.
+  \item $t=\dfrac{d}{v}=\dfrac{300}{15}=20$ s.
+  \item \textbf{a)} $3 \times 10^{5}$; \textbf{b)} $5 \times 10^{-4}$; \textbf{c)} $2{,}5 \times 10^{7}$.
+  \item \textbf{a)} $72 \div 3{,}6 = 20$ m/s; \quad \textbf{b)} $10 \times 3{,}6 = 36$ km/h.
+  \item Cuadrante II, $\theta_{\text{ref}}=30^{\circ}$: $v_x=-10\sqrt{3}\approx -17{,}32$, $v_y=10$; $\vec v=(-10\sqrt{3},\; 10)$.
+  \item $\vec a+\vec b=(2,\; 6,\; 3)$; $|\vec a+\vec b|=\sqrt{49}=7$.
+  \item $a=\dfrac{v_f-v_0}{t}=\dfrac{20-8}{3}=4$ m/s$^2$.
+  \item \textbf{a)} $5000$ m; \textbf{b)} $2{,}5$ m; \textbf{c)} $0{,}75$ m.
+  \item $\rho=\dfrac{400}{50}=8$ g/cm$^3$ $=8000$ kg/m$^3$.
+  \item $\vec a+\vec b=(4,\; 6)$; $|\vec a+\vec b|=\sqrt{52}=2\sqrt{13}\approx 7{,}21$.
+  \item $|\vec v|=7$; $\cos\alpha=\frac{2}{7}$, $\cos\beta=\frac{3}{7}$, $\cos\gamma=\frac{6}{7}$; $\dfrac{4+9+36}{49}=1$. \checkmark\quad Ángulos: $\alpha\approx 73{,}4^{\circ}$, $\beta\approx 64{,}6^{\circ}$, $\gamma\approx 31{,}0^{\circ}$. Vector unitario: $(\frac{2}{7},\; \frac{3}{7},\; \frac{6}{7})$.
+  \item $v=\sqrt{\dfrac{2E_c}{m}}=\sqrt{\dfrac{200}{8}}=\sqrt{25}=5$ m/s.
+  \item \textbf{a)} 3; \quad \textbf{b)} 2; \quad \textbf{c)} 4.
+  \item $2{,}5\cdot 3600=9000$ s.
+  \item $x=8\cos 120^{\circ}=-4$, $y=8\sen 120^{\circ}=4\sqrt{3}\approx 6{,}93$; $P(-4,\; 4\sqrt{3})$.
+  \item $2\vec v=(6,\; -2,\; 4)$; $-3\vec v=(-9,\; 3,\; -6)$; $|\vec v|=\sqrt{14}$ y $|2\vec v|=\sqrt{56}=2\sqrt{14}=2|\vec v|$. \checkmark
+  \item $30=25t-5t^2\Rightarrow 5t^2-25t+30=0\Rightarrow t^2-5t+6=0\Rightarrow(t-2)(t-3)=0$: $t=2$ s y $t=3$ s (sube y luego baja).
+\end{enumerate}
+
+
+\subsection*{Sesión 2}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item \textbf{a)} fundamental, m; \textbf{b)} derivada, N; \textbf{c)} derivada, J; \textbf{d)} derivada, W.
+  \item \textbf{a)} $3{,}5$ kg; \textbf{b)} $500$ kg; \textbf{c)} $180$ s.
+  \item $v_x=12\cos 30^{\circ}=6\sqrt{3}\approx 10{,}39$ y $v_y=12\sen 30^{\circ}=6$; $\vec v=(6\sqrt{3},\; 6)$.
+  \item $|\vec v|=\sqrt{2^2+3^2+6^2}=\sqrt{49}=7$.
+  \item $m=\dfrac{F}{a}=\dfrac{48}{6}=8$ kg.
+  \item \textbf{a)} $2 \times 10^{-7}$; \textbf{b)} $9{,}46 \times 10^{12}$; \textbf{c)} $7{,}2 \times 10^{4}$.
+  \item \textbf{a)} $36 \div 3{,}6 = 10$ m/s; \quad \textbf{b)} $25 \times 3{,}6 = 90$ km/h.
+  \item Cuadrante III, $\theta_{\text{ref}}=60^{\circ}$: $v_x=-10$, $v_y=-10\sqrt{3}\approx -17{,}32$; $\vec v=(-10,\; -10\sqrt{3})$.
+  \item $\vec a+\vec b=(7,\; 2,\; -2)$; $|\vec a+\vec b|=\sqrt{57}=\sqrt{57}\approx 7{,}55$.
+  \item $F=\dfrac{9}{5}C+32=\dfrac{9}{5}(25)+32=77\,^{\circ}$F.
+  \item \textbf{a)} $3000$ m; \textbf{b)} $7{,}5$ m; \textbf{c)} $0{,}01$ m.
+  \item $\rho=\dfrac{2}{0{,}004}=500$ kg/m$^3$.
+  \item $\vec a+\vec b=(2,\; 2)$; $|\vec a+\vec b|=\sqrt{8}=2\sqrt{2}\approx 2{,}83$.
+  \item $|\vec v|=3$; $\cos\alpha=\frac{1}{3}$, $\cos\beta=\frac{2}{3}$, $\cos\gamma=\frac{2}{3}$; $\dfrac{1+4+4}{9}=1$. \checkmark\quad Ángulos: $\alpha\approx 70{,}5^{\circ}$, $\beta\approx 48{,}2^{\circ}$, $\gamma\approx 48{,}2^{\circ}$. Vector unitario: $(\frac{1}{3},\; \frac{2}{3},\; \frac{2}{3})$.
+  \item $g=\dfrac{4\pi^2\ell}{T^2}=\dfrac{4\pi^2}{4}=\pi^2\approx 9{,}87$ m/s$^2$.
+  \item \textbf{a)} 4; \quad \textbf{b)} 1; \quad \textbf{c)} 3.
+  \item $42\,195$ m $=4\,219\,500$ cm.
+  \item $r=\sqrt{x^2+y^2}=5$; $\theta=53{,}13^{\circ}$. $P(5,\; 53{,}13^{\circ})$.
+  \item $\vec a+\vec b=(2,\; 2,\; 3)$; equilibrante $\vec c=-(2,\; 2,\; 3)=(-2,\; -2,\; -3)$. Verificación: $(0,\; 0,\; 0)$. \checkmark
+  \item $t^2-20t+75=0\Rightarrow(t-5)(t-15)=0$: $t=5$ s y $t=15$ s; las dos son válidas (se cruzan dos veces).
+\end{enumerate}
+
+
+\subsection*{Sesión 3}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item \textbf{a)} fundamental, s; \textbf{b)} fundamental, K; \textbf{c)} derivada, m/s$^2$; \textbf{d)} derivada, Pa.
+  \item \textbf{a)} $5400$ s; \textbf{b)} $3600$ s; \textbf{c)} $1{,}5$ km.
+  \item $v_x=8\cos 45^{\circ}=4\sqrt{2}\approx 5{,}66$ y $v_y=8\sen 45^{\circ}=4\sqrt{2}\approx 5{,}66$; $\vec v=(4\sqrt{2},\; 4\sqrt{2})$.
+  \item $|\vec v|=\sqrt{1^2+4^2+8^2}=\sqrt{81}=9$.
+  \item $b=\dfrac{A}{h}=\dfrac{72}{9}=8$ cm.
+  \item \textbf{a)} $4{,}5 \times 10^{6}$; \textbf{b)} $2{,}5 \times 10^{-4}$; \textbf{c)} $3{,}4 \times 10^{-3}$.
+  \item \textbf{a)} $108 \div 3{,}6 = 30$ m/s; \quad \textbf{b)} $12 \times 3{,}6 = 43{,}2$ km/h.
+  \item Cuadrante IV, $\theta_{\text{ref}}=45^{\circ}$: $v_x=10\sqrt{2}\approx 14{,}14$, $v_y=-10\sqrt{2}\approx -14{,}14$; $\vec v=(10\sqrt{2},\; -10\sqrt{2})$.
+  \item $\vec a+\vec b=(4,\; 1,\; 3)$; $|\vec a+\vec b|=\sqrt{26}=\sqrt{26}\approx 5{,}1$.
+  \item $R_T=\dfrac{R_1R_2}{R_1+R_2}=\dfrac{18}{9}=2\ \Omega$.
+  \item \textbf{a)} $500$ m; \textbf{b)} $1{,}2$ m; \textbf{c)} $4{,}5$ m.
+  \item $\rho=\dfrac{540}{200}=2{,}7$ g/cm$^3$ $=2700$ kg/m$^3$.
+  \item $\vec a+\vec b=(4,\; 8)$; $|\vec a+\vec b|=\sqrt{80}=4\sqrt{5}\approx 8{,}94$.
+  \item $|\vec v|=13$; $\cos\alpha=\frac{3}{13}$, $\cos\beta=\frac{4}{13}$, $\cos\gamma=\frac{12}{13}$; $\dfrac{9+16+144}{169}=1$. \checkmark\quad Ángulos: $\alpha\approx 76{,}7^{\circ}$, $\beta\approx 72{,}1^{\circ}$, $\gamma\approx 22{,}6^{\circ}$. Vector unitario: $(\frac{3}{13},\; \frac{4}{13},\; \frac{12}{13})$.
+  \item $\Delta x=\dfrac{v^2-v_0^2}{2a}=\dfrac{400}{4}=100$ m.
+  \item \textbf{a)} 3; \quad \textbf{b)} 2; \quad \textbf{c)} 3.
+  \item $144\div 3{,}6=40$ m/s, es decir, $40$ m en un segundo.
+  \item $x=10\cos 240^{\circ}=-5$, $y=10\sen 240^{\circ}=-5\sqrt{3}\approx -8{,}66$; $P(-5,\; -5\sqrt{3})$.
+  \item $\overrightarrow{AB}=B-A=(2,\; 4,\; 4)$; $|\overrightarrow{AB}|=\sqrt{36}=6$.
+  \item $5t^2-40t+75=0\Rightarrow t^2-8t+15=0\Rightarrow(t-3)(t-5)=0$: $t=3$ s y $t=5$ s.
+\end{enumerate}
+
+
+\subsection*{Sesión 4}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item \textbf{a)} fundamental, kg; \textbf{b)} derivada, N; \textbf{c)} derivada, m$^3$; \textbf{d)} fundamental, K.
+  \item \textbf{a)} $7{,}5$ kg; \textbf{b)} $2500$ kg; \textbf{c)} $750$ m.
+  \item $v_x=20\cos 120^{\circ}=-10$ y $v_y=20\sen 120^{\circ}=10\sqrt{3}\approx 17{,}32$; $\vec v=(-10,\; 10\sqrt{3})$.
+  \item $|\vec v|=\sqrt{3^2+4^2+12^2}=\sqrt{169}=13$.
+  \item $V=\dfrac{m}{\rho}=\dfrac{250}{5}=50$ cm$^3$.
+  \item \textbf{a)} $1{,}5 \times 10^{7}$; \textbf{b)} $7 \times 10^{-7}$; \textbf{c)} $9{,}8 \times 10^{3}$.
+  \item \textbf{a)} $54 \div 3{,}6 = 15$ m/s; \quad \textbf{b)} $15 \times 3{,}6 = 54$ km/h.
+  \item Cuadrante II, $\theta_{\text{ref}}=60^{\circ}$: $v_x=-8$, $v_y=8\sqrt{3}\approx 13{,}86$; $\vec v=(-8,\; 8\sqrt{3})$.
+  \item $\vec a+\vec b=(3,\; -2,\; 6)$; $|\vec a+\vec b|=\sqrt{49}=7$.
+  \item $T=\dfrac{PV}{nR}=\dfrac{20}{0{,}041}\approx 487{,}8$ K.
+  \item \textbf{a)} $2500$ m; \textbf{b)} $0{,}8$ m; \textbf{c)} $0{,}35$ m.
+  \item $m=\rho V=2{,}5\cdot 40=100$ g.
+  \item $\vec a+\vec b=(5,\; 4)$; $|\vec a+\vec b|=\sqrt{41}=\sqrt{41}\approx 6{,}4$.
+  \item $|\vec v|=9$; $\cos\alpha=\frac{1}{9}$, $\cos\beta=\frac{4}{9}$, $\cos\gamma=\frac{8}{9}$; $\dfrac{1+16+64}{81}=1$. \checkmark\quad Ángulos: $\alpha\approx 83{,}6^{\circ}$, $\beta\approx 63{,}6^{\circ}$, $\gamma\approx 27{,}3^{\circ}$. Vector unitario: $(\frac{1}{9},\; \frac{4}{9},\; \frac{8}{9})$.
+  \item $d_i=\dfrac{f\,d_o}{d_o-f}=\dfrac{150}{5}=30$ cm.
+  \item \textbf{a)} 4; \quad \textbf{b)} 2; \quad \textbf{c)} 3.
+  \item $1{,}5\cdot 60=90$ min $=5400$ s.
+  \item $r=\sqrt{x^2+y^2}=2$; $\theta=120^{\circ}$. $P(2,\; 120^{\circ})$.
+  \item $6+3k=0\Rightarrow k=-2$; $\vec r=(2,\; -3,\; 0)$; $|\vec r|=\sqrt{13}\approx 3{,}61$.
+  \item $b^2+b-12=0\Rightarrow(b+4)(b-3)=0$: $b=3$ m (se descarta $-4$), $h=4$ m; hipotenusa $=\sqrt{9+16}=5$ m.
+\end{enumerate}
+
+
+\subsection*{Sesión 5}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item \textbf{a)} fundamental, m; \textbf{b)} derivada, m/s; \textbf{c)} derivada, kg/m$^3$; \textbf{d)} derivada, Pa.
+  \item \textbf{a)} $2700$ s; \textbf{b)} $120$ min; \textbf{c)} $8$ m.
+  \item $v_x=10\cos 150^{\circ}=-5\sqrt{3}\approx -8{,}66$ y $v_y=10\sen 150^{\circ}=5$; $\vec v=(-5\sqrt{3},\; 5)$.
+  \item $|\vec v|=\sqrt{2^2+6^2+9^2}=\sqrt{121}=11$.
+  \item $w=\dfrac{P-2\ell}{2}=\dfrac{36-20}{2}=8$ m.
+  \item \textbf{a)} $6{,}2 \times 10^{5}$; \textbf{b)} $4{,}5 \times 10^{-5}$; \textbf{c)} $3 \times 10^{8}$.
+  \item \textbf{a)} $144 \div 3{,}6 = 40$ m/s; \quad \textbf{b)} $30 \times 3{,}6 = 108$ km/h.
+  \item Cuadrante III, $\theta_{\text{ref}}=30^{\circ}$: $v_x=-5\sqrt{3}\approx -8{,}66$, $v_y=-5$; $\vec v=(-5\sqrt{3},\; -5)$.
+  \item $\vec a+\vec b=(3,\; 5,\; 1)$; $|\vec a+\vec b|=\sqrt{35}=\sqrt{35}\approx 5{,}92$.
+  \item $v=\dfrac{x_f-x_0}{t}=\dfrac{120}{8}=15$ m/s.
+  \item \textbf{a)} $750$ m; \textbf{b)} $0{,}09$ m; \textbf{c)} $0{,}6$ m.
+  \item $m=\rho V=7{,}8\cdot 100=780$ g.
+  \item $\vec a+\vec b=(8,\; -4)$; $|\vec a+\vec b|=\sqrt{80}=4\sqrt{5}\approx 8{,}94$.
+  \item $|\vec v|=11$; $\cos\alpha=\frac{2}{11}$, $\cos\beta=\frac{6}{11}$, $\cos\gamma=\frac{9}{11}$; $\dfrac{4+36+81}{121}=1$. \checkmark\quad Ángulos: $\alpha\approx 79{,}5^{\circ}$, $\beta\approx 56{,}9^{\circ}$, $\gamma\approx 35{,}1^{\circ}$. Vector unitario: $(\frac{2}{11},\; \frac{6}{11},\; \frac{9}{11})$.
+  \item $a=\dfrac{2(x_f-x_0-v_0t)}{t^2}=\dfrac{2(100-50)}{25}=4$ m/s$^2$.
+  \item \textbf{a)} 1; \quad \textbf{b)} 4; \quad \textbf{c)} 2.
+  \item $3\cdot 24=72$ h $=4320$ min.
+  \item $r=\sqrt{x^2+y^2}=10$; $\theta=233{,}13^{\circ}$. $P(10,\; 233{,}13^{\circ})$.
+  \item $\vec r=(2-6+0,\; 4-0+1,\; -2-3+3)=(-4,\; 5,\; -2)$; $|\vec r|=\sqrt{45}=3\sqrt{5}\approx 6{,}71$.
+  \item $5t^2-25t+20=0\Rightarrow t^2-5t+4=0\Rightarrow(t-1)(t-4)=0$: $t=1$ s y $t=4$ s.
+\end{enumerate}
+
+
+\subsection*{Sesión 6}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item \textbf{a)} fundamental, s; \textbf{b)} derivada, J; \textbf{c)} derivada, m/s$^2$; \textbf{d)} derivada, m$^3$.
+  \item \textbf{a)} $1{,}2$ kg; \textbf{b)} $250$ kg; \textbf{c)} $300$ s.
+  \item $v_x=6\cos 240^{\circ}=-3$ y $v_y=6\sen 240^{\circ}=-3\sqrt{3}\approx -5{,}2$; $\vec v=(-3,\; -3\sqrt{3})$.
+  \item $|\vec v|=\sqrt{4^2+4^2+7^2}=\sqrt{81}=9$.
+  \item $d=v\,t=12\cdot 7=84$ m.
+  \item \textbf{a)} $1{,}25 \times 10^{-8}$; \textbf{b)} $7{,}4 \times 10^{6}$; \textbf{c)} $6 \times 10^{-4}$.
+  \item \textbf{a)} $18 \div 3{,}6 = 5$ m/s; \quad \textbf{b)} $20 \times 3{,}6 = 72$ km/h.
+  \item Cuadrante III, $\theta_{\text{ref}}=45^{\circ}$: $v_x=-12\sqrt{2}\approx -16{,}97$, $v_y=-12\sqrt{2}\approx -16{,}97$; $\vec v=(-12\sqrt{2},\; -12\sqrt{2})$.
+  \item $\vec a+\vec b=(9,\; 0,\; -3)$; $|\vec a+\vec b|=\sqrt{90}=3\sqrt{10}\approx 9{,}49$.
+  \item $t=\dfrac{v_f-v_0}{a}=\dfrac{20}{4}=5$ s.
+  \item \textbf{a)} $4000$ m; \textbf{b)} $1{,}5$ m; \textbf{c)} $0{,}18$ m.
+  \item $V=\dfrac{m}{\rho}=\dfrac{900}{3}=300$ cm$^3$.
+  \item $\vec a+\vec b=(3,\; 6)$; $|\vec a+\vec b|=\sqrt{45}=3\sqrt{5}\approx 6{,}71$.
+  \item $|\vec v|=11$; $\cos\alpha=\frac{6}{11}$, $\cos\beta=\frac{6}{11}$, $\cos\gamma=\frac{7}{11}$; $\dfrac{36+36+49}{121}=1$. \checkmark\quad Ángulos: $\alpha\approx 56{,}9^{\circ}$, $\beta\approx 56{,}9^{\circ}$, $\gamma\approx 50{,}5^{\circ}$. Vector unitario: $(\frac{6}{11},\; \frac{6}{11},\; \frac{7}{11})$.
+  \item $m=\dfrac{2E_c}{v^2}=\dfrac{288}{36}=8$ kg.
+  \item \textbf{a)} 3; \quad \textbf{b)} 3; \quad \textbf{c)} 4.
+  \item $0{,}75\cdot 3600=2700$ s.
+  \item $x=20\cos 315^{\circ}=10\sqrt{2}\approx 14{,}14$, $y=20\sen 315^{\circ}=-10\sqrt{2}\approx -14{,}14$; $P(10\sqrt{2},\; -10\sqrt{2})$.
+  \item $4\vec v=(8,\; -12,\; 4)$; $-2\vec v=(-4,\; 6,\; -2)$.
+  \item $\dfrac{1}{2}=\dfrac{1}{R_1}+\dfrac{1}{9-R_1}\Rightarrow R_1^2-9R_1+18=0\Rightarrow(R_1-6)(R_1-3)=0$: $6\ \Omega$ y $3\ \Omega$.
+\end{enumerate}
+
+
+\subsection*{Sesión 7}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item \textbf{a)} fundamental, kg; \textbf{b)} derivada, m/s$^2$; \textbf{c)} derivada, N; \textbf{d)} derivada, kg/m$^3$.
+  \item \textbf{a)} $2{,}5$ km; \textbf{b)} $3$ min; \textbf{c)} $0{,}9$ m.
+  \item $v_x=10\cos 315^{\circ}=5\sqrt{2}\approx 7{,}07$ y $v_y=10\sen 315^{\circ}=-5\sqrt{2}\approx -7{,}07$; $\vec v=(5\sqrt{2},\; -5\sqrt{2})$.
+  \item $|\vec v|=\sqrt{2^2+10^2+11^2}=\sqrt{225}=15$.
+  \item $a=\dfrac{F}{m}=\dfrac{90}{12}=7{,}5$ m/s$^2$.
+  \item \textbf{a)} $8{,}8 \times 10^{4}$; \textbf{b)} $3 \times 10^{-9}$; \textbf{c)} $1{,}2 \times 10^{6}$.
+  \item \textbf{a)} $45 \div 3{,}6 = 12{,}5$ m/s; \quad \textbf{b)} $8 \times 3{,}6 = 28{,}8$ km/h.
+  \item Cuadrante IV, $\theta_{\text{ref}}=60^{\circ}$: $v_x=15$, $v_y=-15\sqrt{3}\approx -25{,}98$; $\vec v=(15,\; -15\sqrt{3})$.
+  \item $\vec a+\vec b=(5,\; 2,\; 4)$; $|\vec a+\vec b|=\sqrt{45}=3\sqrt{5}\approx 6{,}71$.
+  \item $F=\dfrac{9}{5}(30)+32=54+32=86\,^{\circ}$F.
+  \item \textbf{a)} $1200$ m; \textbf{b)} $2{,}5$ m; \textbf{c)} $0{,}01$ m.
+  \item $\rho=\dfrac{1{,}2}{0{,}0015}=800$ kg/m$^3$.
+  \item $\vec a+\vec b=(9,\; 7)$; $|\vec a+\vec b|=\sqrt{130}=\sqrt{130}\approx 11{,}4$.
+  \item $|\vec v|=9$; $\cos\alpha=\frac{4}{9}$, $\cos\beta=\frac{4}{9}$, $\cos\gamma=\frac{7}{9}$; $\dfrac{16+16+49}{81}=1$. \checkmark\quad Ángulos: $\alpha\approx 63{,}6^{\circ}$, $\beta\approx 63{,}6^{\circ}$, $\gamma\approx 38{,}9^{\circ}$. Vector unitario: $(\frac{4}{9},\; \frac{4}{9},\; \frac{7}{9})$.
+  \item $\ell=\dfrac{g\,T^2}{4\pi^2}=\dfrac{9{,}8\cdot 16}{39{,}48}\approx 3{,}97\approx 4{,}0$ m.
+  \item \textbf{a)} 2; \quad \textbf{b)} 2; \quad \textbf{c)} 4.
+  \item $5000$ m $=500\,000$ cm.
+  \item $x=12\cos 150^{\circ}=-6\sqrt{3}\approx -10{,}39$, $y=12\sen 150^{\circ}=6$; $P(-6\sqrt{3},\; 6)$.
+  \item $\vec a+\vec b=(-2,\; 6,\; 2)$; equilibrante $\vec c=(2,\; -6,\; -2)$.
+  \item $5t^2-40t+60=0\Rightarrow t^2-8t+12=0\Rightarrow(t-2)(t-6)=0$: $t=2$ s y $t=6$ s.
+\end{enumerate}
+
+
+\subsection*{Sesión 8}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item \textbf{a)} fundamental, m; \textbf{b)} derivada, kg/m$^3$; \textbf{c)} derivada, J; \textbf{d)} fundamental, K.
+  \item \textbf{a)} $6$ kg; \textbf{b)} $5400$ s; \textbf{c)} $3$ m.
+  \item $v_x=8\cos 225^{\circ}=-4\sqrt{2}\approx -5{,}66$ y $v_y=8\sen 225^{\circ}=-4\sqrt{2}\approx -5{,}66$; $\vec v=(-4\sqrt{2},\; -4\sqrt{2})$.
+  \item $|\vec v|=\sqrt{6^2+6^2+7^2}=\sqrt{121}=11$.
+  \item $h=\dfrac{A}{b}=\dfrac{54}{12}=4{,}5$ cm.
+  \item \textbf{a)} $3{,}2 \times 10^{-4}$; \textbf{b)} $5{,}5 \times 10^{7}$; \textbf{c)} $8 \times 10^{-8}$.
+  \item \textbf{a)} $63 \div 3{,}6 = 17{,}5$ m/s; \quad \textbf{b)} $40 \times 3{,}6 = 144$ km/h.
+  \item Cuadrante II, $\theta_{\text{ref}}=30^{\circ}$: $v_x=-6\sqrt{3}\approx -10{,}39$, $v_y=6$; $\vec v=(-6\sqrt{3},\; 6)$.
+  \item $\vec a+\vec b=(2,\; 8,\; -2)$; $|\vec a+\vec b|=\sqrt{72}=6\sqrt{2}\approx 8{,}49$.
+  \item $R_T=\dfrac{4\cdot 12}{16}=3\ \Omega$.
+  \item \textbf{a)} $300$ m; \textbf{b)} $5$ m; \textbf{c)} $0{,}45$ m.
+  \item $m=\rho V=0{,}8\cdot 250=200$ g.
+  \item $\vec a+\vec b=(4,\; 5)$; $|\vec a+\vec b|=\sqrt{41}=\sqrt{41}\approx 6{,}4$.
+  \item $|\vec v|=9$; $\cos\alpha=\frac{1}{3}$, $\cos\beta=\frac{2}{3}$, $\cos\gamma=\frac{2}{3}$; $\dfrac{9+36+36}{81}=1$. \checkmark\quad Ángulos: $\alpha\approx 70{,}5^{\circ}$, $\beta\approx 48{,}2^{\circ}$, $\gamma\approx 48{,}2^{\circ}$. Vector unitario: $(\frac{1}{3},\; \frac{2}{3},\; \frac{2}{3})$.
+  \item $v_0=\sqrt{v^2-2a\Delta x}=\sqrt{625-480}=\sqrt{145}\approx 12{,}04$ m/s.
+  \item \textbf{a)} 4; \quad \textbf{b)} 1; \quad \textbf{c)} 2.
+  \item $900\div 3{,}6=250$ m/s; en $60$ s recorre $15\,000$ m.
+  \item $r=\sqrt{x^2+y^2}=3\sqrt{2}$; $\theta=225^{\circ}$. $P(3\sqrt{2},\; 225^{\circ})$.
+  \item $\overrightarrow{AB}=(6,\; 6,\; -4)$; $|\overrightarrow{AB}|=\sqrt{88}=2\sqrt{22}\approx 9{,}38$.
+  \item $5t^2-45t+100=0\Rightarrow t^2-9t+20=0\Rightarrow(t-4)(t-5)=0$: $t=4$ s y $t=5$ s.
+\end{enumerate}
+
+
+\subsection*{Sesión 9}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item \textbf{a)} fundamental, s; \textbf{b)} derivada, m/s; \textbf{c)} derivada, W; \textbf{d)} derivada, Pa.
+  \item \textbf{a)} $1{,}5$ m; \textbf{b)} $3500$ kg; \textbf{c)} $2$ h.
+  \item $v_x=14\cos 30^{\circ}=7\sqrt{3}\approx 12{,}12$ y $v_y=14\sen 30^{\circ}=7$; $\vec v=(7\sqrt{3},\; 7)$.
+  \item $|\vec v|=\sqrt{3^2+6^2+6^2}=\sqrt{81}=9$.
+  \item $m=\rho\,V=2{,}7\cdot 30=81$ g.
+  \item \textbf{a)} $2{,}7 \times 10^{6}$; \textbf{b)} $9{,}5 \times 10^{-6}$; \textbf{c)} $6{,}4 \times 10^{5}$.
+  \item \textbf{a)} $90 \div 3{,}6 = 25$ m/s; \quad \textbf{b)} $5 \times 3{,}6 = 18$ km/h.
+  \item Cuadrante III, $\theta_{\text{ref}}=60^{\circ}$: $v_x=-9$, $v_y=-9\sqrt{3}\approx -15{,}59$; $\vec v=(-9,\; -9\sqrt{3})$.
+  \item $\vec a+\vec b=(5,\; -4,\; 8)$; $|\vec a+\vec b|=\sqrt{105}=\sqrt{105}\approx 10{,}25$.
+  \item $P=\dfrac{nRT}{V}=\dfrac{2\cdot 0{,}082\cdot 300}{8}=6{,}15$ atm.
+  \item \textbf{a)} $6000$ m; \textbf{b)} $0{,}08$ m; \textbf{c)} $0{,}25$ m.
+  \item $V=\dfrac{m}{\rho}=\dfrac{1500}{2{,}5}=600$ cm$^3$.
+  \item $\vec a+\vec b=(3,\; 6)$; $|\vec a+\vec b|=\sqrt{45}=3\sqrt{5}\approx 6{,}71$.
+  \item $|\vec v|=15$; $\cos\alpha=\frac{2}{15}$, $\cos\beta=\frac{2}{3}$, $\cos\gamma=\frac{11}{15}$; $\dfrac{4+100+121}{225}=1$. \checkmark\quad Ángulos: $\alpha\approx 82{,}3^{\circ}$, $\beta\approx 48{,}2^{\circ}$, $\gamma\approx 42{,}8^{\circ}$. Vector unitario: $(\frac{2}{15},\; \frac{2}{3},\; \frac{11}{15})$.
+  \item $d_o=\dfrac{f\,d_i}{d_i-f}=\dfrac{288}{12}=24$ cm.
+  \item \textbf{a)} 4; \quad \textbf{b)} 2; \quad \textbf{c)} 2.
+  \item $45\cdot 60=2700$ s $=0{,}75$ h.
+  \item $r=\sqrt{x^2+y^2}=25$; $\theta=73{,}74^{\circ}$. $P(25,\; 73{,}74^{\circ})$.
+  \item $\vec r=(5,\; -6,\; 14)$; $|\vec r|=\sqrt{257}\approx 16{,}03$.
+  \item $5t^2-35t+60=0\Rightarrow t^2-7t+12=0\Rightarrow(t-3)(t-4)=0$: $t=3$ s y $t=4$ s.
+\end{enumerate}
+
+
+\subsection*{Sesión 10 — Simulacro}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item \textbf{a)} fundamental, kg; \textbf{b)} derivada, N; \textbf{c)} derivada, J; \textbf{d)} derivada, m/s$^2$.
+  \item \textbf{a)} $4$ m; \textbf{b)} $135$ min; \textbf{c)} $0{,}5$ kg.
+  \item $v_x=16\cos 300^{\circ}=8$ y $v_y=16\sen 300^{\circ}=-8\sqrt{3}\approx -13{,}86$; $\vec v=(8,\; -8\sqrt{3})$.
+  \item $|\vec v|=\sqrt{4^2+4^2+8^2}=\sqrt{96}=4\sqrt{6}\approx 9{,}8$.
+  \item $\ell=\dfrac{P-2w}{2}=\dfrac{50-26}{2}=12$ m.
+  \item \textbf{a)} $5 \times 10^{-7}$; \textbf{b)} $3{,}9 \times 10^{10}$; \textbf{c)} $7{,}5 \times 10^{-4}$.
+  \item \textbf{a)} $27 \div 3{,}6 = 7{,}5$ m/s; \quad \textbf{b)} $35 \times 3{,}6 = 126$ km/h.
+  \item Cuadrante II, $\theta_{\text{ref}}=45^{\circ}$: $v_x=-20\sqrt{2}\approx -28{,}28$, $v_y=20\sqrt{2}\approx 28{,}28$; $\vec v=(-20\sqrt{2},\; 20\sqrt{2})$.
+  \item $\vec a+\vec b=(-2,\; 6,\; 8)$; $|\vec a+\vec b|=\sqrt{104}=2\sqrt{26}\approx 10{,}2$.
+  \item $t=\dfrac{x_f-x_0}{v}=\dfrac{160}{8}=20$ s.
+  \item \textbf{a)} $900$ m; \textbf{b)} $3{,}5$ m; \textbf{c)} $0{,}01$ m.
+  \item $m=900$ g; $\rho=\dfrac{900}{1200}=0{,}75$ g/cm$^3$ $=750$ kg/m$^3$.
+  \item $\vec a+\vec b=(9,\; 4)$; $|\vec a+\vec b|=\sqrt{97}=\sqrt{97}\approx 9{,}85$.
+  \item $|\vec v|=19$; $\cos\alpha=\frac{6}{19}$, $\cos\beta=\frac{10}{19}$, $\cos\gamma=\frac{15}{19}$; $\dfrac{36+100+225}{361}=1$. \checkmark\quad Ángulos: $\alpha\approx 71{,}6^{\circ}$, $\beta\approx 58{,}2^{\circ}$, $\gamma\approx 37{,}9^{\circ}$. Vector unitario: $(\frac{6}{19},\; \frac{10}{19},\; \frac{15}{19})$.
+  \item $a=\dfrac{2(60-20)}{16}=5$ m/s$^2$.
+  \item \textbf{a)} 3; \quad \textbf{b)} 2; \quad \textbf{c)} 4.
+  \item $2{,}25\cdot 60=135$ min $=8100$ s.
+  \item $x=16\cos 210^{\circ}=-8\sqrt{3}\approx -13{,}86$, $y=16\sen 210^{\circ}=-8$; $P(-8\sqrt{3},\; -8)$.
+  \item $\vec a+\vec b+\vec c=(2,\; 2,\; 5)$; equilibrante $(-2,\; -2,\; -5)$.
+  \item $5t^2-30t+45=0\Rightarrow t^2-6t+9=0\Rightarrow(t-3)^2=0$: $t=3$ s (solución única: es la altura máxima).
+\end{enumerate}
+
+\vspace{10pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{¡Mucho éxito!} Si completaste las diez sesiones, trabajaste los cinco bloques de la Guía 3 ochenta veces cada uno: SI y medición, transformación de unidades, vectores en el plano, vectores en el espacio y despeje de fórmulas. Repite cualquiera de las sesiones cronometrándote y revisa solo los errores: ahí está tu mayor mejora.
+\end{cuadroinfo}
+
+\fi
+% ============================================================
+
+\end{document}

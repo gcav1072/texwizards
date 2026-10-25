@@ -1,0 +1,359 @@
+% ============================================================
+%  mathwizards-carrusel-moderno.sty
+%  Carruseles 1:1 (1080 x 1080 px) — Mathwizards STEM
+%  Edición «editorial moderna»: fondo crema, tipografía pesada,
+%  tarjetas planas, acentos por lámina y barra de progreso.
+%
+%  Requisitos:
+%    * XeLaTeX  →  latexmk -xelatex carrusel.tex
+%    * Fuentes Cabin (cuerpo) y Nexa Heavy / Extra Light (títulos)
+%    * mathwizards-palette.sty en TEXINPUTS
+%
+%  Uso mínimo:
+%    \documentclass[12pt]{article}
+%    \usepackage{mathwizards-carrusel-moderno}
+%    \mwcartotal{10}
+%    \begin{document}
+%      \mwmodportada{Kicker}{Título}{Subtítulo}
+%      \begin{mwmodlamina}[mwmagenta]{Etiqueta}{Título de lámina}
+%        ... contenido ...
+%      \end{mwmodlamina}
+%      \mwmodfin{Kicker}{Mensaje}{CTA}
+%    \end{document}
+%
+%  La lámina de contenido acepta un color de acento opcional
+%  (por defecto mwprimario). Ese color se guarda en `mwacc` y lo
+%  usan todas las cajas y marcas de la lámina.
+% ============================================================
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mathwizards-carrusel-moderno}[2026/10/24 v1.0 Carruseles 1:1 Mathwizards]
+
+% ── Paquetes ─────────────────────────────────────────────────
+\RequirePackage{fontspec}
+\RequirePackage[spanish,es-nodecimaldot]{babel}
+\AtBeginDocument{\shorthandoff{"}}
+\RequirePackage{icomma}
+\RequirePackage{amsmath, amssymb}
+\RequirePackage{geometry}
+\RequirePackage{graphicx}
+\RequirePackage{xcolor}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{skins}
+\RequirePackage{tikz}
+\usetikzlibrary{calc, positioning, arrows.meta, shapes.geometric, babel}
+\RequirePackage{mathwizards-palette}
+
+% ── Geometría 1:1 (10.8 x 10.8 cm = 1080 x 1080 px) ─────────
+\geometry{paperwidth=10.8cm, paperheight=10.8cm, margin=0cm}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\emergencystretch}{1.5em}
+\raggedbottom
+% Sin división de palabras: en una lámina cuadrada los guiones
+% sueltos ("rec-" / "ta") se ven como errores de diseño.
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+
+% ── Fuentes ──────────────────────────────────────────────────
+\setmainfont{Cabin}[
+  Extension      = .otf,
+  UprightFont    = Cabin-Regular,
+  BoldFont       = Cabin-Bold,
+  ItalicFont     = Cabin-Italic,
+  BoldItalicFont = Cabin-BoldItalic
+]
+\newfontfamily\nxheav{Nexa Heavy}[NFSSFamily=nexaheavy]
+\newfontfamily\nxlight{Nexa Extra Light}[NFSSFamily=nexaextralight]
+\newfontfamily\nxheavls{Nexa Heavy}[NFSSFamily=nexaheavyls, LetterSpace=9]
+
+% ── Colores propios de esta edición ──────────────────────────
+\definecolor{mwink}{HTML}{16141D}        % tinta (casi negro)
+\definecolor{mwcrema}{HTML}{FBF8F3}      % fondo de página
+\definecolor{mwverde}{HTML}{17A673}      % confirmaciones
+\colorlet{mwacc}{mwprimario}             % acento de la lámina actual
+
+\pagecolor{mwcrema}
+\AtBeginDocument{\color{mwink}}
+
+% ── Logo ─────────────────────────────────────────────────────
+\graphicspath{
+  {assets/img/}{../assets/img/}{../../assets/img/}
+  {../../../assets/img/}{../../../../assets/img/}
+}
+
+% ── Datos del carrusel ───────────────────────────────────────
+\newcounter{mwcarlamina}
+\newcommand{\mwcartotalN}{10}
+\newcommand{\mwcartotal}[1]{\renewcommand{\mwcartotalN}{#1}}
+\newcommand{\mwcarhandle}{@mathwizards.ve}
+\newcommand{\mwcarnumero}{%
+  \ifnum\value{mwcarlamina}<10 0\fi\themwcarlamina}
+\AtBeginDocument{\setcounter{mwcarlamina}{0}}
+
+% ── Tamaños tipográficos ─────────────────────────────────────
+\newcommand{\mwbody}{\fontsize{9.6}{12.4}\selectfont}
+\newcommand{\mwsmall}{\fontsize{8.2}{10.4}\selectfont}
+\newcommand{\mwlabel}{\nxheavls\fontsize{6.6}{7.2}\selectfont}
+
+% ── Retícula de puntos (textura de fondo) ────────────────────
+\newcommand{\mwmodpuntos}{%
+  \begin{tikzpicture}[remember picture, overlay]
+    \foreach \x in {0.5,1.5,...,10.5}{%
+      \foreach \y in {0.6,1.6,...,10.4}{%
+        \fill[mwink!6]
+          ([xshift=\x cm,yshift=\y cm]current page.south west)
+          circle (0.33pt);
+      }%
+    }%
+  \end{tikzpicture}%
+}
+
+% ── Cabecera de lámina: pastilla + contador + título ────────
+\newcommand{\mwmodcabecera}[3]{% #1 etiqueta, #2 color, #3 título
+  \begin{tikzpicture}[remember picture, overlay]
+    % pastilla con el tema
+    \node[anchor=north west, fill=#2, rounded corners=1.7mm,
+          inner xsep=7pt, inner ysep=3.4pt, text=white,
+          font=\nxheavls\fontsize{6.4}{6.4}\selectfont, outer sep=0pt]
+      at ([xshift=0.75cm,yshift=-0.70cm]current page.north west)
+      {\MakeUppercase{#1}};
+    % contador n/N
+    \node[anchor=north east, text=mwink!40,
+          font=\nxheav\fontsize{7.6}{7.6}\selectfont, inner sep=0pt]
+      at ([xshift=-0.75cm,yshift=-0.78cm]current page.north east)
+      {\mwcarnumero/\mwcartotalN};
+    % barra de acento sobre el título
+    \fill[#2, rounded corners=0.6pt]
+      ([xshift=0.75cm,yshift=-1.12cm]current page.north west)
+      rectangle ++(0.55cm,-0.10cm);
+    % título de la lámina
+    \node[anchor=north west, text width=9.3cm, align=left,
+          inner sep=0pt, outer sep=0pt, text=mwink,
+          font=\nxheav\fontsize{19.5}{22}\selectfont]
+      at ([xshift=0.75cm,yshift=-1.40cm]current page.north west) {#3};
+  \end{tikzpicture}%
+}
+
+% ── Pie: filete, handle y barra de progreso ──────────────────
+\newcommand{\mwmodpie}[1]{%
+  \begin{tikzpicture}[remember picture, overlay]
+    \draw[mwink!12, line width=0.5pt]
+      ([xshift=0.75cm,yshift=1.12cm]current page.south west) --
+      ([xshift=-0.75cm,yshift=1.12cm]current page.south east);
+    \node[anchor=south west, text=mwink!45,
+          font=\fontsize{6.9}{6.9}\selectfont, inner sep=0pt]
+      at ([xshift=0.75cm,yshift=0.62cm]current page.south west) {\mwcarhandle};
+    % segmentos (todos) ...
+    \foreach \i in {1,...,\mwcartotalN}{%
+      \pgfmathsetmacro{\xxseg}{-0.75-(\mwcartotalN-\i)*0.23}%
+      \fill[mwink!15]
+        ([xshift=\xxseg cm,yshift=0.64cm]current page.south east)
+        rectangle ++(-0.15cm,0.055cm);
+    }%
+    % ... y el actual en color de acento
+    \pgfmathsetmacro{\xxcur}{-0.75-(\mwcartotalN-\themwcarlamina)*0.23}%
+    \fill[#1]
+      ([xshift=\xxcur cm,yshift=0.64cm]current page.south east)
+      rectangle ++(-0.15cm,0.055cm);
+  \end{tikzpicture}%
+}
+
+% ── Entorno de lámina de contenido ───────────────────────────
+% \begin{mwmodlamina}[color]{Etiqueta}{Título}
+\newenvironment{mwmodlamina}[3][mwprimario]{%
+  \clearpage
+  \refstepcounter{mwcarlamina}%
+  \colorlet{mwacc}{#1}%
+  \noindent\vbox to 0pt{%
+    \vss
+    \mwmodpuntos
+    \mwmodcabecera{#2}{#1}{#3}%
+    \mwmodpie{#1}%
+    \vss
+  }\par
+  \vspace*{3.02cm}%
+  \noindent\hspace*{0.75cm}%
+  \begin{minipage}[t][6.15cm][t]{9.3cm}%
+    \mwbody\raggedright
+}{%
+  \end{minipage}%
+}
+
+% ── Portada (oscura) ─────────────────────────────────────────
+\newcommand{\mwmodportada}[3]{%
+  \clearpage
+  \refstepcounter{mwcarlamina}%
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[mwink] (current page.south west) rectangle (current page.north east);
+    % aros decorativos
+    \draw[mwprimario!38, line width=1pt]
+      ([xshift=9.5cm,yshift=9.6cm]current page.south west) circle (2.35cm);
+    \draw[mwprimario!20, line width=0.7pt]
+      ([xshift=9.5cm,yshift=9.6cm]current page.south west) circle (3.15cm);
+    % logo
+    \node[anchor=north west, inner sep=0pt]
+      at ([xshift=0.8cm,yshift=-0.72cm]current page.north west)
+      {\includegraphics[height=0.86cm]{l_white.png}};
+    % kicker
+    \node[anchor=west, text=mwprimario,
+          font=\nxheavls\fontsize{7.4}{7.4}\selectfont]
+      at ([xshift=0.8cm,yshift=6.5cm]current page.south west)
+      {\MakeUppercase{#1}};
+    % barra
+    \fill[mwprimario, rounded corners=0.6pt]
+      ([xshift=0.8cm,yshift=6.1cm]current page.south west)
+      rectangle ++(0.75cm,0.10cm);
+    % título
+    \node[anchor=north west, text width=8.5cm, align=left, inner sep=0pt,
+          text=white, font=\nxheav\fontsize{27}{31}\selectfont]
+      at ([xshift=0.8cm,yshift=5.82cm]current page.south west) {#2};
+    % subtítulo
+    \node[anchor=north west, text width=7.9cm, align=left, inner sep=0pt,
+          text=white!65, font=\fontsize{10}{13}\selectfont]
+      at ([xshift=0.8cm,yshift=3.18cm]current page.south west) {#3};
+    % fórmula fantasma (arriba de la firma)
+    \node[anchor=west, text=white!10, font=\fontsize{38}{38}\selectfont]
+      at ([xshift=0.8cm,yshift=1.28cm]current page.south west) {$y=mx+b$};
+    % pie
+    \node[anchor=south west, text=white!50,
+          font=\fontsize{7}{7}\selectfont, inner sep=0pt]
+      at ([xshift=0.8cm,yshift=0.58cm]current page.south west) {\mwcarhandle};
+    \node[anchor=south east, text=white!60,
+          font=\nxheavls\fontsize{6.6}{6.6}\selectfont, inner sep=0pt]
+      at ([xshift=-0.8cm,yshift=0.58cm]current page.south east)
+      {DESLIZA $\rightarrow$};
+  \end{tikzpicture}%
+  \null
+}
+
+% ── Cierre (oscuro) ──────────────────────────────────────────
+\newcommand{\mwmodfin}[3]{%
+  \clearpage
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[mwink] (current page.south west) rectangle (current page.north east);
+    \draw[mwprimario!35, line width=1pt]
+      ([xshift=10.7cm,yshift=9.4cm]current page.south west) circle (1.7cm);
+    \draw[mwprimario!18, line width=0.7pt]
+      ([xshift=10.7cm,yshift=9.4cm]current page.south west) circle (2.4cm);
+    % logo
+    \node[anchor=north west, inner sep=0pt]
+      at ([xshift=0.8cm,yshift=-0.72cm]current page.north west)
+      {\includegraphics[height=0.8cm]{l_white.png}};
+    % kicker
+    \node[anchor=north, text=mwprimario,
+          font=\nxheavls\fontsize{7.2}{7.2}\selectfont]
+      at ([yshift=-1.15cm]current page.north) {\MakeUppercase{#1}};
+    % mensaje
+    \node[anchor=north, text width=8.4cm, align=center,
+          text=white, font=\nxheav\fontsize{22}{26}\selectfont]
+      at ([yshift=-2.3cm]current page.north)
+      {\hyphenpenalty=10000\exhyphenpenalty=10000 #2};
+    % CTA
+    \node[anchor=north, text width=7.9cm, align=center, fill=mwprimario,
+          rounded corners=3mm, inner xsep=10pt, inner ysep=9pt,
+          text=white, font=\nxheav\fontsize{9.4}{11.6}\selectfont]
+      at ([yshift=-6.1cm]current page.north)
+      {\hyphenpenalty=10000\exhyphenpenalty=10000 #3};
+    % pie
+    \node[anchor=south, text=white!50,
+          font=\fontsize{7.4}{7.4}\selectfont]
+      at ([yshift=0.62cm]current page.south) {\mwcarhandle};
+  \end{tikzpicture}%
+  \null
+}
+
+% ── Cajas (tcolorbox planas) ─────────────────────────────────
+% Tarjeta genérica: usa el acento de la lámina (mwacc).
+\newtcolorbox{mwcaja}{%
+  enhanced, colback=mwacc!7, colframe=mwacc!7,
+  boxrule=0pt, arc=2.4mm,
+  borderline west={2.6pt}{0pt}{mwacc},
+  left=8.5pt, right=7pt, top=6pt, bottom=6pt,
+  before skip=3.5pt, after skip=3.5pt
+}
+
+% Tarjeta neutra.
+\newtcolorbox{mwcajagris}{%
+  enhanced, colback=mwgrisclaro, colframe=mwgrisclaro,
+  boxrule=0pt, arc=2.4mm,
+  borderline west={2.6pt}{0pt}{mwink!25},
+  left=8.5pt, right=7pt, top=6pt, bottom=6pt,
+  before skip=3.5pt, after skip=3.5pt
+}
+
+% Tarjeta de fórmula: blanca, con borde fino del acento.
+\newtcolorbox{mwcajaformula}{%
+  enhanced, colback=white, colframe=mwacc!28,
+  boxrule=0.6pt, arc=3mm, halign=center,
+  left=6pt, right=6pt, top=7pt, bottom=7pt,
+  before skip=4pt, after skip=4pt
+}
+
+% Variantes semánticas (color fijo).
+\newtcolorbox{mwcajaalerta}{%
+  enhanced, colback=mwrojonaranja!8, colframe=mwrojonaranja!8,
+  boxrule=0pt, arc=2.4mm,
+  borderline west={2.6pt}{0pt}{mwrojonaranja},
+  left=8.5pt, right=7pt, top=6pt, bottom=6pt,
+  before skip=3.5pt, after skip=3.5pt
+}
+\newtcolorbox{mwcajaok}{%
+  enhanced, colback=mwverde!9, colframe=mwverde!9,
+  boxrule=0pt, arc=2.4mm,
+  borderline west={2.6pt}{0pt}{mwverde},
+  left=8.5pt, right=7pt, top=6pt, bottom=6pt,
+  before skip=3.5pt, after skip=3.5pt
+}
+\newtcolorbox{mwcajapaso}{%
+  enhanced, colback=mwnaranja!8, colframe=mwnaranja!8,
+  boxrule=0pt, arc=2.4mm,
+  borderline west={2.6pt}{0pt}{mwnaranja},
+  left=8.5pt, right=7pt, top=6pt, bottom=6pt,
+  before skip=3.5pt, after skip=3.5pt
+}
+\newtcolorbox{mwcajadato}{%
+  enhanced, colback=mwvioleta!8, colframe=mwvioleta!8,
+  boxrule=0pt, arc=2.4mm,
+  borderline west={2.6pt}{0pt}{mwvioleta},
+  left=8.5pt, right=7pt, top=6pt, bottom=6pt,
+  before skip=3.5pt, after skip=3.5pt
+}
+
+% ── Marcas y utilidades ──────────────────────────────────────
+\newcommand{\mwcbien}{{\color{mwverde}\textbf{\checkmark}}}
+\newcommand{\mwcmal}{{\color{mwrojonaranja}\textbf{\texttimes}}}
+
+% Etiqueta pequeña en mayúsculas (dentro de tarjetas).
+\newcommand{\mwctitulo}[1]{%
+  {\mwlabel\color{mwacc}\MakeUppercase{#1}}\par\vspace{2pt}}
+\newcommand{\mwctituloc}[2]{%
+  {\mwlabel\color{#1}\MakeUppercase{#2}}\par\vspace{2pt}}
+
+% Píldora en línea.
+\newcommand{\mwcpill}[2]{%
+  {\tikz[baseline=(p.base)]{%
+    \node[fill=#1, text=white, rounded corners=1.2mm,
+          inner xsep=5pt, inner ysep=2.2pt,
+          font=\nxheavls\fontsize{6.2}{6.2}\selectfont, outer sep=0pt]
+      (p) {\MakeUppercase{#2}};}}}
+
+% Número en círculo.
+\newcommand{\mwcnum}[2]{%
+  {\tikz[baseline=(n.base)]{%
+    \node[circle, fill=#1, text=white, minimum size=0.42cm,
+          inner sep=0pt, font=\nxheav\fontsize{7.4}{7.4}\selectfont]
+      (n) {#2};}}}
+
+% Fórmula destacada. #1 = escala (opcional), #2 = matemática.
+\newcommand{\mwcformula}[2][1.18]{%
+  \begin{mwcajaformula}%
+    \scalebox{#1}{$\displaystyle #2$}%
+  \end{mwcajaformula}%
+}
+
+% Frase grande centrada (idea clave).
+\newcommand{\mwcidea}[1]{%
+  {\centering\nxheav\fontsize{11.5}{14}\selectfont\color{mwacc}#1\par}}
+
+\endinput

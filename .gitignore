@@ -29,3 +29,6 @@ __pycache__/
 Thumbs.db
 #Cosas personales
 tex_files/CV
+_mwt
+.mws_tmp
+.vscode

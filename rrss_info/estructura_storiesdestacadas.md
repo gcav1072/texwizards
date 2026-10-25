@@ -14,8 +14,6 @@ Otros Colores:
 - #000000
 - #FFFFFF
 ---
-Comentario al GD: (ignora los CTAs de stickers y encuestas, esos los colocaré yo manualmente, deja vacíos los caudros para poner las capturas en las secciones de testimonios/casos de éxito)
-
 ## 🎨 Guía Rápida de Identidad Visual para las Portadas (Highlights)
 
 * **Estilo:** Fondos acordes a la paleta de colores de la marca

@@ -1,0 +1,278 @@
+% ============================================================
+%  La ecuación de la recta — carrusel 1:1
+%  Estilo: mathwizards-carrusel-moderno
+%  Compilar:  latexmk -xelatex ecuacion_recta.tex
+% ============================================================
+\documentclass[12pt]{article}
+\usepackage{mathwizards-carrusel-moderno}
+\mwcartotal{10}
+
+% ── Mini-gráficas reutilizables ──────────────────────────────
+% Ejes cartesianos compactos (x,y en cm; escala 0.72 cm/unidad)
+\newcommand{\ejesbase}{%
+  \draw[mwink!25, line width=0.5pt, -{Stealth[length=1.4mm]}]
+    (0,0) -- (4.55,0);
+  \draw[mwink!25, line width=0.5pt, -{Stealth[length=1.4mm]}]
+    (0,0) -- (0,4.35);
+  \node[anchor=north east, font=\fontsize{6}{6}\selectfont, text=mwink!45]
+    at (4.55,0) {$x$};
+  \node[anchor=north east, font=\fontsize{6}{6}\selectfont, text=mwink!45]
+    at (0,4.35) {$y$};
+}
+
+\begin{document}
+
+% ── 1. Portada ───────────────────────────────────────────────
+\mwmodportada
+  {Álgebra · Funciones lineales}
+  {La ecuación de la recta}
+  {Qué significa, cómo se escribe y cómo se usa para resolver
+   problemas del mundo real.}
+
+% ── 2. Anatomía de la ecuación ───────────────────────────────
+\begin{mwmodlamina}[mwprimario]{La fórmula}{Una recta, tres letras}
+\begin{mwcajaformula}
+  \scalebox{1.12}{$\displaystyle
+    y = \underbrace{m}_{\text{\fontsize{7}{8}\selectfont pendiente}}\;x
+      + \underbrace{b}_{\text{\fontsize{7}{8}\selectfont intercepto}}$}
+\end{mwcajaformula}
+
+\begin{mwcaja}
+  \mwctitulo{Qué hace cada letra}
+  \noindent
+  \begin{minipage}[t]{4.1cm}
+    {\nxheav\fontsize{11}{11}\selectfont\color{mwprimario}$m$}\quad
+    {\mwsmall mide la inclinación: cuánto cambia $y$ por cada
+    unidad de $x$.}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{4.1cm}
+    {\nxheav\fontsize{11}{11}\selectfont\color{mwprimario}$b$}\quad
+    {\mwsmall es el punto de partida: el valor de $y$ cuando
+    $x=0$.}
+  \end{minipage}
+\end{mwcaja}
+
+\begin{mwcajagris}
+  {\mwsmall $x$ e $y$ son las coordenadas de \emph{cualquier}
+  punto de la recta: si un par las cumple, el punto está en la recta.}
+\end{mwcajagris}
+\end{mwmodlamina}
+
+% ── 3. La pendiente ──────────────────────────────────────────
+\begin{mwmodlamina}[mwmagenta]{Pendiente}{La pendiente: cuánto sube}
+\noindent
+\begin{minipage}[t]{4.05cm}
+  \vspace*{0pt}
+  \begin{tikzpicture}[x=0.78cm,y=0.78cm]
+    \ejesbase
+    \draw[mwmagenta, line width=1.6pt] (0.35,0.55) -- (3.85,3.6);
+    \draw[mwmagenta!60, dashed, line width=0.7pt]
+      (1.0,1.15) -- (3.2,1.15) -- (3.2,3.05);
+    \node[font=\fontsize{6.4}{6.4}\selectfont, text=mwmagenta]
+      at (2.1,0.8) {$\Delta x$};
+    \node[font=\fontsize{6.4}{6.4}\selectfont, text=mwmagenta, rotate=90]
+      at (3.4,2.1) {$\Delta y$};
+    \fill[mwmagenta] (1.0,1.15) circle (1.4pt);
+    \fill[mwmagenta] (3.2,3.05) circle (1.4pt);
+  \end{tikzpicture}
+  \par\vspace{2pt}
+  {\mwsmall\color{mwink!55}
+   $\Delta y$ sube \;·\; $\Delta x$ avanza}
+\end{minipage}\hfill
+\begin{minipage}[t]{4.7cm}
+  \vspace*{0pt}
+  \begin{mwcaja}
+    \mwctitulo{Cómo se calcula}
+    \centering
+    $m=\dfrac{\Delta y}{\Delta x}
+      =\dfrac{y_2-y_1}{x_2-x_1}$
+  \end{mwcaja}
+  \begin{mwcaja}
+    \mwctitulo{Lectura rápida}
+    {\mwsmall
+    $m>0$: la recta sube \quad\newline
+    $m<0$: la recta baja \quad\newline
+    $m=0$: la recta es horizontal}
+  \end{mwcaja}
+\end{minipage}
+
+\vspace{2pt}
+\begin{mwcajadato}
+  {\mwsmall La pendiente es una \textbf{razón de cambio}: por cada
+  unidad que avanzas, la recta sube o baja $m$ unidades.}
+\end{mwcajadato}
+\end{mwmodlamina}
+
+% ── 4. El intercepto ─────────────────────────────────────────
+\begin{mwmodlamina}[mwnaranja]{Intercepto}{El punto de partida: $b$}
+\noindent
+\begin{minipage}[t]{4.7cm}
+  \vspace*{0pt}
+  \begin{mwcaja}
+    \mwctitulo{Qué es}
+    {\mwsmall Es el valor de $y$ cuando $x=0$. La recta corta al
+    eje $y$ en el punto $(0,b)$.}
+  \end{mwcaja}
+  \begin{mwcaja}
+    \mwctitulo{Ejemplo}
+    {\mwsmall En $y=3x+2$, la recta corta al eje $y$ en
+    $(0,2)$.}
+  \end{mwcaja}
+  \begin{mwcajaalerta}
+    {\mwsmall $b$ \textbf{no} es la raíz: la raíz es donde
+    $y=0$, no donde $x=0$.}
+  \end{mwcajaalerta}
+\end{minipage}\hfill
+\begin{minipage}[t]{4.05cm}
+  \vspace*{0pt}
+  \begin{mwcajaformula}
+    \begin{tikzpicture}[x=0.64cm,y=0.64cm]
+      \ejesbase
+      \draw[mwnaranja, line width=1.6pt] (0,1.35) -- (3.9,3.9);
+      \fill[mwnaranja] (0,1.35) circle (1.5pt);
+      \draw[mwnaranja!55, dashed, line width=0.7pt] (0,1.35) -- (0.95,1.35);
+      \node[anchor=west, font=\fontsize{6.4}{6.4}\selectfont, text=mwnaranja]
+        at (0.08,1.05) {$(0,b)$};
+    \end{tikzpicture}
+  \end{mwcajaformula}
+  \par\vspace{1pt}
+  {\mwsmall\color{mwink!55}Corta al eje $y$ en $(0,b)$.}
+\end{minipage}
+\end{mwmodlamina}
+
+% ── 5. Tres formas ───────────────────────────────────────────
+\begin{mwmodlamina}[mwvioleta]{Formas}{Tres formas, una misma recta}
+\begin{mwcaja}
+  \mwctitulo{Elige según los datos que tengas}
+  \mwcpill{mwvioleta}{Punto-pendiente}\quad
+    $y-y_1=m(x-x_1)$\\[6pt]
+  \mwcpill{mwprimario}{Explícita}\quad
+    $y=mx+b$\\[6pt]
+  \mwcpill{mwmagenta}{General}\quad
+    $Ax+By+C=0$
+\end{mwcaja}
+
+\begin{mwcajapaso}
+  {\mwsmall
+  \textbf{Dos puntos} $\rightarrow$ calcula $m$ y usa
+  punto-pendiente.\newline
+  \textbf{Pendiente y corte} $\rightarrow$ escribe directo
+  $y=mx+b$.\newline
+  \textbf{Datos mezclados} $\rightarrow$ despeja $y$ y compara.}
+\end{mwcajapaso}
+
+\begin{mwcajagris}
+  {\mwsmall Las tres describen \emph{la misma} recta: cambia la
+  forma, no la gráfica.}
+\end{mwcajagris}
+\end{mwmodlamina}
+
+% ── 6. Usos ──────────────────────────────────────────────────
+\begin{mwmodlamina}[mwnaranja]{Aplicaciones}{¿Para qué sirve una recta?}
+\begin{mwcaja}
+  \mwcnum{mwnaranja}{1}\quad
+  \textbf{Modelar costos.}\quad
+  {\mwsmall $C(x)=(\text{tasa})\,x+(\text{fijo})$}\\[7pt]
+  \mwcnum{mwnaranja}{2}\quad
+  \textbf{Describir cambios.}\quad
+  {\mwsmall la pendiente es la velocidad, la tasa o el ritmo.}\\[7pt]
+  \mwcnum{mwnaranja}{3}\quad
+  \textbf{Predecir.}\quad
+  {\mwsmall estima valores que no mediste, dentro del modelo.}
+\end{mwcaja}
+
+\begin{mwcaja}
+  \mwctitulo{La idea de fondo}
+  {\mwsmall Si algo cambia \textbf{a tasa constante}, hay una
+  recta detrás. Y si hay una recta, puedes calcular, comparar
+  y predecir.}
+\end{mwcaja}
+
+\begin{mwcajaformula}
+  \scalebox{0.95}{$\displaystyle
+    \text{cambio total}=m\cdot(\text{cambio en }x)$}
+\end{mwcajaformula}
+\end{mwmodlamina}
+
+% ── 7. Ejemplo: planteamiento ────────────────────────────────
+\begin{mwmodlamina}[mwprimario]{Ejemplo real}{El taxi: armar el modelo}
+\begin{mwcajapaso}
+  {\mwsmall
+  Un taxi cobra \textbf{\$1.500} de bajada de bandera y
+  \textbf{\$600} por cada kilómetro recorrido.}
+\end{mwcajapaso}
+
+\begin{mwcaja}
+  \mwctitulo{Traduce cada dato}
+  {\mwsmall
+  Variable $x$: kilómetros recorridos.\\[3pt]
+  Costo fijo $b$: \$1.500 (se paga aunque $x=0$).\\[3pt]
+  Tasa $m$: \$600 por km.}
+\end{mwcaja}
+
+\begin{mwcajaformula}
+  \scalebox{1.1}{$\displaystyle C(x)=600x+1\,500$}
+\end{mwcajaformula}
+
+\begin{mwcajaalerta}
+  {\mwsmall \textbf{Pregunta:} ¿cuánto cuesta un viaje de
+  \textbf{8 km}?}
+\end{mwcajaalerta}
+\end{mwmodlamina}
+
+% ── 8. Ejemplo: resolución ───────────────────────────────────
+\begin{mwmodlamina}[mwmagenta]{Ejemplo real}{El taxi: paso a paso}
+\begin{mwcajapaso}
+  \mwctitulo{Sustituye $x=8$}
+  $C(8)=600\,(8)+1\,500$\\[3pt]
+  $C(8)=4\,800+1\,500$\\[3pt]
+  $C(8)=6\,300$
+\end{mwcajapaso}
+
+\begin{mwcajaok}
+  \mwctitulo{Respuesta}
+  {\nxheav\fontsize{12}{14}\selectfont
+  Un viaje de 8 km cuesta \textbf{\$6.300}.}
+\end{mwcajaok}
+
+\begin{mwcaja}
+  \mwctitulo{Cómo leer el resultado}
+  {\mwsmall La pendiente $m=600$ dice que \emph{cada kilómetro
+  extra} suma \$600. El intercepto $b=1\,500$ es lo que pagas
+  incluso antes de avanzar.}
+\end{mwcaja}
+\end{mwmodlamina}
+
+% ── 9. Errores comunes ───────────────────────────────────────
+\begin{mwmodlamina}[mwrojonaranja]{Ojo con esto}{3 errores que cuestan puntos}
+\begin{mwcajaalerta}
+  {\textbf{1. Invertir la pendiente.}\quad
+  $m=\dfrac{\Delta x}{\Delta y}$ \;\mwcmal\\[2pt]
+  {\mwsmall Correcto: } $m=\dfrac{\Delta y}{\Delta x}$
+  \;\mwcbien}
+\end{mwcajaalerta}
+
+\begin{mwcajaalerta}
+  {\textbf{2. Confundir $b$ con la raíz.}\quad
+  \mwcmal\\[2pt]
+  {\mwsmall $b$ es el corte en $y$; la raíz es el corte en $x$
+  (donde $y=0$).}}
+\end{mwcajaalerta}
+
+\begin{mwcajaalerta}
+  {\textbf{3. Restar en distinto orden.}\quad
+  $\dfrac{y_2-y_1}{x_1-x_2}$ \;\mwcmal\\[2pt]
+  {\mwsmall Arriba y abajo, \emph{el mismo} orden: }
+  $\dfrac{y_2-y_1}{x_2-x_1}$ \;\mwcbien}
+\end{mwcajaalerta}
+\end{mwmodlamina}
+
+% ── 10. Cierre ───────────────────────────────────────────────
+\mwmodfin
+  {Para llevar}
+  {Una recta es la forma más simple\\
+   de describir cómo cambia algo.}
+  {Guárdalo y practica: elige dos datos\\
+   de tu día y busca su recta.}
+
+\end{document}

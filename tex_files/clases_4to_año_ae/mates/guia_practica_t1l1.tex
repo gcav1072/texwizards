@@ -1,0 +1,997 @@
+% ============================================================
+%  GUÍA DE PRÁCTICA — T1L1 — 10 SESIONES DE 90 MINUTOS
+%  Curso: 4to Año — Matemática
+%  Autor: Ing. Gabriel Astudillo
+%  Basada en la Guía 2 — Razones Trigonométricas
+%  (guia2_razones_trigonometricas.tex) del Prof. Gabriel Astudillo.
+%
+%  DISEÑO DE LA GUÍA
+%  Las 10 sesiones son idénticas en estructura:
+%     90 min = Calentamiento (15) + Desarrollo (50) + Cierre (25)
+%     20 ejercicios = 5 + 10 + 5
+%  y cada sesión recorre LOS CINCO BLOQUES de la Guía 2, con
+%  4 ejercicios por bloque (uno de ellos en el calentamiento):
+%
+%     Bloque A (§1 Razones y Pitágoras) ............ 1 + 2 + 1
+%     Bloque B (§2 Ángulos y calculadora) .......... 1 + 2 + 1
+%     Bloque C (§3 Resolución de triángulos) ....... 1 + 2 + 1
+%     Bloque D (§4 Elevación y depresión) .......... 1 + 2 + 1
+%     Bloque E (§5 Problemas de aplicación) ........ 1 + 2 + 1
+%
+%  Los 20 "casilleros" son siempre los mismos; sólo cambian los
+%  números y los contextos de una sesión a otra.
+%  Incluye diagramas TikZ de los triángulos y de los problemas.
+%  Incluye clave de respuestas entre \ifmwclaves ... \fi
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+\usepackage{mathwizards-guia}
+\mwguia{Guía de Práctica — T1L1 (10 sesiones de 90 min)}{Ing. Gabriel Astudillo $\cdot$ 4to Año — Matemática}
+\providecommand{\sen}{\sin}
+\setlength{\emergencystretch}{2em}
+
+% ── Diagramas TikZ reutilizables ─────────────────────────────
+% Triángulo rectángulo con θ en el vértice inferior derecho.
+% \mwtri[escala]{cateto opuesto}{cateto adyacente}{hipotenusa}{ángulo}
+\newcommand{\mwtri}[5][0.72]{%
+  \begin{tikzpicture}[scale=#1, baseline=(current bounding box.center)]
+    \coordinate (A) at (0,0);
+    \coordinate (B) at (4.2,0);
+    \coordinate (C) at (0,2.6);
+    \draw[thick] (A) -- (B) node[midway, below] {#3};
+    \draw[thick] (A) -- (C) node[midway, left] {#2};
+    \draw[thick, mwprimario] (C) -- (B) node[midway, above right] {#4};
+    \draw[mwprimario, thick] (3.45,0) arc (180:148.2:0.75);
+    \node[mwprimario, font=\small] at (3.12,0.55) {#5};
+    \draw[mwprimario, thick] (A) -- (0.26,0) -- (0.26,0.26) -- (0,0.26);
+  \end{tikzpicture}}
+% Problema de elevación (observador abajo-izquierda, objeto arriba-derecha).
+% \mwdiag[escala]{etq horizontal}{etq vertical}{etq hipotenusa}{ángulo}
+\newcommand{\mwdiag}[5][0.72]{%
+  \begin{tikzpicture}[scale=#1, baseline=(current bounding box.center)]
+    \fill[gray!12] (-0.15,-0.12) rectangle (4.55,0);
+    \draw[thick] (0,0) -- (4.2,0) node[midway, below] {#2};
+    \draw[thick] (4.2,0) -- (4.2,2.8) node[midway, right] {#3};
+    \draw[thick, mwprimario] (0,0) -- (4.2,2.8) node[midway, above left] {#4};
+    \draw[mwprimario, thick] (0.65,0) arc (0:33.7:0.65);
+    \node[mwprimario, font=\small] at (1.02,0.45) {#5};
+    \draw[mwprimario, thick] (3.92,0) -- (3.92,0.28) -- (4.2,0.28);
+    \filldraw (0,0) circle (1.3pt);
+  \end{tikzpicture}}
+% Problema de depresión (observador arriba-izquierda).
+% \mwdiagdep[escala]{etq horizontal}{etq vertical}{ángulo}
+\newcommand{\mwdiagdep}[4][0.72]{%
+  \begin{tikzpicture}[scale=#1, baseline=(current bounding box.center)]
+    \draw[thick] (0,2.8) -- (0,0) node[midway, left] {#3};
+    \draw[thick, dashed, gray] (0,2.8) -- (4.2,2.8);
+    \draw[thick] (0,0) -- (4.2,0) node[midway, below] {#2};
+    \draw[thick, mwprimario] (0,2.8) -- (4.2,0);
+    \draw[mwprimario, thick] (0.65,2.8) arc (0:-33.7:0.65);
+    \node[mwprimario, font=\small] at (1.05,2.55) {#4};
+    \draw[mwprimario, thick] (3.92,0) -- (3.92,0.28) -- (4.2,0.28);
+    \filldraw (0,2.8) circle (1.3pt);
+    \filldraw (4.2,0) circle (1.3pt);
+  \end{tikzpicture}}
+% Dos observadores en lados opuestos.
+% \mwdiagop[escala]{etq base}{ángulo izquierdo}{ángulo derecho}{etq altura}
+\newcommand{\mwdiagop}[5][0.72]{%
+  \begin{tikzpicture}[scale=#1, baseline=(current bounding box.center)]
+    \fill[gray!12] (-0.15,-0.12) rectangle (4.55,0);
+    \draw[thick] (0,0) -- (4.2,0) node[midway, below] {#2};
+    \coordinate (H) at (2.45,2.8);
+    \draw[thick] (H) -- (2.45,0);
+    \draw[thick, mwprimario] (0,0) -- (H);
+    \draw[thick, mwprimario] (4.2,0) -- (H);
+    \draw[mwprimario, thick] (0.65,0) arc (0:48.8:0.65);
+    \node[mwprimario, font=\small] at (0.95,0.45) {#3};
+    \draw[mwprimario, thick] (3.55,0) arc (180:122:0.65);
+    \node[mwprimario, font=\small] at (3.35,0.45) {#4};
+    \node[right] at (2.45,1.4) {#5};
+    \filldraw (0,0) circle (1.3pt);
+    \filldraw (4.2,0) circle (1.3pt);
+  \end{tikzpicture}}
+% Dos observadores del mismo lado (el segundo más cerca).
+% \mwdiagdos[escala]{etq separación}{ángulo lejano}{ángulo cercano}{etq altura}
+\newcommand{\mwdiagdos}[5][0.72]{%
+  \begin{tikzpicture}[scale=#1, baseline=(current bounding box.center)]
+    \fill[gray!12] (-0.15,-0.12) rectangle (4.8,0);
+    \draw[thick] (0,0) -- (4.55,0) node[midway, below] {#2};
+    \coordinate (A) at (0,0);
+    \coordinate (B) at (2.55,0);
+    \coordinate (C) at (4.3,3.1);
+    \draw[thick] (4.3,0) -- (C);
+    \draw[thick, mwprimario] (A) -- (C);
+    \draw[thick, mwprimario] (B) -- (C);
+    \draw[mwprimario, thick] (0.7,0) arc (0:35.8:0.7);
+    \node[mwprimario, font=\small] at (1.0,0.48) {#3};
+    \draw[gray, dashed] (B) -- (3.55,0);
+    \draw[mwprimario, thick] (3.15,0) arc (0:60.6:0.6);
+    \node[mwprimario, font=\small] at (3.35,0.5) {#4};
+    \node[right] at (4.3,1.55) {#5};
+    \filldraw (A) circle (1.3pt);
+    \filldraw (B) circle (1.3pt);
+  \end{tikzpicture}}
+
+% ── Plantilla única de sesión ────────────────────────────────
+\newcommand{\mwsession}[2]{%
+  \clearpage
+  \refstepcounter{section}%
+  \section*{Sesión \thesection\ — #1}%
+  \begin{cuadroinfo}
+    \small
+    \textbf{Objetivo:} #2\\[2pt]
+    \textbf{Estructura (idéntica en las 10 sesiones):}
+    Calentamiento 15 min (5 ejercicios) $\cdot$
+    Desarrollo 50 min (10 ejercicios) $\cdot$
+    Cierre y desafío 25 min (5 ejercicios).
+    \hfill\textbf{Total: 90 min}\\[2pt]
+    \textbf{Contenido:} 20 ejercicios, \textbf{4 de cada bloque} de la Guía 2:
+    razones y Pitágoras $\cdot$ ángulos y calculadora $\cdot$ resolución de triángulos
+    $\cdot$ elevación y depresión $\cdot$ problemas de aplicación.
+  \end{cuadroinfo}
+}
+% Etiqueta gris que indica el bloque temático de cada ejercicio.
+\newcommand{\mwtag}[1]{{\scriptsize\color{mwgris}#1}\hspace{5pt}}
+% Reglas clave: idénticas en las 10 sesiones.
+\newcommand{\mwreglas}{%
+  \begin{cuadroteoria}
+    \small
+    \textbf{Reglas clave de la Guía 2:} en un triángulo rectángulo, $\sen\theta=\dfrac{\text{opuesto}}{\text{hipotenusa}}$, $\cos\theta=\dfrac{\text{adyacente}}{\text{hipotenusa}}$ y $\tan\theta=\dfrac{\text{opuesto}}{\text{adyacente}}$ (SOH-CAH-TOA). Pitágoras: $c^2=a^2+b^2$. Los ángulos agudos suman $90^{\circ}$, por eso $\sen\theta=\cos(90^{\circ}-\theta)$. La calculadora debe estar en \textbf{grados}; para hallar un ángulo se usan $\arcsin$, $\arccos$ o $\arctan$. El ángulo de \textbf{elevación} se mide desde la horizontal hacia arriba y el de \textbf{depresión} desde la horizontal hacia abajo. Redondea a dos decimales solo al final y comprueba que la hipotenusa sea el lado mayor.
+  \end{cuadroteoria}
+}
+\newcommand{\mwcierrebloque}[2]{%
+  \end{enumerate}%
+  \ifnum\value{enumi}=#2\relax
+    \typeout{MW: #1 correcto}%
+  \else
+    \GenericWarning{}{MW Warning: #1 termina en el ejercicio \the\value{enumi}; se esperaba #2}%
+  \fi
+}
+% Autoevaluación: idéntica al final de las 10 sesiones.
+\newcommand{\mwautoevaluacion}{%
+  \begin{cuadroinfo}
+    \small
+    \textbf{Autoevaluación:} marca los bloques que resolviste sin errores\\[2pt]
+    $\square$ razones y Pitágoras \quad
+    $\square$ calculadora e inversas \quad
+    $\square$ resolución de triángulos \quad
+    $\square$ elevación y depresión \quad
+    $\square$ aplicaciones\\[4pt]
+    \textbf{Para repasar:} anota los números de los ejercicios que te costaron\\[2pt]
+    \noindent\rule{\linewidth}{0.4pt}\\[8pt]
+    \noindent\rule{\linewidth}{0.4pt}
+  \end{cuadroinfo}
+}
+\newenvironment{mwcalentamiento}
+  {\subsection*{Calentamiento (15 min)}\begin{enumerate}[leftmargin=*, start=1]}
+  {\mwcierrebloque{Calentamiento}{5}}
+\newenvironment{mwdesarrollo}
+  {\subsection*{Desarrollo (50 min)}\begin{enumerate}[leftmargin=*, start=6]}
+  {\mwcierrebloque{Desarrollo}{15}}
+\newenvironment{mwcierre}
+  {\subsection*{Cierre y desafío (25 min)}\begin{enumerate}[leftmargin=*, start=16]}
+  {\mwcierrebloque{Cierre}{20}\mwautoevaluacion}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía de Práctica — T1L1}{Diez sesiones de 90 minutos}{Triángulos rectángulos con cualquier ángulo: resolver, medir y aplicar}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} esta guía contiene \textbf{10 sesiones de 90 minutos}. Cada sesión repasa \emph{todos} los bloques de la Guía 2: las razones trigonométricas y Pitágoras, el uso de la calculadora con ángulos cualesquiera, la resolución de triángulos rectángulos, los ángulos de elevación y depresión y los problemas de aplicación. La estructura es \textbf{idéntica} en las diez sesiones; lo que cambia son los ejercicios y los contextos. Cada triángulo y cada problema trae su \textbf{diagrama} para que aprendas a leer la situación antes de calcular.
+  \\[4pt]
+  \textbf{Rejilla fija de cada sesión (20 ejercicios):}
+  \begin{center}
+    \small
+    \begin{tabular}{@{}l ccc c@{}}
+      \toprule
+      \textbf{Bloque de la Guía 2} & \textbf{Calentamiento} & \textbf{Desarrollo} & \textbf{Cierre} & \textbf{Total} \\
+      \midrule
+      §1 Razones y Pitágoras              & 1 & 2 & 1 & 4 \\
+      §2 Ángulos y calculadora            & 1 & 2 & 1 & 4 \\
+      §3 Resolución de triángulos         & 1 & 2 & 1 & 4 \\
+      §4 Elevación y depresión            & 1 & 2 & 1 & 4 \\
+      §5 Problemas de aplicación          & 1 & 2 & 1 & 4 \\
+      \midrule
+      \textbf{Tiempo}                     & 15 min & 50 min & 25 min & \textbf{90 min} \\
+      \textbf{Ejercicios}                 & 5 & 10 & 5 & \textbf{20} \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \textbf{Cómo leer cada ejercicio:} la etiqueta gris que lo precede indica el bloque al que pertenece; los diagramas no están a escala, solo muestran la situación.
+  \\[4pt]
+  \textbf{Cómo usar la guía:} trabaja con la calculadora en \textbf{modo grados}, dibuja o completa cada diagrama y escribe la razón trigonométrica antes de sustituir. Redondea a dos decimales al final. En total son \textbf{200 ejercicios} y \textbf{30 horas} de práctica.
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+%  SESIÓN 1
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar los cinco bloques de la Guía 2 con ejercicios nuevos: razones y Pitágoras, ángulos cualesquiera con calculadora, resolución de triángulos rectángulos, elevación y depresión, y problemas de aplicación.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item {\samepage \mwtag{Razones} En el triángulo rectángulo de la figura, escribe $\sen\theta$, $\cos\theta$ y $\tan\theta$.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$3$}{$4$}{$5$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Con la calculadora en grados, calcula con cuatro decimales: \textbf{a)} $\sen 37^{\circ}$ \quad \textbf{b)} $\cos 52^{\circ}$ \quad \textbf{c)} $\tan 68^{\circ}$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, el cateto adyacente a $\theta$ mide $50$ m y $\theta=32^{\circ}$. Halla el cateto opuesto y la hipotenusa.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$x$}{$50$ m}{$y$}{$32^{\circ}$}}\par}
+  \item {\samepage \mwtag{Elevación} Desde un punto a $72$ m de la base de un edificio, el ángulo de elevación hacia su parte más alta es de $29^{\circ}$. \textquestiondown Qué altura tiene?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$72$ m}{$h$}{}{$29^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Un poste de $12$ m proyecta una sombra de $12$ m. \textquestiondown Cuál es el ángulo de elevación del Sol?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$12$ m}{$12$ m}{}{$\theta$}}\par}
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item {\samepage \mwtag{Razones} En el triángulo de la figura, halla la hipotenusa.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$9$}{$12$}{$x$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Halla el ángulo agudo $\theta$ (dos decimales) si: \textbf{a)} $\sen\theta=0{,}6561$ \quad \textbf{b)} $\cos\theta=0{,}4540$ \quad \textbf{c)} $\tan\theta=0{,}5095$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, la hipotenusa mide $20$ m y $\theta=28^{\circ}$. Halla los dos catetos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$x$}{$y$}{$20$ m}{$28^{\circ}$}}\par}
+  \item {\samepage \mwtag{Elevación} Desde lo alto de un faro, a $30$ m sobre el nivel del mar, se observa un bote con un ángulo de depresión de $30^{\circ}$. \textquestiondown A qué distancia horizontal está?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdep{$d$}{$30$ m}{$30^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Un avión vuela a $2000$ m de altura y el ángulo de depresión hacia un punto de la pista es de $30^{\circ}$. \textquestiondown A qué distancia horizontal está ese punto?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdep{$d$}{$2000$ m}{$30^{\circ}$}}\par}
+  \item \mwtag{Razones} Si $\sen\theta=\frac{8}{17}$ y $\theta$ es un ángulo agudo, halla $\cos\theta$ y $\tan\theta$.
+  \item \mwtag{Calculadora} Comprueba con la calculadora para $\theta=37^{\circ}$: \textbf{a)} $\sen^2\theta+\cos^2\theta$; \quad \textbf{b)} $\sen 37^{\circ}=\cos(90^{\circ}-37^{\circ})$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, los catetos miden $6$ m y $8$ m. Halla la hipotenusa y los dos ángulos agudos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$6$ m}{$8$ m}{$x$}{$\alpha$}}\par}
+  \item {\samepage \mwtag{Elevación} Una escalera de $10$ m se apoya en una pared formando un ángulo de $60^{\circ}$ con el suelo. \textquestiondown A qué altura llega y a qué distancia de la pared está su base?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$x$}{$h$}{$10$ m}{$60^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Dos observadores separados $100$ m ven un globo situado entre ellos, con ángulos de elevación de $45^{\circ}$ y $30^{\circ}$. \textquestiondown A qué altura está el globo?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagop{$100$ m}{$45^{\circ}$}{$30^{\circ}$}{$h$}}\par}
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item {\samepage \mwtag{Razones} En el triángulo de la figura, escribe las seis razones trigonométricas de $\theta$.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$5$}{$12$}{$13$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Halla el ángulo agudo $\theta$ (dos decimales) si $\tan\theta=0{,}75$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, la hipotenusa mide $13$ m y el cateto opuesto a $\alpha$, $5$ m. Halla el cateto que falta y los dos ángulos agudos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$5$ m}{$x$}{$13$ m}{$\alpha$}}\par}
+  \item {\samepage \mwtag{Elevación} Un cometa está sujeto a una cuerda de $50$ m que forma un ángulo de $40^{\circ}$ con la horizontal. \textquestiondown A qué altura vuela y a qué distancia horizontal del niño?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$x$}{$h$}{$50$ m}{$40^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Desde un punto $A$, el ángulo de elevación hacia lo alto de una torre es de $45^{\circ}$. Avanzando $40$ m hacia la torre, el ángulo pasa a ser de $60^{\circ}$. \textquestiondown Cuál es la altura de la torre?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdos{$40$ m}{$45^{\circ}$}{$60^{\circ}$}{$H$}}\par}
+\end{mwcierre}
+
+
+% ============================================================
+%  SESIÓN 2
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar los cinco bloques de la Guía 2 con ejercicios nuevos: razones y Pitágoras, ángulos cualesquiera con calculadora, resolución de triángulos rectángulos, elevación y depresión, y problemas de aplicación.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item {\samepage \mwtag{Razones} En el triángulo rectángulo de la figura, escribe $\sen\theta$, $\cos\theta$ y $\tan\theta$.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$5$}{$12$}{$13$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Con la calculadora en grados, calcula con cuatro decimales: \textbf{a)} $\sen 23^{\circ}$ \quad \textbf{b)} $\cos 41^{\circ}$ \quad \textbf{c)} $\tan 64^{\circ}$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, el cateto adyacente a $\theta$ mide $40$ m y $\theta=27^{\circ}$. Halla el cateto opuesto y la hipotenusa.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$x$}{$40$ m}{$y$}{$27^{\circ}$}}\par}
+  \item {\samepage \mwtag{Elevación} Desde un punto a $55$ m de la base de un árbol, el ángulo de elevación hacia su parte más alta es de $36^{\circ}$. \textquestiondown Qué altura tiene?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$55$ m}{$h$}{}{$36^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} El Sol forma un ángulo de $35^{\circ}$ con el horizonte y un poste proyecta una sombra de $20$ m. \textquestiondown Qué altura tiene el poste?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$20$ m}{$h$}{}{$35^{\circ}$}}\par}
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item {\samepage \mwtag{Razones} En el triángulo de la figura, halla el cateto adyacente a $\theta$.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$8$}{$x$}{$17$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Halla el ángulo agudo $\theta$ (dos decimales) si: \textbf{a)} $\sen\theta=0{,}6293$ \quad \textbf{b)} $\cos\theta=0{,}5446$ \quad \textbf{c)} $\tan\theta=0{,}9657$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, la hipotenusa mide $15$ m y $\theta=36^{\circ}$. Halla los dos catetos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$x$}{$y$}{$15$ m}{$36^{\circ}$}}\par}
+  \item {\samepage \mwtag{Elevación} Desde lo alto de un acantilado, a $45$ m sobre el nivel del mar, se observa un barco con un ángulo de depresión de $45^{\circ}$. \textquestiondown A qué distancia horizontal está?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdep{$d$}{$45$ m}{$45^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Un avión vuela a $1500$ m de altura y el ángulo de depresión hacia un punto de la pista es de $25^{\circ}$. \textquestiondown A qué distancia horizontal está ese punto?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdep{$d$}{$1500$ m}{$25^{\circ}$}}\par}
+  \item \mwtag{Razones} Si $\sen\theta=\frac{7}{25}$ y $\theta$ es un ángulo agudo, halla $\cos\theta$ y $\tan\theta$.
+  \item \mwtag{Calculadora} Comprueba con la calculadora para $\theta=52^{\circ}$: \textbf{a)} $\sen^2\theta+\cos^2\theta$; \quad \textbf{b)} $\sen 52^{\circ}=\cos(90^{\circ}-52^{\circ})$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, los catetos miden $5$ m y $12$ m. Halla la hipotenusa y los dos ángulos agudos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$5$ m}{$12$ m}{$x$}{$\alpha$}}\par}
+  \item {\samepage \mwtag{Elevación} Una escalera de $8$ m se apoya en una pared formando un ángulo de $65^{\circ}$ con el suelo. \textquestiondown A qué altura llega y a qué distancia de la pared está su base?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$x$}{$h$}{$8$ m}{$65^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Dos observadores separados $80$ m ven un globo situado entre ellos, con ángulos de elevación de $50^{\circ}$ y $40^{\circ}$. \textquestiondown A qué altura está el globo?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagop{$80$ m}{$50^{\circ}$}{$40^{\circ}$}{$h$}}\par}
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item {\samepage \mwtag{Razones} En el triángulo de la figura, escribe las seis razones trigonométricas de $\theta$.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$8$}{$15$}{$17$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Halla el ángulo agudo $\theta$ (dos decimales) si $\tan\theta=1{,}2$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, la hipotenusa mide $17$ m y el cateto opuesto a $\alpha$, $8$ m. Halla el cateto que falta y los dos ángulos agudos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$8$ m}{$x$}{$17$ m}{$\alpha$}}\par}
+  \item {\samepage \mwtag{Elevación} Una rampa de $20$ m de longitud sube con un ángulo de $25^{\circ}$ respecto del suelo. \textquestiondown Qué altura salva y qué longitud horizontal ocupa?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$x$}{$h$}{$20$ m}{$25^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Desde un punto $A$, el ángulo de elevación hacia lo alto de una torre es de $30^{\circ}$. Avanzando $30$ m hacia la torre, el ángulo pasa a ser de $50^{\circ}$. \textquestiondown Cuál es la altura de la torre?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdos{$30$ m}{$30^{\circ}$}{$50^{\circ}$}{$H$}}\par}
+\end{mwcierre}
+
+
+% ============================================================
+%  SESIÓN 3
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar los cinco bloques de la Guía 2 con ejercicios nuevos: razones y Pitágoras, ángulos cualesquiera con calculadora, resolución de triángulos rectángulos, elevación y depresión, y problemas de aplicación.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item {\samepage \mwtag{Razones} En el triángulo rectángulo de la figura, escribe $\sen\theta$, $\cos\theta$ y $\tan\theta$.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$8$}{$15$}{$17$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Con la calculadora en grados, calcula con cuatro decimales: \textbf{a)} $\sen 58^{\circ}$ \quad \textbf{b)} $\cos 34^{\circ}$ \quad \textbf{c)} $\tan 71^{\circ}$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, el cateto adyacente a $\theta$ mide $25$ m y $\theta=41^{\circ}$. Halla el cateto opuesto y la hipotenusa.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$x$}{$25$ m}{$y$}{$41^{\circ}$}}\par}
+  \item {\samepage \mwtag{Elevación} Desde un punto a $90$ m de la base de una torre, el ángulo de elevación hacia su parte más alta es de $24^{\circ}$. \textquestiondown Qué altura tiene?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$90$ m}{$h$}{}{$24^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Un poste de $5$ m proyecta una sombra de $9$ m. \textquestiondown Cuál es el ángulo de elevación del Sol?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$9$ m}{$5$ m}{}{$\theta$}}\par}
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item {\samepage \mwtag{Razones} En el triángulo de la figura, halla el cateto opuesto a $\theta$.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$x$}{$12$}{$13$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Halla el ángulo agudo $\theta$ (dos decimales) si: \textbf{a)} $\sen\theta=0{,}7547$ \quad \textbf{b)} $\cos\theta=0{,}4067$ \quad \textbf{c)} $\tan\theta=0{,}6494$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, la hipotenusa mide $30$ m y $\theta=42^{\circ}$. Halla los dos catetos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$x$}{$y$}{$30$ m}{$42^{\circ}$}}\par}
+  \item {\samepage \mwtag{Elevación} Desde lo alto de un avión, a $60$ m sobre el nivel del mar, se observa la pista con un ángulo de depresión de $25^{\circ}$. \textquestiondown A qué distancia horizontal está?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdep{$d$}{$60$ m}{$25^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Un avión vuela a $800$ m de altura y el ángulo de depresión hacia un punto de la pista es de $40^{\circ}$. \textquestiondown A qué distancia horizontal está ese punto?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdep{$d$}{$800$ m}{$40^{\circ}$}}\par}
+  \item \mwtag{Razones} Si $\sen\theta=\frac{20}{29}$ y $\theta$ es un ángulo agudo, halla $\cos\theta$ y $\tan\theta$.
+  \item \mwtag{Calculadora} Comprueba con la calculadora para $\theta=41^{\circ}$: \textbf{a)} $\sen^2\theta+\cos^2\theta$; \quad \textbf{b)} $\sen 41^{\circ}=\cos(90^{\circ}-41^{\circ})$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, los catetos miden $9$ m y $12$ m. Halla la hipotenusa y los dos ángulos agudos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$9$ m}{$12$ m}{$x$}{$\alpha$}}\par}
+  \item {\samepage \mwtag{Elevación} Una escalera de $12$ m se apoya en una pared formando un ángulo de $55^{\circ}$ con el suelo. \textquestiondown A qué altura llega y a qué distancia de la pared está su base?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$x$}{$h$}{$12$ m}{$55^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Dos observadores separados $120$ m ven un globo situado entre ellos, con ángulos de elevación de $60^{\circ}$ y $35^{\circ}$. \textquestiondown A qué altura está el globo?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagop{$120$ m}{$60^{\circ}$}{$35^{\circ}$}{$h$}}\par}
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item {\samepage \mwtag{Razones} En el triángulo de la figura, escribe las seis razones trigonométricas de $\theta$.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$7$}{$24$}{$25$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Halla el ángulo agudo $\theta$ (dos decimales) si $\tan\theta=1{,}5$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, la hipotenusa mide $25$ m y el cateto opuesto a $\alpha$, $7$ m. Halla el cateto que falta y los dos ángulos agudos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$7$ m}{$x$}{$25$ m}{$\alpha$}}\par}
+  \item {\samepage \mwtag{Elevación} Un cometa está sujeto a una cuerda de $40$ m que forma un ángulo de $35^{\circ}$ con la horizontal. \textquestiondown A qué altura vuela y a qué distancia horizontal del niño?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$x$}{$h$}{$40$ m}{$35^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Desde un punto $A$, el ángulo de elevación hacia lo alto de una torre es de $35^{\circ}$. Avanzando $25$ m hacia la torre, el ángulo pasa a ser de $55^{\circ}$. \textquestiondown Cuál es la altura de la torre?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdos{$25$ m}{$35^{\circ}$}{$55^{\circ}$}{$H$}}\par}
+\end{mwcierre}
+
+
+% ============================================================
+%  SESIÓN 4
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar los cinco bloques de la Guía 2 con ejercicios nuevos: razones y Pitágoras, ángulos cualesquiera con calculadora, resolución de triángulos rectángulos, elevación y depresión, y problemas de aplicación.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item {\samepage \mwtag{Razones} En el triángulo rectángulo de la figura, escribe $\sen\theta$, $\cos\theta$ y $\tan\theta$.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$7$}{$24$}{$25$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Con la calculadora en grados, calcula con cuatro decimales: \textbf{a)} $\sen 48^{\circ}$ \quad \textbf{b)} $\cos 29^{\circ}$ \quad \textbf{c)} $\tan 53^{\circ}$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, el cateto adyacente a $\theta$ mide $60$ m y $\theta=35^{\circ}$. Halla el cateto opuesto y la hipotenusa.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$x$}{$60$ m}{$y$}{$35^{\circ}$}}\par}
+  \item {\samepage \mwtag{Elevación} Desde un punto a $48$ m de la base de un faro, el ángulo de elevación hacia su parte más alta es de $43^{\circ}$. \textquestiondown Qué altura tiene?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$48$ m}{$h$}{}{$43^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} El Sol forma un ángulo de $42^{\circ}$ con el horizonte y un poste proyecta una sombra de $15$ m. \textquestiondown Qué altura tiene el poste?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$15$ m}{$h$}{}{$42^{\circ}$}}\par}
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item {\samepage \mwtag{Razones} En el triángulo de la figura, halla la hipotenusa.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$10$}{$24$}{$x$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Halla el ángulo agudo $\theta$ (dos decimales) si: \textbf{a)} $\sen\theta=0{,}6820$ \quad \textbf{b)} $\cos\theta=0{,}5150$ \quad \textbf{c)} $\tan\theta=0{,}3839$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, la hipotenusa mide $12$ m y $\theta=54^{\circ}$. Halla los dos catetos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$x$}{$y$}{$12$ m}{$54^{\circ}$}}\par}
+  \item {\samepage \mwtag{Elevación} Desde lo alto de una torre, a $80$ m sobre el nivel del mar, se observa un automóvil con un ángulo de depresión de $40^{\circ}$. \textquestiondown A qué distancia horizontal está?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdep{$d$}{$80$ m}{$40^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Un avión vuela a $120$ m de altura y el ángulo de depresión hacia un punto de la pista es de $35^{\circ}$. \textquestiondown A qué distancia horizontal está ese punto?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdep{$d$}{$120$ m}{$35^{\circ}$}}\par}
+  \item \mwtag{Razones} Si $\sen\theta=\frac{9}{41}$ y $\theta$ es un ángulo agudo, halla $\cos\theta$ y $\tan\theta$.
+  \item \mwtag{Calculadora} Comprueba con la calculadora para $\theta=63^{\circ}$: \textbf{a)} $\sen^2\theta+\cos^2\theta$; \quad \textbf{b)} $\sen 63^{\circ}=\cos(90^{\circ}-63^{\circ})$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, los catetos miden $7$ m y $24$ m. Halla la hipotenusa y los dos ángulos agudos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$7$ m}{$24$ m}{$x$}{$\alpha$}}\par}
+  \item {\samepage \mwtag{Elevación} Una escalera de $6$ m se apoya en una pared formando un ángulo de $70^{\circ}$ con el suelo. \textquestiondown A qué altura llega y a qué distancia de la pared está su base?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$x$}{$h$}{$6$ m}{$70^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Dos observadores separados $60$ m ven un globo situado entre ellos, con ángulos de elevación de $42^{\circ}$ y $33^{\circ}$. \textquestiondown A qué altura está el globo?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagop{$60$ m}{$42^{\circ}$}{$33^{\circ}$}{$h$}}\par}
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item {\samepage \mwtag{Razones} En el triángulo de la figura, escribe las seis razones trigonométricas de $\theta$.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$20$}{$21$}{$29$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Halla el ángulo agudo $\theta$ (dos decimales) si $\tan\theta=2$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, la hipotenusa mide $29$ m y el cateto opuesto a $\alpha$, $20$ m. Halla el cateto que falta y los dos ángulos agudos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$20$ m}{$x$}{$29$ m}{$\alpha$}}\par}
+  \item {\samepage \mwtag{Elevación} Una rampa de $12$ m de longitud sube con un ángulo de $30^{\circ}$ respecto del suelo. \textquestiondown Qué altura salva y qué longitud horizontal ocupa?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$x$}{$h$}{$12$ m}{$30^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Desde un punto $A$, el ángulo de elevación hacia lo alto de una torre es de $28^{\circ}$. Avanzando $50$ m hacia la torre, el ángulo pasa a ser de $47^{\circ}$. \textquestiondown Cuál es la altura de la torre?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdos{$50$ m}{$28^{\circ}$}{$47^{\circ}$}{$H$}}\par}
+\end{mwcierre}
+
+
+% ============================================================
+%  SESIÓN 5
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar los cinco bloques de la Guía 2 con ejercicios nuevos: razones y Pitágoras, ángulos cualesquiera con calculadora, resolución de triángulos rectángulos, elevación y depresión, y problemas de aplicación.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item {\samepage \mwtag{Razones} En el triángulo rectángulo de la figura, escribe $\sen\theta$, $\cos\theta$ y $\tan\theta$.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$6$}{$8$}{$10$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Con la calculadora en grados, calcula con cuatro decimales: \textbf{a)} $\sen 36^{\circ}$ \quad \textbf{b)} $\cos 44^{\circ}$ \quad \textbf{c)} $\tan 62^{\circ}$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, el cateto adyacente a $\theta$ mide $18$ m y $\theta=52^{\circ}$. Halla el cateto opuesto y la hipotenusa.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$x$}{$18$ m}{$y$}{$52^{\circ}$}}\par}
+  \item {\samepage \mwtag{Elevación} Desde un punto a $65$ m de la base de una antena, el ángulo de elevación hacia su parte más alta es de $31^{\circ}$. \textquestiondown Qué altura tiene?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$65$ m}{$h$}{}{$31^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Un poste de $18$ m proyecta una sombra de $10$ m. \textquestiondown Cuál es el ángulo de elevación del Sol?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$10$ m}{$18$ m}{}{$\theta$}}\par}
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item {\samepage \mwtag{Razones} En el triángulo de la figura, halla el cateto opuesto a $\theta$.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$x$}{$12$}{$20$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Halla el ángulo agudo $\theta$ (dos decimales) si: \textbf{a)} $\sen\theta=0{,}8090$ \quad \textbf{b)} $\cos\theta=0{,}3090$ \quad \textbf{c)} $\tan\theta=0{,}7813$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, la hipotenusa mide $25$ m y $\theta=31^{\circ}$. Halla los dos catetos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$x$}{$y$}{$25$ m}{$31^{\circ}$}}\par}
+  \item {\samepage \mwtag{Elevación} Desde lo alto de un globo, a $50$ m sobre el nivel del mar, se observa una persona con un ángulo de depresión de $35^{\circ}$. \textquestiondown A qué distancia horizontal está?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdep{$d$}{$50$ m}{$35^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Un avión vuela a $250$ m de altura y el ángulo de depresión hacia un punto de la pista es de $22^{\circ}$. \textquestiondown A qué distancia horizontal está ese punto?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdep{$d$}{$250$ m}{$22^{\circ}$}}\par}
+  \item \mwtag{Razones} Si $\sen\theta=\frac{12}{37}$ y $\theta$ es un ángulo agudo, halla $\cos\theta$ y $\tan\theta$.
+  \item \mwtag{Calculadora} Comprueba con la calculadora para $\theta=28^{\circ}$: \textbf{a)} $\sen^2\theta+\cos^2\theta$; \quad \textbf{b)} $\sen 28^{\circ}=\cos(90^{\circ}-28^{\circ})$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, los catetos miden $8$ m y $15$ m. Halla la hipotenusa y los dos ángulos agudos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$8$ m}{$15$ m}{$x$}{$\alpha$}}\par}
+  \item {\samepage \mwtag{Elevación} Una escalera de $9$ m se apoya en una pared formando un ángulo de $58^{\circ}$ con el suelo. \textquestiondown A qué altura llega y a qué distancia de la pared está su base?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$x$}{$h$}{$9$ m}{$58^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Dos observadores separados $150$ m ven un globo situado entre ellos, con ángulos de elevación de $55^{\circ}$ y $45^{\circ}$. \textquestiondown A qué altura está el globo?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagop{$150$ m}{$55^{\circ}$}{$45^{\circ}$}{$h$}}\par}
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item {\samepage \mwtag{Razones} En el triángulo de la figura, escribe las seis razones trigonométricas de $\theta$.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$9$}{$40$}{$41$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Halla el ángulo agudo $\theta$ (dos decimales) si $\tan\theta=0{,}6$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, la hipotenusa mide $10$ m y el cateto opuesto a $\alpha$, $6$ m. Halla el cateto que falta y los dos ángulos agudos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$6$ m}{$x$}{$10$ m}{$\alpha$}}\par}
+  \item {\samepage \mwtag{Elevación} Un cometa está sujeto a una cuerda de $60$ m que forma un ángulo de $42^{\circ}$ con la horizontal. \textquestiondown A qué altura vuela y a qué distancia horizontal del niño?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$x$}{$h$}{$60$ m}{$42^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Desde un punto $A$, el ángulo de elevación hacia lo alto de una torre es de $40^{\circ}$. Avanzando $20$ m hacia la torre, el ángulo pasa a ser de $62^{\circ}$. \textquestiondown Cuál es la altura de la torre?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdos{$20$ m}{$40^{\circ}$}{$62^{\circ}$}{$H$}}\par}
+\end{mwcierre}
+
+
+% ============================================================
+%  SESIÓN 6
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar los cinco bloques de la Guía 2 con ejercicios nuevos: razones y Pitágoras, ángulos cualesquiera con calculadora, resolución de triángulos rectángulos, elevación y depresión, y problemas de aplicación.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item {\samepage \mwtag{Razones} En el triángulo rectángulo de la figura, escribe $\sen\theta$, $\cos\theta$ y $\tan\theta$.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$9$}{$12$}{$15$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Con la calculadora en grados, calcula con cuatro decimales: \textbf{a)} $\sen 27^{\circ}$ \quad \textbf{b)} $\cos 39^{\circ}$ \quad \textbf{c)} $\tan 57^{\circ}$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, el cateto adyacente a $\theta$ mide $35$ m y $\theta=24^{\circ}$. Halla el cateto opuesto y la hipotenusa.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$x$}{$35$ m}{$y$}{$24^{\circ}$}}\par}
+  \item {\samepage \mwtag{Elevación} Desde un punto a $38$ m de la base de un poste, el ángulo de elevación hacia su parte más alta es de $47^{\circ}$. \textquestiondown Qué altura tiene?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$38$ m}{$h$}{}{$47^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} El Sol forma un ángulo de $28^{\circ}$ con el horizonte y un poste proyecta una sombra de $25$ m. \textquestiondown Qué altura tiene el poste?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$25$ m}{$h$}{}{$28^{\circ}$}}\par}
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item {\samepage \mwtag{Razones} En el triángulo de la figura, halla el cateto adyacente a $\theta$.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$7$}{$x$}{$25$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Halla el ángulo agudo $\theta$ (dos decimales) si: \textbf{a)} $\sen\theta=0{,}7314$ \quad \textbf{b)} $\cos\theta=0{,}4540$ \quad \textbf{c)} $\tan\theta=0{,}4877$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, la hipotenusa mide $18$ m y $\theta=46^{\circ}$. Halla los dos catetos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$x$}{$y$}{$18$ m}{$46^{\circ}$}}\par}
+  \item {\samepage \mwtag{Elevación} Desde lo alto de un mirador, a $100$ m sobre el nivel del mar, se observa una lancha con un ángulo de depresión de $20^{\circ}$. \textquestiondown A qué distancia horizontal está?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdep{$d$}{$100$ m}{$20^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Un avión vuela a $5000$ m de altura y el ángulo de depresión hacia un punto de la pista es de $28^{\circ}$. \textquestiondown A qué distancia horizontal está ese punto?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdep{$d$}{$5000$ m}{$28^{\circ}$}}\par}
+  \item \mwtag{Razones} Si $\sen\theta=\frac{11}{61}$ y $\theta$ es un ángulo agudo, halla $\cos\theta$ y $\tan\theta$.
+  \item \mwtag{Calculadora} Comprueba con la calculadora para $\theta=46^{\circ}$: \textbf{a)} $\sen^2\theta+\cos^2\theta$; \quad \textbf{b)} $\sen 46^{\circ}=\cos(90^{\circ}-46^{\circ})$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, los catetos miden $12$ m y $16$ m. Halla la hipotenusa y los dos ángulos agudos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$12$ m}{$16$ m}{$x$}{$\alpha$}}\par}
+  \item {\samepage \mwtag{Elevación} Una escalera de $15$ m se apoya en una pared formando un ángulo de $50^{\circ}$ con el suelo. \textquestiondown A qué altura llega y a qué distancia de la pared está su base?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$x$}{$h$}{$15$ m}{$50^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Dos observadores separados $90$ m ven un globo situado entre ellos, con ángulos de elevación de $38^{\circ}$ y $52^{\circ}$. \textquestiondown A qué altura está el globo?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagop{$90$ m}{$38^{\circ}$}{$52^{\circ}$}{$h$}}\par}
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item {\samepage \mwtag{Razones} En el triángulo de la figura, escribe las seis razones trigonométricas de $\theta$.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$12$}{$35$}{$37$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Halla el ángulo agudo $\theta$ (dos decimales) si $\tan\theta=0{,}8$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, la hipotenusa mide $15$ m y el cateto opuesto a $\alpha$, $9$ m. Halla el cateto que falta y los dos ángulos agudos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$9$ m}{$x$}{$15$ m}{$\alpha$}}\par}
+  \item {\samepage \mwtag{Elevación} Una rampa de $25$ m de longitud sube con un ángulo de $28^{\circ}$ respecto del suelo. \textquestiondown Qué altura salva y qué longitud horizontal ocupa?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$x$}{$h$}{$25$ m}{$28^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Desde un punto $A$, el ángulo de elevación hacia lo alto de una torre es de $32^{\circ}$. Avanzando $35$ m hacia la torre, el ángulo pasa a ser de $58^{\circ}$. \textquestiondown Cuál es la altura de la torre?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdos{$35$ m}{$32^{\circ}$}{$58^{\circ}$}{$H$}}\par}
+\end{mwcierre}
+
+
+% ============================================================
+%  SESIÓN 7
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar los cinco bloques de la Guía 2 con ejercicios nuevos: razones y Pitágoras, ángulos cualesquiera con calculadora, resolución de triángulos rectángulos, elevación y depresión, y problemas de aplicación.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item {\samepage \mwtag{Razones} En el triángulo rectángulo de la figura, escribe $\sen\theta$, $\cos\theta$ y $\tan\theta$.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$12$}{$16$}{$20$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Con la calculadora en grados, calcula con cuatro decimales: \textbf{a)} $\sen 33^{\circ}$ \quad \textbf{b)} $\cos 49^{\circ}$ \quad \textbf{c)} $\tan 66^{\circ}$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, el cateto adyacente a $\theta$ mide $80$ m y $\theta=29^{\circ}$. Halla el cateto opuesto y la hipotenusa.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$x$}{$80$ m}{$y$}{$29^{\circ}$}}\par}
+  \item {\samepage \mwtag{Elevación} Desde un punto a $110$ m de la base de una estatua, el ángulo de elevación hacia su parte más alta es de $26^{\circ}$. \textquestiondown Qué altura tiene?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$110$ m}{$h$}{}{$26^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Un poste de $2{,}5$ m proyecta una sombra de $4$ m. \textquestiondown Cuál es el ángulo de elevación del Sol?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$4$ m}{$2{,}5$ m}{}{$\theta$}}\par}
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item {\samepage \mwtag{Razones} En el triángulo de la figura, halla la hipotenusa.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$18$}{$24$}{$x$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Halla el ángulo agudo $\theta$ (dos decimales) si: \textbf{a)} $\sen\theta=0{,}4848$ \quad \textbf{b)} $\cos\theta=0{,}6018$ \quad \textbf{c)} $\tan\theta=1{,}1106$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, la hipotenusa mide $40$ m y $\theta=23^{\circ}$. Halla los dos catetos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$x$}{$y$}{$40$ m}{$23^{\circ}$}}\par}
+  \item {\samepage \mwtag{Elevación} Desde lo alto de un dron, a $36$ m sobre el nivel del mar, se observa un objetivo con un ángulo de depresión de $50^{\circ}$. \textquestiondown A qué distancia horizontal está?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdep{$d$}{$36$ m}{$50^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Un avión vuela a $300$ m de altura y el ángulo de depresión hacia un punto de la pista es de $42^{\circ}$. \textquestiondown A qué distancia horizontal está ese punto?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdep{$d$}{$300$ m}{$42^{\circ}$}}\par}
+  \item \mwtag{Razones} Si $\sen\theta=\frac{28}{53}$ y $\theta$ es un ángulo agudo, halla $\cos\theta$ y $\tan\theta$.
+  \item \mwtag{Calculadora} Comprueba con la calculadora para $\theta=34^{\circ}$: \textbf{a)} $\sen^2\theta+\cos^2\theta$; \quad \textbf{b)} $\sen 34^{\circ}=\cos(90^{\circ}-34^{\circ})$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, los catetos miden $10$ m y $24$ m. Halla la hipotenusa y los dos ángulos agudos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$10$ m}{$24$ m}{$x$}{$\alpha$}}\par}
+  \item {\samepage \mwtag{Elevación} Una escalera de $10$ m se apoya en una pared formando un ángulo de $62^{\circ}$ con el suelo. \textquestiondown A qué altura llega y a qué distancia de la pared está su base?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$x$}{$h$}{$10$ m}{$62^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Dos observadores separados $110$ m ven un globo situado entre ellos, con ángulos de elevación de $48^{\circ}$ y $37^{\circ}$. \textquestiondown A qué altura está el globo?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagop{$110$ m}{$48^{\circ}$}{$37^{\circ}$}{$h$}}\par}
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item {\samepage \mwtag{Razones} En el triángulo de la figura, escribe las seis razones trigonométricas de $\theta$.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$11$}{$60$}{$61$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Halla el ángulo agudo $\theta$ (dos decimales) si $\tan\theta=1{,}8$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, la hipotenusa mide $20$ m y el cateto opuesto a $\alpha$, $12$ m. Halla el cateto que falta y los dos ángulos agudos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$12$ m}{$x$}{$20$ m}{$\alpha$}}\par}
+  \item {\samepage \mwtag{Elevación} Un cometa está sujeto a una cuerda de $80$ m que forma un ángulo de $37^{\circ}$ con la horizontal. \textquestiondown A qué altura vuela y a qué distancia horizontal del niño?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$x$}{$h$}{$80$ m}{$37^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Desde un punto $A$, el ángulo de elevación hacia lo alto de una torre es de $25^{\circ}$. Avanzando $60$ m hacia la torre, el ángulo pasa a ser de $43^{\circ}$. \textquestiondown Cuál es la altura de la torre?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdos{$60$ m}{$25^{\circ}$}{$43^{\circ}$}{$H$}}\par}
+\end{mwcierre}
+
+
+% ============================================================
+%  SESIÓN 8
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar los cinco bloques de la Guía 2 con ejercicios nuevos: razones y Pitágoras, ángulos cualesquiera con calculadora, resolución de triángulos rectángulos, elevación y depresión, y problemas de aplicación.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item {\samepage \mwtag{Razones} En el triángulo rectángulo de la figura, escribe $\sen\theta$, $\cos\theta$ y $\tan\theta$.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$20$}{$21$}{$29$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Con la calculadora en grados, calcula con cuatro decimales: \textbf{a)} $\sen 21^{\circ}$ \quad \textbf{b)} $\cos 43^{\circ}$ \quad \textbf{c)} $\tan 59^{\circ}$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, el cateto adyacente a $\theta$ mide $45$ m y $\theta=38^{\circ}$. Halla el cateto opuesto y la hipotenusa.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$x$}{$45$ m}{$y$}{$38^{\circ}$}}\par}
+  \item {\samepage \mwtag{Elevación} Desde un punto a $42$ m de la base de una montaña, el ángulo de elevación hacia su parte más alta es de $39^{\circ}$. \textquestiondown Qué altura tiene?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$42$ m}{$h$}{}{$39^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} El Sol forma un ángulo de $38^{\circ}$ con el horizonte y un poste proyecta una sombra de $12$ m. \textquestiondown Qué altura tiene el poste?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$12$ m}{$h$}{}{$38^{\circ}$}}\par}
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item {\samepage \mwtag{Razones} En el triángulo de la figura, halla el cateto opuesto a $\theta$.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$x$}{$28$}{$35$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Halla el ángulo agudo $\theta$ (dos decimales) si: \textbf{a)} $\sen\theta=0{,}5592$ \quad \textbf{b)} $\cos\theta=0{,}3256$ \quad \textbf{c)} $\tan\theta=1{,}6003$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, la hipotenusa mide $22$ m y $\theta=39^{\circ}$. Halla los dos catetos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$x$}{$y$}{$22$ m}{$39^{\circ}$}}\par}
+  \item {\samepage \mwtag{Elevación} Desde lo alto de un edificio, a $72$ m sobre el nivel del mar, se observa un auto con un ángulo de depresión de $38^{\circ}$. \textquestiondown A qué distancia horizontal está?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdep{$d$}{$72$ m}{$38^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Un avión vuela a $90$ m de altura y el ángulo de depresión hacia un punto de la pista es de $31^{\circ}$. \textquestiondown A qué distancia horizontal está ese punto?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdep{$d$}{$90$ m}{$31^{\circ}$}}\par}
+  \item \mwtag{Razones} Si $\sen\theta=\frac{33}{65}$ y $\theta$ es un ángulo agudo, halla $\cos\theta$ y $\tan\theta$.
+  \item \mwtag{Calculadora} Comprueba con la calculadora para $\theta=58^{\circ}$: \textbf{a)} $\sen^2\theta+\cos^2\theta$; \quad \textbf{b)} $\sen 58^{\circ}=\cos(90^{\circ}-58^{\circ})$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, los catetos miden $20$ m y $21$ m. Halla la hipotenusa y los dos ángulos agudos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$20$ m}{$21$ m}{$x$}{$\alpha$}}\par}
+  \item {\samepage \mwtag{Elevación} Una escalera de $7$ m se apoya en una pared formando un ángulo de $68^{\circ}$ con el suelo. \textquestiondown A qué altura llega y a qué distancia de la pared está su base?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$x$}{$h$}{$7$ m}{$68^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Dos observadores separados $70$ m ven un globo situado entre ellos, con ángulos de elevación de $58^{\circ}$ y $31^{\circ}$. \textquestiondown A qué altura está el globo?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagop{$70$ m}{$58^{\circ}$}{$31^{\circ}$}{$h$}}\par}
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item {\samepage \mwtag{Razones} En el triángulo de la figura, escribe las seis razones trigonométricas de $\theta$.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$28$}{$45$}{$53$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Halla el ángulo agudo $\theta$ (dos decimales) si $\tan\theta=2{,}5$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, la hipotenusa mide $41$ m y el cateto opuesto a $\alpha$, $9$ m. Halla el cateto que falta y los dos ángulos agudos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$9$ m}{$x$}{$41$ m}{$\alpha$}}\par}
+  \item {\samepage \mwtag{Elevación} Una rampa de $15$ m de longitud sube con un ángulo de $32^{\circ}$ respecto del suelo. \textquestiondown Qué altura salva y qué longitud horizontal ocupa?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$x$}{$h$}{$15$ m}{$32^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Desde un punto $A$, el ángulo de elevación hacia lo alto de una torre es de $38^{\circ}$. Avanzando $45$ m hacia la torre, el ángulo pasa a ser de $61^{\circ}$. \textquestiondown Cuál es la altura de la torre?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdos{$45$ m}{$38^{\circ}$}{$61^{\circ}$}{$H$}}\par}
+\end{mwcierre}
+
+
+% ============================================================
+%  SESIÓN 9
+% ============================================================
+\mwsession{Práctica integrada de los cinco bloques}{practicar los cinco bloques de la Guía 2 con ejercicios nuevos: razones y Pitágoras, ángulos cualesquiera con calculadora, resolución de triángulos rectángulos, elevación y depresión, y problemas de aplicación.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item {\samepage \mwtag{Razones} En el triángulo rectángulo de la figura, escribe $\sen\theta$, $\cos\theta$ y $\tan\theta$.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$9$}{$40$}{$41$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Con la calculadora en grados, calcula con cuatro decimales: \textbf{a)} $\sen 38^{\circ}$ \quad \textbf{b)} $\cos 54^{\circ}$ \quad \textbf{c)} $\tan 72^{\circ}$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, el cateto adyacente a $\theta$ mide $30$ m y $\theta=47^{\circ}$. Halla el cateto opuesto y la hipotenusa.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$x$}{$30$ m}{$y$}{$47^{\circ}$}}\par}
+  \item {\samepage \mwtag{Elevación} Desde un punto a $76$ m de la base de un muro, el ángulo de elevación hacia su parte más alta es de $34^{\circ}$. \textquestiondown Qué altura tiene?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$76$ m}{$h$}{}{$34^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Un poste de $7$ m proyecta una sombra de $14$ m. \textquestiondown Cuál es el ángulo de elevación del Sol?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$14$ m}{$7$ m}{}{$\theta$}}\par}
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item {\samepage \mwtag{Razones} En el triángulo de la figura, halla la hipotenusa.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$11$}{$60$}{$x$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Halla el ángulo agudo $\theta$ (dos decimales) si: \textbf{a)} $\sen\theta=0{,}7880$ \quad \textbf{b)} $\cos\theta=0{,}7880$ \quad \textbf{c)} $\tan\theta=2{,}0503$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, la hipotenusa mide $35$ m y $\theta=26^{\circ}$. Halla los dos catetos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$x$}{$y$}{$35$ m}{$26^{\circ}$}}\par}
+  \item {\samepage \mwtag{Elevación} Desde lo alto de un faro, a $90$ m sobre el nivel del mar, se observa un velero con un ángulo de depresión de $42^{\circ}$. \textquestiondown A qué distancia horizontal está?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdep{$d$}{$90$ m}{$42^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Un avión vuela a $600$ m de altura y el ángulo de depresión hacia un punto de la pista es de $26^{\circ}$. \textquestiondown A qué distancia horizontal está ese punto?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdep{$d$}{$600$ m}{$26^{\circ}$}}\par}
+  \item \mwtag{Razones} Si $\sen\theta=\frac{3}{5}$ y $\theta$ es un ángulo agudo, halla $\cos\theta$ y $\tan\theta$.
+  \item \mwtag{Calculadora} Comprueba con la calculadora para $\theta=43^{\circ}$: \textbf{a)} $\sen^2\theta+\cos^2\theta$; \quad \textbf{b)} $\sen 43^{\circ}=\cos(90^{\circ}-43^{\circ})$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, los catetos miden $15$ m y $20$ m. Halla la hipotenusa y los dos ángulos agudos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$15$ m}{$20$ m}{$x$}{$\alpha$}}\par}
+  \item {\samepage \mwtag{Elevación} Una escalera de $14$ m se apoya en una pared formando un ángulo de $53^{\circ}$ con el suelo. \textquestiondown A qué altura llega y a qué distancia de la pared está su base?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$x$}{$h$}{$14$ m}{$53^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Dos observadores separados $200$ m ven un globo situado entre ellos, con ángulos de elevación de $44^{\circ}$ y $29^{\circ}$. \textquestiondown A qué altura está el globo?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagop{$200$ m}{$44^{\circ}$}{$29^{\circ}$}{$h$}}\par}
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item {\samepage \mwtag{Razones} En el triángulo de la figura, escribe las seis razones trigonométricas de $\theta$.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$16$}{$30$}{$34$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Halla el ángulo agudo $\theta$ (dos decimales) si $\tan\theta=0{,}5$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, la hipotenusa mide $37$ m y el cateto opuesto a $\alpha$, $12$ m. Halla el cateto que falta y los dos ángulos agudos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$12$ m}{$x$}{$37$ m}{$\alpha$}}\par}
+  \item {\samepage \mwtag{Elevación} Un cometa está sujeto a una cuerda de $45$ m que forma un ángulo de $48^{\circ}$ con la horizontal. \textquestiondown A qué altura vuela y a qué distancia horizontal del niño?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$x$}{$h$}{$45$ m}{$48^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Desde un punto $A$, el ángulo de elevación hacia lo alto de una torre es de $20^{\circ}$. Avanzando $80$ m hacia la torre, el ángulo pasa a ser de $39^{\circ}$. \textquestiondown Cuál es la altura de la torre?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdos{$80$ m}{$20^{\circ}$}{$39^{\circ}$}{$H$}}\par}
+\end{mwcierre}
+
+
+% ============================================================
+%  SESIÓN 10
+% ============================================================
+\mwsession{Simulacro integrador de 90 minutos}{resolver, en condiciones de evaluación, la misma rejilla de 20 ejercicios con todos los contenidos de la Guía 2. Cinco puntos por ejercicio, cien puntos en total.}
+
+\mwreglas
+
+\begin{mwcalentamiento}
+  \item {\samepage \mwtag{Razones} En el triángulo rectángulo de la figura, escribe $\sen\theta$, $\cos\theta$ y $\tan\theta$.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$15$}{$20$}{$25$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Con la calculadora en grados, calcula con cuatro decimales: \textbf{a)} $\sen 26^{\circ}$ \quad \textbf{b)} $\cos 47^{\circ}$ \quad \textbf{c)} $\tan 63^{\circ}$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, el cateto adyacente a $\theta$ mide $55$ m y $\theta=33^{\circ}$. Halla el cateto opuesto y la hipotenusa.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$x$}{$55$ m}{$y$}{$33^{\circ}$}}\par}
+  \item {\samepage \mwtag{Elevación} Desde un punto a $52$ m de la base de una pirámide, el ángulo de elevación hacia su parte más alta es de $44^{\circ}$. \textquestiondown Qué altura tiene?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$52$ m}{$h$}{}{$44^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} El Sol forma un ángulo de $33^{\circ}$ con el horizonte y un poste proyecta una sombra de $18$ m. \textquestiondown Qué altura tiene el poste?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$18$ m}{$h$}{}{$33^{\circ}$}}\par}
+\end{mwcalentamiento}
+
+\begin{mwdesarrollo}
+  \item {\samepage \mwtag{Razones} En el triángulo de la figura, halla la hipotenusa.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$16$}{$30$}{$x$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Halla el ángulo agudo $\theta$ (dos decimales) si: \textbf{a)} $\sen\theta=0{,}8746$ \quad \textbf{b)} $\cos\theta=0{,}6561$ \quad \textbf{c)} $\tan\theta=0{,}7265$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, la hipotenusa mide $16$ m y $\theta=57^{\circ}$. Halla los dos catetos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$x$}{$y$}{$16$ m}{$57^{\circ}$}}\par}
+  \item {\samepage \mwtag{Elevación} Desde lo alto de un avión, a $120$ m sobre el nivel del mar, se observa la pista con un ángulo de depresión de $26^{\circ}$. \textquestiondown A qué distancia horizontal está?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdep{$d$}{$120$ m}{$26^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Un avión vuela a $1000$ m de altura y el ángulo de depresión hacia un punto de la pista es de $38^{\circ}$. \textquestiondown A qué distancia horizontal está ese punto?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdep{$d$}{$1000$ m}{$38^{\circ}$}}\par}
+  \item \mwtag{Razones} Si $\sen\theta=\frac{5}{13}$ y $\theta$ es un ángulo agudo, halla $\cos\theta$ y $\tan\theta$.
+  \item \mwtag{Calculadora} Comprueba con la calculadora para $\theta=61^{\circ}$: \textbf{a)} $\sen^2\theta+\cos^2\theta$; \quad \textbf{b)} $\sen 61^{\circ}=\cos(90^{\circ}-61^{\circ})$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, los catetos miden $9$ m y $40$ m. Halla la hipotenusa y los dos ángulos agudos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$9$ m}{$40$ m}{$x$}{$\alpha$}}\par}
+  \item {\samepage \mwtag{Elevación} Una escalera de $11$ m se apoya en una pared formando un ángulo de $66^{\circ}$ con el suelo. \textquestiondown A qué altura llega y a qué distancia de la pared está su base?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$x$}{$h$}{$11$ m}{$66^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Dos observadores separados $130$ m ven un globo situado entre ellos, con ángulos de elevación de $62^{\circ}$ y $34^{\circ}$. \textquestiondown A qué altura está el globo?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagop{$130$ m}{$62^{\circ}$}{$34^{\circ}$}{$h$}}\par}
+\end{mwdesarrollo}
+
+\begin{mwcierre}
+  \item {\samepage \mwtag{Razones} En el triángulo de la figura, escribe las seis razones trigonométricas de $\theta$.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$33$}{$56$}{$65$}{$\theta$}}\par}
+  \item \mwtag{Calculadora} Halla el ángulo agudo $\theta$ (dos decimales) si $\tan\theta=3$.
+  \item {\samepage \mwtag{Resolución} En el triángulo de la figura, la hipotenusa mide $61$ m y el cateto opuesto a $\alpha$, $11$ m. Halla el cateto que falta y los dos ángulos agudos.
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwtri{$11$ m}{$x$}{$61$ m}{$\alpha$}}\par}
+  \item {\samepage \mwtag{Elevación} Una rampa de $18$ m de longitud sube con un ángulo de $22^{\circ}$ respecto del suelo. \textquestiondown Qué altura salva y qué longitud horizontal ocupa?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiag{$x$}{$h$}{$18$ m}{$22^{\circ}$}}\par}
+  \item {\samepage \mwtag{Aplicación} Desde un punto $A$, el ángulo de elevación hacia lo alto de una torre es de $36^{\circ}$. Avanzando $55$ m hacia la torre, el ángulo pasa a ser de $54^{\circ}$. \textquestiondown Cuál es la altura de la torre?
+  \par\nobreak\smallskip\noindent\makebox[\linewidth][c]{\mwdiagdos{$55$ m}{$36^{\circ}$}{$54^{\circ}$}{$H$}}\par}
+\end{mwcierre}
+
+% ============================================================
+\ifmwclaves
+\newpage
+\section*{Clave de Respuestas}
+% ============================================================
+
+
+\subsection*{Sesión 1}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $\sen\theta=\frac{3}{5}$, $\cos\theta=\frac{4}{5}$, $\tan\theta=\frac{3}{4}$.
+  \item \textbf{a)} $0{,}6018$; \quad \textbf{b)} $0{,}6157$; \quad \textbf{c)} $2{,}4751$.
+  \item $x=50\tan 32^{\circ}\approx 31{,}24$ m; $y=\dfrac{50}{\cos 32^{\circ}}\approx 58{,}96$ m.
+  \item $\tan 29^{\circ}=\dfrac{h}{72}\Rightarrow h=72\tan 29^{\circ}\approx 39{,}91$ m.
+  \item $\tan\theta=\dfrac{12}{12}\Rightarrow\theta=\arctan\left(1\right)\approx 45{,}00^{\circ}$.
+  \item $x=\sqrt{9^2+12^2}=\sqrt{225}=15$.
+  \item \textbf{a)} $\theta=41^{\circ}$; \quad \textbf{b)} $\theta=63^{\circ}$; \quad \textbf{c)} $\theta=27^{\circ}$.
+  \item $x=20\sen 28^{\circ}\approx 9{,}39$ m (opuesto); $y=20\cos 28^{\circ}\approx 17{,}66$ m (adyacente).
+  \item $\tan 30^{\circ}=\dfrac{30}{d}\Rightarrow d=\dfrac{30}{\tan 30^{\circ}}\approx 51{,}96$ m.
+  \item $\tan 30^{\circ}=\dfrac{2000}{d}\Rightarrow d=\dfrac{2000}{\tan 30^{\circ}}\approx 3464{,}10$ m.
+  \item $\cos\theta=\sqrt{1-\left(\frac{8}{17}\right)^2}=\frac{15}{17}$ y $\tan\theta=\frac{8}{15}$.
+  \item \textbf{a)} $0{,}6018^2+0{,}7986^2\approx 1{,}0000$; \quad \textbf{b)} $\sen 37^{\circ}=0{,}6018=\cos(90^{\circ}-37^{\circ})$. \checkmark
+  \item $x=\sqrt{6^2+8^2}=10$ m; $\tan\alpha=\dfrac{6}{8}\Rightarrow\alpha\approx 36{,}87^{\circ}$ y $\beta=90^{\circ}-\alpha\approx 53{,}13^{\circ}$.
+  \item $h=10\sen 60^{\circ}\approx 8{,}66$ m; $x=10\cos 60^{\circ}\approx 5{,}00$ m.
+  \item $h=\dfrac{100}{\cot 45^{\circ}+\cot 30^{\circ}}\approx 36{,}60$ m.
+  \item $\sen\theta=\frac{5}{13}$, $\cos\theta=\frac{12}{13}$, $\tan\theta=\frac{5}{12}$, $\csc\theta=\frac{13}{5}$, $\sec\theta=\frac{13}{12}$, $\cot\theta=\frac{12}{5}$.
+  \item $\theta=\arctan\left(0{,}75\right)\approx 36{,}87^{\circ}$.
+  \item $x=\sqrt{13^2-5^2}=12$ m; $\sen\alpha=\dfrac{5}{13}\Rightarrow\alpha\approx 22{,}62^{\circ}$ y $\beta=90^{\circ}-\alpha\approx 67{,}38^{\circ}$.
+  \item $h=50\sen 40^{\circ}\approx 32{,}14$ m; $x=50\cos 40^{\circ}\approx 38{,}30$ m.
+  \item $\tan 45^{\circ}=\dfrac{H}{x}$ y $\tan 60^{\circ}=\dfrac{H}{x-40}$; igualando se obtiene $H=\dfrac{40\tan 45^{\circ}\tan 60^{\circ}}{\tan 60^{\circ}-\tan 45^{\circ}}\approx 94{,}64$ m.
+\end{enumerate}
+
+
+\subsection*{Sesión 2}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $\sen\theta=\frac{5}{13}$, $\cos\theta=\frac{12}{13}$, $\tan\theta=\frac{5}{12}$.
+  \item \textbf{a)} $0{,}3907$; \quad \textbf{b)} $0{,}7547$; \quad \textbf{c)} $2{,}0503$.
+  \item $x=40\tan 27^{\circ}\approx 20{,}38$ m; $y=\dfrac{40}{\cos 27^{\circ}}\approx 44{,}89$ m.
+  \item $\tan 36^{\circ}=\dfrac{h}{55}\Rightarrow h=55\tan 36^{\circ}\approx 39{,}96$ m.
+  \item $\tan 35^{\circ}=\dfrac{h}{20}\Rightarrow h=20\tan 35^{\circ}\approx 14{,}00$ m.
+  \item $x=\sqrt{17^2-8^2}=\sqrt{225}=15$.
+  \item \textbf{a)} $\theta=39^{\circ}$; \quad \textbf{b)} $\theta=57^{\circ}$; \quad \textbf{c)} $\theta=44^{\circ}$.
+  \item $x=15\sen 36^{\circ}\approx 8{,}82$ m (opuesto); $y=15\cos 36^{\circ}\approx 12{,}14$ m (adyacente).
+  \item $\tan 45^{\circ}=\dfrac{45}{d}\Rightarrow d=\dfrac{45}{\tan 45^{\circ}}\approx 45{,}00$ m.
+  \item $\tan 25^{\circ}=\dfrac{1500}{d}\Rightarrow d=\dfrac{1500}{\tan 25^{\circ}}\approx 3216{,}76$ m.
+  \item $\cos\theta=\sqrt{1-\left(\frac{7}{25}\right)^2}=\frac{24}{25}$ y $\tan\theta=\frac{7}{24}$.
+  \item \textbf{a)} $0{,}7880^2+0{,}6157^2\approx 1{,}0000$; \quad \textbf{b)} $\sen 52^{\circ}=0{,}7880=\cos(90^{\circ}-52^{\circ})$. \checkmark
+  \item $x=\sqrt{5^2+12^2}=13$ m; $\tan\alpha=\dfrac{5}{12}\Rightarrow\alpha\approx 22{,}62^{\circ}$ y $\beta=90^{\circ}-\alpha\approx 67{,}38^{\circ}$.
+  \item $h=8\sen 65^{\circ}\approx 7{,}25$ m; $x=8\cos 65^{\circ}\approx 3{,}38$ m.
+  \item $h=\dfrac{80}{\cot 50^{\circ}+\cot 40^{\circ}}\approx 39{,}39$ m.
+  \item $\sen\theta=\frac{8}{17}$, $\cos\theta=\frac{15}{17}$, $\tan\theta=\frac{8}{15}$, $\csc\theta=\frac{17}{8}$, $\sec\theta=\frac{17}{15}$, $\cot\theta=\frac{15}{8}$.
+  \item $\theta=\arctan\left(1{,}2\right)\approx 50{,}19^{\circ}$.
+  \item $x=\sqrt{17^2-8^2}=15$ m; $\sen\alpha=\dfrac{8}{17}\Rightarrow\alpha\approx 28{,}07^{\circ}$ y $\beta=90^{\circ}-\alpha\approx 61{,}93^{\circ}$.
+  \item $h=20\sen 25^{\circ}\approx 8{,}45$ m; $x=20\cos 25^{\circ}\approx 18{,}13$ m.
+  \item $\tan 30^{\circ}=\dfrac{H}{x}$ y $\tan 50^{\circ}=\dfrac{H}{x-30}$; igualando se obtiene $H=\dfrac{30\tan 30^{\circ}\tan 50^{\circ}}{\tan 50^{\circ}-\tan 30^{\circ}}\approx 33{,}60$ m.
+\end{enumerate}
+
+
+\subsection*{Sesión 3}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $\sen\theta=\frac{8}{17}$, $\cos\theta=\frac{15}{17}$, $\tan\theta=\frac{8}{15}$.
+  \item \textbf{a)} $0{,}8480$; \quad \textbf{b)} $0{,}8290$; \quad \textbf{c)} $2{,}9042$.
+  \item $x=25\tan 41^{\circ}\approx 21{,}73$ m; $y=\dfrac{25}{\cos 41^{\circ}}\approx 33{,}13$ m.
+  \item $\tan 24^{\circ}=\dfrac{h}{90}\Rightarrow h=90\tan 24^{\circ}\approx 40{,}07$ m.
+  \item $\tan\theta=\dfrac{5}{9}\Rightarrow\theta=\arctan\left(0{,}56\right)\approx 29{,}05^{\circ}$.
+  \item $x=\sqrt{13^2-12^2}=\sqrt{25}=5$.
+  \item \textbf{a)} $\theta=49^{\circ}$; \quad \textbf{b)} $\theta=66^{\circ}$; \quad \textbf{c)} $\theta=33^{\circ}$.
+  \item $x=30\sen 42^{\circ}\approx 20{,}07$ m (opuesto); $y=30\cos 42^{\circ}\approx 22{,}29$ m (adyacente).
+  \item $\tan 25^{\circ}=\dfrac{60}{d}\Rightarrow d=\dfrac{60}{\tan 25^{\circ}}\approx 128{,}67$ m.
+  \item $\tan 40^{\circ}=\dfrac{800}{d}\Rightarrow d=\dfrac{800}{\tan 40^{\circ}}\approx 953{,}40$ m.
+  \item $\cos\theta=\sqrt{1-\left(\frac{20}{29}\right)^2}=\frac{21}{29}$ y $\tan\theta=\frac{20}{21}$.
+  \item \textbf{a)} $0{,}6561^2+0{,}7547^2\approx 1{,}0000$; \quad \textbf{b)} $\sen 41^{\circ}=0{,}6561=\cos(90^{\circ}-41^{\circ})$. \checkmark
+  \item $x=\sqrt{9^2+12^2}=15$ m; $\tan\alpha=\dfrac{9}{12}\Rightarrow\alpha\approx 36{,}87^{\circ}$ y $\beta=90^{\circ}-\alpha\approx 53{,}13^{\circ}$.
+  \item $h=12\sen 55^{\circ}\approx 9{,}83$ m; $x=12\cos 55^{\circ}\approx 6{,}88$ m.
+  \item $h=\dfrac{120}{\cot 60^{\circ}+\cot 35^{\circ}}\approx 59{,}84$ m.
+  \item $\sen\theta=\frac{7}{25}$, $\cos\theta=\frac{24}{25}$, $\tan\theta=\frac{7}{24}$, $\csc\theta=\frac{25}{7}$, $\sec\theta=\frac{25}{24}$, $\cot\theta=\frac{24}{7}$.
+  \item $\theta=\arctan\left(1{,}5\right)\approx 56{,}31^{\circ}$.
+  \item $x=\sqrt{25^2-7^2}=24$ m; $\sen\alpha=\dfrac{7}{25}\Rightarrow\alpha\approx 16{,}26^{\circ}$ y $\beta=90^{\circ}-\alpha\approx 73{,}74^{\circ}$.
+  \item $h=40\sen 35^{\circ}\approx 22{,}94$ m; $x=40\cos 35^{\circ}\approx 32{,}77$ m.
+  \item $\tan 35^{\circ}=\dfrac{H}{x}$ y $\tan 55^{\circ}=\dfrac{H}{x-25}$; igualando se obtiene $H=\dfrac{25\tan 35^{\circ}\tan 55^{\circ}}{\tan 55^{\circ}-\tan 35^{\circ}}\approx 34{,}34$ m.
+\end{enumerate}
+
+
+\subsection*{Sesión 4}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $\sen\theta=\frac{7}{25}$, $\cos\theta=\frac{24}{25}$, $\tan\theta=\frac{7}{24}$.
+  \item \textbf{a)} $0{,}7431$; \quad \textbf{b)} $0{,}8746$; \quad \textbf{c)} $1{,}3270$.
+  \item $x=60\tan 35^{\circ}\approx 42{,}01$ m; $y=\dfrac{60}{\cos 35^{\circ}}\approx 73{,}25$ m.
+  \item $\tan 43^{\circ}=\dfrac{h}{48}\Rightarrow h=48\tan 43^{\circ}\approx 44{,}76$ m.
+  \item $\tan 42^{\circ}=\dfrac{h}{15}\Rightarrow h=15\tan 42^{\circ}\approx 13{,}51$ m.
+  \item $x=\sqrt{10^2+24^2}=\sqrt{676}=26$.
+  \item \textbf{a)} $\theta=43^{\circ}$; \quad \textbf{b)} $\theta=59^{\circ}$; \quad \textbf{c)} $\theta=21^{\circ}$.
+  \item $x=12\sen 54^{\circ}\approx 9{,}71$ m (opuesto); $y=12\cos 54^{\circ}\approx 7{,}05$ m (adyacente).
+  \item $\tan 40^{\circ}=\dfrac{80}{d}\Rightarrow d=\dfrac{80}{\tan 40^{\circ}}\approx 95{,}34$ m.
+  \item $\tan 35^{\circ}=\dfrac{120}{d}\Rightarrow d=\dfrac{120}{\tan 35^{\circ}}\approx 171{,}38$ m.
+  \item $\cos\theta=\sqrt{1-\left(\frac{9}{41}\right)^2}=\frac{40}{41}$ y $\tan\theta=\frac{9}{40}$.
+  \item \textbf{a)} $0{,}8910^2+0{,}4540^2\approx 1{,}0000$; \quad \textbf{b)} $\sen 63^{\circ}=0{,}8910=\cos(90^{\circ}-63^{\circ})$. \checkmark
+  \item $x=\sqrt{7^2+24^2}=25$ m; $\tan\alpha=\dfrac{7}{24}\Rightarrow\alpha\approx 16{,}26^{\circ}$ y $\beta=90^{\circ}-\alpha\approx 73{,}74^{\circ}$.
+  \item $h=6\sen 70^{\circ}\approx 5{,}64$ m; $x=6\cos 70^{\circ}\approx 2{,}05$ m.
+  \item $h=\dfrac{60}{\cot 42^{\circ}+\cot 33^{\circ}}\approx 22{,}64$ m.
+  \item $\sen\theta=\frac{20}{29}$, $\cos\theta=\frac{21}{29}$, $\tan\theta=\frac{20}{21}$, $\csc\theta=\frac{29}{20}$, $\sec\theta=\frac{29}{21}$, $\cot\theta=\frac{21}{20}$.
+  \item $\theta=\arctan\left(2\right)\approx 63{,}43^{\circ}$.
+  \item $x=\sqrt{29^2-20^2}=21$ m; $\sen\alpha=\dfrac{20}{29}\Rightarrow\alpha\approx 43{,}60^{\circ}$ y $\beta=90^{\circ}-\alpha\approx 46{,}40^{\circ}$.
+  \item $h=12\sen 30^{\circ}\approx 6{,}00$ m; $x=12\cos 30^{\circ}\approx 10{,}39$ m.
+  \item $\tan 28^{\circ}=\dfrac{H}{x}$ y $\tan 47^{\circ}=\dfrac{H}{x-50}$; igualando se obtiene $H=\dfrac{50\tan 28^{\circ}\tan 47^{\circ}}{\tan 47^{\circ}-\tan 28^{\circ}}\approx 52{,}73$ m.
+\end{enumerate}
+
+
+\subsection*{Sesión 5}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $\sen\theta=\frac{3}{5}$, $\cos\theta=\frac{4}{5}$, $\tan\theta=\frac{3}{4}$.
+  \item \textbf{a)} $0{,}5878$; \quad \textbf{b)} $0{,}7193$; \quad \textbf{c)} $1{,}8807$.
+  \item $x=18\tan 52^{\circ}\approx 23{,}04$ m; $y=\dfrac{18}{\cos 52^{\circ}}\approx 29{,}24$ m.
+  \item $\tan 31^{\circ}=\dfrac{h}{65}\Rightarrow h=65\tan 31^{\circ}\approx 39{,}06$ m.
+  \item $\tan\theta=\dfrac{18}{10}\Rightarrow\theta=\arctan\left(1{,}8\right)\approx 60{,}95^{\circ}$.
+  \item $x=\sqrt{20^2-12^2}=\sqrt{256}=16$.
+  \item \textbf{a)} $\theta=54^{\circ}$; \quad \textbf{b)} $\theta=72^{\circ}$; \quad \textbf{c)} $\theta=38^{\circ}$.
+  \item $x=25\sen 31^{\circ}\approx 12{,}88$ m (opuesto); $y=25\cos 31^{\circ}\approx 21{,}43$ m (adyacente).
+  \item $\tan 35^{\circ}=\dfrac{50}{d}\Rightarrow d=\dfrac{50}{\tan 35^{\circ}}\approx 71{,}41$ m.
+  \item $\tan 22^{\circ}=\dfrac{250}{d}\Rightarrow d=\dfrac{250}{\tan 22^{\circ}}\approx 618{,}77$ m.
+  \item $\cos\theta=\sqrt{1-\left(\frac{12}{37}\right)^2}=\frac{35}{37}$ y $\tan\theta=\frac{12}{35}$.
+  \item \textbf{a)} $0{,}4695^2+0{,}8829^2\approx 1{,}0000$; \quad \textbf{b)} $\sen 28^{\circ}=0{,}4695=\cos(90^{\circ}-28^{\circ})$. \checkmark
+  \item $x=\sqrt{8^2+15^2}=17$ m; $\tan\alpha=\dfrac{8}{15}\Rightarrow\alpha\approx 28{,}07^{\circ}$ y $\beta=90^{\circ}-\alpha\approx 61{,}93^{\circ}$.
+  \item $h=9\sen 58^{\circ}\approx 7{,}63$ m; $x=9\cos 58^{\circ}\approx 4{,}77$ m.
+  \item $h=\dfrac{150}{\cot 55^{\circ}+\cot 45^{\circ}}\approx 88{,}22$ m.
+  \item $\sen\theta=\frac{9}{41}$, $\cos\theta=\frac{40}{41}$, $\tan\theta=\frac{9}{40}$, $\csc\theta=\frac{41}{9}$, $\sec\theta=\frac{41}{40}$, $\cot\theta=\frac{40}{9}$.
+  \item $\theta=\arctan\left(0{,}6\right)\approx 30{,}96^{\circ}$.
+  \item $x=\sqrt{10^2-6^2}=8$ m; $\sen\alpha=\dfrac{6}{10}\Rightarrow\alpha\approx 36{,}87^{\circ}$ y $\beta=90^{\circ}-\alpha\approx 53{,}13^{\circ}$.
+  \item $h=60\sen 42^{\circ}\approx 40{,}15$ m; $x=60\cos 42^{\circ}\approx 44{,}59$ m.
+  \item $\tan 40^{\circ}=\dfrac{H}{x}$ y $\tan 62^{\circ}=\dfrac{H}{x-20}$; igualando se obtiene $H=\dfrac{20\tan 40^{\circ}\tan 62^{\circ}}{\tan 62^{\circ}-\tan 40^{\circ}}\approx 30{,}30$ m.
+\end{enumerate}
+
+
+\subsection*{Sesión 6}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $\sen\theta=\frac{3}{5}$, $\cos\theta=\frac{4}{5}$, $\tan\theta=\frac{3}{4}$.
+  \item \textbf{a)} $0{,}4540$; \quad \textbf{b)} $0{,}7771$; \quad \textbf{c)} $1{,}5399$.
+  \item $x=35\tan 24^{\circ}\approx 15{,}58$ m; $y=\dfrac{35}{\cos 24^{\circ}}\approx 38{,}31$ m.
+  \item $\tan 47^{\circ}=\dfrac{h}{38}\Rightarrow h=38\tan 47^{\circ}\approx 40{,}75$ m.
+  \item $\tan 28^{\circ}=\dfrac{h}{25}\Rightarrow h=25\tan 28^{\circ}\approx 13{,}29$ m.
+  \item $x=\sqrt{25^2-7^2}=\sqrt{576}=24$.
+  \item \textbf{a)} $\theta=47^{\circ}$; \quad \textbf{b)} $\theta=63^{\circ}$; \quad \textbf{c)} $\theta=26^{\circ}$.
+  \item $x=18\sen 46^{\circ}\approx 12{,}95$ m (opuesto); $y=18\cos 46^{\circ}\approx 12{,}50$ m (adyacente).
+  \item $\tan 20^{\circ}=\dfrac{100}{d}\Rightarrow d=\dfrac{100}{\tan 20^{\circ}}\approx 274{,}75$ m.
+  \item $\tan 28^{\circ}=\dfrac{5000}{d}\Rightarrow d=\dfrac{5000}{\tan 28^{\circ}}\approx 9403{,}63$ m.
+  \item $\cos\theta=\sqrt{1-\left(\frac{11}{61}\right)^2}=\frac{60}{61}$ y $\tan\theta=\frac{11}{60}$.
+  \item \textbf{a)} $0{,}7193^2+0{,}6947^2\approx 1{,}0000$; \quad \textbf{b)} $\sen 46^{\circ}=0{,}7193=\cos(90^{\circ}-46^{\circ})$. \checkmark
+  \item $x=\sqrt{12^2+16^2}=20$ m; $\tan\alpha=\dfrac{12}{16}\Rightarrow\alpha\approx 36{,}87^{\circ}$ y $\beta=90^{\circ}-\alpha\approx 53{,}13^{\circ}$.
+  \item $h=15\sen 50^{\circ}\approx 11{,}49$ m; $x=15\cos 50^{\circ}\approx 9{,}64$ m.
+  \item $h=\dfrac{90}{\cot 38^{\circ}+\cot 52^{\circ}}\approx 43{,}66$ m.
+  \item $\sen\theta=\frac{12}{37}$, $\cos\theta=\frac{35}{37}$, $\tan\theta=\frac{12}{35}$, $\csc\theta=\frac{37}{12}$, $\sec\theta=\frac{37}{35}$, $\cot\theta=\frac{35}{12}$.
+  \item $\theta=\arctan\left(0{,}8\right)\approx 38{,}66^{\circ}$.
+  \item $x=\sqrt{15^2-9^2}=12$ m; $\sen\alpha=\dfrac{9}{15}\Rightarrow\alpha\approx 36{,}87^{\circ}$ y $\beta=90^{\circ}-\alpha\approx 53{,}13^{\circ}$.
+  \item $h=25\sen 28^{\circ}\approx 11{,}74$ m; $x=25\cos 28^{\circ}\approx 22{,}07$ m.
+  \item $\tan 32^{\circ}=\dfrac{H}{x}$ y $\tan 58^{\circ}=\dfrac{H}{x-35}$; igualando se obtiene $H=\dfrac{35\tan 32^{\circ}\tan 58^{\circ}}{\tan 58^{\circ}-\tan 32^{\circ}}\approx 35{,}88$ m.
+\end{enumerate}
+
+
+\subsection*{Sesión 7}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $\sen\theta=\frac{3}{5}$, $\cos\theta=\frac{4}{5}$, $\tan\theta=\frac{3}{4}$.
+  \item \textbf{a)} $0{,}5446$; \quad \textbf{b)} $0{,}6561$; \quad \textbf{c)} $2{,}2460$.
+  \item $x=80\tan 29^{\circ}\approx 44{,}34$ m; $y=\dfrac{80}{\cos 29^{\circ}}\approx 91{,}47$ m.
+  \item $\tan 26^{\circ}=\dfrac{h}{110}\Rightarrow h=110\tan 26^{\circ}\approx 53{,}65$ m.
+  \item $\tan\theta=\dfrac{2{,}5}{4}\Rightarrow\theta=\arctan\left(0{,}62\right)\approx 32{,}01^{\circ}$.
+  \item $x=\sqrt{18^2+24^2}=\sqrt{900}=30$.
+  \item \textbf{a)} $\theta=29^{\circ}$; \quad \textbf{b)} $\theta=53^{\circ}$; \quad \textbf{c)} $\theta=48^{\circ}$.
+  \item $x=40\sen 23^{\circ}\approx 15{,}63$ m (opuesto); $y=40\cos 23^{\circ}\approx 36{,}82$ m (adyacente).
+  \item $\tan 50^{\circ}=\dfrac{36}{d}\Rightarrow d=\dfrac{36}{\tan 50^{\circ}}\approx 30{,}21$ m.
+  \item $\tan 42^{\circ}=\dfrac{300}{d}\Rightarrow d=\dfrac{300}{\tan 42^{\circ}}\approx 333{,}18$ m.
+  \item $\cos\theta=\sqrt{1-\left(\frac{28}{53}\right)^2}=\frac{45}{53}$ y $\tan\theta=\frac{28}{45}$.
+  \item \textbf{a)} $0{,}5592^2+0{,}8290^2\approx 1{,}0000$; \quad \textbf{b)} $\sen 34^{\circ}=0{,}5592=\cos(90^{\circ}-34^{\circ})$. \checkmark
+  \item $x=\sqrt{10^2+24^2}=26$ m; $\tan\alpha=\dfrac{10}{24}\Rightarrow\alpha\approx 22{,}62^{\circ}$ y $\beta=90^{\circ}-\alpha\approx 67{,}38^{\circ}$.
+  \item $h=10\sen 62^{\circ}\approx 8{,}83$ m; $x=10\cos 62^{\circ}\approx 4{,}69$ m.
+  \item $h=\dfrac{110}{\cot 48^{\circ}+\cot 37^{\circ}}\approx 49{,}38$ m.
+  \item $\sen\theta=\frac{11}{61}$, $\cos\theta=\frac{60}{61}$, $\tan\theta=\frac{11}{60}$, $\csc\theta=\frac{61}{11}$, $\sec\theta=\frac{61}{60}$, $\cot\theta=\frac{60}{11}$.
+  \item $\theta=\arctan\left(1{,}8\right)\approx 60{,}95^{\circ}$.
+  \item $x=\sqrt{20^2-12^2}=16$ m; $\sen\alpha=\dfrac{12}{20}\Rightarrow\alpha\approx 36{,}87^{\circ}$ y $\beta=90^{\circ}-\alpha\approx 53{,}13^{\circ}$.
+  \item $h=80\sen 37^{\circ}\approx 48{,}15$ m; $x=80\cos 37^{\circ}\approx 63{,}89$ m.
+  \item $\tan 25^{\circ}=\dfrac{H}{x}$ y $\tan 43^{\circ}=\dfrac{H}{x-60}$; igualando se obtiene $H=\dfrac{60\tan 25^{\circ}\tan 43^{\circ}}{\tan 43^{\circ}-\tan 25^{\circ}}\approx 55{,}96$ m.
+\end{enumerate}
+
+
+\subsection*{Sesión 8}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $\sen\theta=\frac{20}{29}$, $\cos\theta=\frac{21}{29}$, $\tan\theta=\frac{20}{21}$.
+  \item \textbf{a)} $0{,}3584$; \quad \textbf{b)} $0{,}7314$; \quad \textbf{c)} $1{,}6643$.
+  \item $x=45\tan 38^{\circ}\approx 35{,}16$ m; $y=\dfrac{45}{\cos 38^{\circ}}\approx 57{,}11$ m.
+  \item $\tan 39^{\circ}=\dfrac{h}{42}\Rightarrow h=42\tan 39^{\circ}\approx 34{,}01$ m.
+  \item $\tan 38^{\circ}=\dfrac{h}{12}\Rightarrow h=12\tan 38^{\circ}\approx 9{,}38$ m.
+  \item $x=\sqrt{35^2-28^2}=\sqrt{441}=21$.
+  \item \textbf{a)} $\theta=34^{\circ}$; \quad \textbf{b)} $\theta=71^{\circ}$; \quad \textbf{c)} $\theta=58^{\circ}$.
+  \item $x=22\sen 39^{\circ}\approx 13{,}85$ m (opuesto); $y=22\cos 39^{\circ}\approx 17{,}10$ m (adyacente).
+  \item $\tan 38^{\circ}=\dfrac{72}{d}\Rightarrow d=\dfrac{72}{\tan 38^{\circ}}\approx 92{,}16$ m.
+  \item $\tan 31^{\circ}=\dfrac{90}{d}\Rightarrow d=\dfrac{90}{\tan 31^{\circ}}\approx 149{,}79$ m.
+  \item $\cos\theta=\sqrt{1-\left(\frac{33}{65}\right)^2}=\frac{56}{65}$ y $\tan\theta=\frac{33}{56}$.
+  \item \textbf{a)} $0{,}8480^2+0{,}5299^2\approx 1{,}0000$; \quad \textbf{b)} $\sen 58^{\circ}=0{,}8480=\cos(90^{\circ}-58^{\circ})$. \checkmark
+  \item $x=\sqrt{20^2+21^2}=29$ m; $\tan\alpha=\dfrac{20}{21}\Rightarrow\alpha\approx 43{,}60^{\circ}$ y $\beta=90^{\circ}-\alpha\approx 46{,}40^{\circ}$.
+  \item $h=7\sen 68^{\circ}\approx 6{,}49$ m; $x=7\cos 68^{\circ}\approx 2{,}62$ m.
+  \item $h=\dfrac{70}{\cot 58^{\circ}+\cot 31^{\circ}}\approx 30{,}58$ m.
+  \item $\sen\theta=\frac{28}{53}$, $\cos\theta=\frac{45}{53}$, $\tan\theta=\frac{28}{45}$, $\csc\theta=\frac{53}{28}$, $\sec\theta=\frac{53}{45}$, $\cot\theta=\frac{45}{28}$.
+  \item $\theta=\arctan\left(2{,}5\right)\approx 68{,}20^{\circ}$.
+  \item $x=\sqrt{41^2-9^2}=40$ m; $\sen\alpha=\dfrac{9}{41}\Rightarrow\alpha\approx 12{,}68^{\circ}$ y $\beta=90^{\circ}-\alpha\approx 77{,}32^{\circ}$.
+  \item $h=15\sen 32^{\circ}\approx 7{,}95$ m; $x=15\cos 32^{\circ}\approx 12{,}72$ m.
+  \item $\tan 38^{\circ}=\dfrac{H}{x}$ y $\tan 61^{\circ}=\dfrac{H}{x-45}$; igualando se obtiene $H=\dfrac{45\tan 38^{\circ}\tan 61^{\circ}}{\tan 61^{\circ}-\tan 38^{\circ}}\approx 62{,}01$ m.
+\end{enumerate}
+
+
+\subsection*{Sesión 9}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $\sen\theta=\frac{9}{41}$, $\cos\theta=\frac{40}{41}$, $\tan\theta=\frac{9}{40}$.
+  \item \textbf{a)} $0{,}6157$; \quad \textbf{b)} $0{,}5878$; \quad \textbf{c)} $3{,}0777$.
+  \item $x=30\tan 47^{\circ}\approx 32{,}17$ m; $y=\dfrac{30}{\cos 47^{\circ}}\approx 43{,}99$ m.
+  \item $\tan 34^{\circ}=\dfrac{h}{76}\Rightarrow h=76\tan 34^{\circ}\approx 51{,}26$ m.
+  \item $\tan\theta=\dfrac{7}{14}\Rightarrow\theta=\arctan\left(0{,}5\right)\approx 26{,}57^{\circ}$.
+  \item $x=\sqrt{11^2+60^2}=\sqrt{3721}=61$.
+  \item \textbf{a)} $\theta=52^{\circ}$; \quad \textbf{b)} $\theta=38^{\circ}$; \quad \textbf{c)} $\theta=64^{\circ}$.
+  \item $x=35\sen 26^{\circ}\approx 15{,}34$ m (opuesto); $y=35\cos 26^{\circ}\approx 31{,}46$ m (adyacente).
+  \item $\tan 42^{\circ}=\dfrac{90}{d}\Rightarrow d=\dfrac{90}{\tan 42^{\circ}}\approx 99{,}96$ m.
+  \item $\tan 26^{\circ}=\dfrac{600}{d}\Rightarrow d=\dfrac{600}{\tan 26^{\circ}}\approx 1230{,}18$ m.
+  \item $\cos\theta=\sqrt{1-\left(\frac{3}{5}\right)^2}=\frac{4}{5}$ y $\tan\theta=\frac{3}{4}$.
+  \item \textbf{a)} $0{,}6820^2+0{,}7314^2\approx 1{,}0000$; \quad \textbf{b)} $\sen 43^{\circ}=0{,}6820=\cos(90^{\circ}-43^{\circ})$. \checkmark
+  \item $x=\sqrt{15^2+20^2}=25$ m; $\tan\alpha=\dfrac{15}{20}\Rightarrow\alpha\approx 36{,}87^{\circ}$ y $\beta=90^{\circ}-\alpha\approx 53{,}13^{\circ}$.
+  \item $h=14\sen 53^{\circ}\approx 11{,}18$ m; $x=14\cos 53^{\circ}\approx 8{,}43$ m.
+  \item $h=\dfrac{200}{\cot 44^{\circ}+\cot 29^{\circ}}\approx 70{,}43$ m.
+  \item $\sen\theta=\frac{8}{17}$, $\cos\theta=\frac{15}{17}$, $\tan\theta=\frac{8}{15}$, $\csc\theta=\frac{17}{8}$, $\sec\theta=\frac{17}{15}$, $\cot\theta=\frac{15}{8}$.
+  \item $\theta=\arctan\left(0{,}5\right)\approx 26{,}57^{\circ}$.
+  \item $x=\sqrt{37^2-12^2}=35$ m; $\sen\alpha=\dfrac{12}{37}\Rightarrow\alpha\approx 18{,}92^{\circ}$ y $\beta=90^{\circ}-\alpha\approx 71{,}08^{\circ}$.
+  \item $h=45\sen 48^{\circ}\approx 33{,}44$ m; $x=45\cos 48^{\circ}\approx 30{,}11$ m.
+  \item $\tan 20^{\circ}=\dfrac{H}{x}$ y $\tan 39^{\circ}=\dfrac{H}{x-80}$; igualando se obtiene $H=\dfrac{80\tan 20^{\circ}\tan 39^{\circ}}{\tan 39^{\circ}-\tan 20^{\circ}}\approx 52{,}89$ m.
+\end{enumerate}
+
+
+\subsection*{Sesión 10 — Simulacro}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $\sen\theta=\frac{3}{5}$, $\cos\theta=\frac{4}{5}$, $\tan\theta=\frac{3}{4}$.
+  \item \textbf{a)} $0{,}4384$; \quad \textbf{b)} $0{,}6820$; \quad \textbf{c)} $1{,}9626$.
+  \item $x=55\tan 33^{\circ}\approx 35{,}72$ m; $y=\dfrac{55}{\cos 33^{\circ}}\approx 65{,}58$ m.
+  \item $\tan 44^{\circ}=\dfrac{h}{52}\Rightarrow h=52\tan 44^{\circ}\approx 50{,}22$ m.
+  \item $\tan 33^{\circ}=\dfrac{h}{18}\Rightarrow h=18\tan 33^{\circ}\approx 11{,}69$ m.
+  \item $x=\sqrt{16^2+30^2}=\sqrt{1156}=34$.
+  \item \textbf{a)} $\theta=61^{\circ}$; \quad \textbf{b)} $\theta=49^{\circ}$; \quad \textbf{c)} $\theta=36^{\circ}$.
+  \item $x=16\sen 57^{\circ}\approx 13{,}42$ m (opuesto); $y=16\cos 57^{\circ}\approx 8{,}71$ m (adyacente).
+  \item $\tan 26^{\circ}=\dfrac{120}{d}\Rightarrow d=\dfrac{120}{\tan 26^{\circ}}\approx 246{,}04$ m.
+  \item $\tan 38^{\circ}=\dfrac{1000}{d}\Rightarrow d=\dfrac{1000}{\tan 38^{\circ}}\approx 1279{,}94$ m.
+  \item $\cos\theta=\sqrt{1-\left(\frac{5}{13}\right)^2}=\frac{12}{13}$ y $\tan\theta=\frac{5}{12}$.
+  \item \textbf{a)} $0{,}8746^2+0{,}4848^2\approx 1{,}0000$; \quad \textbf{b)} $\sen 61^{\circ}=0{,}8746=\cos(90^{\circ}-61^{\circ})$. \checkmark
+  \item $x=\sqrt{9^2+40^2}=41$ m; $\tan\alpha=\dfrac{9}{40}\Rightarrow\alpha\approx 12{,}68^{\circ}$ y $\beta=90^{\circ}-\alpha\approx 77{,}32^{\circ}$.
+  \item $h=11\sen 66^{\circ}\approx 10{,}05$ m; $x=11\cos 66^{\circ}\approx 4{,}47$ m.
+  \item $h=\dfrac{130}{\cot 62^{\circ}+\cot 34^{\circ}}\approx 64{,}54$ m.
+  \item $\sen\theta=\frac{33}{65}$, $\cos\theta=\frac{56}{65}$, $\tan\theta=\frac{33}{56}$, $\csc\theta=\frac{65}{33}$, $\sec\theta=\frac{65}{56}$, $\cot\theta=\frac{56}{33}$.
+  \item $\theta=\arctan\left(3\right)\approx 71{,}57^{\circ}$.
+  \item $x=\sqrt{61^2-11^2}=60$ m; $\sen\alpha=\dfrac{11}{61}\Rightarrow\alpha\approx 10{,}39^{\circ}$ y $\beta=90^{\circ}-\alpha\approx 79{,}61^{\circ}$.
+  \item $h=18\sen 22^{\circ}\approx 6{,}74$ m; $x=18\cos 22^{\circ}\approx 16{,}69$ m.
+  \item $\tan 36^{\circ}=\dfrac{H}{x}$ y $\tan 54^{\circ}=\dfrac{H}{x-55}$; igualando se obtiene $H=\dfrac{55\tan 36^{\circ}\tan 54^{\circ}}{\tan 54^{\circ}-\tan 36^{\circ}}\approx 84{,}64$ m.
+\end{enumerate}
+
+\vspace{10pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{¡Mucho éxito!} Si completaste las diez sesiones, resolviste ochenta triángulos y ochenta problemas de aplicación. Repite cualquiera de las sesiones cronometrándote y revisa solo los errores: ahí está tu mayor mejora.
+\end{cuadroinfo}
+
+\fi
+% ============================================================
+
+\end{document}

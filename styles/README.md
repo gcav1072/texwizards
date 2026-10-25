@@ -90,7 +90,8 @@ compile_all.sh · generate_scr.py · setup_texmf.sh
 | `mathwizards-palette.sty` | Solo la paleta de colores (con aliases de compatibilidad) | — |
 | `mathwizards-guia.sty` | Guías de estudio, exámenes (artículo Letter) | `curso_1eraño` … `curso_4toaño`, `curso_preuni`, `Integrales`, `T_y_C`, `lead_magnets` |
 | `mathwizards-beamer.sty` | Presentaciones (Beamer 16:9) | `curso_preuni_beamers`, `minicurso_derivadas` |
-| `mathwizards-carrusel.sty` | Carruseles Instagram 1:1 (1080×1080) | `carruseles` |
+| `mathwizards-carrusel.sty` | Carruseles Instagram 1:1 (edición clásica) | `carruseles` |
+| `mathwizards-carrusel-moderno.sty` | Carruseles Instagram 1:1 (edición moderna) | `carruseles` |
 | `mathwizards-formulario.sty` | Formularios de referencia (landscape compacto) | `Formularios` |
 | `mathwizards-ingles.sty` | Curso de inglés (cajas tcolorbox con título) | `cursoinglés` |
 
@@ -112,7 +113,8 @@ Aliases de compatibilidad (nombres antiguos): `azulprincipal`, `azulclaro`,
 `rojoprincipal`, `moradoprincipal`, `moradoclaro`.
 
 > `mathwizards-carrusel.sty` define además `mwverde` (`#2E9E4F`) con alcance local,
-> solo para las marcas ✓/✗ de los carruseles.
+> solo para las marcas ✓/✗ de los carruseles. La edición moderna usa su propio
+> `mwverde` (`#17A673`), más `mwink` (tinta) y `mwcrema` (fondo).
 
 ## mathwizards-guia.sty
 
@@ -325,4 +327,55 @@ Cajas de contenido (`mdframed`): `cajateoria` (rojo), `cajaerror` (rojo-naranja)
 `cajaok` (verde), `cajapasos` (naranja) y `cajaformula` (gris).
 
 Marcas: `\bien` (✓ verde) y `\mal` (✗ rojo-naranja).
+
+## mathwizards-carrusel-moderno.sty
+
+Segunda edición de carruseles **1:1 (10.8 × 10.8 cm)** con estética editorial:
+fondo crema con retícula de puntos, títulos en Nexa Heavy, tarjetas planas con
+barra de acento, una etiqueta de tema por lámina y barra de progreso en el pie.
+
+```latex
+\documentclass[12pt]{article}
+\usepackage{mathwizards-carrusel-moderno}
+\mwcartotal{10}
+\begin{document}
+\mwmodportada{Álgebra · Funciones lineales}{La ecuación de la recta}{Subtítulo}
+
+\begin{mwmodlamina}[mwmagenta]{Pendiente}{La pendiente: cuánto sube}
+  ...contenido...
+\end{mwmodlamina}
+
+\mwmodfin{Para llevar}{Mensaje de cierre}{CTA}
+\end{document}
+```
+
+| Comando / entorno | Uso |
+|---|---|
+| `\mwcartotal{N}` | Total de láminas (barra de progreso y contador `n/N`) |
+| `\mwmodportada{kicker}{título}{subtítulo}` | Portada oscura con logo, aros y fórmula fantasma |
+| `\begin{mwmodlamina}[color]{etiqueta}{título}` | Lámina de contenido; el color es el acento (por defecto `mwprimario`) |
+| `\mwmodfin{kicker}{mensaje}{CTA}` | Cierre oscuro con botón de llamada a la acción |
+| `\mwcarhandle` | Handle del pie (por defecto `@mathwizards.ve`) |
+
+El color de acento de cada lámina se guarda en `mwacc`, así que las tarjetas y
+marcas se adaptan solas al tema de la lámina.
+
+| Caja | Uso |
+|---|---|
+| `mwcaja` | Tarjeta del color de acento (contenido general) |
+| `mwcajagris` | Tarjeta neutra para notas |
+| `mwcajaformula` | Tarjeta blanca centrada, para fórmulas o gráficas |
+| `mwcajaalerta` | Errores y advertencias (rojo-naranja) |
+| `mwcajaok` | Respuestas y confirmaciones (verde) |
+| `mwcajapaso` | Procedimientos y pasos (naranja) |
+| `mwcajadato` | Datos y curiosidades (violeta) |
+
+Utilidades: `\mwctitulo{texto}` / `\mwctituloc{color}{texto}` (etiqueta en
+mayúsculas dentro de una tarjeta), `\mwcpill{color}{texto}`, `\mwcnum{color}{n}`,
+`\mwcformula[escala]{matemática}`, `\mwcidea{frase}` y las marcas `\mwcbien` /
+`\mwcmal`. Tamaños: `\mwbody`, `\mwsmall`, `\mwlabel`.
+
+> El estilo desactiva la partición de palabras (`\hyphenpenalty=10000`) para
+> evitar guiones sueltos en títulos y botones. Si un texto no cabe, acórtalo o
+> usa `\\` para marcar el corte.
 

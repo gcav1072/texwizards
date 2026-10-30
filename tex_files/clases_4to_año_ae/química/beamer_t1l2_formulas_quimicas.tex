@@ -1,0 +1,303 @@
+% ============================================================
+%  BEAMER — T1L2: MASA MOLAR, FÓRMULA EMPÍRICA Y MOLECULAR
+%  Curso: 4to Año — Química
+%  Autor: Ing. Gabriel Astudillo
+%  Fuente de la clase: t1l2 química.md (21 al 28 de octubre)
+%
+%  ESTRUCTURA
+%   Portada + §Repaso exprés (3 láminas) +
+%   §Ejercicios explicados (6 láminas, solución paso a paso) +
+%   §Ejercicios en blanco (8 láminas, enunciado arriba y pizarra libre).
+%
+%  Los 8 ejercicios en blanco son DISTINTOS de los 60 de la guía:
+%  sirven para resolver en vivo sin que el alumno tenga la respuesta.
+%
+%  Compilar desde esta carpeta:
+%    latexmk -xelatex beamer_t1l2_formulas_quimicas.tex
+% ============================================================
+
+\documentclass[aspectratio=169]{beamer}
+\usepackage{mathwizards-beamer}
+
+\mwbeamer{T1L2}{Masa molar, fórmula empírica y molecular}{4to Año — Química}
+
+% ── Comandos propios de esta presentación ────────────────────
+% babel-spanish redefine \% y falla en modo matemático
+% ("Incompatible glue units"): se usa \pc para el signo % en fórmulas.
+\newcommand{\pc}{\text{\%}}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Repaso exprés}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Masa molar: sumar con subíndices}
+  \begin{block}{La fórmula}
+    \[
+      M(\text{compuesto}) = \sum \bigl(\text{n.º de átomos}\bigr)\times \bigl(M.A.\bigr)
+      \qquad [\ \text{g/mol}\ ]
+    \]
+  \end{block}
+  \vspace{2pt}
+  \begin{mwpasos}[Cómo se lee un subíndice]
+    \begin{itemize}
+      \item $\text{H}_2\text{O}$: dos H y un O $\Rightarrow 2(1)+16 = 18$.
+      \item El subíndice afecta a \textbf{todo} el paréntesis:
+            $\text{Ca(OH)}_2 \Rightarrow 40 + 2(16) + 2(1) = 74$.
+      \item $\text{Al}_2(\text{SO}_4)_3 \Rightarrow$ Al: 2, S: 3, O: $3\times4 = 12$.
+    \end{itemize}
+  \end{mwpasos}
+  \vspace{2pt}
+  \begin{mwextra}[Masas atómicas que usaremos]
+    \centering
+    \small
+    H $=1$ \quad C $=12$ \quad N $=14$ \quad O $=16$ \quad Na $=23$ \quad Mg $=24{,}3$\\[2pt]
+    Al $=27$ \quad P $=31$ \quad S $=32$ \quad Cl $=35{,}5$ \quad K $=39$ \quad Ca $=40$ \quad Fe $=56$
+  \end{mwextra}
+\end{frame}
+
+\begin{frame}{Composición porcentual y la ruta completa}
+  \begin{block}{Dos fórmulas, un camino}
+    \[
+      \pc\,\text{elemento} = \frac{\bigl(\text{n.º de átomos}\bigr)\times \bigl(M.A.\bigr)}{M(\text{compuesto})}\times 100
+      \qquad
+      n = \frac{M(\text{compuesto})}{M(\text{F.E.})}
+    \]
+  \end{block}
+  \vspace{2pt}
+  \begin{mwpasos}[Ruta del porcentaje a la fórmula molecular]
+    \begin{enumerate}
+      \item Suponer $100$ g de muestra: cada $\pc$ pasa a gramos.
+      \item Gramos a moles: $n = \text{g}/M.A.$
+      \item Dividir entre el \textbf{menor} número de moles.
+      \item Convertir a enteros con la tabla de factores.
+      \item Calcular $n$ y multiplicar la F.E.: $\text{F.M.} = n\times\text{F.E.}$
+    \end{enumerate}
+  \end{mwpasos}
+\end{frame}
+
+\begin{frame}{Multiplicadores y errores clásicos}
+  \begin{block}{Cuando la relación no da entero}
+    \centering
+    \small
+    Termina en $\sim0{,}50 \Rightarrow \times2$
+    \qquad
+    $\sim0{,}33$ o $\sim0{,}66 \Rightarrow \times3$
+    \qquad
+    $\sim0{,}25$ o $\sim0{,}75 \Rightarrow \times4$
+  \end{block}
+  \vspace{2pt}
+  \begin{mwextra}[Errores que se pagan caro]
+    \begin{itemize}
+      \item Dividir entre el \emph{primer} valor en vez del \emph{menor}.
+      \item Redondear $1{,}33$ a $1$: es $4/3$, ¡obliga a multiplicar por $3$!
+      \item Multiplicar por el factor a un solo elemento.
+      \item Confundir $\text{CH}_2\text{O}$ (F.E.) con $\text{C}_6\text{H}_{12}\text{O}_6$ (F.M.).
+    \end{itemize}
+  \end{mwextra}
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios explicados}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 1 — Masa molar con paréntesis}
+  \mwtopanchoroff
+  \begin{mwejercicio}[Ejercicio 1 — Sal con paréntesis \quad \medio]
+    Calcule la masa molar del fosfato de calcio, $\text{Ca}_3(\text{PO}_4)_2$.
+  \end{mwejercicio}
+  \vspace{2pt}
+  \begin{mwpasos}[Resolución]
+    \begin{itemize}
+      \item Contar átomos: el subíndice $2$ multiplica todo el paréntesis.
+            \[
+              \text{Ca}:3 \qquad \text{P}:2\times1 = 2 \qquad \text{O}:2\times4 = 8
+            \]
+      \item Multiplicar y sumar:
+            \[
+              M = 3(40) + 2(31) + 8(16) = 120 + 62 + 128 = \boxed{310\ \text{g/mol}}
+            \]
+    \end{itemize}
+  \end{mwpasos}
+  \mwtopanchoron
+\end{frame}
+
+\begin{frame}{Ejercicio 2 — Masa molar de una sal compleja}
+  \mwtopanchoroff
+  \begin{mwejercicio}[Ejercicio 2 — Sulfato de hierro(III) \quad \dificil]
+    Calcule la masa molar del sulfato de hierro(III), $\text{Fe}_2(\text{SO}_4)_3$.
+  \end{mwejercicio}
+  \vspace{2pt}
+  \begin{mwpasos}[Resolución]
+    \begin{itemize}
+      \item Contar átomos: Fe $=2$, S $=3$, O $=3\times4 = 12$.
+      \item Multiplicar y sumar:
+            \[
+              M = 2(56) + 3(32) + 12(16) = 112 + 96 + 192 = \boxed{400\ \text{g/mol}}
+            \]
+      \item \textbf{Chequeo rápido:} el O siempre es el que más aporta
+            ($192$ de $400$, casi la mitad).
+    \end{itemize}
+  \end{mwpasos}
+  \mwtopanchoron
+\end{frame}
+
+\begin{frame}{Ejercicio 3 — Composición porcentual}
+  \mwtopanchoroff
+  \begin{mwejercicio}[Ejercicio 3 — Óxido de aluminio \quad \dificil]
+    Determine la composición porcentual del óxido de aluminio, $\text{Al}_2\text{O}_3$.
+  \end{mwejercicio}
+  \vspace{2pt}
+  \begin{mwpasos}[Resolución]
+    \begin{itemize}
+      \item Masa molar: $M = 2(27) + 3(16) = 54 + 48 = 102$ g/mol.
+      \item Porcentajes:
+            \[
+              \pc\,\text{Al} = \frac{54}{102}\times100 = 52{,}94\pc
+              \qquad
+              \pc\,\text{O} = \frac{48}{102}\times100 = 47{,}06\pc
+            \]
+      \item Verificación: $52{,}94 + 47{,}06 = 100\pc$ \checkmark
+    \end{itemize}
+  \end{mwpasos}
+  \mwtopanchoron
+\end{frame}
+
+\begin{frame}{Ejercicio 4 — Fórmula empírica desde porcentajes}
+  \mwtopanchoroff
+  \begin{mwejercicio}[Ejercicio 4 — Clorato de potasio \quad \dificil]
+    Un compuesto contiene $31{,}84\pc$ de K, $28{,}98\pc$ de Cl y $39{,}18\pc$ de O.
+    Determine su fórmula empírica.
+  \end{mwejercicio}
+  \vspace{2pt}
+  \begin{mwpasos}[Resolución — base de cálculo $100$ g]
+    \centering
+    \small
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabular}{lcccc}
+      \toprule
+      Elemento & Gramos & Moles & Relación & Subíndice \\
+      \midrule
+      K  & $31{,}84$ & $31{,}84/39 = 0{,}816$    & $0{,}816/0{,}816 = 1$ & $1$ \\
+      Cl & $28{,}98$ & $28{,}98/35{,}5 = 0{,}816$ & $0{,}816/0{,}816 = 1$ & $1$ \\
+      O  & $39{,}18$ & $39{,}18/16 = 2{,}449$     & $2{,}449/0{,}816 = 3$ & $3$ \\
+      \bottomrule
+    \end{tabular}
+    \par\vspace{4pt}
+    $\text{F.E.} = \boxed{\text{KClO}_3}$ \quad (clorato de potasio)
+  \end{mwpasos}
+  \mwtopanchoron
+\end{frame}
+
+\begin{frame}{Ejercicio 5 — De la fórmula empírica a la molecular}
+  \mwtopanchoroff
+  \begin{mwejercicio}[Ejercicio 5 — Hidrocarburo \quad \medio]
+    La fórmula empírica de un hidrocarburo es $\text{CH}_2$ y su masa molar es
+    $70$ g/mol. Determine su fórmula molecular.
+  \end{mwejercicio}
+  \vspace{2pt}
+  \begin{mwpasos}[Resolución]
+    \begin{itemize}
+      \item Masa molar de la fórmula empírica: $M(\text{CH}_2) = 12 + 2(1) = 14$ g/mol.
+      \item Factor: $n = 70/14 = 5$.
+      \item Multiplicar: $\text{F.M.} = 5\times\text{CH}_2 = \boxed{\text{C}_5\text{H}_{10}}$.
+      \item Se trata de un alqueno (penteno).
+    \end{itemize}
+  \end{mwpasos}
+  \mwtopanchoron
+\end{frame}
+
+\begin{frame}{Ejercicio 6 — Ruta completa}
+  \mwtopanchoroff
+  \begin{mwejercicio}[Ejercicio 6 — F.E. y F.M. desde el porcentaje \quad \muyDificil]
+    Un compuesto contiene $40{,}00\pc$ de C, $6{,}67\pc$ de H y $53{,}33\pc$ de O.
+    Su masa molar es $180$ g/mol. Determine la F.E. y la F.M.
+  \end{mwejercicio}
+  \vspace{2pt}
+  \begin{mwpasos}[Resolución]
+    \small
+    \begin{itemize}
+      \item Moles (base $100$ g): C $=40/12 = 3{,}33$; H $=6{,}67/1 = 6{,}67$; O $=53{,}33/16 = 3{,}33$.
+      \item Dividir entre $3{,}33$: C : H : O $= 1 : 2 : 1 \Rightarrow \text{F.E.} = \text{CH}_2\text{O}$.
+      \item $M(\text{CH}_2\text{O}) = 12 + 2(1) + 16 = 30$ g/mol $\Rightarrow n = 180/30 = 6$.
+      \item $\text{F.M.} = 6\times\text{CH}_2\text{O} = \boxed{\text{C}_6\text{H}_{12}\text{O}_6}$ \ (glucosa).
+    \end{itemize}
+  \end{mwpasos}
+  \mwtopanchoron
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios en blanco}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicio 7}
+  \begin{mwejercicio}[Ejercicio 7 — Masa molar \quad \medio]
+    Calcule la masa molar del nitrato de amonio, $\text{NH}_4\text{NO}_3$,
+    un fertilizante muy usado.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 8}
+  \begin{mwejercicio}[Ejercicio 8 — Sal hidratada \quad \dificil]
+    Calcule la masa molar del sulfato de cobre pentahidratado,
+    $\text{CuSO}_4\cdot5\,\text{H}_2\text{O}$.
+    \par\smallskip
+    \small
+    \textbf{Sugerencia:} el $5\,\text{H}_2\text{O}$ se suma como $5\times18$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 9}
+  \begin{mwejercicio}[Ejercicio 9 — Composición porcentual \quad \dificil]
+    Determine la composición porcentual completa del dicromato de potasio,
+    $\text{K}_2\text{Cr}_2\text{O}_7$, y verifique que los porcentajes sumen $100\pc$.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 10}
+  \begin{mwejercicio}[Ejercicio 10 — Fórmula empírica directa \quad \medio]
+    Un compuesto contiene $46{,}67\pc$ de nitrógeno y $53{,}33\pc$ de oxígeno.
+    Determine su fórmula empírica.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 11}
+  \begin{mwejercicio}[Ejercicio 11 — Fórmula empírica con factor \quad \muyDificil]
+    Un óxido de nitrógeno contiene $25{,}93\pc$ de nitrógeno y $74{,}07\pc$ de
+    oxígeno. Determine su fórmula empírica.
+    \par\smallskip
+    \small
+    \textbf{Sugerencia:} la relación molar no es entera; revise la tabla de factores.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 12}
+  \begin{mwejercicio}[Ejercicio 12 — Fórmula molecular \quad \dificil]
+    La fórmula empírica de un hidrocarburo es $\text{CH}_2$ y su masa molar es
+    $56$ g/mol. Determine su fórmula molecular e indique cuántos carbonos tiene.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 13}
+  \begin{mwejercicio}[Ejercicio 13 — Ruta completa \quad \muyDificil]
+    Un compuesto contiene $92{,}26\pc$ de carbono y $7{,}74\pc$ de hidrógeno.
+    Su masa molar es $78$ g/mol. Determine la fórmula empírica y la molecular.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 14}
+  \begin{mwejercicio}[Ejercicio 14 — Masa de un elemento \quad \muyDificil]
+    ¿Cuántos gramos de nitrógeno hay en $250$ g de nitrato de amonio,
+    $\text{NH}_4\text{NO}_3$?
+    \par\smallskip
+    \small
+    \textbf{Sugerencia:} primero el $\pc$ de N en el compuesto; después, la masa en la muestra.
+  \end{mwejercicio}
+\end{frame}
+
+\end{document}

@@ -1,0 +1,575 @@
+% ============================================================
+%  GUÍA DE EJERCICIOS — T1L2
+%  MASA MOLAR · COMPOSICIÓN PORCENTUAL · FÓRMULA EMPÍRICA Y MOLECULAR
+%  Curso: 4to Año — Química
+%  Autor: Ing. Gabriel Astudillo
+%  Fuente de la clase: t1l2 química.md (21 al 28 de octubre)
+%
+%  DISEÑO
+%  60 ejercicios propuestos, numeración CONTINUA (1 a 60) en 4 bloques:
+%     A) Masa molar ..................................... 1–14
+%     B) Composición porcentual ......................... 15–29
+%     C) Fórmula empírica ............................... 30–47
+%     D) Fórmula molecular .............................. 48–60
+%  5 ejemplos resueltos paso a paso en el cuerpo (§2).
+%  Clave de respuestas: una línea por ejercicio, en \ifmwclaves.
+%
+%  Compilar desde esta carpeta:
+%    latexmk -xelatex guia_t1l2_formulas_quimicas.tex
+%  Versión sin clave (la genera compile_all.sh):
+%    latexmk -xelatex -usepretex='\AtBeginDocument{\mwclavesoff}' \
+%        -jobname=guia_t1l2_formulas_quimicas_scr guia_t1l2_formulas_quimicas.tex
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+\usepackage{mathwizards-guia}
+\mwguia{Guía de Ejercicios — T1L2}{Ing. Gabriel Astudillo $\cdot$ 4to Año — Química}
+% babel-spanish redefine \% y falla dentro de modo matematico
+% ("Incompatible glue units"): se usa \pc para el signo % en formulas.
+\newcommand{\pc}{\text{\%}}
+\setlength{\emergencystretch}{2em}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{T1L2}{Masa molar, fórmula empírica y fórmula molecular}{Del porcentaje en masa a la fórmula real del compuesto}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} Esta guía reúne \textbf{60 ejercicios} para dominar el camino completo que va desde una fórmula química hasta la identidad real de un compuesto: calcular la \emph{masa molar}, obtener la \emph{composición porcentual}, deducir la \emph{fórmula empírica} (la proporción mínima de átomos) y, con la masa molar del compuesto, llegar a la \emph{fórmula molecular} (la cantidad real de átomos).
+  \\[4pt]
+  \textbf{Organización:} los ejercicios están en cuatro bloques con numeración continua: \textbf{A)} masa molar (1--14), \textbf{B)} composición porcentual (15--29), \textbf{C)} fórmula empírica (30--47) y \textbf{D)} fórmula molecular (48--60). La dificultad crece dentro de cada bloque.
+  \\[4pt]
+  \textbf{Nivel de Dificultad:}\quad
+  \facil{}\hspace{0.55em}Básico / Directo \quad
+  \medio{}\hspace{0.55em}Intermedio \quad
+  \dificil{}\hspace{0.55em}Desafiante \quad
+  \muyDificil{}\hspace{0.55em}Muy difícil
+  \\[4pt]
+  \textbf{Respuestas:} al final de la guía está la clave con la respuesta de los 60 ejercicios. Antes de mirarla, escribe tu desarrollo completo: en este tema el procedimiento vale tanto como el resultado.
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+% ============================================================
+\section{Marco Teórico}
+% ============================================================
+
+\subsection{Masa atómica y masa molar}
+
+\begin{cuadroteoria}
+  \textbf{Masa atómica ($M.A.$):} es la masa de un átomo, expresada en unidades de masa atómica (u). Se toma de la tabla periódica.\\
+  \textbf{Masa molar ($M$):} es la masa de \emph{un mol} de partículas y se expresa en g/mol.
+  \[
+    M(\text{compuesto}) \;=\; \sum\, \bigl(\text{n.º de átomos del elemento}\bigr)\times \bigl(M.A.\text{ del elemento}\bigr)
+  \]
+  \emph{Clave práctica:} numéricamente la masa atómica (u) y la masa molar (g/mol) coinciden; solo cambian las unidades. Por eso $M(\text{H}) = 1$ g/mol y $M(\text{O}) = 16$ g/mol.
+\end{cuadroteoria}
+
+\noindent\textbf{Masas atómicas utilizadas en esta guía} (en u; numéricamente equivalen a g/mol):\par\nobreak
+\vspace{2pt}\nobreak
+\begin{center}
+  \small
+  \setlength{\tabcolsep}{6pt}
+  \begin{tabular}{lccccc}
+    \toprule
+    \textbf{Elemento}            & H  & C  & N  & O  & F \\
+    \textbf{Masa atómica (u)}    & 1  & 12 & 14 & 16 & 19 \\
+    \midrule
+    \textbf{Elemento}            & Na & Mg   & Al & P  & S \\
+    \textbf{Masa atómica (u)}    & 23 & 24,3 & 27 & 31 & 32 \\
+    \midrule
+    \textbf{Elemento}            & Cl   & K  & Ca & Fe & Cu \\
+    \textbf{Masa atómica (u)}    & 35,5 & 39 & 40 & 56 & 63,5 \\
+    \midrule
+    \textbf{Elemento}            & Zn & Li   & B     & Cr & Mn \\
+    \textbf{Masa atómica (u)}    & 65 & 6,94 & 10,81 & 52 & 55 \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos al calcular la masa molar:}
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Olvidar los subíndices.} En $\text{H}_2\text{O}$ hay \emph{dos} hidrógenos: $2(1) + 16 = 18$, no $17$.
+    \item \textbf{No multiplicar el paréntesis.} En $\text{Ca(OH)}_2$ el subíndice $2$ afecta al O \emph{y} al H: $40 + 2(16) + 2(1) = 74$.
+    \item \textbf{Confundir la u con el g/mol.} El número es el mismo, la unidad no.
+    \item \textbf{Sumar mal una sal con paréntesis.} En $\text{Al}_2(\text{SO}_4)_3$ hay $3$ azufres y $3\times4 = 12$ oxígenos.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\subsection{Composición porcentual}
+
+\begin{cuadroteoria}
+  La \textbf{composición porcentual} indica qué porcentaje de la masa del compuesto aporta cada elemento. Siempre suma $100\,\pc$.
+  \[
+    \pc\,\text{elemento} \;=\; \frac{\bigl(\text{n.º de átomos}\bigr)\times \bigl(M.A.\bigr)}{M(\text{compuesto})}\times 100
+  \]
+  \emph{Ejemplo:} en el agua, $M = 18$ g/mol:
+  \[
+    \pc\,\text{H} = \frac{2}{18}\times100 = 11{,}11\,\pc
+    \qquad
+    \pc\,\text{O} = \frac{16}{18}\times100 = 88{,}89\,\pc
+  \]
+  Verificación: $11{,}11 + 88{,}89 = 100\,\pc$ \checkmark
+\end{cuadroteoria}
+
+\begin{cuadroextra}
+  \textbf{Para qué sirve.} La composición porcentual responde preguntas de la vida real: qué fertilizante conviene más (el que tenga mayor $\pc$ de nitrógeno), cuánto hierro aporta una porción de un alimento o cuánta cal contiene una muestra de mineral. También es el punto de partida del bloque C: con esos porcentajes se deduce la fórmula empírica.
+\end{cuadroextra}
+
+\subsection{Fórmula empírica (F.E.)}
+
+\begin{cuadroteoria}
+  La \textbf{fórmula empírica} es la representación \emph{más simple} de un compuesto: muestra la proporción mínima de números enteros entre sus átomos. No dice cuántos átomos hay realmente, solo \emph{en qué proporción} están.
+  \begin{center}
+    \small
+    \begin{tabular}{lll}
+      \toprule
+      Compuesto & Fórmula molecular & Fórmula empírica \\
+      \midrule
+      Peróxido de hidrógeno & $\text{H}_2\text{O}_2$ & $\text{HO}$ \\
+      Glucosa               & $\text{C}_6\text{H}_{12}\text{O}_6$ & $\text{CH}_2\text{O}$ \\
+      Benceno               & $\text{C}_6\text{H}_6$ & $\text{CH}$ \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Determinar la fórmula empírica en 4 pasos:}
+  \begin{enumerate}[leftmargin=*]
+    \item \textbf{Base de cálculo (gramos).} Si los datos vienen en porcentajes masa-masa, se supone una muestra de $100$ g: cada porcentaje pasa a ser directamente gramos.
+    \item \textbf{Convertir a moles.} Se divide la masa de cada elemento entre su masa atómica:
+          $n = \text{gramos}/M.A.$
+    \item \textbf{Relación molar.} Se divide el número de moles de \emph{todos} los elementos entre el \emph{menor} de ellos. Así el menor queda en $1$.
+    \item \textbf{Convertir a enteros.} Si los resultados son enteros (o casi: $3{,}02 \approx 3$), ya son los subíndices. Si no, se multiplica todo por el factor mínimo que elimine los decimales.
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroextra}
+  \textbf{Tabla de factores} (cuando la relación no da entero):
+  \begin{center}
+    \small
+    \begin{tabular}{ccc}
+      \toprule
+      La relación termina en\ldots & Multiplicar por & Ejemplo \\
+      \midrule
+      $\sim 0{,}50$ ($1{,}5$; $2{,}5$)      & $2$ & $1{,}50 \to 3$ \\
+      $\sim 0{,}33$ o $\sim 0{,}66$ ($1{,}33$; $1{,}66$) & $3$ & $1{,}33 \to 4$ \\
+      $\sim 0{,}25$ o $\sim 0{,}75$ ($1{,}25$; $1{,}75$) & $4$ & $1{,}25 \to 5$ \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{cuadroextra}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos en la fórmula empírica:}
+  \begin{itemize}[leftmargin=*]
+    \item Dividir entre el \emph{primer} valor de la tabla en lugar de entre el \emph{menor}. Debe ser el menor, para que todos los demás queden $\geq 1$.
+    \item Redondear demasiado pronto: $1{,}33$ no es $1$; es $4/3$ y obliga a multiplicar por $3$.
+    \item Multiplicar por el factor solo a un elemento. El factor se aplica a \emph{todos}.
+    \item Confundir la fórmula empírica con la molecular: $\text{CH}_2\text{O}$ y $\text{C}_6\text{H}_{12}\text{O}_6$ tienen la misma F.E.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\subsection{Fórmula molecular (F.M.)}
+
+\begin{cuadroteoria}
+  La \textbf{fórmula molecular} indica la cantidad \emph{real y exacta} de átomos de cada elemento en una molécula. Siempre es un múltiplo entero de la fórmula empírica:
+  \[
+    \text{F.M.} \;=\; n\times\bigl(\text{F.E.}\bigr),
+    \qquad\text{donde}\qquad
+    n \;=\; \frac{M(\text{compuesto})}{M(\text{F.E.})}
+  \]
+  El factor $n$ debe salir entero ($1, 2, 3,\dots$). Si no sale entero, hay un error en la F.E. o en la masa molar.
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Ruta completa: del porcentaje a la fórmula molecular.}
+  \begin{enumerate}[leftmargin=*]
+    \item Calcular la masa molar de los datos que da el problema.
+    \item Obtener la fórmula empírica con los 4 pasos anteriores.
+    \item Calcular la masa molar de la fórmula empírica, $M(\text{F.E.})$.
+    \item Calcular $n = M(\text{compuesto}) / M(\text{F.E.})$ y multiplicar los subíndices.
+  \end{enumerate}
+\end{cuadropasos}
+
+% ============================================================
+\section{Ejemplos Resueltos}
+% ============================================================
+
+\noindent\textbf{Ejemplo 1 (masa molar de una sal con paréntesis).} Calcule la masa molar del fosfato de calcio, $\text{Ca}_3(\text{PO}_4)_2$.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1:} identificar cuántos átomos de cada elemento hay. El subíndice $2$ multiplica a todo el paréntesis:
+  \[
+    \text{Ca}:3 \qquad \text{P}: 2\times1 = 2 \qquad \text{O}: 2\times4 = 8
+  \]
+  \textbf{Paso 2:} multiplicar por la masa atómica y sumar.
+  \[
+    M = 3(40) + 2(31) + 8(16) = 120 + 62 + 128 = \boxed{310\ \text{g/mol}}
+  \]
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplo 2 (masa molar de un compuesto orgánico).} Calcule la masa molar del etanol, $\text{C}_2\text{H}_5\text{OH}$.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1:} el etanol se escribe completo como $\text{C}_2\text{H}_6\text{O}$ (los H del OH se suman a los del $\text{H}_5$).
+  \[
+    \text{C}:2 \qquad \text{H}: 5+1 = 6 \qquad \text{O}:1
+  \]
+  \textbf{Paso 2:}
+  \[
+    M = 2(12) + 6(1) + 1(16) = 24 + 6 + 16 = \boxed{46\ \text{g/mol}}
+  \]
+  \emph{Ojo:} $24+6+16 = 46$; un error frecuente es escribir $48$ al sumar de memoria.
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplo 3 (composición porcentual).} Determine la composición porcentual del óxido de hierro(III), $\text{Fe}_2\text{O}_3$.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1:} masa molar del compuesto.
+  \[
+    M(\text{Fe}_2\text{O}_3) = 2(56) + 3(16) = 112 + 48 = 160\ \text{g/mol}
+  \]
+  \textbf{Paso 2:} aplicar la fórmula a cada elemento.
+  \[
+    \pc\,\text{Fe} = \frac{112}{160}\times100 = 70\,\pc
+    \qquad
+    \pc\,\text{O} = \frac{48}{160}\times100 = 30\,\pc
+  \]
+  \textbf{Verificación:} $70 + 30 = 100\,\pc$ \checkmark
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplo 4 (fórmula empírica desde porcentajes).} Un compuesto contiene $40\,\pc$ de azufre y $60\,\pc$ de oxígeno. Determine su fórmula empírica.
+
+\begin{cuadrosolucion}
+  \textbf{Base de cálculo:} $100$ g de compuesto $\Rightarrow$ $40$ g de S y $60$ g de O.
+
+  \begin{center}
+    \small
+    \setlength{\tabcolsep}{6pt}
+    \begin{tabular}{lcccc}
+      \toprule
+      Elemento & Gramos & Moles & Relación & Subíndice \\
+      \midrule
+      S & $40$ & $40/32 = 1{,}25$ & $1{,}25/1{,}25 = 1$ & $1$ \\
+      O & $60$ & $60/16 = 3{,}75$ & $3{,}75/1{,}25 = 3$ & $3$ \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+
+  \textbf{Resultado:} $\text{F.E.} = \boxed{\text{SO}_3}$ \quad (anhídrido sulfúrico).
+\end{cuadrosolucion}
+
+\noindent\textbf{Ejemplo 5 (fórmula molecular con ruta completa).} Un compuesto formado por litio, boro y flúor contiene $7{,}40\,\pc$ de Li, $11{,}53\,\pc$ de B y $81{,}07\,\pc$ de F. Su masa molar es $93{,}75$ g/mol. Determine la fórmula empírica y la molecular.
+
+\begin{cuadrosolucion}
+  \textbf{Paso 1: fórmula empírica} (base de $100$ g).
+
+  \begin{center}
+    \small
+    \setlength{\tabcolsep}{6pt}
+    \begin{tabular}{lcccc}
+      \toprule
+      Elemento & Gramos & Moles & Relación & Subíndice \\
+      \midrule
+      Li & $7{,}40$  & $7{,}40/6{,}94 = 1{,}066$  & $1{,}066/1{,}066 = 1$ & $1$ \\
+      B  & $11{,}53$ & $11{,}53/10{,}81 = 1{,}066$ & $1{,}066/1{,}066 = 1$ & $1$ \\
+      F  & $81{,}07$ & $81{,}07/19 = 4{,}266$     & $4{,}266/1{,}066 = 3{,}99 \approx 4$ & $4$ \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+
+  \[
+    \text{F.E.} = \text{LiBF}_4
+    \qquad\Longrightarrow\qquad
+    M(\text{LiBF}_4) = 6{,}94 + 10{,}81 + 4(19) = 93{,}75\ \text{g/mol}
+  \]
+
+  \textbf{Paso 2: factor $n$ y fórmula molecular.}
+  \[
+    n = \frac{M(\text{compuesto})}{M(\text{F.E.})} = \frac{93{,}75}{93{,}75} = 1
+    \qquad\Longrightarrow\qquad
+    \text{F.M.} = 1\times\text{LiBF}_4 = \boxed{\text{LiBF}_4}
+  \]
+
+  \textbf{Moraleja:} cuando $n = 1$, la fórmula molecular \emph{es} la empírica. Siempre hay que verificar $n$ antes de concluir.
+\end{cuadrosolucion}
+
+% ============================================================
+\section{Ejercicios Propuestos}
+% ============================================================
+
+\noindent En todos los ejercicios use las masas atómicas de la tabla del §1.1. Trabaje con dos decimales y escriba siempre las unidades.
+
+% ------------------------------------------------------------
+\subsection{Bloque A — Masa molar (1 a 14)}
+% ------------------------------------------------------------
+
+\noindent Los ejercicios 1--6 $(\bigstar)$ son directos; 7--12 $(\bigstar\bigstar)$ incluyen paréntesis y conteo de átomos; 13--14 $(\bigstar\bigstar\bigstar)$ requieren más cuidado.
+
+\begin{enumerate}[leftmargin=*, start=1]
+
+  % ── ★ (1–6) ──────────────────────────────────────────────
+  \item \facil{}\hspace{0.55em}Calcule la masa molar del agua, $\text{H}_2\text{O}$.
+
+  \item \facil{}\hspace{0.55em}Calcule la masa molar del dióxido de carbono, $\text{CO}_2$.
+
+  \item \facil{}\hspace{0.55em}Calcule la masa molar del amoniaco, $\text{NH}_3$.
+
+  \item \facil{}\hspace{0.55em}Calcule la masa molar de la sal de mesa, $\text{NaCl}$.
+
+  \item \facil{}\hspace{0.55em}Calcule la masa molar del hidróxido de calcio, $\text{Ca(OH)}_2$.
+
+  \item \facil{}\hspace{0.55em}Calcule la masa molar del ácido sulfúrico, $\text{H}_2\text{SO}_4$.
+
+  % ── ★★ (7–12) ────────────────────────────────────────────
+  \item \medio{}\hspace{0.55em}Calcule la masa molar de la glucosa, $\text{C}_6\text{H}_{12}\text{O}_6$.
+
+  \item \medio{}\hspace{0.55em}Calcule la masa molar del sulfato de aluminio, $\text{Al}_2(\text{SO}_4)_3$.
+
+  \item \medio{}\hspace{0.55em}Calcule la masa molar del fosfato de calcio, $\text{Ca}_3(\text{PO}_4)_2$ (compare su resultado con el Ejemplo 1).
+
+  \item \medio{}\hspace{0.55em}Calcule la masa molar del sulfato de hierro(III), $\text{Fe}_2(\text{SO}_4)_3$.
+
+  \item \medio{}\hspace{0.55em}En el dicromato de amonio, $(\text{NH}_4)_2\text{Cr}_2\text{O}_7$: indique cuántos átomos de cada elemento hay y cuántos átomos hay en total en una unidad de fórmula.
+
+  \item \medio{}\hspace{0.55em}En el sulfato de aluminio, $\text{Al}_2(\text{SO}_4)_3$: indique cuántos átomos de Al, S y O contiene una unidad de fórmula y cuántos átomos hay en total.
+
+  % ── ★★★ (13–14) ──────────────────────────────────────────
+  \item \dificil{}\hspace{0.55em}Calcule la masa molar del ferrocianuro de potasio, $\text{K}_4[\text{Fe(CN)}_6]$, una sal con dos paréntesis anidados.
+
+  \item \dificil{}\hspace{0.55em}Un ácido de fórmula general $\text{H}_2\text{XO}_4$ tiene una masa molar de $98$ g/mol. Determine la masa atómica de $\text{X}$ e identifique el elemento.
+
+\end{enumerate}
+
+% ------------------------------------------------------------
+\subsection{Bloque B — Composición porcentual (15 a 29)}
+% ------------------------------------------------------------
+
+\noindent Los ejercicios 15--18 $(\bigstar\bigstar)$ piden un solo porcentaje; 19--26 $(\bigstar\bigstar\bigstar)$ piden la composición completa o una masa; 27--29 $(\bigstar\bigstar\bigstar\bigstar)$ son de aplicación.
+
+\begin{enumerate}[leftmargin=*, start=15]
+
+  % ── ★★ (15–18) ───────────────────────────────────────────
+  \item \medio{}\hspace{0.55em}¿Cuál es el porcentaje en masa de oxígeno en el agua, $\text{H}_2\text{O}$?
+
+  \item \medio{}\hspace{0.55em}¿Cuál es el porcentaje en masa de carbono en el dióxido de carbono, $\text{CO}_2$?
+
+  \item \medio{}\hspace{0.55em}¿Cuál es el porcentaje en masa de nitrógeno en el amoniaco, $\text{NH}_3$?
+
+  \item \medio{}\hspace{0.55em}¿Cuál es el porcentaje en masa de oxígeno en el óxido de hierro(III), $\text{Fe}_2\text{O}_3$?
+
+  % ── ★★★ (19–26) ──────────────────────────────────────────
+  \item \dificil{}\hspace{0.55em}Determine la composición porcentual completa del carbonato de calcio, $\text{CaCO}_3$, y verifique que los porcentajes sumen $100\,\pc$.
+
+  \item \dificil{}\hspace{0.55em}Determine la composición porcentual completa del metano, $\text{CH}_4$.
+
+  \item \dificil{}\hspace{0.55em}Determine la composición porcentual completa del ácido sulfúrico, $\text{H}_2\text{SO}_4$.
+
+  \item \dificil{}\hspace{0.55em}Determine la composición porcentual completa del sulfato de amonio, $(\text{NH}_4)_2\text{SO}_4$, un fertilizante muy usado.
+
+  \item \dificil{}\hspace{0.55em}¿Cuántos gramos de nitrógeno hay en $500$ g de sulfato de amonio, $(\text{NH}_4)_2\text{SO}_4$?
+
+  \item \dificil{}\hspace{0.55em}¿Cuántos gramos de hierro hay en $2{,}5$ kg de óxido de hierro(III), $\text{Fe}_2\text{O}_3$?
+
+  \item \dificil{}\hspace{0.55em}¿Cuántos gramos de oxígeno hay en $180$ g de glucosa, $\text{C}_6\text{H}_{12}\text{O}_6$?
+
+  \item \dificil{}\hspace{0.55em}Un agricultor puede usar nitrato de amonio, $\text{NH}_4\text{NO}_3$, o sulfato de amonio, $(\text{NH}_4)_2\text{SO}_4$. ¿Cuál de los dos es más rico en nitrógeno? Justifique con los porcentajes.
+
+  % ── ★★★★ (27–29) ────────────────────────────────────────
+  \item \muyDificil{}\hspace{0.55em}¿Cuál de los dos compuestos tiene mayor porcentaje de oxígeno: el agua, $\text{H}_2\text{O}$, o el agua oxigenada, $\text{H}_2\text{O}_2$? Calcule ambos porcentajes y explique el resultado, que puede parecer contradictorio.
+
+  \item \muyDificil{}\hspace{0.55em}Se analiza una muestra de $250$ g de mineral que contiene $60$ g de $\text{Fe}_2\text{O}_3$. Determine la masa de hierro presente en la muestra y el porcentaje de hierro en el mineral.
+
+  \item \muyDificil{}\hspace{0.55em}El sulfato de cobre pentahidratado, $\text{CuSO}_4\cdot5\,\text{H}_2\text{O}$, contiene agua de cristalización. Calcule la masa molar del compuesto completo y el porcentaje en masa de agua que contiene.
+
+\end{enumerate}
+
+% ------------------------------------------------------------
+\subsection{Bloque C — Fórmula empírica (30 a 47)}
+% ------------------------------------------------------------
+
+\noindent Los ejercicios 30--35 $(\bigstar\bigstar)$ dan relaciones que resultan enteras de inmediato; 36--44 $(\bigstar\bigstar\bigstar)$ incluyen datos de laboratorio en gramos; 45--47 $(\bigstar\bigstar\bigstar\bigstar)$ exigen aplicar la tabla de factores.
+
+\begin{enumerate}[leftmargin=*, start=30]
+
+  % ── ★★ (30–35) ───────────────────────────────────────────
+  \item \medio{}\hspace{0.55em}Un compuesto gaseoso contiene $50{,}05\,\pc$ de azufre y $49{,}95\,\pc$ de oxígeno. Determine su fórmula empírica.
+
+  \item \medio{}\hspace{0.55em}Un compuesto contiene $27{,}27\,\pc$ de carbono y $72{,}73\,\pc$ de oxígeno. Determine su fórmula empírica.
+
+  \item \medio{}\hspace{0.55em}Un compuesto contiene $39{,}34\,\pc$ de sodio y $60{,}66\,\pc$ de cloro. Determine su fórmula empírica.
+
+  \item \medio{}\hspace{0.55em}Un compuesto contiene $2{,}04\,\pc$ de hidrógeno, $32{,}65\,\pc$ de azufre y $65{,}31\,\pc$ de oxígeno. Determine su fórmula empírica.
+
+  \item \medio{}\hspace{0.55em}Un compuesto contiene $52{,}14\,\pc$ de carbono, $13{,}13\,\pc$ de hidrógeno y $34{,}73\,\pc$ de oxígeno. Determine su fórmula empírica.
+
+  \item \medio{}\hspace{0.55em}Un óxido de hierro contiene $70{,}00\,\pc$ de hierro y $30{,}00\,\pc$ de oxígeno. Determine su fórmula empírica.
+
+  % ── ★★★ (36–44) ──────────────────────────────────────────
+  \item \dificil{}\hspace{0.55em}Un óxido de nitrógeno contiene $63{,}65\,\pc$ de nitrógeno y $36{,}35\,\pc$ de oxígeno. Determine su fórmula empírica.
+
+  \item \dificil{}\hspace{0.55em}Un óxido de fósforo contiene $43{,}66\,\pc$ de fósforo y $56{,}34\,\pc$ de oxígeno. Determine su fórmula empírica.
+
+  \item \dificil{}\hspace{0.55em}Al analizar un compuesto se halló $24{,}74\,\pc$ de potasio, $34{,}76\,\pc$ de manganeso y $40{,}50\,\pc$ de oxígeno. Determine su fórmula empírica.
+
+  \item \dificil{}\hspace{0.55em}Al calentar $2{,}54$ g de cobre en presencia de oxígeno se forman $3{,}18$ g de un óxido. Determine la fórmula empírica del óxido.
+
+  \item \dificil{}\hspace{0.55em}$1{,}60$ g de azufre reaccionan completamente con $2{,}40$ g de oxígeno. Determine la fórmula empírica del óxido formado.
+
+  \item \dificil{}\hspace{0.55em}El análisis de $6{,}00$ g de un compuesto líquido dio $2{,}40$ g de carbono, $0{,}40$ g de hidrógeno y $3{,}20$ g de oxígeno. Determine su fórmula empírica.
+
+  \item \dificil{}\hspace{0.55em}Una muestra de $10{,}00$ g de un óxido de hierro contiene $7{,}78$ g de hierro y $2{,}22$ g de oxígeno. Determine su fórmula empírica.
+
+  \item \dificil{}\hspace{0.55em}$3{,}50$ g de nitrógeno se combinan con $8{,}00$ g de oxígeno. Determine la fórmula empírica del compuesto.
+
+  \item \dificil{}\hspace{0.55em}Un compuesto contiene $43{,}40\,\pc$ de sodio, $11{,}32\,\pc$ de carbono y $45{,}28\,\pc$ de oxígeno. Determine su fórmula empírica.
+
+  % ── ★★★★ (45–47) ────────────────────────────────────────
+  \item \muyDificil{}\hspace{0.55em}Un compuesto contiene $36{,}84\,\pc$ de nitrógeno y $63{,}16\,\pc$ de oxígeno. La relación molar no resulta entera: determine la fórmula empírica aplicando el factor adecuado.
+
+  \item \muyDificil{}\hspace{0.55em}Un óxido de hierro contiene $72{,}36\,\pc$ de hierro y $27{,}64\,\pc$ de oxígeno. La relación molar no resulta entera: determine la fórmula empírica (es el óxido mixto que se forma al oxidarse el hierro al aire).
+
+  \item \muyDificil{}\hspace{0.55em}Al calentar $4{,}48$ g de un metal de masa atómica $56$ en presencia de oxígeno se obtienen $6{,}08$ g del óxido. Determine la fórmula empírica del óxido. \emph{(Sugerencia: la relación termina en $1{,}25$.)}
+
+\end{enumerate}
+
+% ------------------------------------------------------------
+\subsection{Bloque D — Fórmula molecular (48 a 60)}
+% ------------------------------------------------------------
+
+\noindent Los ejercicios 48--51 $(\bigstar\bigstar\bigstar)$ dan la fórmula empírica y la masa molar; 52--60 $(\bigstar\bigstar\bigstar\bigstar)$ exigen la ruta completa desde el porcentaje.
+
+\begin{enumerate}[leftmargin=*, start=48]
+
+  % ── ★★★ (48–51) ─────────────────────────────────────────
+  \item \dificil{}\hspace{0.55em}La fórmula empírica de un hidrocarburo es $\text{CH}_2$ y su masa molar es $42$ g/mol. Determine su fórmula molecular.
+
+  \item \dificil{}\hspace{0.55em}La fórmula empírica de un óxido de nitrógeno es $\text{NO}_2$ y su masa molar es $92$ g/mol. Determine su fórmula molecular.
+
+  \item \dificil{}\hspace{0.55em}La fórmula empírica de un hidrocarburo aromático es $\text{CH}$ y su masa molar es $78$ g/mol. Determine su fórmula molecular.
+
+  \item \dificil{}\hspace{0.55em}La fórmula empírica de un gas es $\text{C}_2\text{H}_5$ y su masa molar es $58$ g/mol. Determine su fórmula molecular.
+
+  % ── ★★★★ (52–60) ────────────────────────────────────────
+  \item \muyDificil{}\hspace{0.55em}La fórmula empírica de un azúcar es $\text{CH}_2\text{O}$ y su masa molar es $150$ g/mol. Determine su fórmula molecular.
+
+  \item \muyDificil{}\hspace{0.55em}La fórmula empírica de la vitamina C es $\text{C}_3\text{H}_4\text{O}_3$ y su masa molar es $176$ g/mol. Determine su fórmula molecular.
+
+  \item \muyDificil{}\hspace{0.55em}La fórmula empírica de un aldehído es $\text{C}_3\text{H}_6\text{O}$ y su masa molar es $116$ g/mol. Determine su fórmula molecular.
+
+  \item \muyDificil{}\hspace{0.55em}La fórmula empírica de un alqueno es $\text{CH}_2$ y su masa molar es $70$ g/mol. Determine su fórmula molecular e indique cuántos carbonos tiene.
+
+  \item \muyDificil{}\hspace{0.55em}Un compuesto contiene $40{,}00\,\pc$ de carbono, $6{,}67\,\pc$ de hidrógeno y $53{,}33\,\pc$ de oxígeno. Su masa molar es $180$ g/mol. Determine la fórmula empírica y la fórmula molecular.
+
+  \item \muyDificil{}\hspace{0.55em}Un éster contiene $54{,}55\,\pc$ de carbono, $9{,}09\,\pc$ de hidrógeno y $36{,}36\,\pc$ de oxígeno. Su masa molar es $88$ g/mol. Determine la fórmula empírica y la fórmula molecular.
+
+  \item \muyDificil{}\hspace{0.55em}El dicromato de potasio contiene $26{,}57\,\pc$ de potasio, $35{,}36\,\pc$ de cromo y $38{,}07\,\pc$ de oxígeno. Su masa molar es $294$ g/mol. Determine la fórmula empírica y la fórmula molecular.
+
+  \item \muyDificil{}\hspace{0.55em}La cafeína contiene $49{,}48\,\pc$ de carbono, $5{,}15\,\pc$ de hidrógeno, $28{,}87\,\pc$ de nitrógeno y $16{,}49\,\pc$ de oxígeno. Su masa molar es $194$ g/mol. Determine su fórmula molecular.
+
+  \item \muyDificil{}\hspace{0.55em}Un analgésico contiene $75{,}73\,\pc$ de carbono, $8{,}74\,\pc$ de hidrógeno y $15{,}53\,\pc$ de oxígeno. Su masa molar es $206$ g/mol. Determine la fórmula empírica y la fórmula molecular, y explique por qué en este caso ambas coinciden.
+
+\end{enumerate}
+
+\newpage
+% ============================================================
+\ifmwclaves
+  \section{Clave de Respuestas}
+  % ============================================================
+
+  \subsection*{Bloque A — Masa molar (1 a 14)}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=1]
+    \item $M = 2(1) + 16 = 18\ \text{g/mol}$.
+    \item $M = 12 + 2(16) = 44\ \text{g/mol}$.
+    \item $M = 14 + 3(1) = 17\ \text{g/mol}$.
+    \item $M = 23 + 35{,}5 = 58{,}5\ \text{g/mol}$.
+    \item $M = 40 + 2(16) + 2(1) = 74\ \text{g/mol}$.
+    \item $M = 2(1) + 32 + 4(16) = 98\ \text{g/mol}$.
+    \item $M = 6(12) + 12(1) + 6(16) = 72 + 12 + 96 = 180\ \text{g/mol}$.
+    \item $M = 2(27) + 3(32) + 12(16) = 54 + 96 + 192 = 342\ \text{g/mol}$.
+    \item $M = 3(40) + 2(31) + 8(16) = 120 + 62 + 128 = 310\ \text{g/mol}$.
+    \item $M = 2(56) + 3(32) + 12(16) = 112 + 96 + 192 = 400\ \text{g/mol}$.
+    \item $\text{N}:2$, $\text{H}:8$, $\text{Cr}:2$, $\text{O}:7$; en total $19$ átomos.
+    \item $\text{Al}:2$, $\text{S}:3$, $\text{O}:12$; en total $17$ átomos.
+    \item $M = 4(39) + 56 + 6(12) + 6(14) = 156 + 56 + 72 + 84 = 368\ \text{g/mol}$.
+    \item $98 = 2(1) + \text{X} + 4(16) \Rightarrow \text{X} = 98 - 66 = 32\ \text{g/mol}$; el elemento es el azufre (S) y el ácido es $\text{H}_2\text{SO}_4$.
+  \end{enumerate}
+
+  \subsection*{Bloque B — Composición porcentual (15 a 29)}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=15]
+    \item $\pc\text{O} = 16/18\times100 = 88{,}89\,\pc$.
+    \item $\pc\text{C} = 12/44\times100 = 27{,}27\,\pc$.
+    \item $\pc\text{N} = 14/17\times100 = 82{,}35\,\pc$.
+    \item $\pc\text{O} = 48/160\times100 = 30\,\pc$.
+    \item $M = 100$ g/mol: $\pc\text{Ca} = 40\,\pc$, $\pc\text{C} = 12\,\pc$, $\pc\text{O} = 48\,\pc$; suma $100\,\pc$ \checkmark.
+    \item $M = 16$ g/mol: $\pc\text{C} = 75\,\pc$, $\pc\text{H} = 25\,\pc$.
+    \item $M = 98$ g/mol: $\pc\text{H} = 2{,}04\,\pc$, $\pc\text{S} = 32{,}65\,\pc$, $\pc\text{O} = 65{,}31\,\pc$ (suma $100\,\pc$).
+    \item $M = 132$ g/mol: $\pc\text{N} = 21{,}21\,\pc$, $\pc\text{H} = 6{,}06\,\pc$, $\pc\text{S} = 24{,}24\,\pc$, $\pc\text{O} = 48{,}48\,\pc$.
+    \item $m = 500 \times 0{,}2121 = 106{,}06$ g de N.
+    \item $m = 2500 \times 0{,}70 = 1750$ g de Fe ($1{,}75$ kg).
+    \item $m = 180 \times 0{,}5333 = 96$ g de O.
+    \item El nitrato de amonio: $\pc\text{N} = 28/80\times100 = 35\,\pc$ frente a $28/132\times100 = 21{,}21\,\pc$ del sulfato. Conviene el $\text{NH}_4\text{NO}_3$.
+    \item El agua oxigenada: $\pc\text{O}(\text{H}_2\text{O}_2) = 32/34\times100 = 94{,}12\,\pc$ y $\pc\text{O}(\text{H}_2\text{O}) = 88{,}89\,\pc$. Aunque el agua tiene \emph{más} oxígeno por molécula, el $\text{H}_2\text{O}_2$ lo tiene en mayor \emph{proporción} porque su masa molar es menor en relación al oxígeno que aporta.
+    \item $m(\text{Fe}) = 60 \times 0{,}70 = 42$ g de Fe; en la muestra: $42/250\times100 = 16{,}8\,\pc$.
+    \item $M(\text{CuSO}_4\cdot5\text{H}_2\text{O}) = 63{,}5 + 32 + 9(16) + 10(1) = 249{,}5$ g/mol; el agua aporta $5(18) = 90$ g/mol, es decir $90/249{,}5\times100 = 36{,}07\,\pc$.
+  \end{enumerate}
+
+  \subsection*{Bloque C — Fórmula empírica (30 a 47)}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=30]
+    \item S: $1{,}56$ mol; O: $3{,}12$ mol. Relación $1 : 2$ $\Rightarrow$ $\text{SO}_2$.
+    \item C: $2{,}27$ mol; O: $4{,}55$ mol. Relación $1 : 2$ $\Rightarrow$ $\text{CO}_2$.
+    \item Na: $1{,}71$ mol; Cl: $1{,}71$ mol. Relación $1 : 1$ $\Rightarrow$ $\text{NaCl}$.
+    \item H: $2{,}04$; S: $1{,}02$; O: $4{,}08$ mol. Dividiendo entre $1{,}02$: $2 : 1 : 4$ $\Rightarrow$ $\text{H}_2\text{SO}_4$.
+    \item C: $4{,}35$; H: $13{,}13$; O: $2{,}17$ mol. Dividiendo entre $2{,}17$: $2 : 6 : 1$ $\Rightarrow$ $\text{C}_2\text{H}_6\text{O}$.
+    \item Fe: $1{,}25$; O: $1{,}875$ mol. Relación $1 : 1{,}5$; multiplicando por $2$: $2 : 3$ $\Rightarrow$ $\text{Fe}_2\text{O}_3$.
+    \item N: $4{,}55$; O: $2{,}27$ mol. Relación $2 : 1$ $\Rightarrow$ $\text{N}_2\text{O}$.
+    \item P: $1{,}41$; O: $3{,}52$ mol. Relación $1 : 2{,}5$; por $2$: $2 : 5$ $\Rightarrow$ $\text{P}_2\text{O}_5$.
+    \item K: $0{,}63$; Mn: $0{,}63$; O: $2{,}53$ mol. Relación $1 : 1 : 4$ $\Rightarrow$ $\text{KMnO}_4$.
+    \item El oxígeno del óxido es $3{,}18 - 2{,}54 = 0{,}64$ g. Cu: $0{,}04$ mol; O: $0{,}04$ mol. Relación $1 : 1$ $\Rightarrow$ $\text{CuO}$.
+    \item S: $0{,}05$ mol; O: $0{,}15$ mol. Relación $1 : 3$ $\Rightarrow$ $\text{SO}_3$.
+    \item C: $0{,}20$; H: $0{,}40$; O: $0{,}20$ mol. Relación $1 : 2 : 1$ $\Rightarrow$ $\text{CH}_2\text{O}$.
+    \item Fe: $0{,}139$ mol; O: $0{,}139$ mol. Relación $1 : 1$ $\Rightarrow$ $\text{FeO}$.
+    \item N: $0{,}25$ mol; O: $0{,}50$ mol. Relación $1 : 2$ $\Rightarrow$ $\text{NO}_2$.
+    \item Na: $43{,}40/23 = 1{,}89$; C: $11{,}32/12 = 0{,}94$; O: $45{,}28/16 = 2{,}83$ mol. Dividiendo entre $0{,}94$: $2 : 1 : 3$ $\Rightarrow$ $\text{Na}_2\text{CO}_3$ (carbonato de sodio).
+    \item N: $2{,}63$; O: $3{,}95$ mol. Relación $1 : 1{,}5$; multiplicando por $2$: $2 : 3$ $\Rightarrow$ $\text{N}_2\text{O}_3$.
+    \item Fe: $1{,}29$; O: $1{,}73$ mol. Relación $1 : 1{,}33$. Como $1{,}33 \approx 4/3$, se multiplica por $3$: $3 : 4$ $\Rightarrow$ $\text{Fe}_3\text{O}_4$.
+    \item Metal: $4{,}48/56 = 0{,}08$ mol; O del óxido: $(6{,}08-4{,}48)/16 = 1{,}60/16 = 0{,}10$ mol. Relación $1 : 1{,}25$; como $1{,}25 = 5/4$, se multiplica por $4$: $4 : 5$ $\Rightarrow$ $\text{Fe}_4\text{O}_5$.
+  \end{enumerate}
+
+  \subsection*{Bloque D — Fórmula molecular (48 a 60)}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=48]
+    \item $M(\text{CH}_2) = 14$; $n = 42/14 = 3$ $\Rightarrow$ $\text{C}_3\text{H}_6$.
+    \item $M(\text{NO}_2) = 46$; $n = 92/46 = 2$ $\Rightarrow$ $\text{N}_2\text{O}_4$.
+    \item $M(\text{CH}) = 13$; $n = 78/13 = 6$ $\Rightarrow$ $\text{C}_6\text{H}_6$ (benceno).
+    \item $M(\text{C}_2\text{H}_5) = 29$; $n = 58/29 = 2$ $\Rightarrow$ $\text{C}_4\text{H}_{10}$ (butano).
+    \item $M(\text{CH}_2\text{O}) = 30$; $n = 150/30 = 5$ $\Rightarrow$ $\text{C}_5\text{H}_{10}\text{O}_5$.
+    \item $M(\text{C}_3\text{H}_4\text{O}_3) = 88$; $n = 176/88 = 2$ $\Rightarrow$ $\text{C}_6\text{H}_8\text{O}_6$.
+    \item $M(\text{C}_3\text{H}_6\text{O}) = 58$; $n = 116/58 = 2$ $\Rightarrow$ $\text{C}_6\text{H}_{12}\text{O}$.
+    \item $M(\text{CH}_2) = 14$; $n = 70/14 = 5$ $\Rightarrow$ $\text{C}_5\text{H}_{10}$; tiene $5$ carbonos.
+    \item Relación $1 : 2 : 1$ $\Rightarrow$ F.E. $= \text{CH}_2\text{O}$ ($M = 30$); $n = 180/30 = 6$ $\Rightarrow$ $\text{C}_6\text{H}_{12}\text{O}_6$ (glucosa).
+    \item Relación $2 : 4 : 1$ $\Rightarrow$ F.E. $= \text{C}_2\text{H}_4\text{O}$ ($M = 44$); $n = 88/44 = 2$ $\Rightarrow$ $\text{C}_4\text{H}_8\text{O}_2$.
+    \item Relación $1 : 1 : 3{,}5$; por $2$: $2 : 2 : 7$ $\Rightarrow$ F.E. $= \text{K}_2\text{Cr}_2\text{O}_7$ ($M = 294$); $n = 294/294 = 1$ $\Rightarrow$ la F.M. es $\text{K}_2\text{Cr}_2\text{O}_7$.
+    \item Relación $4 : 5 : 2 : 1$ $\Rightarrow$ F.E. $= \text{C}_4\text{H}_5\text{N}_2\text{O}$ ($M = 97$); $n = 194/97 = 2$ $\Rightarrow$ $\text{C}_8\text{H}_{10}\text{N}_4\text{O}_2$.
+    \item Relación $6{,}5 : 9 : 1$; por $2$: $13 : 18 : 2$ $\Rightarrow$ F.E. $= \text{C}_{13}\text{H}_{18}\text{O}_2$ ($M = 206$). Como $n = 206/206 = 1$, la F.M. es la misma F.E.: $\text{C}_{13}\text{H}_{18}\text{O}_2$. Ambas coinciden porque la fórmula empírica ya tiene la masa molar real del compuesto.
+  \end{enumerate}
+
+  \vspace{8pt}
+  \begin{cuadroinfo}
+    \small
+    \textbf{Autoevaluación:} si acertaste al menos 48 de 60, dominas el tema. Si fallaste varios del bloque C, revisa la tabla de factores del §1.3: casi todos los errores vienen de redondear una relación $1{,}33$ o $1{,}25$ a $1$ en lugar de multiplicar.
+  \end{cuadroinfo}
+\fi
+
+\end{document}

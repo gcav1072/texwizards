@@ -87,6 +87,8 @@
 \newcommand{\mwcartotalN}{10}
 \newcommand{\mwcartotal}[1]{\renewcommand{\mwcartotalN}{#1}}
 \newcommand{\mwcarhandle}{@mathwizards.ve}
+% Fórmula fantasma de la portada (se puede redefinir en cada carrusel).
+\newcommand{\mwcarfantasma}{$y=mx+b$}
 \newcommand{\mwcarnumero}{%
   \ifnum\value{mwcarlamina}<10 0\fi\themwcarlamina}
 \AtBeginDocument{\setcounter{mwcarlamina}{0}}
@@ -214,7 +216,7 @@
       at ([xshift=0.8cm,yshift=3.18cm]current page.south west) {#3};
     % fórmula fantasma (arriba de la firma)
     \node[anchor=west, text=white!10, font=\fontsize{38}{38}\selectfont]
-      at ([xshift=0.8cm,yshift=1.28cm]current page.south west) {$y=mx+b$};
+      at ([xshift=0.8cm,yshift=1.28cm]current page.south west) {\mwcarfantasma};
     % pie
     \node[anchor=south west, text=white!50,
           font=\fontsize{7}{7}\selectfont, inner sep=0pt]

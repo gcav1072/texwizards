@@ -1,0 +1,943 @@
+% ============================================================
+%  GUÍA TEMÁTICA — T3L1 — CIRCUNFERENCIA TRIGONOMÉTRICA,
+%  ÁNGULOS EN POSICIÓN ESTÁNDAR Y REDUCCIÓN AL 1er CUADRANTE
+%  Curso: 4to Año — Matemática
+%  Autor: Ing. Gabriel Astudillo
+%
+%  CONTENIDO
+%    §1 La circunferencia trigonométrica
+%    §2 Ángulo en posición estándar
+%    §3 Ángulos positivos, negativos y coterminales
+%    §4 Las funciones trigonométricas en la circunferencia unitaria
+%    §5 Signos de las funciones por cuadrante
+%    §6 Ángulos notables y reducción al primer cuadrante
+%    §7 Funciones de ángulos opuestos (paridad)
+%    §8 Funciones recíprocas
+%    §9 Formulario resumen
+%    §10 Ejercicios propuestos y clave comentada
+%
+%  Clases de referencia: 22 y 23 de noviembre de 2026.
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+\usepackage{mathwizards-guia}
+\mwguia{Guía Temática — T3L1}{Ing. Gabriel Astudillo $\cdot$ 4to Año — Matemática}
+\providecommand{\sen}{\sin}
+\setlength{\emergencystretch}{2em}
+
+% ============================================================
+%  MACROS DE DIBUJO
+% ============================================================
+
+% ── Circunferencia trigonométrica con cuadrantes ────────────
+\newcommand{\mwcircunferencia}{%
+\begin{tikzpicture}[scale=1.75, baseline=(current bounding box.center), line join=round]
+  \draw[gray!55, -{Stealth}] (-1.32,0) -- (1.38,0);
+  \draw[gray!55, -{Stealth}] (0,-1.32) -- (0,1.38);
+  \draw[thick, mwprimario] (0,0) circle (1);
+  \draw[mwprimario, thick, -{Stealth}] (0,0) -- (60:1);
+  \node[mwprimario, font=\scriptsize, fill=white, inner sep=1pt] at (0.40,0.60) {$r=1$};
+  \filldraw[mwprimario] (0,0) circle (1.2pt);
+  \node[below left, font=\scriptsize] at (0,0) {$O$};
+  \node[below right, font=\scriptsize, gray] at (1.30,0) {$x$};
+  \node[above left, font=\scriptsize, gray] at (0,1.30) {$y$};
+  \node[font=\bfseries, mwprimario] at (0.78,0.78) {I};
+  \node[font=\bfseries, mwprimario] at (-0.78,0.78) {II};
+  \node[font=\bfseries, mwprimario] at (-0.78,-0.78) {III};
+  \node[font=\bfseries, mwprimario] at (0.78,-0.78) {IV};
+  \node[font=\scriptsize, gray] at (1.10,-0.16) {$1$};
+  \node[font=\scriptsize, gray] at (-0.18,1.08) {$1$};
+\end{tikzpicture}}
+
+% ── Ángulo en posición estándar ─────────────────────────────
+\newcommand{\mwanguloestandar}{%
+\begin{tikzpicture}[scale=1.75, baseline=(current bounding box.center), line join=round]
+  \draw[gray!55, -{Stealth}] (-1.28,0) -- (1.40,0);
+  \draw[gray!55, -{Stealth}] (0,-1.20) -- (0,1.35);
+  \draw[gray!45] (0,0) circle (1);
+  \draw[mwprimario, very thick, -{Stealth}] (0,0) -- (1.26,0);
+  \node[mwprimario, font=\scriptsize, below] at (0.72,-0.04) {lado inicial};
+  \draw[mwmagenta, very thick, -{Stealth}] (0,0) -- (55:1.16);
+  \node[mwmagenta, font=\scriptsize, above right] at (58:1.16) {lado final};
+  \draw[mwnaranja, thick, -{Stealth}] (0.46,0) arc (0:55:0.46);
+  \node[mwnaranja, font=\scriptsize] at (27:0.62) {$\alpha$};
+  \filldraw[mwprimario] (0,0) circle (1.3pt);
+  \node[font=\scriptsize, below left] at (0,0) {vértice};
+  \node[font=\scriptsize, gray] at (1.30,0.16) {eje $x$};
+\end{tikzpicture}}
+
+% ── Ángulos positivo y negativo ────────────────────────────
+\newcommand{\mwangulopn}{%
+\begin{tikzpicture}[scale=1.6, baseline=(current bounding box.center), line join=round]
+  \draw[gray!55, -{Stealth}] (-1.30,0) -- (1.35,0);
+  \draw[gray!55, -{Stealth}] (0,-1.30) -- (0,1.30);
+  \draw[gray!45] (0,0) circle (1);
+  \draw[mwprimario, thick, -{Stealth}] (0,0) -- (65:1.05);
+  \draw[mwmagenta, thick, -{Stealth}] (0,0) -- (-55:1.10);
+  \draw[mwprimario, thick, -{Stealth}] (0.60,0) arc (0:65:0.60);
+  \node[mwprimario, font=\scriptsize] at (32:0.80) {$+\alpha$};
+  \draw[mwmagenta, thick, -{Stealth}] (0.60,0) arc (0:-55:0.60);
+  \node[mwmagenta, font=\scriptsize] at (-27:0.80) {$-\beta$};
+  \node[mwprimario, font=\scriptsize, above right] at (65:1.05) {antihorario};
+  \node[mwmagenta, font=\scriptsize, below right] at (-55:1.10) {horario};
+  \filldraw (0,0) circle (1.2pt);
+\end{tikzpicture}}
+
+% ── Punto P sobre la circunferencia unitaria ───────────────
+\newcommand{\mwpunto}{%
+\begin{tikzpicture}[scale=2.05, baseline=(current bounding box.center), line join=round]
+  \draw[gray!50, -{Stealth}] (-1.18,0) -- (1.30,0);
+  \draw[gray!50, -{Stealth}] (0,-1.18) -- (0,1.28);
+  \draw[thick, mwprimario] (0,0) circle (1);
+  \coordinate (P) at (50:1);
+  \draw[thick, mwprimario] (0,0) -- (P);
+  \draw[dashed, mwnaranja, thick] (P) -- (0.643,0);
+  \draw[dashed, mwmagenta, thick] (P) -- (0,0.766);
+  \draw[mwnaranja, thick] (0.583,0) -- (0.583,0.060) -- (0.643,0.060);
+  \filldraw[mwprimario] (P) circle (1.4pt);
+  \node[mwprimario, font=\scriptsize, above right] at (P) {$P(x,y)$};
+  \node[below, font=\scriptsize] at (0.32,-0.02) {$x=\cos\alpha$};
+  \node[left, font=\scriptsize] at (-0.03,0.40) {$y=\sen\alpha$};
+  \draw[mwnaranja, thick] (0.32,0) arc (0:50:0.32);
+  \node[mwnaranja, font=\scriptsize] at (25:0.44) {$\alpha$};
+  \node[font=\scriptsize, below left] at (0,0) {$O$};
+  \node[font=\scriptsize, gray] at (1.24,0.14) {$x$};
+  \node[font=\scriptsize, gray] at (0.12,1.22) {$y$};
+\end{tikzpicture}}
+
+% ── Rueda de signos: un círculo por función ────────────────
+% \mwsignos{título}{I}{II}{III}{IV}
+\newcommand{\mwsignos}[5]{%
+\begin{tikzpicture}[scale=0.72, baseline=(current bounding box.center), line join=round]
+  \draw[thick, mwprimario] (0,0) circle (1);
+  \draw[gray!55] (-1.18,0) -- (1.18,0);
+  \draw[gray!55] (0,-1.18) -- (0,1.18);
+  \node[font=\small\bfseries, mwgrisoscuro] at (0,1.38) {#1};
+  \node[font=\large\bfseries, mwprimario] at (0.46,0.46) {#2};
+  \node[font=\large\bfseries, mwprimario] at (-0.46,0.46) {#3};
+  \node[font=\large\bfseries, mwprimario] at (-0.46,-0.46) {#4};
+  \node[font=\large\bfseries, mwprimario] at (0.46,-0.46) {#5};
+\end{tikzpicture}}
+
+% ── Panel de reducción al primer cuadrante ─────────────────
+% \mwredpanel{color}{ángulo θ}{inicio del arco}{etiqueta θ}{fórmula}
+\newcommand{\mwredpanel}[5]{%
+\begin{tikzpicture}[scale=1.02, baseline=(current bounding box.center), line join=round]
+  \draw[gray!40] (0,0) circle (1);
+  \draw[gray!55] (-1.22,0) -- (1.22,0);
+  \draw[gray!55] (0,-1.22) -- (0,1.22);
+  \draw[#1, thick, -{Stealth}] (0,0) -- (#2:1.02);
+  \draw[mwnaranja, thick] (#3:0.52) arc (#3:#2:0.52);
+  \pgfmathsetmacro{\mwmid}{(#2+#3)/2}
+  \node[mwnaranja, font=\scriptsize] at (\mwmid:0.72) {$\alpha_r$};
+  \node[#1, font=\scriptsize] at (#2:1.27) {#4};
+  \node[font=\scriptsize, mwgrisoscuro] at (0,-1.48) {#5};
+\end{tikzpicture}}
+
+% ── Ángulos opuestos: reflexión sobre el eje x ─────────────
+\newcommand{\mwopuestos}{%
+\begin{tikzpicture}[scale=1.9, baseline=(current bounding box.center), line join=round]
+  \draw[gray!55, -{Stealth}] (-1.28,0) -- (1.32,0);
+  \draw[gray!55, -{Stealth}] (0,-1.25) -- (0,1.25);
+  \draw[gray!45] (0,0) circle (1);
+  \coordinate (P) at (58:1);
+  \coordinate (Q) at (-58:1);
+  \draw[mwprimario, thick] (0,0) -- (P);
+  \draw[mwmagenta, thick] (0,0) -- (Q);
+  \draw[dashed, gray, thick] (P) -- (Q);
+  \filldraw[mwprimario] (P) circle (1.3pt);
+  \filldraw[mwmagenta] (Q) circle (1.3pt);
+  \node[mwprimario, font=\scriptsize, above right] at (P) {$P(x,y)$};
+  \node[mwmagenta, font=\scriptsize, below right] at (Q) {$P'(x,-y)$};
+  \draw[mwprimario, thick] (0.52,0) arc (0:58:0.52);
+  \node[mwprimario, font=\scriptsize] at (29:0.72) {$+\alpha$};
+  \draw[mwmagenta, thick] (0.52,0) arc (0:-58:0.52);
+  \node[mwmagenta, font=\scriptsize] at (-29:0.72) {$-\alpha$};
+  \filldraw (0,0) circle (1.1pt);
+\end{tikzpicture}}
+
+\begin{document}
+% ============================================================
+
+\mwportada{Guía Temática — T3L1}{Circunferencia trigonométrica, ángulos en posición estándar y reducción}{Ubicar, signar y reducir: tres pasos para cualquier ángulo}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación.} Esta guía reúne los contenidos de las clases del
+  \textbf{22 y 23 de noviembre de 2026}. Hasta ahora trabajaste la
+  trigonometría dentro de un triángulo rectángulo, donde los ángulos solo
+  pueden ser agudos. La \textbf{circunferencia trigonométrica} rompe esa
+  limitación: permite definir las razones para \emph{cualquier} ángulo,
+  positivo o negativo, y tantas vueltas como quieras darle a la rotación.
+  \\[4pt]
+  \textbf{Qué vas a aprender:}
+  \begin{itemize}[leftmargin=1.2em, nosep, topsep=2pt]
+    \item reconocer la circunferencia unitaria, sus cuadrantes y sus ejes;
+    \item ubicar un ángulo en \textbf{posición estándar} y distinguir el
+          sentido positivo del negativo;
+    \item leer $\sen\alpha$, $\cos\alpha$ y $\tg\alpha$ como coordenadas de
+          un punto;
+    \item determinar el \textbf{signo} de cada función según el cuadrante;
+    \item \textbf{reducir} cualquier ángulo al primer cuadrante;
+    \item usar la \textbf{paridad} de las funciones y las razones
+          \textbf{recíprocas};
+    \item resolver ejercicios de signo, reducción y expresiones.
+  \end{itemize}
+  \par\medskip
+  \textbf{Cómo usar la guía.} Lee cada sección con lápiz en mano y reproduce
+  las figuras en tu cuaderno. Todos los dibujos están hechos con ángulos
+  reales, así que puedes medirlos como comprobación. Trabaja con la
+  calculadora en \textbf{modo grados} (o en radianes cuando el enunciado los
+  use) y no confundas grados con radianes. Al final encontrarás \textbf{39
+  ejercicios} con su clave comentada.
+\end{cuadroinfo}
+
+% ============================================================
+\section{La circunferencia trigonométrica}
+% ============================================================
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Definición.} Si en un sistema de coordenadas con centro en el
+  origen se traza un círculo de \textbf{radio $1$}, se obtiene la
+  \textbf{circunferencia trigonométrica} (también llamada \emph{circunferencia
+  unitaria}).
+
+  Todo punto $P(x,y)$ de ella cumple
+  \[
+    \boxed{\;x^{2}+y^{2}=1\;}
+  \]
+  porque su distancia al origen es $1$.
+\end{cuadroteoria}
+
+\begin{center}
+\mwcircunferencia
+\end{center}
+
+Los ejes cartesianos dividen el plano en cuatro regiones llamadas
+\textbf{cuadrantes}, que se numeran con números romanos en sentido
+\textbf{antihorario}, comenzando por el superior derecho:
+
+\begin{center}
+\small
+\begin{tabular}{@{}lcccc@{}}
+  \toprule
+  \textbf{Cuadrante} & \textbf{I} & \textbf{II} & \textbf{III} & \textbf{IV} \\
+  \midrule
+  Ángulo (grados) & $0^\circ<\alpha<90^\circ$ & $90^\circ<\alpha<180^\circ$
+                  & $180^\circ<\alpha<270^\circ$ & $270^\circ<\alpha<360^\circ$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{Ojo con los bordes.} Los ángulos $0^\circ$, $90^\circ$,
+  $180^\circ$, $270^\circ$ y $360^\circ$ están \textbf{sobre los ejes}, no
+  dentro de un cuadrante. En ellos una de las coordenadas vale $0$, y por eso
+  algunas razones quedan indefinidas: $\tg 90^\circ$ y $\tg 270^\circ$ no
+  existen porque allí $x=0$.
+\end{cuadroadvertencia}
+
+% ============================================================
+\section{Ángulo en posición estándar}
+% ============================================================
+
+\begin{cuadroteoria}
+  \small
+  Un ángulo está en \textbf{posición estándar} (o \emph{posición normal})
+  cuando cumple las tres condiciones siguientes:
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item su \textbf{vértice} coincide con el origen del plano cartesiano;
+    \item su \textbf{lado inicial} se apoya sobre el semieje positivo de las
+          $x$;
+    \item su \textbf{sentido de rotación} es antihorario (contrario a las
+          agujas del reloj) cuando el ángulo es positivo.
+  \end{enumerate}
+\end{cuadroteoria}
+
+\begin{center}
+\mwanguloestandar
+\end{center}
+
+\begin{cuadropasos}[nobreak]
+  \small
+  \textbf{Para dibujar un ángulo en posición estándar:}
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item marca el vértice en $(0,0)$;
+    \item traza el lado inicial sobre el semieje $+x$;
+    \item gira el lado final el número de grados indicado: si el ángulo es
+          \textbf{positivo}, en sentido antihorario; si es \textbf{negativo},
+          en sentido horario;
+    \item el ángulo que ves es el que forman el lado inicial y el lado final.
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{El error más común:} dibujar el ángulo «donde queda cómodo». Si el
+  lado inicial no está sobre el semieje $+x$, la figura \textbf{no} está en
+  posición estándar y las coordenadas de $P$ ya no se leen directamente como
+  seno y coseno. Antes de calcular, comprueba las tres condiciones.
+\end{cuadroadvertencia}
+
+% ============================================================
+\section{Ángulos positivos, negativos y coterminales}
+% ============================================================
+
+\begin{cuadroteoria}
+  \small
+  \begin{itemize}[leftmargin=1.2em, nosep]
+    \item Un ángulo es \textbf{positivo} si la rotación va en sentido
+          \textbf{contrario} a las agujas del reloj.
+    \item Un ángulo es \textbf{negativo} si la rotación va en el sentido de
+          las agujas del reloj.
+  \end{itemize}
+\end{cuadroteoria}
+
+\begin{center}
+\mwangulopn
+\end{center}
+
+Dos ángulos son \textbf{coterminales} si tienen el mismo lado final; es
+decir, si difieren en un número entero de vueltas completas:
+\[
+  \boxed{\;\alpha \equiv \beta \quad\Longleftrightarrow\quad \alpha=\beta+360^\circ k,\quad k\in\mathbb{Z}\;}
+\]
+En radianes, la misma idea se escribe $\alpha=\beta+2\pi k$.
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Consecuencia importante.} Las funciones trigonométricas solo
+  dependen del \textbf{lado final}, no de cuántas vueltas hayas dado. Por eso
+  \[
+    \sen(\alpha+360^\circ k)=\sen\alpha,\qquad
+    \cos(\alpha+360^\circ k)=\cos\alpha,\qquad
+    \tg(\alpha+360^\circ k)=\tg\alpha.
+  \]
+\end{cuadroteoria}
+
+\begin{cuadropasos}[nobreak]
+  \small
+  \textbf{Cómo llevar un ángulo a $[0^\circ,360^\circ)$:}
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item divide el ángulo entre $360^\circ$ y quédate con el \textbf{residuo};
+    \item si el ángulo es negativo, suma $360^\circ$ (o $2\pi$) hasta caer en
+          el intervalo;
+    \item el ángulo obtenido es coterminal con el original y ya se puede
+          ubicar en un cuadrante.
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadrosolucion}[nobreak]
+  \small
+  \textbf{Ejemplo.} Reducir $2920^\circ$ a su ángulo coterminal menor que
+  $360^\circ$.\\[2pt]
+  $2920 \div 360$ da cociente $8$ y residuo $40$, porque
+  $8\cdot 360^\circ=2880^\circ$ y $2920^\circ-2880^\circ=40^\circ$. Por tanto
+  \[
+    2920^\circ \equiv 40^\circ,
+  \]
+  que está en el \textbf{primer cuadrante}.
+\end{cuadrosolucion}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{Trampa de aritmética.} Observa que $2880^\circ+120^\circ=3000^\circ$,
+  \textbf{no} $2920^\circ$. Si en un ejercicio escribes «$8$ vueltas más
+  $120^\circ$» para un ángulo de $2920^\circ$, el residuo está mal y el
+  cuadrante también. Comprueba siempre la resta:
+  \[
+    2920^\circ=8\cdot 360^\circ+40^\circ \quad(\text{no }120^\circ).
+  \]
+\end{cuadroadvertencia}
+
+% ============================================================
+\section{Funciones trigonométricas en la circunferencia}
+% ============================================================
+
+Para un punto $P(x,y)$ sobre la circunferencia de radio $r=1$, las
+coordenadas del punto \textbf{son} los valores del coseno y del seno:
+
+\begin{center}
+\mwpunto
+\end{center}
+
+\begin{cuadroteoria}
+  \small
+  \[
+    \boxed{\;\sen\alpha=\frac{y}{1}=y\;}\qquad
+    \boxed{\;\cos\alpha=\frac{x}{1}=x\;}\qquad
+    \boxed{\;\tg\alpha=\frac{y}{x}=\frac{\sen\alpha}{\cos\alpha}\;}
+  \]
+  con $x\neq 0$ para la tangente.
+\end{cuadroteoria}
+
+Así, el seno es la \textbf{altura} del punto $P$ y el coseno es su
+\textbf{desplazamiento horizontal}. El signo de cada uno lo decide, por tanto,
+el cuadrante en el que está $P$.
+
+\begin{cuadroteoria}[nobreak]
+  \small
+  \textbf{Consecuencia inmediata.} Como $P$ está sobre la circunferencia,
+  $x^2+y^2=1$. Sustituyendo $x=\cos\alpha$ e $y=\sen\alpha$:
+  \[
+    \boxed{\;\sen^{2}\alpha+\cos^{2}\alpha=1\;}
+  \]
+  Esta es la \textbf{identidad pitagórica fundamental} y se cumple para
+  \emph{cualquier} ángulo $\alpha$.
+\end{cuadroteoria}
+
+\begin{cuadroextra}
+  \small
+  \textbf{Una lectura geométrica de la tangente.} Si prolongas el lado final
+  del ángulo hasta cortar la recta vertical $x=1$, la altura del punto de
+  corte es exactamente $\tg\alpha$. Dicho de otro modo: $\tg\alpha$ es la
+  \textbf{pendiente} del lado final. Por eso la tangente se dispara cuando el
+  lado final se acerca a la vertical ($x=0$).
+\end{cuadroextra}
+
+% ============================================================
+\section{Signos de las funciones por cuadrante}
+% ============================================================
+
+Como $\sen\alpha=y$ y $\cos\alpha=x$, el signo de cada función se lee
+directamente de los signos de las coordenadas:
+
+\begin{center}
+\mwsignos{$\sen\alpha$}{$+$}{$+$}{$-$}{$-$}\hspace{1.8em}%
+\mwsignos{$\cos\alpha$}{$+$}{$-$}{$-$}{$+$}\hspace{1.8em}%
+\mwsignos{$\tg\alpha$}{$+$}{$-$}{$+$}{$-$}
+\end{center}
+
+\begin{center}
+\small
+\begin{tabular}{@{}lcccc@{}}
+  \toprule
+  \textbf{Función} & \textbf{I} & \textbf{II} & \textbf{III} & \textbf{IV} \\
+  \midrule
+  $\sen\alpha$ & $+$ & $+$ & $-$ & $-$ \\
+  $\cos\alpha$ & $+$ & $-$ & $-$ & $+$ \\
+  $\tg\alpha$  & $+$ & $-$ & $+$ & $-$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Regla nemotécnica de clase:}
+  \[
+    \text{«Sen inversor, tan loco, cos todo lo contrario»}
+  \]
+  En la práctica, la regla segura es mirar las coordenadas:
+  \begin{itemize}[leftmargin=1.2em, nosep, topsep=2pt]
+    \item el \textbf{seno} es positivo en \textbf{I y II} (la mitad superior,
+          donde $y>0$);
+    \item el \textbf{coseno} es positivo en \textbf{I y IV} (la mitad derecha,
+          donde $x>0$);
+    \item la \textbf{tangente} es positiva en \textbf{I y III} (donde $x$ e
+          $y$ tienen el mismo signo).
+  \end{itemize}
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{El signo lo decide el ángulo original, no el de referencia.} Al
+  reducir un ángulo, primero ubica el ángulo \textbf{original} en su
+  cuadrante y asigna el signo; recién después calculas el valor con el ángulo
+  agudo. Por ejemplo, $\tg(-100^\circ)$ \textbf{es positiva}: $-100^\circ$ es
+  coterminal con $260^\circ$ (cuadrante III), donde $x$ e $y$ son ambos
+  negativos y su cociente es positivo.
+\end{cuadroadvertencia}
+
+% ============================================================
+\section{Ángulos notables y reducción al primer cuadrante}
+% ============================================================
+
+Para reducir con comodidad conviene tener a mano los valores de los ángulos
+notables:
+
+\begin{center}
+\small
+\begin{tabular}{@{}lccccc@{}}
+  \toprule
+  $\alpha$ & $0^\circ$ & $30^\circ$ & $45^\circ$ & $60^\circ$ & $90^\circ$ \\
+  \midrule
+  $\sen\alpha$ & $0$ & $\dfrac{1}{2}$ & $\dfrac{\sqrt{2}}{2}$ & $\dfrac{\sqrt{3}}{2}$ & $1$ \\[6pt]
+  $\cos\alpha$ & $1$ & $\dfrac{\sqrt{3}}{2}$ & $\dfrac{\sqrt{2}}{2}$ & $\dfrac{1}{2}$ & $0$ \\[6pt]
+  $\tg\alpha$  & $0$ & $\dfrac{\sqrt{3}}{3}$ & $1$ & $\sqrt{3}$ & no existe \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\begin{cuadroteoria}
+  \small
+  \textbf{¿Qué es reducir al primer cuadrante?} Es convertir la función
+  trigonométrica de un ángulo cualquiera $\theta$ en una función
+  \textbf{equivalente} de un ángulo agudo $\alpha_r$ (el \emph{ángulo de
+  referencia}), conservando el \textbf{signo} que la función tiene en el
+  cuadrante del ángulo original:
+  \[
+    f(\theta)=\pm\,f(\alpha_r).
+  \]
+  El \textbf{nombre de la función no cambia}: el seno sigue siendo seno, el
+  coseno sigue siendo coseno.
+\end{cuadroteoria}
+
+\begin{center}
+\begin{tabular}{@{}cc@{}}
+  \mwredpanel{mwprimario}{35}{0}{$\theta=35^\circ$}{$\alpha_r=\theta$} &
+  \mwredpanel{mwmagenta}{145}{180}{$\theta=145^\circ$}{$\alpha_r=180^\circ-\theta$} \\[2pt]
+  \mwredpanel{mwnaranja}{215}{180}{$\theta=215^\circ$}{$\alpha_r=\theta-180^\circ$} &
+  \mwredpanel{mwvioleta}{325}{360}{$\theta=325^\circ$}{$\alpha_r=360^\circ-\theta$} \\
+\end{tabular}
+\end{center}
+
+\begin{center}
+\small
+\begin{tabular}{@{}lll@{}}
+  \toprule
+  \textbf{Cuadrante} & \textbf{Ángulo de referencia (grados)} & \textbf{En radianes} \\
+  \midrule
+  I   & $\alpha_r=\theta$            & $\alpha_r=\theta$ \\
+  II  & $\alpha_r=180^\circ-\theta$  & $\alpha_r=\pi-\theta$ \\
+  III & $\alpha_r=\theta-180^\circ$  & $\alpha_r=\theta-\pi$ \\
+  IV  & $\alpha_r=360^\circ-\theta$  & $\alpha_r=2\pi-\theta$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\begin{cuadropasos}
+  \small
+  \textbf{Algoritmo de reducción:}
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item lleva $\theta$ al intervalo $[0^\circ,360^\circ)$ sumando o
+          restando vueltas completas;
+    \item identifica el \textbf{cuadrante} del ángulo resultante;
+    \item calcula el ángulo de referencia $\alpha_r$ con la tabla anterior;
+    \item escribe la función pedida con el \textbf{signo del cuadrante
+          original} y el valor de $\alpha_r$;
+    \item si el resultado debe ser numérico, sustituye los valores notables.
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{Dos errores que cuestan puntos:}
+  \begin{itemize}[leftmargin=1.2em, nosep, topsep=2pt]
+    \item \textbf{olvidar el signo}: $\sen 210^\circ$ \textbf{no} es
+          $\sen 30^\circ$; es $-\sen 30^\circ$ porque $210^\circ$ está en el
+          III cuadrante;
+    \item \textbf{cambiar de función}: $\cos 150^\circ$ se reduce a
+          $\cos 30^\circ$ con signo negativo, \textbf{no} a $\sen 30^\circ$.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\subsection*{Ejemplos resueltos}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 1.} Hallar $\sen 240^\circ$.\\[2pt]
+  $240^\circ$ está en el \textbf{III cuadrante}: $\alpha_r=240^\circ-180^\circ=60^\circ$.
+  En el III cuadrante el seno es \textbf{negativo}, luego
+  \[
+    \sen 240^\circ=-\sen 60^\circ=-\frac{\sqrt{3}}{2}.
+  \]
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 2.} Hallar seno, coseno y tangente de $330^\circ$.\\[2pt]
+  $330^\circ$ está en el \textbf{IV cuadrante} y
+  $\alpha_r=360^\circ-330^\circ=30^\circ$. Los signos del IV cuadrante son
+  $(-,+,-)$ para $(\sen,\cos,\tg)$:
+  \[
+    \sen 330^\circ=-\frac{1}{2},\qquad
+    \cos 330^\circ=\frac{\sqrt{3}}{2},\qquad
+    \tg 330^\circ=-\frac{\sqrt{3}}{3}.
+  \]
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 3.} Hallar seno, coseno y tangente de $210^\circ$.\\[2pt]
+  $210^\circ$ está en el \textbf{III cuadrante} y
+  $\alpha_r=210^\circ-180^\circ=30^\circ$. Los signos del III cuadrante son
+  $(-,-,+)$:
+  \[
+    \sen 210^\circ=-\frac{1}{2},\qquad
+    \cos 210^\circ=-\frac{\sqrt{3}}{2},\qquad
+    \tg 210^\circ=\frac{\sqrt{3}}{3}.
+  \]
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 4.} Calcular $\cos 2920^\circ$.\\[2pt]
+  En la sección anterior vimos que $2920^\circ\equiv 40^\circ$. Como
+  $40^\circ$ está en el \textbf{I cuadrante}, el coseno es positivo:
+  \[
+    \cos 2920^\circ=\cos 40^\circ\approx 0{,}766.
+  \]
+  \emph{Contraste:} si el ángulo fuera $3000^\circ$, entonces
+  $3000^\circ=8\cdot360^\circ+120^\circ$, que cae en el II cuadrante y
+  $\cos 3000^\circ=-\cos 60^\circ=-\tfrac12$.
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 5.} Calcular $\tg 2010^\circ$.\\[2pt]
+  Dividimos entre $360^\circ$ para hallar el coterminal:
+  $2010=5\cdot360+210$, es decir,
+  $2010^\circ=5\cdot360^\circ+210^\circ$. El coterminal es $210^\circ$,
+  que está en el \textbf{III cuadrante}, y
+  $\alpha_r=210^\circ-180^\circ=30^\circ$. Allí la tangente es
+  \textbf{positiva}, luego
+  \[
+    \tg 2010^\circ=\tg 210^\circ=+\tg 30^\circ=\frac{\sqrt{3}}{3}.
+  \]
+\end{cuadrosolucion}
+
+% ============================================================
+\section{Funciones de ángulos opuestos (paridad)}
+% ============================================================
+
+Dos ángulos son \textbf{opuestos} si tienen la misma magnitud pero sentidos
+contrarios: $\alpha$ y $-\alpha$. En la circunferencia, sus puntos
+$P(x,y)$ y $P'(x,-y)$ son \textbf{simétricos respecto del eje $x$}: la
+coordenada $x$ no cambia y la $y$ cambia de signo.
+
+\begin{center}
+\mwopuestos
+\end{center}
+
+\begin{cuadroteoria}
+  \small
+  \[
+    \boxed{\;\sen(-\alpha)=-\sen\alpha\;}\qquad
+    \boxed{\;\cos(-\alpha)=\cos\alpha\;}\qquad
+    \boxed{\;\tg(-\alpha)=-\tg\alpha\;}
+  \]
+  \begin{itemize}[leftmargin=1.2em, nosep, topsep=2pt]
+    \item el \textbf{seno} y la \textbf{tangente} son funciones
+          \textbf{impares}: cambian de signo;
+    \item el \textbf{coseno} es una función \textbf{par}: no cambia de signo.
+  \end{itemize}
+\end{cuadroteoria}
+
+\begin{cuadroextra}
+  \small
+  \textbf{¿Por qué?} El punto $P'$ tiene la misma $x$ que $P$ y la $y$
+  opuesta. Entonces
+  \[
+    \sen(-\alpha)=y'=-y=-\sen\alpha,\qquad
+    \cos(-\alpha)=x'=x=\cos\alpha.
+  \]
+  La tangente cambia de signo porque es el cociente de una cantidad que
+  cambia de signo entre otra que no cambia.
+\end{cuadroextra}
+
+% ============================================================
+\section{Funciones recíprocas}
+% ============================================================
+
+\begin{cuadroteoria}
+  \small
+  Cada función trigonométrica tiene su \textbf{recíproca}:
+  \[
+    \boxed{\;\csc\alpha=\frac{1}{\sen\alpha}\;}\qquad
+    \boxed{\;\sec\alpha=\frac{1}{\cos\alpha}\;}\qquad
+    \boxed{\;\cot\alpha=\frac{1}{\tg\alpha}=\frac{\cos\alpha}{\sen\alpha}\;}
+  \]
+  con $\sen\alpha\neq0$ para la cosecante y la cotangente, y
+  $\cos\alpha\neq0$ para la secante.
+\end{cuadroteoria}
+
+\begin{center}
+\small
+\begin{tabular}{@{}lll@{}}
+  \toprule
+  \textbf{Recíproca} & \textbf{Definición} & \textbf{Signo} \\
+  \midrule
+  cosecante ($\csc$) & $1/\sen\alpha$ & el mismo que $\sen\alpha$ \\
+  secante ($\sec$)   & $1/\cos\alpha$ & el mismo que $\cos\alpha$ \\
+  cotangente ($\cot$) & $1/\tg\alpha$  & el mismo que $\tg\alpha$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\begin{cuadroadvertencia}[nobreak]
+  \small
+  \textbf{Notación delicada.} En algunos apuntes se escribe
+  $\sen^{-1}$, $\cos^{-1}$ y $\tg^{-1}$ para indicar las \textbf{recíprocas}.
+  Eso confunde, porque internacionalmente $\cos^{-1}$ también significa
+  \emph{arcocoseno} (la función inversa, no la recíproca). Para evitar
+  ambigüedades usa siempre $\csc$, $\sec$ y $\cot$, o las fracciones
+  $1/\sen$, $1/\cos$ y $1/\tg$. Recuerda que la recíproca del \textbf{seno}
+  es la \textbf{cosecante}, no la secante.
+\end{cuadroadvertencia}
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Paridad de las recíprocas.} Como la recíproca conserva el signo de
+  la función original, la paridad se hereda:
+  \[
+    \csc(-\alpha)=-\csc\alpha,\qquad
+    \sec(-\alpha)=\sec\alpha,\qquad
+    \cot(-\alpha)=-\cot\alpha.
+  \]
+\end{cuadroteoria}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo.} Calcular $\csc 210^\circ$.\\[2pt]
+  Primero reducimos: $210^\circ$ está en el III cuadrante,
+  $\alpha_r=30^\circ$ y $\sen 210^\circ=-\sen 30^\circ=-\tfrac12$. Por tanto
+  \[
+    \csc 210^\circ=\frac{1}{\sen 210^\circ}=\frac{1}{-1/2}=-2.
+  \]
+  El resultado es negativo, como corresponde al III cuadrante.
+\end{cuadrosolucion}
+
+% ============================================================
+\section{Formulario resumen}
+% ============================================================
+
+\begin{cuadroteoria}
+  \small
+  \begin{center}
+  \begin{tabular}{@{}p{0.30\linewidth}p{0.62\linewidth}@{}}
+    \toprule
+    \textbf{Concepto} & \textbf{Fórmula o regla} \\
+    \midrule
+    Circunferencia unitaria & $x^2+y^2=1$ \\[2pt]
+    Seno y coseno & $\sen\alpha=y$, \quad $\cos\alpha=x$ \\[2pt]
+    Tangente & $\tg\alpha=\dfrac{y}{x}=\dfrac{\sen\alpha}{\cos\alpha}$ \\[6pt]
+    Identidad pitagórica & $\sen^2\alpha+\cos^2\alpha=1$ \\[2pt]
+    Ángulos coterminales & $\alpha=\beta+360^\circ k$ \quad (o $\beta+2\pi k$) \\[2pt]
+    Reducción II & $\alpha_r=180^\circ-\theta$ \\[2pt]
+    Reducción III & $\alpha_r=\theta-180^\circ$ \\[2pt]
+    Reducción IV & $\alpha_r=360^\circ-\theta$ \\[2pt]
+    Regla de reducción & $f(\theta)=\pm f(\alpha_r)$, signo del cuadrante original \\[2pt]
+    Ángulos opuestos & $\sen(-\alpha)=-\sen\alpha$, \ $\cos(-\alpha)=\cos\alpha$, \ $\tg(-\alpha)=-\tg\alpha$ \\[2pt]
+    Recíprocas & $\csc\alpha=\dfrac{1}{\sen\alpha}$, \ $\sec\alpha=\dfrac{1}{\cos\alpha}$, \ $\cot\alpha=\dfrac{\cos\alpha}{\sen\alpha}$ \\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+\end{cuadroteoria}
+
+\begin{center}
+\small
+\begin{tabular}{@{}lcccc@{}}
+  \toprule
+  \textbf{Función} & \textbf{I} & \textbf{II} & \textbf{III} & \textbf{IV} \\
+  \midrule
+  $\sen\alpha$, $\csc\alpha$ & $+$ & $+$ & $-$ & $-$ \\
+  $\cos\alpha$, $\sec\alpha$ & $+$ & $-$ & $-$ & $+$ \\
+  $\tg\alpha$, $\cot\alpha$  & $+$ & $-$ & $+$ & $-$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\begin{cuadroinfo}[nobreak]
+  \small
+  \textbf{Antes de entregar, comprueba:}
+  \begin{itemize}[leftmargin=1.2em, nosep, topsep=2pt]
+    \item ¿El ángulo está en posición estándar?
+    \item ¿Pasé las vueltas completas correctamente?
+    \item ¿Identifiqué bien el cuadrante del ángulo \textbf{original}?
+    \item ¿El signo coincide con la tabla de signos?
+    \item ¿Dejé la misma función, sin cambiarla por su cofunción?
+  \end{itemize}
+\end{cuadroinfo}
+
+% ============================================================
+\section{Ejercicios propuestos}
+% ============================================================
+
+\begin{cuadroinfo}
+  \small
+  \textbf{Cómo trabajar.} Resuelve sin calculadora los valores exactos y usa
+  la calculadora solo para comprobar. En todos los ejercicios, escribe
+  primero el \textbf{cuadrante} y el \textbf{ángulo de referencia}; el
+  resultado numérico es lo último. La clave comentada está al final.
+  \\[4pt]
+  \textbf{Ángulos mayores que $360^\circ$ (o menores que $-360^\circ$).}
+  En estos ejercicios usa siempre el \textbf{método de la división}: divide
+  el ángulo entre $360^\circ$ y toma el \textbf{residuo}, que es el
+  coterminal. Después reduce ese residuo al primer cuadrante y aplica el
+  signo. Comprueba con la multiplicación:
+  \[
+    \theta=360^\circ q+r \quad\Longrightarrow\quad
+    q\cdot360^\circ+r=\theta .
+  \]
+\end{cuadroinfo}
+
+\subsection*{Bloque A — Reducir usando funciones de ángulos opuestos (1--7)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $\sen(-220^\circ)$
+  \item $\cos\left(-\dfrac{3\pi}{4}\right)$
+  \item $\cot(-25^\circ)$
+  \item $\tg\left(-\dfrac{5\pi}{3}\right)$
+  \item $\csc(-300^\circ)$
+  \item $\sen(-1000^\circ)$
+  \item $\cos(-1500^\circ)$
+\end{enumerate}
+
+\subsection*{Bloque B — Determinar el signo, sin calcular el valor (8--15)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=8]
+  \item $\sen 150^\circ$
+  \item $\cos 225^\circ$
+  \item $\csc 250^\circ$
+  \item $\cot(-200^\circ)$
+  \item $\sen 300^\circ$
+  \item $\tg(-100^\circ)$
+  \item $\sen 1000^\circ$
+  \item $\tg 2000^\circ$
+\end{enumerate}
+
+\newpage
+\subsection*{Bloque C — Reducir y calcular (16--32)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=16]
+  \item $\sen 150^\circ$
+  \item $\cos 240^\circ$
+  \item $\tg 315^\circ$
+  \item $\sen 200^\circ$
+  \item $\cos 100^\circ$
+  \item $\tg 160^\circ$
+  \item $\cos 350^\circ$
+  \item $\sen(-30^\circ)$
+  \item $\cos(-60^\circ)$
+  \item $\tg(-45^\circ)$
+  \item $\csc(-330^\circ)$
+  \item $\sec(-120^\circ)$
+  \item $\cot(-135^\circ)$
+  \item $\cot 300^\circ$
+  \item $\sen 750^\circ$
+  \item $\cos 1290^\circ$
+  \item $\tg 1920^\circ$
+\end{enumerate}
+
+\newpage
+\subsection*{Bloque D — Hallar el valor de cada expresión (33--47)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=33]
+  \item $E=\sen 150^\circ+\cos 240^\circ-\tg 315^\circ$
+  \item $E=2\sen 30^\circ-3\cos 180^\circ+\tg 45^\circ$
+  \item $E=\sen(-30^\circ)\cdot\cos 240^\circ+\tg 135^\circ$
+  \item $E=\csc 30^\circ+\sec 60^\circ-\cot 45^\circ$
+  \item $E=\sen 270^\circ+\cos 180^\circ+\tg 360^\circ$
+  \item $E=\sen 750^\circ+\cos 480^\circ-\tg 1035^\circ$
+  \item $E=2\cos 1140^\circ-3\tg 1305^\circ$
+  \item $E=\dfrac{\sen 210^\circ+\cos 300^\circ}{\tg 135^\circ}$
+  \item $E=\sen^2 150^\circ+\cos^2 330^\circ-\tg 45^\circ$
+  \item $E=2\sec 120^\circ-3\csc(-330^\circ)+\cot 225^\circ$
+  \item $E=\dfrac{\sen(-60^\circ)\cdot\tg 225^\circ}{\cos 150^\circ}$
+  \item $E=\sqrt{3}\,\tg 240^\circ-2\sqrt{2}\,\sen 135^\circ$
+  \item $E=\sen\left(\dfrac{7\pi}{6}\right)+\cos\left(-\dfrac{5\pi}{3}\right)-\tg\left(\dfrac{11\pi}{4}\right)$
+  \item $E=\dfrac{\sen 1140^\circ+\cos(-750^\circ)}{\cot 1305^\circ}$
+  \item $E=\left(\sen 150^\circ-\cos 240^\circ\right)\left(\tg 315^\circ+\cot 135^\circ\right)$
+\end{enumerate}
+
+% ============================================================
+\ifmwclaves
+\clearpage
+\section*{Clave de respuestas comentada}
+% ============================================================
+
+\begin{cuadroinfo}
+  \small
+  \textbf{Cómo leer la clave.} Cada respuesta indica el camino, no solo el
+  número. Si tu resultado difiere, revisa primero el \textbf{cuadrante} y el
+  \textbf{signo}: son las dos fuentes de error más frecuentes.
+\end{cuadroinfo}
+
+\subsection*{Bloque A — Ángulos opuestos (1--7)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $\sen(-220^\circ)=-\sen 220^\circ$. Como $220^\circ=180^\circ+40^\circ$ (III), $\sen 220^\circ=-\sen 40^\circ$; por tanto $\sen(-220^\circ)=+\sen 40^\circ\approx 0{,}643$.
+  \item El coseno es par: $\cos\left(-\frac{3\pi}{4}\right)=\cos\frac{3\pi}{4}=-\cos\frac{\pi}{4}=-\frac{\sqrt{2}}{2}\approx -0{,}707$.
+  \item La cotangente es impar: $\cot(-25^\circ)=-\cot 25^\circ\approx -2{,}145$.
+  \item Sumamos una vuelta: $-\frac{5\pi}{3}+2\pi=\frac{\pi}{3}$. Entonces $\tg\left(-\frac{5\pi}{3}\right)=\tg\frac{\pi}{3}=\sqrt{3}\approx 1{,}732$.
+  \item Sumamos una vuelta: $-300^\circ+360^\circ=60^\circ$. Luego $\csc(-300^\circ)=\csc 60^\circ=\frac{2}{\sqrt{3}}=\frac{2\sqrt{3}}{3}\approx 1{,}155$.
+  \item El seno es impar: $\sen(-1000^\circ)=-\sen 1000^\circ$. Dividimos $1000\div360$: $1000=2\cdot360+280$, así que $\sen 1000^\circ=\sen 280^\circ$. Como $280^\circ$ está en el IV cuadrante, $\sen 280^\circ=-\sen 80^\circ$. Por tanto $\sen(-1000^\circ)=+\sen 80^\circ\approx 0{,}985$.
+  \item El coseno es par: $\cos(-1500^\circ)=\cos 1500^\circ$. Dividimos $1500\div360$: $1500=4\cdot360+60$, luego $\cos 1500^\circ=\cos 60^\circ=\frac12$.
+\end{enumerate}
+
+\subsection*{Bloque B — Signos (8--15)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=8]
+  \item $(+)$: $150^\circ$ está en el II cuadrante, donde el seno es positivo.
+  \item $(-)$: $225^\circ$ está en el III cuadrante, donde el coseno es negativo.
+  \item $(-)$: $250^\circ$ está en el III cuadrante; allí $\sen 250^\circ<0$ y la cosecante conserva ese signo.
+  \item $(-)$: $-200^\circ$ es coterminal con $160^\circ$ (II), donde la tangente y la cotangente son negativas.
+  \item $(-)$: $300^\circ$ está en el IV cuadrante, donde el seno es negativo.
+  \item $(+)$: $-100^\circ$ es coterminal con $260^\circ$ (III), donde $x$ e $y$ son negativos y $\tg=y/x>0$. También: $\tg(-100^\circ)=-\tg 100^\circ$ y $\tg 100^\circ<0$, así que el resultado es positivo.
+  \item $(-)$: $1000=2\cdot360+280$, luego $1000^\circ\equiv280^\circ$ (IV), donde el seno es negativo.
+  \item $(+)$: $2000=5\cdot360+200$, luego $2000^\circ\equiv200^\circ$ (III), donde la tangente es positiva.
+\end{enumerate}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{Ojo con el ejercicio 11.} Es fácil responder «negativo» porque el
+  ángulo lleva signo menos, pero el signo del ángulo \textbf{no} es el signo
+  de la función. Al pasar $-100^\circ$ a $260^\circ$ queda en el III
+  cuadrante, donde la tangente es \textbf{positiva}.
+\end{cuadroadvertencia}
+
+\subsection*{Bloque C — Reducción y valores (16--32)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=16]
+  \item II cuadrante, $\alpha_r=30^\circ$: $\sen 150^\circ=+\sen 30^\circ=\frac12$.
+  \item III cuadrante, $\alpha_r=60^\circ$: $\cos 240^\circ=-\cos 60^\circ=-\frac12$.
+  \item IV cuadrante, $\alpha_r=45^\circ$: $\tg 315^\circ=-\tg 45^\circ=-1$.
+  \item III cuadrante, $\alpha_r=20^\circ$: $\sen 200^\circ=-\sen 20^\circ$.
+  \item II cuadrante, $\alpha_r=80^\circ$: $\cos 100^\circ=-\cos 80^\circ$.
+  \item II cuadrante, $\alpha_r=20^\circ$: $\tg 160^\circ=-\tg 20^\circ$.
+  \item IV cuadrante, $\alpha_r=10^\circ$: $\cos 350^\circ=+\cos 10^\circ$.
+  \item La función seno es impar: $\sen(-30^\circ)=-\sen 30^\circ=-\frac12$.
+  \item El coseno es par: $\cos(-60^\circ)=\cos 60^\circ=\frac12$.
+  \item La tangente es impar: $\tg(-45^\circ)=-\tg 45^\circ=-1$.
+  \item $-330^\circ+360^\circ=30^\circ$: $\csc(-330^\circ)=\csc 30^\circ=2$.
+  \item La secante es par: $\sec(-120^\circ)=\sec 120^\circ=\frac{1}{\cos 120^\circ}=\frac{1}{-1/2}=-2$.
+  \item $-135^\circ+360^\circ=225^\circ$ (III), donde $\cot 225^\circ=1$; por paridad, $\cot(-135^\circ)=1$.
+  \item $300^\circ$ está en el IV cuadrante, $\alpha_r=60^\circ$: $\cot 300^\circ=-\cot 60^\circ=-\frac{\sqrt{3}}{3}$.
+  \item $750=2\cdot360+30$, luego $750^\circ\equiv30^\circ$ (I). Entonces $\sen 750^\circ=+\sen 30^\circ=\frac12$.
+  \item $1290=3\cdot360+210$, luego $1290^\circ\equiv210^\circ$ (III), con $\alpha_r=30^\circ$. El coseno es negativo en el III: $\cos 1290^\circ=-\cos 30^\circ=-\frac{\sqrt{3}}{2}$.
+  \item $1920=5\cdot360+120$, luego $1920^\circ\equiv120^\circ$ (II), con $\alpha_r=60^\circ$. La tangente es negativa en el II: $\tg 1920^\circ=-\tg 60^\circ=-\sqrt{3}$.
+\end{enumerate}
+
+\subsection*{Bloque D — Expresiones (33--47)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=33]
+  \item $E=\frac12+\left(-\frac12\right)-(-1)=1$.
+  \item $E=2\cdot\frac12-3(-1)+1=1+3+1=5$.
+  \item $E=\left(-\frac12\right)\left(-\frac12\right)+(-1)=\frac14-1=-\frac34$.
+  \item $E=2+2-1=3$.
+  \item $E=(-1)+(-1)+0=-2$.
+  \item Reducimos: $750=2\cdot360+30\Rightarrow\sen 750^\circ=\frac12$; $480=1\cdot360+120\Rightarrow\cos 480^\circ=-\frac12$; $1035=2\cdot360+315\Rightarrow\tg 1035^\circ=-\tg 45^\circ=-1$. Luego $E=\frac12-\frac12-(-1)=1$.
+  \item Reducimos: $1140=3\cdot360+60\Rightarrow\cos 1140^\circ=\frac12$; $1305=3\cdot360+225\Rightarrow\tg 1305^\circ=+\tg 45^\circ=1$. Luego $E=2\cdot\frac12-3\cdot1=-2$.
+  \item Numerador: $\sen 210^\circ=-\sen 30^\circ=-\frac12$ (III) y $\cos 300^\circ=+\cos 60^\circ=\frac12$ (IV), así que la suma es $0$. Denominador: $\tg 135^\circ=-\tg 45^\circ=-1\neq0$. Por tanto $E=\frac{0}{-1}=0$.
+  \item $\sen 150^\circ=+\sen 30^\circ=\frac12$ y $\cos 330^\circ=+\cos 30^\circ=\frac{\sqrt{3}}{2}$, de modo que $\sen^2 150^\circ=\frac14$ y $\cos^2 330^\circ=\frac34$. Entonces $E=\frac14+\frac34-1=0$.
+  \item $\sec 120^\circ=-2$, $\csc(-330^\circ)=\csc 30^\circ=2$ y $\cot 225^\circ=\cot 45^\circ=1$. Luego $E=2(-2)-3(2)+1=-4-6+1=-9$.
+  \item $\sen(-60^\circ)=-\frac{\sqrt{3}}{2}$, $\tg 225^\circ=+1$ y $\cos 150^\circ=-\frac{\sqrt{3}}{2}$. Entonces $E=\frac{-\frac{\sqrt{3}}{2}\cdot1}{-\frac{\sqrt{3}}{2}}=1$.
+  \item En el III cuadrante la tangente es positiva: $\tg 240^\circ=+\tg 60^\circ=\sqrt{3}$, así que $\sqrt{3}\,\tg 240^\circ=3$. Además $\sen 135^\circ=+\sen 45^\circ=\frac{\sqrt{2}}{2}$, luego $2\sqrt{2}\cdot\frac{\sqrt{2}}{2}=2$. Por tanto $E=3-2=1$.
+  \item $\sen\frac{7\pi}{6}=-\sen\frac{\pi}{6}=-\frac12$ (III); $\cos\left(-\frac{5\pi}{3}\right)=\cos\frac{5\pi}{3}=+\cos\frac{\pi}{3}=\frac12$ (IV); $\frac{11\pi}{4}-2\pi=\frac{3\pi}{4}$, donde $\tg\frac{3\pi}{4}=-1$. Luego $E=-\frac12+\frac12-(-1)=1$.
+  \item Reducimos por división: $1140=3\cdot360+60\Rightarrow\sen 1140^\circ=\frac{\sqrt{3}}{2}$; $-750^\circ+3\cdot360^\circ=330^\circ$ y el coseno es par, así que $\cos(-750^\circ)=\cos 330^\circ=\frac{\sqrt{3}}{2}$; $1305=3\cdot360+225\Rightarrow\cot 1305^\circ=+\cot 45^\circ=1$. Entonces $E=\frac{\frac{\sqrt{3}}{2}+\frac{\sqrt{3}}{2}}{1}=\sqrt{3}$.
+  \item Primer factor: $\sen 150^\circ-\cos 240^\circ=\frac12-\left(-\frac12\right)=1$. Segundo factor: $\tg 315^\circ=-\tg 45^\circ=-1$ y $\cot 135^\circ=-\cot 45^\circ=-1$, de modo que su suma es $-2$. Por tanto $E=1\cdot(-2)=-2$.
+\end{enumerate}
+
+\begin{cuadroextra}
+  \small
+  \textbf{Reto.} Demuestra, usando la circunferencia unitaria, que
+  $\sen(180^\circ-\alpha)=\sen\alpha$ y que
+  $\cos(180^\circ-\alpha)=-\cos\alpha$. Comprueba luego tus fórmulas de
+  reducción del II cuadrante con un ángulo concreto, por ejemplo
+  $\alpha=35^\circ$.
+\end{cuadroextra}
+
+\fi
+% ============================================================
+\end{document}

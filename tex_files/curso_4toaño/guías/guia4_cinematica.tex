@@ -335,6 +335,152 @@
   \item \dificil{} \textbf{:} un cohete sube con aceleración $a = 15$ m/s$^2$ durante $6$ s desde el suelo (MRUV hacia arriba). Al apagarse el motor, continúa como proyectil. ¿Cuál es la altura máxima total que alcanza? ¿Con qué velocidad impacta al volver al suelo?
 \end{enumerate}
 
+% ============================================================
+\section{Problemas combinados: MRU y MRUV}
+% ============================================================
+
+\subsection{Cómo se resuelve un problema por etapas}
+
+\begin{cuadroteoria}
+  En la vida real casi ningún movimiento es «puro»: el bus \emph{acelera}, luego \emph{mantiene} la velocidad y al final \emph{frena}. A estos movimientos los llamamos \textbf{por etapas} (o de varias fases), y la estrategia es siempre la misma: \textbf{partir el problema en tramos} y resolver cada uno con la fórmula que le corresponde, enlazándolos con tres ideas:
+  \begin{itemize}[leftmargin=*]
+    \item La \textbf{velocidad final} de una etapa es la \textbf{velocidad inicial} de la siguiente: la velocidad no da saltos.
+    \item Los \textbf{tiempos} se suman: el cronómetro \emph{no} se reinicia en cada tramo.
+    \item Las \textbf{distancias} se suman: el recorrido total es la suma de los recorridos parciales.
+  \end{itemize}
+  \begin{center}
+    \small
+    \begin{tabular}{@{}l l l@{}}
+      \toprule
+      Etapa & Tipo de movimiento & Ecuaciones que se usan \\
+      \midrule
+      Arranque & MRUV (acelera) & $v_f = v_i + at$,\quad $\Delta x = v_i t + \tfrac{1}{2} a t^2$ \\
+      Crucero  & MRU (velocidad constante) & $\Delta x = v \cdot t$ \\
+      Frenado  & MRUV (desacelera) & $v_f^2 = v_i^2 + 2a\,\Delta x$,\quad $t = \dfrac{v_f - v_i}{a}$ \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Método de las etapas:}
+  \begin{enumerate}[leftmargin=*]
+    \item \textbf{Dibuja la línea de tiempo} del viaje y marca dónde cambia el movimiento (arranca, deja de acelerar, frena, se detiene).
+    \item \textbf{Haz una tabla de datos} con una fila por etapa: $v_i$, $v_f$, $t$, $\Delta x$, $a$. Deja en blanco lo que no sabes.
+    \item \textbf{Resuelve las etapas en orden}: lo que calculas en una etapa te sirve como dato en la siguiente.
+    \item \textbf{Suma} distancias y tiempos por separado (nunca los mezcles).
+    \item \textbf{Verifica}: ¿las unidades son coherentes?, ¿la rapidez media tiene sentido?, ¿el resultado es mayor que el de una sola etapa?
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores clásicos en problemas por etapas:}
+  \begin{itemize}[leftmargin=*]
+    \item Usar la velocidad \emph{inicial} del viaje en la etapa de frenado (hay que usar la velocidad que traía \emph{justo antes} de frenar).
+    \item Reiniciar el cronómetro en cada tramo y luego responder solo el tiempo de la última etapa.
+    \item Olvidar el \textbf{tramo de reacción}: mientras el conductor decide, el auto sigue en MRU.
+    \item Sumar velocidades o aceleraciones como si fueran distancias.
+    \item Confundir «se detiene» con «termina el problema»: a veces el móvil vuelve a arrancar (¡y en sentido contrario!).
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\subsection{Ejercicios resueltos}
+
+\textbf{Ejemplo R1.} Un auto viaja a $20$ m/s durante $15$ s, luego frena uniformemente con $a = -4$ m/s$^2$ hasta detenerse y permanece detenido $5$ s. Calcula: (a) la distancia total recorrida, (b) el tiempo total y (c) la rapidez media del recorrido completo.
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} hay tres etapas.
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Etapa 1 (MRU, $15$ s):} $\Delta x_1 = 20 \cdot 15 = 300$ m.
+    \item \textbf{Etapa 2 (frenado):} $t_2 = \dfrac{0 - 20}{-4} = 5$ s y $\Delta x_2 = \dfrac{v_i^2}{2|a|} = \dfrac{20^2}{2 \cdot 4} = 50$ m.
+    \item \textbf{Etapa 3 (detenido, $5$ s):} $\Delta x_3 = 0$ m.
+  \end{itemize}
+  (a) $\Delta x = 300 + 50 + 0 = 350$ m. \quad (b) $t = 15 + 5 + 5 = 25$ s.
+  (c) $v_{\text{media}} = \dfrac{350}{25} = 14$ m/s (unos $50{,}4$ km/h).
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Un infractor pasa a $20$ m/s frente a una patrulla detenida y, en ese mismo instante, la patrulla arranca desde el reposo con $a = 2$ m/s$^2$. ¿Cuánto tarda en alcanzarlo, a qué distancia del punto de partida y con qué rapidez lo alcanza?
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} en el instante $t$ ambos están en la misma posición:
+  $$\underbrace{\tfrac{1}{2} \cdot 2 \cdot t^2}_{\text{patrulla}} = \underbrace{20\,t}_{\text{infractor}} \quad \Rightarrow \quad t^2 = 20t \quad \Rightarrow \quad t = 20 \text{ s}.$$
+  La posición de encuentro es $x = 20 \cdot 20 = 400$ m y la rapidez de la patrulla es
+  $$v = a\,t = 2 \cdot 20 = 40 \ \frac{\text{m}}{\text{s}} \quad (= 144 \text{ km/h}).$$
+\end{cuadrosolucion}
+
+\begin{cuadroextra}
+  \textbf{Truco: leer una gráfica $v$--$t$.}
+  \begin{itemize}[leftmargin=*]
+    \item La \textbf{pendiente} de la recta es la aceleración: $a = \dfrac{\Delta v}{\Delta t}$. Pendiente cero $\Rightarrow$ MRU.
+    \item El \textbf{área} entre la gráfica y el eje del tiempo es la \emph{distancia recorrida}.
+  \end{itemize}
+\end{cuadroextra}
+
+\newpage
+
+\textbf{Ejemplo R3.} La gráfica muestra la velocidad de un móvil en función del tiempo. Describe cada etapa, calcula la distancia total recorrida y la rapidez media.
+
+\begin{center}
+  \begin{tikzpicture}[x=0.5cm, y=0.38cm]
+    \draw[thick, -Latex] (0,0) -- (15.2,0) node[right] {$t$ (s)};
+    \draw[thick, -Latex] (0,0) -- (0,9.2) node[above] {$v$ (m/s)};
+    \foreach \x/\lab in {4/4, 10/10, 14/14}
+      \draw (\x,0) -- (\x,-0.25) node[below, font=\scriptsize] {\lab};
+    \draw (0,8) -- (-0.25,8) node[left, font=\scriptsize] {8};
+    \draw[dashed, thin] (4,0) -- (4,8) (10,0) -- (10,8);
+    \draw[very thick, mwprimario] (0,0) -- (4,8) -- (10,8) -- (14,0);
+  \end{tikzpicture}
+\end{center}
+
+\begin{cuadrosolucion}
+  \textbf{Solución:} la pendiente de cada tramo es la aceleración y el área bajo la recta es la distancia.
+  \begin{itemize}[leftmargin=*]
+    \item $0$ a $4$ s: sube de $0$ a $8$ m/s $\Rightarrow a = \dfrac{8}{4} = 2$ m/s$^2$; área $= \tfrac{1}{2} \cdot 4 \cdot 8 = 16$ m.
+    \item $4$ a $10$ s: $v = 8$ m/s constante (MRU) $\Rightarrow a = 0$; área $= 6 \cdot 8 = 48$ m.
+    \item $10$ a $14$ s: baja de $8$ a $0$ m/s $\Rightarrow a = \dfrac{0 - 8}{4} = -2$ m/s$^2$; área $= \tfrac{1}{2} \cdot 4 \cdot 8 = 16$ m.
+  \end{itemize}
+  Distancia total: $16 + 48 + 16 = 80$ m. \quad Rapidez media: $\dfrac{80}{14} \approx 5{,}71$ m/s.
+\end{cuadrosolucion}
+
+\subsection{Ejercicios propuestos}
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Un ciclista pedalea a $6$ m/s durante $20$ s y luego frena uniformemente hasta detenerse en $4$ s. ¿Qué distancia total recorre y cuál es su aceleración de frenado?
+
+  \item \facil{} Un bus viaja a $15$ m/s y el conductor acelera a $1$ m/s$^2$ durante $5$ s. ¿Qué velocidad alcanza y qué distancia recorre en ese tramo?
+
+  \item \facil{} Un móvil parte del reposo y acelera a $3$ m/s$^2$ durante $4$ s; luego mantiene la velocidad constante durante $6$ s más. ¿Qué velocidad lleva al final y qué distancia total recorre?
+
+  \item \medio{} Un auto viaja a $72$ km/h y el conductor ve la luz roja de un semáforo a $60$ m. Reacciona en $0{,}6$ s (MRU) y luego frena con $a = -4$ m/s$^2$. ¿Logra detenerse antes del semáforo? Si no, ¿con qué rapidez lo cruza?
+
+  \item \medio{} Una moto parte del reposo y acelera a $4$ m/s$^2$ durante $5$ s; después mantiene la velocidad constante hasta completar $300$ m desde la partida. ¿Cuánto tiempo tarda en total?
+
+  \item \medio{} Un ascensor parte del reposo, acelera a $1$ m/s$^2$ durante $3$ s, sube a velocidad constante durante $8$ s y frena con $-1{,}5$ m/s$^2$ hasta detenerse. ¿Qué altura alcanza y cuánto dura el viaje completo?
+
+  \item \medio{} La siguiente tabla registra la velocidad de un móvil cada $2$ segundos:
+  \begin{center}
+    \small
+    \begin{tabular}{@{}c c c c c c c@{}}
+      \toprule
+      $t$ (s) & $0$ & $2$ & $4$ & $6$ & $8$ & $10$ \\
+      \midrule
+      $v$ (m/s) & $0$ & $10$ & $10$ & $10$ & $5$ & $0$ \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  Identifica las etapas, calcula la aceleración de cada una, la distancia total recorrida y la rapidez media.
+
+  \item \dificil{} Un camión circula a $15$ m/s por una carretera recta. Cuando pasa por un retén, un auto que está $100$ m más atrás parte del reposo con $a = 2$ m/s$^2$ en su persecución. (a) ¿Cuánto tarda el auto en alcanzar al camión? (b) ¿Qué distancia recorre el auto? (c) ¿Con qué rapidez lo alcanza?
+
+  \item \dificil{} Un auto viaja a $20$ m/s. El conductor frena con $a = -4$ m/s$^2$ hasta detenerse, permanece detenido $3$ s y luego acelera en sentido contrario a $2$ m/s$^2$ durante $6$ s. ¿A qué distancia del punto donde empezó a frenar queda el auto? ¿Qué distancia total recorrió?
+
+  \item \dificil{} Un auto a $20$ m/s pasa por un control de policía. Dos segundos después, una patrulla arranca desde el reposo y acelera a $4$ m/s$^2$ hasta alcanzar $40$ m/s; luego mantiene esa velocidad. ¿En qué instante (contado desde que arrancó la patrulla) y a qué distancia del control alcanza al auto?
+\end{enumerate}
+
+\begin{cuadroextra}
+  \textbf{Desafío creativo: diseña tu propio viaje.} Inventa un recorrido de \emph{tres etapas} (arranque, crucero y frenado) que dure exactamente $30$ s y recorra $400$ m. Escribe la tabla de datos de cada etapa, comprueba que la velocidad final de una etapa sea la inicial de la siguiente y calcula la rapidez media del viaje. Compáralo con el de un compañero: ¿hay una sola solución o varias?
+\end{cuadroextra}
+
 \newpage
 
 % ============================================================
@@ -393,10 +539,28 @@
     \item \textbf{Reto:} Fase motor ($6$ s, $a=15$): $v_1 = 90$ m/s; $h_1 = \tfrac{1}{2} \cdot 15 \cdot 36 = 270$ m. Fase vuelo libre: $h_2 = \frac{90^2}{2 \cdot 9{,}8} \approx 413{,}3$ m. Altura máxima: $\approx 683{,}3$ m. Velocidad al suelo (desde $h_{\max}$): $v = \sqrt{2 \cdot 9{,}8 \cdot 683{,}3} \approx 115{,}8$ m/s.
   \end{enumerate}
 
+  \subsection*{Sección 4: Problemas combinados MRU--MRUV (Ejercicios 34--43)}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \setcounter{enumi}{33}
+    \item MRU: $6 \cdot 20 = 120$ m. Frenado: $t = 4$ s, $\Delta x = \frac{6 + 0}{2} \cdot 4 = 12$ m. Total: $132$ m. $a = \dfrac{0 - 6}{4} = -1{,}5$ m/s$^2$.
+    \item $v = 15 + 1 \cdot 5 = 20$ m/s; $\Delta x = 15 \cdot 5 + \tfrac{1}{2} \cdot 1 \cdot 25 = 75 + 12{,}5 = 87{,}5$ m.
+    \item $v = 3 \cdot 4 = 12$ m/s; $\Delta x_1 = \tfrac{1}{2} \cdot 3 \cdot 16 = 24$ m; $\Delta x_2 = 12 \cdot 6 = 72$ m. Total: $96$ m.
+    \item $72$ km/h $= 20$ m/s. Reacción: $20 \cdot 0{,}6 = 12$ m. Frenado: $\dfrac{20^2}{2 \cdot 4} = 50$ m. Total $= 62$ m $> 60$ m: \emph{no} alcanza a detenerse. Le quedan $48$ m de frenado: $v^2 = 400 - 2 \cdot 4 \cdot 48 = 16 \Rightarrow v = 4$ m/s.
+    \item Tramo 1: $v = 20$ m/s, $\Delta x = 50$ m. Faltan $250$ m en MRU: $t_2 = \dfrac{250}{20} = 12{,}5$ s. Tiempo total: $5 + 12{,}5 = 17{,}5$ s.
+    \item $v = 1 \cdot 3 = 3$ m/s; $\Delta x_1 = 4{,}5$ m; $\Delta x_2 = 3 \cdot 8 = 24$ m; frenado: $t_3 = 2$ s, $\Delta x_3 = \dfrac{3^2}{2 \cdot 1{,}5} = 3$ m. Altura: $31{,}5$ m. Tiempo: $3 + 8 + 2 = 13$ s.
+    \item $0$--$2$ s: $a = 5$ m/s$^2$, $\Delta x = 10$ m. $2$--$6$ s: MRU ($a = 0$), $\Delta x = 10 \cdot 4 = 40$ m. $6$--$10$ s: $a = \dfrac{0 - 10}{4} = -2{,}5$ m/s$^2$, $\Delta x = \dfrac{10 + 0}{2} \cdot 4 = 20$ m. Distancia total: $70$ m; $v_{\text{media}} = \dfrac{70}{10} = 7$ m/s.
+    \item Posiciones: auto $x_A = t^2$ (pues $\tfrac{1}{2} \cdot 2 = 1$); camión $x_C = 100 + 15t$. Igualando: $t^2 - 15t - 100 = 0 \Rightarrow t = \dfrac{15 + 25}{2} = 20$ s. (b) El auto recorre $400$ m. (c) $v = 2 \cdot 20 = 40$ m/s.
+    \item Frenado: $t = 5$ s, $\Delta x_1 = 50$ m. Detenido $3$ s ($\Delta x_2 = 0$). Retroceso: $\Delta x_3 = \tfrac{1}{2} \cdot 2 \cdot 36 = 36$ m en sentido contrario. Queda a $50 - 36 = 14$ m por delante del punto de frenado. Distancia total recorrida: $50 + 36 = 86$ m.
+    \item La patrulla llega a $40$ m/s en $t = 10$ s recorriendo $200$ m; en ese instante el auto lleva $20 \cdot 12 = 240$ m, es decir, $40$ m de ventaja. Desde ahí la patrulla cierra a $40 - 20 = 20$ m/s: $t = 2$ s más. Alcanza al auto a los $12$ s de arrancar, a $280$ m del control (el auto va a $20$ m/s; la patrulla ya viaja a $40$ m/s).
+  \end{enumerate}
+
+  \textbf{Desafío creativo (respuesta posible):} arranque con $a = 3{,}2$ m/s$^2$ durante $5$ s ($v = 16$ m/s, $\Delta x = 40$ m); crucero a $16$ m/s durante $20$ s ($\Delta x = 320$ m); frenado con $a = -3{,}2$ m/s$^2$ durante $5$ s ($\Delta x = 40$ m). Total: $400$ m en $30$ s, con $v_{\text{media}} \approx 13{,}3$ m/s. Hay infinitas soluciones: basta elegir la velocidad de crucero y repartir los tiempos de arranque y frenado.
+
   \vspace{8pt}
   \begin{cuadroinfo}
     \small
-    \textbf{¿Cómo te fue?} Ya puedes predecir el movimiento: sabes dónde estará un auto, cuánto tarda en frenar y qué altura alcanza una pelota. La cinemática es la puerta de entrada a toda la física del movimiento. En las próximas guías pasaremos a la química: la estructura del átomo y la estequiometría. ¡Nos vemos ahí!
+    \textbf{¿Cómo te fue?} Ya puedes predecir el movimiento: sabes dónde estará un auto, cuánto tarda en frenar, qué altura alcanza una pelota y cómo combinar etapas de MRU y MRUV en un mismo viaje. La cinemática es la puerta de entrada a toda la física del movimiento. En las próximas guías pasaremos a la química: la estructura del átomo y la estequiometría. ¡Nos vemos ahí!
   \end{cuadroinfo}
 
 \fi

@@ -1,0 +1,2062 @@
+% ============================================================
+%  GUÍA PRÁCTICA — T2L1 — LEY DEL SENO Y LEY DEL COSENO
+%  Curso: 4to Año — Matemática
+%  Autor: Ing. Gabriel Astudillo
+%
+%  CONTENIDO
+%    §1 Notación y elementos de un triángulo oblicuángulo
+%    §2 Ley del seno: fórmula, deducción, ejemplos
+%    §3 Ley del coseno: fórmula, deducción, ejemplos
+%    §4 Algoritmo de resolución según los datos
+%    §5 El caso ambiguo (SSA)
+%    §6 Problemas de aplicación (alturas, distancias y rumbos)
+%    §7 Formulario resumen
+%    §8 Banco de 112 ejercicios y problemas
+%    Clave de respuestas comentada (entre \ifmwclaves ... \fi)
+%
+%  Todos los triángulos se dibujan con TikZ a partir de los datos
+%  reales del enunciado: las macros calculan los vértices con
+%  trigonometría, así que la figura es coherente con el problema.
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+\usepackage{mathwizards-guia}
+\mwguia{Guía de Práctica — T2L1}{Ing. Gabriel Astudillo $\cdot$ 4to Año — Matemática}
+\providecommand{\sen}{\sin}
+\providecommand{\arctg}{\arctan}
+\setlength{\emergencystretch}{2em}
+
+% ============================================================
+%  MACROS DE DIBUJO
+% ============================================================
+
+% ── Coordenadas de un triángulo a partir de dos ángulos ──────
+% Coloca (A) en el origen, (B) a 3.4 cm y calcula (C)
+% intersectando las dos direcciones.  #1 = ángulo en A,
+% #2 = ángulo en B (en grados).  Debe cumplirse #1+#2 < 180.
+\newcommand{\mwcoords}[2]{%
+  \coordinate (A) at (0,0);%
+  \coordinate (B) at (3.4,0);%
+  \pgfmathsetmacro{\mwb}{3.4*sin(#2)/sin(#1+#2)}%
+  \coordinate (C) at ({\mwb*cos(#1)},{\mwb*sin(#1)});%
+}
+
+% ── Triángulo rotulado ──────────────────────────────────────
+% \mwtri[escala]{α}{β}{lado a}{lado b}{lado c}{áng α}{áng β}{áng γ}
+% Los ángulos se dan en grados (dibujo); las etiquetas son LaTeX.
+% Deja vacío {} lo que no quieras rotular.
+\newcommand{\mwtri}[9][1]{%
+  \begin{tikzpicture}[scale=#1, baseline=(current bounding box.center), line join=round]
+    \mwcoords{#2}{#3}%
+    \pgfmathsetmacro{\mwC}{180-(#2)-(#3)}%
+    \coordinate (Mab) at ($(A)!0.5!(B)$);
+    \coordinate (Mbc) at ($(B)!0.5!(C)$);
+    \coordinate (Mca) at ($(C)!0.5!(A)$);
+    \fill[mwprimario!7] (A) -- (B) -- (C) -- cycle;
+    \draw[thick] (A) -- (B) -- (C) -- cycle;
+    \draw[mwprimario, thick] (A) ++(0.42,0) arc (0:#2:0.42);
+    \draw[mwprimario, thick] (B) ++(180:0.42) arc (180:{180-#3}:0.42);
+    \draw[mwprimario, thick] (C) ++({180+#2}:0.36) arc ({180+#2}:{360-#3}:0.36);
+    \path (Mab) ++(270:0.40) node[font=\small] {#6};
+    \path (Mbc) ++({90-#3}:0.40) node[font=\small] {#4};
+    \path (Mca) ++({90+#2}:0.40) node[font=\small] {#5};
+    \path (A) ++({#2/2}:0.78) node[mwprimario, font=\scriptsize] {#7};
+    \path (B) ++({180-#3/2}:0.78) node[mwprimario, font=\scriptsize] {#8};
+    \path (C) ++({180+#2+\mwC/2}:0.85) node[mwprimario, font=\scriptsize] {#9};
+  \end{tikzpicture}}
+
+% ── Triángulo con la altura trazada desde C ─────────────────
+% \mwaltura{etq b}{etq a}{etq h}{etq c}  (dibujo fijo, didáctico)
+\newcommand{\mwaltura}[4]{%
+  \begin{tikzpicture}[scale=1, baseline=(current bounding box.center), line join=round]
+    \coordinate (A) at (0,0);
+    \coordinate (B) at (5.2,0);
+    \coordinate (C) at (1.75,3.1);
+    \coordinate (H) at (1.75,0);
+    \fill[mwprimario!7] (A) -- (B) -- (C) -- cycle;
+    \draw[thick] (A) -- (B) -- (C) -- cycle;
+    \draw[dashed, mwnaranja, thick] (C) -- (H);
+    \draw[mwnaranja, thick] (H) ++(0,0.2) -- ++(0.2,0) -- ++(0,-0.2);
+    \node[below left] at (A) {$A$};
+    \node[below right] at (B) {$B$};
+    \node[above] at (C) {$C$};
+    \node[below] at (H) {$H$};
+    \node[below] at (2.6,0) {#4};
+    \node[left] at (0.85,1.55) {#1};
+    \node[right] at (3.5,1.62) {#2};
+    \node[right] at (1.75,1.55) {#3};
+    \draw[mwprimario, thick] (A) ++(0.5,0) arc (0:60.6:0.5);
+    \path (A) ++(30:0.85) node[mwprimario, font=\small] {$\alpha$};
+    \draw[mwprimario, thick] (B) ++(180:0.5) arc (180:138.1:0.5);
+    \path (B) ++(159:0.85) node[mwprimario, font=\small] {$\beta$};
+  \end{tikzpicture}}
+
+% ── Triángulo con la proyección sobre c (ley del coseno) ────
+\newcommand{\mwproy}{%
+  \begin{tikzpicture}[scale=1, baseline=(current bounding box.center), line join=round]
+    \coordinate (A) at (0,0);
+    \coordinate (B) at (6.0,0);
+    \coordinate (C) at (2.6,2.6);
+    \coordinate (H) at (2.6,0);
+    \fill[mwprimario!7] (A) -- (B) -- (C) -- cycle;
+    \draw[thick] (A) -- (B) -- (C) -- cycle;
+    \draw[dashed, mwnaranja, thick] (C) -- (H);
+    \draw[mwnaranja, thick] (H) ++(0,0.2) -- ++(0.2,0) -- ++(0,-0.2);
+    \draw[gray, |-|] (0,-0.75) -- (2.6,-0.75);
+    \node[gray, below, font=\scriptsize] at (1.3,-0.78) {$b\cos\alpha$};
+    \draw[gray, |-|] (2.6,-0.75) -- (6.0,-0.75);
+    \node[gray, below, font=\scriptsize] at (4.3,-0.78) {$c-b\cos\alpha$};
+    \node[below left] at (A) {$A$};
+    \node[below right] at (B) {$B$};
+    \node[above] at (C) {$C$};
+    \node[below right, font=\scriptsize] at (2.62,-0.02) {$H$};
+    \node[left] at (1.16,1.35) {$b$};
+    \node[right] at (4.35,1.45) {$a$};
+    \node[below right] at (4.2,0) {$c$};
+    \node[fill=white, inner sep=1pt, font=\scriptsize] at (2.6,1.45) {$b\sen\alpha$};
+    \draw[mwprimario, thick] (A) ++(0.62,0) arc (0:45:0.62);
+    \path (A) ++(22.5:0.95) node[mwprimario, font=\small] {$\alpha$};
+  \end{tikzpicture}}
+
+% ── Figuras de elevación ────────────────────────────────────
+% Dos observadores en lados opuestos del objeto.
+% \mwdiagop[escala]{etq base}{α izquierda}{β derecha}{etq altura}
+\newcommand{\mwdiagop}[5][0.85]{%
+  \begin{tikzpicture}[scale=#1, baseline=(current bounding box.center), line join=round]
+    \pgfmathsetmacro{\mwxa}{2.9/tan(#3)}%
+    \pgfmathsetmacro{\mwxb}{\mwxa+2.9/tan(#4)}%
+    \coordinate (A) at (0,0);
+    \coordinate (Hp) at (\mwxa,0);
+    \coordinate (C) at (\mwxa,2.9);
+    \coordinate (B) at (\mwxb,0);
+    \fill[gray!12] (-0.2,-0.12) rectangle (\mwxb+0.25,0);
+    \draw[thick] (-0.2,0) -- (\mwxb+0.2,0);
+    \node[below] at (\mwxb/2,0) {#2};
+    \draw[thick] (C) -- (Hp);
+    \draw[mwnaranja, thick] (Hp) ++(0,0.18) -- ++(0.18,0) -- ++(0,-0.18);
+    \draw[thick, mwprimario] (A) -- (C);
+    \draw[thick, mwprimario] (B) -- (C);
+    \draw[mwprimario, thick] (A) ++(0.75,0) arc (0:#3:0.75);
+    \path (A) ++({#3/2}:1.05) node[mwprimario, font=\scriptsize] {$#3^\circ$};
+    \draw[mwprimario, thick] (B) ++(180:0.65) arc (180:{180-#4}:0.65);
+    \path (B) ++({180-#4/2}:0.95) node[mwprimario, font=\scriptsize] {$#4^\circ$};
+    \node[right] at (\mwxa+0.08,1.45) {#5};
+    \filldraw (A) circle (1.2pt);
+    \filldraw (B) circle (1.2pt);
+  \end{tikzpicture}}
+
+% Dos observadores del mismo lado (el segundo más cerca).
+% \mwdiagdos[escala]{etq separación}{α lejano}{β cercano}{etq altura}
+\newcommand{\mwdiagdos}[5][0.85]{%
+  \begin{tikzpicture}[scale=#1, baseline=(current bounding box.center), line join=round]
+    \pgfmathsetmacro{\mwxa}{2.9/tan(#3)}%
+    \pgfmathsetmacro{\mwxb}{2.9/tan(#4)}%
+    \coordinate (A) at (0,0);
+    \coordinate (C) at (\mwxa,2.9);
+    \coordinate (Hp) at (\mwxa,0);
+    \coordinate (B) at (\mwxb,0);
+    \fill[gray!12] (-0.2,-0.12) rectangle (\mwxa+0.25,0);
+    \draw[thick] (-0.2,0) -- (\mwxa+0.2,0);
+    \node[below] at (\mwxb/2,0) {#2};
+    \draw[thick] (C) -- (Hp);
+    \draw[mwnaranja, thick] (Hp) ++(0,0.18) -- ++(0.18,0) -- ++(0,-0.18);
+    \draw[thick, mwprimario] (A) -- (C);
+    \draw[thick, mwprimario] (B) -- (C);
+    \draw[mwprimario, thick] (A) ++(0.8,0) arc (0:#3:0.8);
+    \path (A) ++({#3/2}:1.08) node[mwprimario, font=\scriptsize] {$#3^\circ$};
+    \draw[mwprimario, thick] (B) ++(0.55,0) arc (0:#4:0.55);
+    \path (B) ++({#4/2}:0.82) node[mwprimario, font=\scriptsize] {$#4^\circ$};
+    \node[right] at (\mwxa+0.08,1.45) {#5};
+    \filldraw (A) circle (1.2pt);
+    \filldraw (B) circle (1.2pt);
+  \end{tikzpicture}}
+
+% ── Rumbo: \mwrumb[escala]{ángulo desde el norte}{etiqueta}{marca}
+% El ángulo se mide en sentido horario desde el norte.
+\newcommand{\mwrumb}[4][0.9]{%
+  \begin{tikzpicture}[scale=#1, baseline=(current bounding box.center), line join=round]
+    \coordinate (O) at (0,0);
+    \draw[gray, thick, -{Stealth[length=2mm]}] (O) -- (0,3.0) node[above, font=\scriptsize, text=mwgris] {N};
+    \draw[gray, dashed] (0,-0.35) -- (0,0);
+    \path (O) ++({90-#2}:2.7) coordinate (D);
+    \draw[thick, mwprimario] (O) -- (D) node[midway, above left, font=\small] {#3};
+    \draw[mwprimario, thick] (0,0.75) arc (90:{90-#2}:0.75);
+    \path (O) ++({90-#2/2}:1.0) node[mwprimario, font=\small] {#2$^\circ$};
+    \filldraw (O) circle (1.4pt);
+    \draw[mwprimario, thick, -{Stealth[length=2mm]}] (D) ++({90-#2}:0) ++(-0.18,-0.18) -- ++(0.36,0.36);
+    \ifx#4\relax\else\node[below right, text=mwgris, font=\scriptsize] at (D) {#4};\fi
+  \end{tikzpicture}}
+
+% ── Figura de un caso SSA ───────────────────────────────────
+% \mwssa[escala]{b}{A}{a}{nº soluciones}   soluciones: 0, 1 o 2
+\newcommand{\mwssabody}[4]{%
+    \pgfmathsetmacro{\mwk}{3.4/max(#1,#3)}%
+    \pgfmathsetmacro{\mwb}{\mwk*#1}%
+    \pgfmathsetmacro{\mwa}{\mwk*#3}%
+    \pgfmathsetmacro{\mwh}{\mwb*sin(#2)}%
+    \pgfmathsetmacro{\mwdx}{sqrt(max(\mwa*\mwa-\mwh*\mwh,0))}%
+    \coordinate (O) at (0,0);
+    \coordinate (Cp) at ({\mwb*cos(#2)},{\mwh});
+    \draw[thick] (O) -- ({\mwb*cos(#2)+1.1},0);
+    \draw[thick, mwprimario] (O) -- (Cp)
+      node[midway, above left, fill=white, inner sep=1pt, font=\small] {$b$};
+    \ifnum#4=1\relax\else
+      \draw[dashed, gray] (Cp) -- ({\mwb*cos(#2)},0);
+      \ifdim\mwh pt>1.8pt\relax
+        \node[left, fill=white, inner sep=1pt, font=\scriptsize, text=mwgris]
+          at ({\mwb*cos(#2)},\mwh/2) {$h$};
+      \fi
+    \fi
+    \draw[mwprimario, thick] (0.55,0) arc (0:#2:0.55);
+    \path (O) ++({#2/2}:0.88) node[mwprimario, font=\small] {$#2^\circ$};
+    \ifnum#4=0\relax
+      \draw[dashed, mwrojonaranja, thick] (Cp) circle (\mwa);
+      \node[text=mwrojonaranja, font=\small, below] at ({\mwb*cos(#2)},-0.02) {sin solución};
+    \else
+      \coordinate (B2) at ({\mwb*cos(#2)+\mwdx},0);
+      \draw[thick] (O) -- (B2);
+      \draw[thick, mwprimario] (Cp) -- (B2)
+        node[midway, above right, fill=white, inner sep=1pt, font=\small] {$a$};
+      \ifnum#4=2\relax
+        \coordinate (B1) at ({\mwb*cos(#2)-\mwdx},0);
+        \draw[thin, mwprimario, dashed] (O) -- (B1);
+        \draw[thin, mwprimario, dashed] (Cp) -- (B1);
+      \fi
+    \fi
+}
+
+% Versión con caja fija: alinea los cuatro casos del panel de §5.
+\newcommand{\mwssa}[5][1]{%
+  \begin{tikzpicture}[scale=#1, baseline=(current bounding box.center), line join=round]
+    \useasboundingbox (-1.4,-0.9) rectangle (5.3,4.35);
+    \mwssabody{#2}{#3}{#4}{#5}
+  \end{tikzpicture}}
+% Versión compacta para los ejercicios.
+\newcommand{\mwssat}[5][1]{%
+  \begin{tikzpicture}[scale=#1, baseline=(current bounding box.center), line join=round]
+    \mwssabody{#2}{#3}{#4}{#5}
+  \end{tikzpicture}}
+
+% ── Dos rumbos consecutivos ─────────────────────────────────
+% \mwrumbo[escala]{long1}{rumbo1}{long2}{rumbo2}{etq1}{etq2}{etqd}
+\newcommand{\mwrumbo}[8][1]{%
+  \begin{tikzpicture}[scale=#1, baseline=(current bounding box.center), line join=round]
+    \pgfmathsetmacro{\px}{#2*cos(90-#3)}
+    \pgfmathsetmacro{\py}{#2*sin(90-#3)}
+    \pgfmathsetmacro{\qx}{\px+#4*cos(90-#5)}
+    \pgfmathsetmacro{\qy}{\py+#4*sin(90-#5)}
+    \coordinate (O) at (0,0);
+    \coordinate (P) at (\px,\py);
+    \coordinate (Q) at (\qx,\qy);
+    \draw[gray, dashed] (0,-0.55) -- (0,\py+0.75);
+    \draw[gray, dashed] (\px,\py+0.12) -- (\px,\py+0.78);
+    \draw[gray, thick, -{Stealth[length=2mm]}] (0,\py+0.55) -- (0,\py+0.8)
+      node[above, font=\scriptsize, text=mwgris] {N};
+    \draw[gray, thick, -{Stealth[length=2mm]}] (\px,\py+0.55) -- (\px,\py+0.8)
+      node[above, font=\scriptsize, text=mwgris] {N};
+    \draw[thick, mwprimario] (O) -- (P) node[pos=0.62, above left, font=\small] {#6};
+    \draw[thick, mwprimario] (P) -- (Q) node[pos=0.55, below right, font=\small] {#7};
+    \draw[thick, mwnaranja, dashed] (Q) -- (O) node[midway, below left, font=\small] {#8};
+    \draw[mwprimario, thick] (0,0.8) arc (90:{90-#3}:0.8);
+    \path (O) ++({90-#3/2}:0.95) node[mwprimario, font=\scriptsize] {$#3^\circ$};
+    \draw[mwprimario, thick] (P) ++(90:0.55) arc (90:{90-#5}:0.55);
+    \path (P) ++({90-(#5-#3)/2}:0.95) node[mwprimario, font=\scriptsize] {$#5^\circ$};
+    \filldraw (O) circle (1.4pt);
+    \filldraw (P) circle (1.4pt);
+    \filldraw (Q) circle (1.4pt);
+    \node[below left, font=\small] at (O) {$O$};
+    \node[right, font=\small] at (P) {$P$};
+    \node[right, font=\small] at (Q) {$Q$};
+  \end{tikzpicture}}
+
+% ── Triángulo inscrito en su circunferencia circunscrita ────
+% \mwcirctri[escala]{α}{β}{etq c}{etq b}{etq a}{etq R}
+% α y β en grados: determinan la forma del triángulo dibujado.
+\newcommand{\mwcirctri}[7][1]{%
+  \begin{tikzpicture}[scale=#1, baseline=(current bounding box.center), line join=round]
+    \mwcoords{#2}{#3}%
+    \pgfmathsetmacro{\mcx}{\mwb*cos(#2)}%
+    \pgfmathsetmacro{\mcy}{\mwb*sin(#2)}%
+    \pgfmathsetmacro{\moy}{(\mcx*\mcx+\mcy*\mcy-3.4*\mcx)/(2*\mcy)}%
+    \pgfmathsetmacro{\mR}{sqrt(1.7*1.7+\moy*\moy)}%
+    \coordinate (O) at (1.7,\moy);
+    \draw[gray, thick] (O) circle (\mR);
+    \fill[mwprimario!7] (A) -- (B) -- (C) -- cycle;
+    \draw[thick] (A) -- (B) -- (C) -- cycle;
+    \draw[mwnaranja, thick, dashed, -{Stealth[length=2mm]}]
+      (O) -- (C) node[pos=0.34, above right, fill=white, inner sep=1.5pt, font=\small] {#7};
+    \filldraw (O) circle (1.1pt);
+    \node[below left, font=\scriptsize] at (O) {$O$};
+    \node[below left, font=\small] at (A) {$A$};
+    \node[below right, font=\small] at (B) {$B$};
+    \node[above, font=\small] at (C) {$C$};
+    \node[below, font=\small] at (1.7,0) {#4};
+    \node[above left, fill=white, inner sep=1pt, font=\small] at ({\mcx/2},{\mcy/2}) {#5};
+    \node[above right, fill=white, inner sep=1pt, font=\small] at ({(3.4+\mcx)/2},{\mcy/2}) {#6};
+  \end{tikzpicture}}
+
+% ── Cuerda y ángulo inscrito: la ley del seno y el 2R ───────
+% \mwcuerda[escala]{etq ángulo}{etq lado}{etq R}
+\newcommand{\mwcuerda}[4][1.1]{%
+  \begin{tikzpicture}[scale=#1, baseline=(current bounding box.center), line join=round]
+    \coordinate (O) at (0,0);
+    \draw[gray, thick] (O) circle (1.75);
+    \coordinate (P) at (215:1.75);
+    \coordinate (Q) at (325:1.75);
+    \coordinate (T) at (110:1.75);
+    \fill[mwprimario!7] (P) -- (Q) -- (T) -- cycle;
+    \draw[thick] (P) -- (T) -- (Q);
+    \draw[thick, mwprimario] (P) -- (Q) node[midway, below] {#3};
+    \draw[mwnaranja!40, dashed] (O) -- (P);
+    \draw[mwnaranja!40, dashed] (O) -- (Q);
+    \draw[mwnaranja, thick, dashed, -{Stealth[length=1.8mm]}] (O) -- (T)
+      node[pos=0.20, above right, fill=white, inner sep=1.5pt, font=\small] {#4};
+    \filldraw (O) circle (1.1pt);
+    \node[below right, font=\scriptsize] at (O) {$O$};
+    \node[above, font=\small, inner sep=2pt] at (T) {$A$};
+    \node[left, font=\small] at (P) {$B$};
+    \node[right, font=\small] at (Q) {$C$};
+    \draw[mwprimario, thick] (T) ++(252.5:0.62) arc (252.5:307.5:0.62);
+    \if\relax\detokenize{#2}\relax\else
+      \path (T) ++(272:0.95) node[mwprimario, fill=white, inner sep=1pt, font=\scriptsize] {#2};
+    \fi
+  \end{tikzpicture}}
+
+% ── Comodines de maquetación ────────────────────────────────
+\newcommand{\mwfig}[1]{\par\nobreak\smallskip\noindent\makebox[\linewidth][c]{#1}\par}
+\newcommand{\mwtag}[1]{{\scriptsize\color{mwgris}#1}\hspace{5pt}}
+
+% ── Banco de ejercicios con numeración continua ─────────────
+\newcommand{\mwcheck}[2]{%
+  \ifnum\value{enumi}=#2\relax
+    \typeout{MW: #1 correcto (#2)}%
+  \else
+    \GenericWarning{}{MW Warning: #1 termina en \the\value{enumi}; se esperaba #2}%
+  \fi}
+\newcommand{\mwsecname}{}
+\newcommand{\mwsecexp}{0}
+\newcommand{\mwsecstart}{0}
+% Uso: \mwbloquehead{título}{nº esperado}{último nº del bloque anterior}
+\newcommand{\mwbloquehead}[3]{%
+  \renewcommand{\mwsecname}{#1}%
+  \renewcommand{\mwsecexp}{#2}%
+  \renewcommand{\mwsecstart}{#3}}
+\newenvironment{mwbloque}{%
+  \subsection*{\mwsecname}%
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]%
+  \setcounter{enumi}{\mwsecstart}%
+}{%
+  \mwcheck{\mwsecname}{\mwsecexp}%
+  \end{enumerate}}
+
+\begin{document}
+% ============================================================
+
+\mwportada{Guía de Práctica — T2L1}{Ley del seno y ley del coseno}{Resolver cualquier triángulo: decidir, calcular y verificar}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación.} En la guía anterior resolvimos \emph{triángulos
+  rectángulos} con las razones trigonométricas. Pero la mayoría de los
+  triángulos de la vida real \textbf{no} tienen un ángulo recto: son
+  \emph{oblicuángulos}. Para ellos existen dos herramientas que, juntas,
+  permiten resolver \textbf{cualquier} triángulo del que se conozcan tres
+  datos (con al menos un lado): la \textbf{ley del seno} y la
+  \textbf{ley del coseno}.
+  \\[4pt]
+  \textbf{Qué vas a aprender:}
+  \begin{itemize}[leftmargin=1.2em, nosep, topsep=2pt]
+    \item reconocer los seis elementos de un triángulo y su notación;
+    \item enunciar y \emph{demostrar} las dos leyes;
+    \item \textbf{decidir} cuál de las dos usar según los datos que te den;
+    \item detectar y resolver el \textbf{caso ambiguo} (dos soluciones posibles);
+    \item aplicar todo a problemas de alturas, distancias y rumbos;
+    \item verificar siempre el resultado antes de darlo por bueno.
+  \end{itemize}
+  \par\medskip
+  \textbf{Cómo usar la guía.} Lee cada sección con lápiz en mano y reproduce
+  las figuras. Los diagramas están dibujados \emph{a partir de los datos del
+  enunciado}, así que puedes medirlos como comprobación aproximada. Trabaja con
+  la calculadora en \textbf{modo grados} y redondea a dos decimales
+  \textbf{solo al final}. Al terminar, resuelve el banco de \textbf{112
+  ejercicios} (§8) y contrasta con la clave comentada.
+\end{cuadroinfo}
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Las dos leyes, de un vistazo}\\[4pt]
+  \begin{tabular}{@{}p{0.44\linewidth} p{0.46\linewidth}@{}}
+    \textbf{Ley del seno} & \textbf{Ley del coseno} \\[2pt]
+    $\dfrac{a}{\sen A}=\dfrac{b}{\sen B}=\dfrac{c}{\sen C}=2R$ &
+    $a^{2}=b^{2}+c^{2}-2bc\cos A$ \\[6pt]
+    Sirve con \textbf{dos ángulos} y un lado, o con dos lados y el ángulo
+    \emph{opuesto} a uno de ellos. &
+    Sirve con \textbf{dos lados y el ángulo entre ellos}, o con los
+    \textbf{tres lados}. \\
+  \end{tabular}
+\end{cuadroteoria}
+
+% ============================================================
+\section{Notación y elementos de un triángulo}
+% ============================================================
+
+Un triángulo tiene \textbf{seis elementos}: tres lados y tres ángulos. La
+notación es siempre la misma y conviene memorizarla desde el principio.
+
+\begin{center}
+\mwtri[1.15]{52}{63}{$a$}{$b$}{$c$}{$A$}{$B$}{$C$}
+\end{center}
+
+\begin{center}
+\small
+\begin{tabular}{@{}ll@{}}
+  \toprule
+  \textbf{Elemento} & \textbf{Significado} \\
+  \midrule
+  $A$, $B$, $C$ & los vértices, y también los ángulos interiores en ellos \\
+  $a$ & lado opuesto al vértice $A$ (es el segmento $BC$) \\
+  $b$ & lado opuesto al vértice $B$ (es el segmento $CA$) \\
+  $c$ & lado opuesto al vértice $C$ (es el segmento $AB$) \\
+  $R$ & radio de la circunferencia circunscrita al triángulo \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{El error número uno:} confundir el lado con el vértice. El lado
+  $a$ \textbf{no} toca al vértice $A$: está \emph{enfrente}. Si en un
+  ejercicio te dicen «el lado $b$», se refieren al segmento $CA$, y el ángulo
+  que se le opone es $B$. Antes de sustituir en cualquier fórmula, escribe
+  junto a cada letra su significado.
+\end{cuadroadvertencia}
+
+\subsection*{Propiedades que siempre se cumplen}
+
+\begin{cuadroteoria}
+  \small
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item \textbf{Suma de ángulos:} $A+B+C=180^{\circ}$. Por eso, si conoces
+          dos ángulos, el tercero es inmediato.
+    \item \textbf{Desigualdad triangular:} cada lado es menor que la suma de
+          los otros dos y mayor que su diferencia:
+          \[
+            |b-c|<a<b+c,\qquad |a-c|<b<a+c,\qquad |a-b|<c<a+b.
+          \]
+          Si no se cumple, \textbf{no existe} el triángulo.
+    \item \textbf{Lado mayor frente a ángulo mayor:} si $a>b$ entonces
+          $A>B$. Esto permite detectar de inmediato un resultado imposible.
+    \item \textbf{Ángulos:} los tres son agudos (acutángulo), uno es recto
+          (rectángulo) o uno es obtuso (obtusángulo). En un triángulo solo
+          puede haber \emph{un} ángulo obtuso.
+  \end{enumerate}
+\end{cuadroteoria}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 0.} ¿Existe un triángulo de lados $4$, $9$ y $3$?\\[2pt]
+  Comprobamos el lado mayor: $9<4+3=7$ es \textbf{falso}. Por tanto los tres
+  segmentos no pueden cerrar un triángulo: al intentar dibujarlo, los lados
+  cortos no llegan a encontrarse.
+\end{cuadrosolucion}
+
+% ============================================================
+\section{Ley del seno}
+% ============================================================
+
+\subsection*{Enunciado}
+
+\begin{cuadroteoria}
+  \small
+  En todo triángulo, los lados son proporcionales a los senos de los ángulos
+  opuestos:
+  \[
+    \boxed{\;\frac{a}{\sen A}=\frac{b}{\sen B}=\frac{c}{\sen C}=2R\;}
+  \]
+  Cada razón se escribe con \textbf{un lado y su ángulo opuesto}. También se
+  usa la forma «invertida», que suele ser más cómoda para despejar:
+  \[
+    \frac{\sen A}{a}=\frac{\sen B}{b}=\frac{\sen C}{c}=\frac{1}{2R}.
+  \]
+\end{cuadroteoria}
+
+\subsection*{¿Por qué es cierta?}
+
+La demostración es corta y solo usa lo que ya sabes: las razones
+trigonométricas en un triángulo rectángulo. Trazamos la altura desde $C$
+hasta el lado $c$, y llamamos $H$ a su pie.
+
+\begin{center}
+\mwaltura{$b$}{$a$}{$h$}{$c$}
+\end{center}
+
+\begin{cuadropasos}
+  \small
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item La altura divide el triángulo en \textbf{dos triángulos
+          rectángulos}: $AHC$ y $BHC$.
+    \item En $AHC$ la hipotenusa es $b$ y el cateto opuesto a $\alpha$ es
+          $h$, luego $\sen\alpha=\dfrac{h}{b}$, es decir,
+          $h=b\sen\alpha$.
+    \item En $BHC$ la hipotenusa es $a$ y el cateto opuesto a $\beta$ es el
+          mismo $h$, luego $\sen\beta=\dfrac{h}{a}$, es decir,
+          $h=a\sen\beta$.
+    \item Igualamos las dos expresiones de $h$:
+          \[
+            b\sen\alpha=a\sen\beta
+            \quad\Longrightarrow\quad
+            \frac{a}{\sen\alpha}=\frac{b}{\sen\beta}.
+          \]
+    \item Repitiendo el razonamiento con la altura trazada desde $B$ se
+          obtiene $\dfrac{a}{\sen\alpha}=\dfrac{c}{\sen\gamma}$. Juntando
+          las dos igualdades queda demostrada la ley.
+  \end{enumerate}
+\end{cuadropasos}
+
+La altura \emph{siempre} se puede trazar, aunque el triángulo sea obtusángulo:
+en ese caso el pie $H$ cae fuera del segmento $AB$, pero los dos triángulos
+rectángulos siguen existiendo y la demostración es la misma.
+
+\subsection*{Cuándo se usa}
+
+\begin{cuadroinfo}
+  \small
+  La ley del seno se usa cuando conoces \textbf{un lado con su ángulo
+  opuesto} y además:
+  \begin{itemize}[leftmargin=1.2em, nosep, topsep=2pt]
+    \item otro \textbf{ángulo} (casos \textbf{AAS} y \textbf{ASA}); o
+    \item otro \textbf{lado} y el ángulo opuesto a él (caso \textbf{SSA}),
+          que exige el análisis del \textbf{caso ambiguo} (§5).
+  \end{itemize}
+  Si los datos son dos lados y el ángulo \emph{entre} ellos, o los tres
+  lados, \textbf{no} sirve: hay que usar la ley del coseno.
+\end{cuadroinfo}
+
+\subsection*{Ejemplos resueltos}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 1 (AAS).} En un triángulo, $A=48^{\circ}$, $B=72^{\circ}$ y
+  $c=20$ m. Halla los elementos que faltan.
+
+  \mwfig{\mwtri[1.0]{48}{72}{$a$}{$b$}{$20$ m}{$48^\circ$}{$72^\circ$}{$C$}}
+
+  \textbf{Paso 1.} El tercer ángulo:
+  $C=180^{\circ}-48^{\circ}-72^{\circ}=60^{\circ}$.\\[2pt]
+  \textbf{Paso 2.} Escribimos la ley con el lado conocido $c$:
+  \[
+    \frac{a}{\sen 48^{\circ}}=\frac{b}{\sen 72^{\circ}}
+    =\frac{20}{\sen 60^{\circ}}.
+  \]
+  \textbf{Paso 3.} Despejamos cada lado:
+  \[
+    a=\frac{20\sen 48^{\circ}}{\sen 60^{\circ}}\approx 17{,}16\text{ m},
+    \qquad
+    b=\frac{20\sen 72^{\circ}}{\sen 60^{\circ}}\approx 21{,}96\text{ m}.
+  \]
+  \textbf{Comprobación:} el lado mayor es $b$, y el ángulo mayor es $B$:
+  coherente. Además $17{,}16+20>21{,}96$. \checkmark
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 2 (ASA).} $A=35^{\circ}$, $C=80^{\circ}$ y $b=12$ cm. Halla
+  $a$ y $c$.
+
+  \mwfig{\mwtri[1.0]{35}{65}{$a$}{$12$ cm}{$c$}{$35^\circ$}{$65^\circ$}{$80^\circ$}}
+
+  \textbf{Paso 1.} $B=180^{\circ}-35^{\circ}-80^{\circ}=65^{\circ}$.\\[2pt]
+  \textbf{Paso 2.} La razón completa es la del lado conocido con su ángulo:
+  $\dfrac{b}{\sen B}=\dfrac{12}{\sen 65^{\circ}}$.\\[2pt]
+  \textbf{Paso 3.}
+  \[
+    a=\frac{12\sen 35^{\circ}}{\sen 65^{\circ}}\approx 7{,}59\text{ cm},
+    \qquad
+    c=\frac{12\sen 80^{\circ}}{\sen 65^{\circ}}\approx 13{,}04\text{ cm}.
+  \]
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 3 (lado desconocido).} $A=52^{\circ}$, $a=16$ m y $b=14$ m.
+  Halla $B$, $C$ y $c$.
+
+  \mwfig{\mwtri[1.0]{52}{43.59}{$16$ m}{$14$ m}{$c$}{$52^\circ$}{$B$}{$C$}}
+
+  \textbf{Paso 1.} La incógnita es un ángulo; usamos la forma con senos
+  arriba:
+  \[
+    \sen B=\frac{b\sen A}{a}=\frac{14\sen 52^{\circ}}{16}\approx 0{,}6895
+    \;\Longrightarrow\;
+    B\approx 43{,}59^{\circ}.
+  \]
+  \textbf{Paso 2.} La calculadora devuelve $43{,}59^{\circ}$, pero también
+  $\sen(180^{\circ}-43{,}59^{\circ})=\sen 136{,}41^{\circ}$ vale lo mismo.
+  Descartamos la segunda opción porque $52^{\circ}+136{,}41^{\circ}>180^{\circ}$.
+  \\[2pt]
+  \textbf{Paso 3.} $C=180^{\circ}-52^{\circ}-43{,}59^{\circ}=84{,}41^{\circ}$ y
+  \[
+    c=\frac{16\sen 84{,}41^{\circ}}{\sen 52^{\circ}}\approx 20{,}21\text{ m}.
+  \]
+\end{cuadrosolucion}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{Errores típicos con la ley del seno}
+  \begin{itemize}[leftmargin=1.2em, nosep, topsep=2pt]
+    \item Emparejar mal: la razón debe llevar \emph{el lado con su propio
+          ángulo opuesto}. $\dfrac{a}{\sen B}$ no significa nada.
+    \item Olvidar que $\sen\theta=\sen(180^{\circ}-\theta)$: al despejar un
+          ángulo puede haber \textbf{dos} respuestas válidas. Solo se
+          descarta la que hace que la suma pase de $180^{\circ}$.
+    \item Usar la ley del seno para hallar el \textbf{ángulo mayor} cuando ya
+          conoces dos lados: el seno inverso puede devolver el ángulo
+          suplementario erróneo. En ese caso conviene la ley del coseno.
+    \item Dejar la calculadora en radianes. Si el enunciado dice
+          $48^{\circ}$, la calculadora debe estar en \textbf{DEG}.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+% ------------------------------------------------------------
+\subsection*{El radio de la circunferencia circunscrita}
+% ------------------------------------------------------------
+
+El $2R$ que aparece al final de la ley del seno no es un adorno: es el
+\textbf{diámetro} de la circunferencia que pasa por los tres vértices. Por eso
+la ley del seno también sirve para calcular el radio de esa circunferencia y,
+con él, su área.
+
+\begin{center}
+\mwcuerda{}{$a$}{$R$}
+\end{center}
+
+\begin{cuadroteoria}
+  \small
+  Para cualquier lado y su ángulo opuesto:
+  \[
+    \boxed{\;R=\frac{a}{2\sen A}=\frac{b}{2\sen B}=\frac{c}{2\sen C}\;}
+  \]
+  y el área del \textbf{círculo circunscrito} es
+  \[
+    \boxed{\;\Delta_{\text{círculo}}=\pi R^{2}\;}
+  \]
+  Si no conoces ningún ángulo, puedes llegar a $R$ por el área del triángulo:
+  \[
+    \Delta=\frac{abc}{4R}
+    \quad\Longleftrightarrow\quad
+    R=\frac{abc}{4\Delta},
+  \]
+  con $\Delta$ calculado por Herón o por $\tfrac{1}{2}bc\sen A$.
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{Dos despistes muy frecuentes}
+  \begin{itemize}[leftmargin=1.2em, nosep, topsep=2pt]
+    \item La ley dice $\dfrac{a}{\sen A}=2R$, no $R$. Hay que dividir entre
+          $2$: $R=\dfrac{a}{2\sen A}$.
+    \item $R$ es el radio de la circunferencia que \textbf{pasa por los tres
+          vértices} (circunscrita). El radio de la circunferencia
+          \emph{inscrita}, la que es tangente a los tres lados, es
+          $r=\dfrac{\Delta}{s}$ y es siempre menor. No los confundas.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 4 (radio y área del círculo).} En un triángulo se sabe que
+  $a=12$ cm y $A=38^{\circ}$. Calcula el radio y el área del círculo
+  circunscrito. Comprueba el resultado sabiendo además que $B=52^{\circ}$.
+
+  \mwfig{\mwcuerda{$38^\circ$}{$12$ cm}{$R$}}
+
+  \textbf{Paso 1.} Aplicamos la ley del seno con la pareja conocida:
+  \[
+    R=\frac{a}{2\sen A}=\frac{12}{2\sen 38^{\circ}}
+     =\frac{12}{2(0{,}6157)}\approx 9{,}7456\text{ cm}.
+  \]
+  \textbf{Paso 2.} Área del círculo circunscrito:
+  \[
+    \Delta_{\text{círculo}}=\pi R^{2}=\pi(9{,}7456)^{2}
+    \approx 298{,}38\text{ cm}^{2}.
+  \]
+  \textbf{Paso 3.} Comprobación con otra pareja. Si $B=52^{\circ}$, entonces
+  $C=90^{\circ}$ y el triángulo es rectángulo; el lado mayor es la hipotenusa
+  $c=\dfrac{12}{\sen 38^{\circ}}\approx 19{,}49$ cm. En un triángulo
+  rectángulo la circunferencia circunscrita tiene su centro en el punto medio
+  de la hipotenusa, así que
+  \[
+    R=\frac{c}{2}=\frac{19{,}49}{2}\approx 9{,}75\text{ cm}. \checkmark
+  \]
+\end{cuadrosolucion}
+
+\begin{cuadroextra}
+  \small
+  \textbf{Otra vía cuando solo tienes los tres lados.} Con $13$, $14$ y
+  $15$ cm, Herón da $\Delta=\sqrt{21\cdot 8\cdot 7\cdot 6}=84$ cm$^2$, y
+  entonces
+  \[
+    R=\frac{abc}{4\Delta}=\frac{13\cdot 14\cdot 15}{4(84)}\approx 8{,}12\text{ cm},
+    \qquad
+    \Delta_{\text{círculo}}=\pi(8{,}12)^{2}\approx 207{,}39\text{ cm}^{2}.
+  \]
+\end{cuadroextra}
+
+% ============================================================
+\section{Ley del coseno}
+% ============================================================
+
+\subsection*{Enunciado}
+
+\begin{cuadroteoria}
+  \small
+  En todo triángulo, el cuadrado de un lado es la suma de los cuadrados de
+  los otros dos \textbf{menos} el doble producto de esos lados por el coseno
+  del ángulo entre ellos:
+  \[
+    \boxed{\;a^{2}=b^{2}+c^{2}-2bc\cos A\;}
+  \]
+  y, rotando las letras, las otras dos versiones:
+  \[
+    b^{2}=a^{2}+c^{2}-2ac\cos B,
+    \qquad
+    c^{2}=a^{2}+b^{2}-2ab\cos C.
+  \]
+  Despejando el ángulo se obtiene la forma que sirve para \emph{hallar
+  ángulos}:
+  \[
+    \cos A=\frac{b^{2}+c^{2}-a^{2}}{2bc}.
+  \]
+\end{cuadroteoria}
+
+\begin{cuadroextra}
+  \small
+  \textbf{Fíjate en el detalle elegante:} si $A=90^{\circ}$, entonces
+  $\cos 90^{\circ}=0$ y la ley queda $a^{2}=b^{2}+c^{2}$, que es
+  \textbf{el teorema de Pitágoras}. La ley del coseno \emph{contiene} a
+  Pitágoras: es su generalización a cualquier ángulo.
+\end{cuadroextra}
+
+\subsection*{¿Por qué es cierta?}
+
+Colocamos el triángulo sobre los ejes: $A$ en el origen y $B$ sobre el eje
+horizontal. Así el vértice $C$ tiene coordenadas $(b\cos\alpha,\,b\sen\alpha)$.
+
+\begin{center}
+\mwproy
+\end{center}
+
+\begin{cuadropasos}
+  \small
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item $A=(0,0)$ y $B=(c,0)$.
+    \item Como $AC=b$ y forma un ángulo $\alpha$ con el eje, entonces
+          $C=(b\cos\alpha,\,b\sen\alpha)$.
+    \item El lado $a$ es la distancia entre $B$ y $C$:
+          \[
+            a^{2}=\bigl(b\cos\alpha-c\bigr)^{2}+\bigl(b\sen\alpha\bigr)^{2}.
+          \]
+    \item Desarrollamos:
+          \[
+            a^{2}=b^{2}\cos^{2}\alpha-2bc\cos\alpha+c^{2}+b^{2}\sen^{2}\alpha.
+          \]
+    \item Agrupamos y usamos $\sen^{2}\alpha+\cos^{2}\alpha=1$:
+          \[
+            a^{2}=b^{2}\bigl(\cos^{2}\alpha+\sen^{2}\alpha\bigr)+c^{2}-2bc\cos\alpha
+            =b^{2}+c^{2}-2bc\cos\alpha.
+          \]
+  \end{enumerate}
+\end{cuadropasos}
+
+\subsection*{Cuándo se usa}
+
+\begin{cuadroinfo}
+  \small
+  \begin{itemize}[leftmargin=1.2em, nosep, topsep=2pt]
+    \item \textbf{SAS:} dos lados y el \textbf{ángulo entre ellos}. Se halla
+          el tercer lado directamente.
+    \item \textbf{SSS:} los \textbf{tres lados}. Se hallan los ángulos, uno
+          por uno, empezando por el \textbf{mayor} (el opuesto al lado mayor),
+          para que el resto sean agudos y no haya ambigüedad.
+  \end{itemize}
+  Si los datos son dos ángulos, la ley del coseno no aporta nada nuevo: usa
+  la ley del seno.
+\end{cuadroinfo}
+
+\subsection*{Ejemplos resueltos}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 5 (SAS).} $b=5$ m, $c=8$ m y $A=60^{\circ}$. Halla $a$.
+
+  \mwfig{\mwtri[1.0]{60}{76.5}{$a$}{$5$ m}{$8$ m}{$60^\circ$}{$B$}{$C$}}
+
+  \[
+    a^{2}=5^{2}+8^{2}-2(5)(8)\cos 60^{\circ}
+    =25+64-80(0{,}5)=49
+    \;\Longrightarrow\;
+    a=7\ \text{m}.
+  \]
+  Un resultado entero: señal de que el ejercicio está bien elegido.
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 6 (SAS con ángulo obtuso).} $b=7$ m, $c=9$ m y
+  $A=120^{\circ}$. Halla $a$ y el ángulo $B$.
+
+  \mwfig{\mwtri[0.95]{120}{25.83}{$a$}{$7$ m}{$9$ m}{$120^\circ$}{$B$}{$C$}}
+
+  \textbf{Paso 1.} Como $\cos 120^{\circ}=-0{,}5$, el término de corrección
+  se \emph{suma}:
+  \[
+    a^{2}=49+81-2(7)(9)(-0{,}5)=130+63=193
+    \;\Longrightarrow\;
+    a\approx 13{,}89\text{ m}.
+  \]
+  \textbf{Paso 2.} Para el ángulo $B$ es más seguro volver a la ley del
+  coseno:
+  \[
+    \cos B=\frac{a^{2}+c^{2}-b^{2}}{2ac}
+    =\frac{193+81-49}{2(13{,}89)(9)}\approx 0{,}9000
+    \;\Longrightarrow\;
+    B\approx 25{,}83^{\circ}.
+  \]
+  \textbf{Paso 3.} $C=180^{\circ}-120^{\circ}-25{,}83^{\circ}=34{,}17^{\circ}$.
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 7 (SSS).} $a=8$ cm, $b=11$ cm, $c=14$ cm. Halla los tres
+  ángulos, empezando por el mayor.
+
+  \mwfig{\mwtri[0.95]{34.77}{51.65}{$8$ cm}{$11$ cm}{$14$ cm}{$A$}{$B$}{$C$}}
+
+  El lado mayor es $c=14$, así que $C$ es el ángulo mayor y lo calculamos
+  primero:
+  \[
+    \cos C=\frac{a^{2}+b^{2}-c^{2}}{2ab}
+    =\frac{64+121-196}{2(8)(11)}=-0{,}0625
+    \;\Longrightarrow\;
+    C\approx 93{,}58^{\circ}.
+  \]
+  Ahora $A$:
+  \[
+    \cos A=\frac{b^{2}+c^{2}-a^{2}}{2bc}
+    =\frac{121+196-64}{2(11)(14)}\approx 0{,}8214
+    \;\Longrightarrow\;
+    A\approx 34{,}77^{\circ}.
+  \]
+  Y por suma de ángulos, $B=180^{\circ}-93{,}58^{\circ}-34{,}77^{\circ}
+  =51{,}65^{\circ}$.
+\end{cuadrosolucion}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{Errores típicos con la ley del coseno}
+  \begin{itemize}[leftmargin=1.2em, nosep, topsep=2pt]
+    \item Identificar mal el ángulo: es el que está \textbf{entre} los dos
+          lados del término $-2bc\cos A$.
+    \item Perder el signo del coseno. Si el ángulo es obtuso, $\cos$ es
+          negativo y el término \emph{suma}. Si al final el lado te sale
+          menor que otro de los dados y no lo esperabas, revisa el signo.
+    \item Aplicar $\cos^{-1}$ a un valor fuera de $[-1,1]$: significa que los
+          tres lados no forman un triángulo (falla la desigualdad triangular).
+    \item Redondear antes de terminar: $\cos A\approx 0{,}82$ da
+          $34{,}92^{\circ}$ en vez de $34{,}77^{\circ}$. Conserva toda la
+          precisión en la calculadora.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+% ============================================================
+\section{El algoritmo: qué hacer según los datos}
+% ============================================================
+
+Resolver un triángulo significa hallar sus seis elementos a partir de tres
+de ellos, siempre que al menos uno sea un lado. La decisión no se improvisa:
+primero se identifica el caso en la tabla y después se recorre el árbol de
+decisión, una pregunta detrás de otra.
+
+
+\subsection*{Tabla de decisión}
+
+\begin{center}
+\small
+\begin{tabular}{@{}l l l p{5.6cm}@{}}
+  \toprule
+  \textbf{Datos} & \textbf{Caso} & \textbf{Herramienta} & \textbf{Primer paso} \\
+  \midrule
+  dos ángulos y un lado & AAS & ley del seno & hallar el tercer ángulo \\
+  dos ángulos y el lado entre ellos & ASA & ley del seno & hallar el tercer ángulo \\
+  dos lados y el ángulo entre ellos & SAS & ley del coseno & hallar el tercer lado \\
+  los tres lados & SSS & ley del coseno & ángulo mayor primero \\
+  dos lados y el ángulo opuesto a uno & SSA & ley del seno & comparar $a$ con $h=b\sen A$ \\
+  solo ángulos & AAA & --- & falta un lado: infinitas soluciones \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\begin{cuadroextra}
+  \small
+  \textbf{Regla de oro para no equivocarse:} la ley del seno siempre necesita
+  \emph{un lado con su ángulo opuesto} como pareja completa. La ley del coseno
+  nunca necesita parejas: solo dos lados y el ángulo \emph{entre} ellos.
+  Si te falta la pareja, no es seno; si te falta el ángulo entre los lados,
+  no es coseno.
+\end{cuadroextra}
+
+\subsection*{El árbol de decisión}
+
+\begin{center}
+\begin{tikzpicture}[
+    x=1cm, y=1cm,
+    mwdec/.style={diamond, draw=mwprimario, line width=0.9pt, fill=mwprimario!8,
+      minimum width=5.4cm, aspect=2.4, align=center,
+      inner sep=0pt, font=\scriptsize},
+    mwact/.style={rectangle, rounded corners=3pt, draw=mwnaranja, line width=0.9pt,
+      fill=mwnaranja!10, text width=4.7cm, align=left, inner sep=3pt,
+      font=\scriptsize},
+    mwfin/.style={rectangle, rounded corners=5pt, draw=mwmagenta, line width=0.9pt,
+      fill=mwmagenta!10, text width=6.0cm, align=center, inner sep=3pt,
+      font=\scriptsize},
+    mwarr/.style={-{Stealth[length=2mm]}, line width=0.8pt, draw=mwgris},
+    mwlbl/.style={font=\tiny, text=mwgris, inner sep=2pt}
+  ]
+  \node[mwfin] (ini) at (0,0)
+    {Datos: tres elementos, \textbf{al menos un lado}.\ \ Si solo conoces
+     ángulos, hay infinitas soluciones.};
+  \node[mwdec] (d1) at (0,-3.0) {\textquestiondown Hay un ángulo de $90^{\circ}$?};
+  \node[mwdec] (d2) at (0,-6.0) {\textquestiondown Conoces dos ángulos?};
+  \node[mwdec] (d3) at (0,-9.0) {\textquestiondown Conoces los tres lados?};
+  \node[mwdec] (d4) at (0,-12.0) {\textquestiondown El ángulo está \emph{entre} los dos lados?};
+  \node[mwfin] (ssa) at (0,-14.6) {\textbf{SSA:} ley del seno y análisis del caso ambiguo (\S 5)};
+  \node[mwfin] (fin) at (0,-17.2) {\textbf{Verifica:} $A+B+C=180^{\circ}$, el lado mayor frente al ángulo mayor, y la desigualdad triangular};
+
+  \node[mwact] (a1) at (6.0,-3.0)
+    {\textbf{Rectángulo.} Razones trigonométricas y Pitágoras (Guía T1).
+     Las leyes del seno y del coseno no son necesarias.};
+  \node[mwact] (a2) at (6.0,-6.0)
+    {\textbf{AAS / ASA.} Halla el tercer ángulo y aplica \textbf{ley del seno}
+     con el lado conocido.};
+  \node[mwact] (a3) at (6.0,-9.0)
+    {\textbf{SSS.} \textbf{Ley del coseno} para cada ángulo; empieza por el
+     opuesto al lado mayor.};
+  \node[mwact] (a4) at (6.0,-12.0)
+    {\textbf{SAS.} \textbf{Ley del coseno} para el tercer lado; luego ley del
+     seno o del coseno para un ángulo.};
+
+  \draw[mwarr] (ini) -- (d1);
+  \draw[mwarr] (d1) -- node[mwlbl, above] {sí} (a1);
+  \draw[mwarr] (d1) -- node[mwlbl, right] {no} (d2);
+  \draw[mwarr] (d2) -- node[mwlbl, above] {sí} (a2);
+  \draw[mwarr] (d2) -- node[mwlbl, right] {no} (d3);
+  \draw[mwarr] (d3) -- node[mwlbl, above] {sí} (a3);
+  \draw[mwarr] (d3) -- node[mwlbl, right] {no} (d4);
+  \draw[mwarr] (d4) -- node[mwlbl, above] {sí} (a4);
+  \draw[mwarr] (d4) -- node[mwlbl, right] {no} (ssa);
+  \draw[mwarr] (ssa) -- (fin);
+\end{tikzpicture}
+\end{center}
+
+\subsection*{Protocolo paso a paso}
+
+\begin{cuadropasos}
+  \small
+  \textbf{AAS / ASA (dos ángulos y un lado)}
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item Calcula el tercer ángulo: $C=180^{\circ}-A-B$.
+    \item Escribe la ley del seno con la pareja conocida:
+          $\dfrac{\text{lado conocido}}{\sen(\text{su ángulo})}$.
+    \item Despeja cada lado desconocido multiplicando por el seno de su ángulo.
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadropasos}
+  \small
+  \textbf{SAS (dos lados y el ángulo entre ellos)}
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item Aplica la ley del coseno para el lado desconocido.
+    \item Para el ángulo siguiente vuelve a la ley del coseno (evita la
+          ambigüedad del seno) o usa la ley del seno con el lado mayor.
+    \item Cierra con la suma de ángulos.
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadropasos}
+  \small
+  \textbf{SSS (tres lados)}
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item Comprueba la desigualdad triangular; si falla, no hay triángulo.
+    \item Calcula el ángulo \textbf{opuesto al lado mayor} con la ley del
+          coseno: es el único que puede ser obtuso.
+    \item Calcula otro ángulo con la ley del coseno y obtén el tercero por
+          diferencia a $180^{\circ}$.
+    \item Verifica que la suma sea exactamente $180^{\circ}$.
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadropasos}
+  \small
+  \textbf{SSA (dos lados y el ángulo opuesto a uno de ellos)}
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item Calcula la altura $h=b\sen A$ y compárala con el lado $a$.
+    \item Decide cuántas soluciones hay (§5).
+    \item Para cada solución, halla $B$ con la ley del seno, luego
+          $C=180^{\circ}-A-B$ y $c$ con la ley del seno.
+  \end{enumerate}
+\end{cuadropasos}
+
+\subsection*{Verificación: nunca entregues sin comprobar}
+
+\begin{cuadroadvertencia}
+  \small
+  Antes de dar por resuelto un triángulo, pasa estas cuatro pruebas. Cuestan
+  menos de un minuto y detectan casi todos los errores:
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item \textbf{Suma de ángulos:} $A+B+C=180^{\circ}$ (con el redondeo,
+          admite una décima de diferencia).
+    \item \textbf{Lado mayor frente a ángulo mayor:} ordena lados y ángulos
+          y comprueba que se corresponden.
+    \item \textbf{Desigualdad triangular:} cada lado menor que la suma de los
+          otros dos.
+    \item \textbf{Ley del seno:} vuelve a calcular $\dfrac{a}{\sen A}$ con
+          los tres lados y comprueba que las tres razones coinciden.
+  \end{enumerate}
+\end{cuadroadvertencia}
+
+% ============================================================
+\section{El caso ambiguo (SSA)}
+% ============================================================
+
+Cuando conoces \textbf{dos lados y un ángulo opuesto a uno de ellos}, los
+datos pueden describir \textbf{dos triángulos distintos}, uno solo, o
+ninguno. No es un error de la fórmula: es que la información no basta para
+determinar una figura única.
+
+\subsection*{La idea geométrica}
+
+Fijamos el ángulo $A$ y el lado $b=AC$. El vértice $B$ debe estar sobre la
+semirrecta horizontal y además cumplir $BC=a$: es decir, está en la
+circunferencia de centro $C$ y radio $a$. Según el tamaño de $a$ respecto de
+la altura $h=b\sen A$, esa circunferencia corta a la semirrecta en dos
+puntos, en uno, o en ninguno.
+
+\begin{center}
+\small
+\begin{tabular}{@{}c@{\hspace{8pt}}c@{}}
+  \mwssa[0.75]{9}{40}{5}{0} & \mwssa[0.75]{9}{40}{5.79}{1} \\[2pt]
+  \footnotesize $a<h$: \textbf{ninguna} solución & \footnotesize $a=h$: \textbf{una} solución (rectángulo) \\[14pt]
+  \mwssa[0.75]{9}{40}{7}{2} & \mwssa[0.75]{9}{40}{11}{1} \\[2pt]
+  \footnotesize $h<a<b$: \textbf{dos} soluciones & \footnotesize $a\geq b$: \textbf{una} solución \\
+\end{tabular}
+\end{center}
+
+\subsection*{Criterio para decidir}
+
+\begin{cuadroteoria}
+  \small
+  Sea $A$ el ángulo conocido, $b$ el lado \textbf{adyacente} a $A$ (el otro
+  lado conocido mide $a$), y $h=b\sen A$ la altura del triángulo.
+  \\[4pt]
+  \textbf{Si $A$ es agudo} ($A<90^{\circ}$):
+  \begin{center}
+  \begin{tabular}{@{}l l@{}}
+    \toprule
+    \textbf{Situación} & \textbf{Soluciones} \\
+    \midrule
+    $a<h$ & ninguna \\
+    $a=h$ & una (triángulo rectángulo en $B$) \\
+    $h<a<b$ & dos \\
+    $a\geq b$ & una \\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+  \textbf{Si $A$ es recto u obtuso} ($A\geq 90^{\circ}$):
+  \begin{center}
+  \begin{tabular}{@{}l l@{}}
+    \toprule
+    \textbf{Situación} & \textbf{Soluciones} \\
+    \midrule
+    $a\leq b$ & ninguna \\
+    $a>b$ & una \\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{El motivo matemático} está en la ecuación
+  $\sen B=\dfrac{b\sen A}{a}$. Si el cociente es mayor que $1$, no hay
+  solución. Si es menor que $1$, la calculadora devuelve un ángulo agudo
+  $B_1$, pero $B_2=180^{\circ}-B_1$ también cumple la ecuación: por eso hay
+  que comprobar si $A+B_2<180^{\circ}$. Solo si esa suma es menor que
+  $180^{\circ}$ el segundo triángulo existe.
+\end{cuadroadvertencia}
+
+\subsection*{Ejemplos resueltos}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 8 (dos soluciones).} $A=40^{\circ}$, $b=9$ m, $a=7$ m.
+  \\[2pt]
+  \textbf{Paso 1.} $h=b\sen A=9\sen 40^{\circ}\approx 5{,}79$ m. Como
+  $5{,}79<7<9$, es decir $h<a<b$, hay \textbf{dos} triángulos.\\[2pt]
+  \textbf{Paso 2.}
+  $\sen B=\dfrac{9\sen 40^{\circ}}{7}\approx 0{,}8264
+  \Rightarrow B_1\approx 55{,}73^{\circ}$ y
+  $B_2=180^{\circ}-55{,}73^{\circ}=124{,}27^{\circ}$.\\[2pt]
+  \textbf{Paso 3.} Comprobamos: $40^{\circ}+124{,}27^{\circ}=164{,}27^{\circ}
+  <180^{\circ}$, luego las dos valen.\\[2pt]
+  \textbf{Solución 1:} $C_1=180^{\circ}-40^{\circ}-55{,}73^{\circ}=84{,}27^{\circ}$
+  y $c_1=\dfrac{7\sen 84{,}27^{\circ}}{\sen 40^{\circ}}\approx 10{,}84$ m.\\[2pt]
+  \textbf{Solución 2:} $C_2=180^{\circ}-40^{\circ}-124{,}27^{\circ}=15{,}73^{\circ}$
+  y $c_2=\dfrac{7\sen 15{,}73^{\circ}}{\sen 40^{\circ}}\approx 2{,}95$ m.
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 9 (una solución).} $A=40^{\circ}$, $b=9$ m, $a=11$ m.
+  \\[2pt]
+  Como $a=11>b=9$, hay \textbf{una sola} solución. Entonces
+  $\sen B=\dfrac{9\sen 40^{\circ}}{11}\approx 0{,}5259$, de donde
+  $B\approx 31{,}73^{\circ}$ (la otra opción, $148{,}27^{\circ}$, daría
+  $40^{\circ}+148{,}27^{\circ}>180^{\circ}$ y se descarta).\\[2pt]
+  $C=180^{\circ}-40^{\circ}-31{,}73^{\circ}=108{,}27^{\circ}$ y
+  $c=\dfrac{11\sen 108{,}27^{\circ}}{\sen 40^{\circ}}\approx 16{,}25$ m.
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 10 (ninguna solución).} $A=40^{\circ}$, $b=9$ m, $a=5$ m.
+  \\[2pt]
+  $h=9\sen 40^{\circ}\approx 5{,}79$ m y $a=5<h$: la circunferencia no llega
+  a la semirrecta, así que \textbf{no existe} ningún triángulo con esos
+  datos. Lo mismo se ve en la fórmula:
+  $\sen B=\dfrac{9\sen 40^{\circ}}{5}\approx 1{,}157>1$, imposible.
+\end{cuadrosolucion}
+
+% ============================================================
+\clearpage
+\section{Problemas de aplicación}
+% ============================================================
+
+Los problemas reales no vienen en forma de triángulo: hay que
+\textbf{construirlo}. El método es siempre el mismo.
+
+\begin{cuadropasos}
+  \small
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item \textbf{Dibuja} la situación y marca los datos sobre la figura.
+          Nombra los puntos con letras.
+    \item \textbf{Identifica} qué triángulo contiene la incógnita y anota sus
+          tres datos. Si no hay tres, busca un segundo triángulo que comparta
+          un lado con el primero.
+    \item \textbf{Elige} la ley con la tabla de decisión (§4).
+    \item \textbf{Resuelve} sin redondear y redondea solo al final.
+    \item \textbf{Interpreta} el resultado: ¿tiene sentido el tamaño?, ¿la
+          unidad es la pedida?, ¿el ángulo es razonable?
+  \end{enumerate}
+\end{cuadropasos}
+
+\subsection*{Distancias que no se pueden medir directamente}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 11.} Para medir la distancia a una torre situada al otro
+  lado de un río, dos personas se colocan en los puntos $A$ y $B$ de la misma
+  orilla, separados $120$ m. Desde $A$ se mide un ángulo de $65^{\circ}$ hacia
+  la torre $T$ y desde $B$ un ángulo de $78^{\circ}$. ¿A qué distancia está la
+  torre de cada observador?
+
+  \mwfig{\mwtri[1.0]{65}{78}{$a$}{$b$}{$120$ m}{$65^\circ$}{$78^\circ$}{$T$}}
+
+  \textbf{Paso 1.} El tercer ángulo del triángulo $ABT$:
+  $T=180^{\circ}-65^{\circ}-78^{\circ}=37^{\circ}$.\\[2pt]
+  \textbf{Paso 2.} Conocemos el lado $c=AB=120$ m y su ángulo opuesto
+  $T=37^{\circ}$: pareja completa, así que \textbf{ley del seno}.\\[2pt]
+  \textbf{Paso 3.}
+  \[
+    \frac{a}{\sen 65^{\circ}}=\frac{b}{\sen 78^{\circ}}=\frac{120}{\sen 37^{\circ}}
+    \;\Longrightarrow\;
+    a\approx 180{,}71\text{ m},\quad b\approx 195{,}04\text{ m}.
+  \]
+  La torre está a $181$ m de $A$ y a $195$ m de $B$.
+\end{cuadrosolucion}
+
+\subsection*{Alturas}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 12.} Desde un punto $A$ se ve la punta de una antena con un
+  ángulo de elevación de $35^{\circ}$. Avanzando $50$ m hacia la antena, desde
+  $B$ el ángulo es de $60^{\circ}$. ¿Cuál es la altura de la antena?
+
+  \mwfig{\mwdiagdos{$50$ m}{35}{60}{$h$}}
+
+  \textbf{Paso 1.} En el triángulo $ABP$ (donde $P$ es la punta) el ángulo en
+  $B$ es $180^{\circ}-60^{\circ}=120^{\circ}$, y el ángulo en $A$, $35^{\circ}$.
+  Luego el ángulo en $P$ es $180^{\circ}-120^{\circ}-35^{\circ}=25^{\circ}$.
+  \\[2pt]
+  \textbf{Paso 2.} Ley del seno para el lado $BP$, que es la hipotenusa del
+  triángulo rectángulo pequeño:
+  \[
+    BP=\frac{50\sen 35^{\circ}}{\sen 25^{\circ}}\approx 67{,}87\text{ m}.
+  \]
+  \textbf{Paso 3.} En el triángulo rectángulo de base $B$:
+  \[
+    h=BP\sen 60^{\circ}\approx 67{,}87(0{,}8660)\approx 58{,}77\text{ m}.
+  \]
+\end{cuadrosolucion}
+
+\subsection*{Rumbos y navegación}
+
+Un \textbf{rumbo} es el ángulo medido \textbf{desde el norte} y en sentido
+horario. Así, «$N40^{\circ}E$» significa $40^{\circ}$ hacia el este partiendo
+del norte, y «$S25^{\circ}E$» significa $25^{\circ}$ hacia el este partiendo
+del sur.
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 13.} Un velero sale de un puerto y navega $30$ km con rumbo
+  $N40^{\circ}E$; después gira y navega $45$ km con rumbo $S25^{\circ}E$.
+  ¿A qué distancia del puerto queda?
+
+  \begin{center}
+  \begin{tikzpicture}[scale=1, baseline=(current bounding box.center), line join=round]
+    \coordinate (O) at (0,0);
+    \coordinate (P) at (1.928,2.298);
+    \coordinate (Q) at (3.830,-1.780);
+    \draw[gray, dashed] (0,-0.6) -- (0,3.1);
+    \draw[gray, dashed] (1.928,1.6) -- (1.928,3.4);
+    \draw[gray, thick, -{Stealth[length=2mm]}] (0,2.9) -- (0,3.3)
+      node[above, font=\scriptsize, text=mwgris] {N};
+    \draw[gray, thick, -{Stealth[length=2mm]}] (1.928,3.0) -- (1.928,3.4)
+      node[above, font=\scriptsize, text=mwgris] {N};
+    \draw[thick, mwprimario] (O) -- (P) node[midway, above left, font=\small] {$30$ km};
+    \draw[thick, mwprimario] (P) -- (Q) node[midway, right, font=\small] {$45$ km};
+    \draw[thick, mwnaranja, dashed] (Q) -- (O) node[midway, below left, font=\small] {$d$};
+    \draw[mwprimario, thick] (0,0.9) arc (90:50:0.9);
+    \path (O) ++(70:1.2) node[mwprimario, font=\scriptsize] {$40^\circ$};
+    \draw[mwprimario, thick] (1.928,2.298) ++(90:0.9) arc (90:-65:0.9);
+    \path (1.928,2.298) ++(12:1.15) node[mwprimario, font=\scriptsize] {$155^\circ$};
+    \draw[mwprimario, thick] (1.928,2.298) ++(-65:0.55) arc (-65:-130:0.55);
+    \path (1.928,2.298) ++(-97:0.85) node[mwprimario, font=\scriptsize] {$65^\circ$};
+    \filldraw (O) circle (1.5pt);
+    \filldraw (P) circle (1.5pt);
+    \filldraw (Q) circle (1.5pt);
+    \node[below left, font=\small] at (O) {$O$};
+    \node[right, font=\small] at (P) {$P$};
+    \node[right, font=\small] at (Q) {$Q$};
+  \end{tikzpicture}
+  \end{center}
+
+  \textbf{Paso 1.} En el punto $P$ el rumbo pasa de $40^{\circ}$ a $155^{\circ}$;
+  el giro es de $115^{\circ}$, de modo que el \textbf{ángulo interior} del
+  triángulo en $P$ es $180^{\circ}-115^{\circ}=65^{\circ}$.\\[2pt]
+  \textbf{Paso 2.} Conocemos dos lados y el ángulo entre ellos: \textbf{ley del
+  coseno}.
+  \[
+    d^{2}=30^{2}+45^{2}-2(30)(45)\cos 65^{\circ}
+    =900+2025-2700(0{,}4226)\approx 1783{,}9
+  \]
+  \[
+    d\approx 42{,}24\text{ km}.
+  \]
+\end{cuadrosolucion}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{Ojo con los rumbos:} el ángulo que se escribe en el enunciado
+  \emph{no} es el ángulo interior del triángulo. El ángulo interior se obtiene
+  restando $180^{\circ}$ menos el giro, o bien restando los dos rumbos si se
+  miden desde el mismo eje. Dibuja siempre la línea norte en cada vértice antes
+  de decidir.
+\end{cuadroadvertencia}
+
+\subsection*{Áreas}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 14.} Un terreno triangular tiene dos lados de $60$ m y $85$ m
+  que forman un ángulo de $48^{\circ}$. ¿Cuál es su área?
+
+  Usando $\text{Área}=\tfrac{1}{2}bc\sen A$:
+  \[
+    \text{Área}=\tfrac{1}{2}(60)(85)\sen 48^{\circ}
+    =2550(0{,}7431)\approx 1894{,}99\text{ m}^{2}.
+  \]
+  Si además se quiere el cercado, el tercer lado sale de la ley del coseno:
+  \[
+    a^{2}=3600+7225-2(60)(85)\cos 48^{\circ}
+    \approx 10825-6825{,}6=3999{,}4
+    \;\Longrightarrow\; a\approx 63{,}24\text{ m}.
+  \]
+\end{cuadrosolucion}
+
+% ============================================================
+\section{Formulario resumen}
+% ============================================================
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Notación:} $a$, $b$, $c$ son los lados opuestos a los ángulos $A$,
+  $B$, $C$; $R$ es el radio de la circunferencia circunscrita; $s$ es el
+  semiperímetro; $\Delta$ es el área.
+  \\[6pt]
+  \begin{tabular}{@{}p{0.30\linewidth} p{0.62\linewidth}@{}}
+    \toprule
+    \textbf{Concepto} & \textbf{Fórmula} \\
+    \midrule
+    Suma de ángulos & $A+B+C=180^{\circ}$ \\[4pt]
+    Ley del seno & $\dfrac{a}{\sen A}=\dfrac{b}{\sen B}=\dfrac{c}{\sen C}=2R$ \\[8pt]
+    Ley del coseno & $a^{2}=b^{2}+c^{2}-2bc\cos A$ \\[4pt]
+    Ángulo por coseno & $\cos A=\dfrac{b^{2}+c^{2}-a^{2}}{2bc}$ \\[8pt]
+    Desigualdad triangular & $|b-c|<a<b+c$ \\[4pt]
+    Área (dos lados y el ángulo) & $\Delta=\tfrac{1}{2}bc\sen A$ \\[4pt]
+    Área (Herón) & $\Delta=\sqrt{s(s-a)(s-b)(s-c)},\quad s=\dfrac{a+b+c}{2}$ \\[8pt]
+    Circunradio & $R=\dfrac{a}{2\sen A}=\dfrac{abc}{4\Delta}$ \\[4pt]
+    Área del círculo & $\Delta_{\text{círculo}}=\pi R^{2}$ \\[8pt]
+    Altura sobre $c$ & $h_{c}=b\sen A=a\sen B$ \\[4pt]
+    Caso ambiguo & $h=b\sen A$: compara $a$ con $h$ y con $b$ \\
+    \bottomrule
+  \end{tabular}
+\end{cuadroteoria}
+
+\begin{cuadroinfo}
+  \small
+  \textbf{Chuleta de decisión}
+  \begin{itemize}[leftmargin=1.2em, nosep, topsep=2pt]
+    \item \textbf{Un lado con su ángulo opuesto} + otro ángulo $\rightarrow$
+          ley del seno.
+    \item \textbf{Dos lados y el ángulo entre ellos} $\rightarrow$ ley del
+          coseno.
+    \item \textbf{Tres lados} $\rightarrow$ ley del coseno, ángulo mayor
+          primero.
+    \item \textbf{Dos lados y el ángulo opuesto a uno} $\rightarrow$ ley del
+          seno y \emph{siempre} el análisis del caso ambiguo.
+    \item \textbf{Ningún lado} $\rightarrow$ no hay solución única.
+  \end{itemize}
+\end{cuadroinfo}
+
+% ============================================================
+\clearpage
+\section{Banco de ejercicios y problemas}
+% ============================================================
+
+\begin{cuadroinfo}
+  \small
+  \textbf{Cómo usar el banco.} Son \textbf{112 ejercicios} con numeración
+  continua, agrupados por herramienta. La etiqueta gris indica el bloque y los
+  diagramas están dibujados con los datos del enunciado, así que sirven de
+  comprobación visual. Redondea a dos decimales \textbf{solo al final} y anota
+  el método que usaste antes de calcular: eso vale más que el resultado.
+  \\[4pt]
+  \textbf{Reparto:} A) ley del seno, 1--25 $\cdot$ B) ley del coseno, 26--50
+  $\cdot$ C) elige el método, 51--65 $\cdot$ D) caso ambiguo, 66--75
+  $\cdot$ E) aplicaciones, 76--100 $\cdot$ F) radio y área del círculo
+  circunscrito, 101--112.
+\end{cuadroinfo}
+
+\mwbloquehead{Bloque A — Ley del seno (1--25)}{25}{0}
+\begin{mwbloque}
+  \item {\samepage \mwtag{Seno} En el triángulo de la figura, $A=48^{\circ}$,
+  $B=72^{\circ}$ y $c=20$ m. Halla $C$, $a$ y $b$.
+  \mwfig{\mwtri[0.85]{48}{72}{$a$}{$b$}{$20$ m}{$48^\circ$}{$72^\circ$}{$C$}}}
+
+  \item {\samepage \mwtag{Seno} $A=35^{\circ}$, $C=80^{\circ}$ y $b=12$ cm.
+  Halla $B$, $a$ y $c$.
+  \mwfig{\mwtri[0.85]{35}{65}{$a$}{$12$ cm}{$c$}{$35^\circ$}{$65^\circ$}{$80^\circ$}}}
+
+  \item {\samepage \mwtag{Seno} $B=41^{\circ}$, $C=99^{\circ}$ y $a=15$ cm.
+  Halla $A$, $b$ y $c$.
+  \mwfig{\mwtri[0.85]{40}{41}{$15$ cm}{$b$}{$c$}{$40^\circ$}{$41^\circ$}{$99^\circ$}}}
+
+  \item {\samepage \mwtag{Seno} $A=57^{\circ}$, $B=64^{\circ}$ y $a=14$ m.
+  Halla $C$, $b$ y $c$.
+  \mwfig{\mwtri[0.85]{57}{64}{$14$ m}{$b$}{$c$}{$57^\circ$}{$64^\circ$}{$59^\circ$}}}
+
+  \item {\samepage \mwtag{Seno} $A=25^{\circ}$, $B=110^{\circ}$ y $c=18$ m.
+  Halla $C$, $a$ y $b$.
+  \mwfig{\mwtri[0.85]{25}{110}{$a$}{$b$}{$18$ m}{$25^\circ$}{$110^\circ$}{$45^\circ$}}}
+
+  \item {\samepage \mwtag{Seno} $a=18$ m, $A=40^{\circ}$ y $B=75^{\circ}$.
+  Halla $C$, $b$ y $c$.
+  \mwfig{\mwtri[0.85]{40}{75}{$18$ m}{$b$}{$c$}{$40^\circ$}{$75^\circ$}{$65^\circ$}}}
+
+  \item {\samepage \mwtag{Seno} $b=22$ m, $B=63^{\circ}$ y $C=47^{\circ}$.
+  Halla $A$, $a$ y $c$.
+  \mwfig{\mwtri[0.85]{70}{63}{$a$}{$22$ m}{$c$}{$70^\circ$}{$63^\circ$}{$47^\circ$}}}
+
+  \item {\samepage \mwtag{Seno} $c=30$ m, $A=52^{\circ}$ y $B=58^{\circ}$.
+  Halla $C$, $a$ y $b$.
+  \mwfig{\mwtri[0.85]{52}{58}{$a$}{$b$}{$30$ m}{$52^\circ$}{$58^\circ$}{$70^\circ$}}}
+
+  \item {\samepage \mwtag{Seno} $a=16$ m, $b=14$ m y $A=52^{\circ}$. Halla
+  $B$, $C$ y $c$. \emph{Comprueba si la segunda solución de $B$ es válida.}
+  \mwfig{\mwtri[0.85]{52}{43.59}{$16$ m}{$14$ m}{$c$}{$52^\circ$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Seno} $b=25$ m, $c=20$ m y $B=70^{\circ}$. Halla
+  $C$, $A$ y $a$.
+  \mwfig{\mwtri[0.85]{61.26}{70}{$a$}{$25$ m}{$20$ m}{$A$}{$70^\circ$}{$C$}}}
+
+  \item \mwtag{Seno} El lado $a=9$ cm se opone a un ángulo $A=41^{\circ}$.
+  Calcula el radio $R$ de la circunferencia circunscrita.
+
+  \item \mwtag{Seno} En un triángulo, $b=22$ m y $B=67^{\circ}$. Calcula el
+  radio $R$ de la circunferencia circunscrita.
+
+  \item {\samepage \mwtag{Seno} $a=7$ cm, $A=30^{\circ}$ y $B=45^{\circ}$.
+  Halla $C$, $b$ y $c$.
+  \mwfig{\mwtri[0.85]{30}{45}{$7$ cm}{$b$}{$c$}{$30^\circ$}{$45^\circ$}{$105^\circ$}}}
+
+  \item {\samepage \mwtag{Seno} $c=16$ m, $C=68^{\circ}$ y $A=25^{\circ}$.
+  Halla $B$, $a$ y $b$.
+  \mwfig{\mwtri[0.85]{25}{87}{$a$}{$b$}{$16$ m}{$25^\circ$}{$87^\circ$}{$68^\circ$}}}
+
+  \item {\samepage \mwtag{Seno} $A=40^{\circ}$, $B=60^{\circ}$ y $b=18$ m.
+  Halla $a$, $c$ y el área del triángulo.
+  \mwfig{\mwtri[0.85]{40}{60}{$a$}{$18$ m}{$c$}{$40^\circ$}{$60^\circ$}{$80^\circ$}}}
+
+  \item {\samepage \mwtag{Seno} $A=38^{\circ}$, $B=52^{\circ}$ y $a=12$ cm.
+  Halla $C$, $b$ y $c$. \emph{¿Qué clase de triángulo es?}
+  \mwfig{\mwtri[0.85]{38}{52}{$12$ cm}{$b$}{$c$}{$38^\circ$}{$52^\circ$}{$C$}}}
+
+  \item {\samepage \mwtag{Seno} $A=120^{\circ}$, $B=30^{\circ}$ y $c=20$ m.
+  Halla $C$, $a$ y $b$. \emph{¿Qué particularidad tiene el triángulo?}
+  \mwfig{\mwtri[0.85]{120}{30}{$a$}{$b$}{$20$ m}{$120^\circ$}{$30^\circ$}{$30^\circ$}}}
+
+  \item {\samepage \mwtag{Seno} $a=12$ cm, $b=10$ cm y $A=64^{\circ}$. Halla
+  $B$, $C$ y $c$.
+  \mwfig{\mwtri[0.85]{64}{48.5}{$12$ cm}{$10$ cm}{$c$}{$64^\circ$}{$B$}{$C$}}}
+
+  \item \mwtag{Seno} ¿Es posible un triángulo con $A=70^{\circ}$, $a=5$ cm y
+  $b=9$ cm? Justifica con la ley del seno y con la altura.
+
+  \item {\samepage \mwtag{Seno} $A=80^{\circ}$, $B=65^{\circ}$ y $a=20$ m.
+  Halla $C$, $b$ y $c$.
+  \mwfig{\mwtri[0.85]{80}{65}{$20$ m}{$b$}{$c$}{$80^\circ$}{$65^\circ$}{$35^\circ$}}}
+
+  \item {\samepage \mwtag{Seno} $c=45$ mm, $A=39^{\circ}$ y $C=71^{\circ}$.
+  Halla $B$, $a$ y $b$.
+  \mwfig{\mwtri[0.85]{39}{70}{$a$}{$b$}{$45$ mm}{$39^\circ$}{$70^\circ$}{$71^\circ$}}}
+
+  \item {\samepage \mwtag{Seno} $A=52^{\circ}$, $B=68^{\circ}$ y $a=18$ m.
+  Halla $b$, $c$ y el perímetro.
+  \mwfig{\mwtri[0.85]{52}{68}{$18$ m}{$b$}{$c$}{$52^\circ$}{$68^\circ$}{$60^\circ$}}}
+
+  \item {\samepage \mwtag{Seno} $B=95^{\circ}$, $A=38^{\circ}$ y $b=32$ m.
+  Halla $C$, $a$ y $c$.
+  \mwfig{\mwtri[0.85]{38}{95}{$a$}{$32$ m}{$c$}{$38^\circ$}{$95^\circ$}{$47^\circ$}}}
+
+  \item {\samepage \mwtag{Seno} $b=14$ m, $c=20$ m y $A=35^{\circ}$. Halla el
+  área del triángulo.
+  \mwfig{\mwtri[0.85]{35}{43.29}{$a$}{$14$ m}{$20$ m}{$35^\circ$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Seno} $a=15$ cm, $A=45^{\circ}$ y $B=60^{\circ}$.
+  Halla $C$, $b$ y $c$.
+  \mwfig{\mwtri[0.85]{45}{60}{$15$ cm}{$b$}{$c$}{$45^\circ$}{$60^\circ$}{$75^\circ$}}}
+\end{mwbloque}
+
+\mwbloquehead{Bloque B — Ley del coseno (26--50)}{50}{25}
+\begin{mwbloque}
+  \item {\samepage \mwtag{Coseno} $b=5$ m, $c=8$ m y $A=60^{\circ}$. Halla $a$.
+  \mwfig{\mwtri[0.85]{60}{38.21}{$a$}{$5$ m}{$8$ m}{$60^\circ$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Coseno} $a=3$ cm, $b=5$ cm y $C=120^{\circ}$. Halla
+  $c$ y los dos ángulos que faltan.
+  \mwfig{\mwtri[0.85]{21.79}{38.21}{$3$ cm}{$5$ cm}{$c$}{$A$}{$B$}{$120^\circ$}}}
+
+  \item {\samepage \mwtag{Coseno} $b=7$ m, $c=10$ m y $A=45^{\circ}$. Halla
+  $a$, $B$ y $C$.
+  \mwfig{\mwtri[0.85]{45}{44.42}{$a$}{$7$ m}{$10$ m}{$45^\circ$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Coseno} $b=12$ cm, $c=15$ cm y $A=132^{\circ}$.
+  Halla $a$, $B$ y $C$.
+  \mwfig{\mwtri[0.85]{132}{21.17}{$a$}{$12$ cm}{$15$ cm}{$132^\circ$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Coseno} Los tres lados miden $7$, $8$ y $9$ m. Halla
+  los tres ángulos.
+  \mwfig{\mwtri[0.85]{48.19}{58.41}{$7$ m}{$8$ m}{$9$ m}{$A$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Coseno} Los lados miden $5$, $6$ y $7$ cm. Halla los
+  tres ángulos.
+  \mwfig{\mwtri[0.85]{44.42}{57.12}{$5$ cm}{$6$ cm}{$7$ cm}{$A$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Coseno} Los lados miden $8$, $10$ y $12$ m. Halla
+  los tres ángulos y el área.
+  \mwfig{\mwtri[0.85]{41.41}{55.77}{$8$ m}{$10$ m}{$12$ m}{$A$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Coseno} Los lados miden $9$, $11$ y $13$ cm. Halla
+  los tres ángulos.
+  \mwfig{\mwtri[0.85]{43.05}{56.54}{$9$ cm}{$11$ cm}{$13$ cm}{$A$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Coseno} Los lados miden $4$, $5$ y $6$ m. Halla los
+  tres ángulos.
+  \mwfig{\mwtri[0.85]{41.41}{55.77}{$4$ m}{$5$ m}{$6$ m}{$A$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Coseno} $b=9$ m, $c=12$ m y $A=100^{\circ}$. Halla
+  $a$, $B$ y $C$.
+  \mwfig{\mwtri[0.85]{100}{33.16}{$a$}{$9$ m}{$12$ m}{$100^\circ$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Coseno} $a=10$ m, $c=14$ m y $B=55^{\circ}$. Halla
+  $b$, $A$ y $C$.
+  \mwfig{\mwtri[0.85]{44.75}{55}{$10$ m}{$b$}{$14$ m}{$A$}{$55^\circ$}{$C$}}}
+
+  \item {\samepage \mwtag{Coseno} Comprueba que el triángulo de lados $6$, $8$
+  y $10$ cm es rectángulo, y halla sus ángulos agudos.
+  \mwfig{\mwtri[0.85]{36.87}{53.13}{$6$ cm}{$8$ cm}{$10$ cm}{$A$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Coseno} Un triángulo isósceles tiene dos lados de
+  $10$ cm y el tercero de $12$ cm. Halla sus ángulos.
+  \mwfig{\mwtri[0.85]{53.13}{53.13}{$10$ cm}{$10$ cm}{$12$ cm}{$A$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Coseno} $b=20$ m, $c=30$ m y $A=30^{\circ}$. Halla
+  $a$, $B$ y $C$. \emph{¿Por qué $C$ es obtuso?}
+  \mwfig{\mwtri[0.85]{30}{38.26}{$a$}{$20$ m}{$30$ m}{$30^\circ$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Coseno} Los lados miden $15$, $20$ y $25$ m. Halla
+  los tres ángulos.
+  \mwfig{\mwtri[0.85]{36.87}{53.13}{$15$ m}{$20$ m}{$25$ m}{$A$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Coseno} $a=8$ cm, $b=11$ cm y $C=70^{\circ}$. Halla
+  $c$, $A$ y $B$.
+  \mwfig{\mwtri[0.85]{42.29}{67.71}{$8$ cm}{$11$ cm}{$c$}{$A$}{$B$}{$70^\circ$}}}
+
+  \item {\samepage \mwtag{Coseno} Los lados miden $2{,}5$, $3$ y $4$ m. Halla
+  los tres ángulos.
+  \mwfig{\mwtri[0.85]{38.62}{48.51}{$2{,}5$ m}{$3$ m}{$4$ m}{$A$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Coseno} $b=14$ cm, $c=9$ cm y $A=140^{\circ}$. Halla
+  $a$, $B$ y $C$.
+  \mwfig{\mwtri[0.85]{140}{24.52}{$a$}{$14$ cm}{$9$ cm}{$140^\circ$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Coseno} Los lados miden $13$, $14$ y $15$ cm. Halla
+  los tres ángulos y el área.
+  \mwfig{\mwtri[0.85]{53.13}{59.49}{$13$ cm}{$14$ cm}{$15$ cm}{$A$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Coseno} $b=4$ m, $c=7$ m y $A=120^{\circ}$. Halla $a$.
+  \mwfig{\mwtri[0.85]{120}{21.06}{$a$}{$4$ m}{$7$ m}{$120^\circ$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Coseno} Los lados miden $6$, $9$ y $11$ m. Halla los
+  tres ángulos. \emph{¿Cuál es el obtuso?}
+  \mwfig{\mwtri[0.85]{33.03}{54.85}{$6$ m}{$9$ m}{$11$ m}{$A$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Coseno} $a=12$ m, $b=9$ m y $C=65^{\circ}$. Halla
+  $c$, $A$ y $B$.
+  \mwfig{\mwtri[0.85]{70.14}{44.86}{$12$ m}{$9$ m}{$c$}{$A$}{$B$}{$65^\circ$}}}
+
+  \item {\samepage \mwtag{Coseno} Los lados miden $7$, $24$ y $25$ cm.
+  \emph{Demuestra que es rectángulo} y halla sus ángulos agudos.
+  \mwfig{\mwtri[0.85]{16.26}{73.74}{$7$ cm}{$24$ cm}{$25$ cm}{$A$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Coseno} $b=11$ m, $c=13$ m y $A=48^{\circ}$. Halla
+  $a$, $B$ y $C$.
+  \mwfig{\mwtri[0.85]{48}{55.4}{$a$}{$11$ m}{$13$ m}{$48^\circ$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Coseno} Los lados miden $3$, $8$ y $9$ m. Halla los
+  tres ángulos.
+  \mwfig{\mwtri[0.85]{19.19}{61.22}{$3$ m}{$8$ m}{$9$ m}{$A$}{$B$}{$C$}}}
+\end{mwbloque}
+
+\mwbloquehead{Bloque C — Elige el método y resuelve (51--65)}{65}{50}
+\begin{mwbloque}
+  \item {\samepage \mwtag{Método} $A=42^{\circ}$, $B=63^{\circ}$ y $c=25$ m.
+  Decide el método y resuelve el triángulo.
+  \mwfig{\mwtri[0.85]{42}{63}{$a$}{$b$}{$25$ m}{$42^\circ$}{$63^\circ$}{$75^\circ$}}}
+
+  \item {\samepage \mwtag{Método} $a=5$ cm, $b=6$ cm y $C=45^{\circ}$. Decide
+  el método y resuelve el triángulo.
+  \mwfig{\mwtri[0.85]{55.12}{79.88}{$5$ cm}{$6$ cm}{$c$}{$A$}{$B$}{$45^\circ$}}}
+
+  \item {\samepage \mwtag{Método} Los lados miden $9$, $12$ y $15$ cm. Decide
+  el método, resuelve y di qué clase de triángulo es.
+  \mwfig{\mwtri[0.85]{36.87}{53.13}{$9$ cm}{$12$ cm}{$15$ cm}{$A$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Método} $A=78^{\circ}$, $a=14$ m y $b=10$ m.
+  \emph{Antes de calcular, decide cuántas soluciones hay.}
+  \mwfig{\mwtri[0.85]{78}{44.32}{$14$ m}{$10$ m}{$c$}{$78^\circ$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Método} $b=8$ m, $c=8$ m y $A=90^{\circ}$. Resuelve
+  el triángulo.
+  \mwfig{\mwtri[0.85]{90}{45}{$a$}{$8$ m}{$8$ m}{$90^\circ$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Método} $A=30^{\circ}$, $a=10$ m y $b=16$ m.
+  \emph{Analiza el caso ambiguo y da todas las soluciones.}
+  \mwfig{\mwssat[0.85]{16}{30}{10}{2}}}
+
+  \item {\samepage \mwtag{Método} $a=6$ m, $b=10$ m y $C=110^{\circ}$.
+  Resuelve el triángulo.
+  \mwfig{\mwtri[0.85]{25.07}{44.93}{$6$ m}{$10$ m}{$c$}{$A$}{$B$}{$110^\circ$}}}
+
+  \item {\samepage \mwtag{Método} $A=50^{\circ}$, $a=20$ m y $b=22$ m.
+  \emph{Analiza el caso ambiguo y da todas las soluciones.}
+  \mwfig{\mwssat[0.85]{22}{50}{20}{2}}}
+
+  \item {\samepage \mwtag{Método} Los lados miden $11$, $13$ y $16$ m.
+  Resuelve el triángulo.
+  \mwfig{\mwtri[0.85]{43.05}{53.78}{$11$ m}{$13$ m}{$16$ m}{$A$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Método} $B=95^{\circ}$, $b=25$ cm y $c=22$ cm.
+  Resuelve el triángulo.
+  \mwfig{\mwtri[0.85]{23.76}{95}{$a$}{$25$ cm}{$22$ cm}{$A$}{$95^\circ$}{$C$}}}
+
+  \item \mwtag{Método} $A=60^{\circ}$, $a=12$ m y $b=14$ m. ¿Existe el
+  triángulo? Justifica con el seno y con la altura.
+
+  \item {\samepage \mwtag{Método} $b=15$ m, $c=17$ m y $A=62^{\circ}$.
+  Resuelve el triángulo.
+  \mwfig{\mwtri[0.85]{62}{53.06}{$a$}{$15$ m}{$17$ m}{$62^\circ$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Método} $A=45^{\circ}$, $a=20$ m y $c=18$ m.
+  \emph{¿Cuántas soluciones hay?}
+  \mwfig{\mwtri[0.85]{45}{95.48}{$20$ m}{$b$}{$18$ m}{$45^\circ$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Método} Los tres lados miden $8$ m. Resuelve el
+  triángulo y calcula su área.
+  \mwfig{\mwtri[0.85]{60}{60}{$8$ m}{$8$ m}{$8$ m}{$A$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Método} $A=110^{\circ}$, $a=18$ m y $b=10$ m.
+  Resuelve el triángulo.
+  \mwfig{\mwtri[0.85]{110}{31.47}{$18$ m}{$10$ m}{$c$}{$110^\circ$}{$B$}{$C$}}}
+\end{mwbloque}
+
+\mwbloquehead{Bloque D — El caso ambiguo (66--75)}{75}{65}
+\begin{mwbloque}
+  \item {\samepage \mwtag{Ambiguo} $A=30^{\circ}$, $a=7$ m y $b=12$ m.
+  Calcula $h$, decide cuántas soluciones hay y resuélvelas todas.
+  \mwfig{\mwssat[0.85]{12}{30}{7}{2}}}
+
+  \item {\samepage \mwtag{Ambiguo} $A=30^{\circ}$, $a=5$ m y $b=10$ m.
+  Calcula $h$ y decide cuántas soluciones hay.
+  \mwfig{\mwssat[0.85]{10}{30}{5}{1}}}
+
+  \item {\samepage \mwtag{Ambiguo} $A=30^{\circ}$, $a=4$ m y $b=10$ m.
+  ¿Cuántos triángulos cumplen los datos?
+  \mwfig{\mwssat[0.85]{10}{30}{4}{0}}}
+
+  \item {\samepage \mwtag{Ambiguo} $A=40^{\circ}$, $a=14$ m y $b=10$ m.
+  Resuelve el triángulo y explica por qué hay una sola solución.
+  \mwfig{\mwssat[0.85]{10}{40}{14}{1}}}
+
+  \item {\samepage \mwtag{Ambiguo} $A=120^{\circ}$, $a=6$ m y $b=8$ m.
+  ¿Existe algún triángulo? Justifica.
+  \mwfig{\mwssat[0.85]{8}{120}{6}{0}}}
+
+  \item {\samepage \mwtag{Ambiguo} $A=120^{\circ}$, $a=15$ m y $b=9$ m.
+  Resuelve el triángulo.
+  \mwfig{\mwssat[0.85]{9}{120}{15}{1}}}
+
+  \item {\samepage \mwtag{Ambiguo} $A=40^{\circ}$, $a=7$ m y $b=9$ m.
+  Calcula $h$, decide y resuelve todas las soluciones.
+  \mwfig{\mwssat[0.85]{9}{40}{7}{2}}}
+
+  \item {\samepage \mwtag{Ambiguo} $A=40^{\circ}$, $a=11$ m y $b=9$ m.
+  Resuelve el triángulo.
+  \mwfig{\mwssat[0.85]{9}{40}{11}{1}}}
+
+  \item {\samepage \mwtag{Ambiguo} $A=40^{\circ}$, $a=5$ m y $b=9$ m.
+  ¿Cuántos triángulos hay? Comprueba con el seno.
+  \mwfig{\mwssat[0.85]{9}{40}{5}{0}}}
+
+  \item {\samepage \mwtag{Ambiguo} $A=25^{\circ}$, $a=8$ km y $b=14$ km.
+  Calcula $h$, decide y resuelve todas las soluciones.
+  \mwfig{\mwssat[0.85]{14}{25}{8}{2}}}
+\end{mwbloque}
+
+\mwbloquehead{Bloque E — Aplicaciones y problemas (76--100)}{100}{75}
+\begin{mwbloque}
+  \item {\samepage \mwtag{Aplicación} Para medir la distancia a una boya $T$
+  situada mar adentro, dos puntos $A$ y $B$ de la orilla, separados $150$ m,
+  miden ángulos de $58^{\circ}$ y $71^{\circ}$ hacia la boya. ¿A qué distancia
+  está de cada punto?
+  \mwfig{\mwtri[0.85]{58}{71}{$a$}{$b$}{$150$ m}{$58^\circ$}{$71^\circ$}{$T$}}}
+
+  \item {\samepage \mwtag{Aplicación} Dos observadores, separados $80$ m y
+  situados a la misma altura, ven un globo entre ellos con ángulos de
+  elevación de $40^{\circ}$ y $65^{\circ}$. ¿A qué distancia está el globo de
+  cada observador y a qué altura vuela?
+  \mwfig{\mwdiagop[0.85]{$80$ m}{40}{65}{$h$}}}
+
+  \item {\samepage \mwtag{Aplicación} Desde un punto $A$ se ve la punta de una
+  torre con un ángulo de $32^{\circ}$. Avanzando $40$ m hacia la torre, desde
+  $B$ el ángulo es de $55^{\circ}$. Halla la altura de la torre.
+  \mwfig{\mwdiagdos[0.85]{$40$ m}{32}{55}{$h$}}}
+
+  \item {\samepage \mwtag{Aplicación} Un velero navega $25$ km con rumbo
+  $N35^{\circ}E$ y después $40$ km con rumbo $S20^{\circ}E$. ¿A qué distancia
+  queda del punto de partida?
+  \mwfig{\mwrumbo[0.8]{2.0}{35}{3.2}{160}{$25$ km}{$40$ km}{$d$}}}
+
+  \item {\samepage \mwtag{Aplicación} Un avión vuela $200$ km con rumbo
+  $N30^{\circ}E$ y luego $150$ km con rumbo $N70^{\circ}E$. ¿A qué distancia
+  está del aeropuerto de salida?
+  \mwfig{\mwrumbo[0.85]{2.0}{30}{1.5}{70}{$200$ km}{$150$ km}{$d$}}}
+
+  \item {\samepage \mwtag{Aplicación} Desde una torre de vigilancia $C$ se
+  divisan dos pueblos: $CA=320$ m, $CB=245$ m y el ángulo $ACB=48^{\circ}$.
+  ¿Qué distancia separa a los pueblos?
+  \mwfig{\mwtri[0.85]{49.39}{82.61}{$245$ m}{$320$ m}{$c$}{$A$}{$B$}{$48^\circ$}}}
+
+  \item {\samepage \mwtag{Aplicación} Un terreno triangular mide $45$, $60$ y
+  $75$ m. Calcula su área y comprueba que es rectángulo.
+  \mwfig{\mwtri[0.85]{36.87}{53.13}{$45$ m}{$60$ m}{$75$ m}{$A$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Aplicación} Una parcela tiene lados de $40$, $55$ y
+  $70$ m. Halla su perímetro, su área y su ángulo mayor.
+  \mwfig{\mwtri[0.85]{34.77}{51.66}{$40$ m}{$55$ m}{$70$ m}{$A$}{$B$}{$C$}}}
+
+  \item \mwtag{Aplicación} ¿Se puede cercar un terreno triangular con tres
+  tramos rectos de $7$, $9$ y $17$ m? Razona la respuesta.
+
+  \item {\samepage \mwtag{Aplicación} Para medir la altura de una montaña se
+  toman dos estaciones separadas $500$ m en el mismo plano vertical, con
+  ángulos de elevación de $25^{\circ}$ y $42^{\circ}$. ¿Cuál es la altura?
+  \mwfig{\mwdiagdos[0.85]{$500$ m}{25}{42}{$h$}}}
+
+  \item {\samepage \mwtag{Aplicación} Desde un faro se ven dos barcos a $12$ km
+  y $18$ km, y el ángulo entre las dos visuales es de $55^{\circ}$. ¿Qué
+  distancia separa a los barcos?
+  \mwfig{\mwtri[0.85]{41.46}{83.54}{$12$ km}{$18$ km}{$d$}{$A$}{$B$}{$55^\circ$}}}
+
+  \item {\samepage \mwtag{Aplicación} Para medir el ancho de un lago se eligen
+  dos puntos $A$ y $B$ de la orilla separados $85$ m, y se miden los ángulos
+  $72^{\circ}$ y $61^{\circ}$ hacia un punto $C$ de la otra orilla. ¿Cuánto
+  mide el lago en esa dirección?
+  \mwfig{\mwtri[0.85]{72}{61}{$a$}{$b$}{$85$ m}{$72^\circ$}{$61^\circ$}{$47^\circ$}}}
+
+  \item {\samepage \mwtag{Aplicación} Un paralelogramo tiene lados de $8$ cm y
+  $12$ cm que forman un ángulo de $55^{\circ}$. Calcula sus dos diagonales.
+  \begin{center}
+  \begin{tikzpicture}[scale=0.9, baseline=(current bounding box.center), line join=round]
+    \coordinate (A) at (0,0);
+    \coordinate (B) at (4.2,0);
+    \coordinate (D) at (1.606,2.293);
+    \coordinate (C) at (5.806,2.293);
+    \fill[mwprimario!7] (A) -- (B) -- (C) -- (D) -- cycle;
+    \draw[thick] (A) -- (B) -- (C) -- (D) -- cycle;
+    \draw[thick, mwprimario, dashed] (A) -- (C) node[pos=0.75, below right, font=\small] {$d_1$};
+    \draw[thick, mwnaranja, dashed] (B) -- (D) node[pos=0.75, above left, font=\small] {$d_2$};
+    \node[below left, font=\small] at (A) {$A$};
+    \node[below right, font=\small] at (B) {$B$};
+    \node[above right, font=\small] at (C) {$C$};
+    \node[above left, font=\small] at (D) {$D$};
+    \node[below, font=\small] at (2.1,0) {$12$ cm};
+    \node[left, font=\small] at (0.75,1.2) {$8$ cm};
+    \draw[mwprimario, thick] (0.8,0) arc (0:55:0.8);
+    \path (A) ++(27.5:1.05) node[mwprimario, font=\scriptsize] {$55^\circ$};
+  \end{tikzpicture}
+  \end{center}}
+
+  \item {\samepage \mwtag{Aplicación} En una circunferencia de radio $10$ cm,
+  una cuerda subtiende un ángulo central de $70^{\circ}$. ¿Cuánto mide la
+  cuerda?
+  \begin{center}
+  \begin{tikzpicture}[scale=1, baseline=(current bounding box.center), line join=round]
+    \coordinate (O) at (0,0);
+    \draw[thick, gray] (O) circle (2.2);
+    \coordinate (P) at (55:2.2);
+    \coordinate (Q) at (125:2.2);
+    \draw[thick, mwprimario] (P) -- (Q) node[midway, below, font=\small] {$c$};
+    \draw[thick, mwnaranja] (O) -- (P) node[midway, below right, font=\small] {$10$ cm};
+    \draw[thick, mwnaranja] (O) -- (Q) node[midway, below left, font=\small] {$10$ cm};
+    \draw[mwprimario, thick] (O) ++(55:0.75) arc (55:125:0.75);
+    \path (O) ++(90:1.02) node[mwprimario, font=\scriptsize] {$70^\circ$};
+    \filldraw (O) circle (1.2pt) node[below, font=\small] {$O$};
+  \end{tikzpicture}
+  \end{center}}
+
+  \item {\samepage \mwtag{Aplicación} Un mapa muestra dos refugios a $6{,}5$ km
+  y $9$ km de una torre, con un ángulo de $118^{\circ}$ entre las dos
+  direcciones. ¿Qué distancia hay entre los refugios?
+  \mwfig{\mwtri[0.85]{25.46}{36.54}{$6{,}5$ km}{$9$ km}{$d$}{$A$}{$B$}{$118^\circ$}}}
+
+  \item {\samepage \mwtag{Aplicación} Desde los extremos de un puente de $200$
+  m se observa una barca con ángulos de $62^{\circ}$ y $71^{\circ}$ respecto
+  del puente. ¿A qué distancia está de cada extremo?
+  \mwfig{\mwtri[0.85]{62}{71}{$a$}{$b$}{$200$ m}{$62^\circ$}{$71^\circ$}{$C$}}}
+
+  \item \mwtag{Aplicación} Un avión parte con rumbo $N30^{\circ}E$ y recorre
+  $250$ km. ¿Qué rumbo debe tomar para regresar por el mismo camino? ¿Cuántos
+  kilómetros recorrerá?
+
+  \item {\samepage \mwtag{Aplicación} Desde un punto del suelo se ve lo alto de
+  un edificio con $32^{\circ}$; acercándose $45$ m, el ángulo es de $55^{\circ}$.
+  Halla la altura del edificio.
+  \mwfig{\mwdiagdos[0.85]{$45$ m}{32}{55}{$h$}}}
+
+  \item {\samepage \mwtag{Aplicación} Dos puntos $A$ y $B$ de una carretera
+  recta distan $100$ m. Desde ellos se observa una casa $C$ con ángulos de
+  $48^{\circ}$ y $63^{\circ}$. ¿A qué distancia está la casa de la carretera?
+  \mwfig{\mwtri[0.85]{48}{63}{$a$}{$b$}{$100$ m}{$48^\circ$}{$63^\circ$}{$C$}}}
+
+  \item {\samepage \mwtag{Aplicación} Un terreno tiene dos lados de $18$ m y
+  $25$ m que forman un ángulo de $48^{\circ}$. Halla su área y el tercer lado.
+  \mwfig{\mwtri[0.85]{45.89}{86.11}{$18$ m}{$25$ m}{$c$}{$A$}{$B$}{$48^\circ$}}}
+
+  \item \mwtag{Aplicación} Un triángulo tiene lados $13$, $14$ y $15$ cm.
+  Calcula su área y el radio de la circunferencia circunscrita.
+
+  \item \mwtag{Aplicación} ¿Puede existir un triángulo de lados $4$, $9$ y $3$
+  m? Si no existe, explica qué falla y qué habría que cambiar para que
+  existiera.
+
+  \item {\samepage \mwtag{Aplicación} Dos barcos salen a la vez de un puerto
+  con rumbos $N55^{\circ}E$ y $S50^{\circ}E$, a $20$ km/h y $25$ km/h. ¿Qué
+  distancia los separa a las dos horas?
+  \mwfig{\mwrumbo[1.0]{2.6}{55}{3.2}{130}{$40$ km}{$50$ km}{$d$}}}
+
+  \item {\samepage \mwtag{Aplicación} Un terreno triangular mide $55$, $72$ y
+  $90$ m. Calcula su área y su ángulo mayor.
+  \mwfig{\mwtri[0.85]{37.69}{53.13}{$55$ m}{$72$ m}{$90$ m}{$A$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Aplicación} Un terreno cuadrilátero $ABCD$ tiene
+  $AB=60$ m, $BC=45$ m, $AD=50$ m, $DC=40$ m y el ángulo $ABC=70^{\circ}$.
+  Halla la diagonal $AC$, el ángulo $ADC$ y el área total.
+  \begin{center}
+  \begin{tikzpicture}[scale=0.85, baseline=(current bounding box.center), line join=round]
+    \coordinate (A) at (0,0);
+    \coordinate (B) at (3.2,0);
+    \coordinate (C) at (2.380,2.255);
+    \coordinate (D) at (0.284,2.651);
+    \fill[mwprimario!7] (A) -- (B) -- (C) -- (D) -- cycle;
+    \draw[thick] (A) -- (B) -- (C) -- (D) -- cycle;
+    \draw[thick, mwprimario, dashed] (A) -- (C)
+      node[midway, above left, fill=white, inner sep=1pt, font=\small] {$d$};
+    \node[below left, font=\small] at (A) {$A$};
+    \node[below right, font=\small] at (B) {$B$};
+    \node[right, font=\small] at (2.45,2.15) {$C$};
+    \node[above left, font=\small] at (0.24,2.72) {$D$};
+    \node[below, font=\small] at (1.6,0) {$60$ m};
+    \node[right, font=\small] at (2.85,1.05) {$45$ m};
+    \node[left, font=\small] at (0.02,1.35) {$50$ m};
+    \node[above, font=\small] at (1.30,2.48) {$40$ m};
+    \draw[mwprimario, thick] (2.75,0) arc (180:110:0.45);
+    \path (B) ++(147:0.72) node[mwprimario, font=\scriptsize] {$70^\circ$};
+  \end{tikzpicture}
+  \end{center}}
+\end{mwbloque}
+
+\mwbloquehead{Bloque F — Radio y área del círculo circunscrito (101--112)}{112}{100}
+\begin{mwbloque}
+  \item {\samepage \mwtag{Circunradio} En un triángulo, $a=12$ cm y
+  $A=38^{\circ}$. Halla el radio de la circunferencia circunscrita y el área
+  del círculo.
+  \mwfig{\mwcuerda{$38^\circ$}{$12$ cm}{$R$}}}
+
+  \item {\samepage \mwtag{Circunradio} $b=15$ cm y $B=52^{\circ}$. Halla $R$
+  y el área del círculo circunscrito.
+  \mwfig{\mwcuerda{$52^\circ$}{$15$ cm}{$R$}}}
+
+  \item {\samepage \mwtag{Circunradio} $c=20$ m y $C=60^{\circ}$. Halla $R$ y
+  el área del círculo circunscrito.
+  \mwfig{\mwcuerda{$60^\circ$}{$20$ m}{$R$}}}
+
+  \item {\samepage \mwtag{Circunradio} En un triángulo, $A=40^{\circ}$,
+  $B=75^{\circ}$ y $a=18$ m. Halla $R$ usando \emph{dos} parejas distintas y
+  comprueba que coinciden. Calcula después el área del círculo.
+  \mwfig{\mwtri[0.85]{40}{75}{$18$ m}{$b$}{$c$}{$40^\circ$}{$75^\circ$}{$65^\circ$}}}
+
+  \item {\samepage \mwtag{Circunradio} Un triángulo tiene lados $7$, $8$ y
+  $9$ m. Calcula su área con Herón, luego $R$ con $R=\dfrac{abc}{4\Delta}$ y,
+  por último, el área del círculo circunscrito.
+  \mwfig{\mwtri[0.85]{48.19}{58.41}{$7$ m}{$8$ m}{$9$ m}{$A$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Circunradio} Repite el ejercicio anterior con los
+  lados $13$, $14$ y $15$ cm.
+  \mwfig{\mwtri[0.85]{53.13}{59.49}{$13$ cm}{$14$ cm}{$15$ cm}{$A$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Circunradio} Un triángulo rectángulo tiene catetos
+  de $6$ cm y $8$ cm. Halla $R$, el área del círculo y explica por qué
+  $R=\dfrac{c}{2}$.
+  \mwfig{\mwtri[0.85]{36.87}{53.13}{$6$ cm}{$8$ cm}{$10$ cm}{$A$}{$B$}{$C$}}}
+
+  \item {\samepage \mwtag{Circunradio} Un triángulo equilátero tiene lado
+  $8$ m. Halla $R$, el área del círculo circunscrito y compárala con la del
+  círculo inscrito ($r=\dfrac{8}{2\sqrt{3}}$).
+  \mwfig{\mwcirctri[0.9]{60}{60}{$8$ m}{$8$ m}{$8$ m}{$R$}}}
+
+  \item {\samepage \mwtag{Circunradio} Una circunferencia tiene radio $8$ cm y
+  en ella está inscrito un triángulo con $A=50^{\circ}$. Halla el lado $a$ y
+  el área del círculo.
+  \mwfig{\mwcuerda{$50^\circ$}{$a$}{$8$ cm}}}
+
+  \item \mwtag{Circunradio} Un triángulo inscrito en una circunferencia de
+  radio $9$ cm tiene un lado de $11$ cm. Halla el ángulo opuesto e indica si
+  hay más de una posibilidad.
+
+  \item \mwtag{Circunradio} El radio de la circunferencia circunscrita a un
+  triángulo mide $10$ cm. ¿Cuánto mide el lado opuesto al ángulo de
+  $90^{\circ}$? ¿Cuál es el área del círculo?
+
+  \item {\samepage \mwtag{Circunradio} Un triángulo isósceles tiene dos lados
+  de $10$ cm y una base de $12$ cm. Halla su área, el radio de la
+  circunferencia circunscrita y el área del círculo.
+  \mwfig{\mwcirctri[0.9]{53.13}{53.13}{$12$ cm}{$10$ cm}{$10$ cm}{$R$}}}
+\end{mwbloque}
+
+
+% ============================================================
+\ifmwclaves
+\clearpage
+\section*{Clave de respuestas comentada}
+% ============================================================
+
+\begin{cuadroinfo}
+  \small
+  \textbf{Cómo leer la clave.} Cada respuesta indica el método y la sustitución,
+  no solo el número. Si tu resultado difiere en la última cifra, casi siempre
+  es por redondeos intermedios: conserva toda la precisión en la calculadora y
+  redondea solo al final. En los ejercicios sin solución única se listan
+  \emph{todas} las soluciones.
+\end{cuadroinfo}
+
+\subsection*{Bloque A — Ley del seno (1--25)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $C=180^\circ-48^\circ-72^\circ=60^\circ$; $a=\dfrac{20\sen 48^\circ}{\sen 60^\circ}\approx 17{,}16$ m y $b=\dfrac{20\sen 72^\circ}{\sen 60^\circ}\approx 21{,}96$ m.
+  \item $B=180^\circ-35^\circ-80^\circ=65^\circ$; $a\approx 7{,}59$ cm y $c\approx 13{,}04$ cm.
+  \item $A=180^\circ-41^\circ-99^\circ=40^\circ$; $b\approx 15{,}31$ y $c\approx 23{,}05$.
+  \item $C=180^\circ-57^\circ-64^\circ=59^\circ$; $b\approx 15{,}00$ y $c\approx 14{,}31$.
+  \item $C=45^\circ$; $a\approx 10{,}76$ m y $b\approx 23{,}92$ m.
+  \item $C=65^\circ$; $b\approx 27{,}05$ y $c\approx 25{,}38$.
+  \item $A=70^\circ$; $a\approx 23{,}20$ y $c\approx 18{,}06$.
+  \item $C=70^\circ$; $a\approx 25{,}16$ y $b\approx 27{,}07$.
+  \item $\sen B=\dfrac{14\sen 52^\circ}{16}\approx 0{,}6895$, $B\approx 43{,}59^\circ$ (la opción $136{,}41^\circ$ se descarta porque $52^\circ+136{,}41^\circ>180^\circ$); $C\approx 84{,}41^\circ$ y $c\approx 20{,}21$ m.
+  \item $\sen C=\dfrac{20\sen 70^\circ}{25}\approx 0{,}7518$, $C\approx 48{,}74^\circ$; $A\approx 61{,}26^\circ$ y $a\approx 23{,}33$ m.
+  \item $R=\dfrac{a}{2\sen A}=\dfrac{9}{2\sen 41^\circ}\approx 6{,}86$ cm.
+  \item $R=\dfrac{22}{2\sen 67^\circ}\approx 11{,}95$ m.
+  \item $C=105^\circ$; $b\approx 9{,}90$ y $c\approx 13{,}52$.
+  \item $B=180^\circ-68^\circ-25^\circ=87^\circ$; $a\approx 7{,}29$ y $b\approx 17{,}23$.
+  \item $C=80^\circ$; $a\approx 13{,}36$, $c\approx 20{,}47$ y $\Delta=\tfrac12 ac\sen B\approx 118{,}41$.
+  \item $C=180^\circ-38^\circ-52^\circ=90^\circ$ (rectángulo); $c=\dfrac{12}{\sen 38^\circ}\approx 19{,}49$ y $b\approx 15{,}36$.
+  \item $C=30^\circ$; $a\approx 34{,}64$ y $b=20{,}00$ (isósceles).
+  \item $B\approx 48{,}50^\circ$; $C\approx 67{,}50^\circ$ y $c\approx 12{,}33$ m.
+  \item Imposible: $\sen B=\dfrac{9\sen 70^\circ}{5}\approx 1{,}6914>1$; ningún ángulo tiene seno mayor que $1$.
+  \item $C=35^\circ$; $b\approx 18{,}41$ y $c\approx 11{,}65$.
+  \item $B=70^\circ$; $a\approx 29{,}95$ y $b\approx 44{,}72$.
+  \item $C=60^\circ$; $b\approx 21{,}18$, $c\approx 19{,}78$ y $P=18+21{,}18+19{,}78\approx 58{,}96$ m.
+  \item $C=180^\circ-95^\circ-38^\circ=47^\circ$; $a\approx 19{,}78$ y $c\approx 23{,}49$.
+  \item $\Delta=\tfrac12(14)(20)\sen 35^\circ\approx 80{,}30$ m$^2$.
+  \item $C=75^\circ$; $b\approx 18{,}37$ y $c\approx 20{,}49$.
+\end{enumerate}
+\subsection*{Bloque B — Ley del coseno (26--50)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=26]
+  \item $a^2=25+64-2(5)(8)\cos 60^\circ=49\Rightarrow a=7$ m.
+  \item $c^2=9+25-2(3)(5)\cos 120^\circ=49\Rightarrow c=7$ m.
+  \item $a^2=49+100-140\cos 45^\circ\approx 50{,}01\Rightarrow a\approx 7{,}07$ m.
+  \item $a^2=144+225-360\cos 132^\circ\approx 609{,}8\Rightarrow a\approx 24{,}70$ m.
+  \item $7$, $8$ y $9$: $A\approx 48{,}19^\circ$, $B\approx 58{,}41^\circ$, $C\approx 73{,}40^\circ$ (suma $180{,}00$).
+  \item $5$, $6$ y $7$: $A\approx 44{,}42^\circ$, $B\approx 57{,}12^\circ$, $C\approx 78{,}46^\circ$ (suma $180{,}00$).
+  \item $8$, $10$ y $12$: $A\approx 41{,}41^\circ$, $B\approx 55{,}77^\circ$, $C\approx 82{,}82^\circ$ (suma $180{,}00$).
+  \item $9$, $11$ y $13$: $A\approx 43{,}05^\circ$, $B\approx 56{,}54^\circ$, $C\approx 80{,}41^\circ$ (suma $180{,}00$).
+  \item $4$, $5$ y $6$: $A\approx 41{,}41^\circ$, $B\approx 55{,}77^\circ$, $C\approx 82{,}82^\circ$ (suma $180{,}00$).
+  \item $a^2=81+144-216\cos 100^\circ\approx 262{,}5$, $a\approx 16{,}20$ m; $C\approx 46{,}84^\circ$ y $B\approx 33{,}16^\circ$.
+  \item $b^2=100+196-280\cos 55^\circ\approx 135{,}4$, $b\approx 11{,}64$ m; $A\approx 44{,}75^\circ$ y $C\approx 80{,}25^\circ$.
+  \item $\cos C=\dfrac{36+64-100}{2(6)(8)}=0\Rightarrow C=90^\circ$: es rectángulo.
+  \item $\cos A=\cos B=\dfrac{100+144-100}{2(10)(12)}$, $A=B\approx 53{,}13^\circ$ y $C\approx 73{,}74^\circ$.
+  \item $a\approx 16{,}15$, $B\approx 38{,}26^\circ$, $C\approx 111{,}74^\circ$.
+  \item $A\approx 36{,}87^\circ$, $B\approx 53{,}13^\circ$, $C=90^\circ$ (terna $3$-$4$-$5$).
+  \item $c^2=64+121-176\cos 70^\circ\approx 124{,}8$, $c\approx 11{,}17$; $A\approx 42{,}29^\circ$ y $B\approx 67{,}71^\circ$.
+  \item $A\approx 38{,}62^\circ$, $B\approx 48{,}51^\circ$, $C\approx 92{,}87^\circ$.
+  \item $a^2=196+81-252\cos 140^\circ\approx 470{,}05$, $a\approx 21{,}68$; $B\approx 24{,}52^\circ$ y $C\approx 15{,}48^\circ$.
+  \item $A\approx 53{,}13^\circ$, $B\approx 59{,}49^\circ$, $C\approx 67{,}38^\circ$; $\Delta=\sqrt{21\cdot 8\cdot 7\cdot 6}=84$.
+  \item $a^2=16+49-56\cos 120^\circ=93\Rightarrow a\approx 9{,}64$.
+  \item $A\approx 33{,}03^\circ$, $B\approx 54{,}85^\circ$, $C\approx 92{,}12^\circ$.
+  \item $c^2=144+81-216\cos 65^\circ\approx 133{,}7$, $c\approx 11{,}56$; $A\approx 70{,}14^\circ$ y $B\approx 44{,}86^\circ$.
+  \item $7^2+24^2=625=25^2$: $C=90^\circ$; $A\approx 16{,}26^\circ$, $B\approx 73{,}74^\circ$.
+  \item $a\approx 9{,}93$, $B\approx 55{,}40^\circ$, $C\approx 76{,}60^\circ$.
+  \item $A\approx 19{,}19^\circ$, $B\approx 61{,}22^\circ$, $C\approx 99{,}59^\circ$.
+\end{enumerate}
+\subsection*{Bloque C — Elige el método (51--65)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=51]
+  \item Ley del seno: $C=75^\circ$, $a\approx 17{,}32$, $b\approx 23{,}06$.
+  \item SAS con ley del coseno: $c\approx 4{,}31$, $A\approx 55{,}12^\circ$, $B\approx 79{,}88^\circ$.
+  \item $9^2+12^2=15^2$, luego $C=90^\circ$; $A\approx 36{,}87^\circ$, $B\approx 53{,}13^\circ$.
+  \item Ley del seno: $B\approx 44{,}32^\circ$, $C\approx 57{,}68^\circ$, $c\approx 12{,}10$.
+  \item $A=90^\circ$: rectángulo isósceles; $a=\sqrt{8^2+8^2}\approx 11{,}31$.
+  \item Caso ambiguo con $h=16\sen 30^\circ=8$ y $h<10<16$: \textbf{dos} soluciones. $B_1\approx 53{,}13^\circ$, $C_1\approx 96{,}87^\circ$, $c_1\approx 19{,}86$; $B_2\approx 126{,}87^\circ$, $C_2\approx 23{,}13^\circ$, $c_2\approx 7{,}86$.
+  \item SAS: $c\approx 13{,}31$, $A\approx 25{,}07^\circ$, $B\approx 44{,}93^\circ$.
+  \item $h=22\sen 50^\circ\approx 16{,}85$ y $h<20<22$: \textbf{dos} soluciones. $B_1\approx 57{,}42^\circ$, $C_1\approx 72{,}58^\circ$, $c_1\approx 24{,}91$; $B_2\approx 122{,}58^\circ$, $C_2\approx 7{,}42^\circ$, $c_2\approx 3{,}37$.
+  \item SSS: $A\approx 43{,}05^\circ$, $B\approx 53{,}78^\circ$, $C\approx 83{,}17^\circ$.
+  \item $B$ es obtuso y $b>c$ ($25>22$): una sola solución. $\sen C=\dfrac{22\sen 95^\circ}{25}\approx 0{,}8766$, $C\approx 61{,}24^\circ$ ($118{,}76^\circ$ no vale); $A\approx 23{,}76^\circ$ y $a\approx 10{,}11$.
+  \item Imposible: $\sen B=\dfrac{14\sen 60^\circ}{12}\approx 1{,}0104>1$.
+  \item SAS: $a\approx 16{,}57$, $B\approx 53{,}06^\circ$, $C\approx 64{,}94^\circ$.
+  \item Ley del seno: $C\approx 39{,}52^\circ$ ($140{,}48^\circ$ no vale), $B\approx 95{,}48^\circ$, $b\approx 28{,}16$.
+  \item Equilátero: $A=B=C=60^\circ$; también $a=b=c=8$.
+  \item $A$ obtuso y $a>b$: una solución; $B\approx 31{,}47^\circ$, $C\approx 38{,}53^\circ$, $c\approx 11{,}93$.
+\end{enumerate}
+\subsection*{Bloque D — El caso ambiguo (66--75)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=66]
+  \item $h\approx 6{,}00$ y $h<7<12$: \textbf{dos} soluciones. $B_1\approx 59{,}00^\circ$, $C_1\approx 91{,}00^\circ$, $c_1\approx 14{,}00$; $B_2\approx 121{,}00^\circ$, $C_2\approx 29{,}00^\circ$, $c_2\approx 6{,}79$.
+  \item $h\approx 5{,}00=a$: \textbf{una} solución con $B=90^\circ$ (triángulo rectángulo); $C\approx 60{,}00^\circ$ y $c\approx 8{,}66$.
+  \item $h=10\sen 30^\circ\approx 5{,}00$ y $a=4<h$: \textbf{ninguna} solución.
+  \item $h\approx 6{,}43$ y $a\ge b$: \textbf{una} solución. $B\approx 27{,}33^\circ$, $C\approx 112{,}67^\circ$, $c\approx 20{,}10$.
+  \item $h=8\sen 120^\circ\approx 6{,}93$ y $a=6<h$: \textbf{ninguna} solución.
+  \item $h\approx 7{,}79$ y $a\ge b$: \textbf{una} solución. $B\approx 31{,}31^\circ$, $C\approx 28{,}69^\circ$, $c\approx 8{,}32$.
+  \item $h\approx 5{,}79$ y $h<7<9$: \textbf{dos} soluciones. $B_1\approx 55{,}73^\circ$, $C_1\approx 84{,}27^\circ$, $c_1\approx 10{,}84$; $B_2\approx 124{,}27^\circ$, $C_2\approx 15{,}73^\circ$, $c_2\approx 2{,}95$.
+  \item $h\approx 5{,}79$ y $a\ge b$: \textbf{una} solución. $B\approx 31{,}73^\circ$, $C\approx 108{,}27^\circ$, $c\approx 16{,}25$.
+  \item $h=9\sen 40^\circ\approx 5{,}79$ y $a=5<h$: \textbf{ninguna} solución.
+  \item $h\approx 5{,}92$ y $h<8<14$: \textbf{dos} soluciones. $B_1\approx 47{,}70^\circ$, $C_1\approx 107{,}30^\circ$, $c_1\approx 18{,}07$; $B_2\approx 132{,}30^\circ$, $C_2\approx 22{,}70^\circ$, $c_2\approx 7{,}30$.
+\end{enumerate}
+
+\subsection*{Bloque E — Aplicaciones y problemas (76--100)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=76]
+  \item $T=180^\circ-58^\circ-71^\circ=51^\circ$; $a=\dfrac{150\sen 58^\circ}{\sen 51^\circ}\approx 163{,}69$ m y $b=\dfrac{150\sen 71^\circ}{\sen 51^\circ}\approx 182{,}50$ m.
+  \item Tercer ángulo $75^\circ$; distancias $\dfrac{80\sen 65^\circ}{\sen 75^\circ}\approx 75{,}06$ m y $\dfrac{80\sen 40^\circ}{\sen 75^\circ}\approx 53{,}24$ m. Altura: $h=53{,}24\sen 65^\circ\approx 48{,}25$ m.
+  \item En $ABP$: $\angle PAB=32^\circ$ y $\angle PBA=180^\circ-55^\circ=125^\circ$, luego $\angle APB=23^\circ$. Entonces $BP=\dfrac{40\sen 32^\circ}{\sen 23^\circ}\approx 54{,}25$ m y $h=BP\sen 55^\circ\approx 44{,}44$ m.
+  \item Giro $=160^\circ-35^\circ=125^\circ$, ángulo interior $55^\circ$; $d^2=25^2+40^2-2(25)(40)\cos 55^\circ\approx 1077{,}85$, $d\approx 32{,}83$ km.
+  \item Giro $=70^\circ-30^\circ=40^\circ$, interior $140^\circ$; $d^2=200^2+150^2-2(200)(150)\cos 140^\circ\approx 108\,462{,}7$, $d\approx 329{,}34$ km.
+  \item $AB^2=320^2+245^2-2(320)(245)\cos 48^\circ\approx 57\,505{,}3$; $AB\approx 239{,}80$ m.
+  \item $\Delta=\sqrt{90\cdot45\cdot30\cdot15}=1350$ m$^2$; además $45^2+60^2=2025+3600=5625=75^2$, luego el ángulo entre $45$ y $60$ es $90^\circ$.
+  \item $P=165$ m; $\Delta=\sqrt{82{,}5\cdot42{,}5\cdot27{,}5\cdot12{,}5}\approx 1097{,}85$ m$^2$; el ángulo mayor es el opuesto a $70$: $\cos C=\dfrac{40^2+55^2-70^2}{2(40)(55)}\approx-0{,}0625$, $C\approx 93{,}57^\circ$.
+  \item No: haría falta $17<7+9=16$, que es falso. La desigualdad triangular no se cumple.
+  \item $h=\dfrac{500}{\cot 25^\circ-\cot 42^\circ}\approx 483{,}61$ m.
+  \item $d^2=12^2+18^2-2(12)(18)\cos 55^\circ\approx 220{,}21$; $d\approx 14{,}84$ km.
+  \item $C=180^\circ-72^\circ-61^\circ=47^\circ$; $AC=\dfrac{85\sen 61^\circ}{\sen 47^\circ}\approx 101{,}65$ m (y $BC\approx 110{,}53$ m).
+  \item Diagonal mayor: $d_1^2=8^2+12^2+2(8)(12)\cos 55^\circ\approx 318{,}13$, $d_1\approx 17{,}84$ cm. Diagonal menor: $d_2^2=208-110{,}13\approx 97{,}87$, $d_2\approx 9{,}89$ cm.
+  \item $c=2(10)\sen 35^\circ\approx 11{,}47$ cm.
+  \item $d^2=6{,}5^2+9^2-2(6{,}5)(9)\cos 118^\circ\approx 178{,}18$; $d\approx 13{,}35$ km.
+  \item $C=180^\circ-62^\circ-71^\circ=47^\circ$; $a\approx 258{,}57$ m y $b\approx 241{,}46$ m.
+  \item Rumbo de regreso: $S30^\circ O$, es decir $210^\circ$; recorrerá los mismos $250$ km.
+  \item $h=\dfrac{45}{\cot 32^\circ-\cot 55^\circ}\approx 49{,}99$ m.
+  \item $C=180^\circ-48^\circ-63^\circ=69^\circ$; $AC=\dfrac{100\sen 63^\circ}{\sen 69^\circ}\approx 95{,}44$ m y $BC\approx 79{,}60$ m. La distancia a la carretera es la altura: $h=95{,}44\sen 48^\circ\approx 70{,}93$ m.
+  \item $\Delta=\tfrac12(18)(25)\sen 48^\circ\approx 167{,}21$ m$^2$; $c^2=18^2+25^2-2(18)(25)\cos 48^\circ\approx 346{,}78$, $c\approx 18{,}62$ m.
+  \item $\Delta=\sqrt{21\cdot8\cdot7\cdot6}=84$ cm$^2$; $R=\dfrac{13\cdot14\cdot15}{4(84)}\approx 8{,}12$ cm.
+  \item No: $4+3=7<9$. Habría que alargar el tramo de $3$ m hasta más de $5$ m.
+  \item A las dos horas han recorrido $40$ km y $50$ km. Ángulo entre rumbos $=180^\circ-55^\circ-50^\circ=75^\circ$, interior $105^\circ$: $d^2=40^2+50^2-2(40)(50)\cos 105^\circ\approx 5135{,}3$, $d\approx 71{,}66$ km.
+  \item $\Delta=\sqrt{108{,}5\cdot53{,}5\cdot36{,}5\cdot18{,}5}\approx 1979{,}81$ m$^2$; el ángulo mayor es el opuesto a $90$: $\cos C=\dfrac{55^2+72^2-90^2}{2(55)(72)}\approx 0{,}0143$, $C\approx 89{,}18^\circ$.
+  \item $AC^2=60^2+45^2-2(60)(45)\cos 70^\circ\approx 3778{,}3$, $AC\approx 61{,}47$ m. En $ACD$: $\cos(\angle ADC)=\dfrac{50^2+40^2-AC^2}{2(50)(40)}\approx 0{,}0806$, luego $\angle ADC\approx 85{,}38^\circ$. Áreas: $\Delta_{ABC}=\tfrac12(60)(45)\sen 70^\circ\approx 1268{,}59$; $\Delta_{ACD}\approx 996{,}76$; total $\approx 2265{,}34$ m$^2$.
+\end{enumerate}
+
+\subsection*{Bloque F — Radio y área del círculo circunscrito (101--112)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=101]
+  \item $R=\dfrac{12}{2\sen 38^\circ}\approx 9{,}75$ cm; $\Delta_{\text{círculo}}=\pi R^2\approx 298{,}38$ cm$^2$.
+  \item $R=\dfrac{15}{2\sen 52^\circ}\approx 9{,}52$ cm; $\Delta_{\text{círculo}}\approx 284{,}58$ cm$^2$.
+  \item $R=\dfrac{20}{2\sen 60^\circ}\approx 11{,}55$ m; $\Delta_{\text{círculo}}\approx 418{,}88$ m$^2$.
+  \item $R=\dfrac{18}{2\sen 40^\circ}\approx 14{,}00$ m. Comprobación: $C=65^\circ$, $c\approx 25{,}38$ y $\dfrac{c}{2\sen 65^\circ}\approx 14{,}00$. $\Delta_{\text{círculo}}\approx 615{,}89$ m$^2$.
+  \item $s=12$, $\Delta=\sqrt{12\cdot5\cdot4\cdot3}\approx 26{,}83$ m$^2$; $R=\dfrac{504}{4(26{,}83)}\approx 4{,}70$ m; $\Delta_{\text{círculo}}\approx 69{,}27$ m$^2$.
+  \item $\Delta=\sqrt{21\cdot8\cdot7\cdot6}=84$ cm$^2$; $R=\dfrac{2730}{336}\approx 8{,}12$ cm; $\Delta_{\text{círculo}}\approx 207{,}39$ cm$^2$.
+  \item Hipotenusa $c=10$ cm; $R=\dfrac{10}{2}=5$ cm y $\Delta_{\text{círculo}}\approx 78{,}54$ cm$^2$. El ángulo de $90^\circ$ es recto, así que la hipotenusa es un \textbf{diámetro} y el centro está en su punto medio.
+  \item $R=\dfrac{8}{\sqrt3}\approx 4{,}62$ m y $\Delta_{\text{círculo}}\approx 67{,}02$ m$^2$. El inscrito mide $r=\dfrac{8}{2\sqrt3}\approx 2{,}31$ m, de área $\approx 16{,}76$ m$^2$: el circunscrito es \textbf{cuatro veces} mayor, porque $R=2r$.
+  \item $a=2R\sen A=2(8)\sen 50^\circ\approx 12{,}26$ cm; $\Delta_{\text{círculo}}=\pi(8)^2\approx 201{,}06$ cm$^2$.
+  \item $\sen A=\dfrac{11}{2(9)}\approx 0{,}6111$, luego $A\approx 37{,}67^\circ$ o $A\approx 142{,}33^\circ$: hay \textbf{dos} posibilidades, porque un lado y su circunradio no fijan el triángulo.
+  \item El lado opuesto a $90^\circ$ es un diámetro: $a=2R=20$ cm. $\Delta_{\text{círculo}}=\pi(10)^2\approx 314{,}16$ cm$^2$.
+  \item Altura sobre la base: $\sqrt{10^2-6^2}=8$ cm, luego $\Delta=\tfrac12(12)(8)=48$ cm$^2$; $R=\dfrac{10\cdot10\cdot12}{4(48)}=6{,}25$ cm y $\Delta_{\text{círculo}}\approx 122{,}72$ cm$^2$.
+\end{enumerate}
+
+\vspace{10pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{¡Mucho éxito!} Si resolviste los ciento doce ejercicios, habrás aplicado la
+  ley del seno y la ley del coseno en todos sus casos, incluido el ambiguo.
+  Vuelve al §4 y al §5 cada vez que dudes: decidir bien el método es más de la
+  mitad del trabajo.
+\end{cuadroinfo}
+
+\fi
+
+\end{document}
+

@@ -16,7 +16,7 @@
 % ============================================================
 
 % ── Portada / Título ─────────────────────────────────────────
-\mwportada{Guía de Estudio 2}{Aritmética, Álgebra y Ecuaciones}{Números Reales, Exponentes, Notación Científica y Ecuaciones Lineales}
+\mwportada{Guía de Estudio 2}{Aritmética, Álgebra y Ecuaciones}{Números Reales, Fracciones, Exponentes y Ecuaciones Lineales}
 
 \vspace{4pt}
 \begin{cuadroinfo}
@@ -124,6 +124,153 @@ Las fracciones son la base de todo el álgebra. Si dominas las cuatro operacione
 \end{itemize}
 
 % ============================================================
+\subsection{De decimal a fracción: la fracción generatriz}
+% ============================================================
+
+Todo decimal exacto o periódico es un número racional «disfrazado»: siempre puede escribirse como una fracción. Esa fracción se llama \textbf{fracción generatriz} y es la herramienta que permite operar con decimales periódicos sin redondear.
+
+\begin{cuadroteoria}
+  \textbf{Tres casos y sus reglas:}
+  \begin{enumerate}[leftmargin=*, label=\arabic*.]
+    \item \textbf{Decimal exacto.} En el numerador va el número sin la coma; en el denominador, una potencia de $10$ con tantos ceros como cifras decimales haya.
+          $$0{,}75 = \frac{75}{100} = \frac{3}{4}$$
+
+    \item \textbf{Periódico puro.} El período comienza justo después de la coma. En el numerador se resta la parte entera al número formado por la parte entera y el período; en el denominador van tantos $9$ como cifras tenga el período.
+          $$0{,}\overline{27} = \frac{27 - 0}{99} = \frac{3}{11}$$
+
+    \item \textbf{Periódico mixto.} Hay cifras no periódicas antes del período. En el numerador se resta lo que está antes del período al número completo hasta el período; en el denominador van tantos $9$ como cifras del período, seguidos de tantos $0$ como cifras no periódicas.
+          $$0{,}1\overline{6} = \frac{16 - 1}{90} = \frac{15}{90} = \frac{1}{6}$$
+  \end{enumerate}
+\end{cuadroteoria}
+
+\noindent\textbf{Ejemplo resuelto:} Halla la fracción generatriz de $2{,}4\overline{5}$.
+\begin{itemize}
+  \item Número completo hasta el período, sin coma: $245$. Parte anterior al período, sin coma: $24$.
+  \item Numerador: $245 - 24 = 221$. Denominador: un $9$ (una cifra periódica) seguido de un $0$ (una cifra no periódica): $90$.
+  \item Resultado: $2{,}4\overline{5} = \dfrac{221}{90}$.
+  \item \textbf{Verificación:} $221 \div 90 = 2{,}4555\ldots$ $\checkmark$
+\end{itemize}
+
+\begin{cuadroextra}
+  \textbf{¿Por qué funciona?} Si $x = 0{,}\overline{27}$, entonces $100x = 27{,}\overline{27}$. Restando miembro a miembro:
+  $$100x - x = 27{,}\overline{27} - 0{,}\overline{27} \;\Rightarrow\; 99x = 27 \;\Rightarrow\; x = \frac{27}{99}.$$
+  Las reglas anteriores son atajos de este mismo procedimiento, que funciona porque multiplicar por $10$, $100$, $1000$, \ldots{} «corre» la coma justo lo necesario para que las colas periódicas se cancelen.
+\end{cuadroextra}
+
+\begin{cuadroadvertencia}
+  \textbf{El caso más famoso:} $0{,}\overline{9} = 1$, no $0{,}999\ldots$ «casi 1». Aplicando la regla: $0{,}\overline{9} = \frac{9-0}{9} = 1$. No es un error de redondeo: ambos símbolos representan \emph{el mismo} número real.
+\end{cuadroadvertencia}
+
+% ============================================================
+\subsection{¿A qué conjunto pertenece cada número?}
+% ============================================================
+
+Clasificar un número consiste en encontrar el \textbf{conjunto más pequeño} al que pertenece. Recuerda la cadena de inclusiones y que los irracionales se unen a los racionales para formar los reales:
+$$\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}, \qquad \mathbb{I} \subset \mathbb{R}, \qquad \mathbb{Q} \cap \mathbb{I} = \varnothing.$$
+
+\noindent\textbf{Ruta de clasificación:}
+\begin{enumerate}[leftmargin=*, label=\arabic*.]
+  \item \textbf{¿Es un entero?} Si es positivo (o cero, según la convención), está en $\mathbb{N}$; si es negativo, en $\mathbb{Z}$.
+  \item \textbf{¿Es fracción, decimal exacto o decimal periódico?} Todo ello se escribe como $\frac{a}{b}$, así que pertenece a $\mathbb{Q}$.
+  \item \textbf{¿Aparece una raíz no exacta o un número como $\pi$?} Entonces es irracional: $\mathbb{I}$.
+  \item En todos los casos, el número también pertenece a $\mathbb{R}$.
+\end{enumerate}
+
+\begin{cuadroteoria}
+  \textbf{Regla práctica para raíces cuadradas} (con radicando positivo):
+  \begin{itemize}[leftmargin=*]
+    \item Si el radicando es un cuadrado perfecto ($1, 4, 9, 16, 25, 36, \ldots$), la raíz es \textbf{entera}: $\sqrt{49} = 7 \in \mathbb{N}$.
+    \item Si el radicando es una fracción con numerador y denominador cuadrados perfectos, la raíz es \textbf{racional}: $\sqrt{\frac{16}{25}} = \frac{4}{5} \in \mathbb{Q}$.
+    \item Si el radicando no es cuadrado perfecto, la raíz es \textbf{irracional}: $\sqrt{2}, \sqrt{3}, \sqrt{5}, \sqrt{7}, \sqrt{8}, \sqrt{10}, \ldots \in \mathbb{I}$.
+  \end{itemize}
+  La clave está en el valor final de la expresión, no en el símbolo $\sqrt{\phantom{x}}$ que aparece escrito.
+\end{cuadroteoria}
+
+\begin{center}
+  \renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{@{}lll@{}}
+    \toprule
+    \textbf{Expresión} & \textbf{Valor} & \textbf{Conjunto} \\
+    \midrule
+    $\sqrt{36}$ & $6$ & $\mathbb{N}$ \\
+    $-\sqrt{49}$ & $-7$ & $\mathbb{Z}$ \\
+    $\sqrt{\frac{9}{25}}$ & $\frac{3}{5}$ & $\mathbb{Q}$ \\
+    $\sqrt{0{,}16}$ & $0{,}4$ & $\mathbb{Q}$ \\
+    $\sqrt{8} = 2\sqrt{2}$ & $\approx 2{,}828$ & $\mathbb{I}$ \\
+    $\sqrt{\frac{2}{3}}$ & $\approx 0{,}816$ & $\mathbb{I}$ \\
+    $\pi$ & $\approx 3{,}1416$ & $\mathbb{I}$ \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores frecuentes al clasificar:}
+  \begin{itemize}[leftmargin=*]
+    \item $-3$ \emph{no} es natural, aunque $|-3| = 3$ sí lo sea. El signo importa.
+    \item $\sqrt{9} = 3$ es entero: el símbolo de raíz no convierte automáticamente al número en irracional.
+    \item $3{,}14$ \emph{no} es $\pi$: es un decimal exacto y por tanto racional. Lo mismo ocurre con $\frac{22}{7}$.
+    \item Una expresión con raíces puede ser racional: $\sqrt{2} \cdot \sqrt{2} = 2 \in \mathbb{N}$ y $(\sqrt{5})^2 = 5 \in \mathbb{N}$.
+    \item Todo irracional es real, pero ningún irracional es racional: $\mathbb{Q}$ e $\mathbb{I}$ no se solapan.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+% ============================================================
+\subsection{Relación de orden en $\mathbb{R}$}
+% ============================================================
+
+Escribir $a < b$ significa que $a$ está a la izquierda de $b$ en la recta numérica; equivalentemente, que $b - a > 0$. Esta idea, tan simple, permite ordenar cualquier colección de números reales, incluidos los irracionales.
+
+\begin{cuadroteoria}
+  \textbf{Propiedades de la relación de orden} (para $a, b, c \in \mathbb{R}$):
+  \begin{enumerate}[leftmargin=*, label=\arabic*.]
+    \item \textbf{Tricotomía:} se cumple exactamente una de las tres: $a < b$, $a = b$ o $a > b$.
+    \item \textbf{Transitividad:} si $a < b$ y $b < c$, entonces $a < c$.
+    \item \textbf{Suma:} si $a < b$, entonces $a + c < b + c$.
+    \item \textbf{Multiplicación:} si $a < b$ y $c > 0$, entonces $ac < bc$; si $c < 0$, el sentido de la desigualdad se invierte ($ac > bc$).
+    \item \textbf{Densidad:} entre dos reales distintos siempre hay otro real; por ejemplo, su promedio $\frac{a+b}{2}$.
+  \end{enumerate}
+\end{cuadroteoria}
+
+\begin{cuadrosolucion}
+  \textbf{Estrategias para comparar números reales:}
+  \begin{enumerate}[leftmargin=*, label=\arabic*.]
+    \item \textbf{Fracciones:} reduce a común denominador o multiplica en cruz. Con $b, d > 0$:
+          $$\frac{a}{b} < \frac{c}{d} \iff a \cdot d < b \cdot c.$$
+
+    \item \textbf{Decimales:} compara cifra por cifra. Si ambos son negativos, el de mayor valor absoluto es el menor.
+
+    \item \textbf{Raíces del mismo índice:} si $a, b \geq 0$, entonces
+          $$\sqrt{a} < \sqrt{b} \iff a < b.$$
+          Por ejemplo, $\sqrt{7} < \sqrt{10}$ porque $7 < 10$.
+
+    \item \textbf{Raíces distintas o raíz frente a decimal:} eleva ambos números al cuadrado (si son positivos) y compara los resultados. Así, para comparar $2\sqrt{3}$ y $3\sqrt{2}$:
+          $$(2\sqrt{3})^2 = 12, \qquad (3\sqrt{2})^2 = 18 \quad\Rightarrow\quad 2\sqrt{3} < 3\sqrt{2}.$$
+
+    \item \textbf{Números negativos:} multiplicar por $-1$ invierte el orden. Como $\sqrt{5} > 2$, se deduce que $-\sqrt{5} < -2$.
+  \end{enumerate}
+\end{cuadrosolucion}
+
+\begin{cuadroinfo}
+  \small
+  \textbf{Valores aproximados útiles:} $\sqrt{2} \approx 1{,}414$, \quad $\sqrt{3} \approx 1{,}732$, \quad $\sqrt{5} \approx 2{,}236$, \quad $\sqrt{7} \approx 2{,}646$, \quad $\sqrt{10} \approx 3{,}162$, \quad $\pi \approx 3{,}1416$.
+\end{cuadroinfo}
+
+\noindent\textbf{Ejemplo resuelto (ordenar):} Ordena de menor a mayor $-\sqrt{3}$, $-1{,}5$, $0$, $\frac{2}{3}$, $\sqrt{2}$ y $1{,}7$.
+\begin{itemize}
+  \item Valores aproximados: $\sqrt{3} \approx 1{,}732$, $\sqrt{2} \approx 1{,}414$ y $\frac{2}{3} \approx 0{,}667$.
+  \item Entre los negativos, $-\sqrt{3} \approx -1{,}732$ es menor que $-1{,}5$.
+  \item Resultado: $-\sqrt{3} < -1{,}5 < 0 < \frac{2}{3} < \sqrt{2} < 1{,}7$.
+\end{itemize}
+
+\noindent\textbf{Ejemplo resuelto (raíces):} ¿Cuál es mayor, $\sqrt{2} + \sqrt{3}$ o $\sqrt{5}$?
+\begin{itemize}
+  \item Ambos son positivos, así que podemos elevar al cuadrado sin cambiar la desigualdad.
+  \item $(\sqrt{2} + \sqrt{3})^2 = 2 + 2\sqrt{6} + 3 = 5 + 2\sqrt{6}$.
+  \item $(\sqrt{5})^2 = 5$.
+  \item Como $5 + 2\sqrt{6} > 5$, resulta $\sqrt{2} + \sqrt{3} > \sqrt{5}$.
+\end{itemize}
+
+% ============================================================
 \subsection{Ejercicios: Números Reales y Fracciones}
 % ============================================================
 
@@ -163,7 +310,90 @@ Las fracciones son la base de todo el álgebra. Si dominas las cuatro operacione
   \item \dificil{} Demuestra que $0{,}999\ldots = 1$ usando álgebra. (Pista: sea $x = 0{,}999\ldots$, multiplica por 10 y resta.)
 \end{enumerate}
 
-\newpage
+% ============================================================
+\subsection{Ejercicios: Fracción generatriz}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Halla la fracción generatriz de $0{,}4$.
+
+  \item \facil{} Halla la fracción generatriz de $0{,}75$.
+
+  \item \facil{} Halla la fracción generatriz de $0{,}\overline{6}$.
+
+  \item \medio{} Halla la fracción generatriz de $0{,}\overline{36}$.
+
+  \item \medio{} Halla la fracción generatriz de $0{,}3\overline{8}$.
+
+  \item \medio{} Halla la fracción generatriz de $1{,}\overline{27}$.
+
+  \item \medio{} Halla la fracción generatriz de $0{,}58\overline{3}$.
+
+  \item \dificil{} Demuestra, usando fracción generatriz, que $0{,}4\overline{9} = 0{,}5$. ¿Contradice esto la unicidad de la escritura decimal?
+\end{enumerate}
+
+% ============================================================
+\subsection{Ejercicios: Conjuntos numéricos y orden}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*, resume]
+  \item \facil{} Clasifica cada número en el conjunto más pequeño al que pertenece ($\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$ o $\mathbb{I}$):
+        \begin{multicols}{3}
+          \begin{enumerate}[label=\alph*)]
+            \item $\sqrt{16}$
+            \item $-\sqrt{25}$
+            \item $\sqrt{\frac{1}{9}}$
+            \item $\sqrt{7}$
+            \item $0{,}\overline{3}$
+            \item $\pi$
+            \item $-\frac{2}{5}$
+            \item $0{,}75$
+          \end{enumerate}
+        \end{multicols}
+
+  \item \medio{} Copia la tabla en tu cuaderno y marca con $\in$ si el número pertenece al conjunto, o con $\notin$ si no pertenece. Usa la convención $\mathbb{N} = \{1, 2, 3, \ldots\}$.
+
+        \begin{center}
+          \renewcommand{\arraystretch}{1.6}
+          \begin{tabular}{|c|c|c|c|c|c|}
+            \hline
+            \textbf{Número} & $\mathbb{N}$ & $\mathbb{Z}$ & $\mathbb{Q}$ & $\mathbb{I}$ & $\mathbb{R}$ \\
+            \hline
+            $-5$ & & & & & \\ \hline
+            $\frac{3}{4}$ & & & & & \\ \hline
+            $\sqrt{16}$ & & & & & \\ \hline
+            $\sqrt{5}$ & & & & & \\ \hline
+            $-\frac{7}{2}$ & & & & & \\ \hline
+            $0{,}\overline{3}$ & & & & & \\ \hline
+            $0$ & & & & & \\ \hline
+            $\pi$ & & & & & \\ \hline
+            $-\sqrt{9}$ & & & & & \\ \hline
+            $2{,}5$ & & & & & \\ \hline
+          \end{tabular}
+        \end{center}
+
+  \item \medio{} Ordena de menor a mayor: $-\sqrt{3}$, $-1{,}5$, $0$, $\frac{2}{3}$, $\sqrt{2}$, $1{,}7$.
+
+  \item \medio{} Compara usando $<$, $>$ o $=$:
+        \begin{enumerate}[label=\alph*)]
+          \item $\sqrt{7}$ y $2{,}6$
+          \item $2\sqrt{3}$ y $3\sqrt{2}$
+          \item $-\sqrt{5}$ y $-2$
+        \end{enumerate}
+
+  \item \medio{} Indica si cada afirmación es verdadera o falsa y justifica:
+        \begin{enumerate}[label=\alph*)]
+          \item Todo número entero es racional.
+          \item $\sqrt{2}$ es racional porque $1{,}414$ tiene finitas cifras decimales.
+          \item $\pi = \frac{22}{7}$.
+          \item Existe un número racional entre $0{,}5$ y $0{,}6$.
+          \item Todo número irracional es real.
+        \end{enumerate}
+
+  \item \dificil{} Ordena de menor a mayor: $\pi$, $\sqrt{10}$, $3{,}2$, $\sqrt{11}$, $\frac{10}{3}$.
+
+  \item \dificil{} ¿Cuál es mayor, $1 + \sqrt{2}$ o $\sqrt{5}$? Justifica sin usar calculadora.
+\end{enumerate}
 
 % ============================================================
 \section{Exponentes y Notación Científica}
@@ -424,10 +654,67 @@ $$\begin{cases} x + y = 10 \\ 2x - y = 5 \end{cases}$$
     \item Sea $x = 0{,}999\ldots$ Entonces $10x = 9{,}999\ldots$ Restando: $10x - x = 9{,}999\ldots - 0{,}999\ldots \Rightarrow 9x = 9 \Rightarrow x = 1$.
   \end{enumerate}
 
-  \subsection*{Exponentes y Notación Científica (Ejercicios 13--24)}
+  \subsection*{Fracción generatriz (Ejercicios 13--20)}
 
   \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
     \setcounter{enumi}{12}
+    \item $0{,}4 = \frac{4}{10} = \frac{2}{5}$
+
+    \item $0{,}75 = \frac{75}{100} = \frac{3}{4}$
+
+    \item $0{,}\overline{6} = \frac{6-0}{9} = \frac{6}{9} = \frac{2}{3}$
+
+    \item $0{,}\overline{36} = \frac{36-0}{99} = \frac{36}{99} = \frac{4}{11}$
+
+    \item $0{,}3\overline{8} = \frac{38-3}{90} = \frac{35}{90} = \frac{7}{18}$
+
+    \item $1{,}\overline{27} = \frac{127-1}{99} = \frac{126}{99} = \frac{14}{11}$
+
+    \item $0{,}58\overline{3} = \frac{583-58}{900} = \frac{525}{900} = \frac{7}{12}$
+
+    \item $0{,}4\overline{9} = \frac{49-4}{90} = \frac{45}{90} = \frac{1}{2} = 0{,}5$. No contradice la unicidad: $0{,}4999\ldots$ y $0{,}5000\ldots$ son dos escrituras del mismo número real (ocurre con todo decimal que termina en una secuencia infinita de $9$).
+  \end{enumerate}
+
+  \subsection*{Conjuntos numéricos y orden (Ejercicios 21--27)}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \setcounter{enumi}{20}
+    \item a) $\sqrt{16} = 4 \in \mathbb{N}$. \quad b) $-\sqrt{25} = -5 \in \mathbb{Z}$. \quad c) $\sqrt{\frac{1}{9}} = \frac{1}{3} \in \mathbb{Q}$. \quad d) $\sqrt{7} \in \mathbb{I}$. \quad e) $0{,}\overline{3} = \frac{1}{3} \in \mathbb{Q}$. \quad f) $\pi \in \mathbb{I}$. \quad g) $-\frac{2}{5} \in \mathbb{Q}$. \quad h) $0{,}75 = \frac{3}{4} \in \mathbb{Q}$.
+
+    \item Tabla completa:
+          \begin{center}
+            \renewcommand{\arraystretch}{1.5}
+            \begin{tabular}{|c|c|c|c|c|c|}
+              \hline
+              \textbf{Número} & $\mathbb{N}$ & $\mathbb{Z}$ & $\mathbb{Q}$ & $\mathbb{I}$ & $\mathbb{R}$ \\ \hline
+              $-5$ & $\notin$ & $\in$ & $\in$ & $\notin$ & $\in$ \\ \hline
+              $\frac{3}{4}$ & $\notin$ & $\notin$ & $\in$ & $\notin$ & $\in$ \\ \hline
+              $\sqrt{16}$ & $\in$ & $\in$ & $\in$ & $\notin$ & $\in$ \\ \hline
+              $\sqrt{5}$ & $\notin$ & $\notin$ & $\notin$ & $\in$ & $\in$ \\ \hline
+              $-\frac{7}{2}$ & $\notin$ & $\notin$ & $\in$ & $\notin$ & $\in$ \\ \hline
+              $0{,}\overline{3}$ & $\notin$ & $\notin$ & $\in$ & $\notin$ & $\in$ \\ \hline
+              $0$ & $\notin$ & $\in$ & $\in$ & $\notin$ & $\in$ \\ \hline
+              $\pi$ & $\notin$ & $\notin$ & $\notin$ & $\in$ & $\in$ \\ \hline
+              $-\sqrt{9}$ & $\notin$ & $\in$ & $\in$ & $\notin$ & $\in$ \\ \hline
+              $2{,}5$ & $\notin$ & $\notin$ & $\in$ & $\notin$ & $\in$ \\ \hline
+            \end{tabular}
+          \end{center}
+
+    \item $-\sqrt{3} \approx -1{,}732 < -1{,}5 < 0 < \frac{2}{3} \approx 0{,}667 < \sqrt{2} \approx 1{,}414 < 1{,}7$.
+
+    \item a) $2{,}6^2 = 6{,}76 < 7$, luego $\sqrt{7} > 2{,}6$. \quad b) $2\sqrt{3} = \sqrt{12} \approx 3{,}464$ y $3\sqrt{2} = \sqrt{18} \approx 4{,}243$, luego $2\sqrt{3} < 3\sqrt{2}$. \quad c) $\sqrt{5} \approx 2{,}236 > 2$, luego $-\sqrt{5} < -2$.
+
+    \item a) Verdadero: todo entero $n$ se escribe como $\frac{n}{1}$. \quad b) Falso: $1{,}414$ es solo un truncamiento; la expansión de $\sqrt{2}$ es infinita y no periódica. \quad c) Falso: $\frac{22}{7} = 3{,}\overline{142857}$ es racional y solo aproxima a $\pi$. \quad d) Verdadero: por densidad, $\frac{0{,}5 + 0{,}6}{2} = 0{,}55$ está entre ambos. \quad e) Verdadero: $\mathbb{I} \subset \mathbb{R}$.
+
+    \item $\pi \approx 3{,}1416 < \sqrt{10} \approx 3{,}1623 < 3{,}2 < \sqrt{11} \approx 3{,}3166 < \frac{10}{3} \approx 3{,}3333$.
+
+    \item $1 + \sqrt{2} \approx 2{,}414 > \sqrt{5} \approx 2{,}236$. Elevando al cuadrado (ambos son positivos): $(1+\sqrt{2})^2 = 3 + 2\sqrt{2} \approx 5{,}828 > 5 = (\sqrt{5})^2$.
+  \end{enumerate}
+
+  \subsection*{Exponentes y Notación Científica (Ejercicios 28--39)}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \setcounter{enumi}{27}
     \item $3^4 \cdot 3^2 = 3^{4+2} = 3^6 = 729$
 
     \item $\frac{5^7}{5^3} = 5^{7-3} = 5^4 = 625$
@@ -453,10 +740,10 @@ $$\begin{cases} x + y = 10 \\ 2x - y = 5 \end{cases}$$
     \item $2 \times 10^{-6} \times 5 \times 10^3 = 10 \times 10^{-3} = 1 \times 10^{-2}\,\text{m} = 0{,}01\,\text{m} = 10\,\text{mm}$.
   \end{enumerate}
 
-  \subsection*{Ecuaciones Lineales y Sistemas (Ejercicios 25--36)}
+  \subsection*{Ecuaciones Lineales y Sistemas (Ejercicios 40--51)}
 
   \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-    \setcounter{enumi}{24}
+    \setcounter{enumi}{39}
     \item $3x + 7 = 22 \Rightarrow 3x = 15 \Rightarrow x = 5$.
 
     \item $4x - 5 = 2x + 9 \Rightarrow 2x = 14 \Rightarrow x = 7$.

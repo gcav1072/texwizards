@@ -1,0 +1,3107 @@
+% ============================================================
+%  GUÍA TEMÁTICA — MATRICES
+%  Curso: 5to Año — Matemática
+%  Autor: Ing. Gabriel Astudillo
+%
+%  CONTENIDO
+%    §1 Definición, filas y columnas
+%    §2 Orden de las matrices
+%    §3 Operaciones con matrices
+%        3.1 Multiplicación por un escalar
+%        3.2 Suma y resta
+%        3.3 Sistemas con matrices (2x2, 3x3 y casos 2x3 / 3x2)
+%        3.4 Multiplicación de matrices
+%    §4 Matrices equivalentes
+%    §5 Operaciones que producen matrices equivalentes
+%    §6 Sistemas por Gauss y Gauss-Jordan
+%    §7 Determinantes (2x2, 3x3 por Sarrus, 4x4 por cofactores)
+%    §8 Regla de Cramer
+%    §9 Matriz inversa (por Gauss-Jordan sobre [A|I])
+%    §10 Formulario resumen
+%    §11 Banco de 88 ejercicios
+%    Clave de respuestas comentada (entre \ifmwclaves ... \fi)
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+\usepackage{mathwizards-guia}
+\mwguia{Guía Temática — Matrices}{Ing. Gabriel Astudillo $\cdot$ 5to Año — Matemática}
+\providecommand{\sen}{\sin}
+\setlength{\emergencystretch}{2em}
+
+\usetikzlibrary{matrix, fit, backgrounds, decorations.pathreplacing}
+
+% ============================================================
+%  MACROS DE MATRICES
+% ============================================================
+
+% Matriz entre corchetes y determinante entre barras verticales.
+% Uso: \mwmat{1 & 2 \\ 3 & 4}   \mwdet{1 & 2 \\ 3 & 4}
+\newcommand{\mwmat}[1]{\ensuremath{\begin{bmatrix}#1\end{bmatrix}}}
+\newcommand{\mwdet}[1]{\ensuremath{\begin{vmatrix}#1\end{vmatrix}}}
+
+% Matriz aumentada: \mwaug{cc|c}{1 & 2 & 3 \\ 4 & 5 & 6}
+\newcommand{\mwaug}[2]{\ensuremath{\left[\begin{array}{@{}#1@{}}#2\end{array}\right]}}
+
+% ============================================================
+%  ESTILOS TikZ PARA LAS FIGURAS
+% ============================================================
+\tikzset{
+  mwcelda/.style      = {draw=mwprimario!45, fill=white, minimum width=1.18cm,
+                         minimum height=0.82cm, inner sep=1pt, font=\small,
+                         anchor=center},
+  mwceldafila/.style  = {mwcelda, fill=mwnaranja!20, draw=mwnaranja},
+  mwceldacol/.style   = {mwcelda, draw=mwmagenta, line width=1pt},
+  mwceldagris/.style  = {draw=mwgris!45, minimum width=1.18cm,
+                         minimum height=0.82cm, inner sep=1pt, font=\small,
+                         anchor=center, text=mwgris},
+  mwceldaborrada/.style = {mwceldagris, fill=mwgris!18, text=mwgris!55},
+  mwceldapiv/.style   = {mwcelda, fill=mwvioleta!20, draw=mwvioleta,
+                         line width=1pt},
+  mwpaso/.style       = {draw=mwprimario, fill=mwprimario!8,
+                         rounded corners=4pt, minimum width=2.75cm,
+                         minimum height=0.8cm, font=\scriptsize, align=center},
+  mwflecha/.style     = {-{Stealth[length=2.2mm]}, mwprimario, thick},
+}
+
+% ============================================================
+%  BANCO DE EJERCICIOS CON NUMERACIÓN CONTINUA
+% ============================================================
+\newcommand{\mwcheck}[2]{%
+  \ifnum\value{enumi}=#2\relax
+    \typeout{MW: #1 correcto (#2)}%
+  \else
+    \GenericWarning{}{MW Warning: #1 termina en \the\value{enumi}; se esperaba #2}%
+  \fi}
+\newcommand{\mwsecname}{}
+\newcommand{\mwsecexp}{0}
+\newcommand{\mwsecstart}{0}
+% Uso: \mwbloquehead{título}{último nº del bloque}{último nº del bloque anterior}
+\newcommand{\mwbloquehead}[3]{%
+  \renewcommand{\mwsecname}{#1}%
+  \renewcommand{\mwsecexp}{#2}%
+  \renewcommand{\mwsecstart}{#3}}
+\newenvironment{mwbloque}{%
+  \subsection*{\mwsecname}%
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]%
+  \setcounter{enumi}{\mwsecstart}%
+}{%
+  \mwcheck{\mwsecname}{\mwsecexp}%
+  \end{enumerate}}
+
+\begin{document}
+% ============================================================
+
+\renewcommand{\arraystretch}{1.15}
+
+% Un poco de aire después de las estrellas de dificultad
+\renewcommand{\facil}{{\color{mwnaranja}$\bigstar\!\!$}\hspace{2pt}}
+\renewcommand{\medio}{{\color{mwrojonaranja}$\bigstar\!\bigstar\!\!$}\hspace{2pt}}
+\renewcommand{\dificil}{{\color{mwprimario}$\bigstar\!\bigstar\!\bigstar\!\!$}\hspace{2pt}}
+
+\mwportada{Matrices}{Guía temática completa}{De la definición a la inversa, paso a paso}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación.} Una \textbf{matriz} es una de esas ideas que
+  aparecen en todas partes: en una planilla de notas, en la lista de precios
+  de un inventario, en la programación de una computadora y, sobre todo, en
+  el álgebra lineal. Su fuerza está en que permite \emph{ordenar} mucha
+  información y \emph{operar} con ella mediante reglas fijas.
+  \\[4pt]
+  \textbf{Qué vas a aprender:}
+  \begin{itemize}[leftmargin=1.2em, nosep, topsep=2pt]
+    \item definir una matriz y ubicar cada elemento por fila y columna;
+    \item determinar el \textbf{orden} de una matriz y reconocer las matrices
+          especiales;
+    \item multiplicar por un escalar, sumar, restar y multiplicar matrices,
+          sabiendo \emph{cuándo} cada operación es posible;
+    \item escribir un sistema de ecuaciones en forma matricial y resolverlo
+          por \textbf{Gauss}, \textbf{Gauss-Jordan} y \textbf{Cramer};
+    \item calcular determinantes de $2\times2$, de $3\times3$ por
+          \textbf{Sarrus} y de $4\times4$ o mayores por \textbf{cofactores};
+    \item reconocer y producir \textbf{matrices equivalentes} mediante
+          operaciones elementales de fila;
+    \item calcular la \textbf{matriz inversa} reduciendo $[A\mid I]$ y usarla
+          para resolver sistemas.
+  \end{itemize}
+  \par\medskip
+  \textbf{Cómo usar la guía.} Lee cada sección con lápiz en mano y \emph{reproduce
+  cada ejemplo} antes de mirar la solución. Los recuadros rojos son teoría
+  (definiciones y propiedades), los magentas son ejemplos resueltos, los
+  naranjas son procedimientos y los rojo-anaranjados son advertencias sobre
+  errores clásicos. Al final, el banco de \textbf{88 ejercicios} te permite
+  comprobar lo aprendido con la clave comentada.
+\end{cuadroinfo}
+
+\begin{cuadroteoria}
+  \small
+  \textbf{El mapa de la guía}\\[6pt]
+  \begin{center}
+  \begin{tikzpicture}[node distance=0.35cm and 0.35cm]
+    \node (n1) [mwpaso] {Definición\\filas y columnas};
+    \node (n2) [mwpaso, right=of n1] {Orden de\\la matriz};
+    \node (n3) [mwpaso, right=of n2] {Operaciones\\básicas};
+    \node (n4) [mwpaso, below=0.85cm of n1] {Sistemas\\$A\mathbf{x}=\mathbf{b}$};
+    \node (n5) [mwpaso, right=of n4] {Matrices\\equivalentes};
+    \node (n6) [mwpaso, right=of n5] {Gauss y\\Gauss-Jordan};
+    \node (n7) [mwpaso, below=0.85cm of n4] {Determinantes\\Sarrus y cofactores};
+    \node (n8) [mwpaso, right=of n7] {Regla de\\Cramer};
+    \node (n9) [mwpaso, right=of n8] {Matriz\\inversa};
+    \foreach \a/\b in {n1/n2, n2/n3, n4/n5, n5/n6, n7/n8, n8/n9}
+      \draw[mwflecha] (\a) -- (\b);
+    \draw[mwflecha] (n3.south) -- ++(0,-0.45) -| (n4.north);
+    \draw[mwflecha] (n6.south) -- ++(0,-0.45) -| (n7.north);
+  \end{tikzpicture}
+  \end{center}
+\end{cuadroteoria}
+
+% ============================================================
+\section{Definición, filas y columnas}
+% ============================================================
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Definición.} Una \textbf{matriz} es un arreglo rectangular de
+  números ordenados en \textbf{filas} (horizontales) y \textbf{columnas}
+  (verticales). Los números del arreglo se llaman \textbf{elementos} o
+  \textbf{entradas} de la matriz.
+  \[
+    A=\mwmat{2 & -1 & 3\\ 0 & 5 & -4}
+  \]
+  Esta matriz tiene $2$ filas y $3$ columnas: se dice que es de orden
+  $2\times3$ y que tiene $2\cdot3=6$ elementos.
+\end{cuadroteoria}
+
+Las filas se leen de \textbf{arriba hacia abajo} y las columnas de
+\textbf{izquierda a derecha}. En el ejemplo anterior:
+
+\begin{center}
+\small
+\begin{tabular}{@{}ll@{}}
+  \toprule
+  \textbf{Concepto} & \textbf{En la matriz $A$} \\
+  \midrule
+  Primera fila    & $(2,\;-1,\;3)$ \\
+  Segunda fila    & $(0,\;5,\;-4)$ \\
+  Primera columna & $(2,\;0)$ \\
+  Segunda columna & $(-1,\;5)$ \\
+  Tercera columna & $(3,\;-4)$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[baseline=(M.center)]
+  \matrix (M) [matrix of math nodes, nodes={mwcelda},
+               row sep=-\pgflinewidth, column sep=-\pgflinewidth,
+               row 1/.style={nodes={mwceldafila}},
+               column 2/.style={nodes={draw=mwmagenta, line width=1pt}}] {
+    a_{11} & a_{12} & a_{13}\\
+    a_{21} & a_{22} & a_{23}\\
+  };
+  \node[left=0.45cm of M-1-1, font=\scriptsize, mwnaranja] {fila 1};
+  \node[left=0.45cm of M-2-1, font=\scriptsize, mwprimario] {fila 2};
+  \node[above=0.3cm of M-1-2, font=\scriptsize, mwmagenta] {columna 2};
+  \draw[decorate, decoration={brace, amplitude=4pt, mirror}, mwmagenta]
+    (M-2-2.south west) -- (M-2-2.south east);
+  \node[below=0.35cm of M-2-2, font=\scriptsize, mwmagenta] {columna};
+\end{tikzpicture}
+\end{center}
+
+\subsection*{Notación de los elementos}
+
+Cada elemento se identifica con \textbf{dos subíndices}:
+\[
+  a_{ij} \quad\Longleftrightarrow\quad
+  \begin{array}{l}
+    i=\text{número de \textbf{fila} (de arriba hacia abajo)},\\[2pt]
+    j=\text{número de \textbf{columna} (de izquierda a derecha)}.
+  \end{array}
+\]
+Así, en la matriz $A$ de arriba:
+\[
+  a_{11}=2,\qquad a_{12}=-1,\qquad a_{13}=3,\qquad
+  a_{21}=0,\qquad a_{22}=5,\qquad a_{23}=-4.
+\]
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{El orden de los subíndices no es negociable.} $a_{12}$ es el
+  elemento de la fila $1$ y la columna $2$; $a_{21}$ es el de la fila $2$ y
+  la columna $1$. En una matriz no cuadrada son números distintos (aquí
+  $a_{12}=-1$ y $a_{21}=0$). Escribe siempre \emph{primero la fila, después
+  la columna}: es la misma idea que usar $(x,y)$ para un punto, donde
+  primero va la horizontal.
+\end{cuadroadvertencia}
+
+\subsection*{Igualdad de matrices}
+
+\begin{cuadroteoria}
+  \small
+  Dos matrices $A$ y $B$ son \textbf{iguales} ($A=B$) si y solo si:
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item tienen el \textbf{mismo orden}, y
+    \item cada elemento de $A$ es igual al elemento que ocupa la
+          \textbf{misma posición} en $B$: $a_{ij}=b_{ij}$ para todo $i,j$.
+  \end{enumerate}
+\end{cuadroteoria}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo.} Determinar $x$ e $y$ para que
+  \[
+    \mwmat{x+1 & 3\\ 4 & 2y}=\mwmat{5 & 3\\ 4 & 10}.
+  \]
+  Ambas son de orden $2\times2$. Igualando posición por posición:
+  \[
+    x+1=5\;\Rightarrow\;x=4,
+    \qquad 2y=10\;\Rightarrow\;y=5.
+  \]
+  \textbf{Comprobación:} con $x=4$ y $y=5$ la primera matriz es
+  $\mwmat{5&3\\4&10}$, idéntica a la segunda.
+\end{cuadrosolucion}
+
+\subsection*{Matrices especiales}
+
+Estas matrices aparecerán una y otra vez en el resto de la guía; conviene
+tenerlas identificadas.
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.26\linewidth} p{0.30\linewidth} p{0.36\linewidth}@{}}
+  \toprule
+  \textbf{Nombre} & \textbf{Forma} & \textbf{Qué la caracteriza} \\
+  \midrule
+  Matriz nula $O$ & $\mwmat{0&0\\0&0}$ &
+    Todos sus elementos son $0$. \\[6pt]
+  Matriz identidad $I_n$ & $\mwmat{1&0\\0&1}$ &
+    Cuadrada; $1$ en la diagonal principal y $0$ fuera de ella. \\[6pt]
+  Matriz diagonal & $\mwmat{3&0\\0&-2}$ &
+    Cuadrada; solo puede tener elementos no nulos en la diagonal. \\[6pt]
+  Triangular superior & $\mwmat{2&5\\0&-1}$ &
+    Cuadrada; todos los elementos \emph{debajo} de la diagonal son $0$. \\[6pt]
+  Triangular inferior & $\mwmat{2&0\\5&-1}$ &
+    Cuadrada; todos los elementos \emph{encima} de la diagonal son $0$. \\[6pt]
+  Matriz fila & $\mwmat{4 & -1 & 7}$ &
+    Tiene una sola fila ($1\times n$). \\[6pt]
+  Matriz columna & $\mwmat{4\\-1\\7}$ &
+    Tiene una sola columna ($m\times1$). \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\begin{cuadroextra}
+  \small
+  \textbf{La diagonal principal} de una matriz cuadrada son los elementos
+  $a_{11},a_{22},\dots,a_{nn}$, es decir, los que van de la esquina superior
+  izquierda a la inferior derecha. La \textbf{diagonal secundaria} va de la
+  esquina superior derecha a la inferior izquierda. Solo las matrices
+  \emph{cuadradas} tienen diagonal principal en sentido estricto.
+\end{cuadroextra}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 1.} Para
+  $B=\mwmat{1 & 0 & -2\\ 3 & 4 & 5}$, indicar su orden, sus filas, sus
+  columnas y los elementos $b_{13}$, $b_{22}$ y $b_{31}$.
+
+  \medskip
+  \textbf{Solución.} $B$ tiene $2$ filas y $3$ columnas: orden $2\times3$.
+  \[
+    \text{Filas: } (1,0,-2)\ \text{y}\ (3,4,5);
+    \qquad
+    \text{Columnas: } \mwmat{1\\3},\ \mwmat{0\\4},\ \mwmat{-2\\5}.
+  \]
+  \[
+    b_{13}=-2,\qquad b_{22}=4,\qquad b_{31}\ \text{no existe (solo hay 2 filas).}
+  \]
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 2.} Construir la matriz $C=(c_{ij})$ de orden $3\times2$
+  definida por $c_{ij}=2i-j$.
+
+  \medskip
+  \textbf{Solución.} Se calcula cada posición sustituyendo $i$ (fila) y $j$
+  (columna):
+  \[
+    \begin{array}{ll}
+      c_{11}=2(1)-1=1, & c_{12}=2(1)-2=0,\\[2pt]
+      c_{21}=2(2)-1=3, & c_{22}=2(2)-2=2,\\[2pt]
+      c_{31}=2(3)-1=5, & c_{32}=2(3)-2=4.
+    \end{array}
+    \qquad
+    C=\mwmat{1 & 0\\ 3 & 2\\ 5 & 4}.
+  \]
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 3.} ¿Son iguales
+  $P=\mwmat{2 & -1\\ 0 & 4}$ y $Q=\mwmat{2 & -1 & 0\\ 0 & 4 & 0}$?
+
+  \medskip
+  \textbf{Solución.} No. Aunque los números «se parecen», $P$ es de orden
+  $2\times2$ y $Q$ es de orden $2\times3$. La igualdad exige, antes que nada,
+  el mismo orden.
+\end{cuadrosolucion}
+
+% ============================================================
+\section{Orden de las matrices}
+% ============================================================
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Definición.} El \textbf{orden} (o \textbf{dimensión}, o
+  \textbf{tamaño}) de una matriz es el par
+  \[
+    m\times n
+    \qquad
+    \begin{array}{l}
+      m=\text{número de filas},\\[2pt]
+      n=\text{número de columnas}.
+    \end{array}
+  \]
+  Se lee «$m$ por $n$» y \textbf{siempre se escribe primero el número de
+  filas}. Una matriz de orden $m\times n$ tiene exactamente $m\cdot n$
+  elementos.
+\end{cuadroteoria}
+
+\begin{center}
+\begin{tikzpicture}[baseline=(M.center)]
+  \matrix (M) [matrix of math nodes, nodes={mwcelda},
+               row sep=-\pgflinewidth, column sep=-\pgflinewidth] {
+    a_{11} & a_{12} & a_{13}\\
+    a_{21} & a_{22} & a_{23}\\
+  };
+  \draw[decorate, decoration={brace, amplitude=5pt}, mwnaranja]
+    (M-1-3.north east) -- (M-2-3.south east);
+  \node[right=0.35cm of M-2-3, font=\small, mwnaranja, align=left]
+    {$m=2$ filas};
+  \draw[decorate, decoration={brace, amplitude=5pt, mirror}, mwmagenta]
+    (M-2-1.south west) -- (M-2-3.south east);
+  \node[below=0.4cm of M-2-2, font=\small, mwmagenta]
+    {$n=3$ columnas};
+  \node[below=1.05cm of M-2-2, font=\small, mwgris]
+    {orden $2\times3$ $\;\Rightarrow\;$ $2\cdot3=6$ elementos};
+\end{tikzpicture}
+\end{center}
+
+\subsection*{Clasificación según el orden}
+
+\begin{center}
+\small
+\begin{tabular}{@{}lll@{}}
+  \toprule
+  \textbf{Tipo} & \textbf{Condición} & \textbf{Ejemplos de orden} \\
+  \midrule
+  Matriz cuadrada     & $m=n$      & $2\times2$, $3\times3$, $n\times n$ \\
+  Matriz rectangular  & $m\neq n$  & $2\times3$, $3\times2$, $1\times4$ \\
+  Matriz fila         & $m=1$      & $1\times2$, $1\times5$ \\
+  Matriz columna      & $n=1$      & $2\times1$, $4\times1$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Consecuencias inmediatas del orden:}
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item Solo se pueden \textbf{sumar o restar} matrices del \emph{mismo}
+          orden.
+    \item Solo se pueden \textbf{multiplicar} $A$ y $B$ si el número de
+          columnas de $A$ coincide con el número de filas de $B$.
+    \item Una matriz cuadrada $n\times n$ tiene $n^2$ elementos y es la
+          única a la que se le puede calcular determinante en el sentido
+          clásico.
+    \item El orden \textbf{no} dice cuántos elementos distintos hay: dice
+          cuántas posiciones existen.
+  \end{enumerate}
+\end{cuadroteoria}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 1.} Indicar el orden y el número de elementos de cada
+  matriz.
+  \[
+    A=\mwmat{1&2&3\\4&5&6},\qquad
+    B=\mwmat{1&2\\3&4\\5&6},\qquad
+    C=\mwmat{1&2&3\\4&5&6\\7&8&9},\qquad
+    D=\mwmat{7&0&1}.
+  \]
+
+  \medskip
+  \textbf{Solución.}
+  \begin{center}
+  \begin{tabular}{@{}lccc@{}}
+    \toprule
+    \textbf{Matriz} & \textbf{Filas} & \textbf{Columnas} & \textbf{Orden / elementos} \\
+    \midrule
+    $A$ & 2 & 3 & $2\times3$ \quad 6 \\
+    $B$ & 3 & 2 & $3\times2$ \quad 6 \\
+    $C$ & 3 & 3 & $3\times3$ \quad 9 \\
+    $D$ & 1 & 3 & $1\times3$ \quad 3 \\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+  Observa que $A$ y $B$ tienen los mismos $6$ elementos, pero \textbf{no} son
+  iguales: sus órdenes son distintos.
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 2.} Una matriz tiene $20$ elementos y $4$ filas. ¿Cuál es
+  su orden? ¿Y si tuviera $4$ columnas?
+
+  \medskip
+  \textbf{Solución.} Como $m\cdot n=20$ y $m=4$, entonces $n=20/4=5$: el
+  orden es $4\times5$. Si las columnas fueran $4$, el número de filas sería
+  $20/4=5$, y el orden sería $5\times4$ (otra matriz, no la misma).
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 3.} ¿Cuántas matrices distintas de orden $2\times2$ se
+  pueden formar usando solo los números $0$ y $1$?
+
+  \medskip
+  \textbf{Solución.} Una matriz $2\times2$ tiene $4$ posiciones y en cada una
+  hay $2$ opciones independientes. Por el principio multiplicativo:
+  $2^4=16$ matrices distintas (entre ellas la nula y la identidad).
+\end{cuadrosolucion}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{$2\times3$ no es lo mismo que $3\times2$.} El primer número cuenta
+  filas y el segundo, columnas. Una matriz $2\times3$ tiene $2$ filas y $3$
+  columnas; una $3\times2$ tiene $3$ filas y $2$ columnas. Tienen el mismo
+  número de elementos, pero son objetos distintos: no se pueden sumar entre
+  sí y no se comportan igual al multiplicar.
+\end{cuadroadvertencia}
+
+% ============================================================
+\section{Operaciones con matrices}
+% ============================================================
+
+No todas las operaciones se pueden hacer siempre: cada una tiene una
+\textbf{condición de tamaño}. Esta sección estudia las cuatro operaciones
+básicas en el orden en que conviene aprenderlas.
+
+% ------------------------------------------------------------
+\subsection{Multiplicación por un escalar}
+% ------------------------------------------------------------
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Definición.} Dada una matriz $A=(a_{ij})$ y un número real $k$
+  (llamado \textbf{escalar}), el producto $kA$ es la matriz que se obtiene
+  multiplicando \textbf{cada} elemento de $A$ por $k$:
+  \[
+    kA=(k\,a_{ij}).
+  \]
+  El orden de la matriz \textbf{no cambia}: si $A$ es $m\times n$, entonces
+  $kA$ también es $m\times n$.
+\end{cuadroteoria}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 1.} Si $A=\mwmat{2 & -3\\ 1 & 4}$, calcular $3A$.
+  \[
+    3A=3\mwmat{2 & -3\\ 1 & 4}=\mwmat{3\cdot2 & 3\cdot(-3)\\ 3\cdot1 & 3\cdot4}
+    =\mwmat{6 & -9\\ 3 & 12}.
+  \]
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 2.} Si $B=\mwmat{-1 & 2\\ 0 & 5\\ 3 & -2}$, calcular $-2B$.
+  \[
+    -2B=\mwmat{(-2)(-1) & (-2)(2)\\ (-2)(0) & (-2)(5)\\ (-2)(3) & (-2)(-2)}
+    =\mwmat{2 & -4\\ 0 & -10\\ -6 & 4}.
+  \]
+  El signo menos \textbf{cambia el signo de todos} los elementos.
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 3.} Si $C=\mwmat{\tfrac12 & -1\\[2pt] 3 & \tfrac23}$,
+  calcular $6C$.
+  \[
+    6C=\mwmat{6\cdot\tfrac12 & 6\cdot(-1)\\[2pt] 6\cdot3 & 6\cdot\tfrac23}
+    =\mwmat{3 & -6\\ 18 & 4}.
+  \]
+  Multiplicar por $6$ es una forma rápida de «quitar denominadores».
+\end{cuadrosolucion}
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Propiedades.} Para matrices $A$ y $B$ del mismo orden y escalares
+  $k,l\in\mathbb{R}$:
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item $k(A+B)=kA+kB$ \quad (distributiva respecto de la suma de matrices)
+    \item $(k+l)A=kA+lA$ \quad (distributiva respecto de la suma de escalares)
+    \item $k(lA)=(kl)A$ \quad (asociativa)
+    \item $1A=A$ \qquad $0A=O$ \qquad $(-1)A=-A$
+  \end{enumerate}
+  Aquí $O$ es la matriz nula del mismo orden que $A$ y $-A$ es la matriz
+  \textbf{opuesta}, que se obtiene cambiando el signo de todos los elementos.
+\end{cuadroteoria}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 4.} Con $A=\mwmat{2&1\\-1&3}$ y $B=\mwmat{0&-2\\4&1}$,
+  calcular $2A-3B$.
+
+  \medskip
+  \textbf{Solución.} Primero cada producto y después la resta:
+  \[
+    2A=\mwmat{4&2\\-2&6},\qquad
+    3B=\mwmat{0&-6\\12&3},
+  \]
+  \[
+    2A-3B=\mwmat{4-0 & 2-(-6)\\-2-12 & 6-3}
+    =\mwmat{4 & 8\\ -14 & 3}.
+  \]
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 5.} Resolver para $X$:
+  $2X+\mwmat{1&2\\3&4}=\mwmat{5&6\\7&8}$.
+
+  \medskip
+  \textbf{Solución.} Se despeja como en una ecuación numérica:
+  \[
+    2X=\mwmat{5&6\\7&8}-\mwmat{1&2\\3&4}
+      =\mwmat{4&4\\4&4}
+    \quad\Rightarrow\quad
+    X=\tfrac12\mwmat{4&4\\4&4}=\mwmat{2&2\\2&2}.
+  \]
+\end{cuadrosolucion}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{El escalar multiplica a \emph{todos}.} Un error frecuentísimo es
+  multiplicar solo la primera fila o solo la diagonal. Si $kA$ se calcula
+  bien, \emph{cada} entrada queda multiplicada por $k$. Tampoco se puede
+  «sumar» un escalar a una matriz: $A+k$ no está definido; lo que sí existe
+  es $kA$.
+\end{cuadroadvertencia}
+
+% ------------------------------------------------------------
+\subsection{Suma y resta de matrices}
+% ------------------------------------------------------------
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Condición:} $A$ y $B$ deben tener \textbf{el mismo orden}.
+  \\[3pt]
+  \textbf{Definición.} Si $A=(a_{ij})$ y $B=(b_{ij})$ son del mismo orden,
+  \[
+    A+B=(a_{ij}+b_{ij}),
+    \qquad
+    A-B=(a_{ij}-b_{ij}).
+  \]
+  Es decir, se opera \textbf{posición por posición}: cada entrada de la suma
+  es la suma de las entradas que ocupan \emph{el mismo lugar}.
+\end{cuadroteoria}
+
+\begin{center}
+\begin{tikzpicture}[baseline=(AA.center)]
+  \matrix (AA) [matrix of math nodes, nodes={mwcelda},
+                row sep=-\pgflinewidth, column sep=-\pgflinewidth] {
+    a_{11} & a_{12}\\
+    a_{21} & a_{22}\\
+  };
+  \node[right=0.3cm of AA, font=\large] {$+$};
+  \matrix (BB) [matrix of math nodes, nodes={mwcelda},
+                right=0.72cm of AA,
+                row sep=-\pgflinewidth, column sep=-\pgflinewidth] {
+    b_{11} & b_{12}\\
+    b_{21} & b_{22}\\
+  };
+  \node[right=0.2cm of BB, font=\large] {$=$};
+  \matrix (CC) [matrix of math nodes, nodes={mwcelda},
+                right=0.62cm of BB,
+                row sep=-\pgflinewidth, column sep=-\pgflinewidth] {
+    a_{11}+b_{11} & a_{12}+b_{12}\\
+    a_{21}+b_{21} & a_{22}+b_{22}\\
+  };
+  \draw[mwflecha] (AA-1-1.south) -- (CC-1-1.south);
+  \draw[mwflecha] (BB-2-2.south) -- (CC-2-2.south);
+\end{tikzpicture}
+\end{center}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 1.} Con $A=\mwmat{1&2\\3&4}$ y $B=\mwmat{5&-1\\0&2}$:
+  \[
+    A+B=\mwmat{1+5 & 2+(-1)\\ 3+0 & 4+2}=\mwmat{6&1\\3&6},
+  \]
+  \[
+    A-B=\mwmat{1-5 & 2-(-1)\\ 3-0 & 4-2}=\mwmat{-4&3\\3&2}.
+  \]
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 2.} Con
+  $A=\mwmat{2&0&-1\\3&4&5}$ y $B=\mwmat{-1&2&0\\1&-3&2}$ (ambas $2\times3$):
+  \[
+    A+B=\mwmat{1&2&-1\\4&1&7},
+    \qquad
+    A-B=\mwmat{3&-2&-1\\2&7&3}.
+  \]
+  Fíjate en que la resta se hace \emph{casilla por casilla}, conservando la
+  posición.
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 3.} Determinar $a$ y $b$ para que
+  \[
+    \mwmat{a&2\\3&b}+\mwmat{1&-2\\-3&4}=\mwmat{4&0\\0&7}.
+  \]
+  \textbf{Solución.} Sumando posición por posición:
+  \[
+    a+1=4\Rightarrow a=3,\qquad 3+(-3)=0\ \checkmark,\qquad b+4=7\Rightarrow b=3.
+  \]
+  Además $2+(-2)=0$, que coincide con la entrada correspondiente del lado
+  derecho: la solución es consistente.
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 4.} Con $A=\mwmat{1&0\\2&-1}$,
+  $B=\mwmat{3&1\\-1&2}$ y $C=\mwmat{0&4\\1&0}$, calcular $2A-B+C$.
+
+  \medskip
+  \textbf{Solución.}
+  \[
+    2A=\mwmat{2&0\\4&-2},\qquad
+    2A-B=\mwmat{2-3 & 0-1\\ 4-(-1) & -2-2}=\mwmat{-1&-1\\5&-4},
+  \]
+  \[
+    2A-B+C=\mwmat{-1+0 & -1+4\\ 5+1 & -4+0}=\mwmat{-1&3\\6&-4}.
+  \]
+\end{cuadrosolucion}
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Propiedades.} Para matrices del mismo orden:
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item $A+B=B+A$ \quad (conmutativa)
+    \item $(A+B)+C=A+(B+C)$ \quad (asociativa)
+    \item $A+O=A$ \quad ($O$ es el neutro aditivo)
+    \item $A+(-A)=O$ \quad ($-A$ es el opuesto de $A$)
+    \item $A-B=A+(-B)$
+  \end{enumerate}
+  La resta \textbf{no} es conmutativa: en general $A-B\neq B-A$ (de hecho,
+  $B-A=-(A-B)$).
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{Dos errores clásicos:}
+  \begin{itemize}[leftmargin=1.2em, nosep]
+    \item \textbf{Sumar matrices de distinto orden.} Si $A$ es $2\times3$ y
+          $B$ es $3\times2$, $A+B$ \textbf{no existe}. No importa que ambas
+          tengan $6$ elementos: la suma se define posición por posición y las
+          posiciones no coinciden.
+    \item \textbf{Olvidar los signos.} Restar una matriz equivale a sumar su
+          opuesta: cada entrada de $B$ cambia de signo. El error típico es
+          cambiar el signo solo en la primera fila.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+% ------------------------------------------------------------
+\subsection{Sistemas de ecuaciones con matrices}
+% ------------------------------------------------------------
+
+Empezamos por el caso base ---\textbf{dos ecuaciones con dos incógnitas}--- y
+al final de la sección lo extendemos a \textbf{tres ecuaciones con tres
+incógnitas}.
+
+Un sistema de dos ecuaciones lineales con dos incógnitas,
+\[
+  \begin{cases}
+    a_{11}x+a_{12}y=c_1,\\
+    a_{21}x+a_{22}y=c_2,
+  \end{cases}
+\]
+se escribe de forma compacta como una \textbf{ecuación matricial}.
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Forma matricial.} El sistema anterior equivale a
+  \[
+    \underbrace{\mwmat{a_{11}&a_{12}\\a_{21}&a_{22}}}_{A}
+    \underbrace{\mwmat{x\\y}}_{\mathbf{x}}
+    =
+    \underbrace{\mwmat{c_1\\c_2}}_{\mathbf{b}},
+    \qquad\text{es decir,}\qquad A\mathbf{x}=\mathbf{b}.
+  \]
+  \begin{itemize}[leftmargin=1.2em, nosep]
+    \item $A$ es la \textbf{matriz de coeficientes} (orden $2\times2$);
+    \item $\mathbf{x}$ es el \textbf{vector de incógnitas} ($2\times1$);
+    \item $\mathbf{b}$ es el \textbf{vector de constantes} ($2\times1$).
+  \end{itemize}
+\end{cuadroteoria}
+
+Cada \textbf{fila} de $A$ contiene los coeficientes de una ecuación; cada
+\textbf{columna}, los coeficientes de una misma incógnita. Al añadir la
+columna de las constantes se obtiene la \textbf{matriz aumentada}:
+\[
+  \left[A\mid\mathbf{b}\right]
+  =
+  \mwaug{cc|c}{a_{11}&a_{12}&c_1\\ a_{21}&a_{22}&c_2}.
+\]
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 1.} Escribir en forma matricial y en matriz aumentada el
+  sistema
+  \[
+    \begin{cases}
+      2x+3y=8,\\
+      x+4y=9.
+    \end{cases}
+  \]
+
+  \medskip
+  \textbf{Solución.}
+  \[
+    \mwmat{2&3\\1&4}\mwmat{x\\y}=\mwmat{8\\9},
+    \qquad
+    \mwaug{cc|c}{2&3&8\\1&4&9}.
+  \]
+  \textbf{Verificación de la solución} (que obtendremos más adelante):
+  $x=1,\;y=2$ da $2(1)+3(2)=8$ y $1+4(2)=9$. \checkmark
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 2.} Escribir el sistema asociado a
+  $\mwaug{cc|c}{3&-1&5\\1&2&4}$ y comprobar si $(2,1)$ es solución.
+
+  \medskip
+  \textbf{Solución.} Las filas dan las ecuaciones
+  \[
+    \begin{cases}
+      3x-y=5,\\
+      x+2y=4.
+    \end{cases}
+  \]
+  Con $x=2,\;y=1$: $3(2)-1=5$ \checkmark\ y $2+2(1)=4$ \checkmark. Sí es
+  solución (de hecho es la única).
+\end{cuadrosolucion}
+
+\subsubsection*{El mismo esquema en $3\times3$}
+
+Para tres ecuaciones con tres incógnitas la construcción es idéntica:
+\[
+  \begin{cases}
+    a_{11}x+a_{12}y+a_{13}z=c_1,\\
+    a_{21}x+a_{22}y+a_{23}z=c_2,\\
+    a_{31}x+a_{32}y+a_{33}z=c_3,
+  \end{cases}
+  \quad\Longleftrightarrow\quad
+  \underbrace{\mwmat{a_{11}&a_{12}&a_{13}\\a_{21}&a_{22}&a_{23}\\a_{31}&a_{32}&a_{33}}}_{A}
+  \underbrace{\mwmat{x\\y\\z}}_{\mathbf{x}}
+  =
+  \underbrace{\mwmat{c_1\\c_2\\c_3}}_{\mathbf{b}}.
+\]
+La matriz de coeficientes es $3\times3$, los vectores son $3\times1$ y la
+matriz aumentada resulta de orden $3\times4$:
+\[
+  \left[A\mid\mathbf{b}\right]=
+  \mwaug{ccc|c}{a_{11}&a_{12}&a_{13}&c_1\\
+                a_{21}&a_{22}&a_{23}&c_2\\
+                a_{31}&a_{32}&a_{33}&c_3}.
+\]
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 3.} Escribir en forma matricial y en matriz aumentada
+  \[
+    \begin{cases}
+      x+y+z=6,\\
+      2x-y+z=3,\\
+      x+2y-z=2.
+    \end{cases}
+  \]
+
+  \medskip
+  \textbf{Solución.}
+  \[
+    \mwmat{1&1&1\\2&-1&1\\1&2&-1}\mwmat{x\\y\\z}=\mwmat{6\\3\\2},
+    \qquad
+    \mwaug{ccc|c}{1&1&1&6\\2&-1&1&3\\1&2&-1&2}.
+  \]
+  Este sistema tiene solución única: $(x,y,z)=(1,2,3)$. Compruébalo:
+  $1+2+3=6$, $2-2+3=3$ y $1+4-3=2$. Lo resolveremos por Gauss en la §6.
+\end{cuadrosolucion}
+
+\begin{cuadroadvertencia}
+  \small
+  Al pasar a $3\times3$ aparecen dos errores nuevos: \textbf{olvidar una
+  incógnita} en alguna ecuación (su coeficiente es $0$, pero la columna
+  existe) y \textbf{desordenar las incógnitas} entre ecuaciones. Antes de
+  escribir la matriz, alinea mentalmente las tres ecuaciones: $x$, luego $y$,
+  luego $z$, y al final la constante.
+\end{cuadroadvertencia}
+
+\subsubsection*{Casos especiales: $2\times3$ y $3\times2$}
+
+El número de incógnitas no siempre coincide con el número de ecuaciones.
+Cuando eso ocurre aparecen dos situaciones que conviene reconocer.
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Caso $2\times3$ (dos ecuaciones, tres incógnitas).} La matriz de
+  coeficientes es $2\times3$; la aumentada, $2\times4$. Normalmente el
+  sistema tiene \textbf{infinitas soluciones}: una incógnita queda libre y
+  las demás se expresan en función de ella.
+  \\[4pt]
+  \textbf{Ejemplo:}
+  \[
+    \begin{cases}
+      x+y+z=3,\\
+      2x-y+z=0.
+    \end{cases}
+    \qquad
+    \mwaug{ccc|c}{1&1&1&3\\2&-1&1&0}.
+  \]
+  Tomando $z$ como parámetro: sumando las dos ecuaciones se obtiene
+  $3x+2z=3$, es decir
+  \[
+    x=1-\tfrac{2}{3}z,
+    \qquad
+    y=2-\tfrac{1}{3}z,
+    \qquad z\in\mathbb{R}.
+  \]
+  Por ejemplo, con $z=0$: $(x,y,z)=(1,2,0)$; con $z=3$: $(-1,1,3)$.
+\end{cuadroteoria}
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Caso $3\times2$ (tres ecuaciones, dos incógnitas).} La matriz de
+  coeficientes es $3\times2$; la aumentada, $3\times3$. Hay \textbf{más
+  ecuaciones que incógnitas}, así que el sistema suele ser
+  \textbf{incompatible}: la tercera ecuación aporta una condición extra que
+  las dos primeras no cumplen.
+  \\[4pt]
+  \textbf{Ejemplo compatible:}
+  \[
+    \begin{cases}
+      x+y=2,\\
+      x-y=0,\\
+      2x+y=3.
+    \end{cases}
+  \]
+  De las dos primeras, $x=1$, $y=1$. La tercera se cumple: $2(1)+1=3$.
+  Solución única: $(1,1)$.
+  \\[4pt]
+  \textbf{El mismo sistema con otra tercera ecuación,}
+  $2x+2y=5$, sería \textbf{incompatible}: con $x=1$, $y=1$ se obtiene
+  $4\neq5$.
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{Antes de escribir la matriz aumentada:}
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item ordena las ecuaciones y las incógnitas siempre en el mismo orden
+          (por ejemplo, $x$ antes que $y$);
+    \item si una incógnita no aparece en una ecuación, su coeficiente es
+          $0$ (no se omite la columna);
+    \item si una ecuación está escrita como $3x=7-2y$, pásala primero a la
+          forma $3x+2y=7$;
+    \item la columna de las constantes va \textbf{siempre al final}, separada
+          por una barra.
+  \end{enumerate}
+\end{cuadroadvertencia}
+
+% ------------------------------------------------------------
+\subsection{Multiplicación de matrices}
+% ------------------------------------------------------------
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Condición de conformabilidad.} El producto $AB$ está definido
+  únicamente si
+  \[
+    \text{número de columnas de }A
+    =
+    \text{número de filas de }B.
+  \]
+  Si $A$ es $m\times n$ y $B$ es $n\times p$, el producto $AB$ es de orden
+  $m\times p$:
+  \[
+    (m\times n)\cdot(n\times p)\;\longrightarrow\;(m\times p).
+  \]
+\end{cuadroteoria}
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Definición.} Si $A=(a_{ij})$ es $m\times n$ y $B=(b_{ij})$ es
+  $n\times p$, entonces $C=AB=(c_{ij})$ es $m\times p$ con
+  \[
+    c_{ij}=\sum_{k=1}^{n}a_{ik}b_{kj}
+    =a_{i1}b_{1j}+a_{i2}b_{2j}+\cdots+a_{in}b_{nj}.
+  \]
+  En palabras: para obtener la entrada $c_{ij}$ se toma la \textbf{fila $i$
+  de $A$} y la \textbf{columna $j$ de $B$}, se multiplican sus elementos
+  \emph{uno a uno en el mismo orden} y se suman los productos.
+\end{cuadroteoria}
+
+\begin{center}
+\begin{tikzpicture}[baseline=(A.center)]
+  \matrix (A) [matrix of math nodes, nodes={mwcelda},
+               row sep=-\pgflinewidth, column sep=-\pgflinewidth] {
+    a_{11} & a_{12} & a_{13}\\
+    a_{21} & a_{22} & a_{23}\\
+  };
+  \matrix (B) [matrix of math nodes, nodes={mwcelda},
+               right=1.1cm of A,
+               row sep=-\pgflinewidth, column sep=-\pgflinewidth] {
+    b_{11} & b_{12}\\
+    b_{21} & b_{22}\\
+    b_{31} & b_{32}\\
+  };
+  \matrix (C) [matrix of math nodes, nodes={mwcelda},
+               right=1.1cm of B,
+               row sep=-\pgflinewidth, column sep=-\pgflinewidth] {
+    c_{11} & c_{12}\\
+    c_{21} & c_{22}\\
+  };
+  \node at ($(A.east)!0.5!(B.west)$) {$\cdot$};
+  \node at ($(B.east)!0.5!(C.west)$) {$=$};
+  \draw[mwnaranja, thick, rounded corners=2pt]
+    (A-2-1.north west) rectangle (A-2-3.south east);
+  \draw[mwmagenta, thick, rounded corners=2pt]
+    (B-1-1.north west) rectangle (B-3-1.south east);
+  \draw[mwvioleta, thick, rounded corners=2pt]
+    (C-2-1.north west) rectangle (C-2-1.south east);
+  \node[below=0.3cm of A, font=\scriptsize, mwnaranja] {$2\times3$};
+  \node[below=0.3cm of B, font=\scriptsize, mwmagenta] {$3\times2$};
+  \node[below=0.3cm of C, font=\scriptsize, mwvioleta] {$2\times2$};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\small
+$c_{21}=a_{21}b_{11}+a_{22}b_{21}+a_{23}b_{31}$
+\qquad (fila $2$ de $A$ por columna $1$ de $B$)
+\end{center}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 1 ($2\times2$ por $2\times2$).} Con
+  $A=\mwmat{1&2\\3&4}$ y $B=\mwmat{5&6\\7&8}$:
+  \[
+    AB=\mwmat{1\cdot5+2\cdot7 & 1\cdot6+2\cdot8\\
+              3\cdot5+4\cdot7 & 3\cdot6+4\cdot8}
+      =\mwmat{19&22\\43&50}.
+  \]
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 2 ($2\times3$ por $3\times2$).} Con
+  $A=\mwmat{1&2&3\\4&5&6}$ y $B=\mwmat{1&0\\0&1\\1&1}$:
+  \[
+    AB=\mwmat{
+      1\cdot1+2\cdot0+3\cdot1 & 1\cdot0+2\cdot1+3\cdot1\\
+      4\cdot1+5\cdot0+6\cdot1 & 4\cdot0+5\cdot1+6\cdot1}
+      =\mwmat{4&5\\10&11}.
+  \]
+  El resultado es $2\times2$: se «cancelan» las dimensiones internas.
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 3 ($3\times2$ por $2\times3$).} Con
+  $A=\mwmat{1&2\\3&4\\5&6}$ y $B=\mwmat{1&0&1\\0&1&1}$:
+  \[
+    AB=\mwmat{
+      1\cdot1+2\cdot0 & 1\cdot0+2\cdot1 & 1\cdot1+2\cdot1\\
+      3\cdot1+4\cdot0 & 3\cdot0+4\cdot1 & 3\cdot1+4\cdot1\\
+      5\cdot1+6\cdot0 & 5\cdot0+6\cdot1 & 5\cdot1+6\cdot1}
+      =\mwmat{1&2&3\\3&4&7\\5&6&11}.
+  \]
+  Ahora el resultado es $3\times3$.
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 4 (el orden importa).} Con
+  $A=\mwmat{1&2\\3&4}$ y $B=\mwmat{0&1\\1&0}$:
+  \[
+    AB=\mwmat{2&1\\4&3},
+    \qquad
+    BA=\mwmat{3&4\\1&2}.
+  \]
+  Por lo tanto $AB\neq BA$. La multiplicación de matrices \textbf{no es
+  conmutativa}.
+\end{cuadrosolucion}
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Propiedades.} Siempre que las operaciones estén definidas:
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item $(AB)C=A(BC)$ \quad (asociativa)
+    \item $A(B+C)=AB+AC$ \quad y \quad $(A+B)C=AC+BC$ \quad (distributivas)
+    \item $AI=IA=A$ \quad ($I$ es la identidad del orden adecuado)
+    \item $AO=OA=O$
+    \item $(kA)B=k(AB)=A(kB)$
+    \item \textbf{No} es conmutativa: en general $AB\neq BA$.
+    \item \textbf{No} se puede «cancelar»: $AB=AC$ \emph{no} implica $B=C$.
+    \item $AB=O$ \emph{no} implica $A=O$ ni $B=O$.
+  \end{enumerate}
+\end{cuadroteoria}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 5 ($AB=O$ con factores no nulos).} Con
+  $A=\mwmat{1&1\\2&2}$ y $B=\mwmat{1&-1\\-1&1}$:
+  \[
+    AB=\mwmat{1-1 & -1+1\\ 2-2 & -2+2}=\mwmat{0&0\\0&0}=O,
+  \]
+  y sin embargo $A\neq O$ y $B\neq O$. Moraleja: en matrices, un producto
+  nulo \textbf{no} permite concluir que algún factor sea nulo.
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 6 (potencias).} Si $A=\mwmat{1&1\\0&1}$, calcular $A^2$ y
+  $A^3$, y conjeturar $A^n$.
+  \[
+    A^2=\mwmat{1&1\\0&1}\mwmat{1&1\\0&1}=\mwmat{1&2\\0&1},
+    \qquad
+    A^3=A^2A=\mwmat{1&3\\0&1}.
+  \]
+  En general,
+  \[
+    A^n=\mwmat{1&n\\0&1}\qquad(n\ge1).
+  \]
+\end{cuadrosolucion}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{La multiplicación no se hace «entrada con entrada».} El producto
+  $AB$ \textbf{no} es la matriz cuyas entradas son $a_{ij}b_{ij}$. Hay que
+  combinar \emph{toda} una fila de $A$ con \emph{toda} una columna de $B$.
+  Además, antes de empezar, \textbf{verifica la condición de tamaño}: si
+  escribes el producto sin comprobarla, lo más probable es que el cálculo sea
+  inválido desde el principio.
+\end{cuadroadvertencia}
+
+% ============================================================
+\section{Matrices equivalentes}
+% ============================================================
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Definición.} Dos matrices $A$ y $B$ del mismo orden son
+  \textbf{equivalentes} (se escribe $A\sim B$) si $B$ se puede obtener a
+  partir de $A$ mediante una cantidad finita de \textbf{operaciones
+  elementales de fila}:
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item \textbf{Intercambiar} dos filas: $F_i\leftrightarrow F_j$.
+    \item \textbf{Multiplicar} una fila por un escalar \emph{no nulo}:
+          $F_i\leftarrow kF_i$, con $k\neq0$.
+    \item \textbf{Sumar} a una fila un múltiplo de otra:
+          $F_i\leftarrow F_i+kF_j$ (con $i\neq j$).
+  \end{enumerate}
+  La equivalencia se aplica \textbf{sobre las filas}, nunca sobre las
+  columnas.
+  \\[3pt]
+  \textbf{Notación.} $F_i$ denota la \textbf{fila} $i$ (inicial de
+  \emph{fila}). Así, $F_1\leftrightarrow F_2$ se lee «intercambiar la fila
+  $1$ con la fila $2$», y $F_2\leftarrow F_2-3F_1$ se lee «a la fila $2$ se
+  le resta el triple de la fila $1$».
+\end{cuadroteoria}
+
+No hay que confundir tres ideas parecidas:
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.24\linewidth} p{0.66\linewidth}@{}}
+  \toprule
+  \textbf{Concepto} & \textbf{Significado} \\
+  \midrule
+  Matrices \textbf{iguales} & Todos los elementos coinciden posición por
+    posición. Es una igualdad estricta. \\
+  Matrices \textbf{equivalentes} & Se pasa de una a otra con operaciones
+    elementales de fila. Pueden tener números distintos. \\
+  \textbf{Sistemas equivalentes} & Tienen exactamente el mismo conjunto
+    solución, aunque sus ecuaciones se vean diferentes. \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 1.} Mostrar que
+  $A=\mwmat{1&2\\2&5}$ es equivalente a $I_2$.
+
+  \medskip
+  \textbf{Solución.} Encadenamos operaciones elementales:
+  \[
+    \mwmat{1&2\\2&5}
+    \;\xrightarrow{\;F_2\leftarrow F_2-2F_1\;}
+    \mwmat{1&2\\0&1}
+    \;\xrightarrow{\;F_1\leftarrow F_1-2F_2\;}
+    \mwmat{1&0\\0&1}=I_2.
+  \]
+  Por lo tanto $A\sim I_2$.
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 2 (equivalencia y sistemas).} Resolver
+  \[
+    \begin{cases}
+      x+2y=8,\\
+      3x-y=3,
+    \end{cases}
+  \]
+  trabajando solo con la matriz aumentada.
+
+  \medskip
+  \textbf{Solución.} Cada operación de fila produce una matriz aumentada
+  \emph{equivalente}, es decir, un sistema con las mismas soluciones:
+  \[
+    \mwaug{cc|c}{1&2&8\\3&-1&3}
+    \xrightarrow{\;F_2\leftarrow F_2-3F_1\;}
+    \mwaug{cc|c}{1&2&8\\0&-7&-21}
+    \xrightarrow{\;F_2\leftarrow -\frac17F_2\;}
+    \mwaug{cc|c}{1&2&8\\0&1&3}.
+  \]
+  La última matriz representa el sistema
+  \[
+    \begin{cases}
+      x+2y=8,\\
+      y=3,
+    \end{cases}
+    \quad\Rightarrow\quad
+    x=8-2(3)=2.
+  \]
+  Solución: $(x,y)=(2,3)$.
+\end{cuadrosolucion}
+
+\begin{center}
+\begin{tikzpicture}[baseline=(M1.center)]
+  \matrix (M1) [matrix of math nodes, nodes={mwcelda},
+                row sep=-\pgflinewidth, column sep=-\pgflinewidth] {
+    1 & 2 & 8\\
+    3 & -1 & 3\\
+  };
+  \matrix (M2) [matrix of math nodes, nodes={mwcelda},
+                right=2.4cm of M1,
+                row sep=-\pgflinewidth, column sep=-\pgflinewidth] {
+    1 & 2 & 8\\
+    0 & -7 & -21\\
+  };
+  \matrix (M3) [matrix of math nodes, nodes={mwcelda},
+                right=2.4cm of M2,
+                row sep=-\pgflinewidth, column sep=-\pgflinewidth] {
+    1 & 2 & 8\\
+    0 & 1 & 3\\
+  };
+  \draw[mwflecha] (M1) -- node[above, font=\scriptsize, mwnaranja]
+    {$F_2\leftarrow F_2-3F_1$} (M2);
+  \draw[mwflecha] (M2) -- node[above, font=\scriptsize, mwnaranja]
+    {$F_2\leftarrow -\frac17F_2$} (M3);
+  \node[below=0.25cm of M1, font=\scriptsize, mwgris] {matriz original};
+  \node[below=0.25cm of M3, font=\scriptsize, mwgris] {forma escalonada};
+\end{tikzpicture}
+\end{center}
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Propiedad fundamental.} Si dos matrices \textbf{aumentadas}
+  $[A\mid\mathbf{b}]$ y $[A'\mid\mathbf{b}']$ son equivalentes por filas,
+  entonces los sistemas $A\mathbf{x}=\mathbf{b}$ y
+  $A'\mathbf{x}=\mathbf{b}'$ tienen \textbf{el mismo conjunto solución}.
+  Esta es la razón por la que el método de Gauss funciona: no cambiamos el
+  sistema, solo su «disfraz».
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{Lo que sí y lo que no conserva la equivalencia:}
+  \begin{itemize}[leftmargin=1.2em, nosep]
+    \item \textbf{Sí} se pueden intercambiar filas, multiplicar una fila por
+          un número distinto de cero y sumar múltiplos de filas.
+    \item \textbf{No} se puede multiplicar una fila por $0$: se destruye
+          información y el sistema deja de ser equivalente.
+    \item \textbf{No} se opera sobre columnas: intercambiar o combinar
+          columnas cambia el significado de las incógnitas y puede alterar
+          el conjunto solución.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+% ============================================================
+\section{Operaciones que producen matrices equivalentes}
+% ============================================================
+
+Las tres operaciones elementales de fila son las únicas herramientas
+permitidas para transformar una matriz sin cambiar el sistema que representa.
+Veamos cada una con detalle.
+
+\subsection*{Operación 1: intercambiar dos filas}
+
+\[
+  \mwmat{1&2\\3&4}
+  \;\xrightarrow{\;F_1\leftrightarrow F_2\;}
+  \mwmat{3&4\\1&2}.
+\]
+Se usa cuando el pivote de la fila en curso es $0$ y conviene «subir» otra
+fila. El determinante cambia de signo, pero el conjunto solución del sistema
+no cambia.
+
+\subsection*{Operación 2: multiplicar una fila por un escalar no nulo}
+
+\[
+  \mwmat{2&4&10\\1&3&7}
+  \;\xrightarrow{\;F_1\leftarrow \frac12F_1\;}
+  \mwmat{1&2&5\\1&3&7}.
+\]
+Se usa para convertir el pivote en $1$ o para simplificar denominadores. El
+escalar \textbf{debe ser distinto de cero}: multiplicar por $0$ convierte la
+ecuación en $0=0$ y pierde información.
+
+\subsection*{Operación 3: sumar a una fila un múltiplo de otra}
+
+\[
+  \mwmat{1&2&5\\2&5&12}
+  \;\xrightarrow{\;F_2\leftarrow F_2-2F_1\;}
+  \mwmat{1&2&5\\0&1&2}.
+\]
+Es la operación que \textbf{elimina} coeficientes y produce los ceros de la
+forma escalonada. También se permite en sentido inverso, sumando un múltiplo
+de una fila \emph{superior} a una inferior o al revés.
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Forma escalonada (por filas).} Una matriz está en forma
+  escalonada si:
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item todas las filas nulas, si existen, están al final;
+    \item el primer elemento no nulo de cada fila (el \textbf{pivote}) está
+          a la derecha del pivote de la fila anterior;
+    \item debajo de cada pivote todos los elementos son $0$.
+  \end{enumerate}
+  Está en \textbf{forma escalonada reducida} si además cada pivote vale $1$
+  y es el único elemento no nulo de su columna.
+\end{cuadroteoria}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 1.} Reducir
+  $\mwmat{2&4&10\\1&3&7}$ a forma escalonada y luego a forma escalonada
+  reducida.
+
+  \medskip
+  \textbf{Solución.}
+  \[
+    \mwmat{2&4&10\\1&3&7}
+    \xrightarrow{F_1\leftrightarrow F_2}
+    \mwmat{1&3&7\\2&4&10}
+    \xrightarrow{F_2\leftarrow F_2-2F_1}
+    \mwmat{1&3&7\\0&-2&-4}
+  \]
+  \[
+    \xrightarrow{F_2\leftarrow -\frac12F_2}
+    \mwmat{1&3&7\\0&1&2}
+    \xrightarrow{F_1\leftarrow F_1-3F_2}
+    \mwmat{1&0&1\\0&1&2}.
+  \]
+  La penúltima matriz está en forma escalonada; la última, en forma
+  escalonada reducida.
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 2 (combinación de las tres operaciones).} Reducir
+  \[
+    \mwmat{0&2&4\\3&6&9}.
+  \]
+  \textbf{Solución.} Primero se necesita un pivote no nulo en la primera
+  fila, así que se intercambian las filas:
+  \[
+    \mwmat{0&2&4\\3&6&9}
+    \xrightarrow{F_1\leftrightarrow F_2}
+    \mwmat{3&6&9\\0&2&4}
+    \xrightarrow{F_1\leftarrow \frac13F_1}
+    \mwmat{1&2&3\\0&2&4}
+    \xrightarrow{F_2\leftarrow \frac12F_2}
+    \mwmat{1&2&3\\0&1&2}.
+  \]
+\end{cuadrosolucion}
+
+\begin{cuadroteoria}
+  \small
+  \textbf{La equivalencia es una relación de equivalencia.} Para matrices
+  del mismo orden:
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item \textbf{Reflexiva:} $A\sim A$ (no hacer nada es una secuencia
+          válida de operaciones).
+    \item \textbf{Simétrica:} si $A\sim B$, entonces $B\sim A$ (cada
+          operación elemental se puede deshacer con otra operación
+          elemental).
+    \item \textbf{Transitiva:} si $A\sim B$ y $B\sim C$, entonces
+          $A\sim C$ (se concatenan las secuencias de operaciones).
+  \end{enumerate}
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \small
+  \textbf{Protocolo para reducir sin perder información:}
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item Trabaja \textbf{de izquierda a derecha} y de arriba hacia abajo.
+    \item En la columna actual, consigue un pivote no nulo (si es necesario,
+          intercambia filas).
+    \item Convierte el pivote en $1$ dividiendo toda la fila.
+    \item Anula los elementos \textbf{debajo} del pivote sumando múltiplos
+          adecuados de su fila.
+    \item Pasa a la siguiente columna y repite.
+    \item Si buscas la forma reducida, vuelve hacia arriba anulando también
+          los elementos \textbf{encima} de cada pivote.
+    \item Anota cada operación junto a la flecha: te permite revisar y
+          detectar errores.
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{Errores que rompen la equivalencia:}
+  \begin{itemize}[leftmargin=1.2em, nosep]
+    \item multiplicar una fila por $0$ (se pierde una ecuación);
+    \item sumar a una fila \emph{ella misma} ($F_i\leftarrow F_i+F_i$ no
+          aporta nada nuevo y puede confundir);
+    \item operar con columnas como si fueran filas;
+    \item cambiar un signo «solo en una parte» de la fila: la operación se
+          aplica a \textbf{toda} la fila, incluida la columna de constantes.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+% ============================================================
+\section{Sistemas de ecuaciones por Gauss y Gauss-Jordan}
+% ============================================================
+
+Ambos métodos trabajan sobre la \textbf{matriz aumentada} y usan únicamente
+operaciones elementales de fila. La diferencia está en \emph{hasta dónde}
+se reduce la matriz.
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Método de Gauss (eliminación gaussiana).}
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item Escribir el sistema como matriz aumentada.
+    \item Aplicar operaciones de fila para llevarla a \textbf{forma
+          escalonada} (ceros debajo de cada pivote).
+    \item Resolver por \textbf{sustitución hacia atrás}: de la última
+          ecuación hacia la primera.
+  \end{enumerate}
+  \textbf{Método de Gauss-Jordan.}
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item Llevar la matriz aumentada hasta \textbf{forma escalonada
+          reducida} (pivotes iguales a $1$ y ceros también encima).
+    \item Leer la solución \textbf{directamente}, sin sustituir.
+  \end{enumerate}
+\end{cuadroteoria}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 1 (solución única, por Gauss).} Resolver
+  \[
+    \begin{cases}
+      2x+y=5,\\
+      x-y=1.
+    \end{cases}
+  \]
+
+  \medskip
+  \textbf{Solución.}
+  \[
+    \mwaug{cc|c}{2&1&5\\1&-1&1}
+    \xrightarrow{F_1\leftrightarrow F_2}
+    \mwaug{cc|c}{1&-1&1\\2&1&5}
+    \xrightarrow{F_2\leftarrow F_2-2F_1}
+    \mwaug{cc|c}{1&-1&1\\0&3&3}
+  \]
+  \[
+    \xrightarrow{F_2\leftarrow \frac13F_2}
+    \mwaug{cc|c}{1&-1&1\\0&1&1}.
+  \]
+  Sustitución hacia atrás: $y=1$; luego $x-1=1$, es decir $x=2$.
+  \[
+    (x,y)=(2,1).
+  \]
+  \textbf{Comprobación:} $2(2)+1=5$ \checkmark\ y $2-1=1$ \checkmark.
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 2 (sistema incompatible).} Resolver
+  \[
+    \begin{cases}
+      x+y=2,\\
+      2x+2y=5.
+    \end{cases}
+  \]
+
+  \medskip
+  \textbf{Solución.}
+  \[
+    \mwaug{cc|c}{1&1&2\\2&2&5}
+    \xrightarrow{F_2\leftarrow F_2-2F_1}
+    \mwaug{cc|c}{1&1&2\\0&0&1}.
+  \]
+  La segunda fila representa la ecuación $0x+0y=1$, es decir $0=1$, que es
+  falsa. El sistema \textbf{no tiene solución} (es incompatible).
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 3 (infinitas soluciones).} Resolver
+  \[
+    \begin{cases}
+      x+2y=4,\\
+      2x+4y=8.
+    \end{cases}
+  \]
+
+  \medskip
+  \textbf{Solución.}
+  \[
+    \mwaug{cc|c}{1&2&4\\2&4&8}
+    \xrightarrow{F_2\leftarrow F_2-2F_1}
+    \mwaug{cc|c}{1&2&4\\0&0&0}.
+  \]
+  La segunda ecuación desaparece: solo queda $x+2y=4$. La incógnita $y$
+  queda libre:
+  \[
+    y=t,\qquad x=4-2t,\qquad t\in\mathbb{R}.
+  \]
+  Hay \textbf{infinitas soluciones}: $(x,y)=(4-2t,\,t)$.
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 4 (Gauss-Jordan).} Resolver
+  \[
+    \begin{cases}
+      3x+2y=12,\\
+      x-y=-1.
+    \end{cases}
+  \]
+
+  \medskip
+  \textbf{Solución.}
+  \[
+    \mwaug{cc|c}{3&2&12\\1&-1&-1}
+    \xrightarrow{F_1\leftrightarrow F_2}
+    \mwaug{cc|c}{1&-1&-1\\3&2&12}
+    \xrightarrow{F_2\leftarrow F_2-3F_1}
+    \mwaug{cc|c}{1&-1&-1\\0&5&15}
+  \]
+  \[
+    \xrightarrow{F_2\leftarrow \frac15F_2}
+    \mwaug{cc|c}{1&-1&-1\\0&1&3}
+    \xrightarrow{F_1\leftarrow F_1+F_2}
+    \mwaug{cc|c}{1&0&2\\0&1&3}.
+  \]
+  La última matriz es la identidad a la izquierda, así que la solución se
+  lee directamente:
+  \[
+    (x,y)=(2,3).
+  \]
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 5 (Gauss-Jordan paso a paso).} Resolver
+  \[
+    \begin{cases}
+      2x+3y=7,\\
+      x+2y=4.
+    \end{cases}
+  \]
+
+  \medskip
+  \textbf{Solución.}
+  \[
+    \mwaug{cc|c}{2&3&7\\1&2&4}
+    \xrightarrow{F_1\leftrightarrow F_2}
+    \mwaug{cc|c}{1&2&4\\2&3&7}
+    \xrightarrow{F_2\leftarrow F_2-2F_1}
+    \mwaug{cc|c}{1&2&4\\0&-1&-1}
+  \]
+  \[
+    \xrightarrow{F_2\leftarrow -F_2}
+    \mwaug{cc|c}{1&2&4\\0&1&1}
+    \xrightarrow{F_1\leftarrow F_1-2F_2}
+    \mwaug{cc|c}{1&0&2\\0&1&1}.
+  \]
+  Por lo tanto $(x,y)=(2,1)$.
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 6 (sistema $3\times3$ por Gauss).} Resolver
+  \[
+    \begin{cases}
+      x+y+z=6,\\
+      2x-y+z=3,\\
+      x+2y-z=2.
+    \end{cases}
+  \]
+
+  \medskip
+  \textbf{Solución.} Se anula la primera columna por debajo del pivote:
+  \[
+    \mwaug{ccc|c}{1&1&1&6\\2&-1&1&3\\1&2&-1&2}
+    \xrightarrow{F_2\leftarrow F_2-2F_1}
+    \mwaug{ccc|c}{1&1&1&6\\0&-3&-1&-9\\1&2&-1&2}
+  \]
+  \[
+    \xrightarrow{F_3\leftarrow F_3-F_1}
+    \mwaug{ccc|c}{1&1&1&6\\0&-3&-1&-9\\0&1&-2&-4}
+    \xrightarrow{F_2\leftrightarrow F_3}
+    \mwaug{ccc|c}{1&1&1&6\\0&1&-2&-4\\0&-3&-1&-9}
+  \]
+  \[
+    \xrightarrow{F_3\leftarrow F_3+3F_2}
+    \mwaug{ccc|c}{1&1&1&6\\0&1&-2&-4\\0&0&-7&-21}
+    \xrightarrow{F_3\leftarrow-\frac17F_3}
+    \mwaug{ccc|c}{1&1&1&6\\0&1&-2&-4\\0&0&1&3}.
+  \]
+  Sustitución hacia atrás:
+  \[
+    z=3,\qquad y-2(3)=-4\Rightarrow y=2,\qquad x+2+3=6\Rightarrow x=1.
+  \]
+  Solución: $(x,y,z)=(1,2,3)$.
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 7 (sistema $3\times3$ por Gauss-Jordan).} Resolver
+  \[
+    \begin{cases}
+      x+2y+z=5,\\
+      2x+y-z=1,\\
+      x-y+2z=4.
+    \end{cases}
+  \]
+
+  \medskip
+  \textbf{Solución.} Primero se elimina por debajo de cada pivote:
+  \[
+    \mwaug{ccc|c}{1&2&1&5\\2&1&-1&1\\1&-1&2&4}
+    \xrightarrow{F_2\leftarrow F_2-2F_1}
+    \mwaug{ccc|c}{1&2&1&5\\0&-3&-3&-9\\1&-1&2&4}
+  \]
+  \[
+    \xrightarrow{F_3\leftarrow F_3-F_1}
+    \mwaug{ccc|c}{1&2&1&5\\0&-3&-3&-9\\0&-3&1&-1}
+    \xrightarrow{F_2\leftarrow-\frac13F_2}
+    \mwaug{ccc|c}{1&2&1&5\\0&1&1&3\\0&-3&1&-1}
+  \]
+  \[
+    \xrightarrow{F_3\leftarrow F_3+3F_2}
+    \mwaug{ccc|c}{1&2&1&5\\0&1&1&3\\0&0&4&8}
+    \xrightarrow{F_3\leftarrow\frac14F_3}
+    \mwaug{ccc|c}{1&2&1&5\\0&1&1&3\\0&0&1&2}.
+  \]
+  Ahora se elimina también \emph{por encima} de los pivotes:
+  \[
+    \xrightarrow{F_2\leftarrow F_2-F_3}
+    \mwaug{ccc|c}{1&2&1&5\\0&1&0&1\\0&0&1&2}
+    \xrightarrow{F_1\leftarrow F_1-F_3}
+    \mwaug{ccc|c}{1&2&0&3\\0&1&0&1\\0&0&1&2}
+  \]
+  \[
+    \xrightarrow{F_1\leftarrow F_1-2F_2}
+    \mwaug{ccc|c}{1&0&0&1\\0&1&0&1\\0&0&1&2}.
+  \]
+  La izquierda es $I_3$, así que $(x,y,z)=(1,1,2)$.
+\end{cuadrosolucion}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.30\linewidth} p{0.30\linewidth} p{0.32\linewidth}@{}}
+  \toprule
+  \textbf{Aspecto} & \textbf{Gauss} & \textbf{Gauss-Jordan} \\
+  \midrule
+  Forma final & Escalonada & Escalonada reducida \\
+  Trabajo extra & Sustitución hacia atrás & Más operaciones de fila \\
+  Lectura & Requiere despejar & Directa \\
+  Errores típicos & Signos en la sustitución & Muchas operaciones acumuladas \\
+  Cuándo conviene & Sistemas grandes & Sistemas pequeños o matrices inversas \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Cómo interpretar la última fila.} Al terminar la eliminación, la
+  última fila de la matriz aumentada puede verse así:
+  \begin{center}
+  \begin{tabular}{@{}lll@{}}
+    \toprule
+    \textbf{Última fila} & \textbf{Significado} & \textbf{Solución} \\
+    \midrule
+    $[\,0\ \cdots\ 0\mid c\,]$, $c\neq0$ & $0=c$, falso & No existe \\
+    $[\,0\ \cdots\ 0\mid 0\,]$ & Ecuación redundante & Infinitas \\
+    $[\,0\ \cdots\ 1\mid c\,]$ & Última incógnita despejada & Única \\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{Nunca dividas por cero.} Si el pivote es $0$, \textbf{intercambia
+  filas} antes de dividir. Además, no olvides que toda operación afecta a
+  \textbf{toda la fila}, incluida la columna de las constantes. Cuando
+  Gauss-Jordan introduce fracciones, conviene mantenerlas simplificadas en
+  lugar de pasar a decimales: los errores de redondeo pueden hacer que una
+  solución exacta parezca incorrecta.
+\end{cuadroadvertencia}
+
+\begin{cuadroextra}
+  \small
+  \textbf{Generalización.} Los mismos pasos funcionan para sistemas
+  $3\times3$ o mayores: se busca un pivote en cada columna, se anula por
+  debajo (Gauss) y, si se desea, también por encima (Gauss-Jordan). Un
+  sistema $n\times n$ con solución única termina con la identidad $I_n$ a la
+  izquierda y el vector solución a la derecha. En esta sección trabajamos
+  ejemplos $2\times2$ (para ver el mecanismo con claridad) y $3\times3$ (el
+  tamaño que predomina en el banco de ejercicios); los casos $2\times3$ y
+  $3\times2$ se interpretan con la misma tabla de lectura.
+\end{cuadroextra}
+
+% ============================================================
+\section{Determinantes}
+% ============================================================
+
+El determinante es un número asociado a una matriz \textbf{cuadrada}. Resume
+mucha información: si vale $0$, la matriz es \emph{singular} y el sistema
+asociado no tiene solución única; si es distinto de $0$, hay solución única.
+
+% ------------------------------------------------------------
+\subsection{Determinante de una matriz $2\times2$}
+% ------------------------------------------------------------
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Definición.} Para
+  $A=\mwmat{a&b\\c&d}$,
+  \[
+    \det(A)=|A|=\mwdet{a&b\\c&d}=ad-bc.
+  \]
+  Es el producto de la diagonal principal menos el producto de la diagonal
+  secundaria.
+\end{cuadroteoria}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 1.}
+  \[
+    \mwdet{3&4\\2&5}=3\cdot5-4\cdot2=15-8=7.
+  \]
+  \textbf{Ejemplo 2.}
+  \[
+    \mwdet{-2&5\\3&-4}=(-2)(-4)-5\cdot3=8-15=-7.
+  \]
+  \textbf{Ejemplo 3.}
+  \[
+    \mwdet{\tfrac12&2\\[2pt]3&\tfrac13}
+    =\tfrac12\cdot\tfrac13-2\cdot3
+    =\tfrac16-6=-\tfrac{35}{6}.
+  \]
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 4 (determinante con incógnita).} Hallar $x$ si
+  \[
+    \mwdet{x&2\\3&x}=10.
+  \]
+  \textbf{Solución.}
+  \[
+    x\cdot x-2\cdot3=10
+    \;\Rightarrow\;
+    x^2-6=10
+    \;\Rightarrow\;
+    x^2=16
+    \;\Rightarrow\;
+    x=\pm4.
+  \]
+\end{cuadrosolucion}
+
+% ------------------------------------------------------------
+\subsection{Determinante de una matriz $3\times3$: regla de Sarrus}
+% ------------------------------------------------------------
+
+La regla de Sarrus calcula el determinante de una matriz $3\times3$ sumando
+tres productos «hacia abajo» y restando tres productos «hacia arriba». Se
+puede organizar de dos formas equivalentes.
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Sarrus horizontal.} Se repiten las dos primeras \textbf{columnas}
+  a la derecha de la matriz:
+  \[
+    \det(A)=
+    \underbrace{
+    \begin{array}{ccc|cc}
+      a_{11}&a_{12}&a_{13}&a_{11}&a_{12}\\
+      a_{21}&a_{22}&a_{23}&a_{21}&a_{22}\\
+      a_{31}&a_{32}&a_{33}&a_{31}&a_{32}
+    \end{array}}_{\text{matriz ampliada}}
+  \]
+  \[
+    \det(A)=(a_{11}a_{22}a_{33}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32})
+    -(a_{31}a_{22}a_{13}+a_{32}a_{23}a_{11}+a_{33}a_{21}a_{12}).
+  \]
+  \textbf{Sarrus vertical.} Se repiten las dos primeras \textbf{filas}
+  debajo de la matriz y se trazan las mismas seis diagonales.
+\end{cuadroteoria}
+
+\begin{center}
+\begin{tikzpicture}[baseline=(S.center)]
+  \matrix (S) [matrix of math nodes,
+               nodes={draw=mwprimario!40, fill=none, minimum width=1.02cm,
+                      minimum height=0.72cm, inner sep=1pt, font=\scriptsize},
+               row sep=-\pgflinewidth, column sep=-\pgflinewidth,
+               col 4/.style={nodes={draw=mwgris!35, text=mwgris}},
+               col 5/.style={nodes={draw=mwgris!35, text=mwgris}}] {
+    2 & -1 & 3 & 2 & -1\\
+    0 & 4 & 1 & 0 & 4\\
+    5 & 2 & -2 & 5 & 2\\
+  };
+  \begin{scope}[on background layer]
+    \draw[mwprimario, line width=4pt, opacity=0.22, line cap=round]
+      (S-1-1.center) -- (S-2-2.center) -- (S-3-3.center);
+    \draw[mwprimario, line width=4pt, opacity=0.22, line cap=round]
+      (S-1-2.center) -- (S-2-3.center) -- (S-3-4.center);
+    \draw[mwprimario, line width=4pt, opacity=0.22, line cap=round]
+      (S-1-3.center) -- (S-2-4.center) -- (S-3-5.center);
+    \draw[mwmagenta, line width=4pt, opacity=0.20, line cap=round]
+      (S-3-1.center) -- (S-2-2.center) -- (S-1-3.center);
+    \draw[mwmagenta, line width=4pt, opacity=0.20, line cap=round]
+      (S-3-2.center) -- (S-2-3.center) -- (S-1-4.center);
+    \draw[mwmagenta, line width=4pt, opacity=0.20, line cap=round]
+      (S-3-3.center) -- (S-2-4.center) -- (S-1-5.center);
+  \end{scope}
+  \node[below=0.55cm of S-3-3, font=\scriptsize, mwprimario]
+    {$\searrow$ productos positivos};
+  \node[below=0.55cm of S-3-3, font=\scriptsize, mwmagenta, yshift=-0.42cm]
+    {$\nearrow$ productos negativos};
+\end{tikzpicture}
+\end{center}
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Aviso importante.} La regla de Sarrus \textbf{solo} vale para
+  matrices $3\times3$. No existe una «regla de Sarrus» para $4\times4$: para
+  esas matrices hay que usar cofactores (o reducción a forma triangular).
+\end{cuadroteoria}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 5 (Sarrus, con la matriz de la figura).} Calcular
+  \[
+    \det(A)=\mwdet{2&-1&3\\0&4&1\\5&2&-2}.
+  \]
+
+  \medskip
+  \textbf{Solución con Sarrus horizontal.} Se repiten las dos primeras
+  columnas:
+  \[
+    \begin{array}{ccc|cc}
+      2&-1&3&2&-1\\
+      0&4&1&0&4\\
+      5&2&-2&5&2
+    \end{array}
+  \]
+  Productos positivos ($\searrow$):
+  \[
+    (2)(4)(-2)+(-1)(1)(5)+(3)(0)(2)
+    =-16-5+0=-21.
+  \]
+  Productos negativos ($\nearrow$):
+  \[
+    (5)(4)(3)+(2)(1)(2)+(-2)(0)(-1)
+    =60+4+0=64.
+  \]
+  \[
+    \det(A)=-21-64=-85.
+  \]
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 6 (Sarrus vertical, comprobación).} Con la misma matriz,
+  se repiten las dos primeras filas debajo:
+  \[
+    \begin{array}{ccc}
+      2&-1&3\\
+      0&4&1\\
+      5&2&-2\\
+      \hline
+      2&-1&3\\
+      0&4&1
+    \end{array}
+  \]
+  Diagonales descendentes:
+  $(2)(4)(-2)+(-1)(1)(5)+(3)(0)(2)=-21$.
+  \quad Diagonales ascendentes:
+  $(5)(4)(3)+(2)(1)(2)+(-2)(0)(-1)=64$.
+  \[
+    \det(A)=-21-64=-85.
+  \]
+  Ambos procedimientos coinciden, como debe ser.
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 7 (determinante nulo).} Calcular
+  \[
+    \mwdet{1&2&3\\4&5&6\\7&8&9}.
+  \]
+  \textbf{Solución.} Por Sarrus:
+  \[
+    (1)(5)(9)+(2)(6)(7)+(3)(4)(8)
+    -(7)(5)(3)-(8)(6)(1)-(9)(4)(2)
+  \]
+  \[
+    =45+84+96-(105+48+72)=225-225=0.
+  \]
+  Un determinante $0$ indica que las filas son \textbf{linealmente
+  dependientes}: la tercera fila es el doble de la segunda menos la primera.
+\end{cuadrosolucion}
+
+% ------------------------------------------------------------
+\subsection{Determinante de $4\times4$ o mayor: cofactores}
+% ------------------------------------------------------------
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Menor y cofactor.} Para una matriz cuadrada $A$:
+  \begin{itemize}[leftmargin=1.2em, nosep]
+    \item el \textbf{menor} $M_{ij}$ es el determinante de la matriz que
+          queda al \textbf{eliminar la fila $i$ y la columna $j$};
+    \item el \textbf{cofactor} es
+          \[
+            C_{ij}=(-1)^{i+j}M_{ij}.
+          \]
+  \end{itemize}
+  \textbf{Desarrollo por cofactores.} Para cualquier fila $i$,
+  \[
+    \det(A)=\sum_{j=1}^{n}a_{ij}C_{ij}
+    =a_{i1}C_{i1}+a_{i2}C_{i2}+\cdots+a_{in}C_{in},
+  \]
+  y lo mismo para cualquier columna $j$:
+  \[
+    \det(A)=\sum_{i=1}^{n}a_{ij}C_{ij}.
+  \]
+\end{cuadroteoria}
+
+\begin{center}
+\small
+\begin{tabular}{@{}cccc@{}}
+  \toprule
+  $+$ & $-$ & $+$ & $-$ \\
+  $-$ & $+$ & $-$ & $+$ \\
+  $+$ & $-$ & $+$ & $-$ \\
+  $-$ & $+$ & $-$ & $+$ \\
+  \bottomrule
+\end{tabular}
+\qquad
+\text{tablero de signos } $(-1)^{i+j}$
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[baseline=(M.center)]
+  \matrix (M) [matrix of math nodes,
+               nodes={draw=mwprimario!40, fill=white, minimum width=1.0cm,
+                      minimum height=0.72cm, inner sep=1pt, font=\scriptsize},
+               row sep=-\pgflinewidth, column sep=-\pgflinewidth,
+               row 1/.style={nodes={fill=mwgris!16, text=mwgris!60,
+                                    draw=mwgris!30}},
+               column 1/.style={nodes={fill=mwgris!16, text=mwgris!60,
+                                       draw=mwgris!30}}] {
+    2 & 0 & 0 & 0\\
+    3 & 1 & 2 & 0\\
+    4 & 0 & 3 & 1\\
+    5 & 2 & 1 & 2\\
+  };
+  \draw[mwvioleta, line width=1.2pt, rounded corners=1pt]
+    (M-1-1.north west) rectangle (M-1-1.south east);
+  \matrix (N) [matrix of math nodes,
+               nodes={draw=mwprimario!40, fill=white, minimum width=1.0cm,
+                      minimum height=0.72cm, inner sep=1pt, font=\scriptsize},
+               right=1.6cm of M,
+               row sep=-\pgflinewidth, column sep=-\pgflinewidth] {
+    1 & 2 & 0\\
+    0 & 3 & 1\\
+    2 & 1 & 2\\
+  };
+  \node[right=0.3cm of M, font=\large] {$\longrightarrow$};
+  \node[above=0.3cm of N, font=\scriptsize, mwmagenta] {$M_{11}$ (menor)};
+  \node[below=0.35cm of M, font=\scriptsize, mwgris, align=center]
+    {se eliminan la fila $1$\\ y la columna $1$};
+  \node[below=0.35cm of N, font=\scriptsize, mwgris]
+    {matriz $3\times3$ restante};
+\end{tikzpicture}
+\end{center}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 8 ($4\times4$ por cofactores).} Calcular
+  \[
+    \det(M)=\mwdet{2&0&0&0\\3&1&2&0\\4&0&3&1\\5&2&1&2}.
+  \]
+
+  \medskip
+  \textbf{Solución.} La primera fila tiene tres ceros: conviene desarrollar
+  por ella. Como $a_{11}=2$ y los demás $a_{1j}=0$,
+  \[
+    \det(M)=2\cdot(-1)^{1+1}M_{11}
+    =2\mwdet{1&2&0\\0&3&1\\2&1&2}.
+  \]
+  El menor $3\times3$ se calcula por Sarrus:
+  \[
+    \mwdet{1&2&0\\0&3&1\\2&1&2}
+    =(1)(3)(2)+(2)(1)(2)+(0)(0)(1)
+    -(2)(3)(0)-(1)(1)(1)-(2)(0)(2)
+  \]
+  \[
+    =6+4+0-(0+1+0)=9.
+  \]
+  Por lo tanto,
+  \[
+    \det(M)=2\cdot9=18.
+  \]
+\end{cuadrosolucion}
+
+\begin{cuadropasos}
+  \small
+  \textbf{Cómo elegir la fila o columna para desarrollar:}
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item busca la fila o columna con \textbf{más ceros};
+    \item si hay empate, elige la que tenga números más pequeños;
+    \item recuerda que cada término lleva el signo $(-1)^{i+j}$;
+    \item los menores se calculan con Sarrus si son $3\times3$, o se vuelve
+          a aplicar cofactores si son mayores.
+  \end{enumerate}
+  Para $5\times5$ o más, el procedimiento es \textbf{recursivo}: cada
+  cofactor se reduce a un determinante de orden una unidad menor, hasta
+  llegar a $3\times3$ o $2\times2$.
+\end{cuadropasos}
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Propiedades de los determinantes.} Para matrices cuadradas del
+  mismo orden:
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item $\det(I)=1$ y $\det(O)=0$.
+    \item Si $A$ es triangular (superior o inferior), $\det(A)$ es el
+          \textbf{producto de la diagonal}.
+    \item Al \textbf{intercambiar dos filas}, el determinante cambia de
+          signo.
+    \item Al \textbf{multiplicar una fila por $k$}, el determinante queda
+          multiplicado por $k$. En particular,
+          $\det(kA)=k^n\det(A)$.
+    \item Al \textbf{sumar a una fila un múltiplo de otra}, el determinante
+          \textbf{no cambia}.
+    \item Si una fila o columna es nula, o es múltiplo de otra,
+          $\det(A)=0$.
+    \item $\det(AB)=\det(A)\det(B)$ y $\det(A^{\top})=\det(A)$.
+  \end{enumerate}
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{Los dos errores más caros:}
+  \begin{itemize}[leftmargin=1.2em, nosep]
+    \item \textbf{olvidar el signo del cofactor}: el tablero
+          $+,-,+,-$ alterna por filas y columnas;
+    \item \textbf{eliminar la fila equivocada}: para $M_{ij}$ se quita la
+          fila $i$ y la columna $j$ del elemento elegido, no las primeras.
+  \end{itemize}
+  Además, el determinante \textbf{solo existe para matrices cuadradas}: no
+  se calcula el determinante de una matriz $2\times3$.
+\end{cuadroadvertencia}
+
+% ============================================================
+\section{Resolución de sistemas por la regla de Cramer}
+% ============================================================
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Condición.} La regla de Cramer se aplica a un sistema
+  \textbf{cuadrado} (igual número de ecuaciones que de incógnitas) cuya
+  matriz de coeficientes tenga \textbf{determinante distinto de cero}:
+  \[
+    \det(A)\neq0.
+  \]
+  En ese caso el sistema es compatible determinado y su solución es
+  \[
+    x_j=\frac{\det(A_j)}{\det(A)},\qquad j=1,2,\dots,n,
+  \]
+  donde $A_j$ es la matriz que resulta de sustituir la \textbf{columna $j$}
+  de $A$ por el vector de constantes $\mathbf{b}$.
+\end{cuadroteoria}
+
+Para un sistema $2\times2$,
+\[
+  \begin{cases}
+    a_1x+b_1y=c_1,\\
+    a_2x+b_2y=c_2,
+  \end{cases}
+\]
+las fórmulas son explícitas:
+\[
+  x=\frac{\mwdet{c_1&b_1\\c_2&b_2}}{\mwdet{a_1&b_1\\a_2&b_2}},
+  \qquad
+  y=\frac{\mwdet{a_1&c_1\\a_2&c_2}}{\mwdet{a_1&b_1\\a_2&b_2}}.
+\]
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 1.} Resolver por Cramer
+  \[
+    \begin{cases}
+      2x+3y=8,\\
+      x+4y=9.
+    \end{cases}
+  \]
+
+  \medskip
+  \textbf{Solución.} Primero el determinante del sistema:
+  \[
+    \det(A)=\mwdet{2&3\\1&4}=2\cdot4-3\cdot1=8-3=5\neq0.
+  \]
+  Como no es cero, Cramer se puede aplicar:
+  \[
+    x=\frac{\mwdet{8&3\\9&4}}{\det(A)}
+     =\frac{8\cdot4-3\cdot9}{5}
+     =\frac{32-27}{5}=\frac{5}{5}=1,
+  \]
+  \[
+    y=\frac{\mwdet{2&8\\1&9}}{\det(A)}
+     =\frac{2\cdot9-8\cdot1}{5}
+     =\frac{18-8}{5}=\frac{10}{5}=2.
+  \]
+  Solución: $(x,y)=(1,2)$.
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 2.} Resolver por Cramer
+  \[
+    \begin{cases}
+      x+2y=7,\\
+      3x-y=7.
+    \end{cases}
+  \]
+
+  \medskip
+  \textbf{Solución.}
+  \[
+    \det(A)=\mwdet{1&2\\3&-1}=(1)(-1)-(2)(3)=-1-6=-7.
+  \]
+  \[
+    x=\frac{\mwdet{7&2\\7&-1}}{-7}
+     =\frac{-7-14}{-7}=\frac{-21}{-7}=3,
+    \qquad
+    y=\frac{\mwdet{1&7\\3&7}}{-7}
+     =\frac{7-21}{-7}=\frac{-14}{-7}=2.
+  \]
+  Solución: $(x,y)=(3,2)$.
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 3 (determinante nulo).} Intentar resolver por Cramer
+  \[
+    \begin{cases}
+      2x+4y=6,\\
+      x+2y=5.
+    \end{cases}
+  \]
+
+  \medskip
+  \textbf{Solución.}
+  \[
+    \det(A)=\mwdet{2&4\\1&2}=4-4=0.
+  \]
+  Cramer \textbf{no se puede aplicar}: la fórmula exige dividir entre
+  $\det(A)$, que es cero. Además el sistema es \textbf{incompatible}: la
+  primera ecuación es $2(x+2y)=6$, es decir $x+2y=3$, mientras que la
+  segunda afirma $x+2y=5$. No existe solución.
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 4 (sistema $3\times3$ por Cramer).} Resolver
+  \[
+    \begin{cases}
+      x+y+z=6,\\
+      2x+3y+z=13,\\
+      x-y+2z=3.
+    \end{cases}
+  \]
+
+  \medskip
+  \textbf{Solución.} Determinante del sistema, por Sarrus:
+  \[
+    \det(A)=\mwdet{1&1&1\\2&3&1\\1&-1&2}
+    =(6+1-2)-(3-1+4)=5-6=-1\neq0.
+  \]
+  Ahora se sustituye cada columna por $\mathbf{b}=(6,13,3)$:
+  \[
+    \det(A_x)=\mwdet{6&1&1\\13&3&1\\3&-1&2}=-3,
+    \quad
+    \det(A_y)=\mwdet{1&6&1\\2&13&1\\1&3&2}=-2,
+  \]
+  \[
+    \det(A_z)=\mwdet{1&1&6\\2&3&13\\1&-1&3}=-1.
+  \]
+  Por lo tanto,
+  \[
+    x=\frac{-3}{-1}=3,\qquad
+    y=\frac{-2}{-1}=2,\qquad
+    z=\frac{-1}{-1}=1.
+  \]
+  Solución: $(x,y,z)=(3,2,1)$. Comprobación: $3+2+1=6$,
+  $2(3)+3(2)+1=13$ y $3-2+2(1)=3$. \checkmark
+\end{cuadrosolucion}
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Qué significa $\det(A)=0$.} Si el determinante del sistema es
+  cero, la regla de Cramer no decide. Hay que analizar el sistema con Gauss:
+  \begin{itemize}[leftmargin=1.2em, nosep]
+    \item si al reducir aparece una fila $[\,0\ \cdots\ 0\mid c\,]$ con
+          $c\neq0$, el sistema es \textbf{incompatible};
+    \item si aparece una fila $[\,0\ \cdots\ 0\mid 0\,]$, el sistema tiene
+          \textbf{infinitas soluciones} (al menos una incógnita libre).
+  \end{itemize}
+\end{cuadroteoria}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.25\linewidth} p{0.34\linewidth} p{0.33\linewidth}@{}}
+  \toprule
+  \textbf{Aspecto} & \textbf{Cramer} & \textbf{Gauss / Gauss-Jordan} \\
+  \midrule
+  Requisito & Sistema cuadrado con $\det(A)\neq0$ & Cualquier sistema \\
+  Trabajo & Un determinante por incógnita & Una sola reducción \\
+  Ventaja & Fórmula directa y elegante & Funciona siempre \\
+  Desventaja & No sirve si $\det(A)=0$ & Más pasos y más cuidado con signos \\
+  Cuándo conviene & Sistemas $2\times2$ o $3\times3$ & Sistemas grandes \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\begin{cuadroextra}
+  \small
+  \textbf{Las mismas fórmulas en $3\times3$.} Si
+  $A=\mwmat{a_{11}&a_{12}&a_{13}\\a_{21}&a_{22}&a_{23}\\a_{31}&a_{32}&a_{33}}$,
+  \[
+    x=\frac{\det(A_x)}{\det(A)},\quad
+    y=\frac{\det(A_y)}{\det(A)},\quad
+    z=\frac{\det(A_z)}{\det(A)},
+  \]
+  donde $A_x$, $A_y$ y $A_z$ se obtienen sustituyendo la \emph{primera},
+  \emph{segunda} y \emph{tercera} columna por el vector de constantes
+  $\mathbf{b}$, y cada determinante se calcula con Sarrus. Cramer sigue
+  exigiendo $\det(A)\neq0$; con tres incógnitas hay que calcular
+  \textbf{cuatro} determinantes de $3\times3$, razón por la cual Gauss suele
+  ser más económico.
+\end{cuadroextra}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{Dos despistes típicos en Cramer:}
+  \begin{itemize}[leftmargin=1.2em, nosep]
+    \item sustituir la \textbf{columna equivocada}: para $x$ se reemplaza la
+          \emph{primera} columna; para $y$, la \emph{segunda};
+    \item invertir numerador y denominador, o cambiar el orden de las
+          columnas al calcular un determinante (eso cambia el signo).
+  \end{itemize}
+  Antes de dividir, comprueba que $\det(A)\neq0$. Y al terminar,
+  \textbf{verifica} la solución en el sistema original.
+\end{cuadroadvertencia}
+
+
+% ============================================================
+\section{Matriz inversa}
+% ============================================================
+
+Hasta aquí hemos \emph{sumado}, \emph{multiplicado} y \emph{resuelto} sistemas.
+Falta la operación que, en matrices, hace el papel de la división: la
+\textbf{inversa}. No todas las matrices la tienen, pero cuando existe permite
+resolver $A\mathbf{x}=\mathbf{b}$ con un solo producto:
+$\mathbf{x}=A^{-1}\mathbf{b}$.
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Definición.} Sea $A$ una matriz \textbf{cuadrada} de orden $n$. Se
+  dice que $A$ es \textbf{invertible} (o \emph{no singular}) si existe una
+  matriz $B$ del mismo orden tal que
+  \[
+    AB=BA=I_n .
+  \]
+  Esa matriz $B$, si existe, es \textbf{única} y se llama \textbf{inversa} de
+  $A$: se escribe $B=A^{-1}$. Así,
+  \[
+    AA^{-1}=A^{-1}A=I_n .
+  \]
+  Si no existe tal matriz, $A$ es \textbf{singular} y no tiene inversa.
+\end{cuadroteoria}
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Cuándo existe: el criterio de equivalencia.} Para una matriz
+  cuadrada $A$ son equivalentes:
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item $A$ es invertible;
+    \item $\det(A)\neq0$;
+    \item la forma escalonada reducida de $A$ es $I_n$;
+    \item la matriz aumentada $[A\mid I]$ es equivalente por filas a
+          $[I\mid A^{-1}]$.
+  \end{enumerate}
+  La última es la que usaremos para \emph{calcular} la inversa: si al reducir
+  la mitad izquierda aparece $I$, la mitad derecha \emph{es} $A^{-1}$; si
+  aparece una fila de ceros a la izquierda, la inversa \textbf{no existe}.
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \small
+  \textbf{Método de Gauss-Jordan para hallar $A^{-1}$:}
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item Escribir la matriz aumentada $[A\mid I]$.
+    \item Aplicar operaciones elementales de fila \textbf{a toda la fila},
+          incluida la parte de la identidad: cada operación que se hace a la
+          izquierda se hace también a la derecha.
+    \item Continuar hasta que la izquierda sea $I_n$.
+    \item Leer la inversa en la mitad derecha: $[I\mid A^{-1}]$.
+    \item Si en la mitad izquierda aparece una fila nula, detenerse:
+          $A$ no es invertible.
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 1 ($2\times2$).} Hallar la inversa de
+  $A=\mwmat{3&1\\2&1}$.
+
+  \medskip
+  \textbf{Solución.} Se parte de $[A\mid I]$ y se reduce:
+  \[
+    \mwaug{cc|cc}{3&1&1&0\\2&1&0&1}
+    \xrightarrow{F_1\leftarrow F_1-F_2}
+    \mwaug{cc|cc}{1&0&1&-1\\2&1&0&1}
+  \]
+  \[
+    \xrightarrow{F_2\leftarrow F_2-2F_1}
+    \mwaug{cc|cc}{1&0&1&-1\\0&1&-2&3}.
+  \]
+  La izquierda ya es $I_2$, así que
+  \[
+    A^{-1}=\mwmat{1&-1\\-2&3}.
+  \]
+  \textbf{Comprobación} (siempre conviene hacerla):
+  \[
+    AA^{-1}=\mwmat{3&1\\2&1}\mwmat{1&-1\\-2&3}
+    =\mwmat{1&0\\0&1}=I_2. \checkmark
+  \]
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 2 ($2\times2$ con determinante negativo).} Hallar la inversa
+  de $A=\mwmat{4&3\\3&2}$.
+
+  \medskip
+  \textbf{Solución.}
+  \[
+    \mwaug{cc|cc}{4&3&1&0\\3&2&0&1}
+    \xrightarrow{F_1\leftarrow F_1-F_2}
+    \mwaug{cc|cc}{1&1&1&-1\\3&2&0&1}
+    \xrightarrow{F_2\leftarrow F_2-3F_1}
+    \mwaug{cc|cc}{1&1&1&-1\\0&-1&-3&4}
+  \]
+  \[
+    \xrightarrow{F_2\leftarrow -F_2}
+    \mwaug{cc|cc}{1&1&1&-1\\0&1&3&-4}
+    \xrightarrow{F_1\leftarrow F_1-F_2}
+    \mwaug{cc|cc}{1&0&-2&3\\0&1&3&-4}.
+  \]
+  Por lo tanto,
+  \[
+    A^{-1}=\mwmat{-2&3\\3&-4}.
+  \]
+  \textbf{Comprobación:} $4(-2)+3(3)=1$ y $3(3)+2(-4)=1$ en la diagonal,
+  mientras que los productos cruzados dan $0$. \checkmark
+\end{cuadrosolucion}
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Atajo para $2\times2$.} Si $A=\mwmat{a&b\\c&d}$ y
+  $\det(A)=ad-bc\neq0$, entonces
+  \[
+    A^{-1}=\frac{1}{ad-bc}\mwmat{d&-b\\-c&a}.
+  \]
+  Se \textbf{intercambian} $a$ y $d$, se \textbf{cambian de signo} $b$ y $c$, y
+  se divide todo entre el determinante. Es un atajo cómodo para $2\times2$;
+  para $3\times3$ o mayor no hay fórmula corta y se usa
+  Gauss-Jordan sobre $[A\mid I]$.
+\end{cuadroteoria}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 3 ($3\times3$).} Hallar la inversa de
+  $A=\mwmat{1&2&3\\0&1&4\\5&6&0}$.
+
+  \medskip
+  \textbf{Solución.} Se aumenta con $I_3$ y se elimina columna por columna:
+  \[
+    \mwaug{ccc|ccc}{1&2&3&1&0&0\\
+                    0&1&4&0&1&0\\
+                    5&6&0&0&0&1}
+    \xrightarrow{F_3\leftarrow F_3-5F_1}
+    \mwaug{ccc|ccc}{1&2&3&1&0&0\\
+                    0&1&4&0&1&0\\
+                    0&-4&-15&-5&0&1}
+  \]
+  \[
+    \xrightarrow{F_3\leftarrow F_3+4F_2}
+    \mwaug{ccc|ccc}{1&2&3&1&0&0\\
+                    0&1&4&0&1&0\\
+                    0&0&1&-5&4&1}.
+  \]
+  Ahora se anula hacia arriba. Primero la tercera columna:
+  \[
+    \xrightarrow{F_2\leftarrow F_2-4F_3}
+    \mwaug{ccc|ccc}{1&2&3&1&0&0\\
+                    0&1&0&20&-15&-4\\
+                    0&0&1&-5&4&1}
+  \]
+  \[
+    \xrightarrow{F_1\leftarrow F_1-3F_3}
+    \mwaug{ccc|ccc}{1&2&0&16&-12&-3\\
+                    0&1&0&20&-15&-4\\
+                    0&0&1&-5&4&1}
+    \xrightarrow{F_1\leftarrow F_1-2F_2}
+    \mwaug{ccc|ccc}{1&0&0&-24&18&5\\
+                    0&1&0&20&-15&-4\\
+                    0&0&1&-5&4&1}.
+  \]
+  Por lo tanto,
+  \[
+    A^{-1}=\mwmat{-24&18&5\\20&-15&-4\\-5&4&1}.
+  \]
+  \textbf{Comprobación de una entrada:} la primera fila de $A$ por la primera
+  columna de $A^{-1}$ da $1(-24)+2(20)+3(-5)=-24+40-15=1$, como debe ser.
+  \checkmark
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 4 (matriz sin inversa).} Intentar hallar la inversa de
+  $A=\mwmat{1&2\\2&4}$.
+
+  \medskip
+  \textbf{Solución.}
+  \[
+    \mwaug{cc|cc}{1&2&1&0\\2&4&0&1}
+    \xrightarrow{F_2\leftarrow F_2-2F_1}
+    \mwaug{cc|cc}{1&2&1&0\\0&0&-2&1}.
+  \]
+  En la mitad izquierda apareció una \textbf{fila nula}: es imposible
+  convertirla en $I_2$. Por lo tanto $A$ \textbf{no es invertible}. Coincide
+  con el criterio del determinante: $\det(A)=1\cdot4-2\cdot2=0$.
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 5 (resolver un sistema con la inversa).} Resolver
+  \[
+    \begin{cases}
+      3x+y=5,\\
+      2x+y=3
+    \end{cases}
+    \qquad\text{usando }A^{-1}.
+  \]
+
+  \medskip
+  \textbf{Solución.} Del ejemplo 1, $A^{-1}=\mwmat{1&-1\\-2&3}$. Como
+  $A\mathbf{x}=\mathbf{b}$ implica $\mathbf{x}=A^{-1}\mathbf{b}$:
+  \[
+    \mwmat{x\\y}=\mwmat{1&-1\\-2&3}\mwmat{5\\3}
+    =\mwmat{1\cdot5-1\cdot3\\-2\cdot5+3\cdot3}
+    =\mwmat{2\\-1}.
+  \]
+  Solución: $(x,y)=(2,-1)$. Comprobación: $3(2)+(-1)=5$ y $2(2)+(-1)=3$.
+  \checkmark
+\end{cuadrosolucion}
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Propiedades de la inversa.} Siempre que las matrices sean
+  invertibles y del orden adecuado:
+  \begin{enumerate}[leftmargin=1.4em, nosep]
+    \item $(A^{-1})^{-1}=A$ \quad y \quad $I_n^{-1}=I_n$.
+    \item $(AB)^{-1}=B^{-1}A^{-1}$ \quad (\textbf{se invierte el orden}).
+    \item $(A^{\top})^{-1}=(A^{-1})^{\top}$.
+    \item $(kA)^{-1}=\dfrac{1}{k}A^{-1}$, con $k\neq0$.
+    \item $\det(A^{-1})=\dfrac{1}{\det(A)}$.
+    \item Si $A\mathbf{x}=\mathbf{b}$ y $A$ es invertible, entonces
+          $\mathbf{x}=A^{-1}\mathbf{b}$: solución única.
+  \end{enumerate}
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{Cinco errores que hay que evitar:}
+  \begin{itemize}[leftmargin=1.2em, nosep]
+    \item \textbf{Invertir entrada por entrada.} $A^{-1}$ no se obtiene
+          poniendo $1/a_{ij}$; hay que reducir $[A\mid I]$.
+    \item \textbf{Olvidar que solo existe para matrices cuadradas.} Una
+          matriz $2\times3$ no tiene inversa (ni por izquierda ni por
+          derecha en el sentido de $AA^{-1}=I$).
+    \item \textbf{No comprobar el determinante.} Si $\det(A)=0$, no hay
+          inversa y todo el trabajo de reducción es inútil.
+    \item \textbf{Equivocar el orden en $(AB)^{-1}$:} es $B^{-1}A^{-1}$, no
+          $A^{-1}B^{-1}$.
+    \item \textbf{Operar solo la mitad izquierda.} Cada operación de fila
+          debe aplicarse también a la identidad de la derecha.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\begin{cuadroextra}
+  \small
+  \textbf{De dónde sale la fórmula $2\times2$.} Para
+  $A=\mwmat{a&b\\c&d}$ con $\det(A)\neq0$,
+  \[
+    A^{-1}=\frac{1}{\det(A)}\mwmat{d&-b\\-c&a}
+    =\frac{1}{\det(A)}\,\operatorname{adj}(A),
+  \]
+  donde $\operatorname{adj}(A)$ es la \textbf{matriz adjunta}: la traspuesta
+  de la matriz de cofactores. Esta misma idea funciona en $3\times3$, pero
+  exige calcular nueve cofactores; por eso, en la práctica, Gauss-Jordan
+  sobre $[A\mid I]$ resulta más económico.
+\end{cuadroextra}
+
+% ============================================================
+\section{Formulario resumen}
+% ============================================================
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Definiciones y tamaños}
+  \begin{itemize}[leftmargin=1.2em, nosep]
+    \item Matriz $m\times n$: $m$ filas, $n$ columnas, $mn$ elementos.
+    \item $A=(a_{ij})$: $i$ = fila, $j$ = columna.
+    \item $A=B$ si y solo si tienen el mismo orden y $a_{ij}=b_{ij}$.
+    \item Cuadrada: $m=n$. Identidad $I_n$: $1$ en la diagonal, $0$ fuera.
+    \item Nula $O$: todos sus elementos son $0$.
+  \end{itemize}
+
+  \medskip
+  \textbf{Operaciones}
+  \begin{itemize}[leftmargin=1.2em, nosep]
+    \item Escalar: $(kA)_{ij}=k\,a_{ij}$.
+    \item Suma y resta: mismo orden; se opera entrada por entrada.
+    \item Producto: $A_{m\times n}B_{n\times p}=C_{m\times p}$ con
+          $c_{ij}=\sum_{k=1}^{n}a_{ik}b_{kj}$.
+    \item $AB\neq BA$ en general; $AB=O$ no implica $A=O$ ni $B=O$.
+    \item $AI=IA=A$; $A^n=AA\cdots A$ ($n$ factores).
+  \end{itemize}
+
+  \medskip
+  \textbf{Sistemas}
+  \begin{itemize}[leftmargin=1.2em, nosep]
+    \item $A\mathbf{x}=\mathbf{b}$; aumentada $[A\mid\mathbf{b}]$.
+    \item Operaciones elementales: $F_i\leftrightarrow F_j$;
+          $F_i\leftarrow kF_i$ ($k\neq0$);
+          $F_i\leftarrow F_i+kF_j$.
+    \item Gauss: escalonada + sustitución hacia atrás.
+    \item Gauss-Jordan: escalonada reducida, lectura directa.
+    \item Última fila $[0\ \cdots\ 0\mid c]$, $c\neq0$: incompatible.
+    \item Última fila $[0\ \cdots\ 0\mid 0]$: infinitas soluciones.
+  \end{itemize}
+\end{cuadroteoria}
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Determinantes}
+  \[
+    \mwdet{a&b\\c&d}=ad-bc.
+  \]
+  \[
+    \det(A)=(a_{11}a_{22}a_{33}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32})
+    -(a_{31}a_{22}a_{13}+a_{32}a_{23}a_{11}+a_{33}a_{21}a_{12}).
+  \]
+  \[
+    C_{ij}=(-1)^{i+j}M_{ij},
+    \qquad
+    \det(A)=\sum_{j=1}^{n}a_{ij}C_{ij}.
+  \]
+  \begin{itemize}[leftmargin=1.2em, nosep]
+    \item Triangular: determinante = producto de la diagonal.
+    \item Intercambiar filas: cambia el signo.
+    \item Sumar un múltiplo de otra fila: no cambia el determinante.
+    \item $\det(AB)=\det(A)\det(B)$; $\det(kA)=k^n\det(A)$.
+  \end{itemize}
+
+  \medskip
+  \textbf{Matriz inversa} (solo si $A$ es cuadrada y $\det(A)\neq0$):
+  \[
+    [A\mid I]\;\sim\;[I\mid A^{-1}]
+  \]
+  \[
+    \mwmat{a&b\\c&d}^{-1}
+    =\frac{1}{ad-bc}\mwmat{d&-b\\-c&a}.
+  \]
+  \begin{itemize}[leftmargin=1.2em, nosep]
+    \item $(AB)^{-1}=B^{-1}A^{-1}$; \quad $(A^{-1})^{-1}=A$;
+          \quad $\det(A^{-1})=1/\det(A)$.
+    \item Si $\det(A)=0$: $A$ es singular y \textbf{no} tiene inversa.
+    \item $A\mathbf{x}=\mathbf{b}\Rightarrow\mathbf{x}=A^{-1}\mathbf{b}$.
+  \end{itemize}
+
+  \medskip
+  \textbf{Cramer} (solo si $\det(A)\neq0$): $x_j=\dfrac{\det(A_j)}{\det(A)}$,
+  sustituyendo la columna $j$ por $\mathbf{b}$. En $2\times2$:
+  \[
+    x=\frac{\mwdet{c_1&b_1\\c_2&b_2}}{\det(A)},
+    \qquad
+    y=\frac{\mwdet{a_1&c_1\\a_2&c_2}}{\det(A)};
+  \]
+  en $3\times3$ se añade $z=\det(A_z)/\det(A)$ y cada determinante se hace
+  por Sarrus.
+\end{cuadroteoria}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.44\linewidth} p{0.48\linewidth}@{}}
+  \toprule
+  \textbf{Si el problema pide\dots} & \textbf{Conviene usar\dots} \\
+  \midrule
+  Sumar, restar o multiplicar por un número & Operaciones entrada por
+    entrada, verificando el orden. \\
+  Multiplicar dos matrices & Comprobar $(m\times n)(n\times p)$ y usar
+    fila por columna. \\
+  Resolver un sistema $2\times2$ o $3\times3$ & Gauss-Jordan (rápido) o
+    Cramer si $\det(A)\neq0$. \\
+  Decidir si un sistema tiene solución única & Calcular $\det(A)$: si es
+    distinto de $0$, es única. \\
+  Resolver un sistema con parámetros o sin solución única & Gauss: permite
+    ver incompatibilidad e infinitas soluciones. \\
+  Determinante $3\times3$ & Sarrus (horizontal o vertical). \\
+  Determinante $4\times4$ o mayor & Cofactores por la fila o columna con
+    más ceros. \\
+  Hallar la inversa de una matriz & Reducir $[A\mid I]$ a $[I\mid A^{-1}]$
+    (y comprobar que $\det(A)\neq0$). \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+% ============================================================
+\section{Banco de ejercicios y problemas}
+% ============================================================
+
+\begin{cuadroinfo}
+  \small
+  \textbf{Instrucciones.} Resuelve cada ejercicio en tu cuaderno y anota el
+  procedimiento, no solo el resultado. Los ejercicios están agrupados por
+  tema y numerados de forma continua del $1$ al $88$. La dificultad se indica
+  con estrellas: \facil\ básico, \medio\ intermedio, \dificil\ avanzado.
+  La clave comentada está al final de la guía.
+\end{cuadroinfo}
+
+\mwbloquehead{Bloque A — Definición, filas, columnas y orden}{8}{0}
+\begin{mwbloque}
+  \item \facil\ Dada $A=\mwmat{2&-1&3\\0&5&-4}$, indicar su orden, sus filas,
+        sus columnas y los elementos $a_{12}$, $a_{23}$ y $a_{21}$.
+  \item \facil\ Dada $B=\mwmat{1&0\\-2&3\\4&5}$, indicar su orden, el número
+        de elementos, los elementos $b_{31}$ y $b_{22}$, y escribir la
+        primera columna.
+  \item \facil\ Construir la matriz $C=(c_{ij})$ de orden $2\times3$ definida
+        por $c_{ij}=i+2j$.
+  \item \facil\ Construir la matriz $D=(d_{ij})$ de orden $3\times2$ definida
+        por $d_{ij}=i-j$.
+  \item \facil\ Construir la matriz $E=(e_{ij})$ de orden $2\times2$ definida
+        por $e_{ij}=2i+j$.
+  \item \facil\ Hallar $x$ e $y$ para que
+        $\mwmat{x+1&3\\4&2y}=\mwmat{5&3\\4&10}$.
+  \item \medio\ Indicar en qué casos las dos matrices pueden ser iguales:
+        (a) una $2\times3$ y una $3\times2$; (b) dos $2\times2$;
+        (c) una $1\times3$ y una $3\times1$.
+  \item \facil\ Completar: (a) una matriz $4\times5$ tiene \rule{1cm}{0.4pt}
+        elementos; (b) una $7\times1$ tiene \rule{1cm}{0.4pt};
+        (c) una $n\times n$ tiene \rule{1cm}{0.4pt};
+        (d) una $3\times4$ tiene \rule{1cm}{0.4pt}.
+\end{mwbloque}
+
+\mwbloquehead{Bloque B — Multiplicación por un escalar}{16}{8}
+\begin{mwbloque}
+  \item \facil\ Si $A=\mwmat{2&-3\\1&4}$, calcular $3A$.
+  \item \facil\ Si $B=\mwmat{-1&2\\0&5\\3&-2}$, calcular $-2B$.
+  \item \facil\ Si $C=\mwmat{\tfrac12&-1\\[2pt]3&\tfrac23}$, calcular $6C$.
+  \item \medio\ Si $A=\mwmat{2&1\\-1&3}$ y $B=\mwmat{0&-2\\4&1}$, calcular
+        $2A-3B$.
+  \item \medio\ Resolver para $X$:
+        $2X+\mwmat{1&2\\3&4}=\mwmat{5&6\\7&8}$.
+  \item \facil\ Si $A=\mwmat{1&-2\\3&0}$, calcular $-\tfrac12A$.
+  \item \medio\ Verificar que $3(A+B)=3A+3B$ para
+        $A=\mwmat{1&0\\2&-1}$ y $B=\mwmat{-1&3\\0&2}$.
+  \item \facil\ Hallar el escalar $k$ tal que
+        $k\mwmat{2&-1\\4&6}=\mwmat{-6&3\\-12&-18}$.
+\end{mwbloque}
+
+\mwbloquehead{Bloque C — Suma y resta de matrices}{26}{16}
+\begin{mwbloque}
+  \item \facil\ Con $A=\mwmat{1&2\\3&4}$ y $B=\mwmat{5&-1\\0&2}$, calcular
+        $A+B$ y $A-B$.
+  \item \medio\ Con $A=\mwmat{2&0&-1\\3&4&5}$ y
+        $B=\mwmat{-1&2&0\\1&-3&2}$, calcular $A+B$ y $A-B$.
+  \item \facil\ Con $A=\mwmat{4&-2\\1&0\\3&5}$ y
+        $B=\mwmat{-1&2\\0&-3\\2&1}$, calcular $A+B$.
+  \item \medio\ ¿Es posible calcular $A+B$ si $A$ es $2\times3$ y $B$ es
+        $3\times2$? Justificar.
+  \item \medio\ Resolver para $X$:
+        $X-\mwmat{2&1\\0&3}=\mwmat{4&-1\\5&2}$.
+  \item \medio\ Hallar $a$ y $b$ para que
+        $\mwmat{a&2\\3&b}+\mwmat{1&-2\\-3&4}=\mwmat{4&0\\0&7}$.
+  \item \medio\ Con $A=\mwmat{1&0\\2&-1}$, $B=\mwmat{3&1\\-1&2}$ y
+        $C=\mwmat{0&4\\1&0}$, calcular $2A-B+C$.
+  \item \facil\ Verificar que $A+O=A$ para $A=\mwmat{3&-1\\2&0}$ y
+        $O=\mwmat{0&0\\0&0}$.
+  \item \medio\ Con $A=\mwmat{1&2\\3&4}$ y $B=\mwmat{5&-1\\0&2}$, calcular
+        $(A+B)-(A-B)$ y comparar con $2B$.
+  \item \facil\ Hallar $x$ e $y$ si
+        $\mwmat{x&1\\2&y}-\mwmat{1&1\\2&3}=O$.
+\end{mwbloque}
+
+\mwbloquehead{Bloque D — Sistemas y matriz aumentada}{34}{26}
+\begin{mwbloque}
+  \item \facil\ Escribir la matriz aumentada del sistema
+        $x+2y-z=3$, $2x-y+z=0$, $3x+y+2z=7$.
+  \item \facil\ Escribir el sistema asociado a
+        $\mwaug{ccc|c}{1&1&1&6\\2&-1&1&3\\1&2&-1&2}$ y comprobar si
+        $(1,2,3)$ es solución.
+  \item \facil\ Escribir en forma matricial $A\mathbf{x}=\mathbf{b}$ el
+        sistema $2x-y+3z=5$, $x+4y-z=2$, $3x+y+z=8$.
+  \item \facil\ Para el sistema $x+2y+3z=6$, $2x-y+z=1$, $x+y-z=2$,
+        escribir $A$, $\mathbf{x}$, $\mathbf{b}$ y la matriz aumentada.
+  \item \dificil\ En el sistema $x+y+z=3$, $2x-y+z=0$ (caso $2\times3$),
+        escribir la matriz aumentada y dar dos soluciones distintas.
+  \item \medio\ Explicar por qué el sistema $x+y+z=1$, $x+y+z=2$ (caso
+        $2\times3$) no tiene solución.
+  \item \medio\ Resolver el sistema $x+y=2$, $x-y=0$, $2x+y=3$ (caso
+        $3\times2$).
+  \item \medio\ Mostrar que el sistema $x+y=1$, $x-y=3$, $2x+2y=5$ (caso
+        $3\times2$) es incompatible.
+\end{mwbloque}
+
+\mwbloquehead{Bloque E — Multiplicación de matrices}{46}{34}
+\begin{mwbloque}
+  \item \facil\ Calcular
+        $\mwmat{1&2\\3&4}\mwmat{5&6\\7&8}$.
+  \item \facil\ Calcular
+        $\mwmat{2&-1\\3&0}\mwmat{1&4\\-2&5}$.
+  \item \medio\ Con $A=\mwmat{1&2\\3&4}$ y $B=\mwmat{0&1\\1&0}$, calcular
+        $AB$ y $BA$. ¿Son iguales?
+  \item \medio\ Calcular
+        $\mwmat{1&2&3\\4&5&6}\mwmat{1&0\\0&1\\1&1}$.
+  \item \medio\ Calcular
+        $\mwmat{1&2\\3&4\\5&6}\mwmat{1&0&1\\0&1&1}$.
+  \item \medio\ Indicar cuáles productos están definidos y, en ese caso, su
+        orden: (a) $(2\times3)(3\times4)$; (b) $(3\times2)(3\times2)$;
+        (c) $(1\times4)(4\times1)$; (d) $(2\times2)(2\times3)$.
+  \item \facil\ Verificar que $AI=A$ e $IA=A$ para
+        $A=\mwmat{3&-1\\2&5}$.
+  \item \medio\ Comprobar que $AB=O$ con
+        $A=\mwmat{1&1\\2&2}$ y $B=\mwmat{1&-1\\-1&1}$.
+  \item \medio\ Si $A=\mwmat{1&1\\0&1}$, calcular $A^2$, $A^3$ y conjeturar
+        $A^n$.
+  \item \medio\ Si $A=\mwmat{2&-1\\4&-2}$, calcular $A^2$. ¿Se cumple que
+        $A=O$?
+  \item \dificil\ Con $A=\mwmat{1&2\\0&1}$ y $B=\mwmat{1&0\\3&1}$, calcular
+        $(A+B)^2$ y $A^2+2AB+B^2$. ¿Son iguales? Explicar.
+  \item \dificil\ Hallar $a$ y $b$ para que
+        $\mwmat{a&b\\1&2}\mwmat{1&1\\1&-1}=\mwmat{3&1\\3&-1}$.
+\end{mwbloque}
+
+\mwbloquehead{Bloque F — Matrices equivalentes}{54}{46}
+\begin{mwbloque}
+  \item \facil\ Aplicar $F_2\leftarrow F_2-2F_1$ a
+        $\mwmat{1&2&5\\2&5&12}$.
+  \item \facil\ Aplicar $F_1\leftrightarrow F_3$ a
+        $\mwmat{1&2\\3&4\\5&6}$.
+  \item \facil\ Aplicar $F_2\leftarrow \tfrac13F_2$ a
+        $\mwmat{3&6&9\\6&9&12}$.
+  \item \medio\ Reducir a forma escalonada
+        $\mwmat{1&3&7\\2&4&10}$.
+  \item \medio\ ¿Son equivalentes
+        $\mwmat{1&2\\2&4}$ y $\mwmat{1&2\\0&0}$? Justificar con las
+        operaciones usadas.
+  \item \facil\ Indicar cuál de las siguientes \textbf{no} es una operación
+        elemental de fila: (a) $F_1\leftrightarrow F_2$;
+        (b) $F_1\leftarrow 3F_1$; (c) $F_1\leftarrow 0\cdot F_1$;
+        (d) $F_1\leftarrow F_1+2F_2$.
+  \item \medio\ Detectar el error: un estudiante aplica
+        $F_2\leftarrow F_2-F_1$ solo a las dos primeras columnas de una
+        matriz aumentada y deja intacta la columna de constantes. ¿Qué
+        ocurre con el sistema?
+  \item \medio\ Reducir $\mwmat{0&2&4\\3&6&9}$ a forma escalonada.
+\end{mwbloque}
+
+\mwbloquehead{Bloque G — Gauss y Gauss-Jordan}{64}{54}
+\begin{mwbloque}
+  \item \medio\ Resolver por Gauss:
+        $x+y+z=6$, $2x-y+z=6$, $3x+2y-z=5$.
+  \item \medio\ Resolver por Gauss:
+        $2x+y+z=7$, $x+3y-z=4$, $x+y+2z=9$.
+  \item \medio\ Resolver por Gauss:
+        $x-y+2z=9$, $2x+y+z=6$, $x+2y+z=3$.
+  \item \medio\ Resolver por Gauss-Jordan:
+        $x+2y=5$, $2x-y+z=3$, $x+y-z=0$.
+  \item \medio\ Resolver por Gauss:
+        $x+y+z=3$, $2x+2y+2z=7$, $x-y+z=1$.
+  \item \medio\ Resolver por Gauss:
+        $x+y+z=6$, $2x-y+z=3$, $3x+2z=9$.
+  \item \medio\ Resolver por Gauss:
+        $x+y+z=6$, $x+2y+3z=10$, $2x+3y+4z=16$.
+  \item \medio\ Resolver por Gauss:
+        $2y+z=5$, $x-y+z=0$, $2x+y-z=3$ (atención al pivote nulo).
+  \item \medio\ Resolver por Gauss-Jordan:
+        $x+y-z=1$, $2x-y+z=2$, $x+2y+2z=5$.
+  \item \medio\ Resolver por Gauss-Jordan:
+        $3x+y+z=8$, $x+2y-z=3$, $x+y+2z=5$.
+\end{mwbloque}
+
+\mwbloquehead{Bloque H — Determinantes $2\times2$ y $3\times3$}{72}{64}
+\begin{mwbloque}
+  \item \facil\ Calcular $\mwdet{3&4\\2&5}$.
+  \item \facil\ Calcular $\mwdet{-2&5\\3&-4}$.
+  \item \medio\ Calcular $\mwdet{\tfrac12&2\\[2pt]3&\tfrac13}$.
+  \item \medio\ Hallar $x$ si $\mwdet{x&2\\3&x}=10$.
+  \item \medio\ Calcular por Sarrus $\mwdet{1&2&3\\4&5&6\\7&8&9}$.
+  \item \medio\ Calcular por Sarrus $\mwdet{2&-1&3\\0&4&1\\5&2&-2}$, usando
+        la disposición horizontal.
+  \item \medio\ Calcular $\mwdet{3&0&2\\1&4&-1\\2&5&3}$ y comprobar el
+        resultado con la disposición vertical de Sarrus.
+  \item \facil\ Calcular $\mwdet{2&0&0\\5&3&0\\1&4&7}$ sin desarrollar
+        cofactores.
+\end{mwbloque}
+
+\mwbloquehead{Bloque I — Determinantes $4\times4$ por cofactores}{76}{72}
+\begin{mwbloque}
+  \item \medio\ Calcular $\mwdet{2&3&1&4\\0&-1&2&5\\0&0&3&6\\0&0&0&4}$.
+  \item \dificil\ Calcular
+        $\mwdet{1&0&0&0\\2&3&4&5\\1&2&3&4\\0&1&2&3}$ desarrollando por la
+        primera fila.
+  \item \dificil\ Calcular
+        $\mwdet{2&1&0&0\\1&2&1&0\\0&1&2&1\\0&0&1&2}$.
+  \item \medio\ Calcular
+        $\mwdet{0&1&0&0\\1&0&0&0\\0&0&0&1\\0&0&1&0}$ e interpretar el signo.
+\end{mwbloque}
+
+\mwbloquehead{Bloque J — Regla de Cramer}{80}{76}
+\begin{mwbloque}
+  \item \medio\ Resolver por Cramer:
+        $2x+y-z=3$, $x-2y+3z=-4$, $3x+y+2z=9$.
+  \item \medio\ Resolver por Cramer:
+        $2x-y+z=3$, $x+2y+3z=14$, $3x+y-2z=-1$.
+  \item \medio\ Intentar resolver por Cramer:
+        $x+2y+3z=4$, $2x+4y+6z=9$, $x+y+z=3$. Explicar qué ocurre.
+  \item \medio\ Resolver por Cramer:
+        $3x+y-z=4$, $x+2y+z=6$, $2x-y+3z=3$.
+\end{mwbloque}
+
+\mwbloquehead{Bloque K — Matriz inversa}{88}{80}
+\begin{mwbloque}
+  \item \facil\ Verificar que $B=\mwmat{1&-1\\-2&3}$ es la inversa de
+        $A=\mwmat{3&1\\2&1}$, calculando $AB$ y $BA$.
+  \item \facil\ Hallar la inversa de $\mwmat{4&3\\3&2}$ reduciendo
+        $[A\mid I]$.
+  \item \medio\ Hallar la inversa de $\mwmat{2&5\\1&3}$ con el atajo de
+        $2\times2$ y comprobar el resultado.
+  \item \medio\ Intentar hallar la inversa de $\mwmat{1&2\\2&4}$ y explicar
+        por qué no existe.
+  \item \dificil\ Hallar la inversa de
+        $\mwmat{1&2&3\\0&1&4\\5&6&0}$ por Gauss-Jordan.
+  \item \dificil\ Hallar la inversa de
+        $\mwmat{2&1&1\\1&3&2\\1&0&0}$ por Gauss-Jordan.
+  \item \medio\ Resolver con la inversa el sistema $3x+y=5$, $2x+y=3$.
+  \item \medio\ Determinar para qué valores de $k$ la matriz
+        $\mwmat{k&2\\3&4}$ \textbf{no} tiene inversa.
+\end{mwbloque}
+
+% ============================================================
+\ifmwclaves
+\section*{Clave de respuestas comentada}
+% ============================================================
+
+\begin{cuadroinfo}
+  \small
+  Las respuestas están en el mismo orden del banco. En los ejercicios de
+  procedimiento se indica la operación clave; si tu resultado no coincide,
+  revisa ese paso antes de repetir todo el cálculo.
+\end{cuadroinfo}
+
+\subsection*{Bloque A — Definición, filas, columnas y orden (1--8)}
+\begin{enumerate}[label=\textbf{\arabic*.}, start=1, leftmargin=*]
+  \item Orden $2\times3$. Filas: $(2,-1,3)$ y $(0,5,-4)$. Columnas:
+        $(2,0)$, $(-1,5)$, $(3,-4)$. $a_{12}=-1$, $a_{23}=-4$,
+        $a_{21}=0$.
+  \item Orden $3\times2$, $6$ elementos. $b_{31}=4$, $b_{22}=3$. Primera
+        columna: $(1,-2,4)$.
+  \item $C=\mwmat{3&5&7\\4&6&8}$.
+  \item $D=\mwmat{0&-1\\1&0\\2&1}$.
+  \item $E=\mwmat{3&4\\5&6}$.
+  \item $x=4$, $y=5$.
+  \item Solo el caso (b): dos matrices $2\times2$ son iguales si coinciden
+        todas sus entradas. En (a) y (c) los órdenes son distintos.
+  \item (a) $20$; \quad (b) $7$; \quad (c) $n^2$; \quad (d) $12$.
+\end{enumerate}
+
+\subsection*{Bloque B — Multiplicación por un escalar (9--16)}
+\begin{enumerate}[label=\textbf{\arabic*.}, start=9, leftmargin=*]
+  \item $3A=\mwmat{6&-9\\3&12}$.
+  \item $-2B=\mwmat{2&-4\\0&-10\\-6&4}$.
+  \item $6C=\mwmat{3&-6\\18&4}$.
+  \item $2A=\mwmat{4&2\\-2&6}$ y $3B=\mwmat{0&-6\\12&3}$, luego
+        $2A-3B=\mwmat{4&8\\-14&3}$.
+  \item $2X=\mwmat{4&4\\4&4}$, de donde
+        $X=\mwmat{2&2\\2&2}$.
+  \item $-\tfrac12A=\mwmat{-\tfrac12&1\\[2pt]-\tfrac32&0}$.
+  \item $A+B=\mwmat{0&3\\2&1}$, así que
+        $3(A+B)=\mwmat{0&9\\6&3}$. Por otro lado,
+        $3A+3B=\mwmat{3&0\\6&-3}+\mwmat{-3&9\\0&6}=\mwmat{0&9\\6&3}$.
+        Ambas expresiones coinciden.
+  \item $k=-3$, porque $-3(2)=-6$ y $-3(-1)=3$.
+\end{enumerate}
+
+\subsection*{Bloque C — Suma y resta de matrices (17--26)}
+\begin{enumerate}[label=\textbf{\arabic*.}, start=17, leftmargin=*]
+  \item $A+B=\mwmat{6&1\\3&6}$ y $A-B=\mwmat{-4&3\\3&2}$.
+  \item $A+B=\mwmat{1&2&-1\\4&1&7}$ y
+        $A-B=\mwmat{3&-2&-1\\2&7&3}$.
+  \item $A+B=\mwmat{3&0\\1&-3\\5&6}$.
+  \item No es posible: la suma exige el mismo orden y $2\times3\neq3\times2$.
+        El hecho de que ambas tengan $6$ elementos no alcanza.
+  \item $X=\mwmat{4&-1\\5&2}+\mwmat{2&1\\0&3}
+        =\mwmat{6&0\\5&5}$.
+  \item $a+1=4\Rightarrow a=3$; $b+4=7\Rightarrow b=3$. Las otras dos
+        entradas también coinciden: $2+(-2)=0$ y $3+(-3)=0$.
+  \item $2A=\mwmat{2&0\\4&-2}$, $2A-B=\mwmat{-1&-1\\5&-4}$ y
+        $2A-B+C=\mwmat{-1&3\\6&-4}$.
+  \item $A+O=\mwmat{3&-1\\2&0}=A$: la matriz nula no altera la suma.
+  \item $A+B=\mwmat{6&1\\3&6}$, $A-B=\mwmat{-4&3\\3&2}$;
+        $(A+B)-(A-B)=\mwmat{10&-2\\0&4}=2B$.
+  \item $x-1=0\Rightarrow x=1$; $y-3=0\Rightarrow y=3$. Las demás
+        entradas ya coinciden.
+\end{enumerate}
+
+\subsection*{Bloque D — Sistemas y matriz aumentada (27--34)}
+\begin{enumerate}[label=\textbf{\arabic*.}, start=27, leftmargin=*]
+  \item $\mwaug{ccc|c}{1&2&-1&3\\2&-1&1&0\\3&1&2&7}$.
+  \item Sistema: $x+y+z=6$, $2x-y+z=3$, $x+2y-z=2$. Con $(1,2,3)$:
+        $1+2+3=6$ \checkmark, $2-2+3=3$ \checkmark\ y $1+4-3=2$ \checkmark.
+        Sí es solución (y es la única).
+  \item
+        $\mwmat{2&-1&3\\1&4&-1\\3&1&1}\mwmat{x\\y\\z}=\mwmat{5\\2\\8}$.
+  \item $A=\mwmat{1&2&3\\2&-1&1\\1&1&-1}$,
+        $\mathbf{x}=\mwmat{x\\y\\z}$, $\mathbf{b}=\mwmat{6\\1\\2}$ y
+        $\mwaug{ccc|c}{1&2&3&6\\2&-1&1&1\\1&1&-1&2}$.
+  \item Aumentada: $\mwaug{ccc|c}{1&1&1&3\\2&-1&1&0}$. Con $z$ libre,
+        $x=1-\tfrac23z$ e $y=2-\tfrac13z$. Ejemplos: $z=0$ da
+        $(1,2,0)$; $z=3$ da $(-1,1,3)$.
+        \emph{Verificación:} $-1+1+3=3$ y $-2-1+3=0$. \checkmark
+  \item Las dos ecuaciones tienen los mismos coeficientes pero constantes
+        distintas: si $x+y+z$ valiera a la vez $1$ y $2$, se tendría
+        $1=2$, lo cual es imposible.
+  \item De $x+y=2$ y $x-y=0$ se obtiene $x=1$, $y=1$. La tercera ecuación
+        se cumple: $2(1)+1=3$. Solución única: $(1,1)$.
+  \item De las dos primeras, $x=2$, $y=-1$. En la tercera:
+        $2(2)+2(-1)=2\neq5$. El sistema es incompatible.
+\end{enumerate}
+
+\subsection*{Bloque E — Multiplicación de matrices (35--46)}
+\begin{enumerate}[label=\textbf{\arabic*.}, start=35, leftmargin=*]
+  \item $\mwmat{19&22\\43&50}$.
+  \item $\mwmat{4&3\\3&12}$.
+  \item $AB=\mwmat{2&1\\4&3}$ y $BA=\mwmat{3&4\\1&2}$. No son iguales:
+        la multiplicación no es conmutativa.
+  \item $\mwmat{4&5\\10&11}$.
+  \item $\mwmat{1&2&3\\3&4&7\\5&6&11}$.
+  \item (a) definido, orden $2\times4$; (b) no definido
+        ($2\neq3$); (c) definido, orden $1\times1$; (d) definido, orden
+        $2\times3$.
+  \item $AI=IA=\mwmat{3&-1\\2&5}$: la identidad $2\times2$ deja la matriz
+        igual.
+  \item $AB=\mwmat{1-1&-1+1\\2-2&-2+2}=\mwmat{0&0\\0&0}$.
+  \item $A^2=\mwmat{1&2\\0&1}$, $A^3=\mwmat{1&3\\0&1}$ y, en general,
+        $A^n=\mwmat{1&n\\0&1}$.
+  \item $A^2=\mwmat{4-4&-2+2\\8-8&-4+4}=\mwmat{0&0\\0&0}$, pero
+        $A\neq O$. Un producto de matrices puede anularse sin que ningún
+        factor sea nulo.
+  \item $A+B=\mwmat{2&2\\3&2}$, entonces
+        $(A+B)^2=\mwmat{10&8\\12&10}$. Por otro lado,
+        $A^2=\mwmat{1&4\\0&1}$, $B^2=\mwmat{1&0\\6&1}$ y
+        $AB=\mwmat{7&2\\3&1}$, así que
+        $A^2+2AB+B^2=\mwmat{16&8\\12&4}$. No son iguales porque
+        $AB\neq BA$; la fórmula del binomio solo vale si las matrices
+        conmutan.
+  \item Al multiplicar, la primera fila da $(a+b,\;a-b)$ y la segunda,
+        $(3,-1)$. Entonces $a+b=3$ y $a-b=1$, de donde $a=2$, $b=1$.
+\end{enumerate}
+
+\subsection*{Bloque F — Matrices equivalentes (47--54)}
+\begin{enumerate}[label=\textbf{\arabic*.}, start=47, leftmargin=*]
+  \item $\mwmat{1&2&5\\0&1&2}$.
+  \item $\mwmat{5&6\\3&4\\1&2}$.
+  \item $\mwmat{3&6&9\\2&3&4}$.
+  \item $F_2\leftarrow F_2-2F_1$ da $\mwmat{1&3&7\\0&-2&-4}$; luego
+        $F_2\leftarrow-\tfrac12F_2$ da $\mwmat{1&3&7\\0&1&2}$.
+  \item Sí: aplicando $F_2\leftarrow F_2-2F_1$ a la primera se obtiene
+        exactamente la segunda.
+  \item La opción (c): multiplicar una fila por $0$ destruye información y
+        no es una operación elemental válida.
+  \item La operación debe aplicarse a \textbf{toda} la fila. Si la columna
+        de constantes queda intacta, la nueva matriz aumentada no representa
+        un sistema equivalente y la solución puede cambiar.
+  \item $F_1\leftrightarrow F_2$ da $\mwmat{3&6&9\\0&2&4}$;
+        $F_1\leftarrow\tfrac13F_1$ da $\mwmat{1&2&3\\0&2&4}$;
+        $F_2\leftarrow\tfrac12F_2$ da $\mwmat{1&2&3\\0&1&2}$.
+\end{enumerate}
+
+\subsection*{Bloque G — Gauss y Gauss-Jordan (55--64)}
+\begin{enumerate}[label=\textbf{\arabic*.}, start=55, leftmargin=*]
+  \item Solución $(2,1,3)$. Comprobación: $2+1+3=6$, $4-1+3=6$ y
+        $6+2-3=5$.
+  \item Solución $(1,2,3)$. Comprobación: $2+2+3=7$, $1+6-3=4$ y
+        $1+2+6=9$.
+  \item Solución $(2,-1,3)$. Comprobación: $2+1+6=9$, $4-1+3=6$ y
+        $2-2+3=3$.
+  \item Solución $(1,2,3)$. Gauss-Jordan deja
+        $\mwaug{ccc|c}{1&0&0&1\\0&1&0&2\\0&0&1&3}$.
+  \item La segunda ecuación es el doble de la primera, pero su constante no:
+        pide $2x+2y+2z=7$ cuando debería pedir $6$. Al reducir aparece
+        $[0,0,0\mid1]$: \textbf{sin solución}.
+  \item La tercera ecuación es la suma de las dos primeras
+        ($3x+2z=9$). Queda un sistema $2\times3$ con $z=t$ libre:
+        \[
+          x=3-\tfrac23t,\qquad y=3-\tfrac13t,\qquad z=t.
+        \]
+        Infinitas soluciones.
+  \item La tercera ecuación es también la suma de las dos primeras; queda
+        un sistema $2\times3$. Con $z=t$:
+        \[
+          x=2+t,\qquad y=4-2t,\qquad z=t.
+        \]
+        Infinitas soluciones.
+  \item El pivote de la primera columna es $0$: hay que intercambiar
+        $F_1\leftrightarrow F_2$. Solución $(1,2,1)$.
+  \item Solución $(1,1,1)$. Comprobación: $1+1-1=1$, $2-1+1=2$ y
+        $1+2+2=5$.
+  \item Solución $(2,1,1)$. Comprobación: $6+1+1=8$, $2+2-1=3$ y
+        $2+1+2=5$.
+\end{enumerate}
+
+\subsection*{Bloque H — Determinantes $2\times2$ y $3\times3$ (65--72)}
+\begin{enumerate}[label=\textbf{\arabic*.}, start=65, leftmargin=*]
+  \item $15-8=7$.
+  \item $8-15=-7$.
+  \item $\tfrac16-6=-\tfrac{35}{6}$.
+  \item $x^2-6=10\Rightarrow x^2=16\Rightarrow x=\pm4$.
+  \item Por Sarrus: $225-225=0$. La tercera fila es combinación de las
+        anteriores.
+  \item $(-16-5+0)-(60+4+0)=-21-64=-85$.
+  \item $3(12+5)-0+2(5-8)=51-6=45$.
+  \item Es triangular inferior: el determinante es el producto de la
+        diagonal, $2\cdot3\cdot7=42$.
+\end{enumerate}
+
+\subsection*{Bloque I — Determinantes $4\times4$ por cofactores (73--76)}
+\begin{enumerate}[label=\textbf{\arabic*.}, start=73, leftmargin=*]
+  \item Es triangular superior: $2\cdot(-1)\cdot3\cdot4=-24$.
+  \item Desarrollando por la primera fila:
+        $\det=1\cdot\mwdet{3&4&5\\2&3&4\\1&2&3}$.
+        Ese menor vale $3(9-8)-4(6-4)+5(4-3)=3-8+5=0$.
+        Por lo tanto, $\det=0$.
+  \item Desarrollo por la primera fila:
+        \[
+          \det=2\mwdet{2&1&0\\1&2&1\\0&1&2}
+               -1\mwdet{1&1&0\\0&2&1\\0&1&2}.
+        \]
+        El primer menor vale $2(4-1)-1(2-0)=4$; el segundo,
+        $1(4-1)-1(0)=3$. Entonces
+        $\det=2(4)-3=5$.
+  \item Intercambiando $F_1\leftrightarrow F_2$ y $F_3\leftrightarrow F_4$
+        se obtiene $I_4$. Cada intercambio cambia el signo, así que
+        $\det=(-1)^2=1$.
+\end{enumerate}
+
+\subsection*{Bloque J — Regla de Cramer (77--80)}
+\begin{enumerate}[label=\textbf{\arabic*.}, start=77, leftmargin=*]
+  \item $\det(A)=-14$; $\det(A_x)=0$, $\det(A_y)=-70$ y
+        $\det(A_z)=-28$. Entonces $x=0$, $y=5$, $z=2$.
+  \item $\det(A)=-30$; $\det(A_x)=-30$, $\det(A_y)=-60$ y
+        $\det(A_z)=-90$. Solución $(1,2,3)$.
+  \item $\det(A)=0$: Cramer no se puede aplicar porque habría que dividir
+        entre cero. Además la segunda ecuación es el doble de la primera
+        ($2x+4y+6z=8$) pero su constante es $9$, así que el sistema es
+        \textbf{incompatible}.
+  \item $\det(A)=25$; $\det(A_x)=25$, $\det(A_y)=50$ y $\det(A_z)=25$.
+        Solución $(1,2,1)$.
+\end{enumerate}
+
+\subsection*{Bloque K — Matriz inversa (81--88)}
+\begin{enumerate}[label=\textbf{\arabic*.}, start=81, leftmargin=*]
+  \item $AB=\mwmat{3(1)+1(-2) & 3(-1)+1(3)\\-2+2 & -2+3}
+        =\mwmat{1&0\\0&1}$ y $BA=I_2$ también. Luego $B=A^{-1}$.
+  \item Por Gauss-Jordan se llega a
+        $\mwaug{cc|cc}{1&0&-2&3\\0&1&3&-4}$, es decir
+        $A^{-1}=\mwmat{-2&3\\3&-4}$ ($\det A=-1$).
+  \item $\det(A)=6-5=1$, así que
+        $A^{-1}=\dfrac{1}{1}\mwmat{3&-5\\-1&2}=\mwmat{3&-5\\-1&2}$.
+        Comprobación: $2(3)+5(-1)=1$ y $2(-5)+5(2)=0$. \checkmark
+  \item Al reducir aparece la fila $[0,0\mid-2,1]$, con la mitad izquierda
+        nula: no se puede llegar a $I_2$. Además
+        $\det(A)=4-4=0$. La matriz es \textbf{singular}.
+  \item $A^{-1}=\mwmat{-24&18&5\\20&-15&-4\\-5&4&1}$, según el ejemplo 3 de
+        la sección 9. Verificación: primera fila de $A$ por primera columna de
+        $A^{-1}$: $-24+40-15=1$.
+  \item $\det(A)=-1$ y
+        $A^{-1}=\mwmat{0&0&1\\-2&1&3\\3&-1&-5}$. Comprobación:
+        primera fila de $A$ por primera columna de $A^{-1}$:
+        $2(0)+1(-2)+1(3)=1$. \checkmark
+  \item $A^{-1}=\mwmat{1&-1\\-2&3}$, luego
+        $\mathbf{x}=A^{-1}\mathbf{b}
+        =\mwmat{1&-1\\-2&3}\mwmat{5\\3}=\mwmat{2\\-1}$.
+        Solución $(2,-1)$.
+  \item $\det(A)=4k-6$. No hay inversa cuando $4k-6=0$, es decir
+        $k=\tfrac32$. Para cualquier otro valor, la inversa existe.
+\end{enumerate}
+
+\fi
+\end{document}

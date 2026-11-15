@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T3L1 — Círculo trigonométrico · Diapositivas · Mathwizards</title>
+<!-- VERSIÓN AUTOCONTENIDA (un solo archivo) · KaTeX vía CDN: requiere internet para la matemática -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+<style>
+/* ============================================================
+   Diapositivas T3L1 — estética mathwizards-beamer.sty
+   Paleta: mathwizards-palette.sty
+   Fuentes: Cabin (cuerpo) · Nexa Heavy (títulos)
+   ============================================================ */
+:root{
+  --primario:#E2232D; --magenta:#E3229F; --rojonaranja:#E34122;
+  --violeta:#C922E3; --naranja:#E36322;
+  --grisclaro:#F5F5F8; --gris:#666666; --grisoscuro:#333333;
+  --font-body:'Cabin','Segoe UI',system-ui,sans-serif;
+  --font-title:'Nexa Heavy','Cabin','Arial Black',sans-serif;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html,body{height:100%;}
+body{
+  background:#26262b; font-family:var(--font-body); color:#000;
+  overflow:hidden;
+}
+#stage{
+  position:absolute; left:50%; top:50%; width:1280px; height:720px;
+  margin:-360px 0 0 -640px; transform-origin:center center;
+  background:#fff; box-shadow:0 18px 60px rgba(0,0,0,.55);
+}
+.slide{
+  position:absolute; inset:0; background:#fff; display:none;
+  flex-direction:column;
+}
+.slide.active{display:flex;}
+
+/* ── Título de frame (barra roja) ─────────────────────────── */
+.ft{
+  height:64px; background:var(--primario); color:#fff; flex:0 0 auto;
+  display:flex; align-items:center; padding:0 40px; gap:18px;
+}
+.ft h2{font-family:var(--font-title); font-size:29px; font-weight:normal; letter-spacing:.2px;}
+.ft .ftsub{margin-left:auto; font-size:15px; color:rgba(255,255,255,.85);}
+.fc{flex:1 1 auto; padding:24px 44px 10px; overflow:hidden;}
+.ff{
+  height:34px; background:var(--primario); color:#fff; flex:0 0 auto;
+  display:flex; align-items:center; font-size:11px; letter-spacing:.3px;
+}
+.ff span{flex:1; padding:0 18px;}
+.ff span:nth-child(2){text-align:center;}
+.ff span:nth-child(3){text-align:right;}
+
+/* ── Portada ──────────────────────────────────────────────── */
+.slide.portada{background:var(--primario);}
+.portada .band{position:absolute; left:0; right:0; bottom:0; height:180px; background:#bf1c25;}
+.portada .pcontent{
+  position:absolute; inset:0; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; color:#fff; text-align:center;
+}
+.portada img{height:120px; margin-bottom:22px;}
+.portada h1{font-family:var(--font-title); font-size:52px; font-weight:normal; line-height:1.12;}
+.portada h3{font-family:var(--font-title); font-size:27px; font-weight:normal; margin-top:12px; color:rgba(255,255,255,.93);}
+.portada .lema{font-size:19px; font-style:italic; margin-top:14px; color:rgba(255,255,255,.88);}
+.portada .meta{margin-top:26px; font-size:16px; color:rgba(255,255,255,.92);}
+.portada .meta .small{font-size:13.5px; color:rgba(255,255,255,.8); margin-top:4px;}
+
+/* ── Divisor de sección (fondo rojo) ──────────────────────── */
+.slide.divisor{background:var(--primario);}
+.divisor .dcontent{
+  flex:1; display:flex; flex-direction:column; align-items:center;
+  justify-content:center; color:#fff; text-align:center; gap:12px;
+}
+.divisor h2{font-family:var(--font-title); font-size:58px; font-weight:normal;}
+.divisor p{font-size:22px; color:rgba(255,255,255,.88);}
+
+/* ── Cuadros (bloques) ────────────────────────────────────── */
+.cuadro{border-radius:7px; overflow:hidden; margin:0 0 13px; font-size:19.5px; line-height:1.42;}
+.cuadro .ct{padding:7px 18px; color:#fff; font-family:var(--font-title); font-size:20.5px;}
+.cuadro .cb{padding:11px 18px; background:#fff;}
+.cuadro .cb p{margin:0 0 7px;}
+.cuadro .cb p:last-child{margin-bottom:0;}
+.cuadro .cb ul,.cuadro .cb ol{margin:4px 0 4px 1.2em;}
+.cuadro .cb li{margin:3px 0;}
+.teoria .ct{background:var(--primario);} .teoria .cb{background:rgba(226,35,45,.07);}
+.solucion .ct{background:var(--magenta);} .solucion .cb{background:rgba(227,34,159,.07);}
+.pasos .ct{background:var(--naranja);} .pasos .cb{background:rgba(227,99,34,.08);}
+.advertencia .ct{background:var(--rojonaranja);} .advertencia .cb{background:rgba(227,65,34,.07);}
+.extra .ct{background:var(--violeta);} .extra .cb{background:rgba(201,34,227,.07);}
+.info .ct{background:var(--gris);} .info .cb{background:var(--grisclaro);}
+
+/* ── Tablas (estilo booktabs) ─────────────────────────────── */
+table.tabla{border-collapse:collapse; width:100%; font-size:19px;}
+table.tabla th{
+  font-family:var(--font-title); font-weight:normal; padding:7px 10px;
+  border-bottom:1.6px solid var(--grisoscuro); text-align:center;
+}
+table.tabla td{padding:7px 10px; text-align:center; border-bottom:1px solid #e3e3e8;}
+table.tabla tr:first-child td{border-top:1.6px solid var(--grisoscuro);}
+table.tabla tr:last-child td{border-bottom:1.6px solid var(--grisoscuro);}
+table.tabla td:first-child,table.tabla th:first-child{text-align:left;}
+table.tabla.tight td,table.tabla.tight th{padding:4px 8px;}
+.tabla-wrap{margin:8px 0;}
+
+/* ── Figuras ──────────────────────────────────────────────── */
+.fig{display:block;}
+.fig-row{display:flex; align-items:center; justify-content:center; gap:26px;}
+.cols{display:flex; gap:26px; align-items:flex-start;}
+.cols>.col{flex:1; min-width:0;}
+.center{text-align:center;}
+.small{font-size:16.5px;}
+.mt{margin-top:10px;} .mb{margin-bottom:10px;}
+
+/* ── Estrellitas ──────────────────────────────────────────── */
+.stars{font-family:var(--font-body); letter-spacing:2px;}
+.st-facil{color:var(--naranja);}
+.st-medio{color:var(--rojonaranja);}
+.st-dificil{color:var(--primario);}
+
+/* ── Ejercicios para la pizarra ───────────────────────────── */
+.ejblock{border-radius:7px; overflow:hidden; background:var(--grisclaro);}
+.ejblock .ejhead{
+  background:var(--grisoscuro); color:#fff; padding:8px 18px;
+  font-family:var(--font-title); font-size:21px;
+  display:flex; align-items:center; gap:14px;
+}
+.ejblock .ejhead .stars{margin-left:auto; font-size:17px;}
+ol.ejgrid{padding:16px 26px 8px 46px;}
+ol.ejgrid li{margin:0 0 15px; font-size:25px; break-inside:avoid;}
+ol.ejgrid.two{columns:2; column-gap:56px;}
+.blank{height:26px;}
+
+/* ── Círculo interactivo ──────────────────────────────────── */
+.inter{display:flex; gap:30px; height:100%;}
+.inter .circ-wrap{flex:0 0 585px; display:flex; align-items:flex-start; justify-content:center;}
+#tcirc{width:560px; height:560px; touch-action:none; cursor:crosshair; display:block;}
+#tcirc .axis{stroke:#9a9aa2; stroke-width:2;}
+#tcirc .unitcircle{fill:none; stroke:var(--primario); stroke-width:3.5;}
+#tcirc .wedge{stroke:none; opacity:.05;}
+#tcirc .wedge.active{opacity:.15;}
+#tcirc .qlabel{font:600 26px var(--font-body); fill:#b6b6be; text-anchor:middle;}
+#tcirc .qlabel.active{fill:var(--primario); font-weight:700;}
+#tcirc .tick{stroke:#b9b9c1; stroke-width:2;}
+#tcirc .tick.major{stroke:#8b8b93; stroke-width:2.5;}
+#tcirc .axis-lbl{font:600 18px var(--font-body); fill:#8b8b93;}
+#tcirc .radius{stroke:var(--primario); stroke-width:3.5;}
+#tcirc .proj-x{stroke:var(--naranja); stroke-width:2.5; stroke-dasharray:7 6;}
+#tcirc .proj-y{stroke:var(--magenta); stroke-width:2.5; stroke-dasharray:7 6;}
+#tcirc .lbl-coord{font:600 17px var(--font-body); text-anchor:middle;}
+#tcirc .arc-theta{fill:none; stroke:var(--naranja); stroke-width:3;}
+#tcirc .lbl-theta{font:700 20px var(--font-body); fill:var(--naranja); text-anchor:middle;}
+#tcirc .arc-ref{fill:none; stroke:var(--violeta); stroke-width:3;}
+#tcirc .lbl-ref{font:700 19px var(--font-body); fill:var(--violeta); text-anchor:middle;}
+#tcirc .tan-line{stroke:#c9c9d1; stroke-width:2; stroke-dasharray:6 6;}
+#tcirc .tan-seg{stroke:var(--magenta); stroke-width:3.5;}
+#tcirc .tan-pt{fill:var(--magenta);}
+#tcirc .lbl-tan{font:600 17px var(--font-body); fill:var(--magenta);}
+#tcirc .p-halo{fill:rgba(226,35,45,.18);}
+#tcirc .p-pt{fill:var(--primario); stroke:#fff; stroke-width:2.5;}
+#tcirc .lbl-p{font:700 19px var(--font-body); fill:var(--primario); text-anchor:middle;}
+
+.panel{flex:1 1 auto; min-width:0;}
+.ctl{display:flex; flex-wrap:wrap; gap:9px; align-items:center; margin-bottom:12px;}
+.btn{
+  font-family:var(--font-title); font-size:15px; color:var(--primario);
+  background:#fff; border:2px solid var(--primario); border-radius:8px;
+  padding:7px 13px; cursor:pointer;
+}
+.btn:hover{background:var(--primario); color:#fff;}
+#slider{width:100%; accent-color:var(--primario); margin:2px 0 12px;}
+.deg-in{font-family:var(--font-title); font-size:17px;}
+.deg-in input{
+  width:88px; font-family:var(--font-body); font-size:18px; padding:5px 7px;
+  border:2px solid var(--grisoscuro); border-radius:7px; text-align:center;
+}
+.chk{font-size:15px; color:var(--grisoscuro); display:flex; align-items:center; gap:6px; cursor:pointer;}
+.chk input{accent-color:var(--primario); width:16px; height:16px;}
+.readout{
+  background:var(--grisclaro); border-radius:9px; padding:13px 16px;
+  font-size:18px; line-height:1.5;
+}
+.ro-row{display:flex; align-items:baseline; gap:10px; padding:4px 0; border-bottom:1px solid #e4e4ea;}
+.ro-row:last-child{border-bottom:none;}
+.ro-k{
+  flex:0 0 118px; font-family:var(--font-title); font-size:15px;
+  color:var(--grisoscuro); text-transform:uppercase; letter-spacing:.4px;
+}
+.ro-v{flex:1; min-width:0;}
+.quad-badge{
+  display:inline-block; min-width:42px; text-align:center; color:#fff;
+  border-radius:7px; padding:2px 12px; font-family:var(--font-title); font-size:18px;
+}
+.q1{background:var(--primario);} .q2{background:var(--magenta);}
+.q3{background:var(--naranja);} .q4{background:var(--violeta);}
+.q0{background:var(--gris);}
+.signchips{display:flex; gap:8px;}
+.chip{
+  border-radius:7px; padding:2px 11px; font-family:var(--font-title);
+  font-size:15px; color:#fff; letter-spacing:.5px;
+}
+.chip.pos{background:var(--primario);} .chip.neg{background:var(--gris);}
+.chip.zero{background:var(--grisoscuro);} .chip.undef{background:var(--rojonaranja);}
+.hint{font-size:14px; color:var(--gris); margin-top:9px; font-style:italic;}
+
+/* ── HUD de navegación ────────────────────────────────────── */
+#hud{
+  position:fixed; right:16px; bottom:12px; display:flex; gap:8px;
+  align-items:center; z-index:50;
+}
+#hud button{
+  font-family:var(--font-title); font-size:15px; width:40px; height:34px;
+  border:none; border-radius:8px; background:rgba(255,255,255,.14);
+  color:#fff; cursor:pointer;
+}
+#hud button:hover{background:rgba(255,255,255,.3);}
+#hud .nav-n{color:#ddd; font-size:13px; min-width:56px; text-align:center;}
+#hud button.wide{width:auto; padding:0 12px;}
+#progress{
+  position:fixed; left:0; top:0; height:4px; background:var(--magenta);
+  z-index:60; width:0; transition:width .25s ease;
+}
+.kbd-hint{
+  position:fixed; left:16px; bottom:12px; color:#8b8b93;
+  font-size:12px; z-index:50;
+}
+
+/* ── Impresión ────────────────────────────────────────────── */
+@media print{
+  body{overflow:visible; background:#fff;}
+  #hud,.kbd-hint,#progress{display:none;}
+  #stage{position:static; margin:0; transform:none; width:1280px; height:auto;}
+  .slide{display:flex !important; position:relative; width:1280px; height:720px; page-break-after:always;}
+}
+</style>
+</head>
+<body>
+
+<!-- Marcadores de flecha compartidos por todas las figuras -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="ar-red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#E2232D"/></marker>
+  <marker id="ar-magenta" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#E3229F"/></marker>
+  <marker id="ar-orange" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#E36322"/></marker>
+  <marker id="ar-violet" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#C922E3"/></marker>
+  <marker id="ar-gray" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#9a9aa2"/></marker>
+</defs></svg>
+
+<div id="progress"></div>
+
+<div id="stage">
+
+<!-- ══════════════════════════════════════════════════════════
+     1 · PORTADA
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide portada active">
+  <div class="band"></div>
+  <div class="pcontent">
+    <img src="data:image/png;base64,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" alt="Mathwizards">
+    <h1>T3L1 · Círculo Trigonométrico</h1>
+    <h3>Circunferencia trigonométrica, ángulos en posición estándar y reducción</h3>
+    <div class="lema">«Ubicar, signar y reducir: tres pasos para cualquier ángulo»</div>
+    <div class="meta">
+      Ing. Gabriel Astudillo · Mathwizards Consultoría Educativa STEM
+      <div class="small">4to Año — Matemática · Clases 22 y 23 de noviembre de 2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     2 · PRESENTACIÓN
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Presentación — Qué vas a aprender</h2><span class="ftsub">T3L1 · Círculo trigonométrico</span></header>
+  <main class="fc">
+    <div class="cuadro info">
+      <div class="ct">Bienvenida</div>
+      <div class="cb">
+        <p>Hasta ahora trabajaste la trigonometría dentro de un <b>triángulo rectángulo</b>, donde los ángulos solo pueden ser agudos. La <b>circunferencia trigonométrica</b> rompe esa limitación: permite definir las razones para <i>cualquier</i> ángulo, positivo o negativo, y tantas vueltas como quieras darle a la rotación.</p>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="cuadro teoria" style="flex:1">
+        <div class="ct">Objetivos de la clase</div>
+        <div class="cb">
+          <ul>
+            <li>reconocer la circunferencia unitaria, sus cuadrantes y sus ejes;</li>
+            <li>ubicar un ángulo en <b>posición estándar</b> y distinguir el sentido positivo del negativo;</li>
+            <li>leer $\sen\alpha$, $\cos\alpha$ y $\tg\alpha$ como coordenadas de un punto;</li>
+            <li>determinar el <b>signo</b> de cada función según el cuadrante;</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cuadro pasos" style="flex:1">
+        <div class="ct">…y al terminar sabrás</div>
+        <div class="cb">
+          <ul>
+            <li><b>reducir</b> cualquier ángulo al primer cuadrante;</li>
+            <li>usar la <b>paridad</b> de las funciones y las razones <b>recíprocas</b>;</li>
+            <li>resolver ejercicios de signo, reducción y expresiones.</li>
+            <li>trabajar con la calculadora en <b>modo grados</b> sin confundir grados con radianes.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Círculo trigonométrico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     3 · DIVISOR — EXPLICACIÓN
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide divisor">
+  <div class="dcontent">
+    <h2>Explicación</h2>
+    <p>Marco teórico: de la circunferencia unitaria a la reducción al primer cuadrante</p>
+  </div>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Círculo trigonométrico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     4 · LA CIRCUNFERENCIA TRIGONOMÉTRICA
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>La circunferencia trigonométrica</h2><span class="ftsub">Definición y cuadrantes</span></header>
+  <main class="fc">
+    <div class="cuadro teoria">
+      <div class="ct">Definición</div>
+      <div class="cb">
+        Si en un sistema de coordenadas con centro en el origen se traza un círculo de <b>radio $1$</b>, se obtiene la <b>circunferencia trigonométrica</b> (o <i>circunferencia unitaria</i>). Todo punto $P(x,y)$ de ella cumple &nbsp;$\boxed{\;x^{2}+y^{2}=1\;}$&nbsp; porque su distancia al origen es $1$.
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col center" style="flex:0 0 420px">
+        <svg class="fig" viewBox="-1.45 -1.5 2.9 3.0" width="400">
+          <line x1="-1.32" y1="0" x2="1.38" y2="0" stroke="#9a9aa2" stroke-width="0.02" marker-end="url(#ar-gray)"/>
+          <line x1="0" y1="-1.32" x2="0" y2="1.38" stroke="#9a9aa2" stroke-width="0.02" marker-end="url(#ar-gray)"/>
+          <circle r="1" fill="none" stroke="#E2232D" stroke-width="0.035"/>
+          <line x1="0" y1="0" x2="0.5" y2="-0.866" stroke="#E2232D" stroke-width="0.028" marker-end="url(#ar-red)"/>
+          <text x="0.42" y="-0.62" font-size="0.115" fill="#E2232D" text-anchor="middle" font-family="Cabin, sans-serif">r = 1</text>
+          <circle r="0.022" fill="#E2232D"/>
+          <text x="-0.1" y="0.12" font-size="0.105" font-family="Cabin, sans-serif">O</text>
+          <text x="1.3" y="0.14" font-size="0.1" fill="#888" font-style="italic" font-family="Cabin, sans-serif">x</text>
+          <text x="0.1" y="-1.26" font-size="0.1" fill="#888" font-style="italic" font-family="Cabin, sans-serif">y</text>
+          <text x="0.76" y="-0.78" font-size="0.16" fill="#E2232D" font-weight="bold" text-anchor="middle" font-family="Cabin, sans-serif">I</text>
+          <text x="-0.76" y="-0.78" font-size="0.16" fill="#E2232D" font-weight="bold" text-anchor="middle" font-family="Cabin, sans-serif">II</text>
+          <text x="-0.76" y="0.82" font-size="0.16" fill="#E2232D" font-weight="bold" text-anchor="middle" font-family="Cabin, sans-serif">III</text>
+          <text x="0.76" y="0.82" font-size="0.16" fill="#E2232D" font-weight="bold" text-anchor="middle" font-family="Cabin, sans-serif">IV</text>
+          <text x="1.06" y="0.17" font-size="0.095" fill="#888" text-anchor="middle" font-family="Cabin, sans-serif">1</text>
+          <text x="-0.16" y="-1.02" font-size="0.095" fill="#888" text-anchor="middle" font-family="Cabin, sans-serif">1</text>
+        </svg>
+      </div>
+      <div class="col">
+        <div class="tabla-wrap">
+          <table class="tabla">
+            <tr><th>Cuadrante</th><th>I</th><th>II</th><th>III</th><th>IV</th></tr>
+            <tr><td>Ángulo (grados)</td><td>$0^\circ&lt;\alpha&lt;90^\circ$</td><td>$90^\circ&lt;\alpha&lt;180^\circ$</td><td>$180^\circ&lt;\alpha&lt;270^\circ$</td><td>$270^\circ&lt;\alpha&lt;360^\circ$</td></tr>
+          </table>
+        </div>
+        <div class="cuadro advertencia">
+          <div class="ct">Ojo con los bordes</div>
+          <div class="cb">
+            Los ángulos $0^\circ$, $90^\circ$, $180^\circ$, $270^\circ$ y $360^\circ$ están <b>sobre los ejes</b>, no dentro de un cuadrante. Allí una coordenada vale $0$ y algunas razones quedan indefinidas: $\tg 90^\circ$ y $\tg 270^\circ$ no existen porque $x=0$.
+          </div>
+        </div>
+        <div class="cuadro extra">
+          <div class="ct">Los cuadrantes se numeran…</div>
+          <div class="cb">
+            …en sentido <b>antihorario</b>, con números romanos, comenzando por el cuadrante superior derecho.
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Círculo trigonométrico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     5 · ÁNGULO EN POSICIÓN ESTÁNDAR
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Ángulo en posición estándar</h2><span class="ftsub">Vértice, lado inicial y sentido</span></header>
+  <main class="fc">
+    <div class="cuadro teoria">
+      <div class="ct">Definición — las tres condiciones</div>
+      <div class="cb">
+        Un ángulo está en <b>posición estándar</b> cuando: <b>1)</b> su <b>vértice</b> coincide con el origen; <b>2)</b> su <b>lado inicial</b> se apoya sobre el semieje positivo de las $x$; y <b>3)</b> el sentido de rotación es <b>antihorario</b> si el ángulo es positivo.
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col center" style="flex:0 0 420px">
+        <svg class="fig" viewBox="-1.45 -1.5 2.9 3.0" width="400">
+          <line x1="-1.28" y1="0" x2="1.4" y2="0" stroke="#9a9aa2" stroke-width="0.02" marker-end="url(#ar-gray)"/>
+          <line x1="0" y1="-1.2" x2="0" y2="1.35" stroke="#9a9aa2" stroke-width="0.02" marker-end="url(#ar-gray)"/>
+          <circle r="1" fill="none" stroke="#aaa" stroke-width="0.022"/>
+          <line x1="0" y1="0" x2="1.26" y2="0" stroke="#E2232D" stroke-width="0.035" marker-end="url(#ar-red)"/>
+          <text x="0.68" y="0.14" font-size="0.1" fill="#E2232D" text-anchor="middle" font-family="Cabin, sans-serif">lado inicial</text>
+          <line x1="0" y1="0" x2="0.665" y2="-0.95" stroke="#E3229F" stroke-width="0.035" marker-end="url(#ar-magenta)"/>
+          <text x="0.86" y="-0.94" font-size="0.1" fill="#E3229F" font-family="Cabin, sans-serif">lado final</text>
+          <path d="M 0.46,0 A 0.46,0.46 0 0 0 0.264,-0.377" fill="none" stroke="#E36322" stroke-width="0.024" marker-end="url(#ar-orange)"/>
+          <text x="0.55" y="-0.28" font-size="0.12" fill="#E36322" font-style="italic" font-family="Cabin, sans-serif">α</text>
+          <circle r="0.022" fill="#E2232D"/>
+          <text x="-0.12" y="0.16" font-size="0.1" font-family="Cabin, sans-serif">vértice</text>
+          <text x="1.24" y="0.2" font-size="0.095" fill="#888" font-family="Cabin, sans-serif">eje x</text>
+        </svg>
+      </div>
+      <div class="col">
+        <div class="cuadro pasos">
+          <div class="ct">Para dibujar un ángulo en posición estándar</div>
+          <div class="cb">
+            <ol>
+              <li>marca el vértice en $(0,0)$;</li>
+              <li>traza el lado inicial sobre el semieje $+x$;</li>
+              <li>gira el lado final el número de grados indicado: <b>positivo</b> → antihorario; <b>negativo</b> → horario;</li>
+              <li>el ángulo que ves es el que forman el lado inicial y el lado final.</li>
+            </ol>
+          </div>
+        </div>
+        <div class="cuadro advertencia">
+          <div class="ct">El error más común</div>
+          <div class="cb">
+            Dibujar el ángulo «donde queda cómodo». Si el lado inicial <b>no</b> está sobre el semieje $+x$, la figura no está en posición estándar y las coordenadas de $P$ ya no se leen directamente como seno y coseno. <b>Antes de calcular, comprueba las tres condiciones.</b>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Círculo trigonométrico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     6 · POSITIVOS, NEGATIVOS Y COTERMINALES
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Ángulos positivos, negativos y coterminales</h2><span class="ftsub">Sentido de rotación y vueltas completas</span></header>
+  <main class="fc">
+    <div class="cols">
+      <div class="col center" style="flex:0 0 380px">
+        <svg class="fig" viewBox="-1.45 -1.45 2.9 2.9" width="365">
+          <line x1="-1.3" y1="0" x2="1.35" y2="0" stroke="#9a9aa2" stroke-width="0.02" marker-end="url(#ar-gray)"/>
+          <line x1="0" y1="-1.3" x2="0" y2="1.3" stroke="#9a9aa2" stroke-width="0.02" marker-end="url(#ar-gray)"/>
+          <circle r="1" fill="none" stroke="#aaa" stroke-width="0.022"/>
+          <line x1="0" y1="0" x2="0.444" y2="-0.952" stroke="#E2232D" stroke-width="0.03" marker-end="url(#ar-red)"/>
+          <path d="M 0.6,0 A 0.6,0.6 0 0 0 0.253,-0.544" fill="none" stroke="#E2232D" stroke-width="0.024" marker-end="url(#ar-red)"/>
+          <text x="0.68" y="-0.42" font-size="0.115" fill="#E2232D" font-family="Cabin, sans-serif">+α</text>
+          <text x="0.52" y="-1.06" font-size="0.095" fill="#E2232D" font-family="Cabin, sans-serif">antihorario</text>
+          <line x1="0" y1="0" x2="0.631" y2="0.901" stroke="#E3229F" stroke-width="0.03" marker-end="url(#ar-magenta)"/>
+          <path d="M 0.6,0 A 0.6,0.6 0 0 1 0.344,0.491" fill="none" stroke="#E3229F" stroke-width="0.024" marker-end="url(#ar-magenta)"/>
+          <text x="0.72" y="0.36" font-size="0.115" fill="#E3229F" font-family="Cabin, sans-serif">−β</text>
+          <text x="0.58" y="1.12" font-size="0.095" fill="#E3229F" font-family="Cabin, sans-serif">horario</text>
+          <circle r="0.022" fill="#333"/>
+        </svg>
+      </div>
+      <div class="col">
+        <div class="cuadro teoria">
+          <div class="ct">Sentido de rotación</div>
+          <div class="cb">
+            <ul>
+              <li>Ángulo <b>positivo</b>: rotación en sentido <b>contrario</b> a las agujas del reloj (antihorario).</li>
+              <li>Ángulo <b>negativo</b>: rotación en el sentido de las agujas del reloj (horario).</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cuadro teoria">
+          <div class="ct">Ángulos coterminales</div>
+          <div class="cb">
+            Dos ángulos son <b>coterminales</b> si tienen el <b>mismo lado final</b>; es decir, si difieren en un número entero de vueltas completas:
+            $$\alpha \equiv \beta \iff \alpha=\beta+360^\circ k,\quad k\in\mathbb{Z}$$
+            En radianes: $\alpha=\beta+2\pi k$.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="cuadro pasos" style="flex:1">
+        <div class="ct">Llevar un ángulo a $[0^\circ,360^\circ)$</div>
+        <div class="cb">
+          <b>1)</b> divide el ángulo entre $360^\circ$ y quédate con el <b>residuo</b>; &nbsp;<b>2)</b> si es negativo, suma vueltas de $360^\circ$ hasta caer en el intervalo; &nbsp;<b>3)</b> el residuo es el coterminal y ya se puede ubicar en un cuadrante.
+        </div>
+      </div>
+      <div class="cuadro extra" style="flex:1">
+        <div class="ct">Consecuencia importante</div>
+        <div class="cb">
+          Las funciones solo dependen del <b>lado final</b>, no de cuántas vueltas hayas dado:
+          $\sen(\alpha+360^\circ k)=\sen\alpha$, $\cos(\alpha+360^\circ k)=\cos\alpha$, $\tg(\alpha+360^\circ k)=\tg\alpha$.
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Círculo trigonométrico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     7 · FUNCIONES EN LA CIRCUNFERENCIA
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Funciones trigonométricas en la circunferencia</h2><span class="ftsub">Las coordenadas de $P$ son el seno y el coseno</span></header>
+  <main class="fc">
+    <div class="cols">
+      <div class="col center" style="flex:0 0 420px">
+        <svg class="fig" viewBox="-1.35 -1.4 2.7 2.8" width="405">
+          <line x1="-1.18" y1="0" x2="1.3" y2="0" stroke="#9a9aa2" stroke-width="0.02" marker-end="url(#ar-gray)"/>
+          <line x1="0" y1="-1.18" x2="0" y2="1.28" stroke="#9a9aa2" stroke-width="0.02" marker-end="url(#ar-gray)"/>
+          <circle r="1" fill="none" stroke="#E2232D" stroke-width="0.032"/>
+          <line x1="0" y1="0" x2="0.643" y2="-0.766" stroke="#E2232D" stroke-width="0.028"/>
+          <line x1="0.643" y1="-0.766" x2="0.643" y2="0" stroke="#E36322" stroke-width="0.022" stroke-dasharray="0.05 0.04"/>
+          <line x1="0.643" y1="-0.766" x2="0" y2="-0.766" stroke="#E3229F" stroke-width="0.022" stroke-dasharray="0.05 0.04"/>
+          <path d="M 0.583,0 L 0.583,0.06 L 0.643,0.06" fill="none" stroke="#E36322" stroke-width="0.016"/>
+          <circle cx="0.643" cy="-0.766" r="0.026" fill="#E2232D"/>
+          <text x="0.74" y="-0.82" font-size="0.105" fill="#E2232D" font-family="Cabin, sans-serif">P(x, y)</text>
+          <text x="0.32" y="0.14" font-size="0.1" fill="#E36322" text-anchor="middle" font-family="Cabin, sans-serif">x = cos α</text>
+          <text x="-0.06" y="-0.4" font-size="0.1" fill="#E3229F" text-anchor="end" font-family="Cabin, sans-serif">y = sen α</text>
+          <path d="M 0.32,0 A 0.32,0.32 0 0 0 0.206,-0.245" fill="none" stroke="#E36322" stroke-width="0.02" marker-end="url(#ar-orange)"/>
+          <text x="0.42" y="-0.19" font-size="0.115" fill="#E36322" font-style="italic" font-family="Cabin, sans-serif">α</text>
+          <circle r="0.022" fill="#E2232D"/>
+          <text x="-0.1" y="0.13" font-size="0.1" font-family="Cabin, sans-serif">O</text>
+          <text x="1.22" y="0.15" font-size="0.095" fill="#888" font-style="italic" font-family="Cabin, sans-serif">x</text>
+          <text x="0.1" y="-1.12" font-size="0.095" fill="#888" font-style="italic" font-family="Cabin, sans-serif">y</text>
+        </svg>
+      </div>
+      <div class="col">
+        <div class="cuadro teoria">
+          <div class="ct">Definición en la circunferencia unitaria</div>
+          <div class="cb center">
+            $\boxed{\;\sen\alpha=y\;}\qquad\boxed{\;\cos\alpha=x\;}\qquad\boxed{\;\tg\alpha=\dfrac{y}{x}=\dfrac{\sen\alpha}{\cos\alpha}\;}$
+            <p class="small" style="margin-top:6px">con $x\neq 0$ para la tangente. El <b>seno</b> es la altura de $P$; el <b>coseno</b>, su desplazamiento horizontal.</p>
+          </div>
+        </div>
+        <div class="cuadro teoria">
+          <div class="ct">Identidad pitagórica fundamental</div>
+          <div class="cb center">
+            Como $x^2+y^2=1$ y $x=\cos\alpha$, $y=\sen\alpha$:
+            $$\boxed{\;\sen^{2}\alpha+\cos^{2}\alpha=1\;}$$
+            Se cumple para <b>cualquier</b> ángulo $\alpha$.
+          </div>
+        </div>
+        <div class="cuadro extra">
+          <div class="ct">Lectura geométrica de la tangente</div>
+          <div class="cb">
+            $\tg\alpha$ es la <b>pendiente</b> del lado final. Por eso se dispara cuando el lado final se acerca a la vertical ($x=0$).
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Círculo trigonométrico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     8 · CÍRCULO INTERACTIVO
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>El círculo trigonométrico, en vivo</h2><span class="ftsub">Arrastra el punto P · observa cuadrante, signos y reducción</span></header>
+  <main class="fc">
+    <div class="inter">
+      <div class="circ-wrap">
+        <svg id="tcirc" viewBox="-320 -320 640 640" aria-label="Círculo trigonométrico interactivo">
+          <path id="w1" class="wedge" style="fill:#E2232D" d="M0,0 L250,0 A250,250 0 0 0 0,-250 Z"/>
+          <path id="w2" class="wedge" style="fill:#E3229F" d="M0,0 L0,-250 A250,250 0 0 0 -250,0 Z"/>
+          <path id="w3" class="wedge" style="fill:#E36322" d="M0,0 L-250,0 A250,250 0 0 0 0,250 Z"/>
+          <path id="w4" class="wedge" style="fill:#C922E3" d="M0,0 L0,250 A250,250 0 0 0 250,0 Z"/>
+          <line class="axis" x1="-292" y1="0" x2="292" y2="0" marker-end="url(#ar-gray)"/>
+          <line class="axis" x1="0" y1="292" x2="0" y2="-292" marker-end="url(#ar-gray)"/>
+          <circle r="250" class="unitcircle"/>
+          <g id="ticks"></g>
+          <text class="qlabel" id="q1" x="168" y="-168">I</text>
+          <text class="qlabel" id="q2" x="-168" y="-168">II</text>
+          <text class="qlabel" id="q3" x="-168" y="180">III</text>
+          <text class="qlabel" id="q4" x="168" y="180">IV</text>
+          <text class="axis-lbl" x="292" y="26">x</text>
+          <text class="axis-lbl" x="14" y="-286">y</text>
+          <text class="axis-lbl" x="-24" y="28">O</text>
+          <path id="arcTheta" class="arc-theta" marker-end="url(#ar-orange)"/>
+          <text id="labelTheta" class="lbl-theta">θ</text>
+          <path id="arcRef" class="arc-ref"/>
+          <text id="labelRef" class="lbl-ref">α_r</text>
+          <g id="tanGroup" style="display:none">
+            <line id="tanLine" class="tan-line" x1="250" y1="-300" x2="250" y2="300"/>
+            <line id="tanSeg" class="tan-seg" x1="250" y1="0" x2="250" y2="0" marker-end="url(#ar-magenta)"/>
+            <circle id="tanPoint" class="tan-pt" r="6" cx="250" cy="0"/>
+            <text id="tanLabel" class="lbl-tan" x="262" y="0">tg α</text>
+          </g>
+          <line id="OP" class="radius" x1="0" y1="0" x2="250" y2="0"/>
+          <line id="projX" class="proj-x" x1="250" y1="0" x2="250" y2="0"/>
+          <line id="projY" class="proj-y" x1="0" y1="0" x2="0" y2="0"/>
+          <text id="lblCos" class="lbl-coord" x="125" y="0" fill="#E36322">cos α</text>
+          <text id="lblSin" class="lbl-coord" x="0" y="0" fill="#E3229F">sen α</text>
+          <circle id="Phalo" class="p-halo" r="15" cx="250" cy="0"/>
+          <circle id="Ppt" class="p-pt" r="8" cx="250" cy="0"/>
+          <text id="Plbl" class="lbl-p" x="250" y="0">P</text>
+        </svg>
+      </div>
+      <div class="panel">
+        <div class="ctl">
+          <button class="btn" data-step="-90">−90°</button>
+          <button class="btn" data-step="-30">−30°</button>
+          <button class="btn" data-step="30">+30°</button>
+          <button class="btn" data-step="90">+90°</button>
+          <button class="btn" id="rnd">Aleatorio</button>
+          <button class="btn" id="rst">Reiniciar</button>
+        </div>
+        <input type="range" id="slider" min="-720" max="720" step="1" value="150" aria-label="Ángulo en grados">
+        <div class="ctl">
+          <label class="deg-in">θ = <input type="number" id="degIn" step="1" min="-3600" max="3600">°</label>
+          <label class="chk"><input type="checkbox" id="snap"> ajustar a ángulos notables</label>
+          <label class="chk"><input type="checkbox" id="tanTgl"> tangente geométrica</label>
+        </div>
+        <div class="readout">
+          <div class="ro-row"><span class="ro-k">Ángulo θ</span><span class="ro-v" id="rdTheta"></span></div>
+          <div class="ro-row"><span class="ro-k">Coterminal</span><span class="ro-v" id="rdCot"></span></div>
+          <div class="ro-row"><span class="ro-k">Cuadrante</span><span class="ro-v" id="rdQuad"></span></div>
+          <div class="ro-row"><span class="ro-k">Punto P</span><span class="ro-v" id="rdP"></span></div>
+          <div class="ro-row"><span class="ro-k">Áng. ref.</span><span class="ro-v" id="rdRef"></span></div>
+          <div class="ro-row"><span class="ro-k">sen θ</span><span class="ro-v" id="rdSen"></span></div>
+          <div class="ro-row"><span class="ro-k">cos θ</span><span class="ro-v" id="rdCos"></span></div>
+          <div class="ro-row"><span class="ro-k">tg θ</span><span class="ro-v" id="rdTg"></span></div>
+          <div class="ro-row"><span class="ro-k">Signos</span><span class="ro-v"><span class="signchips" id="rdSigns"></span></span></div>
+        </div>
+        <div class="hint">Arrastra el punto P sobre la circunferencia o usa el control deslizante. La reducción usa siempre el ángulo original para el signo y el ángulo de referencia α_r para el valor.</div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Círculo trigonométrico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     9 · SIGNOS POR CUADRANTE
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Signos de las funciones por cuadrante</h2><span class="ftsub">El signo se lee de las coordenadas</span></header>
+  <main class="fc">
+    <div class="fig-row mb">
+      <!-- rueda seno -->
+      <svg class="fig" viewBox="-1.3 -1.62 2.6 2.9" width="185">
+        <text y="-1.34" font-size="0.16" font-weight="bold" fill="#333" text-anchor="middle" font-family="Cabin, sans-serif">sen α</text>
+        <circle r="1" fill="none" stroke="#E2232D" stroke-width="0.032"/>
+        <line x1="-1.18" y1="0" x2="1.18" y2="0" stroke="#bbb" stroke-width="0.02"/>
+        <line x1="0" y1="-1.18" x2="0" y2="1.18" stroke="#bbb" stroke-width="0.02"/>
+        <text x="0.46" y="-0.38" font-size="0.26" font-weight="bold" fill="#E2232D" text-anchor="middle" font-family="Cabin, sans-serif">+</text>
+        <text x="-0.46" y="-0.38" font-size="0.26" font-weight="bold" fill="#E2232D" text-anchor="middle" font-family="Cabin, sans-serif">+</text>
+        <text x="-0.46" y="0.56" font-size="0.26" font-weight="bold" fill="#E2232D" text-anchor="middle" font-family="Cabin, sans-serif">−</text>
+        <text x="0.46" y="0.56" font-size="0.26" font-weight="bold" fill="#E2232D" text-anchor="middle" font-family="Cabin, sans-serif">−</text>
+      </svg>
+      <!-- rueda coseno -->
+      <svg class="fig" viewBox="-1.3 -1.62 2.6 2.9" width="185">
+        <text y="-1.34" font-size="0.16" font-weight="bold" fill="#333" text-anchor="middle" font-family="Cabin, sans-serif">cos α</text>
+        <circle r="1" fill="none" stroke="#E2232D" stroke-width="0.032"/>
+        <line x1="-1.18" y1="0" x2="1.18" y2="0" stroke="#bbb" stroke-width="0.02"/>
+        <line x1="0" y1="-1.18" x2="0" y2="1.18" stroke="#bbb" stroke-width="0.02"/>
+        <text x="0.46" y="-0.38" font-size="0.26" font-weight="bold" fill="#E2232D" text-anchor="middle" font-family="Cabin, sans-serif">+</text>
+        <text x="-0.46" y="-0.38" font-size="0.26" font-weight="bold" fill="#E2232D" text-anchor="middle" font-family="Cabin, sans-serif">−</text>
+        <text x="-0.46" y="0.56" font-size="0.26" font-weight="bold" fill="#E2232D" text-anchor="middle" font-family="Cabin, sans-serif">−</text>
+        <text x="0.46" y="0.56" font-size="0.26" font-weight="bold" fill="#E2232D" text-anchor="middle" font-family="Cabin, sans-serif">+</text>
+      </svg>
+      <!-- rueda tangente -->
+      <svg class="fig" viewBox="-1.3 -1.62 2.6 2.9" width="185">
+        <text y="-1.34" font-size="0.16" font-weight="bold" fill="#333" text-anchor="middle" font-family="Cabin, sans-serif">tg α</text>
+        <circle r="1" fill="none" stroke="#E2232D" stroke-width="0.032"/>
+        <line x1="-1.18" y1="0" x2="1.18" y2="0" stroke="#bbb" stroke-width="0.02"/>
+        <line x1="0" y1="-1.18" x2="0" y2="1.18" stroke="#bbb" stroke-width="0.02"/>
+        <text x="0.46" y="-0.38" font-size="0.26" font-weight="bold" fill="#E2232D" text-anchor="middle" font-family="Cabin, sans-serif">+</text>
+        <text x="-0.46" y="-0.38" font-size="0.26" font-weight="bold" fill="#E2232D" text-anchor="middle" font-family="Cabin, sans-serif">−</text>
+        <text x="-0.46" y="0.56" font-size="0.26" font-weight="bold" fill="#E2232D" text-anchor="middle" font-family="Cabin, sans-serif">+</text>
+        <text x="0.46" y="0.56" font-size="0.26" font-weight="bold" fill="#E2232D" text-anchor="middle" font-family="Cabin, sans-serif">−</text>
+      </svg>
+    </div>
+    <div class="cols">
+      <div class="col">
+        <div class="tabla-wrap">
+          <table class="tabla">
+            <tr><th>Función</th><th>I</th><th>II</th><th>III</th><th>IV</th></tr>
+            <tr><td>$\sen\alpha$</td><td>$+$</td><td>$+$</td><td>$-$</td><td>$-$</td></tr>
+            <tr><td>$\cos\alpha$</td><td>$+$</td><td>$-$</td><td>$-$</td><td>$+$</td></tr>
+            <tr><td>$\tg\alpha$</td><td>$+$</td><td>$-$</td><td>$+$</td><td>$-$</td></tr>
+          </table>
+        </div>
+        <div class="cuadro teoria">
+          <div class="ct">Regla nemotécnica de clase</div>
+          <div class="cb center">
+            «Sen inversor, tan loco, cos todo lo contrario»<br>
+            <span class="small">sen $+$ arriba (I–II) · cos $+$ a la derecha (I–IV) · tg $+$ donde $x$ e $y$ coinciden (I–III)</span>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="cuadro advertencia">
+          <div class="ct">El signo lo decide el ángulo original</div>
+          <div class="cb">
+            No el de referencia. Primero ubica el ángulo <b>original</b> en su cuadrante y asigna el signo; recién después calcula con el ángulo agudo. Por ejemplo, $\tg(-100^\circ)$ <b>es positiva</b>: $-100^\circ$ es coterminal con $260^\circ$ (cuadrante III), donde $x$ e $y$ son ambos negativos.
+          </div>
+        </div>
+        <div class="cuadro info">
+          <div class="ct">Consejo</div>
+          <div class="cb">
+            En la práctica, la regla segura es mirar las <b>coordenadas</b>: $\sen\alpha=y$ y $\cos\alpha=x$. El signo de cada función lo traen esas coordenadas.
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Círculo trigonométrico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     10 · ÁNGULOS NOTABLES
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Ángulos notables</h2><span class="ftsub">Los valores que conviene memorizar</span></header>
+  <main class="fc">
+    <div class="tabla-wrap">
+      <table class="tabla" style="font-size:21px">
+        <tr><th>$\alpha$</th><th>$0^\circ$</th><th>$30^\circ$</th><th>$45^\circ$</th><th>$60^\circ$</th><th>$90^\circ$</th></tr>
+        <tr><td>$\sen\alpha$</td><td>$0$</td><td>$\dfrac{1}{2}$</td><td>$\dfrac{\sqrt{2}}{2}$</td><td>$\dfrac{\sqrt{3}}{2}$</td><td>$1$</td></tr>
+        <tr><td>$\cos\alpha$</td><td>$1$</td><td>$\dfrac{\sqrt{3}}{2}$</td><td>$\dfrac{\sqrt{2}}{2}$</td><td>$\dfrac{1}{2}$</td><td>$0$</td></tr>
+        <tr><td>$\tg\alpha$</td><td>$0$</td><td>$\dfrac{\sqrt{3}}{3}$</td><td>$1$</td><td>$\sqrt{3}$</td><td>no existe</td></tr>
+      </table>
+    </div>
+    <div class="cols">
+      <div class="cuadro teoria" style="flex:1">
+        <div class="ct">Cómo estudiarlos</div>
+        <div class="cb">
+          <ul>
+            <li>Los valores de $30^\circ$, $45^\circ$ y $60^\circ$ se arman con $\dfrac{1}{2}$, $\dfrac{\sqrt{2}}{2}$ y $\dfrac{\sqrt{3}}{2}$.</li>
+            <li>Al girar el ángulo, el <b>seno</b> y el <b>coseno</b> se <b>intercambian</b>: $\sen 60^\circ=\cos 30^\circ$.</li>
+            <li>$\tg\alpha=\dfrac{\sen\alpha}{\cos\alpha}$: se obtiene dividiendo.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cuadro advertencia" style="flex:1">
+        <div class="ct">Ojo con la tangente</div>
+        <div class="cb">
+          $\tg 90^\circ$ y $\tg 270^\circ$ <b>no existen</b> (división entre $x=0$). En los otros ángulos notables la tangente toma los valores $0$, $\dfrac{\sqrt{3}}{3}$, $1$ y $\sqrt{3}$, con el signo del cuadrante.
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Círculo trigonométrico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     11 · REDUCCIÓN AL PRIMER CUADRANTE
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Reducción al primer cuadrante</h2><span class="ftsub">$f(\theta)=\pm\,f(\alpha_r)$</span></header>
+  <main class="fc">
+    <div class="cuadro teoria">
+      <div class="ct">¿Qué es reducir?</div>
+      <div class="cb">
+        Convertir la función de un ángulo cualquiera $\theta$ en una función <b>equivalente</b> de un ángulo agudo $\alpha_r$ (el <i>ángulo de referencia</i>), conservando el <b>signo</b> que la función tiene en el cuadrante del ángulo original: $f(\theta)=\pm\,f(\alpha_r)$. <b>El nombre de la función no cambia:</b> el seno sigue siendo seno, el coseno sigue siendo coseno.
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col" style="flex:0 0 500px">
+        <div id="redpanels" class="fig-row" style="flex-wrap:wrap; gap:6px"></div>
+      </div>
+      <div class="col">
+        <div class="tabla-wrap">
+          <table class="tabla">
+            <tr><th>Cuadrante</th><th>Ángulo de referencia</th><th>En radianes</th></tr>
+            <tr><td>I</td><td>$\alpha_r=\theta$</td><td>$\alpha_r=\theta$</td></tr>
+            <tr><td>II</td><td>$\alpha_r=180^\circ-\theta$</td><td>$\alpha_r=\pi-\theta$</td></tr>
+            <tr><td>III</td><td>$\alpha_r=\theta-180^\circ$</td><td>$\alpha_r=\theta-\pi$</td></tr>
+            <tr><td>IV</td><td>$\alpha_r=360^\circ-\theta$</td><td>$\alpha_r=2\pi-\theta$</td></tr>
+          </table>
+        </div>
+        <div class="cuadro extra">
+          <div class="ct">Recuerda</div>
+          <div class="cb">
+            El ángulo de referencia siempre es <b>agudo</b> (entre $0^\circ$ y $90^\circ$) y se mide <b>hacia el eje $x$</b>, nunca hacia el eje $y$.
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Círculo trigonométrico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     12 · ALGORITMO DE REDUCCIÓN
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Algoritmo de reducción</h2><span class="ftsub">Cinco pasos y dos trampas clásicas</span></header>
+  <main class="fc">
+    <div class="cuadro pasos">
+      <div class="ct">Procedimiento</div>
+      <div class="cb">
+        <ol>
+          <li>lleva $\theta$ al intervalo $[0^\circ,360^\circ)$ sumando o restando vueltas completas;</li>
+          <li>identifica el <b>cuadrante</b> del ángulo resultante;</li>
+          <li>calcula el ángulo de referencia $\alpha_r$ con la tabla de reducción;</li>
+          <li>escribe la función pedida con el <b>signo del cuadrante original</b> y el valor de $\alpha_r$;</li>
+          <li>si el resultado debe ser numérico, sustituye los valores notables.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="cuadro advertencia" style="flex:1">
+        <div class="ct">Error 1 — olvidar el signo</div>
+        <div class="cb">
+          $\sen 210^\circ$ <b>no</b> es $\sen 30^\circ$; es $-\sen 30^\circ$ porque $210^\circ$ está en el <b>III cuadrante</b>.
+        </div>
+      </div>
+      <div class="cuadro advertencia" style="flex:1">
+        <div class="ct">Error 2 — cambiar de función</div>
+        <div class="cb">
+          $\cos 150^\circ$ se reduce a $\cos 30^\circ$ con signo negativo, <b>no</b> a $\sen 30^\circ$. Al reducir, la función <b>no se toca</b>.
+        </div>
+      </div>
+    </div>
+    <div class="cuadro info">
+      <div class="ct">Antes de escribir el resultado, comprueba</div>
+      <div class="cb">
+        ¿El ángulo está en posición estándar? · ¿Pasé las vueltas completas correctamente? · ¿Identifiqué bien el cuadrante del ángulo <b>original</b>? · ¿El signo coincide con la tabla de signos? · ¿Dejé la misma función, sin cambiarla por su cofunción?
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Círculo trigonométrico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     13 · PARIDAD
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Funciones de ángulos opuestos (paridad)</h2><span class="ftsub">$\alpha$ y $-\alpha$: simetría sobre el eje $x$</span></header>
+  <main class="fc">
+    <div class="cols">
+      <div class="col center" style="flex:0 0 400px">
+        <svg class="fig" viewBox="-1.42 -1.42 2.84 2.84" width="385">
+          <line x1="-1.28" y1="0" x2="1.32" y2="0" stroke="#9a9aa2" stroke-width="0.02" marker-end="url(#ar-gray)"/>
+          <line x1="0" y1="-1.25" x2="0" y2="1.25" stroke="#9a9aa2" stroke-width="0.02" marker-end="url(#ar-gray)"/>
+          <circle r="1" fill="none" stroke="#aaa" stroke-width="0.022"/>
+          <line x1="0" y1="0" x2="0.53" y2="-0.848" stroke="#E2232D" stroke-width="0.028"/>
+          <line x1="0" y1="0" x2="0.53" y2="0.848" stroke="#E3229F" stroke-width="0.028"/>
+          <line x1="0.53" y1="-0.848" x2="0.53" y2="0.848" stroke="#999" stroke-width="0.018" stroke-dasharray="0.05 0.04"/>
+          <circle cx="0.53" cy="-0.848" r="0.026" fill="#E2232D"/>
+          <circle cx="0.53" cy="0.848" r="0.026" fill="#E3229F"/>
+          <text x="0.62" y="-0.9" font-size="0.1" fill="#E2232D" font-family="Cabin, sans-serif">P(x, y)</text>
+          <text x="0.62" y="0.97" font-size="0.1" fill="#E3229F" font-family="Cabin, sans-serif">P′(x, −y)</text>
+          <path d="M 0.52,0 A 0.52,0.52 0 0 0 0.276,-0.441" fill="none" stroke="#E2232D" stroke-width="0.022" marker-end="url(#ar-red)"/>
+          <text x="0.63" y="-0.33" font-size="0.105" fill="#E2232D" font-family="Cabin, sans-serif">+α</text>
+          <path d="M 0.52,0 A 0.52,0.52 0 0 1 0.276,0.441" fill="none" stroke="#E3229F" stroke-width="0.022" marker-end="url(#ar-magenta)"/>
+          <text x="0.63" y="0.38" font-size="0.105" fill="#E3229F" font-family="Cabin, sans-serif">−α</text>
+          <circle r="0.02" fill="#333"/>
+        </svg>
+      </div>
+      <div class="col">
+        <div class="cuadro teoria">
+          <div class="ct">Fórmulas de paridad</div>
+          <div class="cb center">
+            $\boxed{\;\sen(-\alpha)=-\sen\alpha\;}\quad\boxed{\;\cos(-\alpha)=\cos\alpha\;}\quad\boxed{\;\tg(-\alpha)=-\tg\alpha\;}$
+            <p style="margin-top:7px"><b>seno</b> y <b>tangente</b> son <b>impares</b> (cambian de signo); el <b>coseno</b> es <b>par</b> (no cambia).</p>
+          </div>
+        </div>
+        <div class="cuadro extra">
+          <div class="ct">¿Por qué?</div>
+          <div class="cb">
+            El punto $P'$ tiene la misma $x$ que $P$ y la $y$ opuesta: $\sen(-\alpha)=y'=-y=-\sen\alpha$ y $\cos(-\alpha)=x'=x=\cos\alpha$. La tangente cambia de signo porque es el cociente de una cantidad que cambia de signo entre otra que no cambia.
+          </div>
+        </div>
+        <div class="cuadro info">
+          <div class="ct">Uso</div>
+          <div class="cb">
+            La paridad permite trabajar solo con ángulos positivos: primero «quita» el signo menos y luego reduce al primer cuadrante.
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Círculo trigonométrico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     14 · FUNCIONES RECÍPROCAS
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Funciones recíprocas</h2><span class="ftsub">csc, sec y cot</span></header>
+  <main class="fc">
+    <div class="cuadro teoria">
+      <div class="ct">Definición</div>
+      <div class="cb center">
+        $\boxed{\;\csc\alpha=\dfrac{1}{\sen\alpha}\;}\qquad\boxed{\;\sec\alpha=\dfrac{1}{\cos\alpha}\;}\qquad\boxed{\;\cot\alpha=\dfrac{1}{\tg\alpha}=\dfrac{\cos\alpha}{\sen\alpha}\;}$
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col">
+        <div class="tabla-wrap">
+          <table class="tabla">
+            <tr><th>Recíproca</th><th>Definición</th><th>Signo</th></tr>
+            <tr><td>cosecante ($\csc$)</td><td>$1/\sen\alpha$</td><td>el mismo que $\sen\alpha$</td></tr>
+            <tr><td>secante ($\sec$)</td><td>$1/\cos\alpha$</td><td>el mismo que $\cos\alpha$</td></tr>
+            <tr><td>cotangente ($\cot$)</td><td>$1/\tg\alpha$</td><td>el mismo que $\tg\alpha$</td></tr>
+          </table>
+        </div>
+        <div class="cuadro teoria">
+          <div class="ct">Paridad de las recíprocas</div>
+          <div class="cb">
+            La recíproca conserva el signo de la función original, así que la paridad se hereda:
+            $\csc(-\alpha)=-\csc\alpha$, $\sec(-\alpha)=\sec\alpha$, $\cot(-\alpha)=-\cot\alpha$.
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="cuadro advertencia">
+          <div class="ct">Notación delicada</div>
+          <div class="cb">
+            En algunos apuntes se escribe $\sen^{-1}$, $\cos^{-1}$ y $\tg^{-1}$ para las <b>recíprocas</b>. Eso confunde, porque internacionalmente $\cos^{-1}$ significa <i>arcocoseno</i> (la inversa, no la recíproca). Usa siempre $\csc$, $\sec$ y $\cot$. La recíproca del <b>seno</b> es la <b>cosecante</b>, no la secante.
+          </div>
+        </div>
+        <div class="cuadro solucion">
+          <div class="ct">Ejemplo</div>
+          <div class="cb">
+            $\csc 210^\circ$: $210^\circ$ está en el III cuadrante, $\alpha_r=30^\circ$, $\sen 210^\circ=-\sen 30^\circ=-\tfrac12$. Entonces $\csc 210^\circ=\dfrac{1}{-1/2}=-2$.
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Círculo trigonométrico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     15 · FORMULARIO RESUMEN
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Formulario resumen</h2><span class="ftsub">Todo lo de la clase en una página</span></header>
+  <main class="fc">
+    <div class="cols">
+      <div class="col" style="flex:1.25">
+        <div class="tabla-wrap">
+          <table class="tabla tight" style="font-size:16.5px">
+            <tr><th>Concepto</th><th>Fórmula o regla</th></tr>
+            <tr><td>Circunferencia unitaria</td><td>$x^2+y^2=1$</td></tr>
+            <tr><td>Seno y coseno</td><td>$\sen\alpha=y$, $\cos\alpha=x$</td></tr>
+            <tr><td>Tangente</td><td>$\tg\alpha=\dfrac{y}{x}=\dfrac{\sen\alpha}{\cos\alpha}$</td></tr>
+            <tr><td>Identidad pitagórica</td><td>$\sen^2\alpha+\cos^2\alpha=1$</td></tr>
+            <tr><td>Ángulos coterminales</td><td>$\alpha=\beta+360^\circ k$ &nbsp;(o $\beta+2\pi k$)</td></tr>
+            <tr><td>Reducción II</td><td>$\alpha_r=180^\circ-\theta$</td></tr>
+            <tr><td>Reducción III</td><td>$\alpha_r=\theta-180^\circ$</td></tr>
+            <tr><td>Reducción IV</td><td>$\alpha_r=360^\circ-\theta$</td></tr>
+            <tr><td>Regla de reducción</td><td>$f(\theta)=\pm f(\alpha_r)$, signo del cuadrante original</td></tr>
+            <tr><td>Ángulos opuestos</td><td>$\sen(-\alpha)=-\sen\alpha$, $\cos(-\alpha)=\cos\alpha$, $\tg(-\alpha)=-\tg\alpha$</td></tr>
+            <tr><td>Recíprocas</td><td>$\csc\alpha=\dfrac{1}{\sen\alpha}$, $\sec\alpha=\dfrac{1}{\cos\alpha}$, $\cot\alpha=\dfrac{\cos\alpha}{\sen\alpha}$</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="col">
+        <div class="tabla-wrap">
+          <table class="tabla">
+            <tr><th>Función</th><th>I</th><th>II</th><th>III</th><th>IV</th></tr>
+            <tr><td>$\sen\alpha$, $\csc\alpha$</td><td>$+$</td><td>$+$</td><td>$-$</td><td>$-$</td></tr>
+            <tr><td>$\cos\alpha$, $\sec\alpha$</td><td>$+$</td><td>$-$</td><td>$-$</td><td>$+$</td></tr>
+            <tr><td>$\tg\alpha$, $\cot\alpha$</td><td>$+$</td><td>$-$</td><td>$+$</td><td>$-$</td></tr>
+          </table>
+        </div>
+        <div class="cuadro info">
+          <div class="ct">Antes de entregar, comprueba</div>
+          <div class="cb">
+            <ul>
+              <li>¿El ángulo está en posición estándar?</li>
+              <li>¿Pasé las vueltas completas correctamente?</li>
+              <li>¿Identifiqué bien el cuadrante del ángulo <b>original</b>?</li>
+              <li>¿El signo coincide con la tabla de signos?</li>
+              <li>¿Dejé la misma función, sin cambiarla?</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Círculo trigonométrico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     16 · DIVISOR — EJERCICIOS RESUELTOS
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide divisor">
+  <div class="dcontent">
+    <h2>Ejercicios resueltos</h2>
+    <p>Modelos de resolución: cuadrante → ángulo de referencia → signo → valor</p>
+  </div>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Círculo trigonométrico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     17 · EJEMPLOS 1–2
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Ejemplos resueltos 1 y 2</h2><span class="ftsub">Coterminales y reducción básica</span></header>
+  <main class="fc">
+    <div class="cuadro solucion">
+      <div class="ct">Ejemplo 1 — Coterminales con ángulos grandes</div>
+      <div class="cb">
+        <p><b>a)</b> Reducir $2920^\circ$ a su ángulo coterminal menor que $360^\circ$.</p>
+        <p>$2920 \div 360$ da cociente $8$ y residuo $40$: $8\cdot 360^\circ=2880^\circ$ y $2920^\circ-2880^\circ=40^\circ$. Entonces $2920^\circ \equiv 40^\circ$ (cuadrante <b>I</b>).</p>
+        <p><b>b)</b> $\cos 2920^\circ=\cos 40^\circ\approx 0{,}766$ (positivo, porque $40^\circ$ está en el I cuadrante).</p>
+        <p><b>Contraste:</b> si el ángulo fuera $3000^\circ$, entonces $3000^\circ=8\cdot360^\circ+120^\circ$ (cuadrante II) y $\cos 3000^\circ=-\cos 60^\circ=-\tfrac12$.</p>
+      </div>
+    </div>
+    <div class="cuadro solucion">
+      <div class="ct">Ejemplo 2 — $\sen 240^\circ$</div>
+      <div class="cb">
+        <p>$240^\circ$ está en el <b>III cuadrante</b>: $\alpha_r=240^\circ-180^\circ=60^\circ$. En el III cuadrante el seno es <b>negativo</b>:</p>
+        $$\sen 240^\circ=-\sen 60^\circ=-\frac{\sqrt{3}}{2}$$
+      </div>
+    </div>
+    <div class="cuadro advertencia">
+      <div class="ct">Trampa de aritmética</div>
+      <div class="cb">
+        Comprueba siempre la resta: $2920^\circ=8\cdot 360^\circ+40^\circ$, <b>no</b> $120^\circ$. Un residuo mal calculado arruina también el cuadrante.
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Círculo trigonométrico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     18 · EJEMPLOS 3–4
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Ejemplos resueltos 3 y 4</h2><span class="ftsub">Las tres razones de un ángulo</span></header>
+  <main class="fc">
+    <div class="cuadro solucion">
+      <div class="ct">Ejemplo 3 — $330^\circ$</div>
+      <div class="cb">
+        <p>$330^\circ$ está en el <b>IV cuadrante</b> y $\alpha_r=360^\circ-330^\circ=30^\circ$. Los signos del IV cuadrante son $(-,+,-)$ para $(\sen,\cos,\tg)$:</p>
+        $$\sen 330^\circ=-\frac{1}{2},\qquad \cos 330^\circ=\frac{\sqrt{3}}{2},\qquad \tg 330^\circ=-\frac{\sqrt{3}}{3}$$
+      </div>
+    </div>
+    <div class="cuadro solucion">
+      <div class="ct">Ejemplo 4 — $210^\circ$</div>
+      <div class="cb">
+        <p>$210^\circ$ está en el <b>III cuadrante</b> y $\alpha_r=210^\circ-180^\circ=30^\circ$. Los signos del III cuadrante son $(-,-,+)$:</p>
+        $$\sen 210^\circ=-\frac{1}{2},\qquad \cos 210^\circ=-\frac{\sqrt{3}}{2},\qquad \tg 210^\circ=\frac{\sqrt{3}}{3}$$
+      </div>
+    </div>
+    <div class="cuadro info">
+      <div class="ct">Patrón</div>
+      <div class="cb">
+        Mismo ángulo de referencia ($\alpha_r=30^\circ$), mismos valores absolutos… y <b>signos distintos</b>. El cuadrante lo decide todo.
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Círculo trigonométrico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     19 · EJEMPLOS 5–6
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Ejemplos resueltos 5 y 6</h2><span class="ftsub">Vueltas completas y recíprocas</span></header>
+  <main class="fc">
+    <div class="cuadro solucion">
+      <div class="ct">Ejemplo 5 — $\tg 2010^\circ$</div>
+      <div class="cb">
+        <p>Dividimos entre $360^\circ$: $2010=5\cdot360+210$, es decir $2010^\circ=5\cdot360^\circ+210^\circ$. El coterminal es $210^\circ$ (<b>III cuadrante</b>), con $\alpha_r=210^\circ-180^\circ=30^\circ$. Allí la tangente es <b>positiva</b>:</p>
+        $$\tg 2010^\circ=\tg 210^\circ=+\tg 30^\circ=\frac{\sqrt{3}}{3}$$
+      </div>
+    </div>
+    <div class="cuadro solucion">
+      <div class="ct">Ejemplo 6 — $\csc 210^\circ$</div>
+      <div class="cb">
+        <p>Primero reducimos: $210^\circ$ está en el III cuadrante, $\alpha_r=30^\circ$ y $\sen 210^\circ=-\sen 30^\circ=-\tfrac12$. Por tanto</p>
+        $$\csc 210^\circ=\frac{1}{\sen 210^\circ}=\frac{1}{-1/2}=-2$$
+        <p>El resultado es negativo, como corresponde al III cuadrante.</p>
+      </div>
+    </div>
+    <div class="cuadro pasos">
+      <div class="ct">Esquema de resolución</div>
+      <div class="cb">
+        División entre $360^\circ$ → <b>residuo</b> → cuadrante → $\alpha_r$ → <b>signo</b> → valor notable → (si piden recíproca) invertir.
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Círculo trigonométrico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     20 · DIVISOR — EJERCICIOS PARA LA PIZARRA
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide divisor">
+  <div class="dcontent">
+    <h2>Ejercicios para la pizarra</h2>
+    <p>Resuelve sobre las diapositivas · primero cuadrante y ángulo de referencia, el valor al final</p>
+  </div>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Círculo trigonométrico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     21 · CÓMO TRABAJAR
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Cómo trabajar los ejercicios</h2><span class="ftsub">Instrucciones y método de la división</span></header>
+  <main class="fc">
+    <div class="cuadro info">
+      <div class="ct">Cómo trabajar</div>
+      <div class="cb">
+        Resuelve <b>sin calculadora</b> los valores exactos y usa la calculadora solo para comprobar. En todos los ejercicios escribe primero el <b>cuadrante</b> y el <b>ángulo de referencia</b>; el resultado numérico es lo último.
+      </div>
+    </div>
+    <div class="cuadro pasos">
+      <div class="ct">Ángulos mayores que $360^\circ$ (o menores que $-360^\circ$)</div>
+      <div class="cb">
+        Usa siempre el <b>método de la división</b>: divide el ángulo entre $360^\circ$ y toma el <b>residuo</b>, que es el coterminal. Después reduce ese residuo al primer cuadrante y aplica el signo. Comprueba con la multiplicación:
+        $$\theta=360^\circ q+r \quad\Longrightarrow\quad q\cdot360^\circ+r=\theta$$
+      </div>
+    </div>
+    <div class="cols">
+      <div class="cuadro teoria" style="flex:1">
+        <div class="ct">Bloques de la práctica</div>
+        <div class="cb">
+          <b>A</b> — Ángulos opuestos (paridad) · 1–7<br>
+          <b>B</b> — Determinar el signo, sin calcular · 8–15
+        </div>
+      </div>
+      <div class="cuadro teoria" style="flex:1">
+        <div class="ct">…y después</div>
+        <div class="cb">
+          <b>C</b> — Reducir y calcular · 16–32<br>
+          <b>D</b> — Expresiones numéricas · 33–47
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Círculo trigonométrico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     22 · BLOQUE A
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Ejercicios para la pizarra</h2><span class="ftsub">Bloque A · ángulos opuestos</span></header>
+  <main class="fc">
+    <div class="ejblock">
+      <div class="ejhead">Bloque A — Reducir usando funciones de ángulos opuestos (1–7)<span class="stars st-medio">★★</span></div>
+      <ol class="ejgrid two" start="1">
+        <li>$\sen(-220^\circ)$</li>
+        <li>$\cos\left(-\dfrac{3\pi}{4}\right)$</li>
+        <li>$\cot(-25^\circ)$</li>
+        <li>$\tg\left(-\dfrac{5\pi}{3}\right)$</li>
+        <li>$\csc(-300^\circ)$</li>
+        <li>$\sen(-1000^\circ)$</li>
+        <li>$\cos(-1500^\circ)$</li>
+      </ol>
+    </div>
+    <div class="blank"></div>
+    <div class="cuadro extra">
+      <div class="ct">Pista</div>
+      <div class="cb">
+        Aplica primero la paridad: $\sen(-\alpha)=-\sen\alpha$, $\cos(-\alpha)=\cos\alpha$, $\tg(-\alpha)=-\tg\alpha$ (y las recíprocas heredan esa paridad). Luego reduce como siempre.
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Círculo trigonométrico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     23 · BLOQUE B
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Ejercicios para la pizarra</h2><span class="ftsub">Bloque B · solo el signo</span></header>
+  <main class="fc">
+    <div class="ejblock">
+      <div class="ejhead">Bloque B — Determinar el signo, sin calcular el valor (8–15)<span class="stars st-facil">★</span></div>
+      <ol class="ejgrid two" start="8">
+        <li>$\sen 150^\circ$</li>
+        <li>$\cos 225^\circ$</li>
+        <li>$\csc 250^\circ$</li>
+        <li>$\cot(-200^\circ)$</li>
+        <li>$\sen 300^\circ$</li>
+        <li>$\tg(-100^\circ)$</li>
+        <li>$\sen 1000^\circ$</li>
+        <li>$\tg 2000^\circ$</li>
+      </ol>
+    </div>
+    <div class="blank"></div>
+    <div class="cuadro advertencia">
+      <div class="ct">Ojo con el ejercicio 11</div>
+      <div class="cb">
+        Es fácil responder «negativo» porque el ángulo lleva signo menos, pero el signo del <b>ángulo</b> no es el signo de la <b>función</b>. Al pasar $-200^\circ$ a $160^\circ$ queda en el II cuadrante, donde la cotangente es <b>negativa</b>.
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Círculo trigonométrico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     24 · BLOQUE C (16–24)
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Ejercicios para la pizarra</h2><span class="ftsub">Bloque C · reducción y valores (1.ª parte)</span></header>
+  <main class="fc">
+    <div class="ejblock">
+      <div class="ejhead">Bloque C — Reducir y calcular (16–24)<span class="stars st-medio">★★</span></div>
+      <ol class="ejgrid two" start="16">
+        <li>$\sen 150^\circ$</li>
+        <li>$\cos 240^\circ$</li>
+        <li>$\tg 315^\circ$</li>
+        <li>$\sen 200^\circ$</li>
+        <li>$\cos 100^\circ$</li>
+        <li>$\tg 160^\circ$</li>
+        <li>$\cos 350^\circ$</li>
+        <li>$\sen(-30^\circ)$</li>
+        <li>$\cos(-60^\circ)$</li>
+      </ol>
+    </div>
+    <div class="blank"></div>
+    <div class="cuadro info">
+      <div class="ct">Recordatorio</div>
+      <div class="cb">
+        Escribe siempre: <b>cuadrante</b> → <b>$\alpha_r$</b> → <b>signo</b> → valor. Los ejercicios 19–22 no son notables: déjalos en forma exacta ($\sen 200^\circ=-\sen 20^\circ$) o redondea con calculadora al final.
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Círculo trigonométrico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     25 · BLOQUE C (25–32)
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Ejercicios para la pizarra</h2><span class="ftsub">Bloque C · reducción y valores (2.ª parte)</span></header>
+  <main class="fc">
+    <div class="ejblock">
+      <div class="ejhead">Bloque C — Reducir y calcular (25–32)<span class="stars st-medio">★★</span></div>
+      <ol class="ejgrid two" start="25">
+        <li>$\tg(-45^\circ)$</li>
+        <li>$\csc(-330^\circ)$</li>
+        <li>$\sec(-120^\circ)$</li>
+        <li>$\cot(-135^\circ)$</li>
+        <li>$\cot 300^\circ$</li>
+        <li>$\sen 750^\circ$</li>
+        <li>$\cos 1290^\circ$</li>
+        <li>$\tg 1920^\circ$</li>
+      </ol>
+    </div>
+    <div class="blank"></div>
+    <div class="cuadro extra">
+      <div class="ct">Los últimos tres llevan vueltas completas</div>
+      <div class="cb">
+        $750=2\cdot360+30$ · $1290=3\cdot360+210$ · $1920=5\cdot360+120$. Comprueba cada residuo con la multiplicación antes de ubicar el cuadrante.
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Círculo trigonométrico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     26 · BLOQUE D (33–40)
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Ejercicios para la pizarra</h2><span class="ftsub">Bloque D · expresiones (1.ª parte)</span></header>
+  <main class="fc">
+    <div class="ejblock">
+      <div class="ejhead">Bloque D — Hallar el valor de cada expresión (33–40)<span class="stars st-dificil">★★★</span></div>
+      <ol class="ejgrid" start="33">
+        <li>$E=\sen 150^\circ+\cos 240^\circ-\tg 315^\circ$</li>
+        <li>$E=2\sen 30^\circ-3\cos 180^\circ+\tg 45^\circ$</li>
+        <li>$E=\sen(-30^\circ)\cdot\cos 240^\circ+\tg 135^\circ$</li>
+        <li>$E=\csc 30^\circ+\sec 60^\circ-\cot 45^\circ$</li>
+        <li>$E=\sen 270^\circ+\cos 180^\circ+\tg 360^\circ$</li>
+        <li>$E=\sen 750^\circ+\cos 480^\circ-\tg 1035^\circ$</li>
+        <li>$E=2\cos 1140^\circ-3\tg 1305^\circ$</li>
+        <li>$E=\dfrac{\sen 210^\circ+\cos 300^\circ}{\tg 135^\circ}$</li>
+      </ol>
+    </div>
+    <div class="blank"></div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Círculo trigonométrico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     27 · BLOQUE D (41–47)
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Ejercicios para la pizarra</h2><span class="ftsub">Bloque D · expresiones (2.ª parte)</span></header>
+  <main class="fc">
+    <div class="ejblock">
+      <div class="ejhead">Bloque D — Hallar el valor de cada expresión (41–47)<span class="stars st-dificil">★★★</span></div>
+      <ol class="ejgrid" start="41">
+        <li>$E=\sen^2 150^\circ+\cos^2 330^\circ-\tg 45^\circ$</li>
+        <li>$E=2\sec 120^\circ-3\csc(-330^\circ)+\cot 225^\circ$</li>
+        <li>$E=\dfrac{\sen(-60^\circ)\cdot\tg 225^\circ}{\cos 150^\circ}$</li>
+        <li>$E=\sqrt{3}\,\tg 240^\circ-2\sqrt{2}\,\sen 135^\circ$</li>
+        <li>$E=\sen\left(\dfrac{7\pi}{6}\right)+\cos\left(-\dfrac{5\pi}{3}\right)-\tg\left(\dfrac{11\pi}{4}\right)$</li>
+        <li>$E=\dfrac{\sen 1140^\circ+\cos(-750^\circ)}{\cot 1305^\circ}$</li>
+        <li>$E=\left(\sen 150^\circ-\cos 240^\circ\right)\left(\tg 315^\circ+\cot 135^\circ\right)$</li>
+      </ol>
+    </div>
+    <div class="blank"></div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Círculo trigonométrico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     28 · CIERRE Y RETO
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Cierre de la clase</h2><span class="ftsub">Reto final</span></header>
+  <main class="fc">
+    <div class="cuadro extra">
+      <div class="ct">Reto</div>
+      <div class="cb">
+        Demuestra, usando la circunferencia unitaria, que
+        $\sen(180^\circ-\alpha)=\sen\alpha$ y que $\cos(180^\circ-\alpha)=-\cos\alpha$.
+        Comprueba luego tus fórmulas de reducción del II cuadrante con $\sen 150^\circ$ y $\cos 150^\circ$.
+      </div>
+    </div>
+    <div class="cuadro solucion">
+      <div class="ct">Lo que te llevas de esta clase</div>
+      <div class="cb">
+        <ul>
+          <li><b>Ubicar:</b> posición estándar, cuadrante y ángulo coterminal.</li>
+          <li><b>Signar:</b> el signo lo da el cuadrante del ángulo original.</li>
+          <li><b>Reducir:</b> $f(\theta)=\pm f(\alpha_r)$ con el ángulo de referencia.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="cuadro info">
+      <div class="ct">Para practicar</div>
+      <div class="cb">
+        Completa los 47 ejercicios de la <b>Guía Temática T3L1</b> y usa su clave comentada para revisar. Y si quieres explorar cualquier ángulo, vuelve al <b>círculo interactivo</b> de la clase.
+      </div>
+    </div>
+    <p class="center" style="margin-top:18px; font-family:var(--font-title); font-size:26px; color:var(--primario)">¡Buen trabajo! · Mathwizards Consultoría Educativa STEM</p>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Círculo trigonométrico</span><span class="pn"></span></footer>
+</section>
+
+</div><!-- /#stage -->
+
+<div id="hud">
+  <button id="prev" title="Anterior (←)">‹</button>
+  <span class="nav-n" id="navN">1 / 1</span>
+  <button id="next" title="Siguiente (→)">›</button>
+  <button id="fs" class="wide" title="Pantalla completa (F)">Pantalla completa</button>
+</div>
+<div class="kbd-hint">← → navegar · F pantalla completa</div>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js"></script>
+<script>
+(function(){
+"use strict";
+
+/* ============================================================
+   0 · Utilidades y render matemático
+   ============================================================ */
+var MACROS = {"\\sen": "\\operatorname{sen}", "\\tg": "\\operatorname{tg}"};
+function tex(el, s, display){
+  if(!el) return;
+  try{ katex.render(s, el, {throwOnError:false, displayMode:!!display, macros:MACROS}); }
+  catch(e){ el.textContent = s; }
+}
+function dec(v, n){ return (Math.abs(v) < 5e-5 ? 0 : v).toFixed(n === undefined ? 4 : n).replace(".", ","); }
+function clamp(v, a, b){ return Math.max(a, Math.min(b, v)); }
+
+if (window.renderMathInElement){
+  renderMathInElement(document.body, {
+    delimiters: [{left:"$$", right:"$$", display:true}, {left:"$", right:"$", display:false}],
+    macros: MACROS, throwOnError:false
+  });
+}
+
+/* ============================================================
+   1 · Navegación del deck
+   ============================================================ */
+var slides = Array.prototype.slice.call(document.querySelectorAll(".slide"));
+var cur = 0;
+function show(n){
+  n = clamp(n, 0, slides.length - 1);
+  slides[cur].classList.remove("active");
+  cur = n;
+  slides[cur].classList.add("active");
+  document.getElementById("navN").textContent = (cur + 1) + " / " + slides.length;
+  document.getElementById("progress").style.width = ((cur + 1) / slides.length * 100) + "%";
+}
+slides.forEach(function(s, i){
+  var pn = s.querySelector(".pn");
+  if (pn) pn.textContent = (i + 1) + " / " + slides.length;
+});
+show(0);
+
+document.getElementById("next").addEventListener("click", function(){ show(cur + 1); });
+document.getElementById("prev").addEventListener("click", function(){ show(cur - 1); });
+document.getElementById("fs").addEventListener("click", function(){
+  if (document.fullscreenElement) document.exitFullscreen();
+  else document.documentElement.requestFullscreen();
+});
+document.addEventListener("keydown", function(e){
+  var t = e.target;
+  if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.tagName === "SELECT")) return;
+  if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " "){ e.preventDefault(); show(cur + 1); }
+  else if (e.key === "ArrowLeft" || e.key === "PageUp"){ e.preventDefault(); show(cur - 1); }
+  else if (e.key === "Home"){ e.preventDefault(); show(0); }
+  else if (e.key === "End"){ e.preventDefault(); show(slides.length - 1); }
+  else if (e.key === "f" || e.key === "F"){
+    if (document.fullscreenElement) document.exitFullscreen();
+    else document.documentElement.requestFullscreen();
+  }
+});
+
+function fit(){
+  var s = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
+  document.getElementById("stage").style.transform = "scale(" + s + ")";
+}
+window.addEventListener("resize", fit);
+fit();
+
+/* ============================================================
+   2 · Paneles de reducción (figura de la sección §6)
+   ============================================================ */
+function redPanelSVG(o){
+  var rad = function(d){ return d * Math.PI / 180; };
+  var P  = function(a, r){ return [r * Math.cos(rad(a)), -r * Math.sin(rad(a))]; };
+  var p0 = P(o.from, 0.52), p1 = P(o.theta, 0.52);
+  var sweep = (o.theta > o.from) ? 0 : 1;
+  var mid = (o.theta + o.from) / 2, pm = P(mid, 0.72);
+  var pl = P(o.theta, 1.27);
+  var pt = P(o.theta, 1.02);
+  return '<svg class="fig" viewBox="-1.5 -1.5 3 3.15" width="188">' +
+    '<circle r="1" fill="none" stroke="#aaa" stroke-width="0.02"/>' +
+    '<line x1="-1.22" y1="0" x2="1.22" y2="0" stroke="#9a9aa2" stroke-width="0.018" marker-end="url(#ar-gray)"/>' +
+    '<line x1="0" y1="-1.22" x2="0" y2="1.22" stroke="#9a9aa2" stroke-width="0.018" marker-end="url(#ar-gray)"/>' +
+    '<line x1="0" y1="0" x2="' + pt[0].toFixed(3) + '" y2="' + pt[1].toFixed(3) + '" stroke="' + o.color + '" stroke-width="0.028" marker-end="url(#' + o.marker + ')"/>' +
+    '<path d="M ' + p0[0].toFixed(3) + ',' + p0[1].toFixed(3) + ' A 0.52,0.52 0 0 ' + sweep + ' ' + p1[0].toFixed(3) + ',' + p1[1].toFixed(3) + '" fill="none" stroke="#E36322" stroke-width="0.024"/>' +
+    '<text x="' + pm[0].toFixed(3) + '" y="' + pm[1].toFixed(3) + '" font-size="0.155" fill="#E36322" text-anchor="middle" font-family="Cabin, sans-serif">α_r</text>' +
+    '<text x="' + pl[0].toFixed(3) + '" y="' + pl[1].toFixed(3) + '" font-size="0.15" fill="' + o.color + '" text-anchor="middle" font-family="Cabin, sans-serif">' + o.label + '</text>' +
+    '<text x="0" y="1.44" font-size="0.15" fill="#333" text-anchor="middle" font-family="Cabin, sans-serif">' + o.formula + '</text>' +
+  '</svg>';
+}
+(function(){
+  var host = document.getElementById("redpanels");
+  if (!host) return;
+  [
+    {color:"#E2232D", marker:"ar-red",     theta:35,  from:0,   label:"θ = 35°",  formula:"α_r = θ"},
+    {color:"#E3229F", marker:"ar-magenta", theta:145, from:180, label:"θ = 145°", formula:"α_r = 180° − θ"},
+    {color:"#E36322", marker:"ar-orange",  theta:215, from:180, label:"θ = 215°", formula:"α_r = θ − 180°"},
+    {color:"#C922E3", marker:"ar-violet",  theta:325, from:360, label:"θ = 325°", formula:"α_r = 360° − θ"}
+  ].forEach(function(o){ host.insertAdjacentHTML("beforeend", redPanelSVG(o)); });
+})();
+
+/* ============================================================
+   3 · Círculo trigonométrico interactivo
+   ============================================================ */
+var R = 250;
+var svg = document.getElementById("tcirc");
+var slider = document.getElementById("slider");
+var degIn = document.getElementById("degIn");
+var snapChk = document.getElementById("snap");
+var tanChk = document.getElementById("tanTgl");
+var state = {theta: 150};
+
+var NOTABLE = [0, 30, 45, 60, 90, 120, 135, 150, 180, 210, 225, 240, 270, 300, 315, 330];
+
+/* valores exactos por dirección (para el cálculo exacto del panel) */
+var EXACT = {
+  0:   {s:"0", c:"1", t:"0"},
+  30:  {s:"\\frac{1}{2}", c:"\\frac{\\sqrt{3}}{2}", t:"\\frac{\\sqrt{3}}{3}"},
+  45:  {s:"\\frac{\\sqrt{2}}{2}", c:"\\frac{\\sqrt{2}}{2}", t:"1"},
+  60:  {s:"\\frac{\\sqrt{3}}{2}", c:"\\frac{1}{2}", t:"\\sqrt{3}"},
+  90:  {s:"1", c:"0", t:null}
+};
+
+function glabel(g){ // formato del ángulo entero (ASCII: KaTeX lo renderiza como menos)
+  return (g < 0 ? "-" + Math.abs(g) : "" + g) + "^\\circ";
+}
+function radTex(d){
+  if (d === 0) return "0";
+  var sign = d < 0 ? "-" : "";
+  var a = Math.abs(d), g = (function gcd(x, y){ return y ? gcd(y, x % y) : x; })(a, 180);
+  var num = a / g, den = 180 / g;
+  if (den === 1) return sign + (num === 1 ? "\\pi" : num + "\\pi");
+  return sign + "\\frac{" + (num === 1 ? "" : num) + "\\pi}{" + den + "}";
+}
+function coterminal(d){ return ((d % 360) + 360) % 360; }
+
+function quadrantOf(c){ // c en [0,360) — 0 = sobre un eje
+  if (c === 0 || c === 90 || c === 180 || c === 270) return 0;
+  if (c < 90) return 1;
+  if (c < 180) return 2;
+  if (c < 270) return 3;
+  return 4;
+}
+
+function refAngle(c, q){
+  if (q === 1) return {ar: c, f: "\\alpha_r = \\theta"};
+  if (q === 2) return {ar: 180 - c, f: "\\alpha_r = 180^\\circ - \\theta"};
+  if (q === 3) return {ar: c - 180, f: "\\alpha_r = \\theta - 180^\\circ"};
+  if (q === 4) return {ar: 360 - c, f: "\\alpha_r = 360^\\circ - \\theta"};
+  return {ar: (c === 90 || c === 270) ? 90 : 0, f: "\\theta\\ \\text{está sobre un eje}"};
+}
+
+/* valores exactos de sen/cos/tg para un ángulo de referencia notable */
+function exactAt(ar, sign, kind){
+  var e = EXACT[ar];
+  if (!e) return null;
+  var v = e[kind];
+  if (v === null) return null;         // tg indefinida
+  if (v === "0") return "0";
+  var neg = (sign === "−");
+  return (neg ? "-" : "") + v;
+}
+
+function signChar(v){ // signo de un número: + / − / 0
+  if (Math.abs(v) < 1e-9) return "0";
+  return v > 0 ? "+" : "−";
+}
+
+function setAngle(deg, fromSlider){
+  state.theta = Math.round(deg);
+  if (!fromSlider) slider.value = clamp(state.theta, -720, 720);
+  degIn.value = state.theta;
+  render();
+}
+
+function setAngleSnapped(deg){
+  if (snapChk.checked){
+    var c = coterminal(deg), best = NOTABLE[0], bd = 1e9;
+    NOTABLE.forEach(function(n){
+      var d = Math.min(Math.abs(c - n), Math.abs(c - n - 360), Math.abs(c - n + 360));
+      if (d < bd){ bd = d; best = n; }
+    });
+    var turns = Math.round((deg - c) / 360);
+    deg = best + 360 * turns;
+    deg = Math.round(deg);
+  }
+  setAngle(deg);
+}
+
+/* ---- dibujo del SVG ---- */
+function arcPath(from, to, r0){
+  // arco en espiral desde `from` hasta `to` (grados), radio que decrece por vuelta
+  var pts = [], step = to > from ? 3 : -3, t, loop, r, a;
+  if (Math.abs(to - from) < 1e-6) return "";
+  for (t = from; (step > 0 ? t < to : t > to); t += step){
+    loop = Math.floor(Math.abs(t) / 360);
+    r = Math.max(22, r0 - 10 * loop);
+    a = t * Math.PI / 180;
+    pts.push((r * Math.cos(a)).toFixed(1) + "," + (-r * Math.sin(a)).toFixed(1));
+  }
+  a = to * Math.PI / 180;
+  loop = Math.floor(Math.abs(to) / 360);
+  r = Math.max(22, r0 - 10 * loop);
+  pts.push((r * Math.cos(a)).toFixed(1) + "," + (-r * Math.sin(a)).toFixed(1));
+  return "M " + pts.join(" L ");
+}
+
+function render(){
+  var deg = state.theta;
+  var c = coterminal(deg);
+  var q = quadrantOf(c);
+  var rad = deg * Math.PI / 180;
+  var cx = R * Math.cos(rad), cy = -R * Math.sin(rad);
+
+  /* punto P, radio y proyecciones */
+  var Ppt = document.getElementById("Ppt"), Phalo = document.getElementById("Phalo"), Plbl = document.getElementById("Plbl");
+  Ppt.setAttribute("cx", cx); Ppt.setAttribute("cy", cy);
+  Phalo.setAttribute("cx", cx); Phalo.setAttribute("cy", cy);
+  Plbl.setAttribute("x", cx + (cx >= 0 ? 20 : -20));
+  Plbl.setAttribute("y", cy + (cy <= 0 ? -16 : 26));
+  var OP = document.getElementById("OP");
+  OP.setAttribute("x2", cx); OP.setAttribute("y2", cy);
+  var projX = document.getElementById("projX");
+  projX.setAttribute("x1", cx); projX.setAttribute("y1", cy);
+  projX.setAttribute("x2", cx); projX.setAttribute("y2", 0);
+  var projY = document.getElementById("projY");
+  projY.setAttribute("x1", cx); projY.setAttribute("y1", cy);
+  projY.setAttribute("x2", 0); projY.setAttribute("y2", cy);
+  var lblCos = document.getElementById("lblCos");
+  lblCos.setAttribute("x", cx / 2); lblCos.setAttribute("y", cy >= 0 ? 22 : -12);
+  var lblSin = document.getElementById("lblSin");
+  lblSin.setAttribute("x", cx >= 0 ? -12 : 12); lblSin.setAttribute("y", cy / 2 + 5);
+  lblSin.setAttribute("text-anchor", cx >= 0 ? "end" : "start");
+
+  /* arco del ángulo θ */
+  var arcTheta = document.getElementById("arcTheta");
+  arcTheta.setAttribute("d", arcPath(0, deg, 62));
+  var lt = document.getElementById("labelTheta");
+  var midA = deg / 2 * Math.PI / 180, rMid = 88;
+  lt.setAttribute("x", rMid * Math.cos(midA));
+  lt.setAttribute("y", -rMid * Math.sin(midA) + 6);
+  lt.textContent = "θ = " + Math.round(deg) + "°";
+
+  /* ángulo de referencia */
+  var arcRef = document.getElementById("arcRef"), lref = document.getElementById("labelRef");
+  if (q === 0){
+    arcRef.setAttribute("d", "");
+    lref.textContent = "";
+  } else {
+    var fromA = (q === 1 || q === 4) ? 0 : 180;
+    var toA = (q === 2 || q === 3) ? 180 : 360;
+    // arco desde el eje x más cercano hasta el lado final
+    var a0, a1;
+    if (q === 1){ a0 = 0; a1 = c; }
+    else if (q === 2){ a0 = c; a1 = 180; }
+    else if (q === 3){ a0 = 180; a1 = c; }
+    else { a0 = c; a1 = 360; }
+    arcRef.setAttribute("d", arcPath(a0, a1, 132));
+    var mA = (a0 + a1) / 2 * Math.PI / 180;
+    lref.setAttribute("x", 158 * Math.cos(mA));
+    lref.setAttribute("y", -158 * Math.sin(mA) + 6);
+    lref.textContent = "α_r";
+  }
+
+  /* tangente geométrica */
+  var tanGroup = document.getElementById("tanGroup");
+  if (tanChk.checked){
+    tanGroup.style.display = "";
+    var t = Math.tan(rad);
+    var yEnd = -R * t;
+    var clamped = Math.abs(yEnd) > 300;
+    if (clamped) yEnd = yEnd > 0 ? 300 : -300;
+    var tanSeg = document.getElementById("tanSeg");
+    tanSeg.setAttribute("x2", R); tanSeg.setAttribute("y2", yEnd);
+    var tanPoint = document.getElementById("tanPoint");
+    tanPoint.setAttribute("cx", R); tanPoint.setAttribute("cy", yEnd);
+    var tanLabel = document.getElementById("tanLabel");
+    tanLabel.setAttribute("x", R + 12);
+    tanLabel.setAttribute("y", yEnd + (yEnd >= 0 ? 22 : -12));
+    tanLabel.textContent = clamped ? "tg α → " + (yEnd > 0 ? "+∞" : "−∞") : "tg α";
+  } else {
+    tanGroup.style.display = "none";
+  }
+
+  /* cuadrantes */
+  ["q1","q2","q3","q4"].forEach(function(id, i){
+    var el = document.getElementById(id);
+    if (el) el.classList.toggle("active", q === i + 1);
+    var w = document.getElementById("w" + (i + 1));
+    if (w) w.classList.toggle("active", q === i + 1);
+  });
+
+  /* ---- panel de lectura ---- */
+  tex(document.getElementById("rdTheta"),
+      "\\theta = " + glabel(deg) + " = " + radTex(deg) + " \\ \\text{rad}");
+  tex(document.getElementById("rdCot"),
+      "\\bar\\theta = " + glabel(Math.round(c)) + " \\in [0^\\circ, 360^\\circ)");
+
+  var quadNames = {0:"sobre el eje +x", 90:"sobre el eje +y", 180:"sobre el eje −x", 270:"sobre el eje −y"};
+  var badgeCls = q === 1 ? "q1" : q === 2 ? "q2" : q === 3 ? "q3" : q === 4 ? "q4" : "q0";
+  var badgeTxt = q === 0 ? "eje" : ["", "I", "II", "III", "IV"][q];
+  document.getElementById("rdQuad").innerHTML =
+    '<span class="quad-badge ' + badgeCls + '">' + badgeTxt + '</span> ' +
+    (q === 0 ? quadNames[Math.round(c)] : "cuadrante " + badgeTxt);
+
+  var xv = Math.cos(rad), yv = Math.sin(rad);
+  tex(document.getElementById("rdP"),
+      "P(x, y) = \\left(" + dec(xv) + "\\ ;\\ " + dec(yv) + "\\right)");
+
+  var ref = refAngle(Math.round(c), q);
+  if (q === 0){
+    tex(document.getElementById("rdRef"),
+        "\\alpha_r = " + (Math.round(c) === 90 || Math.round(c) === 270 ? "90^\\circ" : "0^\\circ") +
+        "\\;(\\theta\\ \\text{está sobre un eje})");
+  } else {
+    tex(document.getElementById("rdRef"),
+        ref.f + " = " + glabel(ref.ar));
+  }
+
+  /* líneas de reducción: sen, cos, tg */
+  function lineTex(kind, name, val, undefMsg){
+    var sign = signChar(val);
+    var signTex = sign === "+" ? "+" : sign === "−" ? "-" : "";
+    if (undefMsg) return "\\text{tg }" + glabel(deg) + " \\text{ no existe (" + undefMsg + ")}";
+    if (q === 0 && Math.abs(val) < 1e-9)
+      return name + "\\," + glabel(deg) + " = 0";
+    if (q === 0)
+      return name + "\\," + glabel(deg) + " = " + (val < 0 ? "-" : "") + (Math.abs(Math.abs(val) - 1) < 1e-9 ? "1" : dec(Math.abs(val)));
+    var ex = exactAt(ref.ar, sign, kind);
+    var head = name + "\\," + glabel(deg) + " = " + signTex + name + "\\," + glabel(ref.ar);
+    if (ex !== null && ex !== undefined) return head + " = " + ex;
+    return head + " \\approx " + dec(val);
+  }
+  tex(document.getElementById("rdSen"), lineTex("s", "\\sen", yv, null));
+  tex(document.getElementById("rdCos"), lineTex("c", "\\cos", xv, null));
+  var tgUndef = Math.abs(xv) < 1e-9;
+  var tgVal = tgUndef ? NaN : yv / xv;
+  tex(document.getElementById("rdTg"),
+      tgUndef ? "\\text{tg }" + glabel(deg) + "\\ \\text{no existe }(x = 0)"
+              : lineTex("t", "\\tg", tgVal, null));
+
+  /* chips de signo */
+  var chips = document.getElementById("rdSigns");
+  function chip(label, v, undef){
+    var cls = undef ? "undef" : (Math.abs(v) < 1e-9 ? "zero" : v > 0 ? "pos" : "neg");
+    var txt = undef ? "∓" : (Math.abs(v) < 1e-9 ? "0" : v > 0 ? "+" : "−");
+    return '<span class="chip ' + cls + '">' + label + " " + txt + "</span>";
+  }
+  chips.innerHTML = chip("sen", yv, false) + chip("cos", xv, false) +
+                    chip("tg", tgVal, tgUndef);
+}
+
+/* ---- eventos del círculo ---- */
+function angleFromEvent(e){
+  var rect = svg.getBoundingClientRect();
+  var x = ((e.clientX - rect.left) / rect.width) * 640 - 320;
+  var y = ((e.clientY - rect.top) / rect.height) * 640 - 320;
+  var dir = Math.atan2(-y, x) * 180 / Math.PI;
+  if (dir < 0) dir += 360;
+  // conservar las vueltas actuales
+  var turns = Math.round((state.theta - dir) / 360);
+  return dir + 360 * turns;
+}
+var dragging = false;
+svg.addEventListener("pointerdown", function(e){
+  dragging = true;
+  svg.setPointerCapture(e.pointerId);
+  setAngleSnapped(angleFromEvent(e));
+  e.preventDefault();
+});
+svg.addEventListener("pointermove", function(e){
+  if (dragging){ setAngleSnapped(angleFromEvent(e)); e.preventDefault(); }
+});
+svg.addEventListener("pointerup", function(){ dragging = false; });
+svg.addEventListener("pointercancel", function(){ dragging = false; });
+
+slider.addEventListener("input", function(){ setAngle(parseFloat(slider.value), true); });
+degIn.addEventListener("change", function(){
+  var v = parseFloat(degIn.value);
+  if (isNaN(v)) v = 0;
+  setAngleSnapped(clamp(v, -3600, 3600));
+});
+snapChk.addEventListener("change", function(){ if (snapChk.checked) setAngleSnapped(state.theta); });
+tanChk.addEventListener("change", render);
+
+Array.prototype.forEach.call(document.querySelectorAll(".btn[data-step]"), function(b){
+  b.addEventListener("click", function(){ setAngleSnapped(state.theta + parseFloat(b.dataset.step)); });
+});
+document.getElementById("rnd").addEventListener("click", function(){
+  var base = NOTABLE[Math.floor(Math.random() * NOTABLE.length)];
+  var turns = Math.floor(Math.random() * 5) - 2;
+  setAngle(base + 360 * turns);
+});
+document.getElementById("rst").addEventListener("click", function(){
+  tanChk.checked = false;
+  setAngle(150);
+});
+
+/* marcas de ángulos notables en el círculo */
+(function(){
+  var g = document.getElementById("ticks");
+  if (!g) return;
+  var s = "";
+  for (var a = 0; a < 360; a += 30){
+    var rad = a * Math.PI / 180;
+    var major = (a % 90 === 0);
+    var r0 = R - (major ? 12 : 8), r1 = R + (major ? 12 : 8);
+    s += '<line class="tick' + (major ? " major" : "") + '" x1="' + (r0 * Math.cos(rad)).toFixed(1) +
+         '" y1="' + (-r0 * Math.sin(rad)).toFixed(1) +
+         '" x2="' + (r1 * Math.cos(rad)).toFixed(1) +
+         '" y2="' + (-r1 * Math.sin(rad)).toFixed(1) + '"/>';
+    if (major && a !== 0){
+      s += '<text class="axis-lbl" x="' + ((R + 30) * Math.cos(rad)).toFixed(1) +
+           '" y="' + (-(R + 30) * Math.sin(rad) + 6).toFixed(1) +
+           '" text-anchor="middle">' + a + '°</text>';
+    }
+  }
+  g.innerHTML = s;
+})();
+
+setAngle(150);
+
+})();
+</script>
+</body>
+</html>

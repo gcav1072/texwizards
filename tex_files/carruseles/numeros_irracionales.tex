@@ -1,0 +1,349 @@
+% ============================================================
+%  Números irracionales en la recta real — carrusel 1:1
+%  Estilo: mathwizards-carrusel-moderno
+%  Compilar:  latexmk -xelatex numeros_irracionales.tex
+% ============================================================
+\documentclass[12pt]{article}
+\usepackage{mathwizards-carrusel-moderno}
+\mwcartotal{10}
+\renewcommand{\mwcarfantasma}{$\sqrt2$}
+
+\begin{document}
+
+% ── 1. Portada ───────────────────────────────────────────────
+\mwmodportada
+  {Números reales · Recta numérica}
+  {Números irracionales}
+  {No se pueden escribir como fracción, pero tienen un lugar
+   exacto en la recta. Aquí aprendes a encontrarlo.}
+
+% ── 2. La recta real ─────────────────────────────────────────
+\begin{mwmodlamina}[mwprimario]{La recta real}{Un punto, un número}
+{\mwsmall
+Cada número real ocupa \textbf{un único punto} de la recta, y cada
+punto es un número. Los irracionales no son la excepción.}
+
+\vspace{3pt}
+\begin{mwcajaformula}
+\begin{tikzpicture}[x=1.55cm,y=1cm]
+  \draw[mwink!45, line width=0.8pt, -{Stealth[length=1.7mm]}]
+    (-0.22,0) -- (4.45,0);
+  \foreach \x in {0,1,2,3,4}{%
+    \draw[mwink!45, line width=0.6pt] (\x,-0.10) -- (\x,0.10);
+    \node[below, font=\fontsize{6.6}{6.6}\selectfont, text=mwink!60,
+          inner sep=1pt] at (\x,-0.11) {$\x$};}
+  % raíz de 2
+  \fill[mwprimario] (1.414,0) circle (1.7pt);
+  \node[above, font=\fontsize{6.2}{6.2}\selectfont, text=mwprimario,
+        inner sep=1.2pt] at (1.414,0.10) {$\sqrt2\approx1{,}414$};
+  % e
+  \fill[mwprimario] (2.718,0) circle (1.7pt);
+  \node[below, font=\fontsize{6.2}{6.2}\selectfont, text=mwprimario,
+        inner sep=1.2pt] at (2.718,-0.40) {$e\approx2{,}718$};
+  % pi
+  \fill[mwprimario] (3.1416,0) circle (1.7pt);
+  \node[above, font=\fontsize{6.2}{6.2}\selectfont, text=mwprimario,
+        inner sep=1.2pt] at (3.1416,0.10) {$\pi\approx3{,}142$};
+  \node[above, font=\fontsize{6}{6}\selectfont, text=mwink!40,
+        inner sep=0pt] at (4.36,0.20) {$\mathbb{R}$};
+\end{tikzpicture}\end{mwcajaformula}
+
+\begin{mwcaja}
+  \mwctitulo{No hay huecos}
+  {\mwsmall Entre dos números \emph{siempre} hay otro: no existe
+  un «siguiente» número real. Racionales e irracionales están
+  mezclados: los dos conjuntos son \textbf{densos}.}
+\end{mwcaja}
+
+\begin{mwcajagris}
+  {\mwsmall Ubicar un irracional no es «estimar»: es encontrar su
+  punto exacto. Las etiquetas decimales solo nos ayudan a leerlo.}
+\end{mwcajagris}
+\end{mwmodlamina}
+
+% ── 3. Definición ────────────────────────────────────────────
+\begin{mwmodlamina}[mwvioleta]{Definición}{¿Qué es un número irracional?}
+\begin{mwcajaformula}
+  \scalebox{1.05}{$x\ \text{es irracional}\iff x\notin\mathbb{Q}$}
+\end{mwcajaformula}
+
+\begin{mwcaja}
+  \mwctitulo{En palabras}
+  {\mwsmall No existe \textbf{ninguna} fracción $\frac{a}{b}$ con
+  $a,b$ enteros y $b\neq0$ que sea igual a $x$. Su decimal es
+  \textbf{infinito y no periódico}: ningún bloque de cifras se
+  repite.}
+\end{mwcaja}
+
+\begin{mwcaja}
+  \mwctitulo{Tres ejemplos}
+  \centering
+  {\mwsmall
+  $\sqrt2=1{,}41421356\ldots$\quad
+  $\pi=3{,}14159265\ldots$\quad
+  $e=2{,}71828182\ldots$}
+\end{mwcaja}
+
+\begin{mwcajagris}
+  {\mwsmall Si el decimal termina o se repite, el número es
+  \textbf{racional}: $0{,}333\ldots=\frac13$ y
+  $0{,}25000\ldots=\frac14$.}
+\end{mwcajagris}
+\end{mwmodlamina}
+
+% ── 4. Demostración ──────────────────────────────────────────
+\begin{mwmodlamina}[mwmagenta]{Demostración}{$\sqrt2$ no es una fracción}
+\begin{mwcajapaso}
+  \mwctitulo{Por contradicción}
+  {\mwsmall
+  \textbf{1.} Supón que $\sqrt2=\frac{a}{b}$, con $a,b$ enteros
+  \emph{sin factores comunes}.\\[3pt]
+  \textbf{2.} Eleva al cuadrado: $2b^2=a^2$. Entonces $a^2$ es par,
+  así que $a$ es par: $a=2k$.\\[3pt]
+  \textbf{3.} Sustituye: $2b^2=4k^2 \Rightarrow b^2=2k^2$. Luego
+  $b$ también es par, pero eso contradice el paso 1.}
+\end{mwcajapaso}
+
+\begin{mwcajaok}
+  \mwctitulo{Conclusión}
+  {\mwsmall $\sqrt2$ no es racional: no existe tal fracción. Su
+  decimal no termina y no se repite.}
+\end{mwcajaok}
+
+\begin{mwcajagris}
+  {\mwsmall La misma idea sirve para $\sqrt3$, $\sqrt5$, $\sqrt6$:
+  toda raíz de un entero que no sea cuadrado perfecto es irracional.}
+\end{mwcajagris}
+\end{mwmodlamina}
+
+% ── 5. Construcción de √2 ────────────────────────────────────
+\begin{mwmodlamina}[mwnaranja]{Construcción}{Ubicar $\sqrt2$ con regla y compás}
+\noindent
+\begin{minipage}[t]{4.2cm}
+  \vspace*{0pt}
+  \begin{tikzpicture}[x=1.35cm,y=1.35cm]
+    \draw[mwink!45, line width=0.7pt, -{Stealth[length=1.5mm]}]
+      (-0.28,0) -- (2.30,0);
+    \foreach \x in {0,1,2}{%
+      \draw[mwink!45, line width=0.5pt] (\x,-0.08) -- (\x,0.08);
+      \node[below, font=\fontsize{6.2}{6.2}\selectfont, text=mwink!60,
+            inner sep=1pt] at (\x,-0.09) {$\x$};}
+    \draw[mwnaranja, line width=1.3pt] (0,0) -- (1,0) -- (1,1) -- cycle;
+    \draw[mwnaranja, line width=0.5pt] (0.82,0) -- (0.82,0.18) -- (1,0.18);
+    \node[below, font=\fontsize{6.4}{6.4}\selectfont, text=mwnaranja]
+      at (0.5,-0.04) {$1$};
+    \node[right, font=\fontsize{6.4}{6.4}\selectfont, text=mwnaranja]
+      at (1.02,0.5) {$1$};
+    \node[above left, font=\fontsize{6.4}{6.4}\selectfont, text=mwnaranja,
+          inner sep=1pt] at (0.52,0.5) {$\sqrt2$};
+    \draw[mwnaranja, dashed, line width=0.7pt]
+      let \p1=(1,1) in (1,1)
+      arc[start angle=45, end angle=0, radius={veclen(\x1,\y1)}];
+    \fill[mwnaranja] (1.4142,0) circle (1.7pt);
+    \node[above, font=\fontsize{6.2}{6.2}\selectfont, text=mwnaranja,
+          inner sep=1pt] at (1.4142,0.12) {$\sqrt2$};
+  \end{tikzpicture}
+  \par\vspace{1pt}
+  {\mwsmall\color{mwink!55}El arco copia la hipotenusa sobre el eje.}
+\end{minipage}\hfill
+\begin{minipage}[t]{4.6cm}
+  \vspace*{0pt}
+  \begin{mwcajapaso}
+    \mwctitulo{Paso a paso}
+    {\mwsmall
+    \textbf{1.} Dibuja un triángulo rectángulo de catetos $1$ y $1$.\\[2pt]
+    \textbf{2.} Por Pitágoras, la hipotenusa mide
+    $\sqrt{1^2+1^2}=\sqrt2$.\\[2pt]
+    \textbf{3.} Clava el compás en $0$, abre hasta el vértice y
+    corta el eje.}
+  \end{mwcajapaso}
+  \begin{mwcajaalerta}
+    {\mwsmall El compás no mide «$1{,}41$»: traslada la longitud
+    \textbf{exacta}, así que la marca es $\sqrt2$ y no una
+    aproximación.}
+  \end{mwcajaalerta}
+\end{minipage}
+\end{mwmodlamina}
+
+% ── 6. Espiral de Teodoro ────────────────────────────────────
+\begin{mwmodlamina}[mwvioleta]{Familia completa}{La espiral de Teodoro}
+\noindent
+\begin{minipage}[t]{4.5cm}
+  \vspace*{0pt}
+  \begin{tikzpicture}[x=0.62cm,y=0.62cm]
+    \coordinate (O)  at (0,0);
+    \coordinate (P1) at (1,0);
+    \coordinate (P2) at (1,1);
+    \coordinate (P3) at (0.2929,1.7071);
+    \coordinate (P4) at (-0.6927,1.8762);
+    \coordinate (P5) at (-1.6308,1.5298);
+    \coordinate (P6) at (-2.3149,0.8004);
+    \coordinate (P7) at (-2.6418,-0.1449);
+    \coordinate (P8) at (-2.5870,-1.1435);
+    \coordinate (P9) at (-2.1827,-2.0583);
+    \coordinate (P10) at (-1.4967,-2.7859);
+    \coordinate (P11) at (-0.6158,-3.2592);
+    \coordinate (P12) at (0.3668,-3.4449);
+    \coordinate (P13) at (1.3612,-3.3390);
+    \coordinate (P14) at (2.2872,-2.9615);
+    \coordinate (P15) at (3.0786,-2.3502);
+    \coordinate (P16) at (3.6854,-1.5552);
+    \coordinate (P17) at (4.0742,-0.6340);
+    \fill[mwnaranja!12] (O) -- (P1) -- (P2) -- cycle;
+    \draw[mwvioleta, line width=1.1pt, line join=round]
+      (P1) -- (P2) -- (P3) -- (P4) -- (P5) -- (P6) -- (P7) -- (P8)
+      -- (P9) -- (P10) -- (P11) -- (P12) -- (P13) -- (P14) -- (P15)
+      -- (P16) -- (P17);
+    \draw[mwnaranja, line width=1pt] (O) -- (P1) -- (P2) -- cycle;
+    \draw[mwnaranja, line width=0.45pt]
+      (0.84,0) -- (0.84,0.16) -- (1,0.16);
+    \fill[mwvioleta] (O) circle (1.2pt);
+    \foreach \p in {P1,...,P17}{%
+      \fill[mwvioleta!70] (\p) circle (0.8pt);}
+    \node[below, font=\fontsize{6}{6}\selectfont, text=mwnaranja,
+          inner sep=0.8pt] at (0.5,-0.04) {$1$};
+    \node[right, font=\fontsize{6}{6}\selectfont, text=mwnaranja,
+          inner sep=0.8pt] at (1.04,0.5) {$1$};
+    \node[above left, font=\fontsize{6}{6}\selectfont, text=mwnaranja,
+          inner sep=0.8pt] at (0.54,0.52) {$\sqrt2$};
+  \end{tikzpicture}
+  \par\vspace{1pt}
+  {\raggedright\mwsmall\color{mwink!55}Catetos $1$, hipotenusa $\sqrt2$.}
+\end{minipage}\hfill
+\begin{minipage}[t]{4.3cm}
+  \vspace*{0pt}
+  \begin{mwcaja}
+    \mwctitulo{Cómo se genera}
+    {\mwsmall A cada triángulo se le agrega un cateto de longitud
+    $1$, perpendicular a la hipotenusa anterior. La nueva
+    hipotenusa mide $\sqrt{n+1}$.}
+  \end{mwcaja}
+  \begin{mwcajapaso}
+    {\mwsmall
+    $\sqrt2 \rightarrow \sqrt3 \rightarrow \sqrt4=2
+    \rightarrow \sqrt5 \rightarrow \sqrt6 \rightarrow \cdots$}
+  \end{mwcajapaso}
+  \begin{mwcajaalerta}
+    {\mwsmall Cada radio mide $\sqrt{n}$: se copia a la recta con
+    el compás y queda un punto exacto.}
+  \end{mwcajaalerta}
+\end{minipage}
+\end{mwmodlamina}
+
+% ── 7. π sobre la recta ──────────────────────────────────────
+\begin{mwmodlamina}[mwnaranja]{Rectificar}{$\pi$ sobre la recta}
+\begin{mwcajaformula}
+  {$\displaystyle C=2\pi r=\pi d$}\quad
+  {\mwsmall con $d=1$:\ } $\;C=\pi$
+  \par\vspace{6pt}
+\begin{tikzpicture}[x=1.30cm,y=1.30cm]
+  \draw[mwink!45, line width=0.7pt, -{Stealth[length=1.6mm]}]
+    (-0.18,0) -- (4.10,0);
+  \foreach \x in {0,1,2,3,4}{%
+    \draw[mwink!45, line width=0.5pt] (\x,-0.07) -- (\x,0.07);
+    \node[below, font=\fontsize{6.2}{6.2}\selectfont, text=mwink!60,
+          inner sep=1pt] at (\x,-0.08) {$\x$};}
+  % circunferencia que rueda (diámetro 1 → circunferencia π)
+  \draw[mwnaranja, line width=1.1pt] (0.5,0.5) circle (0.5);
+  \draw[mwnaranja!60, line width=0.5pt] (0,0.5) -- (1,0.5);
+  \fill[mwnaranja] (0.5,0.5) circle (0.9pt);
+  \node[font=\fontsize{6}{6}\selectfont, text=mwnaranja,
+        inner sep=0.8pt, fill=mwcrema] at (0.5,0.62) {$d=1$};
+  \node[anchor=west, font=\fontsize{5.8}{5.8}\selectfont, text=mwink!45,
+        inner sep=1pt] at (1.62,0.78) {rueda una vuelta};
+  % recorrido = circunferencia
+  \draw[mwnaranja, line width=2.4pt] (0,0) -- (3.1416,0);
+  \fill[mwnaranja] (3.1416,0) circle (1.9pt);
+  \node[above, font=\fontsize{6.8}{6.8}\selectfont, text=mwnaranja,
+        inner sep=1.2pt] at (3.1416,0.06) {$\pi$};
+  \node[below, font=\fontsize{5.8}{5.8}\selectfont, text=mwink!45,
+        inner sep=1pt] at (3.1416,-0.34) {$\approx3{,}1416$};
+\end{tikzpicture}
+\end{mwcajaformula}
+
+\begin{mwcaja}
+  \begin{minipage}[t]{4.25cm}
+    \mwctitulo{Cómo se hace}
+    {\mwsmall
+    \textbf{1.} Circunferencia de diámetro $1$.\\
+    \textbf{2.} Marca el punto de partida.\\
+    \textbf{3.} Rueda una vuelta sin resbalar.}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{4.25cm}
+    \mwctitulo{Por qué funciona}
+    {\mwsmall El borde recorre la circunferencia completa:
+    $C=\pi d=\pi$. Ese recorrido se copia sobre la recta.}
+  \end{minipage}
+\end{mwcaja}
+\end{mwmodlamina}
+
+% ── 8. Exacto vs aproximado ──────────────────────────────────
+\begin{mwmodlamina}[mwmagenta]{Precisión}{Una aproximación no es el número}
+\begin{mwcajaformula}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[mwink!45, line width=0.6pt] (-0.30,0) -- (6.40,0);
+  \draw[mwverde, line width=2pt] (2,0) -- (4,0);
+  \foreach \pos in {0,2,4,6}{%
+    \draw[mwink!45, line width=0.5pt] (\pos,-0.09) -- (\pos,0.09);}
+  \node[below, font=\fontsize{5.8}{5.8}\selectfont, text=mwink!55,
+        inner sep=1pt] at (0,-0.10) {$3{,}1414$};
+  \node[below, font=\fontsize{5.8}{5.8}\selectfont, text=mwink!55,
+        inner sep=1pt] at (2,-0.10) {$3{,}1415$};
+  \node[below, font=\fontsize{5.8}{5.8}\selectfont, text=mwink!55,
+        inner sep=1pt] at (4,-0.10) {$3{,}1416$};
+  \node[below, font=\fontsize{5.8}{5.8}\selectfont, text=mwink!55,
+        inner sep=1pt] at (6,-0.10) {$3{,}1417$};
+  \fill[mwmagenta] (3.86,0) circle (2pt);
+  \node[above, font=\fontsize{6.8}{6.8}\selectfont, text=mwmagenta,
+        inner sep=1.5pt] at (3.86,0.12) {$\pi$};
+  \node[below, font=\fontsize{5.8}{5.8}\selectfont, text=mwmagenta,
+        inner sep=1pt] at (3.86,-0.44) {$3{,}141592\ldots$};
+\end{tikzpicture}
+\end{mwcajaformula}
+
+\begin{mwcaja}
+  \mwctitulo{Aproximar no es igualar}
+  {\mwsmall
+  $\pi\approx3{,}14$ y $\sqrt2\approx1{,}414$: el signo
+  $\approx$ recuerda que falta una cola infinita de cifras. Escribir
+  $=$ ahí es un error.}
+\end{mwcaja}
+
+\begin{mwcajadato}
+  {\mwsmall Para ubicar el punto basta una \textbf{cota}: si
+  $3{,}1415<\pi<3{,}1416$, la marca cae entre esos dos valores.
+  Lo mismo vale para $e=2{,}718\ldots$ y $\varphi=1{,}618\ldots$}
+\end{mwcajadato}
+\end{mwmodlamina}
+
+% ── 9. Errores frecuentes ────────────────────────────────────
+\begin{mwmodlamina}[mwrojonaranja]{Errores frecuentes}{3 cosas que conviene no hacer}
+\begin{mwcajaalerta}
+  {\textbf{1. «$\pi=3{,}14$».} \;\mwcmal\\[2pt]
+  {\mwsmall Correcto: $\pi\approx3{,}14$. La igualdad es falsa:
+  la cola decimal sigue para siempre.}}
+\end{mwcajaalerta}
+
+\begin{mwcajaalerta}
+  {\textbf{2. «Toda raíz es irracional».} \;\mwcmal\\[2pt]
+  {\mwsmall $\sqrt9=3$ y $\sqrt{1/4}=\frac12$ son racionales: ser
+  una raíz no garantiza ser irracional.}}
+\end{mwcajaalerta}
+
+\begin{mwcajaalerta}
+  {\textbf{3. «Sin el decimal completo no puedo ubicarlo».}
+  \;\mwcmal\\[2pt]
+  {\mwsmall No hace falta: con regla y compás, o con una cota, el
+  punto queda determinado.}}
+\end{mwcajaalerta}
+\end{mwmodlamina}
+
+% ── 10. Cierre ───────────────────────────────────────────────
+\mwmodfin
+  {Para llevar}
+  {Todo irracional tiene\\
+   un punto exacto en la recta.}
+  {Construye la raíz de 2 con regla y compás\\
+   y compara la marca con 1,414.}
+
+\end{document}

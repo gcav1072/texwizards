@@ -1,0 +1,875 @@
+% ============================================================
+%  BEAMER — MATEMÁTICA II · GUÍA DE EJERCICIOS Nº 1
+%  Funciones reales de varias variables
+%  Incrementos parciales y totales
+%  Autor: Ing. Gabriel Astudillo
+%  Compilar:  latexmk -xelatex beamer_mat2_guia1.tex
+% ============================================================
+\documentclass[aspectratio=169]{beamer}
+\usepackage{mathwizards-beamer}
+\mwbeamer{Matemática II}{Guía de Ejercicios Nº 1}%
+  {Funciones de varias variables · Incrementos parciales y totales}
+
+\begin{document}
+
+% ════════════════════════════════════════════════════════════
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\begin{frame}{Objetivos y mapa de la guía}
+  \begin{block}{Al terminar la clase podrás}
+    \begin{itemize}
+      \item identificar, evaluar e interpretar funciones reales de varias variables;
+      \item construir funciones económicas de demanda, costo, ingreso y beneficio;
+      \item reconocer funciones homogéneas y funciones de producción Cobb-Douglas;
+      \item calcular e interpretar incrementos parciales y totales.
+    \end{itemize}
+  \end{block}
+  \vspace{2pt}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{mwextra}[Sección 1 de la guía]
+      Función real de varias variables independientes.\\
+      Ejercicios \textbf{5, 10, 11, 17, 20, 21 y 22}.
+    \end{mwextra}
+    \column{0.48\textwidth}
+    \begin{mwextra}[Sección 2 de la guía]
+      Incrementos parciales y totales.\\
+      Ejercicios \textbf{26, 27, 28, 31, 33 y 34}.
+    \end{mwextra}
+  \end{columns}
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Marco Teórico}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Función real de varias variables}
+  \begin{block}{Definición}
+    Una \textbf{función real de \(n\) variables reales} es una regla que asigna
+    a cada punto \(\mathbf{x}=(x_1,\dots,x_n)\) de un conjunto
+    \(D\subseteq\mathbb{R}^{n}\) un único valor real \(f(\mathbf{x})\):
+    \[
+      f:D\subseteq\mathbb{R}^{n}\longrightarrow\mathbb{R},
+      \qquad \mathbf{x}\longmapsto f(\mathbf{x}).
+    \]
+    \(D\) es el \textbf{dominio} y el conjunto de valores que toma \(f\) es el
+    \textbf{rango}.
+  \end{block}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{mwextra}[Dos variables]
+      \(z=f(x,y)\): el dominio es una región del plano y la gráfica es una
+      \textbf{superficie} en \(\mathbb{R}^{3}\).
+    \end{mwextra}
+    \column{0.48\textwidth}
+    \begin{mwextra}[Tres variables]
+      \(w=f(x,y,z)\): el dominio es una región de \(\mathbb{R}^{3}\); la gráfica
+      vive en \(\mathbb{R}^{4}\) y no se representa directamente.
+    \end{mwextra}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Evaluar una función de varias variables}
+  \begin{mwpasos}[Procedimiento]
+    \begin{enumerate}
+      \item Sustituye cada variable por su valor, respetando el orden del argumento.
+      \item Opera con las reglas de siempre: potencias, raíces, logaritmos.
+      \item Interpreta el resultado con sus unidades.
+    \end{enumerate}
+  \end{mwpasos}
+  \vspace{2pt}
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \begin{exampleblock}{Ejemplo}
+      Si \(f(x,y)=x^{2}y-3y+5\),
+      \[
+        f(2,3)=2^{2}(3)-3(3)+5=8.
+      \]
+    \end{exampleblock}
+    \column{0.46\textwidth}
+    \begin{alertblock}{Cuidado}
+      \(f(x+\Delta x)\neq f(x)+\Delta x\). Primero se sustituye \emph{todo} el
+      argumento y después se opera.
+    \end{alertblock}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Dominio y rango: qué revisar}
+  \begin{block}{Restricciones algebraicas}
+    \begin{itemize}
+      \item Denominadores: \(D(x)\neq 0\).
+      \item Raíces de índice par: radicando \(\ge 0\).
+      \item Logaritmos: argumento \(>0\).
+    \end{itemize}
+  \end{block}
+  \begin{mwextra}[Restricciones del contexto económico]
+    Precios, cantidades, capital y trabajo suelen exigir \(p,q,L,K\ge 0\).
+    El dominio matemático puede ser mayor que el dominio con sentido económico.
+  \end{mwextra}
+  \begin{exampleblock}{Ejemplo del ejercicio 28}
+    \(C(x,y,t)=(100+200x+10y)e^{0{,}01t}\) es un polinomio por una exponencial:
+    su dominio matemático es \(\mathbb{R}^{3}\). En el contexto, \(x,y\ge 0\)
+    y \(t\ge 0\).
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Modelos económicos: variables y relaciones}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{block}{Tipos de variables}
+      \begin{itemize}
+        \item \textbf{Endógenas:} las determina el modelo
+              (\(q,I,C,B\)).
+        \item \textbf{Exógenas:} vienen dadas
+              (\(p\) en competencia perfecta, \(S\), \(t\)).
+      \end{itemize}
+    \end{block}
+    \column{0.48\textwidth}
+    \begin{block}{Mercado}
+      Demanda: \(q_d=D(p)\)\\[2pt]
+      Oferta: \(q_s=S(p)\)\\[2pt]
+      Equilibrio: \(D(p)=S(p)\)
+    \end{block}
+  \end{columns}
+  \vspace{2pt}
+  \begin{mwpasos}[Del enunciado a la función]
+    \begin{enumerate}
+      \item Identifica la variable que se quiere explicar.
+      \item Identifica las variables de las que depende y sus unidades.
+      \item Escribe las relaciones económicas y sustituye.
+      \item Simplifica y declara el dominio con sentido económico.
+    \end{enumerate}
+  \end{mwpasos}
+\end{frame}
+
+\begin{frame}{Ingreso, costo y beneficio}
+  \begin{block}{Identidades básicas}
+    \[
+      I=pq,\qquad C=C_F+C_V(q),\qquad B(q)=I(q)-C(q).
+    \]
+  \end{block}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{mwextra}[Monopolio]
+      El precio depende de la cantidad: \(p=p(q)\). Por eso
+      \[
+        I(q)=p(q)\,q.
+      \]
+    \end{mwextra}
+    \column{0.48\textwidth}
+    \begin{mwextra}[Competencia perfecta]
+      El precio lo fija el mercado: \(p=p^{*}\) constante. Entonces
+      \[
+        I(q)=p^{*}q.
+      \]
+    \end{mwextra}
+  \end{columns}
+  \vspace{2pt}
+  \begin{alertblock}{Costo conjunto}
+    Si se producen dos bienes: \(C=C(q_X,q_Y)\). Si hay dos plantas:
+    \(C=C_X(q_X)+C_Y(q_Y)\), con \(q=q_X+q_Y\).
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Varios productos, mercados o plantas}
+  \begin{block}{Producción múltiple (ejercicio 11A)}
+    \[
+      B(q_X,q_Y)=I(q_X,q_Y)-C(q_X,q_Y).
+    \]
+    En monopolio, \(I=p_X(q_X,q_Y)\,q_X+p_Y(q_X,q_Y)\,q_Y\). En competencia
+    perfecta, \(p_X=p_X^{*}\) y \(p_Y=p_Y^{*}\) son constantes.
+  \end{block}
+  \begin{block}{Discriminación de precios (ejercicio 11B)}
+    \[
+      B(q_X,q_Y)=I_X(q_X)+I_Y(q_Y)-C(q_X+q_Y).
+    \]
+  \end{block}
+  \begin{block}{Dos fábricas, un solo producto (ejercicio 11C)}
+    \[
+      B(q_X,q_Y)=I(q_X+q_Y)-C_X(q_X)-C_Y(q_Y).
+    \]
+  \end{block}
+\end{frame}
+
+\begin{frame}{Cobb-Douglas y funciones homogéneas}
+  \begin{block}{Función de producción Cobb-Douglas}
+    \[
+      q(L,K)=A\,L^{\alpha}K^{1-\alpha},\qquad A>0,\quad 0<\alpha<1.
+    \]
+    \(L\): trabajo;\quad \(K\): capital;\quad \(q\): producción.
+  \end{block}
+  \begin{block}{Homogeneidad de grado \(n\)}
+    \(f\) es homogénea de grado \(n\) si, para todo \(\lambda>0\),
+    \[
+      f(\lambda x,\lambda y)=\lambda^{n}f(x,y).
+    \]
+  \end{block}
+  \begin{mwextra}[Lectura económica]
+    En Cobb-Douglas, \(q(\lambda L,\lambda K)=\lambda\,q(L,K)\): si se duplican
+    trabajo y capital, la producción se duplica. Son \textbf{rendimientos
+    constantes a escala} (grado 1).
+  \end{mwextra}
+\end{frame}
+
+\begin{frame}{Demanda lineal a partir de dos datos}
+  \small\vspace{-1pt}
+  \begin{block}{Modelo lineal}
+    \[
+      q(p)=a+bp,\qquad b=\frac{\Delta q}{\Delta p}<0.
+    \]
+    \(a\): demanda cuando \(p=0\);\quad \(b\): cambio de \(q\) por cada unidad
+    de \(p\).
+  \end{block}
+  \begin{mwpasos}[Cómo construirla]
+    \begin{enumerate}
+      \item Con dos pares \((p_1,q_1)\) y \((p_2,q_2)\), calcula
+            \(b=\dfrac{q_2-q_1}{p_2-p_1}\).
+      \item Sustituye un par para despejar \(a=q_1-bp_1\).
+      \item Escribe \(q(p)=a+bp\) y verifica con el otro par.
+    \end{enumerate}
+  \end{mwpasos}
+  \begin{exampleblock}{Ejemplo genérico}
+    Si \(q(10)=100\) y \(q(12)=90\), entonces \(q(p)=150-5p\).
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Composición y sustitución de variables}
+  \begin{block}{Idea}
+    Si una magnitud depende de variables que a su vez dependen de otra, se
+    sustituye para obtener una función de una sola variable.
+  \end{block}
+  \[
+    B=B(P,A),\qquad P=P(T),\qquad A=A(T)
+    \quad\Longrightarrow\quad
+    B(T)=B\bigl(P(T),A(T)\bigr).
+  \]
+  \begin{mwpasos}[Orden de trabajo]
+    \begin{enumerate}
+      \item Escribe la función original con sus variables.
+      \item Sustituye cada variable por su expresión en \(T\).
+      \item Simplifica y declara el dominio (por ejemplo, \(T\ge 1\) si
+            \(A=T-1\)).
+    \end{enumerate}
+  \end{mwpasos}
+\end{frame}
+
+\begin{frame}{Distancias y triángulos rectángulos}
+  \begin{block}{Distancia entre dos puntos}
+    \[
+      d\bigl((x_1,y_1),(x_2,y_2)\bigr)
+      =\sqrt{(x_2-x_1)^{2}+(y_2-y_1)^{2}}.
+    \]
+  \end{block}
+  \begin{block}{Teorema de Pitágoras}
+    En un triángulo rectángulo de catetos \(a\) y \(b\) e hipotenusa \(c\):
+    \[
+      c^{2}=a^{2}+b^{2}
+      \quad\Longrightarrow\quad
+      c=\sqrt{a^{2}+b^{2}}.
+    \]
+  \end{block}
+  \begin{exampleblock}{Ejemplo}
+    La distancia entre \((0,7)\) y \((4,4)\) es
+    \(\sqrt{4^{2}+3^{2}}=\sqrt{25}=5\). Cada tramo diagonal de los ejercicios
+    10 y 21 se calcula así.
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Incrementos parciales}
+  \begin{block}{Definición}
+    El \textbf{incremento parcial} mide el cambio de \(f\) cuando varía
+    \emph{una sola} variable y las demás permanecen fijas:
+    \[
+      \Delta_x f(x_0,y_0)=f(x_0+\Delta x,\,y_0)-f(x_0,y_0),
+    \]
+    \[
+      \Delta_y f(x_0,y_0)=f(x_0,\,y_0+\Delta y)-f(x_0,y_0).
+    \]
+    En tres variables se define análogamente \(\Delta_z f\).
+  \end{block}
+  \begin{mwextra}[Interpretación]
+    Es un cambio \emph{ceteris paribus}: «todo lo demás constante». El signo
+    indica si la función aumenta o disminuye.
+  \end{mwextra}
+\end{frame}
+
+\begin{frame}{Incremento total}
+  \begin{block}{Definición}
+    El \textbf{incremento total} permite que cambien \emph{varias} variables
+    a la vez:
+    \[
+      \Delta f(x_0,y_0)=f(x_0+\Delta x,\,y_0+\Delta y)-f(x_0,y_0).
+    \]
+    En tres variables:
+    \[
+      \Delta f=f(x_0+\Delta x,\,y_0+\Delta y,\,z_0+\Delta z)
+             -f(x_0,y_0,z_0).
+    \]
+  \end{block}
+  \begin{alertblock}{No es simplemente la suma de los parciales}
+    \[
+      \Delta f=\Delta_x f(x_0,y_0)+\Delta_y f(x_0+\Delta x,\,y_0).
+    \]
+    En general aparecen \textbf{términos cruzados} (\(\Delta x\,\Delta y\)).
+    Solo si \(f\) es lineal, \(\Delta f=\Delta_x f+\Delta_y f\).
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Incrementos en funciones cuadráticas}
+  \begin{block}{Desarrollos útiles}
+    \[
+      (x+\Delta x)^{2}=x^{2}+2x\,\Delta x+(\Delta x)^{2},
+    \]
+    \[
+      (x+\Delta x)(y+\Delta y)
+      =xy+x\,\Delta y+y\,\Delta x+\Delta x\,\Delta y.
+    \]
+  \end{block}
+  \begin{exampleblock}{Caso general \(f(x,y)=ax^{2}+by^{2}+cxy\)}
+    \[
+      \Delta_x f=(2ax+cy)\Delta x+a(\Delta x)^{2},
+    \]
+    \[
+      \Delta_y f=(2by+cx)\Delta y+b(\Delta y)^{2},
+    \]
+    \[
+      \Delta f=\Delta_x f+\Delta_y f+c\,\Delta x\,\Delta y.
+    \]
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Interpretar un incremento}
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \begin{block}{Qué reportar}
+      \begin{itemize}
+        \item \textbf{Signo:} aumenta (\(>0\)) o disminuye (\(<0\)).
+        \item \textbf{Magnitud:} cuánto cambia, con unidades.
+        \item \textbf{Contexto:} ¿conviene o no la decisión?
+      \end{itemize}
+    \end{block}
+    \column{0.46\textwidth}
+    \begin{mwextra}[Cambio porcentual]
+      \[
+        \%\,\Delta f\approx \frac{\Delta f}{f_0}\times 100.
+      \]
+      Útil cuando se compara un año con otro.
+    \end{mwextra}
+  \end{columns}
+  \vspace{2pt}
+  \begin{alertblock}{Errores frecuentes}
+    Mezclar unidades (miles vs. unidades), olvidar el signo de \(\Delta\), o
+    sumar incrementos parciales cuando el cambio es simultáneo.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Estrategia para resolver los ejercicios}
+  \small\vspace{-3pt}
+  \begin{mwpasos}[Checklist]
+    \begin{enumerate}
+      \item \textbf{Variable dependiente:} ¿qué se quiere calcular?
+      \item \textbf{Variables independientes:} ¿de qué depende y en qué unidades?
+      \item \textbf{Datos:} precios, cantidades, costos fijos, puntos de demanda.
+      \item \textbf{Modelo:} escribe las identidades y sustituye.
+      \item \textbf{Cálculo:} evalúa o incrementa según lo pedido.
+      \item \textbf{Interpretación:} traduce el número a una frase económica.
+    \end{enumerate}
+  \end{mwpasos}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{mwextra}[Si piden «demuestra»]
+      Desarrolla un lado de la igualdad hasta obtener el otro; no sustituyas
+      valores numéricos salvo que el enunciado lo pida.
+    \end{mwextra}
+    \column{0.48\textwidth}
+    \begin{mwextra}[Si piden «interpreta»]
+      Responde con unidades y una conclusión.
+    \end{mwextra}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Formulario de bolsillo}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{block}{Economía}
+      \begin{itemize}
+        \item \(I=pq\)
+        \item \(B=I-C\)
+        \item \(C=C_F+cq\)
+        \item \(q_d=D(p)\), \(q_s=S(p)\)
+        \item Equilibrio: \(D(p)=S(p)\)
+      \end{itemize}
+    \end{block}
+    \column{0.48\textwidth}
+    \begin{block}{Incrementos}
+      \begin{itemize}
+        \item \(\Delta_x f=f(x+\Delta x,y)-f(x,y)\)
+        \item \(\Delta_y f=f(x,y+\Delta y)-f(x,y)\)
+        \item \(\Delta f=f(x+\Delta x,y+\Delta y)-f(x,y)\)
+        \item \(\%\Delta f\approx \dfrac{\Delta f}{f_0}\,100\)
+      \end{itemize}
+    \end{block}
+  \end{columns}
+  \vspace{2pt}
+  \begin{mwextra}[Cobb-Douglas]
+    \(q=AL^{\alpha}K^{1-\alpha}\) es homogénea de grado 1:
+    \(q(\lambda L,\lambda K)=\lambda\,q(L,K)\).
+  \end{mwextra}
+\end{frame}
+
+% ════════════════════════════════════════════════════════════
+\section{Ejercicios}
+% ════════════════════════════════════════════════════════════
+
+\begin{frame}{Ejercicios seleccionados}
+  \begin{block}{Guía de Ejercicios Nº 1 — MAT II}
+    \begin{columns}[T]
+      \column{0.48\textwidth}
+      \textbf{Sección 1: función de varias variables}\\[2pt]
+      5 · 10 · 11 · 17 · 20 · 21 · 22
+      \column{0.48\textwidth}
+      \textbf{Sección 2: incrementos parciales y totales}\\[2pt]
+      26 · 27 · 28 · 31 · 33 · 34
+    \end{columns}
+  \end{block}
+  \vspace{2pt}
+  \begin{mwextra}[Cómo usar estas diapositivas]
+    Cada enunciado queda anclado arriba; el espacio libre de abajo es para
+    resolver a mano sobre el PDF.
+  \end{mwextra}
+\end{frame}
+
+% ── Ejercicio 5 ─────────────────────────────────────────────
+\begin{frame}{Ejercicio 5}
+  \begin{mwejercicio}[Ejercicio 5 — Cobb-Douglas \quad \medio]
+    La producción \(q\) de una fábrica se considera función de la inversión de
+    capital \(K\) y del tamaño de la fuerza laboral \(L\). Las funciones
+    \[
+      q(L,K)=A\,L^{\alpha}K^{1-\alpha},\qquad A>0,\quad 0<\alpha<1,
+    \]
+    se conocen como \textbf{funciones de producción de Cobb-Douglas}.
+    Supóngase que \(A=10\) y \(\alpha=\tfrac12\).
+
+    Demuestra que la función de producción de esta fábrica satisface
+    \[
+      q(\alpha L,\alpha K)=\alpha\,q(L,K)
+    \]
+    y luego explica su significado.
+  \end{mwejercicio}
+\end{frame}
+
+% ── Ejercicio 10 ────────────────────────────────────────────
+\begin{frame}{Ejercicio 10}
+  \mwtopanchoroff
+  \begin{columns}[T]
+    \column{0.54\textwidth}
+    \begin{mwejercicio}[Ejercicio 10 — Conducto \quad \dificil]
+      \small
+      Se debe construir un conducto de agua desde \(P\) hasta \(S\). El
+      conducto atravesará regiones con diferentes costos de construcción. El
+      costo neto por kilómetro, en miles de dólares, es de \(300\) mil de
+      \(P\) a \(Q\), \(200\) mil de \(Q\) a \(R\) y \(100\) mil de \(R\) a
+      \(S\).
+      \begin{itemize}
+        \item[\textbf{(A)}] Determina analíticamente una expresión para el costo
+        \(C\) en función de \(w\) y \(t\). Considera un costo fijo de \(400\)
+        mil dólares.
+        \item[\textbf{(B)}] ¿Cuánto costaría la construcción si \(w=4\) y
+        \(t=7\) kilómetros?
+      \end{itemize}
+    \end{mwejercicio}
+    \column{0.42\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=0.42, every node/.style={font=\scriptsize}]
+      % referencias
+      \draw[dashed] (0,7) -- (10.5,7);
+      \draw[dashed] (0,4) -- (10.5,4);
+      \draw[dashed] (0,0) -- (10.5,0);
+      \draw[dashed] (0,0) -- (0,7);
+      % recorrido
+      \draw[very thick, mwprimario] (0,7) -- (4,4) -- (7,0) -- (10,0);
+      \fill (0,7) circle (2.4pt) node[above left] {\(P\)};
+      \fill (4,4) circle (2.4pt) node[above right] {\(Q\)};
+      \fill (7,0) circle (2.4pt) node[above right] {\(R\)};
+      \fill (10,0) circle (2.4pt) node[above right] {\(S\)};
+      % cotas verticales
+      \draw[<->] (-0.5,4) -- (-0.5,7) node[midway, left] {\(3\) km};
+      \draw[<->] (-0.5,0) -- (-0.5,4) node[midway, left] {\(4\) km};
+      % cotas horizontales
+      \draw[<->] (0,-0.5) -- (4,-0.5) node[midway, below] {\(w\)};
+      \draw[<->] (0,-1.2) -- (7,-1.2) node[midway, below] {\(t\)};
+      \draw[<->] (0,-1.9) -- (10,-1.9) node[midway, below] {\(10\) km};
+    \end{tikzpicture}
+  \end{columns}
+  \vfill
+  \mwtopanchoron
+\end{frame}
+
+% ── Ejercicio 11 ────────────────────────────────────────────
+\begin{frame}{Ejercicio 11 (A)}
+  \begin{mwejercicio}[Ejercicio 11 — Beneficio con producción múltiple \quad \dificil]
+    En cada caso, construye la función general que describe el beneficio total
+    \(B\) del producto.
+
+    \textbf{(A)} Las empresas de producción múltiple elaboran más de un tipo de
+    artículo. Supóngase que una empresa produce dos artículos \(X\) e \(Y\), con
+    cantidades \(q_X\) y \(q_Y\). Los artículos están relacionados técnicamente,
+    por lo que el costo total \(C\) depende de \(q_X\) y \(q_Y\) (función de
+    costos conjuntos). Halla la forma general del beneficio total \(B\) y
+    exprésala considerando las diferencias entre monopolio y competencia
+    perfecta. Denota las funciones de ingreso y costo como \(I\) y \(C\).
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 11 (B)}
+  \begin{mwejercicio}[Ejercicio 11 — Discriminación de precios \quad \dificil]
+    \textbf{(B)} Las empresas asignan diferentes precios a un mismo producto en
+    dos o más mercados monopólicos (discriminación de precios). El monopolista
+    trabaja con dos mercados \(X\) e \(Y\), y la producción total es
+    \(q=q_X+q_Y\). La función de costo \(C\) depende de la producción total
+    \(q\). Halla la forma general del beneficio total \(B\) en empresas que
+    practican discriminación de precios. Usa \(I\) para denotar la función de
+    ingresos del productor.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 11 (C)}
+  \begin{mwejercicio}[Ejercicio 11 — Producción en dos fábricas \quad \dificil]
+    \textbf{(C)} Un monopolista produce un único artículo en dos fábricas
+    separadas \(X\) e \(Y\). Si \(q_X\) y \(q_Y\) son las cantidades producidas
+    en cada fábrica, la producción total es \(q=q_X+q_Y\). El producto es único
+    y se vende en el mismo mercado, por lo que la función de ingreso \(I\)
+    depende de \(q\). Halla la forma general del beneficio total \(B\) en
+    empresas monopólicas que producen en dos fábricas. Usa \(C\) para denotar
+    la función de costo del productor.
+  \end{mwejercicio}
+\end{frame}
+
+% ── Ejercicio 17 ────────────────────────────────────────────
+\begin{frame}{Ejercicio 17 (A)}
+  \begin{mwejercicio}[Ejercicio 17 — Gorras del Mundial \quad \dificil]
+    Con motivo del Mundial de Fútbol, una empresa confeccionará gorras para
+    venderlas en Brasilia y Fortaleza. Un estudio determinó:
+    \begin{itemize}
+      \item En Brasilia se venden \(102\) gorras diarias a \(6\) \$ cada una;
+            en Fortaleza, \(51\) gorras diarias a \(8\) \$ la unidad.
+      \item Si el precio en Brasilia aumenta \(100\%\) y en Fortaleza disminuye
+            \(50\%\), solo se dejaría de vender una gorra en Brasilia y se
+            venderían \(2\) más por día en Fortaleza.
+      \item Cada gorra cuesta \(3\) \$ y los costos fijos diarios son \(241\) \$.
+    \end{itemize}
+    \textbf{(A)} Halla una expresión para el beneficio \(B\) diario en términos
+    de los precios unitarios \(p_1\) y \(p_2\) en Brasilia y Fortaleza.
+    Supón que la demanda en cada ciudad es lineal en el precio.
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 17 (B)}
+  \begin{mwejercicio}[Ejercicio 17 — Interpretación \quad \medio]
+    Con la función de beneficio obtenida en la parte (A):
+    \textbf{(B)} calcula \(B(6,8)\) e interpreta el resultado obtenido.
+  \end{mwejercicio}
+\end{frame}
+
+% ── Ejercicio 20 ────────────────────────────────────────────
+\begin{frame}{Ejercicio 20 (A)}
+  \begin{mwejercicio}[Ejercicio 20 — Precio y publicidad \quad \dificil]
+    Un empresario sabe que si \(P\) es el precio (en dólares) y \(A\) la
+    inversión en publicidad (en miles de dólares), la cantidad vendida \(X\) de
+    un bien es
+    \[
+      X=f(P,A)=\frac{32A}{P\,(A^{2}+1)}.
+    \]
+    Cada unidad tiene un costo unitario de producción de \(2\) \$ y los costos
+    totales son la suma de los costos de producción y de la inversión en
+    publicidad.
+
+    \textbf{(A)} Determina la función de beneficio \(B\) de la empresa en
+    términos de \(A\) y \(P\).
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 20 (B) y (C)}
+  \begin{mwejercicio}[Ejercicio 20 — Composición y evaluación \quad \dificil]
+    \textbf{(B)} Suponiendo que el precio y la inversión en publicidad dependen
+    del tiempo \(T\) transcurrido desde la colocación del producto en el
+    mercado, de forma que
+    \[
+      P=\sqrt{T},\qquad A=T-1,
+    \]
+    determina la función de beneficio de la empresa en términos de \(T\).
+
+    \textbf{(C)} Calcula el beneficio si cada unidad se vende a \(4\) \$ después
+    de \(4\) meses desde que el producto comenzó a venderse.
+  \end{mwejercicio}
+\end{frame}
+
+% ── Ejercicio 21 ────────────────────────────────────────────
+\begin{frame}{Ejercicio 21}
+  \mwtopanchoroff
+  \begin{columns}[T]
+    \column{0.50\textwidth}
+    \begin{mwejercicio}[Ejercicio 21 — Puertos \quad \muyDificil]
+      \small
+      Se construirá la infraestructura de transporte entre dos poblados
+      aislados: un puerto en el poblado \(A\) (costa de una isla) y otro en el
+      litoral continental, más una carretera entre este puerto y el poblado
+      \(B\).
+      \begin{itemize}
+        \item Carretera \(B\)--puerto: \(500\) mil \$ por kilómetro.
+        \item Transporte desde \(B\): \(30\) \$ por tonelada-kilómetro por
+        carretera y \(12\) \$ por tonelada-kilómetro por vía marítima.
+        \item Si la obra excede los \(5\) años: multa de \(2\) millones de \$
+        por año de retraso.
+      \end{itemize}
+    \end{mwejercicio}
+    \column{0.45\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=0.30, every node/.style={font=\scriptsize}]
+      % litoral
+      \draw[dash pattern=on 5pt off 2pt on 1pt off 2pt]
+        (5,-1) -- (5,10.2) node[above] {LITORAL};
+      % nivel de B
+      \draw[dotted] (0,0) -- (15,0);
+      % carretera y tramo maritimo
+      \draw[very thick, mwprimario] (0,0) -- (5,4);
+      \draw[very thick, mwprimario] (5,4) -- (14,9);
+      % puntos
+      \fill (0,0) circle (2.4pt) node[below left] {\(B\)};
+      \fill (5,0) circle (2.4pt) node[below right] {\(E\)};
+      \fill (5,4) circle (2.4pt) node[below right] {\(D\)};
+      \fill (14,9) circle (2.4pt) node[left] {\(A\)};
+      \node[above left] at (5,4) {PUERTO};
+      \node[above right] at (14,9) {PUERTO};
+      % cotas
+      \draw[<->] (0,-1.1) -- (5,-1.1) node[midway, below] {\(X\) km};
+      \draw[<->] (5.6,0) -- (5.6,4) node[midway, right] {\(Y\) km};
+      \draw[<->] (5,9.7) -- (14,9.7) node[midway, above] {\(30\) km};
+      \draw[<->] (14.8,0) -- (14.8,9) node[midway, right] {\(44\) km};
+    \end{tikzpicture}
+  \end{columns}
+  \vfill
+  \mwtopanchoron
+\end{frame}
+
+\begin{frame}{Ejercicio 21 (A)}
+  \begin{mwejercicio}[Ejercicio 21 — Función de costo total \quad \dificil]
+    \textbf{(A)} Determina la función de costo total \(C(x,y,q,t)\), en miles de
+    dólares, de construir la infraestructura de transporte descrita, siendo:
+    \begin{itemize}
+      \item \(x\): distancia horizontal \(BE\) (km);
+      \item \(y\): distancia vertical \(ED\) (km);
+      \item \(q\): toneladas transportadas por kilómetro recorrido;
+      \item \(t\): cantidad de años que dura la construcción.
+    \end{itemize}
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 21 (B)}
+  \begin{mwejercicio}[Ejercicio 21 — Evaluación \quad \medio]
+    \textbf{(B)} Calcula \(C(3,4,100,6)\) e interpreta el resultado obtenido.
+  \end{mwejercicio}
+\end{frame}
+
+% ── Ejercicio 22 ────────────────────────────────────────────
+\begin{frame}{Ejercicio 22}
+  \begin{mwejercicio}[Ejercicio 22 — Fondo editorial \quad \medio]
+    Un fondo editorial vende libros a las librerías de una pequeña ciudad
+    europea. Un equipo de \(10\) personas vende enciclopedias y manuales
+    técnicos. Cada vendedor tiene un salario anual de \(7000\) euros más una
+    comisión de \(30\) euros por enciclopedia y \(35\) euros por manual vendido
+    en el año. Si las ventas anuales conjuntas superan las \(900\) unidades, el
+    equipo recibe un bono de estímulo \(S\), repartido entre los vendedores en
+    proporción a sus ventas. El precio de venta es \(130\) euros por
+    enciclopedia y \(140\) euros por manual técnico.
+
+    \textbf{(A)} Determina la función de beneficio \(B\) del fondo editorial en
+    función del bono anual \(S\) y de las cantidades \(q_1\) (enciclopedias) y
+    \(q_2\) (manuales) vendidas por el equipo.
+
+    \textbf{(B)} ¿Cuál fue el beneficio el año pasado si solo se vendieron
+    \(150\) enciclopedias y \(200\) manuales? Interpreta el resultado.
+  \end{mwejercicio}
+\end{frame}
+
+% ── Ejercicio 26 ────────────────────────────────────────────
+\begin{frame}{Ejercicio 26 (A)–(C)}
+  \begin{mwejercicio}[Ejercicio 26 — Demanda de cerveza \quad \medio]
+    La demanda de cerveza de un consumidor es
+    \[
+      D(r,p)=\frac{15r}{p}-r^{2}\quad(\text{litros por mes}),
+    \]
+    donde \(r\) es la renta mensual (en miles de euros) y \(p\) el precio de un
+    litro de cerveza. Actualmente \(p=2\) y \(r=2\).
+    \begin{itemize}
+      \item[\textbf{(A)}] Explica qué significa la notación \(D(r,p)\).
+      \item[\textbf{(B)}] Calcula \(D(2,2)\) y explica su significado.
+      \item[\textbf{(C)}] ¿Cuál sería la demanda si el consumidor tiene un
+      aumento en su renta mensual tal que \(r=2{,}5\)?
+    \end{itemize}
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 26 (D)–(G)}
+  \begin{mwejercicio}[Ejercicio 26 — Incrementos parciales \quad \dificil]
+    \begin{itemize}
+      \item[\textbf{(D)}] Si además del aumento en la renta del ítem anterior,
+      el precio del litro de cerveza sube \(0{,}5\) euros, ¿cuál sería la
+      demanda?
+      \item[\textbf{(E)}] Expresa los resultados de los dos últimos ítems en
+      términos de incrementos parciales de la función de demanda \(D\).
+      \item[\textbf{(F)}] Calcula el incremento total de la demanda si
+      \(\Delta r=0{,}5\) y \(\Delta p=1\). Interpreta el resultado.
+      \item[\textbf{(G)}] ¿Qué signo pareciera tener \(\Delta_r D(3,3)\) si
+      \(\Delta r=0{,}5\)? Comprueba si tu conjetura es cierta.
+    \end{itemize}
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 26 (H)–(J)}
+  \begin{mwejercicio}[Ejercicio 26 — Análisis de la demanda \quad \muyDificil]
+    \begin{itemize}
+      \item[\textbf{(H)}] Con el precio actual, ¿qué renta mensual haría que el
+      consumidor limitara su consumo de cerveza a \(9\) litros mensuales?
+      \item[\textbf{(I)}] ¿A partir de qué precio el consumidor no estará
+      dispuesto a comprar cerveza con su renta actual?
+      \item[\textbf{(J)}] ¿Cuánto tendría que reducirse el precio de la cerveza
+      para que el consumidor mantuviera su demanda tras haber sufrido un
+      recorte salarial de un \(5\%\)?
+    \end{itemize}
+  \end{mwejercicio}
+\end{frame}
+
+% ── Ejercicio 27 ────────────────────────────────────────────
+\begin{frame}{Ejercicio 27 (A)}
+  \begin{mwejercicio}[Ejercicio 27 — Incrementos parciales \quad \medio]
+    Una empresa que fabrica dos productos \(A\) y \(B\) tiene la función de
+    beneficio
+    \[
+      B(x,y)=x^{2}+3y^{2}-xy-20,
+    \]
+    donde \(x\) e \(y\) son las cantidades producidas de \(A\) y \(B\).
+    \textbf{(A)} Halla las funciones de incrementos parciales
+    \(\Delta_x B(x,y)\) y \(\Delta_y B(x,y)\).
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 27 (B) y (C)}
+  \begin{mwejercicio}[Ejercicio 27 — Aplicación \quad \medio]
+    \textbf{(B)} La producción actual es \((x,y)=(200,150)\). ¿Cuáles son las
+    funciones de incrementos parciales para estos niveles de producción?
+
+    \textbf{(C)} La empresa puede incrementar en \(2\) unidades la producción de
+    \(A\) o la de \(B\). ¿Cuál de las dos opciones es más conveniente? ¿Por qué?
+  \end{mwejercicio}
+\end{frame}
+
+% ── Ejercicio 28 ────────────────────────────────────────────
+\begin{frame}{Ejercicio 28 (A) y (B)}
+  \begin{mwejercicio}[Ejercicio 28 — Costo en el tiempo \quad \medio]
+    La función de costos de una empresa en el instante \(t\) (en años) es
+    \[
+      C(x,y,t)=(100+200x+10y)\,e^{0{,}01t},
+    \]
+    donde \(x\) e \(y\) son las cantidades producidas de dos artículos. \(t=0\)
+    es el año actual. La producción actual es de \(50\) y \(30\) unidades.
+    \begin{itemize}
+      \item[\textbf{(A)}] Halla el dominio de la función \(C\).
+      \item[\textbf{(B)}] Suponiendo que la producción no se altera de un año al
+      siguiente, ¿en qué porcentaje aumentará el costo de producción anualmente?
+    \end{itemize}
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 28 (C)}
+  \begin{mwejercicio}[Ejercicio 28 — Incremento total \quad \dificil]
+    \textbf{(C)} Si se prevé que la producción del próximo año será de \(51\) y
+    \(32\) unidades de cada artículo, calcula \(\Delta C\) para este período e
+    interpreta el resultado obtenido.
+  \end{mwejercicio}
+\end{frame}
+
+% ── Ejercicio 31 ────────────────────────────────────────────
+\begin{frame}{Ejercicio 31 (A)}
+  \begin{mwejercicio}[Ejercicio 31 — Propaganda y beneficios \quad \dificil]
+    Un empresario gasta diariamente \(S\) dólares en propaganda para promover
+    sus productos \(X\) e \(Y\). Las ventas diarias dependen de ese gasto y de
+    los precios unitarios \(p_X\) y \(p_Y\):
+    \[
+      q_X(p_X,p_Y,S)=\frac{3S}{p_X+5}-2p_Y,
+      \qquad
+      q_Y(p_X,p_Y,S)=\frac{5S}{p_Y+8}-4p_X.
+    \]
+    Si se producen \(200\) unidades de \(X\) y \(300\) de \(Y\), el costo total
+    es de \(2500\) \$ diarios. Los costos unitarios son \(5\) \$ para \(X\) y
+    \(3\) \$ para \(Y\). Observa que
+    \(C(p_X,p_Y)=c_Xq_X+c_Yq_Y+C_F\).
+
+    \textbf{(A)} Halla una expresión para el beneficio diario \(B\) en términos
+    de \(p_X\), \(p_Y\) y \(S\).
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 31 (B)–(D)}
+  \begin{mwejercicio}[Ejercicio 31 — Estimaciones \quad \dificil]
+    \begin{itemize}
+      \item[\textbf{(B)}] ¿Cuál sería el beneficio diario si \(p_X=15\) \$,
+      \(p_Y=12\) \$ y el gasto diario en propaganda es \(S=1000\) \$?
+      \item[\textbf{(C)}] ¿Cuál sería el efecto sobre el beneficio neto diario
+      si se mantiene \(p_X=15\) \$, se aumenta \(p_Y\) en \(5\) \$ y
+      \(S=1000\) \$?
+      \item[\textbf{(D)}] Elabora una lista de todas las ecuaciones que
+      relacionan las variables del modelo. Para cada variable indica: nombre,
+      notación, tipo (endógena o exógena), descripción y unidades.
+    \end{itemize}
+  \end{mwejercicio}
+\end{frame}
+
+% ── Ejercicio 33 ────────────────────────────────────────────
+\begin{frame}{Ejercicio 33}
+  \begin{mwejercicio}[Ejercicio 33 — Demanda lineal y beneficio \quad \muyDificil]
+    Un comerciante produce dos artículos \(X\) e \(Y\) con precios \(p_X\) y
+    \(p_Y\). Cuando vende a \(15\) y \(40\) bolívares por unidad, logra vender
+    \(150\) unidades de \(X\) y \(300\) de \(Y\). Cada aumento de \(2\) Bs en el
+    precio de cada artículo produce un impacto de \(10\) unidades en \(X\) y de
+    \(4\) unidades en \(Y\). El costo total de producir esas cantidades es de
+    \(6000\) Bs diarios; los costos fijos son \(2000\) Bs y producir una unidad
+    de \(X\) cuesta \(8\) Bs. Determina el beneficio \(B\) diario como función de
+    \(p_X\) y \(p_Y\). Usa que la demanda de cada artículo es lineal en su precio.
+  \end{mwejercicio}
+\end{frame}
+
+% ── Ejercicio 34 ────────────────────────────────────────────
+\begin{frame}{Ejercicio 34 (A)}
+  \begin{mwejercicio}[Ejercicio 34 — Circo \quad \dificil]
+    Llegará a la ciudad un circo. Se estima que asistirán \(x\) personas a cada
+    función cuando el precio de la entrada sea \(m\) dólares. Se venderá un
+    combo de chucherías cuyo precio es \(p\), con demanda
+    \[
+      q=h(p)=20\sqrt{29-p}.
+    \]
+    Cada espectador cuesta \(5\) \$; cada combo cuesta \(1\) \$ de elaboración;
+    y hay un costo fijo de \(820\) \$ por función.
+
+    \textbf{(A)} Determina la función de beneficio \(B\) en cada presentación en
+    términos de \(x\), \(m\) y \(p\).
+  \end{mwejercicio}
+\end{frame}
+
+\begin{frame}{Ejercicio 34 (B) y (C)}
+  \begin{mwejercicio}[Ejercicio 34 — Evaluación e incrementos \quad \muyDificil]
+    \textbf{(B)} Halla el beneficio si asisten \(500\) personas a cada función,
+    el precio de la entrada es \(10\) \$ y cada combo se vende a \(4\) \$.
+
+    \textbf{(C)} Por la crisis, se estima que el número de espectadores puede
+    ser menor en un \(40\%\). Si se desea obtener el mismo beneficio del ítem
+    anterior, ¿cuál debería ser el precio de la entrada si el combo se sigue
+    vendiendo a \(4\) \$? Justifica y resuelve usando incrementos. ¿De qué otra
+    forma se puede resolver?
+  \end{mwejercicio}
+\end{frame}
+
+\end{document}

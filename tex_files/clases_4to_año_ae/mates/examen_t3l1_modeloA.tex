@@ -1,0 +1,393 @@
+% ============================================================
+%  EXAMEN T3L1 — MODELO A
+%  Curso: 4to Año — Matemática
+%  Duración: 60 minutos
+%  Contenidos: circunferencia trigonométrica, ángulos en posición
+%  estándar, signos por cuadrante, reducción al primer cuadrante,
+%  funciones de ángulos opuestos, funciones recíprocas y
+%  demostración de identidades trigonométricas.
+%  Autor: Ing. Gabriel Astudillo
+%
+%  Nota: la clave de respuestas está al final, dentro de
+%  \ifmwclaves ... \fi. Al compilar con compile_all.sh se genera
+%  además la variante _scr (versión del estudiante, sin clave).
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+\usepackage{mathwizards-guia}
+\mwguia{Examen — T3L1 (Modelo A)}{Ing. Gabriel Astudillo $\cdot$ 4to Año — Matemática}
+\providecommand{\sen}{\sin}
+\setlength{\emergencystretch}{2em}
+
+% ── Circunferencia unitaria con cuadrantes ──────────────────
+\newcommand{\mwcircunferenciaexamen}{%
+\begin{tikzpicture}[scale=0.85, baseline=(current bounding box.center), line join=round]
+  \draw[gray!55, -{Stealth}] (-1.36,0) -- (1.42,0);
+  \draw[gray!55, -{Stealth}] (0,-1.36) -- (0,1.42);
+  \draw[thick, mwprimario] (0,0) circle (1);
+  \filldraw[mwprimario] (0,0) circle (1.2pt);
+  \node[below left, font=\scriptsize] at (0,0) {$O$};
+  \node[below right, font=\scriptsize, gray] at (1.34,0) {$x$};
+  \node[above left, font=\scriptsize, gray] at (0,1.30) {$y$};
+  \node[font=\bfseries, mwprimario] at (0.70,0.70) {I};
+  \node[font=\bfseries, mwprimario] at (-0.70,0.70) {II};
+  \node[font=\bfseries, mwprimario] at (-0.70,-0.70) {III};
+  \node[font=\bfseries, mwprimario] at (0.70,-0.70) {IV};
+  \node[font=\scriptsize, gray] at (1.08,0.15) {$1$};
+  \node[font=\scriptsize, gray] at (0.15,1.06) {$1$};
+\end{tikzpicture}}
+
+\begin{document}
+
+\mwportada{Examen T3L1 — Modelo A}{Circunferencia trigonométrica y reducción al primer cuadrante}{60 minutos $\cdot$ 100 puntos}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Nombre:} \rule{0.55\linewidth}{0.4pt} \quad
+  \textbf{Fecha:} \rule{0.15\linewidth}{0.4pt} \\[6pt]
+  \textbf{Tiempo disponible:} 60 minutos \quad$\bullet$\quad
+  \textbf{Puntaje total:} 100 puntos \\[4pt]
+  \textbf{Instrucciones:}
+  \begin{enumerate}[leftmargin=*, nosep, topsep=2pt]
+    \item Resuelve en el espacio disponible y muestra tus pasos; si necesitas más, usa el reverso.
+    \item En reducción, escribe el \textbf{cuadrante} y el \textbf{ángulo de referencia} antes del valor.
+    \item No se permite calculadora: todos los valores pedidos son exactos.
+    \item Revisa especialmente los \textbf{signos}: es el error más frecuente.
+  \end{enumerate}
+  {\footnotesize\textbf{Tiempo sugerido:} 8 $\cdot$ 7 $\cdot$ 15 $\cdot$ 8 $\cdot$ 10 $\cdot$ 12 min (secciones 1 a 6).\par}
+\end{cuadroinfo}
+\vspace{-6pt}
+
+% ============================================================
+\section{Circunferencia y posición estándar (16 puntos)}
+% ============================================================
+
+\begin{center}
+\vspace{-10pt}\mwcircunferenciaexamen\vspace{-6pt}
+\end{center}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, itemsep=0.4em]
+  \item \textbf{(6 pts)} Responde brevemente:
+        \begin{enumerate}[label=\alph*), leftmargin=1.6em, nosep]
+          \item ¿Qué ecuación cumplen todos los puntos de la circunferencia unitaria?
+          \item ¿Cuánto mide su radio?
+          \item ¿Cuál es el signo del coseno en el IV cuadrante?
+        \end{enumerate}
+
+  \item \textbf{(4 pts)} Indica el cuadrante o el eje donde se ubica cada ángulo:
+        $135^\circ$,\quad $250^\circ$,\quad $480^\circ$,\quad
+        $-120^\circ$,\quad $270^\circ$,\quad $360^\circ$.
+
+  \item \textbf{(3 pts)} Escribe \textbf{dos} ángulos coterminales de $130^\circ$:
+        uno positivo y uno negativo. Luego halla el ángulo coterminal de
+        $1030^\circ$ en el intervalo $[0^\circ,360^\circ)$.
+
+  \item \textbf{(3 pts)} El punto $P\!\left(-\frac{3}{5},\frac{4}{5}\right)$
+        pertenece a la circunferencia unitaria. Indica su cuadrante y calcula
+        $\sen\alpha$, $\cos\alpha$ y $\tg\alpha$.
+\end{enumerate}
+
+\newpage
+% ============================================================
+\section{Signos de las funciones (12 puntos)}
+% ============================================================
+
+\begin{cuadroinfo}
+  \small
+  Determina el \textbf{signo} de cada expresión \textbf{sin calcular su valor}.
+  Escribe el cuadrante (o el ángulo coterminal) que justifica tu respuesta.
+  Cada ejercicio vale 3 puntos.
+\end{cuadroinfo}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\alph*)}, itemsep=1.1em]
+  \item $\sen 160^\circ$
+  \item $\cos 230^\circ$
+  \item $\csc(-200^\circ)$
+  \item $\cot 1030^\circ$
+\end{enumerate}
+
+% ============================================================
+\section{Reducción al primer cuadrante (24 puntos)}
+% ============================================================
+
+\begin{cuadroinfo}
+  \small
+  Completa la tabla. Reduce cada ángulo al primer cuadrante y escribe el
+  \textbf{valor exacto}. Cada fila vale 4 puntos: 1 por el cuadrante,
+  1 por el ángulo de referencia y 2 por el valor.
+\end{cuadroinfo}
+
+\begin{center}
+\renewcommand{\arraystretch}{2.5}
+\setlength{\tabcolsep}{9pt}
+\begin{tabular}{@{}llll@{}}
+  \toprule
+  \textbf{Ejercicio} & \textbf{Cuadrante} & \textbf{Ángulo de referencia} & \textbf{Valor exacto} \\
+  \midrule
+  a) $\sen 210^\circ$  & & & \\
+  b) $\cos 135^\circ$  & & & \\
+  c) $\tg 300^\circ$   & & & \\
+  d) $\sen 480^\circ$  & & & \\
+  e) $\cos 1290^\circ$ & & & \\
+  f) $\tg 2115^\circ$  & & & \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\newpage
+% ============================================================
+\section{Ángulos opuestos y funciones recíprocas (12 puntos)}
+% ============================================================
+
+\begin{cuadroinfo}
+  \small
+  Aplica la \textbf{paridad} de las funciones y las \textbf{razones recíprocas}.
+  Cada ejercicio vale 3 puntos.
+\end{cuadroinfo}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\alph*)}, itemsep=1.2em]
+  \item $\sen(-45^\circ)$
+  \item $\cos(-120^\circ)$
+  \item $\tg(-60^\circ)$
+  \item $\sec 225^\circ$
+\end{enumerate}
+
+% ============================================================
+\section{Expresiones combinadas (16 puntos)}
+% ============================================================
+
+\begin{cuadroinfo}
+  \small
+  Calcula el valor de cada expresión. Muestra la reducción de cada función
+  antes de sustituir. Cada expresión vale 8 puntos.
+\end{cuadroinfo}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, itemsep=1.5em]
+  \item $E=\cos 120^\circ+\sen 210^\circ-\tg 315^\circ$
+        \vspace{4em}
+
+  \item $E=\dfrac{\sen(-60^\circ)\cdot\cot 225^\circ}{\cos 240^\circ}$
+        \vspace{4em}
+\end{enumerate}
+
+\newpage
+% ============================================================
+\section{Demostración de identidades (20 puntos)}
+% ============================================================
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Identidades trigonométricas fundamentales.} Una identidad es una
+  igualdad que se cumple para \emph{todo} ángulo en el que las funciones estén
+  definidas.
+  \begin{center}
+  \renewcommand{\arraystretch}{1.25}
+  \begin{tabular}{@{}p{0.27\linewidth}p{0.65\linewidth}@{}}
+    \toprule
+    \textbf{Grupo} & \textbf{Identidades} \\
+    \midrule
+    Pitagórica & $\sen^{2}\alpha+\cos^{2}\alpha=1$ \\[2pt]
+    Cociente & $\tg\alpha=\frac{\sen\alpha}{\cos\alpha}$, \quad
+               $\cot\alpha=\frac{\cos\alpha}{\sen\alpha}$ \\[2pt]
+    Recíprocas & $\csc\alpha=\frac{1}{\sen\alpha}$, \quad
+                 $\sec\alpha=\frac{1}{\cos\alpha}$, \quad
+                 $\cot\alpha=\frac{1}{\tg\alpha}$ \\[2pt]
+    Derivadas & $1+\tg^{2}\alpha=\sec^{2}\alpha$, \quad
+                $1+\cot^{2}\alpha=\csc^{2}\alpha$ \\[2pt]
+    Paridad & $\sen(-\alpha)=-\sen\alpha$, \quad
+              $\cos(-\alpha)=\cos\alpha$, \quad
+              $\tg(-\alpha)=-\tg\alpha$ \\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \small
+  \textbf{Cómo demostrar una identidad:}
+  \begin{enumerate}[leftmargin=1.4em, nosep, topsep=2pt]
+    \item elige el lado \textbf{más complicado} y trabaja \emph{solo} con él;
+    \item lleva todo a \textbf{seno y coseno} con las identidades de cociente y recíprocas;
+    \item usa la \textbf{pitagórica}: cambia $\sen^{2}\alpha+\cos^{2}\alpha$ por $1$
+          y $1-\sen^{2}\alpha$ por $\cos^{2}\alpha$;
+    \item simplifica con álgebra (desarrolla, factoriza o cancela) hasta obtener
+          exactamente el otro lado.
+  \end{enumerate}
+  No pases términos de un lado a otro: eso resuelve una ecuación, no demuestra
+  una identidad.
+\end{cuadropasos}
+
+\textbf{Demuestra cada identidad.} Cada una vale \textbf{5 puntos}: 1 por
+elegir el lado conveniente, 2 por usar bien las identidades y 2 por llegar a
+la igualdad.
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\alph*)}, itemsep=3.2em]
+  \item $\tg\alpha\cdot\cos\alpha=\sen\alpha$
+
+  \item $\dfrac{1-\sen^{2}\alpha}{\cos\alpha}=\cos\alpha$
+
+  \item $\sec^{2}\alpha-\tg^{2}\alpha=1$
+
+  \item $\left(\sen\alpha+\cos\alpha\right)^{2}=1+2\,\sen\alpha\cos\alpha$
+\end{enumerate}
+
+% ============================================================
+\ifmwclaves
+\clearpage
+\section*{Clave de respuestas comentada}
+% ============================================================
+
+\begin{cuadroinfo}
+  \small
+  \textbf{Cómo leer la clave.} Cada respuesta indica el camino, no solo el
+  número. Si tu resultado difiere, revisa primero el \textbf{cuadrante} y el
+  \textbf{signo}: son las dos fuentes de error más frecuentes.
+\end{cuadroinfo}
+
+\subsection*{Sección 1 — Circunferencia y posición estándar (16 pts)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item a) $x^2+y^2=1$. \quad b) $r=1$. \quad c) Positivo (en el IV cuadrante $x>0$).
+  \item $135^\circ$: II; \ $250^\circ$: III; \ $480^\circ\equiv120^\circ$: II; \
+        $-120^\circ\equiv240^\circ$: III; \ $270^\circ$: eje $y$ negativo; \
+        $360^\circ$: eje $x$ positivo.
+  \item $130^\circ+360^\circ=490^\circ$ y $130^\circ-360^\circ=-230^\circ$.
+        Además $1030^\circ=2\cdot360^\circ+310^\circ$, luego el coterminal es
+        $310^\circ$ (IV cuadrante).
+  \item II cuadrante (la $x$ es negativa y la $y$ positiva).
+        \[
+          \sen\alpha=\frac45,\qquad
+          \cos\alpha=-\frac35,\qquad
+          \tg\alpha=\frac{4/5}{-3/5}=-\frac43.
+        \]
+\end{enumerate}
+
+\subsection*{Sección 2 — Signos (12 pts)}
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\setlength{\tabcolsep}{9pt}
+\begin{tabular}{@{}llll@{}}
+  \toprule
+  \textbf{Expresión} & \textbf{Cuadrante} & \textbf{Signo} & \textbf{Justificación} \\
+  \midrule
+  $\sen 160^\circ$  & II  & $+$ & en II, $y>0$ \\
+  $\cos 230^\circ$  & III & $-$ & en III, $x<0$ \\
+  $\csc(-200^\circ)$ & II & $+$ & $-200^\circ\equiv160^\circ$; $\sen>0$ \\
+  $\cot 1030^\circ$ & IV  & $-$ & $1030^\circ\equiv310^\circ$; $\tg<0$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Sección 3 — Reducción (24 pts)}
+\begin{center}
+\renewcommand{\arraystretch}{1.7}
+\setlength{\tabcolsep}{9pt}
+\begin{tabular}{@{}llll@{}}
+  \toprule
+  \textbf{Ejercicio} & \textbf{Cuadrante} & \textbf{Ángulo de referencia} & \textbf{Valor exacto} \\
+  \midrule
+  a) $\sen 210^\circ$  & III & $30^\circ$ & $-\dfrac12$ \\
+  b) $\cos 135^\circ$  & II  & $45^\circ$ & $-\dfrac{\sqrt{2}}{2}$ \\
+  c) $\tg 300^\circ$   & IV  & $60^\circ$ & $-\sqrt{3}$ \\
+  d) $\sen 480^\circ$  & II  & $60^\circ$ & $+\dfrac{\sqrt{3}}{2}$ \\
+  e) $\cos 1290^\circ$ & III & $30^\circ$ & $-\dfrac{\sqrt{3}}{2}$ \\
+  f) $\tg 2115^\circ$  & IV  & $45^\circ$ & $-1$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\noindent Detalle de las reducciones con ángulos mayores que $360^\circ$:
+\[
+  480^\circ=360^\circ+120^\circ,\qquad
+  1290^\circ=3\cdot360^\circ+210^\circ,\qquad
+  2115^\circ=5\cdot360^\circ+315^\circ.
+\]
+
+\subsection*{Sección 4 — Opuestos y recíprocas (12 pts)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\alph*)}]
+  \item $\sen(-45^\circ)=-\sen45^\circ=-\dfrac{\sqrt{2}}{2}$ \ (seno impar).
+  \item $\cos(-120^\circ)=\cos120^\circ=-\dfrac12$ \ (coseno par).
+  \item $\tg(-60^\circ)=-\tg60^\circ=-\sqrt{3}$ \ (tangente impar).
+  \item $\cos225^\circ=-\dfrac{\sqrt{2}}{2}$, luego
+        $\sec225^\circ=\dfrac{1}{-\sqrt{2}/2}=-\sqrt{2}$.
+\end{enumerate}
+
+\subsection*{Sección 5 — Expresiones (16 pts)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $\cos120^\circ=-\dfrac12$ (II), $\sen210^\circ=-\dfrac12$ (III) y
+        $\tg315^\circ=-1$ (IV). Entonces
+        \[
+          E=-\frac12-\frac12-(-1)=0.
+        \]
+  \item $\sen(-60^\circ)=-\dfrac{\sqrt{3}}{2}$, $\cot225^\circ=1$ (III) y
+        $\cos240^\circ=-\dfrac12$ (III). Entonces
+        \[
+          E=\frac{\left(-\frac{\sqrt{3}}{2}\right)(1)}{-\frac12}=\sqrt{3}.
+        \]
+\end{enumerate}
+
+\clearpage
+\subsection*{Sección 6 — Identidades (20 pts)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\alph*)}]
+  \item Partimos del lado izquierdo y usamos la identidad de cociente:
+        \[
+          \tg\alpha\cdot\cos\alpha
+          =\frac{\sen\alpha}{\cos\alpha}\cdot\cos\alpha
+          =\sen\alpha .
+        \]
+        La igualdad vale para $\cos\alpha\neq0$, que es la condición para que
+        exista la tangente.
+
+  \item Del lado izquierdo, la pitagórica da $1-\sen^{2}\alpha=\cos^{2}\alpha$:
+        \[
+          \frac{1-\sen^{2}\alpha}{\cos\alpha}
+          =\frac{\cos^{2}\alpha}{\cos\alpha}=\cos\alpha ,
+        \]
+        con $\cos\alpha\neq0$.
+
+  \item Escribimos la secante y la tangente con seno y coseno:
+        \[
+          \sec^{2}\alpha-\tg^{2}\alpha
+          =\frac{1}{\cos^{2}\alpha}-\frac{\sen^{2}\alpha}{\cos^{2}\alpha}
+          =\frac{1-\sen^{2}\alpha}{\cos^{2}\alpha}
+          =\frac{\cos^{2}\alpha}{\cos^{2}\alpha}=1 .
+        \]
+
+  \item Desarrollamos el cuadrado del binomio y agrupamos:
+        \begin{align*}
+          \left(\sen\alpha+\cos\alpha\right)^{2}
+          &=\sen^{2}\alpha+2\,\sen\alpha\cos\alpha+\cos^{2}\alpha\\
+          &=\underbrace{\left(\sen^{2}\alpha+\cos^{2}\alpha\right)}_{1}
+            +2\,\sen\alpha\cos\alpha
+           =1+2\,\sen\alpha\cos\alpha .
+        \end{align*}
+\end{enumerate}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{Error clásico en las demostraciones.} No se vale multiplicar en
+  cruzado ni «pasar» términos al otro lado: eso transforma la identidad en una
+  ecuación y hace circular la demostración. Se trabaja \textbf{un solo lado}
+  hasta que coincida con el otro.
+\end{cuadroadvertencia}
+
+\begin{cuadroinfo}
+  \small
+  \textbf{Criterios de corrección sugeridos:}
+  \begin{itemize}[leftmargin=1.2em, nosep, topsep=2pt]
+    \item en las tablas, otorga el puntaje por paso (cuadrante, referencia,
+          valor) y no solo por el resultado;
+    \item un error de \textbf{signo} descuenta el paso del signo, no todo el
+          ejercicio, salvo que el valor final sea lo único pedido;
+    \item en una identidad, si el alumno opera en \textbf{ambos lados} a la
+          vez, asigna como máximo 3 de los 5 puntos;
+    \item premia el uso explícito de la identidad citada (pitagórica,
+          cociente, recíproca o paridad): es lo que se está evaluando.
+  \end{itemize}
+\end{cuadroinfo}
+
+\fi
+% ============================================================
+\end{document}

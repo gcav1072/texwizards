@@ -1,0 +1,280 @@
+% ============================================================
+%  EXAMEN T3L1 — MODELO B
+%  Curso: 4to Año — Matemática
+%  Duración: 60 minutos
+%  Contenidos: circunferencia trigonométrica, ángulos en posición
+%  estándar, signos por cuadrante, reducción al primer cuadrante,
+%  funciones de ángulos opuestos y funciones recíprocas.
+%  Autor: Ing. Gabriel Astudillo
+%
+%  Nota: la clave de respuestas está al final, dentro de
+%  \ifmwclaves ... \fi. Al compilar con compile_all.sh se genera
+%  además la variante _scr (versión del estudiante, sin clave).
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+\usepackage{mathwizards-guia}
+\mwguia{Examen — T3L1 (Modelo B)}{Ing. Gabriel Astudillo $\cdot$ 4to Año — Matemática}
+\providecommand{\sen}{\sin}
+\setlength{\emergencystretch}{2em}
+
+% ── Circunferencia unitaria con cuadrantes ──────────────────
+\newcommand{\mwcircunferenciaexamen}{%
+\begin{tikzpicture}[scale=0.85, baseline=(current bounding box.center), line join=round]
+  \draw[gray!55, -{Stealth}] (-1.36,0) -- (1.42,0);
+  \draw[gray!55, -{Stealth}] (0,-1.36) -- (0,1.42);
+  \draw[thick, mwprimario] (0,0) circle (1);
+  \filldraw[mwprimario] (0,0) circle (1.2pt);
+  \node[below left, font=\scriptsize] at (0,0) {$O$};
+  \node[below right, font=\scriptsize, gray] at (1.34,0) {$x$};
+  \node[above left, font=\scriptsize, gray] at (0,1.30) {$y$};
+  \node[font=\bfseries, mwprimario] at (0.70,0.70) {I};
+  \node[font=\bfseries, mwprimario] at (-0.70,0.70) {II};
+  \node[font=\bfseries, mwprimario] at (-0.70,-0.70) {III};
+  \node[font=\bfseries, mwprimario] at (0.70,-0.70) {IV};
+  \node[font=\scriptsize, gray] at (1.08,0.15) {$1$};
+  \node[font=\scriptsize, gray] at (0.15,1.06) {$1$};
+\end{tikzpicture}}
+
+\begin{document}
+
+\mwportada{Examen T3L1 — Modelo B}{Circunferencia trigonométrica y reducción al primer cuadrante}{60 minutos $\cdot$ 100 puntos}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Nombre:} \rule{0.55\linewidth}{0.4pt} \quad
+  \textbf{Fecha:} \rule{0.15\linewidth}{0.4pt} \\[6pt]
+  \textbf{Tiempo disponible:} 60 minutos \quad$\bullet$\quad
+  \textbf{Puntaje total:} 100 puntos \\[4pt]
+  \textbf{Instrucciones:}
+  \begin{enumerate}[leftmargin=*, nosep, topsep=2pt]
+    \item Resuelve en el espacio disponible y muestra tus pasos; si necesitas más, usa el reverso.
+    \item En reducción, escribe el \textbf{cuadrante} y el \textbf{ángulo de referencia} antes del valor.
+    \item No se permite calculadora: todos los valores pedidos son exactos.
+    \item Revisa especialmente los \textbf{signos}: es el error más frecuente.
+  \end{enumerate}
+  {\footnotesize\textbf{Tiempo sugerido:} 10 $\cdot$ 10 $\cdot$ 20 $\cdot$ 10 $\cdot$ 10 min (secciones 1 a 5).\par}
+\end{cuadroinfo}
+\vspace{-6pt}
+
+% ============================================================
+\section{Circunferencia y posición estándar (20 puntos)}
+% ============================================================
+
+\begin{center}
+\vspace{-10pt}\mwcircunferenciaexamen\vspace{-6pt}
+\end{center}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, itemsep=0.4em]
+  \item \textbf{(6 pts)} Responde brevemente:
+        \begin{enumerate}[label=\alph*), leftmargin=1.6em, nosep]
+          \item ¿Qué ecuación cumplen todos los puntos de la circunferencia unitaria?
+          \item ¿Cuánto mide su radio?
+          \item ¿Por qué no existe $\tg 90^\circ$?
+        \end{enumerate}
+
+  \item \textbf{(6 pts)} Indica el cuadrante o el eje donde se ubica cada ángulo:
+        $150^\circ$,\quad $220^\circ$,\quad $390^\circ$,\quad
+        $-210^\circ$,\quad $180^\circ$,\quad $450^\circ$.
+
+  \item \textbf{(4 pts)} Escribe \textbf{dos} ángulos coterminales de $75^\circ$:
+        uno positivo y uno negativo. Luego halla el ángulo coterminal de
+        $1470^\circ$ en el intervalo $[0^\circ,360^\circ)$.
+
+  \item \textbf{(4 pts)} El punto $P\!\left(\frac{5}{13},-\frac{12}{13}\right)$
+        pertenece a la circunferencia unitaria. Indica su cuadrante y calcula
+        $\sen\alpha$, $\cos\alpha$ y $\tg\alpha$.
+\end{enumerate}
+
+\newpage
+% ============================================================
+\section{Signos de las funciones (15 puntos)}
+% ============================================================
+
+\begin{cuadroinfo}
+  \small
+  Determina el \textbf{signo} de cada expresión \textbf{sin calcular su valor}.
+  Escribe el cuadrante (o el ángulo coterminal) que justifica tu respuesta.
+  Cada ejercicio vale 3 puntos.
+\end{cuadroinfo}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\alph*)}, itemsep=1.1em]
+  \item $\sen 250^\circ$
+  \item $\cos 160^\circ$
+  \item $\tg 340^\circ$
+  \item $\sec(-100^\circ)$
+  \item $\csc 1470^\circ$
+\end{enumerate}
+
+% ============================================================
+\section{Reducción al primer cuadrante (30 puntos)}
+% ============================================================
+
+\begin{cuadroinfo}
+  \small
+  Completa la tabla. Reduce cada ángulo al primer cuadrante y escribe el
+  \textbf{valor exacto}. Cada fila vale 5 puntos: 1 por el cuadrante,
+  1 por el ángulo de referencia y 3 por el valor.
+\end{cuadroinfo}
+
+\begin{center}
+\renewcommand{\arraystretch}{2.5}
+\setlength{\tabcolsep}{9pt}
+\begin{tabular}{@{}llll@{}}
+  \toprule
+  \textbf{Ejercicio} & \textbf{Cuadrante} & \textbf{Ángulo de referencia} & \textbf{Valor exacto} \\
+  \midrule
+  a) $\cos 210^\circ$  & & & \\
+  b) $\sen 135^\circ$  & & & \\
+  c) $\tg 330^\circ$   & & & \\
+  d) $\cos 480^\circ$  & & & \\
+  e) $\sen 1470^\circ$ & & & \\
+  f) $\tg 1665^\circ$  & & & \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\newpage
+% ============================================================
+\section{Ángulos opuestos y funciones recíprocas (15 puntos)}
+% ============================================================
+
+\begin{cuadroinfo}
+  \small
+  Aplica la \textbf{paridad} de las funciones y las \textbf{razones recíprocas}.
+  Cada ejercicio vale 3 puntos.
+\end{cuadroinfo}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\alph*)}, itemsep=1.2em]
+  \item $\sen(-30^\circ)$
+  \item $\cos(-150^\circ)$
+  \item $\tg(-45^\circ)$
+  \item $\csc(-300^\circ)$
+  \item $\sec 240^\circ$
+\end{enumerate}
+
+% ============================================================
+\section{Expresiones combinadas (20 puntos)}
+% ============================================================
+
+\begin{cuadroinfo}
+  \small
+  Calcula el valor de cada expresión. Muestra la reducción de cada función
+  antes de sustituir. Cada expresión vale 10 puntos.
+\end{cuadroinfo}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, itemsep=1.5em]
+  \item $E=\sen\!\left(\dfrac{7\pi}{6}\right)+\cos\!\left(-\dfrac{\pi}{3}\right)-\tg\!\left(\dfrac{5\pi}{4}\right)$
+        \vspace{5em}
+
+  \item $E=\tg 240^\circ\cdot\cos 330^\circ+\sen 150^\circ$
+        \vspace{5em}
+\end{enumerate}
+
+% ============================================================
+\ifmwclaves
+\clearpage
+\section*{Clave de respuestas comentada}
+% ============================================================
+
+\begin{cuadroinfo}
+  \small
+  \textbf{Cómo leer la clave.} Cada respuesta indica el camino, no solo el
+  número. Si tu resultado difiere, revisa primero el \textbf{cuadrante} y el
+  \textbf{signo}: son las dos fuentes de error más frecuentes.
+\end{cuadroinfo}
+
+\subsection*{Sección 1 — Circunferencia y posición estándar (20 pts)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item a) $x^2+y^2=1$. \quad b) $r=1$. \quad c) Porque
+        $\cos90^\circ=0$ y en $\tg\alpha=\sen\alpha/\cos\alpha$ se divide entre $0$.
+  \item $150^\circ$: II; \ $220^\circ$: III; \ $390^\circ\equiv30^\circ$: I; \
+        $-210^\circ\equiv150^\circ$: II; \ $180^\circ$: eje $x$ negativo; \
+        $450^\circ\equiv90^\circ$: eje $y$ positivo.
+  \item $75^\circ+360^\circ=435^\circ$ y $75^\circ-360^\circ=-285^\circ$.
+        Además $1470^\circ=4\cdot360^\circ+30^\circ$, luego el coterminal es
+        $30^\circ$ (I cuadrante).
+  \item IV cuadrante (la $x$ es positiva y la $y$ negativa).
+        \[
+          \sen\alpha=-\frac{12}{13},\qquad
+          \cos\alpha=\frac{5}{13},\qquad
+          \tg\alpha=\frac{-12/13}{5/13}=-\frac{12}{5}.
+        \]
+\end{enumerate}
+
+\subsection*{Sección 2 — Signos (15 pts)}
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\setlength{\tabcolsep}{9pt}
+\begin{tabular}{@{}llll@{}}
+  \toprule
+  \textbf{Expresión} & \textbf{Cuadrante} & \textbf{Signo} & \textbf{Justificación} \\
+  \midrule
+  $\sen 250^\circ$    & III & $-$ & en III, $y<0$ \\
+  $\cos 160^\circ$    & II  & $-$ & en II, $x<0$ \\
+  $\tg 340^\circ$     & IV  & $-$ & en IV, $x>0$ e $y<0$ \\
+  $\sec(-100^\circ)$  & III & $-$ & $-100^\circ\equiv260^\circ$; $\cos<0$ \\
+  $\csc 1470^\circ$   & I   & $+$ & $1470^\circ\equiv30^\circ$; $\sen>0$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Sección 3 — Reducción (30 pts)}
+\begin{center}
+\renewcommand{\arraystretch}{1.7}
+\setlength{\tabcolsep}{9pt}
+\begin{tabular}{@{}llll@{}}
+  \toprule
+  \textbf{Ejercicio} & \textbf{Cuadrante} & \textbf{Ángulo de referencia} & \textbf{Valor exacto} \\
+  \midrule
+  a) $\cos 210^\circ$  & III & $30^\circ$ & $-\dfrac{\sqrt{3}}{2}$ \\
+  b) $\sen 135^\circ$  & II  & $45^\circ$ & $+\dfrac{\sqrt{2}}{2}$ \\
+  c) $\tg 330^\circ$   & IV  & $30^\circ$ & $-\dfrac{\sqrt{3}}{3}$ \\
+  d) $\cos 480^\circ$  & II  & $60^\circ$ & $-\dfrac12$ \\
+  e) $\sen 1470^\circ$ & I   & $30^\circ$ & $+\dfrac12$ \\
+  f) $\tg 1665^\circ$  & III & $45^\circ$ & $+1$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\noindent Detalle de las reducciones con ángulos mayores que $360^\circ$:
+\[
+  480^\circ=360^\circ+120^\circ,\qquad
+  1470^\circ=4\cdot360^\circ+30^\circ,\qquad
+  1665^\circ=4\cdot360^\circ+225^\circ.
+\]
+
+\subsection*{Sección 4 — Opuestos y recíprocas (15 pts)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\alph*)}]
+  \item $\sen(-30^\circ)=-\sen30^\circ=-\dfrac12$ \ (seno impar).
+  \item $\cos(-150^\circ)=\cos150^\circ=-\dfrac{\sqrt{3}}{2}$ \ (coseno par).
+  \item $\tg(-45^\circ)=-\tg45^\circ=-1$ \ (tangente impar).
+  \item $-300^\circ+360^\circ=60^\circ$, luego
+        $\csc(-300^\circ)=\csc60^\circ=\dfrac{1}{\sqrt{3}/2}
+        =\dfrac{2\sqrt{3}}{3}$.
+  \item $\cos240^\circ=-\dfrac12$, luego
+        $\sec240^\circ=\dfrac{1}{-1/2}=-2$.
+\end{enumerate}
+
+\subsection*{Sección 5 — Expresiones (20 pts)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $\sen\dfrac{7\pi}{6}=-\dfrac12$ (III, referencia $\dfrac{\pi}{6}$);
+        $\cos\!\left(-\dfrac{\pi}{3}\right)=\cos\dfrac{\pi}{3}=\dfrac12$ (par);
+        $\tg\dfrac{5\pi}{4}=+1$ (III, referencia $\dfrac{\pi}{4}$). Entonces
+        \[
+          E=-\frac12+\frac12-1=-1.
+        \]
+  \item $\tg240^\circ=+\sqrt{3}$ (III), $\cos330^\circ=+\dfrac{\sqrt{3}}{2}$ (IV)
+        y $\sen150^\circ=+\dfrac12$ (II). Entonces
+        \[
+          E=\sqrt{3}\cdot\frac{\sqrt{3}}{2}+\frac12
+          =\frac32+\frac12=2.
+        \]
+\end{enumerate}
+
+\fi
+% ============================================================
+\end{document}

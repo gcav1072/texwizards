@@ -485,17 +485,16 @@ En matemáticas usamos \textbf{letras} para representar números que no conocemo
 \subsection{Productos y potencias con letras}
 % ============================================================
 
-Las propiedades de las potencias que aprendiste en la sección anterior funcionan \emph{igual} cuando la base o los exponentes son letras. Pero hay un truco nuevo: los exponentes también pueden ser \textbf{expresiones con letras}, como $7x$ o $5m$.
+Las propiedades de las potencias que aprendiste en la sección anterior funcionan \emph{igual} cuando la base es una letra. La letra ocupa el lugar de la base y los exponentes siguen siendo números.
 
 \begin{cuadroteoria}
-  \textbf{Reglas de oro (con $a \neq 0$ y exponentes que pueden ser letras):}
+  \textbf{Reglas de oro (con $a \neq 0$):}
   \begin{itemize}
     \item \textbf{Producto de igual base:} $a^m \cdot a^n = a^{m+n}$. Los exponentes se \emph{suman}.
           \quad Ejemplo: $a^6 \cdot a^3 = a^{6+3} = a^9$.
     \item \textbf{Potencia de una potencia:} $(a^m)^n = a^{m \times n}$. Los exponentes se \emph{multiplican}.
           \quad Ejemplo: $(p^5)^6 = p^{5 \times 6} = p^{30}$.
   \end{itemize}
-  \small\textbf{Importante:} si el exponente es $7x$, lo tratamos como un \emph{único} número: $a^{7x} \cdot a^{6x} = a^{7x + 6x} = a^{13x}$.
 \end{cuadroteoria}
 
 \begin{cuadroadvertencia}
@@ -559,17 +558,17 @@ Cuando una fracción completa se eleva a una potencia, el exponente se aplica ta
   \]
   Y usando la regla del cociente de igual base: $\dfrac{a^m}{a^n} = a^{m-n}$. Ejemplos:
   \begin{itemize}
-    \item $\left(\dfrac{a^{2x}}{a^3}\right)^3 = \dfrac{a^{2x \times 3}}{a^{3 \times 3}} = \dfrac{a^{6x}}{a^9} = a^{6x - 9}$.
+    \item $\left(\dfrac{a^{6}}{a^2}\right)^3 = \dfrac{a^{6 \times 3}}{a^{2 \times 3}} = \dfrac{a^{18}}{a^6} = a^{12}$.
     \item $\dfrac{y^2 \cdot (3y^2)^2}{9y^4}$: arriba $(3y^2)^2 = 9y^4$, así que $\dfrac{y^2 \cdot 9y^4}{9y^4} = y^2$ (¡se simplifica todo!).
   \end{itemize}
 \end{cuadroteoria}
 
 \begin{cuadroadvertencia}
-  \textbf{Cuidado con los exponentes negativos adentro de un cociente:}
+  \textbf{Cuidado con el orden al simplificar un cociente:}
   \[
-    \left(\frac{a^{2x}}{a^3}\right)^3 = a^{(2x-3) \cdot 3} = a^{6x-9}
+    \left(\frac{a^{6}}{a^2}\right)^3 = a^{(6-2) \cdot 3} = a^{12}
   \]
-  Primero se simplifica la fracción (restamos exponentes) y \emph{después} se aplica la potencia. No multipliques $2x \times 3$ antes de restar $3$.
+  Primero se simplifica la fracción (restamos exponentes) y \emph{después} se aplica la potencia. No multipliques $6 \times 3$ antes de restar $2$.
 \end{cuadroadvertencia}
 
 % ============================================================
@@ -597,14 +596,14 @@ A veces los números son potencias \emph{escondidas} de una misma base. Para sim
   \textbf{Nota:} esto es \emph{cambio de base} para \emph{simplificar potencias}, no el cambio de base de los \emph{logaritmos} (que verás más adelante). Aquí solo reescribimos $64$ como $2^6$, $128$ como $2^7$, $27$ como $3^3$ y $9$ como $3^2$.
 \end{cuadroadvertencia}
 
-\noindent\textbf{Ejemplo resuelto 7:} Simplifica $(27^p \cdot 9^{3p})^6$.
+\noindent\textbf{Ejemplo resuelto 7:} Simplifica $(27^2 \cdot 9^3)^6$.
 
-Escribimos todo en base $3$: $27 = 3^3$ y $9 = 3^2$. Entonces $27^p = (3^3)^p = 3^{3p}$ y $9^{3p} = (3^2)^{3p} = 3^{6p}$. El producto: $3^{3p} \cdot 3^{6p} = 3^{9p}$. Al cubo con el $6$: $(3^{9p})^6 = 3^{9p \times 6} = 3^{54p}$.
+Escribimos todo en base $3$: $27 = 3^3$ y $9 = 3^2$. Entonces $27^2 = (3^3)^2 = 3^6$ y $9^3 = (3^2)^3 = 3^6$. El producto: $3^6 \cdot 3^6 = 3^{12}$. Y al elevarlo a $6$: $(3^{12})^6 = 3^{12 \times 6} = 3^{72}$.
 
 \subsection{Ejercicios: Potencias con Letras}
 
-\subsubsection*{Bloque B: Productos y potencias con letras}
-\textit{Simplifica aplicando las propiedades. Los exponentes pueden ser letras o expresiones (como $7x$).}
+\subsubsection*{Bloque B: Productos y cocientes con letras}
+\textit{Simplifica aplicando las propiedades. Solo las bases llevan letras; los exponentes son números. Si hay una fracción, resta los exponentes.}
 
 \begin{enumerate}[leftmargin=*, start=122]
   \item \facil{} $a^6 \cdot a^3 =$
@@ -619,51 +618,19 @@ Escribimos todo en base $3$: $27 = 3^3$ y $9 = 3^2$. Entonces $27^p = (3^3)^p = 
 
   \item \medio{} $a^{-5} \cdot a =$
 
-  \item \medio{} $a^{7x} \cdot a^{6x} =$
-
   \item \medio{} $(b^{-2})^{-8} =$
 
   \item \medio{} $(3mn^2)^4 =$
 
-  \item \dificil{} $(m^{3a} \cdot m^{7a})^3 =$
-
   \item \dificil{} $\big[(3x)^2 \cdot (2x^3)^2\big]^3 =$
-\end{enumerate}
 
-\subsubsection*{Bloque C: Cocientes de potencias con letras}
-\textit{Primero simplifica la fracción (resta los exponentes) y después aplica la potencia exterior si la hay.}
-
-\begin{enumerate}[leftmargin=*, start=133]
   \item \medio{} $\left[y^2 \cdot (3y^2)^2\right] \div 9y^4 =$
-
-  \item \medio{} $\left(\dfrac{a^{2x}}{a^3}\right)^3 =$
-
-  \item \medio{} $\left(\dfrac{k^{7t}}{k^{3t}}\right)^{10} =$
-
-  \item \dificil{} $\left(\dfrac{w^{5m}}{w^m}\right)^{-1} =$
-
-  \item \dificil{} $\left(\dfrac{p^{10x}}{p^{6x}}\right)^{-3} =$
-
-  \item \dificil{} $\left(\dfrac{a^{8m} \cdot a^{2m}}{a^{4m}}\right)^6 =$
-
-  \item \dificil{} $\left(\dfrac{x^{4a} \cdot x^{5b}}{x^{2a} \cdot x^{3b}}\right)^6 =$
-
-  \item \dificil{} $\left(\dfrac{n^{5x}}{n^{3x}} \cdot \dfrac{n^{7x}}{n^{3x}}\right)^6 =$
 \end{enumerate}
 
-\subsubsection*{Bloque D: Cambio de base y Retos de los Campeones}
-\textit{Escribe cada base como potencia de la base común ($64 = 2^6$, $128 = 2^7$, $27 = 3^3$, $9 = 3^2$) y simplifica.}
-
-\begin{enumerate}[leftmargin=*, start=141]
-  \item \muyDificil{} $(64^{5x} \div 128^x)^5 =$
-
-  \item \muyDificil{} \textbf{:} $(27^p \cdot 9^{3p})^6 =$
-\end{enumerate}
-
-\subsubsection*{Bloque E: Refuerzo de las notas de clase}
+\subsubsection*{Bloque C: Refuerzo de las notas de clase}
 \textit{Simplifica aplicando las propiedades del producto, de la potencia de una potencia y del cociente.}
 
-\begin{enumerate}[leftmargin=*, start=143]
+\begin{enumerate}[leftmargin=*, start=132]
   \item \dificil{} $7^5 \cdot (-8)^3 \cdot (-7)^4 \cdot \left[(-8)^3\right]^6 =$
 
   \item \dificil{} $\left[(a^3 \cdot b^2 \cdot c^4)^2 \cdot (b^3)^4\right]^3 =$
@@ -671,10 +638,10 @@ Escribimos todo en base $3$: $27 = 3^3$ y $9 = 3^2$. Entonces $27^p = (3^3)^p = 
   \item \muyDificil{} $\left[\dfrac{(m^2)^3 \cdot (n^3 \cdot m)^2 \cdot (n^3)^6}{(n^2 \cdot m^4)^2}\right]^3 =$
 \end{enumerate}
 
-\subsubsection*{Bloque F: Más práctica con letras}
+\subsubsection*{Bloque D: Más práctica con letras}
 \textit{Simplifica cada expresión aplicando las propiedades. Recuerda: en un producto o cociente de igual base se suman o restan los exponentes; en una potencia de potencia se multiplican.}
 
-\begin{enumerate}[leftmargin=*, start=146]
+\begin{enumerate}[leftmargin=*, start=135]
   \item \facil{} $x^4 \cdot x^5 \cdot x =$
 
   \item \facil{} $(a^2 b^3)^4 =$
@@ -699,22 +666,16 @@ Escribimos todo en base $3$: $27 = 3^3$ y $9 = 3^2$. Entonces $27^p = (3^3)^p = 
 
   \item \dificil{} $\left(\dfrac{n^{-2}}{n^3}\right)^{-2} =$
 
-  \item \dificil{} $\left(x^{2a} \cdot x^{3a}\right)^2 =$
-
-  \item \dificil{} $\left(\dfrac{y^{5b}}{y^{2b}}\right)^4 =$
-
   \item \dificil{} $\left[(2a^2)^3 \cdot 3a\right]^2 =$
 
   \item \muyDificil{} $\left[\dfrac{(p^2)^3 \cdot q^4}{p^4 \cdot (q^2)^2}\right]^5 =$
 \end{enumerate}
 
-\subsubsection*{Bloque G: Retos avanzados (nivel difícil)}
+\subsubsection*{Bloque E: Retos avanzados (nivel difícil)}
 \textit{Simplifica cada expresión combinando \emph{varias} propiedades a la vez. El resultado debe quedar como una sola potencia (o producto de potencias) sin exponentes negativos.}
 
-\begin{enumerate}[leftmargin=*, start=162]
+\begin{enumerate}[leftmargin=*, start=149]
   \item \dificil{} $\dfrac{(2a^3)^2 \cdot a^4}{4a^5} =$
-
-  \item \dificil{} $\left(\dfrac{x^{a+2}}{x^{a-1}}\right)^3 =$ \quad (mira bien: \textquestiondown depende de $a$?)
 
   \item \dificil{} $\dfrac{(m^2n)^3 \cdot (mn^2)^2}{m^4n^5} =$
 
@@ -723,8 +684,6 @@ Escribimos todo en base $3$: $27 = 3^3$ y $9 = 3^2$. Entonces $27^p = (3^3)^p = 
   \item \dificil{} $\left(\dfrac{p^3q^2}{p\,q^5}\right)^{-2} =$
 
   \item \dificil{} $\dfrac{(x^2y^3)^2 \cdot (x^3y)^3}{(x^4y^4)^2} =$
-
-  \item \dificil{} $\dfrac{x^{2k}}{x^{k}} \cdot \dfrac{x^{5k}}{x^{3k}} =$
 
   \item \dificil{} $\left(\dfrac{y^{-3}}{y^{-5}}\right)^{-2} =$
 
@@ -741,13 +700,12 @@ Escribimos todo en base $3$: $27 = 3^3$ y $9 = 3^2$. Entonces $27^p = (3^3)^p = 
   \item \muyDificil{} $\left(\dfrac{2a^{-2}b^3}{4ab^{-1}}\right)^{2} =$
 
   \item \muyDificil{} $\left[\dfrac{(m^2n^3)^2}{(mn^2)^3}\right]^{-1} =$
-
-  \item \muyDificil{} Se sabe que $a^m \cdot a^n = a^{12}$ y que $a^m \div a^n = a^4$. Encuentra los valores de $m$ y de $n$.
 \end{enumerate}
 
 \newpage
 
 % ============================================================
+\ifmwclaves
 \section{Clave de Respuestas}
 % ============================================================
 
@@ -883,7 +841,7 @@ Escribimos todo en base $3$: $27 = 3^3$ y $9 = 3^2$. Entonces $27^p = (3^3)^p = 
   \item $\dfrac{3^6 \cdot 3^{12}}{3^{24}} = 3^{-6} = \dfrac{1}{729}$
 \end{enumerate}
 
-\subsection*{Potencias con Letras (Ejercicios 122--177)}
+\subsection*{Potencias con Letras (Ejercicios 122--161)}
 
 \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
   \setcounter{enumi}{121}
@@ -893,21 +851,10 @@ Escribimos todo en base $3$: $27 = 3^3$ y $9 = 3^2$. Entonces $27^p = (3^3)^p = 
   \item $(3x)^3 \cdot (3x)^0 = 27x^3 \cdot 1 = 27x^3$
   \item $(-2p^3)^2 = (-2)^2 \cdot (p^3)^2 = 4p^6$
   \item $a^{-5} \cdot a = a^{-4} = \dfrac{1}{a^4}$
-  \item $a^{7x} \cdot a^{6x} = a^{13x}$
   \item $(b^{-2})^{-8} = b^{(-2)(-8)} = b^{16}$
   \item $(3mn^2)^4 = 3^4 \cdot m^4 \cdot (n^2)^4 = 81m^4n^8$
-  \item $(m^{3a} \cdot m^{7a})^3 = (m^{10a})^3 = m^{30a}$
   \item $\big[(3x)^2 \cdot (2x^3)^2\big]^3 = (9x^2 \cdot 4x^6)^3 = (36x^8)^3 = 36^3x^{24} = 46\,656\,x^{24}$
   \item $\left[y^2 \cdot (3y^2)^2\right] \div 9y^4 = (y^2 \cdot 9y^4) \div 9y^4 = 9y^6 \div 9y^4 = y^2$
-  \item $\left(\dfrac{a^{2x}}{a^3}\right)^3 = \left(a^{2x-3}\right)^3 = a^{6x-9}$
-  \item $\left(\dfrac{k^{7t}}{k^{3t}}\right)^{10} = \left(k^{4t}\right)^{10} = k^{40t}$
-  \item $\left(\dfrac{w^{5m}}{w^m}\right)^{-1} = \left(w^{4m}\right)^{-1} = w^{-4m} = \dfrac{1}{w^{4m}}$
-  \item $\left(\dfrac{p^{10x}}{p^{6x}}\right)^{-3} = \left(p^{4x}\right)^{-3} = p^{-12x} = \dfrac{1}{p^{12x}}$
-  \item $\left(\dfrac{a^{8m} \cdot a^{2m}}{a^{4m}}\right)^6 = \left(a^{6m}\right)^6 = a^{36m}$
-  \item $\left(\dfrac{x^{4a} \cdot x^{5b}}{x^{2a} \cdot x^{3b}}\right)^6 = \left(x^{2a+2b}\right)^6 = x^{12a+12b}$
-  \item $\left(\dfrac{n^{5x}}{n^{3x}} \cdot \dfrac{n^{7x}}{n^{3x}}\right)^6 = \left(n^{2x} \cdot n^{4x}\right)^6 = \left(n^{6x}\right)^6 = n^{36x}$
-  \item En base $2$: $64 = 2^6$ y $128 = 2^7$, así que $64^{5x} = 2^{30x}$ y $128^x = 2^{7x}$. La división: $2^{30x} \div 2^{7x} = 2^{23x}$, y al elevar a $5$: $\left(2^{23x}\right)^5 = 2^{115x}$.
-  \item En base $3$: $27 = 3^3$ y $9 = 3^2$, así que $27^p = 3^{3p}$ y $9^{3p} = 3^{6p}$. El producto: $3^{3p} \cdot 3^{6p} = 3^{9p}$, y al elevar a $6$: $\left(3^{9p}\right)^6 = 3^{54p}$.
   \item $7^5 \cdot (-8)^3 \cdot 7^4 \cdot (-8)^{18} = 7^9 \cdot (-8)^{21} = -7^9 \cdot 8^{21} = -7^9 \cdot 2^{63}$ (exponente impar $\Rightarrow$ el signo se mantiene negativo).
   \item $(a^3 b^2 c^4)^2 = a^6 b^4 c^8$ y $(b^3)^4 = b^{12}$; dentro del corchete: $a^6 \cdot b^{4+12} \cdot c^8 = a^6 b^{16} c^8$; al cubo: $a^{18} b^{48} c^{24}$.
   \item Arriba: $(m^2)^3 = m^6$, $(n^3 m)^2 = n^6 m^2$ y $(n^3)^6 = n^{18}$, es decir $m^6 \cdot n^6 m^2 \cdot n^{18} = m^8 n^{24}$. Abajo: $(n^2 m^4)^2 = n^4 m^8$. La fracción queda $\dfrac{m^8 n^{24}}{m^8 n^4} = n^{20}$ ($m^8 \div m^8 = m^0 = 1$), y al cubo: $\left(n^{20}\right)^3 = n^{60}$.
@@ -923,17 +870,13 @@ Escribimos todo en base $3$: $27 = 3^3$ y $9 = 3^2$. Entonces $27^p = (3^3)^p = 
   \item $\left(d^{-2}\right)^5 = d^{(-2)(5)} = d^{-10} = \dfrac{1}{d^{10}}$
   \item $\dfrac{k^{-4}}{k^{-6}} = k^{-4-(-6)} = k^{2}$
   \item $\dfrac{n^{-2}}{n^{3}} = n^{-2-3} = n^{-5}$; luego $\left(n^{-5}\right)^{-2} = n^{10}$
-  \item $x^{2a} \cdot x^{3a} = x^{5a}$; luego $\left(x^{5a}\right)^2 = x^{10a}$
-  \item $\dfrac{y^{5b}}{y^{2b}} = y^{3b}$; luego $\left(y^{3b}\right)^4 = y^{12b}$
   \item $(2a^2)^3 = 8a^6$; luego $8a^6 \cdot 3a = 24a^7$, y al cuadrado: $\left(24a^7\right)^2 = 576a^{14}$
   \item Arriba: $(p^2)^3 = p^6$ y $(q^2)^2 = q^4$, es decir $\dfrac{p^6q^4}{p^4q^4} = p^{2}q^{0} = p^2$. Al elevar a $5$: $\left(p^2\right)^5 = p^{10}$.
   \item $(2a^3)^2 = 4a^6$; entonces $\dfrac{4a^6 \cdot a^4}{4a^5} = \dfrac{4a^{10}}{4a^5} = a^5$
-  \item $\dfrac{x^{a+2}}{x^{a-1}} = x^{(a+2)-(a-1)} = x^3$; al cubo: $\left(x^3\right)^3 = x^9$. \ El resultado \emph{no} depende de $a$ porque las $a$ se cancelan al restar.
   \item Arriba: $(m^2n)^3 = m^6n^3$ y $(mn^2)^2 = m^2n^4$, es decir $m^8n^7$. Luego $\dfrac{m^8n^7}{m^4n^5} = m^4n^2$
   \item $(2x^2y)^3 = 8x^6y^3$; entonces $\dfrac{8x^6y^3}{4x^3y^2} = 2x^3y$
   \item $\dfrac{p^3q^2}{pq^5} = p^2q^{-3}$; al elevar a $-2$: $p^{-4}q^{6} = \dfrac{q^6}{p^4}$
   \item Arriba: $(x^2y^3)^2 = x^4y^6$ y $(x^3y)^3 = x^9y^3$, es decir $x^{13}y^9$. Abajo: $(x^4y^4)^2 = x^8y^8$. Luego $x^5y$
-  \item $\dfrac{x^{2k}}{x^{k}} = x^{k}$ y $\dfrac{x^{5k}}{x^{3k}} = x^{2k}$; el producto es $x^{3k}$
   \item $\dfrac{y^{-3}}{y^{-5}} = y^{-3-(-5)} = y^2$; al elevar a $-2$: $y^{-4} = \dfrac{1}{y^4}$
   \item $(-2x^2y)^3 = -8x^6y^3$ (exponente impar: negativo) y $(-xy^2)^2 = x^2y^4$ (par: positivo); el producto es $-8x^8y^7$
   \item $(2x)^3 = 8x^3$; arriba: $8x^3 \cdot x^2 = 8x^5$; luego $\dfrac{8x^5}{4x^4} = 2x$; al cuadrado: $4x^2$
@@ -942,12 +885,12 @@ Escribimos todo en base $3$: $27 = 3^3$ y $9 = 3^2$. Entonces $27^p = (3^3)^p = 
   \item $(m^3)^{-2} = m^{-6}$; arriba: $m^{-6} \cdot m^{10} = m^4$; luego $\dfrac{m^4}{m^{-1}} = m^{4-(-1)} = m^5$
   \item $\dfrac{2a^{-2}b^3}{4ab^{-1}} = \dfrac{1}{2}a^{-3}b^4$; al cuadrado: $\dfrac{1}{4}a^{-6}b^8 = \dfrac{b^8}{4a^6}$
   \item $\dfrac{(m^2n^3)^2}{(mn^2)^3} = \dfrac{m^4n^6}{m^3n^6} = m^{1}$; al elevar a $-1$: $m^{-1} = \dfrac{1}{m}$
-  \item $a^m \cdot a^n = a^{m+n} = a^{12}$, así que $m + n = 12$. \ Y $a^m \div a^n = a^{m-n} = a^4$, así que $m - n = 4$. \ Sumando las dos ecuaciones: $2m = 16 \Rightarrow m = 8$; restando: $2n = 8 \Rightarrow n = 4$. \ Comprobación: $8 + 4 = 12$ y $8 - 4 = 4$.
 \end{enumerate}
 
 \vspace{10pt}
 \begin{cuadrosolucion}
-  \textbf{\textquestiondown Cómo te fue?} Ya dominas las potencias y hasta usaste letras como los algebristas: productos de potencias con exponentes literales ($a^{7x} \cdot a^{6x}$), exponentes negativos ($a^{-5}$), cocientes de potencias y hasta \textbf{cambio de base} ($64 = 2^6$, $27 = 3^3$). Eso es el corazón del álgebra. En la guía 4 daremos el gran salto: las \textbf{ecuaciones}, donde las letras se convierten en misterios que debemos resolver. \textquestiondown Allá nos vemos!
+  \textbf{\textquestiondown Cómo te fue?} Ya dominas las potencias y hasta usaste letras como los algebristas: productos de potencias con letras en la base ($x^4 \cdot x^5$), exponentes negativos ($a^{-5}$), cocientes de potencias y hasta \textbf{cambio de base} ($64 = 2^6$, $27 = 3^3$). Eso es el corazón del álgebra. En la guía 4 daremos el gran salto: las \textbf{ecuaciones}, donde las letras se convierten en misterios que debemos resolver. \textquestiondown Allá nos vemos!
 \end{cuadrosolucion}
 
+\fi
 \end{document}

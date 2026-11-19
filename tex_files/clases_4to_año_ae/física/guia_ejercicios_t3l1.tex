@@ -1,0 +1,835 @@
+% ============================================================
+%  GUÍA DE EJERCICIOS — T3L1 — MOVIMIENTO PARABÓLICO
+%  Curso: 4to Año — Física
+%  Autor: Ing. Gabriel Astudillo
+%
+%  CONTENIDO
+%    §1 El modelo: dos movimientos independientes
+%    §2 Formulario y ruta fija de resolución
+%    §3 Ejemplos resueltos (fútbol, artillería y golf)
+%    §4 50 ejercicios propuestos en cuatro niveles
+%    §5 Autoevaluación
+%    §6 Clave comentada (dentro de \ifmwclaves)
+%
+%  Convención: g = 10 m/s², sin rozamiento, eje positivo hacia arriba.
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+\usepackage{mathwizards-guia}
+\mwguia{Guía de Ejercicios — T3L1}{Ing. Gabriel Astudillo $\cdot$ 4to Año — Física}
+\providecommand{\sen}{\sin}
+\setlength{\emergencystretch}{2em}
+
+% ============================================================
+%  FIGURAS
+% ============================================================
+
+% ── Trayectoria parabólica con descomposición de v0 ─────────
+\newcommand{\mwparabola}{%
+\begin{tikzpicture}[scale=0.98, baseline=(current bounding box.center), line join=round]
+  \draw[gray!55, -{Stealth}] (-0.35,0) -- (9.0,0) node[below right, font=\scriptsize, gray] {$x$};
+  \draw[gray!55, -{Stealth}] (0,-0.35) -- (0,4.25) node[above left, font=\scriptsize, gray] {$y$};
+  \draw[very thick, mwprimario] (0,0) parabola bend (4,3) (8,0);
+  \draw[mwnaranja, thick, -{Stealth}] (0,0) -- (2.4,1.8);
+  \node[mwnaranja, font=\scriptsize, above right] at (2.35,1.80) {$v_0$};
+  \draw[mwnaranja, thick] (0.92,0) arc (0:36.87:0.92);
+  \node[mwnaranja, font=\scriptsize] at (20:1.12) {$\theta$};
+  \draw[mwmagenta, thick, dashed] (0,0) -- (2.4,0);
+  \draw[mwmagenta, thick, dashed] (2.4,0) -- (2.4,1.8);
+  \node[mwmagenta, font=\scriptsize, below] at (1.2,-0.10) {$v_x=v_0\cos\theta$};
+  \node[mwmagenta, font=\scriptsize, right] at (2.45,0.90) {$v_y=v_0\sen\theta$};
+  \filldraw[mwprimario] (4,3) circle (1.5pt);
+  \draw[gray, dashed] (4,3) -- (4,0);
+  \node[mwprimario, font=\scriptsize, above] at (4,3.05) {punto máximo};
+  \node[gray, font=\scriptsize, right] at (4.05,1.50) {$y_{\max}$};
+  \draw[gray, dashed] (4,3) -- (0,3);
+  \node[gray, font=\scriptsize, left] at (-0.05,3) {$y_{\max}$};
+  \draw[gray!70, {Stealth}-{Stealth}] (0,-0.65) -- (8,-0.65);
+  \node[font=\scriptsize, gray, below] at (4,-0.68) {alcance $R$};
+  \filldraw (0,0) circle (1.3pt);
+  \node[below left, font=\scriptsize] at (0,0) {$O$};
+\end{tikzpicture}}
+
+% ── Lanzamiento desde una altura inicial ───────────────────
+\newcommand{\mweltiro}{%
+\begin{tikzpicture}[scale=0.98, baseline=(current bounding box.center), line join=round]
+  \draw[gray!55, -{Stealth}] (-0.35,0) -- (8.2,0) node[below right, font=\scriptsize, gray] {$x$};
+  \draw[gray!55, -{Stealth}] (0,-0.35) -- (0,4.6) node[above left, font=\scriptsize, gray] {$y$};
+  \draw[thick, gray] (-0.35,2) -- (0.15,2);
+  \draw[mwprimario, very thick] (0,2) parabola bend (3.2,4.2) (7,0);
+  \draw[mwnaranja, thick, -{Stealth}] (0,2) -- (1.8,3.25);
+  \node[mwnaranja, font=\scriptsize, above right] at (1.75,3.22) {$v_0$};
+  \draw[gray, dashed] (0,0) -- (0,2);
+  \draw[gray, {Stealth}-{Stealth}] (-0.55,0) -- (-0.55,2);
+  \node[gray, font=\scriptsize, left] at (-0.60,1) {$h$};
+  \filldraw (0,2) circle (1.3pt);
+  \node[font=\scriptsize, above left] at (0,2) {salida};
+  \filldraw (7,0) circle (1.3pt);
+  \node[font=\scriptsize, below] at (7,0) {impacto};
+\end{tikzpicture}}
+
+% ── Gráfica para el ejercicio 28 (y contra x) ──────────────
+\newcommand{\mwgrafica}{%
+\begin{tikzpicture}[scale=0.86, baseline=(current bounding box.center), line join=round]
+  \draw[gray!55, -{Stealth}] (-0.4,0) -- (9.5,0) node[below right, font=\scriptsize, gray] {$x$ (m)};
+  \draw[gray!55, -{Stealth}] (0,-0.4) -- (0,5.0) node[above left, font=\scriptsize, gray] {$y$ (m)};
+  \draw[very thick, mwprimario] (0,0) parabola bend (4,4) (8,0);
+  \draw[gray, dashed] (4,4) -- (4,0);
+  \draw[gray, dashed] (4,4) -- (0,4);
+  \filldraw[mwprimario] (4,4) circle (1.5pt);
+  \node[font=\scriptsize, above] at (4,4.1) {máximo};
+  \node[font=\scriptsize, below] at (4,0) {$20$};
+  \node[font=\scriptsize, left] at (0,4) {$20$};
+  \node[font=\scriptsize, below] at (8,0) {$40$};
+  \node[font=\scriptsize, gray] at (2.0,1.8) {trayectoria};
+\end{tikzpicture}}
+
+% ── Ángulos complementarios: mismo alcance ─────────────────
+\newcommand{\mwcomplementarios}{%
+\begin{tikzpicture}[scale=0.86, baseline=(current bounding box.center), line join=round]
+  \draw[gray!55, -{Stealth}] (-0.4,0) -- (9.5,0) node[below right, font=\scriptsize, gray] {$x$};
+  \draw[gray!55, -{Stealth}] (0,-0.4) -- (0,5.0) node[above left, font=\scriptsize, gray] {$y$};
+  \draw[very thick, mwprimario] (0,0) parabola bend (2,1.15) (8,0);
+  \draw[very thick, mwmagenta] (0,0) parabola bend (6,3.46) (8,0);
+  \node[mwprimario, font=\scriptsize, above] at (2,1.15) {$30^\circ$};
+  \node[mwmagenta, font=\scriptsize, above] at (6,3.46) {$60^\circ$};
+  \draw[gray!70, {Stealth}-{Stealth}] (0,-0.55) -- (8,-0.55);
+  \node[font=\scriptsize, gray, below] at (4,-0.58) {mismo alcance};
+  \filldraw (0,0) circle (1.3pt);
+\end{tikzpicture}}
+
+\begin{document}
+% ============================================================
+
+\mwportada{Guía de Ejercicios — T3L1}{Movimiento parabólico}{Pensar antes de calcular: 50 ejercicios en cuatro niveles}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación.} Esta guía trabaja el \textbf{movimiento parabólico}
+  con 50 ejercicios temáticos: deportes, videojuegos y situaciones
+  cotidianas. No es una lista de fórmulas aplicadas a ciegas: en cada nivel
+  hay ejercicios de \textbf{decisión, comparación y detección de errores}
+  que obligan a justificar antes de operar.
+  \\[4pt]
+  \textbf{Convenciones de toda la guía:}
+  \begin{itemize}[leftmargin=1.2em, nosep, topsep=2pt]
+    \item $g=10\ \text{m/s}^2$ y rozamiento con el aire despreciable;
+    \item eje $y$ positivo hacia arriba y origen en el punto de lanzamiento,
+          salvo que el enunciado indique otra altura;
+    \item cuando aparezca $37^\circ$ o $53^\circ$ usa
+          $\sen 37^\circ\approx0{,}60$, $\cos 37^\circ\approx0{,}80$ y
+          $\sen 53^\circ\approx0{,}80$, $\cos 53^\circ\approx0{,}60$;
+    \item escribe siempre la unidad y redondea a dos cifras decimales.
+  \end{itemize}
+  \par\medskip
+  \textbf{Niveles.} \facil\hspace{0.7em}aplicación directa \quad
+  \medio\hspace{0.7em}combinación de dos o tres ideas \quad
+  \dificil\hspace{0.7em}lógica y varios pasos \quad
+  \muyDificil\hspace{0.7em}diseño, demostración o análisis crítico.
+  \\[2pt]
+  \ifmwclaves
+    La \textbf{clave comentada} está al final de la guía.
+  \else
+    Esta es la \textbf{versión sin respuestas}: úsala para practicar y pide
+    la clave a tu docente.
+  \fi
+\end{cuadroinfo}
+
+% ============================================================
+\section{El modelo: dos movimientos independientes}
+% ============================================================
+
+Un \textbf{proyectil} es un cuerpo que, una vez lanzado, solo recibe la
+acción de la gravedad. Su trayectoria es una \textbf{parábola} porque el
+movimiento se puede separar en dos movimientos independientes que comparten
+el mismo tiempo:
+
+\begin{cuadroteoria}
+  \small
+  \begin{itemize}[leftmargin=1.2em, nosep, topsep=2pt]
+    \item \textbf{Horizontal (MRU):} no hay fuerza horizontal, así que
+          $v_x=v_0\cos\theta$ permanece \textbf{constante}.
+    \item \textbf{Vertical (MRUV):} la gravedad cambia la velocidad vertical
+          $10\ \text{m/s}$ por cada segundo: $v_y(t)=v_0\sen\theta-gt$.
+  \end{itemize}
+  \[
+    \boxed{\;\text{un solo tiempo, dos lecturas: } x(t)\ \text{y}\ y(t)\;}
+  \]
+\end{cuadroteoria}
+
+\begin{center}
+\mwparabola
+\end{center}
+
+\begin{cuadroextra}
+  \small
+  \textbf{Tres ideas que evitan la mitad de los errores:}
+  \begin{enumerate}[leftmargin=1.4em, nosep, topsep=2pt]
+    \item En el \textbf{punto más alto} la velocidad \emph{no} es cero:
+          $v_y=0$, pero $v_x$ sigue valiendo $v_0\cos\theta$.
+    \item La \textbf{rapidez} es el módulo del vector velocidad:
+          $V=\sqrt{v_x^2+v_y^2}$. No es lo mismo que $v_y$.
+    \item La simetría de la trayectoria solo vale si el proyectil
+          \textbf{regresa al mismo nivel} del que salió. Si sale desde una
+          altura $h$, el tiempo de vuelo es mayor.
+  \end{enumerate}
+\end{cuadroextra}
+
+\begin{center}
+\mweltiro
+\end{center}
+
+% ============================================================
+\clearpage
+\section{Formulario y ruta fija de resolución}
+% ============================================================
+
+\begin{cuadroteoria}
+  \small
+  \begin{center}
+  \begin{tabular}{@{}p{0.25\linewidth}p{0.31\linewidth}p{0.34\linewidth}@{}}
+    \toprule
+    \textbf{Magnitud} & \textbf{Horizontal (X)} & \textbf{Vertical (Y)} \\
+    \midrule
+    Componentes de $v_0$ & $v_x=v_0\cos\theta$ & $v_y=v_0\sen\theta$ \\[4pt]
+    Aceleración & $0$ & $-g=-10\ \text{m/s}^2$ \\[4pt]
+    Velocidad & $v_x$ constante & $v_y(t)=v_0\sen\theta-gt$ \\[4pt]
+    Posición & $x=v_xt$ & $y=v_0\sen\theta\,t-\dfrac{g t^2}{2}$ \\[8pt]
+    Sin tiempo & — & $v_y^2=(v_0\sen\theta)^2-2gy$ \\[4pt]
+    Punto máximo & — & $T_{\max}=\dfrac{v_0\sen\theta}{g}$ \\[8pt]
+    Altura máxima & — & $y_{\max}=\dfrac{(v_0\sen\theta)^2}{2g}$ \\[8pt]
+    Tiempo de vuelo & — & $T_v=2T_{\max}$ (mismo nivel) \\[4pt]
+    Alcance & $R=v_xT_v$ & $R=\dfrac{v_0^2\sen2\theta}{g}$ \\[8pt]
+    Rapidez total & \multicolumn{2}{c}{$V=\sqrt{v_x^2+v_y^2}$} \\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \small
+  \textbf{Ruta fija (úsala en todos los ejercicios):}
+  \begin{enumerate}[leftmargin=1.4em, nosep, topsep=2pt]
+    \item \textbf{Datos} $\to$ descompón: $v_x=v_0\cos\theta$ y
+          $v_y=v_0\sen\theta$.
+    \item \textbf{Tiempo al máximo:} $T_{\max}=v_y/g$ y,
+          si vuelve al mismo nivel, $T_v=2T_{\max}$.
+    \item \textbf{Altura máxima:} $y_{\max}=v_y^2/(2g)$.
+    \item \textbf{Alcance:} $R=v_xT_v$.
+    \item \textbf{Altura en un instante:} $y=v_yt-gt^2/2$.
+    \item \textbf{Velocidad en un instante:} $v_y(t)=v_y-gt$ y luego
+          $V=\sqrt{v_x^2+v_y(t)^2}$.
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{Errores típicos.} Mezclar $v_y$ con la rapidez total; olvidar el
+  factor $2$ en $T_v$; usar $g$ positiva cuando la altura disminuye; confundir
+  alcance con distancia recorrida; y aplicar la simetría cuando el lanzamiento
+  no termina a la misma altura. Antes de calcular, pregúntate:
+  \emph{¿qué ecuación contiene lo que busco y qué datos ya tengo?}
+\end{cuadroadvertencia}
+
+% ============================================================
+\section{Ejemplos resueltos}
+% ============================================================
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 1 — Balón de fútbol.} $v_0=25\ \text{m/s}$,
+  $\theta=20^\circ$, $g=10$.\\[2pt]
+  $v_x=25\cos20^\circ=23{,}49\ \text{m/s}$ y
+  $v_y=25\sen20^\circ=8{,}55\ \text{m/s}$.\\
+  $T_{\max}=8{,}55/10=0{,}85\ \text{s}$;
+  $T_v=1{,}71\ \text{s}$;\\
+  $y_{\max}=(8{,}55)^2/20=3{,}65\ \text{m}$;
+  $R=23{,}49\cdot1{,}71=39{,}93\ \text{m}$.
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 2 — Proyectil de artillería.} $v_0=47\ \text{m/s}$,
+  $\theta=55^\circ$, $g=10$.\\[2pt]
+  $v_x=47\cos55^\circ=26{,}96\ \text{m/s}$ y
+  $v_y=47\sen55^\circ=38{,}50\ \text{m/s}$.\\
+  $T_{\max}=3{,}85\ \text{s}$; $T_v=7{,}70\ \text{s}$;
+  $y_{\max}=74{,}11\ \text{m}$; $R=207{,}59\ \text{m}$.\\
+  A los $3{,}5\ \text{s}$: $v_y=38{,}50-10(3{,}5)=3{,}50\ \text{m/s}$, así que
+  $V=\sqrt{26{,}96^2+3{,}50^2}=27{,}19\ \text{m/s}$.
+\end{cuadrosolucion}
+
+\begin{cuadrosolucion}
+  \small
+  \textbf{Ejemplo 3 — Pelota de golf.} $v_0=32\ \text{m/s}$,
+  $\theta=27^\circ$, $g=10$.\\[2pt]
+  $v_y=32\sen27^\circ=14{,}53\ \text{m/s}$ y
+  $v_x=32\cos27^\circ=28{,}51\ \text{m/s}$.
+  \begin{enumerate}[leftmargin=1.4em, nosep, topsep=2pt]
+    \item \textbf{Altura máxima:}
+          $y_{\max}=(14{,}53)^2/20=10{,}55\ \text{m}$.
+    \item \textbf{Tiempo de vuelo:}
+          $T_{\max}=1{,}45\ \text{s}\Rightarrow T_v=2{,}91\ \text{s}$.
+    \item \textbf{Un segundo antes del máximo:} $t=0{,}45\ \text{s}$,
+          \[
+            y=14{,}53(0{,}45)-5(0{,}45)^2=5{,}53\ \text{m}.
+          \]
+    \item \textbf{Dos segundos después del máximo:} $t=1{,}45+2=3{,}45\ \text{s}$,
+          \[
+            y=14{,}53(3{,}45)-5(3{,}45)^2=-9{,}38\ \text{m}.
+          \]
+          El resultado negativo \textbf{no} es una altura bajo tierra: significa
+          que la pelota \textbf{ya había aterrizado} en $t=2{,}91\ \text{s}$.
+          Para $t>2{,}91\ \text{s}$ el modelo deja de describir el movimiento
+          real.
+  \end{enumerate}
+\end{cuadrosolucion}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{Lección del golf.} Una fórmula no decide si un tiempo es válido;
+  lo decide la \textbf{interpretación física}. Después de calcular un tiempo,
+  compáralo con $T_v$: si lo supera y el suelo está al mismo nivel, el
+  proyectil ya no está en el aire.
+\end{cuadroadvertencia}
+
+% ============================================================
+\section{50 ejercicios propuestos}
+% ============================================================
+
+\begin{cuadroinfo}
+  \small
+  \textbf{Cómo trabajar.} Resuelve en tu cuaderno con la ruta fija. En los
+  problemas con dos soluciones de tiempo o de ángulo, \textbf{explica} qué
+  significa cada una. No uses la calculadora para decidir el signo: el signo
+  se razona. La clave comentada está al final.
+\end{cuadroinfo}
+
+% ── BLOQUE A ────────────────────────────────────────────────
+\subsection*{Bloque A — Calentamiento \facil\hspace{0.7em}(1--14)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item \textbf{Fútbol.} Un balón sale con $v_0=20\ \text{m/s}$ y
+        $\theta=37^\circ$. Calcula $v_x$ y $v_y$.
+  \item \textbf{Básquet de videojuego.} El jugador lanza a
+        $v_0=15\ \text{m/s}$ con $\theta=53^\circ$. Halla las componentes
+        de la velocidad inicial.
+  \item \textbf{Golf.} La pelota sale a $30\ \text{m/s}$ con
+        $\theta=30^\circ$. Calcula $T_{\max}$ y $T_v$.
+  \item \textbf{Plataforma espacial.} Un dron de prueba se lanza a
+        $40\ \text{m/s}$ con $45^\circ$ en un lugar donde $g=10$.
+        ¿Qué altura máxima alcanza?
+  \item \textbf{Reparto con dron.} Un paquete se lanza a
+        $25\ \text{m/s}$ con $\theta=53^\circ$. ¿Cuál es su altura máxima?
+  \item \textbf{Béisbol.} La bola sale del bate a $24\ \text{m/s}$ con
+        $\theta=30^\circ$. Calcula el tiempo de vuelo y el alcance.
+  \item \textbf{Salto de longitud.} Un atleta despega a
+        $10\ \text{m/s}$ con $45^\circ$. ¿Qué alcance logra? ¿Por qué no
+        se salta verticalmente a $90^\circ$?
+  \item \textbf{Tanque de videojuego.} El proyectil sale a
+        $50\ \text{m/s}$ con $\theta=37^\circ$. Halla el alcance.
+  \item \textbf{Pateo.} Una pelota sale a $20\ \text{m/s}$ con
+        $\theta=60^\circ$. ¿A qué altura está al cabo de $1\ \text{s}$?
+  \item \textbf{Cohete de juguete.} Sale a $30\ \text{m/s}$ con
+        $\theta=53^\circ$. ¿A qué altura está a los $2\ \text{s}$?
+  \item \textbf{Básquet.} Un balón sale a $20\ \text{m/s}$ con
+        $\theta=30^\circ$. Halla su velocidad vertical y su rapidez total
+        a los $0{,}5\ \text{s}$.
+  \item \textbf{Fútbol.} Un balón sale a $12\ \text{m/s}$ con
+        $\theta=60^\circ$. ¿Cuál es su rapidez en el punto más alto y
+        cuál su altura máxima?
+  \item \textbf{Salto de plataforma.} Personaje que salta a
+        $14\ \text{m/s}$ con $45^\circ$. Calcula altura máxima, tiempo de
+        vuelo y alcance.
+  \item \textbf{Comparación.} Dos tiros salen con la misma rapidez
+        $20\ \text{m/s}$: uno a $30^\circ$ y otro a $60^\circ$. Sin usar
+        fórmulas, decide cuál sube más y cuál llega más lejos; luego
+        comprueba con cálculos.
+\end{enumerate}
+
+\begin{cuadroextra}
+  \small
+  \textbf{Pistas del bloque A.} (1) Dibuja el triángulo de componentes antes
+  de calcular. (3) $T_v$ es el doble de $T_{\max}$. (7) Si no hay componente
+  horizontal, no hay alcance. (12) En el punto más alto solo queda $v_x$.
+  (14) Piensa en la simetría de $\sen2\theta$.
+\end{cuadroextra}
+
+% ── BLOQUE B ────────────────────────────────────────────────
+\subsection*{Bloque B — Aplicación combinada \medio\hspace{0.7em}(15--28)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=15]
+  \item \textbf{Fútbol.} $v_0=25\ \text{m/s}$, $\theta=20^\circ$. ¿En qué
+        instantes la pelota está a $3\ \text{m}$ de altura? Explica por qué
+        hay dos respuestas.
+  \item \textbf{Artillería.} $v_0=47\ \text{m/s}$, $\theta=55^\circ$. A los
+        $3{,}5\ \text{s}$, calcula la altura, la componente vertical de la
+        velocidad y la rapidez total.
+  \item \textbf{Golf.} $v_0=32\ \text{m/s}$, $\theta=27^\circ$. ¿Cuál es el
+        alcance? ¿Cuánto tarda en volver al suelo?
+  \item \textbf{Básquet.} Para un alcance de $20\ \text{m}$ con
+        $\theta=45^\circ$, ¿qué rapidez inicial se necesita?
+  \item \textbf{Videojuego.} Un salto debe alcanzar $20\ \text{m}$ de altura
+        con $\theta=30^\circ$. ¿Qué $v_0$ se requiere?
+  \item \textbf{Fútbol.} $v_0=20\ \text{m/s}$, $\theta=37^\circ$. ¿En qué
+        instantes la altura es $3\ \text{m}$? ¿Ambos instantes ocurren antes
+        del aterrizaje?
+  \item \textbf{Béisbol.} $v_0=30\ \text{m/s}$, $\theta=45^\circ$. A los
+        $3\ \text{s}$, escribe el vector velocidad, calcula la rapidez y el
+        ángulo que forma con la horizontal.
+  \item \textbf{Tanque.} $v_0=40\ \text{m/s}$, $\theta=30^\circ$. Calcula
+        altura máxima y alcance.
+  \item \textbf{Dron.} $v_0=15\ \text{m/s}$, $\theta=53^\circ$. ¿En qué
+        instantes pasa por $5\ \text{m}$ de altura?
+  \item \textbf{Salto.} $v_0=12\ \text{m/s}$, $\theta=50^\circ$. Calcula
+        tiempo de vuelo y alcance.
+  \item \textbf{Videojuego.} $v_0=50\ \text{m/s}$, $\theta=37^\circ$.
+        ¿A qué distancias horizontales está cuando su altura es
+        $30\ \text{m}$? Interpreta las dos respuestas.
+  \item \textbf{Balón.} Un balón sale a $18\ \text{m/s}$ con
+        $\theta=40^\circ$. Sin calcular, ¿con qué rapidez vuelve al mismo
+        nivel? Justifica y comprueba.
+  \item \textbf{Balonmano.} Lanzamiento a $10\ \text{m/s}$ con
+        $\theta=37^\circ$ desde $2\ \text{m}$ de altura. Calcula el tiempo
+        de vuelo y el alcance horizontal.
+  \item \textbf{Lectura de gráfica.} La figura muestra la trayectoria de un
+        proyectil: alcanza $20\ \text{m}$ de altura a los $2\ \text{s}$ y
+        vuelve al suelo a los $4\ \text{s}$, a $40\ \text{m}$ del origen.
+        Halla $v_0$ y $\theta$.
+
+        \begin{center}
+        \mwgrafica
+        \end{center}
+\end{enumerate}
+
+\begin{cuadroextra}
+  \small
+  \textbf{Pistas del bloque B.} (15) Plantea $y(t)=3$ y resuelve la
+  cuadrática; las dos raíces son «subiendo» y «bajando». (17) Necesitas
+  $T_v$ antes del alcance. (21) Usa $v_y(t)=v_{y0}-gt$; el signo negativo
+  indica que va bajando. (25) Sustituye $y=30$ y despeja $t$; luego usa
+  $x=v_xt$. (28) De la gráfica: $T_{\max}=2\ \text{s}$, $T_v=4\ \text{s}$,
+  $R=40\ \text{m}$.
+\end{cuadroextra}
+
+% ── BLOQUE C ────────────────────────────────────────────────
+\subsection*{Bloque C — Lógica y varios pasos \dificil\hspace{0.7em}(29--40)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=29]
+  \item \textbf{Acantilado.} Desde $45\ \text{m}$ de altura se lanza
+        horizontalmente una piedra a $20\ \text{m/s}$. Calcula el tiempo de
+        caída, el alcance horizontal y la rapidez con que impacta.
+  \item \textbf{Lanzamiento desde una terraza.} $v_0=10\ \text{m/s}$,
+        $\theta=53^\circ$, desde $20\ \text{m}$. Halla tiempo de vuelo,
+        alcance y rapidez de impacto.
+  \item \textbf{Blanco móvil.} Un cañón dispara a $30\ \text{m/s}$ con
+        $45^\circ$ hacia un blanco que está a $90\ \text{m}$ y se aleja a
+        $5\ \text{m/s}$. ¿Acierta? ¿Y si el blanco se acercara a
+        $5\ \text{m/s}$?
+  \item \textbf{Ángulos complementarios.} Un proyectil se lanza a
+        $40\ \text{m/s}$ con $25^\circ$. Halla el otro ángulo que produce el
+        mismo alcance. Calcula la altura máxima de cada tiro y compara.
+  \item \textbf{Muro.} Un proyectil sale a $30\ \text{m/s}$. ¿Pasa por encima
+        de un muro de $6\ \text{m}$ situado a $40\ \text{m}$ si
+        $\theta=20^\circ$? ¿Y si $\theta=30^\circ$? Concluye qué efecto tiene
+        aumentar el ángulo.
+  \item \textbf{La trampa del cruce.} Desde $45\ \text{m}$ se suelta una
+        piedra y, en el mismo instante, se lanza otra verticalmente hacia
+        arriba a $10\ \text{m/s}$ desde el suelo. ¿Se cruzan en el aire?
+        Razona con el movimiento relativo antes de calcular.
+  \item \textbf{Obstáculo.} $v_0=20\ \text{m/s}$, $\theta=60^\circ$. ¿Pasa
+        por encima de un obstáculo de $6\ \text{m}$ ubicado a $30\ \text{m}$?
+        ¿Por cuánto?
+  \item \textbf{Tiempos desiguales.} Dos tiros tienen el mismo alcance, pero
+        el primero dura el triple que el segundo. Demuestra que
+        $\tg\theta=3$ y calcula ambos ángulos.
+  \item \textbf{Valla.} Un jugador lanza a $15\ \text{m/s}$ con
+        $\theta=30^\circ$. ¿Supera una valla de $2\ \text{m}$ situada a
+        $10\ \text{m}$? ¿Por qué margen?
+  \item \textbf{Golf.} La pelota sale a $32\ \text{m/s}$ con $27^\circ$ y el
+        green está a $80\ \text{m}$. ¿Llega al green? ¿Se queda corta o se
+        pasa?
+  \item \textbf{Dato imposible.} Un cañón de videojuego dispara a
+        $50\ \text{m/s}$ en un mundo con $g=10$ y pretende alcanzar
+        $150\ \text{m}$ de altura. ¿Es posible? Justifica con la altura
+        máxima teórica.
+  \item \textbf{Dos tiros.} Con $20\ \text{m/s}$ se dispara a $30^\circ$ y a
+        $60^\circ$. Calcula los tiempos de vuelo, su diferencia y los
+        alcances. ¿Por qué los alcances coinciden?
+\end{enumerate}
+
+\begin{cuadroextra}
+  \small
+  \textbf{Pistas del bloque C.} (29) La componente horizontal no cambia; la
+  vertical empieza en cero. (31) Compara la posición del blanco con el
+  alcance en el instante de vuelo. (34) El término $5t^2$ es idéntico para
+  ambos cuerpos, así que se cancela al restar las posiciones. (36) Relaciona
+  $T_v$ con $\sen\theta$ y usa $T_v=3T_v'$. (39) La altura máxima más grande
+  se logra con $90^\circ$.
+\end{cuadroextra}
+
+% ── BLOQUE D ────────────────────────────────────────────────
+\subsection*{Bloque D — Diseño y análisis crítico \muyDificil\hspace{0.7em}(41--50)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=41]
+  \item \textbf{Demostración.} Demuestra que el alcance horizontal es
+        $R=\dfrac{v_0^2\sen2\theta}{g}$ y que, con $v_0$ fija, el alcance
+        máximo se obtiene con $\theta=45^\circ$. ¿Cuánto vale ese alcance
+        máximo para $v_0=40\ \text{m/s}$?
+  \item \textbf{Golf inverso.} Un golfista golpea a $32\ \text{m/s}$ y el
+        hoyo está a $100\ \text{m}$. Halla los dos ángulos posibles.
+  \item \textbf{Cañón de videojuego.} $v_0=40\ \text{m/s}$. Se quiere
+        impactar un blanco ubicado a $100\ \text{m}$ de distancia y
+        $20\ \text{m}$ de altura. Halla los dos ángulos posibles. Si el
+        escenario tiene un techo a $50\ \text{m}$, ¿cuál de los dos tiros
+        conviene? Justifica.
+  \item \textbf{Detecta el error.} Un estudiante calcula el alcance de un
+        tiro con $v_0=20\ \text{m/s}$ y $\theta=30^\circ$ así:
+        \[
+          R=\frac{v_0^2\sen\theta}{g}=\frac{20^2(0{,}5)}{10}=20\ \text{m}.
+        \]
+        Encuentra el error, corrige el cálculo y explica por qué la fórmula
+        correcta tiene un $2$ dentro del seno.
+  \item \textbf{Nivel con muro.} $v_0=30\ \text{m/s}$, blanco a
+        $60\ \text{m}$ y muro de $8\ \text{m}$ de alto a $30\ \text{m}$.
+        Halla los dos ángulos que aciertan y decide cuál supera el muro.
+  \item \textbf{Experimento.} En una práctica con $g=10\ \text{m/s}^2$ se
+        mide que el alcance máximo es $80\ \text{m}$. Determina $v_0$, el
+        ángulo que lo produce y la altura máxima de ese tiro.
+  \item \textbf{Punto más alto.} Demuestra que en el punto más alto la
+        velocidad es horizontal y vale $v_0\cos\theta$. Calcula su valor
+        para $v_0=20\ \text{m/s}$ y $\theta=60^\circ$.
+  \item \textbf{Dos soluciones.} Explica, usando
+        $R=\dfrac{v_0^2\sen2\theta}{g}$, por qué existen dos ángulos para un
+        mismo alcance. ¿Qué diferencia hay entre esos dos tiros en altura y
+        en tiempo de vuelo? Apóyate en la figura.
+
+        \begin{center}
+        \mwcomplementarios
+        \end{center}
+  \item \textbf{Tiro libre.} Un jugador lanza desde $2{,}00\ \text{m}$ de
+        altura con $v_0=7{,}8\ \text{m/s}$ hacia un aro que está a
+        $3{,}05\ \text{m}$ de altura y $4{,}6\ \text{m}$ de distancia
+        horizontal. Halla los dos ángulos posibles y los tiempos
+        correspondientes. ¿Cuál usaría un jugador? Explica.
+  \item \textbf{Trayectoria dada.} La trayectoria de un proyectil es
+        \[
+          y=1{,}2x-0{,}05x^2
+        \]
+        con $x$ e $y$ en metros. Halla el ángulo de lanzamiento, la rapidez
+        inicial, la altura máxima y el alcance. ¿Qué significado tiene el
+        coeficiente $-0{,}05$?
+\end{enumerate}
+
+\begin{cuadroextra}
+  \small
+  \textbf{Pistas del bloque D.} (41) Elimina $t$ entre $x(t)$ e $y(t)$ y usa
+  $2\sen\theta\cos\theta=\sen2\theta$. (43) Plantea la ecuación de la
+  trayectoria y llama $T=\tg\theta$; obtendrás una cuadrática. (44) Compara
+  $\sen30^\circ$ con $\sen60^\circ$. (45) Primero halla los ángulos con el
+  alcance; después evalúa la altura a $x=30\ \text{m}$. (49) Usa la ecuación
+  de la trayectoria con $x=4{,}6$ e $y=1{,}05$. (50) Compara con
+  $y=x\tg\theta-\dfrac{g}{2v_0^2\cos^2\theta}x^2$.
+\end{cuadroextra}
+
+% ============================================================
+\section{Autoevaluación}
+% ============================================================
+
+\begin{cuadroinfo}
+  \small
+  \textbf{Marca lo que ya puedes hacer sin mirar la guía:}
+  \\[4pt]
+  $\square$ descomponer $v_0$ en $v_x$ y $v_y$ \quad
+  $\square$ calcular $T_{\max}$, $T_v$, $y_{\max}$ y $R$ \\[2pt]
+  $\square$ hallar altura y velocidad en un instante \quad
+  $\square$ resolver una cuadrática e interpretar sus dos raíces \\[2pt]
+  $\square$ reconocer cuándo el proyectil ya aterrizó \quad
+  $\square$ detectar un error de fórmula o de signo \\[4pt]
+  \textbf{Para repasar:} anota los números de los ejercicios que te costaron
+  y vuelve a resolverlos al día siguiente.
+  \\[8pt]
+  \noindent\rule{\linewidth}{0.4pt}\\[8pt]
+  \noindent\rule{\linewidth}{0.4pt}\\[8pt]
+  \noindent\rule{\linewidth}{0.4pt}
+\end{cuadroinfo}
+
+\begin{cuadroteoria}
+  \small
+  \textbf{Preguntas de cierre.} Responde en dos o tres líneas cada una:
+  \begin{enumerate}[leftmargin=1.4em, nosep, topsep=2pt]
+    \item ¿Por qué la componente horizontal no cambia aunque el proyectil
+          suba y baje?
+    \item ¿Qué significa obtener una altura negativa al usar la fórmula?
+    \item ¿Por qué dos ángulos distintos pueden acertar al mismo punto?
+  \end{enumerate}
+\end{cuadroteoria}
+
+\noindent\textbf{Registro de errores.} Anota cada fallo y la corrección; vuelve
+a resolver ese ejercicio a la semana siguiente.
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.07\linewidth}p{0.30\linewidth}p{0.30\linewidth}p{0.16\linewidth}@{}}
+  \toprule
+  \textbf{Ej.} & \textbf{Error cometido} & \textbf{Corrección} & \textbf{Fecha} \\
+  \midrule
+   & & & \\ \midrule
+   & & & \\ \midrule
+   & & & \\ \midrule
+   & & & \\ \midrule
+   & & & \\ \midrule
+   & & & \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+% ============================================================
+\ifmwclaves
+\clearpage
+\section*{Clave de respuestas comentada}
+% ============================================================
+
+\begin{cuadroinfo}
+  \small
+  \textbf{Cómo leer la clave.} Cada respuesta muestra el camino corto:
+  datos, fórmula y decisión. Si tu número no coincide, revisa primero la
+  descomposición de $v_0$ y después el signo de $g$.
+\end{cuadroinfo}
+
+\subsection*{Bloque A — Calentamiento (1--14)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $v_x=20\cos37^\circ\approx16\ \text{m/s}$ y
+        $v_y=20\sen37^\circ\approx12\ \text{m/s}$.
+  \item $v_x=15\cos53^\circ\approx9\ \text{m/s}$ y
+        $v_y=15\sen53^\circ\approx12\ \text{m/s}$.
+  \item $v_y=30\sen30^\circ=15\ \text{m/s}$;
+        $T_{\max}=15/10=1{,}5\ \text{s}$ y $T_v=3\ \text{s}$.
+  \item $v_y=40\sen45^\circ=28{,}28\ \text{m/s}$;
+        $y_{\max}=(28{,}28)^2/20=40\ \text{m}$.
+  \item $v_y=25\sen53^\circ=20\ \text{m/s}$;
+        $y_{\max}=20^2/20=20\ \text{m}$.
+  \item $v_x=20{,}78\ \text{m/s}$, $v_y=12\ \text{m/s}$; $T_v=2{,}4\ \text{s}$
+        y $R=20{,}78\cdot2{,}4=49{,}88\ \text{m}$.
+  \item $v_x=v_y=7{,}07\ \text{m/s}$; $T_v=1{,}41\ \text{s}$ y
+        $R=10\ \text{m}$. A $90^\circ$ no hay componente horizontal: el
+        alcance sería nulo y el atleta caería en el mismo punto.
+  \item $v_x=40\ \text{m/s}$, $v_y=30\ \text{m/s}$; $T_v=6\ \text{s}$ y
+        $R=40\cdot6=240\ \text{m}$.
+  \item $v_y=20\sen60^\circ=17{,}32\ \text{m/s}$;
+        $y=17{,}32(1)-5(1)^2=12{,}32\ \text{m}$.
+  \item $v_y=30\sen53^\circ=24\ \text{m/s}$;
+        $y=24(2)-5(2)^2=28\ \text{m}$.
+  \item $v_y=10\ \text{m/s}$; a $0{,}5\ \text{s}$,
+        $v_y=10-5=5\ \text{m/s}$. Entonces
+        $V=\sqrt{17{,}32^2+5^2}=18{,}03\ \text{m/s}$.
+  \item En el punto más alto $v_y=0$, pero
+        $V=v_x=12\cos60^\circ=6\ \text{m/s}$. Además
+        $y_{\max}=10{,}39^2/20=5{,}4\ \text{m}$.
+  \item $v_y=9{,}90\ \text{m/s}$; $y_{\max}=4{,}9\ \text{m}$;
+        $T_v=1{,}98\ \text{s}$ y $R=19{,}6\ \text{m}$.
+  \item El de $60^\circ$ sube más ($15\ \text{m}$ contra $5\ \text{m}$), pero
+        ambos tienen el mismo alcance ($34{,}64\ \text{m}$) porque
+        $\sen60^\circ=\sen120^\circ$.
+\end{enumerate}
+
+\subsection*{Bloque B — Aplicación combinada (15--28)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=15]
+  \item $v_y=8{,}55\ \text{m/s}$. La ecuación es
+        $8{,}55t-5t^2=3$, es decir $5t^2-8{,}55t+3=0$. Las raíces son
+        $t=0{,}49\ \text{s}$ y $t=1{,}22\ \text{s}$: una subiendo y otra
+        bajando.
+  \item $y=38{,}50(3{,}5)-5(3{,}5)^2=73{,}50\ \text{m}$;
+        $v_y=38{,}50-35=3{,}50\ \text{m/s}$;
+        $V=\sqrt{26{,}96^2+3{,}50^2}=27{,}18\ \text{m/s}$.
+  \item $v_x=28{,}51\ \text{m/s}$, $v_y=14{,}53\ \text{m/s}$;
+        $T_v=2{,}91\ \text{s}$ y $R=82{,}84\ \text{m}$.
+  \item $R=v_0^2\sen90^\circ/g=v_0^2/10$; $20=v_0^2/10$ y
+        $v_0=14{,}14\ \text{m/s}$.
+  \item $y_{\max}=\dfrac{v_0^2\sen^2 30^\circ}{20}
+        =\dfrac{v_0^2}{80}$; $20=\dfrac{v_0^2}{80}$ y
+        $v_0=40\ \text{m/s}$.
+  \item $12t-5t^2=3\Rightarrow5t^2-12t+3=0$; $t=0{,}28\ \text{s}$ y
+        $t=2{,}12\ \text{s}$. Ambos son menores que $T_v=2{,}4\ \text{s}$,
+        así que los dos ocurren en el aire.
+  \item $v_x=21{,}21\ \text{m/s}$ y
+        $v_y=21{,}21-10(3)=-8{,}79\ \text{m/s}$. Entonces
+        $V=22{,}96\ \text{m/s}$, con un ángulo de
+        $\arctan(8{,}79/21{,}21)=22{,}5^\circ$ por debajo de la horizontal:
+        ya va bajando.
+  \item $v_y=20\ \text{m/s}\Rightarrow y_{\max}=20\ \text{m}$;
+        $T_v=4\ \text{s}$ y $R=34{,}64\cdot4=138{,}56\ \text{m}$.
+  \item $v_y=12\ \text{m/s}$; $12t-5t^2=5\Rightarrow5t^2-12t+5=0$;
+        $t=0{,}54\ \text{s}$ y $t=1{,}86\ \text{s}$.
+  \item $v_y=12\sen50^\circ=9{,}19\ \text{m/s}$; $T_v=1{,}84\ \text{s}$;
+        $v_x=12\cos50^\circ=7{,}71\ \text{m/s}$ y
+        $R=14{,}18\ \text{m}$.
+  \item $v_y=30\ \text{m/s}$, $v_x=40\ \text{m/s}$. Con $y=30$:
+        $30t-5t^2=30\Rightarrow t^2-6t+6=0$, o sea
+        $t=3\pm\sqrt3$. Así, $t=1{,}27\ \text{s}$ (subiendo) y
+        $t=4{,}73\ \text{s}$ (bajando). Las posiciones son
+        $x=40t$: $50{,}72\ \text{m}$ y $189{,}28\ \text{m}$.
+  \item Vuelve con $18\ \text{m/s}$. La componente horizontal no cambia y la
+        vertical se invierte con el mismo módulo por simetría; la rapidez
+        total es la misma.
+  \item $v_y=6\ \text{m/s}$, $v_x=8\ \text{m/s}$. Con $y=0$:
+        $2+6t-5t^2=0\Rightarrow5t^2-6t-2=0$, de donde
+        $t=(6+\sqrt{76})/10=1{,}47\ \text{s}$. El alcance es
+        $x=8(1{,}47)=11{,}77\ \text{m}$.
+  \item De la gráfica, $T_{\max}=2\ \text{s}$ y $T_v=4\ \text{s}$. Por
+        tanto $v_y=gT_{\max}=20\ \text{m/s}$. Como $R=40\ \text{m}$ y
+        $T_v=4\ \text{s}$, $v_x=R/T_v=10\ \text{m/s}$. Entonces
+        $v_0=\sqrt{20^2+10^2}=22{,}36\ \text{m/s}$ y
+        $\theta=\arctan(20/10)=63{,}43^\circ$.
+\end{enumerate}
+
+\subsection*{Bloque C — Lógica y varios pasos (29--40)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=29]
+  \item En vertical: $45=5t^2\Rightarrow t=3\ \text{s}$. El alcance es
+        $x=20(3)=60\ \text{m}$. Al impactar, $v_y=10(3)=30\ \text{m/s}$ y
+        $V=\sqrt{20^2+30^2}=36{,}06\ \text{m/s}$.
+  \item $v_y=8\ \text{m/s}$, $v_x=6\ \text{m/s}$. Con $y=0$:
+        $20+8t-5t^2=0\Rightarrow5t^2-8t-20=0$; la raíz positiva es
+        $t=2{,}95\ \text{s}$. El alcance es $6(2{,}95)=17{,}72\ \text{m}$.
+        Al impactar, $v_y=8-29{,}54=-21{,}54\ \text{m/s}$ y
+        $V=\sqrt{6^2+21{,}54^2}=22{,}36\ \text{m/s}$.
+  \item $v_y=v_x=21{,}21\ \text{m/s}$, $T_v=4{,}24\ \text{s}$ y
+        $R=90\ \text{m}$. Si el blanco se aleja, en ese tiempo está en
+        $90+5(4{,}24)=111{,}21\ \text{m}$: el proyectil cae
+        $21{,}21\ \text{m}$ corto. Si se acerca, está en
+        $90-21{,}21=68{,}79\ \text{m}$: pasa $21{,}21\ \text{m}$ de largo.
+        En ninguno de los dos casos acierta con ese ángulo y esa rapidez.
+  \item El otro ángulo es $90^\circ-25^\circ=65^\circ$. El alcance es
+        $R=40^2\sen50^\circ/10=122{,}57\ \text{m}$ en ambos casos. Las
+        alturas son $14{,}29\ \text{m}$ y $65{,}71\ \text{m}$: el tiro de
+        $65^\circ$ sube mucho más y dura más tiempo.
+  \item Con $20^\circ$: $t=40/(30\cos20^\circ)=1{,}42\ \text{s}$ y
+        $y=10{,}26(1{,}42)-5(1{,}42)^2=4{,}49\ \text{m}<6\ \text{m}$:
+        choca contra el muro. Con $30^\circ$: $t=1{,}54\ \text{s}$ y
+        $y=15(1{,}54)-5(1{,}54)^2=11{,}24\ \text{m}>6\ \text{m}$: pasa.
+        Aumentar el ángulo eleva la trayectoria en un punto fijo, aunque
+        reduce el alcance total.
+  \item Al restar las posiciones verticales, el término $-5t^2$ se cancela:
+        la distancia entre ambas cambia a razón de $10\ \text{m/s}$, así que
+        se cruzarían en $t=45/10=4{,}5\ \text{s}$. Pero la piedra que sube
+        dura $2\ \text{s}$ en el aire y la que cae tarda $3\ \text{s}$:
+        a los $4{,}5\ \text{s}$ ambas ya están en el suelo. \textbf{No se
+        cruzan en el aire}.
+  \item $t=30/(20\cos60^\circ)=3\ \text{s}$. La altura es
+        $y=17{,}32(3)-5(3)^2=6{,}96\ \text{m}$, que supera los $6\ \text{m}$
+        por $0{,}96\ \text{m}$. La pelota sigue en el aire porque
+        $T_v=3{,}46\ \text{s}$.
+  \item $T_v=\dfrac{2v_0\sen\theta}{g}$, así que
+        $\dfrac{T_{v1}}{T_{v2}}=\dfrac{\sen\theta}{\sen(90^\circ-\theta)}
+        =\tg\theta=3$. Entonces $\theta=71{,}57^\circ$ y el otro ángulo es
+        $18{,}43^\circ$. Ambos producen el mismo alcance porque
+        $\sen(2\theta)=\sen(180^\circ-2\theta)$.
+  \item $t=10/(15\cos30^\circ)=0{,}77\ \text{s}$ y
+        $y=7{,}5(0{,}77)-5(0{,}77)^2=2{,}81\ \text{m}$. Supera la valla por
+        $0{,}81\ \text{m}$.
+  \item $R=82{,}84\ \text{m}$. La pelota aterriza $2{,}84\ \text{m}$ más
+        allá de la bandera, así que alcanza el green pero se pasa del hoyo.
+  \item La altura máxima más grande posible es con $90^\circ$:
+        $y_{\max}=v_0^2/(2g)=50^2/20=125\ \text{m}$. Como
+        $150>125$, el dato es \textbf{imposible} con $g=10$.
+  \item $T_v=2(20)(0{,}5)/10=2\ \text{s}$ para $30^\circ$ y
+        $T_v=2(20)(0{,}866)/10=3{,}46\ \text{s}$ para $60^\circ$; la
+        diferencia es $1{,}46\ \text{s}$. Los alcances coinciden porque
+        $\sen60^\circ=\sen120^\circ$.
+\end{enumerate}
+
+\subsection*{Bloque D — Diseño y análisis crítico (41--50)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=41]
+  \item De $x=v_0\cos\theta\,t$ sale $t=x/(v_0\cos\theta)$. Al sustituir en
+        $y$ y hacer $y=0$:
+        \[
+          0=v_0\sen\theta\,T_v-\frac{gT_v^2}{2}
+          \Rightarrow T_v=\frac{2v_0\sen\theta}{g}.
+        \]
+        Entonces
+        \[
+          R=v_xT_v
+          =\frac{2v_0^2\sen\theta\cos\theta}{g}
+          =\frac{v_0^2\sen2\theta}{g}.
+        \]
+        El máximo de $\sen2\theta$ es $1$, en $2\theta=90^\circ$, es decir
+        $\theta=45^\circ$. Para $v_0=40$:
+        $R_{\max}=1600/10=160\ \text{m}$.
+  \item $\sen2\theta=\dfrac{Rg}{v_0^2}=\dfrac{100(10)}{32^2}=0{,}9766$.
+        Luego $2\theta=77{,}57^\circ$ o $102{,}43^\circ$, y los ángulos son
+        $\theta=38{,}79^\circ$ y $\theta=51{,}21^\circ$.
+  \item Ecuación de la trayectoria con $x=100$, $y=20$:
+        \[
+          20=100\tg\theta-\frac{10(100)^2}{2(40)^2}(1+\tg^2\theta).
+        \]
+        Con $T=\tg\theta$:
+        $31{,}25T^2-100T+51{,}25=0$, cuyas raíces son $T=2{,}56$ y
+        $T=0{,}641$. Así, $\theta=68{,}66^\circ$ y $\theta=32{,}65^\circ$.
+        Las alturas máximas son $69{,}4\ \text{m}$ y $23{,}3\ \text{m}$;
+        con un techo a $50\ \text{m}$ conviene el tiro de $32{,}65^\circ$.
+  \item El error es usar $\sen\theta$ en lugar de $\sen2\theta$ (y, por
+        tanto, olvidar el factor $2$). Lo correcto es
+        \[
+          R=\frac{20^2\sen60^\circ}{10}
+          =\frac{400(0{,}866)}{10}=34{,}64\ \text{m}.
+        \]
+        El alcance es mayor porque $\sen60^\circ=0{,}866$ y no $0{,}5$.
+  \item $\sen2\theta=\dfrac{60(10)}{30^2}=0{,}6667$, de donde
+        $2\theta=41{,}81^\circ$ o $138{,}19^\circ$; los ángulos son
+        $20{,}91^\circ$ y $69{,}09^\circ$. A $x=30\ \text{m}$:
+        con $20{,}91^\circ$, $y=5{,}73\ \text{m}<8\ \text{m}$ (choca);
+        con $69{,}09^\circ$, $y=39{,}27\ \text{m}>8\ \text{m}$ (pasa).
+        Solo sirve el tiro alto.
+  \item El alcance máximo es $R_{\max}=v_0^2/g$, así que
+        $80=v_0^2/10$ y $v_0=28{,}28\ \text{m/s}$. Se logra con
+        $\theta=45^\circ$. La altura máxima de ese tiro es
+        $y_{\max}=\dfrac{v_0^2\sen^245^\circ}{20}
+        =\dfrac{800}{40}=20\ \text{m}$.
+  \item En el punto más alto $v_y=0$, porque la velocidad vertical cambia de
+        signo. La única componente que queda es la horizontal, constante:
+        $V=v_x=v_0\cos\theta$. Para $20\ \text{m/s}$ y $60^\circ$:
+        $V=20(0{,}5)=10\ \text{m/s}$, horizontal.
+  \item La fórmula $R=\dfrac{v_0^2\sen2\theta}{g}$ depende de $\sen2\theta$.
+        Como $\sen\alpha=\sen(180^\circ-\alpha)$, los ángulos $\theta$ y
+        $90^\circ-\theta$ dan el mismo $2\theta$ complementario y, por tanto,
+        el mismo alcance. El ángulo mayor produce mayor altura máxima y
+        mayor tiempo de vuelo; el menor es más plano y llega antes.
+  \item $v_0=7{,}8\ \text{m/s}$, $x=4{,}6\ \text{m}$ e $y=1{,}05\ \text{m}$
+        sobre la salida. La ecuación de la trayectoria da
+        \[
+          1{,}05=4{,}6T-1{,}739(1+T^2),
+        \]
+        es decir $1{,}739T^2-4{,}6T+2{,}789=0$. Las raíces son
+        $T=1{,}704$ y $T=0{,}941$, así que
+        $\theta=59{,}6^\circ$ y $\theta=43{,}3^\circ$. Los tiempos son
+        $t=1{,}17\ \text{s}$ y $t=0{,}81\ \text{s}$. Un jugador suele usar
+        el tiro más plano ($43{,}3^\circ$): es más rápido y más fácil de
+        repetir; el tiro alto deja menos margen de error.
+  \item Comparando con
+        $y=x\tg\theta-\dfrac{g}{2v_0^2\cos^2\theta}x^2$:
+        $\tg\theta=1{,}2$, luego $\theta=50{,}19^\circ$. El coeficiente
+        cuadrático cumple
+        \[
+          0{,}05=\frac{10}{2v_0^2\cos^2\theta}
+          \quad\Rightarrow\quad v_0=15{,}62\ \text{m/s}.
+        \]
+        El vértice está en $x=\dfrac{1{,}2}{2(0{,}05)}=12\ \text{m}$ y
+        $y_{\max}=7{,}2\ \text{m}$; el alcance es $R=24\ \text{m}$. El
+        coeficiente $-0{,}05$ m$^{-1}$ mide la curvatura de la parábola:
+        cuanto mayor es su valor absoluto, más «cerrada» es la trayectoria
+        (más gravedad o menos rapidez).
+\end{enumerate}
+
+\begin{cuadroextra}
+  \small
+  \textbf{Reto final.} Inventa un ejercicio de tu deporte o videojuego
+  favorito que tenga \textbf{dos soluciones} y explica cuál elegirías y por
+  qué. Luego resuélvelo con la ruta fija y compáralo con un compañero.
+\end{cuadroextra}
+
+\fi
+% ============================================================
+\end{document}

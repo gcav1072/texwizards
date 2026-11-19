@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T3L1 — Movimiento Parabólico · Diapositivas · Mathwizards</title>
+<!-- VERSIÓN AUTOCONTENIDA (un solo archivo) · KaTeX vía CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+<style>
+/* ============================================================
+   Diapositivas T3L1 — Movimiento Parabólico
+   Estética mathwizards-beamer · Paleta mathwizards-palette
+   ============================================================ */
+:root{
+  --primario:#E2232D; --magenta:#E3229F; --rojonaranja:#E34122;
+  --violeta:#C922E3; --naranja:#E36322;
+  --grisclaro:#F5F5F8; --gris:#666666; --grisoscuro:#333333;
+  --font-body:'Cabin','Segoe UI',system-ui,sans-serif;
+  --font-title:'Nexa Heavy','Cabin','Arial Black',sans-serif;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html,body{height:100%;}
+body{background:#26262b; font-family:var(--font-body); color:#000; overflow:hidden;}
+#stage{
+  position:absolute; left:50%; top:50%; width:1280px; height:720px;
+  margin:-360px 0 0 -640px; transform-origin:center center;
+  background:#fff; box-shadow:0 18px 60px rgba(0,0,0,.55);
+}
+.slide{position:absolute; inset:0; background:#fff; display:none; flex-direction:column;}
+.slide.active{display:flex;}
+
+/* ── Barras de título y pie ───────────────────────────────── */
+.ft{height:64px; background:var(--primario); color:#fff; flex:0 0 auto;
+    display:flex; align-items:center; padding:0 40px; gap:18px;}
+.ft h2{font-family:var(--font-title); font-size:28px; font-weight:normal; letter-spacing:.2px;}
+.ft .ftsub{margin-left:auto; font-size:15px; color:rgba(255,255,255,.86);}
+.fc{flex:1 1 auto; padding:20px 42px 8px; overflow:hidden;}
+.ff{height:34px; background:var(--primario); color:#fff; flex:0 0 auto;
+    display:flex; align-items:center; font-size:11px; letter-spacing:.3px;}
+.ff span{flex:1; padding:0 18px;}
+.ff span:nth-child(2){text-align:center;}
+.ff span:nth-child(3){text-align:right;}
+
+/* ── Portada y divisores ──────────────────────────────────── */
+.slide.portada{background:var(--primario);}
+.portada .band{position:absolute; left:0; right:0; bottom:0; height:180px; background:#bf1c25;}
+.portada .pcontent{position:absolute; inset:0; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; color:#fff; text-align:center; z-index:2;}
+.portada .logo{width:104px; height:104px; margin-bottom:18px; background:#fff;
+  border-radius:22px; display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-title); font-size:44px; color:var(--primario);}
+.portada h1{font-family:var(--font-title); font-size:50px; font-weight:normal; line-height:1.1;}
+.portada h3{font-family:var(--font-title); font-size:25px; font-weight:normal; margin-top:12px; color:rgba(255,255,255,.94);}
+.portada .lema{font-size:19px; font-style:italic; margin-top:14px; color:rgba(255,255,255,.9);}
+.portada .meta{margin-top:24px; font-size:16px; color:rgba(255,255,255,.93);}
+.portada .meta .small{font-size:13.5px; color:rgba(255,255,255,.8); margin-top:4px;}
+.slide.divisor{background:var(--primario);}
+.divisor .dcontent{flex:1; display:flex; flex-direction:column; align-items:center;
+  justify-content:center; color:#fff; text-align:center; gap:12px;}
+.divisor h2{font-family:var(--font-title); font-size:56px; font-weight:normal;}
+.divisor p{font-size:22px; color:rgba(255,255,255,.9);}
+
+/* ── Cuadros ──────────────────────────────────────────────── */
+.cuadro{border-radius:7px; overflow:hidden; margin:0 0 12px; font-size:19px; line-height:1.4;}
+.cuadro .ct{padding:6px 16px; color:#fff; font-family:var(--font-title); font-size:19.5px;}
+.cuadro .cb{padding:10px 16px; background:#fff;}
+.cuadro .cb p{margin:0 0 6px;}
+.cuadro .cb p:last-child{margin-bottom:0;}
+.cuadro .cb ul,.cuadro .cb ol{margin:3px 0 3px 1.2em;}
+.cuadro .cb li{margin:3px 0;}
+.teoria .ct{background:var(--primario);} .teoria .cb{background:rgba(226,35,45,.07);}
+.solucion .ct{background:var(--magenta);} .solucion .cb{background:rgba(227,34,159,.07);}
+.pasos .ct{background:var(--naranja);} .pasos .cb{background:rgba(227,99,34,.08);}
+.advertencia .ct{background:var(--rojonaranja);} .advertencia .cb{background:rgba(227,65,34,.07);}
+.extra .ct{background:var(--violeta);} .extra .cb{background:rgba(201,34,227,.07);}
+.info .ct{background:var(--gris);} .info .cb{background:var(--grisclaro);}
+
+/* ── Tablas ───────────────────────────────────────────────── */
+table.tabla{border-collapse:collapse; width:100%; font-size:17.5px;}
+table.tabla th{font-family:var(--font-title); font-weight:normal; padding:6px 8px;
+  border-bottom:1.6px solid var(--grisoscuro); text-align:center;}
+table.tabla td{padding:5px 8px; text-align:center; border-bottom:1px solid #e3e3e8;}
+table.tabla tr:first-child td{border-top:1.6px solid var(--grisoscuro);}
+table.tabla tr:last-child td{border-bottom:1.6px solid var(--grisoscuro);}
+table.tabla td:first-child,table.tabla th:first-child{text-align:left;}
+table.tabla.tight td,table.tabla.tight th{padding:3px 7px;}
+
+/* ── Utilidades ───────────────────────────────────────────── */
+.cols{display:flex; gap:22px; align-items:flex-start;}
+.cols>.col{flex:1; min-width:0;}
+.center{text-align:center;}
+.small{font-size:16px;}
+.mt{margin-top:8px;} .mb{margin-bottom:8px;}
+.pill{display:inline-block; border-radius:99px; padding:1px 10px; font-size:13px;
+  font-family:var(--font-title); color:#fff; background:var(--gris);}
+.pill.red{background:var(--primario);} .pill.orange{background:var(--naranja);}
+.pill.mag{background:var(--magenta);} .pill.vio{background:var(--violeta);}
+
+/* ── Logo de la marca ─────────────────────────────────────── */
+.portada-logo{width:104px; height:116px; color:#fff; margin-bottom:14px;}
+.ftlogo{width:23px; height:26px; color:#fff; flex:0 0 auto;}
+
+/* ── Mini simulador (slide de definición) ─────────────────── */
+.miniwrap{display:flex; flex-direction:column; gap:4px; width:100%;}
+.minihead{font-family:var(--font-title); font-size:14px; color:var(--gris);
+  text-transform:uppercase; letter-spacing:.5px; margin-bottom:2px;}
+.minictl{display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-top:2px;}
+.minictl .ctrl{margin:0;}
+.minichips{display:flex; gap:8px; justify-content:center; margin-top:4px;}
+.minichips .chip{display:flex; align-items:baseline; gap:7px; background:var(--grisclaro);
+  border-radius:8px; padding:3px 12px; font-size:14.5px;}
+.minichips .chip i{font-style:normal; font-family:var(--font-title); font-size:10.5px;
+  text-transform:uppercase; color:var(--gris); letter-spacing:.3px;}
+.minichips .chip b{color:var(--grisoscuro); font-weight:600;}
+.minichips .chip.hi b{color:var(--primario);}
+
+/* ── Ejercicios y respuestas revelables ───────────────────── */
+ol.exlist{margin:6px 0 0 24px;}
+ol.exlist li{font-size:20.5px; line-height:1.4; margin:0 0 16px; break-inside:avoid;}
+.exslide .fc{display:flex; flex-direction:column; justify-content:center;}
+ol.exlist.two{columns:2; column-gap:44px;}
+.btn{font-family:var(--font-title); font-size:14px; color:var(--primario);
+  background:#fff; border:2px solid var(--primario); border-radius:8px;
+  padding:6px 12px; cursor:pointer; transition:.15s;}
+.btn:hover{background:var(--primario); color:#fff;}
+.btn.solid{background:var(--primario); color:#fff;}
+.btn.solid:hover{background:#bf1c25;}
+.btn:focus-visible{outline:3px solid rgba(226,35,45,.35); outline-offset:2px;}
+.answers{display:none; margin-top:8px; padding:10px 14px; border-radius:9px;
+  background:var(--grisclaro); border-left:5px solid var(--magenta); font-size:16.5px; line-height:1.45;}
+.answers.show{display:block;}
+.answers b{color:var(--magenta);}
+.reveal-row{display:flex; align-items:center; gap:14px; margin-top:4px;}
+.reveal-row .hint{font-size:14px; color:var(--gris); font-style:italic;}
+
+/* ── Simulador ────────────────────────────────────────────── */
+.simwrap{display:flex; gap:16px; height:100%;}
+.simstage{flex:1 1 auto; min-width:0; display:flex; align-items:center; justify-content:center;}
+.simstage svg{width:100%; height:100%; max-height:586px; display:block;}
+.simpanel{flex:0 0 292px; min-width:0;}
+.ctrl{margin:0 0 9px;}
+.ctrl label{display:flex; justify-content:space-between; align-items:baseline;
+  font-family:var(--font-title); font-size:13px; color:var(--grisoscuro);
+  text-transform:uppercase; letter-spacing:.4px; margin-bottom:2px;}
+.ctrl label b{font-family:var(--font-body); font-size:16px; color:var(--primario);
+  text-transform:none; letter-spacing:0;}
+input[type=range]{width:100%; accent-color:var(--primario); cursor:pointer;}
+.readout{background:var(--grisclaro); border-radius:9px; padding:8px 12px; margin-top:2px;}
+.ro{display:flex; justify-content:space-between; gap:8px; padding:3px 0;
+  border-bottom:1px solid #e4e4ea; font-size:15px;}
+.ro:last-child{border-bottom:none;}
+.ro span:first-child{color:var(--gris); font-family:var(--font-title); font-size:12px;
+  text-transform:uppercase; letter-spacing:.3px;}
+.ro b{color:var(--grisoscuro); font-weight:600;}
+.ro b.hi{color:var(--primario);}
+.btnrow{display:flex; gap:8px; margin-top:9px;}
+
+/* ── Golf ─────────────────────────────────────────────────── */
+.golfstage{flex:1 1 auto; min-width:0; display:flex; align-items:center; justify-content:center;}
+.golfstage svg{width:100%; height:100%; max-height:520px; display:block;}
+.golfmsg{margin-top:8px; padding:9px 12px; border-radius:8px; background:var(--grisclaro);
+  font-size:16px; line-height:1.4; min-height:58px;}
+.golfmsg.ok{background:#e8f7ec; border-left:5px solid #2e9e4f;}
+.golfmsg.bad{background:#fdeaea; border-left:5px solid var(--primario);}
+
+/* ── Quiz ─────────────────────────────────────────────────── */
+.quizbox{max-width:980px; margin:4px auto 0; width:100%;}
+.quizslide .fc{display:flex; align-items:center; justify-content:center;}
+.qtext{font-size:23px; line-height:1.38; margin-bottom:14px;}
+.opt{display:block; width:100%; text-align:left; padding:11px 16px; margin:8px 0;
+  border:2px solid #ddddE4; border-radius:9px; background:#fff; font-family:var(--font-body);
+  font-size:19px; cursor:pointer; transition:.15s;}
+.opt:hover{border-color:var(--primario); background:#fffafa;}
+.opt.correct{background:#e8f7ec; border-color:#2e9e4f;}
+.opt.wrong{background:#fdeaea; border-color:var(--primario);}
+.opt:disabled{cursor:default;}
+.fb{display:none; margin-top:12px; padding:12px 15px; border-radius:9px;
+  background:var(--grisclaro); border-left:5px solid var(--magenta); font-size:18px; line-height:1.45;}
+.fb.show{display:block;}
+
+/* ── Detecta el error ─────────────────────────────────────── */
+.err{display:flex; gap:12px; align-items:flex-start; padding:11px 14px; margin-bottom:9px;
+  border:2px solid #e0e0e6; border-radius:9px; cursor:pointer; background:#fff; transition:.15s;}
+.err:hover{border-color:var(--naranja);}
+.err .st{flex:0 0 78px; font-family:var(--font-title); font-size:13px; color:#fff;
+  background:var(--gris); border-radius:6px; padding:4px 6px; text-align:center;}
+.err .tx{flex:1; font-size:18px; line-height:1.35;}
+.err .ex{display:none; margin-top:5px; font-size:15.5px; color:var(--grisoscuro);}
+.err.open .ex{display:block;}
+.err.good{border-color:#2e9e4f; background:#e8f7ec;}
+.err.bad{border-color:var(--primario); background:#fdeaea;}
+.err.good .st{background:#2e9e4f;} .err.bad .st{background:var(--primario);}
+
+/* ── HUD ──────────────────────────────────────────────────── */
+#hud{position:fixed; right:16px; bottom:12px; display:flex; gap:8px; align-items:center; z-index:50;}
+#hud button{font-family:var(--font-title); font-size:15px; width:40px; height:34px;
+  border:none; border-radius:8px; background:rgba(255,255,255,.14); color:#fff; cursor:pointer;}
+#hud button:hover{background:rgba(255,255,255,.3);}
+#hud .nav-n{color:#ddd; font-size:13px; min-width:60px; text-align:center;}
+#hud button.wide{width:auto; padding:0 12px;}
+#progress{position:fixed; left:0; top:0; height:4px; background:var(--magenta);
+  z-index:60; width:0; transition:width .25s ease;}
+.kbd-hint{position:fixed; left:16px; bottom:12px; color:#8b8b93; font-size:12px; z-index:50;}
+
+@media print{
+  body{overflow:visible; background:#fff;}
+  #hud,.kbd-hint,#progress{display:none;}
+  #stage{position:static; margin:0; transform:none; width:1280px; height:auto;}
+  .slide{display:flex !important; position:relative; width:1280px; height:720px; page-break-after:always;}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <marker id="ar-gray" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8b8b93"/></marker>
+  <!-- Logo oficial Mathwizards (assets/img/l_black.svg) -->
+  <symbol id="mwlogo" viewBox="0 0 71.073341 79.334137">
+    <g transform="translate(-110.09765,-11.845238)">
+      <path fill="currentColor" d="m 111.68947,73.045737 14.59223,-8.42653 -0.12183,16.93518 z m 23.02126,17.91433 -24.24534,-13.7674 c 0,0 -1.1465,6.82039 0.60918,10.17327 1.75568,3.35288 6.76189,3.71597 6.76189,3.71597 z m 21.84717,0.09747 24.24533,-13.76741 c 0,0 1.1465,6.8204 -0.60918,10.17327 -1.75568,3.35289 -6.76189,3.71598 -6.76189,3.71598 z m -13.19664,0.0725 -14.07204,-8.04112 0.24367,-17.11793 14.13296,8.163 z m 4.42446,-0.01158 14.07204,-8.04112 -0.24367,-17.11794 -14.13296,8.163 z m 0.48735,-28.0222 20.04199,-11.69624 11.08706,21.7477 -13.21919,7.55382 -0.18275,-21.86953 -17.84895,10.05146 z m 15.59873,-20.316383 2.43927,4.666437 -23.01402,13.362986 0.10605,8.16626 -11.8782,-7.10571 z m -16.3312,-8.451603 11.77216,6.999658 -45.28568,26.513858 4.24223,-8.48444 29.05919,-16.968864 z m -20.68214,8.875823 15.6962,-8.696546 0.10606,5.408829 -20.04448,11.66609 z m 20.44264,-14.066933 13.31439,7.62703 -3.59964,-7.03059 V 16.216244 c 0,0 2.24158,-0.148111 2.2779,-2.212279 0.0363,-2.064167 -2.12791,-2.137286 -2.12791,-2.137286 l -9.7051,0.04393 z m -3.86639,-0.02141 -13.31437,7.626992 3.59964,-7.030546 V 16.194804 c 0,0 -2.24158,-0.148111 -2.2779,-2.212279 -0.0363,-2.064167 2.12791,-2.137286 2.12791,-2.137286 l 9.70509,0.04393 z"/>
+    </g>
+  </symbol>
+</defs></svg>
+
+<div id="progress"></div>
+
+<div id="stage">
+
+<!-- ══════════════════════════════════════════════════════════
+     1 · PORTADA
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide portada active">
+  <div class="band"></div>
+  <div class="pcontent">
+    <svg class="portada-logo" role="img" aria-label="Mathwizards"><use href="#mwlogo"/></svg>
+    <h1>T3L1 · Movimiento Parabólico</h1>
+    <h3>Dos movimientos independientes, una sola parábola</h3>
+    <div class="lema">«Pensar antes de calcular»</div>
+    <div class="meta">
+      Ing. Gabriel Astudillo · Mathwizards Consultoría Educativa STEM
+      <div class="small">4to Año — Física · Clases de noviembre de 2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     2 · PRESENTACIÓN
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Presentación — Qué vas a aprender</h2><span class="ftsub">T3L1 · Movimiento parabólico</span></header>
+  <main class="fc">
+    <div class="cuadro info">
+      <div class="ct">Bienvenida</div>
+      <div class="cb">
+        <p>Un proyectil combina un <b>MRU horizontal</b> con un <b>MRUV vertical</b>. Entender esa separación es más importante que memorizar fórmulas: con dos ecuaciones y una decisión correcta se resuelve casi cualquier ejercicio.</p>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="cuadro teoria" style="flex:1">
+        <div class="ct">Objetivos</div>
+        <div class="cb">
+          <ul>
+            <li>descomponer $v_0$ en $v_x$ y $v_y$;</li>
+            <li>calcular $T_{\max}$, $T_v$, $y_{\max}$ y alcance;</li>
+            <li>hallar altura y velocidad en un instante;</li>
+            <li>interpretar las dos raíces de una cuadrática.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cuadro pasos" style="flex:1">
+        <div class="ct">Herramientas de la clase</div>
+        <div class="cb">
+          <ul>
+            <li><b>simulador</b> con $v_0$, $\theta$ y $t$ ajustables;</li>
+            <li><b>reto golf</b>: acertar el hoyo;</li>
+            <li><b>ángulos complementarios</b> en vivo;</li>
+            <li>quiz y <b>detecta el error</b>.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="cuadro extra">
+      <div class="ct">Convención de la clase</div>
+      <div class="cb">$g=10\ \text{m/s}^2$ · sin rozamiento · eje $y$ positivo hacia arriba · $37^\circ$ y $53^\circ$ con sus aproximaciones de $3$-$4$-$5$.</div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Movimiento parabólico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     3 · DIVISOR
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide divisor">
+  <div class="dcontent">
+    <h2>Explicación</h2>
+    <p>Descomponer, calcular e interpretar</p>
+  </div>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Movimiento parabólico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     4 · DEFINICIÓN Y DESCOMPOSICIÓN
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide" data-sim="mini">
+  <header class="ft"><h2>El modelo: dos movimientos independientes</h2><span class="ftsub">Definición y descomposición</span></header>
+  <main class="fc">
+    <div class="cols">
+      <div class="col" style="flex:0 0 430px">
+        <div class="cuadro teoria">
+          <div class="ct">Definición</div>
+          <div class="cb">
+            Movimiento de un cuerpo lanzado con $v_0$ y ángulo $\theta$, que después solo recibe la gravedad. Su trayectoria es una <b>parábola</b>.
+          </div>
+        </div>
+        <div class="cuadro pasos">
+          <div class="ct">Las dos lecturas</div>
+          <div class="cb">
+            <ul>
+              <li><b>Horizontal (MRU):</b> $v_x=v_0\cos\theta$ constante.</li>
+              <li><b>Vertical (MRUV):</b> $v_y=v_0\sen\theta-gt$.</li>
+              <li><b>Un solo tiempo:</b> $t$ es el mismo para $x$ e $y$.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cuadro advertencia">
+          <div class="ct">En el punto más alto</div>
+          <div class="cb">$v_y=0$, pero $v_x$ <b>no</b> se anula: la rapidez vale $v_0\cos\theta$.</div>
+        </div>
+      </div>
+      <div class="col" style="display:flex; flex-direction:column; justify-content:center">
+        <div class="miniwrap">
+          <div class="minihead">Mini simulador — mueve los controles</div>
+          <svg id="concept" viewBox="0 0 700 400" style="width:100%; height:auto" aria-label="Mini simulador de movimiento parabólico"></svg>
+          <div class="minictl">
+            <div class="ctrl">
+              <label>$v_0$ <b><span id="mv0v">25</span> m/s</b></label>
+              <input id="mv0" type="range" min="10" max="40" step="1" value="25" aria-label="Rapidez inicial">
+            </div>
+            <div class="ctrl">
+              <label>$\theta$ <b><span id="mthv">45</span>°</b></label>
+              <input id="mth" type="range" min="10" max="80" step="1" value="45" aria-label="Ángulo de lanzamiento">
+            </div>
+            <div class="ctrl">
+              <label>$t$ <b><span id="mtv">0,0</span> s</b></label>
+              <input id="mt" type="range" min="0" max="1000" step="1" value="0" aria-label="Instante de tiempo">
+            </div>
+          </div>
+          <div class="minichips">
+            <span class="chip"><i>T máx</i><b id="m-tmax">—</b></span>
+            <span class="chip"><i>y máx</i><b id="m-ymax">—</b></span>
+            <span class="chip hi"><i>alcance</i><b id="m-r">—</b></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Movimiento parabólico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     5 · FORMULARIO
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Formulario esencial</h2><span class="ftsub">Todo sale de dos ecuaciones</span></header>
+  <main class="fc">
+    <table class="tabla tight">
+      <tr><th>Magnitud</th><th>Horizontal (X)</th><th>Vertical (Y)</th></tr>
+      <tr><td>Componentes de $v_0$</td><td>$v_x=v_0\cos\theta$</td><td>$v_y=v_0\sen\theta$</td></tr>
+      <tr><td>Aceleración</td><td>$0$</td><td>$-g$</td></tr>
+      <tr><td>Velocidad</td><td>$v_x$ constante</td><td>$v_y(t)=v_0\sen\theta-gt$</td></tr>
+      <tr><td>Posición</td><td>$x=v_xt$</td><td>$y=v_0\sen\theta\,t-\dfrac{gt^2}{2}$</td></tr>
+      <tr><td>Sin tiempo</td><td>—</td><td>$v_y^2=(v_0\sen\theta)^2-2gy$</td></tr>
+      <tr><td>Punto máximo</td><td>—</td><td>$T_{\max}=\dfrac{v_0\sen\theta}{g}$</td></tr>
+      <tr><td>Altura máxima</td><td>—</td><td>$y_{\max}=\dfrac{(v_0\sen\theta)^2}{2g}$</td></tr>
+      <tr><td>Tiempo de vuelo</td><td>—</td><td>$T_v=2T_{\max}$ (mismo nivel)</td></tr>
+      <tr><td>Alcance</td><td>$R=v_xT_v$</td><td>$R=\dfrac{v_0^2\sen2\theta}{g}$</td></tr>
+      <tr><td>Rapidez total</td><td colspan="2">$V=\sqrt{v_x^2+v_y^2}$</td></tr>
+    </table>
+    <div class="cuadro advertencia mt">
+      <div class="ct">La fórmula del alcance no es una receta</div>
+      <div class="cb">Solo vale si el proyectil vuelve al <b>mismo nivel</b>. Si sale desde una altura $h$, usa $x=v_xT_v$ con el $T_v$ que obtengas de la ecuación vertical.</div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Movimiento parabólico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     6 · RUTA FIJA
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Ruta fija de resolución</h2><span class="ftsub">Seis pasos, siempre en el mismo orden</span></header>
+  <main class="fc">
+    <div class="cols">
+      <div class="col">
+        <div class="cuadro pasos">
+          <div class="ct">Los seis pasos</div>
+          <div class="cb">
+            <ol>
+              <li><b>Datos:</b> $v_x=v_0\cos\theta$, $v_y=v_0\sen\theta$.</li>
+              <li><b>Tiempos:</b> $T_{\max}=v_y/g$; $T_v=2T_{\max}$.</li>
+              <li><b>Altura máxima:</b> $y_{\max}=v_y^2/(2g)$.</li>
+              <li><b>Alcance:</b> $R=v_xT_v$.</li>
+              <li><b>Altura en $t$:</b> $y=v_yt-gt^2/2$.</li>
+              <li><b>Velocidad en $t$:</b> $v_y(t)=v_y-gt$; $V=\sqrt{v_x^2+v_y(t)^2}$.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="cuadro advertencia">
+          <div class="ct">Errores que hay que evitar</div>
+          <div class="cb">
+            <ul>
+              <li>confundir $v_y$ con la rapidez total;</li>
+              <li>olvidar el factor $2$ en $T_v$;</li>
+              <li>aplicar simetría cuando se lanza desde una altura;</li>
+              <li>aceptar un tiempo mayor que $T_v$ sin interpretarlo.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cuadro extra">
+          <div class="ct">Truco de control</div>
+          <div class="cb">Antes de operar, pregunta: <b>¿qué ecuación contiene lo que busco y qué datos ya tengo?</b> Si sobran datos, probablemente haya un camino más corto.</div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Movimiento parabólico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     7 · EJEMPLO 1
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Ejemplo 1 — Balón de fútbol</h2><span class="ftsub">$v_0=25\ \text{m/s}$, $\theta=20^\circ$</span></header>
+  <main class="fc">
+    <div class="cuadro solucion">
+      <div class="ct">Paso a paso</div>
+      <div class="cb">
+        <p>$v_x=25\cos20^\circ=23{,}49\ \text{m/s}$ &nbsp;·&nbsp; $v_y=25\sen20^\circ=8{,}55\ \text{m/s}$</p>
+        <p>$T_{\max}=\dfrac{8{,}55}{10}=0{,}85\ \text{s}$ &nbsp;·&nbsp; $T_v=2T_{\max}=1{,}71\ \text{s}$</p>
+        <p>$y_{\max}=\dfrac{(8{,}55)^2}{20}=3{,}65\ \text{m}$ &nbsp;·&nbsp; $R=23{,}49(1{,}71)=39{,}93\ \text{m}$</p>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="cuadro teoria" style="flex:1">
+        <div class="ct">Lectura física</div>
+        <div class="cb">El balón sube poco (3,65 m) y avanza mucho (39,93 m): es un tiro <b>raso y rápido</b>, típico de un pase largo.</div>
+      </div>
+      <div class="cuadro extra" style="flex:1">
+        <div class="ct">Pregunta</div>
+        <div class="cb">¿Cuánto vale la rapidez en el punto más alto? <b>23,49 m/s</b>, porque $v_y=0$ y solo queda $v_x$.</div>
+      </div>
+    </div>
+    <p class="center small mt">Comprueba en el simulador: coloca $v_0=25$ y $\theta=20^\circ$.</p>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Movimiento parabólico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     8 · EJEMPLO 2
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Ejemplo 2 — Artillería</h2><span class="ftsub">$v_0=47\ \text{m/s}$, $\theta=55^\circ$</span></header>
+  <main class="fc">
+    <div class="cuadro solucion">
+      <div class="ct">Paso a paso</div>
+      <div class="cb">
+        <p>$v_x=47\cos55^\circ=26{,}96\ \text{m/s}$ &nbsp;·&nbsp; $v_y=47\sen55^\circ=38{,}50\ \text{m/s}$</p>
+        <p>$T_{\max}=3{,}85\ \text{s}$ &nbsp;·&nbsp; $T_v=7{,}70\ \text{s}$ &nbsp;·&nbsp; $y_{\max}=74{,}11\ \text{m}$ &nbsp;·&nbsp; $R=207{,}59\ \text{m}$</p>
+        <p>A los $3{,}5\ \text{s}$: $v_y=38{,}50-10(3{,}5)=3{,}50\ \text{m/s}$, y $V=\sqrt{26{,}96^2+3{,}50^2}=27{,}19\ \text{m/s}$.</p>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="cuadro teoria" style="flex:1">
+        <div class="ct">Interpretación</div>
+        <div class="cb">A los $3{,}5\ \text{s}$ el proyectil ya pasó el punto máximo ($3{,}85\ \text{s}$) y va bajando, pero todavía conserva una pequeña componente vertical positiva.</div>
+      </div>
+      <div class="cuadro advertencia" style="flex:1">
+        <div class="ct">Ojo</div>
+        <div class="cb">La rapidez <b>no</b> es $v_y=3{,}50$: hay que sumar la componente horizontal. La respuesta correcta es $27{,}19\ \text{m/s}$.</div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Movimiento parabólico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     9 · EJEMPLO 3 · GOLF
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Ejemplo 3 — Pelota de golf</h2><span class="ftsub">$v_0=32\ \text{m/s}$, $\theta=27^\circ$</span></header>
+  <main class="fc">
+    <div class="cols">
+      <div class="col">
+        <div class="cuadro solucion">
+          <div class="ct">a) y b) Altura y tiempo</div>
+          <div class="cb">
+            <p>$v_y=32\sen27^\circ=14{,}53\ \text{m/s}$</p>
+            <p>$y_{\max}=\dfrac{14{,}53^2}{20}=10{,}55\ \text{m}$</p>
+            <p>$T_{\max}=1{,}45\ \text{s}$ &nbsp;→&nbsp; $T_v=2{,}91\ \text{s}$</p>
+          </div>
+        </div>
+        <div class="cuadro solucion">
+          <div class="ct">c) Un segundo antes del máximo</div>
+          <div class="cb">
+            <p>$t=1{,}45-1=0{,}45\ \text{s}$</p>
+            <p>$y=14{,}53(0{,}45)-5(0{,}45)^2=5{,}53\ \text{m}$</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="cuadro advertencia">
+          <div class="ct">d) Dos segundos después del máximo</div>
+          <div class="cb">
+            <p>$t=1{,}45+2=3{,}45\ \text{s}$</p>
+            <p>$y=14{,}53(3{,}45)-5(3{,}45)^2=-9{,}38\ \text{m}$</p>
+            <p><b>La pelota ya aterrizó.</b> El tiempo de vuelo es $2{,}91\ \text{s}$; para $t>2{,}91\ \text{s}$ el modelo no describe el movimiento real.</p>
+          </div>
+        </div>
+        <div class="cuadro extra">
+          <div class="ct">Lección</div>
+          <div class="cb">Una fórmula no decide si un tiempo es válido. Después de calcular, compara con $T_v$ e interpreta el signo.</div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Movimiento parabólico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     10 · DIVISOR SIMULADOR
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide divisor">
+  <div class="dcontent">
+    <h2>Simulador</h2>
+    <p>Mueve $v_0$, $\theta$ y $t$: la física cambia en vivo</p>
+  </div>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Movimiento parabólico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     11 · SIMULADOR
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide" data-sim="sim">
+  <header class="ft"><h2>Simulador de proyectil</h2><span class="ftsub">Ajusta y observa</span></header>
+  <main class="fc">
+    <div class="simwrap">
+      <div class="simstage"><svg id="sim" viewBox="0 0 760 470" aria-label="Simulador de movimiento parabólico"></svg></div>
+      <aside class="simpanel">
+        <div class="ctrl">
+          <label>Rapidez inicial $v_0$ <b><span id="v0val">25</span> m/s</b></label>
+          <input id="v0" type="range" min="10" max="50" step="1" value="25">
+        </div>
+        <div class="ctrl">
+          <label>Ángulo $\theta$ <b><span id="thval">45</span>°</b></label>
+          <input id="th" type="range" min="5" max="85" step="1" value="45">
+        </div>
+        <div class="ctrl">
+          <label>Instante $t$ <b><span id="tval">0,0</span> s</b></label>
+          <input id="tslider" type="range" min="0" max="1000" step="1" value="0">
+        </div>
+        <div class="btnrow">
+          <button class="btn solid" id="play">▶ Reproducir</button>
+          <button class="btn" id="reset">Reiniciar</button>
+        </div>
+        <div class="readout">
+          <div class="ro"><span>$v_x$</span><b id="ro-vx">—</b></div>
+          <div class="ro"><span>$v_y$ inicial</span><b id="ro-vy">—</b></div>
+          <div class="ro"><span>$T_{\max}$</span><b id="ro-tmax">—</b></div>
+          <div class="ro"><span>$T_v$</span><b id="ro-tv">—</b></div>
+          <div class="ro"><span>$y_{\max}$</span><b id="ro-ymax">—</b></div>
+          <div class="ro"><span>Alcance $R$</span><b id="ro-r" class="hi">—</b></div>
+          <div class="ro"><span>Posición actual</span><b id="ro-pos">—</b></div>
+          <div class="ro"><span>Rapidez actual</span><b id="ro-v" class="hi">—</b></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Movimiento parabólico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     12 · RETO GOLF
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide" data-sim="golf">
+  <header class="ft"><h2>Reto golf ⛳</h2><span class="ftsub">Ajusta el tiro y emboca</span></header>
+  <main class="fc">
+    <div class="simwrap">
+      <div class="golfstage"><svg id="golf" viewBox="0 0 760 390" aria-label="Reto de golf"></svg></div>
+      <aside class="simpanel">
+        <div class="cuadro info" style="margin-bottom:9px">
+          <div class="ct">Objetivo</div>
+          <div class="cb" style="font-size:15.5px">El hoyo está a <b id="gdist">—</b> m. Ajusta $\theta$ y $v_0$ para que la pelota caiga a menos de <b>2,5 m</b> de la bandera.</div>
+        </div>
+        <div class="ctrl">
+          <label>Ángulo $\theta$ <b><span id="gthval">45</span>°</b></label>
+          <input id="gth" type="range" min="10" max="80" step="1" value="45">
+        </div>
+        <div class="ctrl">
+          <label>Rapidez $v_0$ <b><span id="gv0val">30</span> m/s</b></label>
+          <input id="gv0" type="range" min="15" max="45" step="1" value="30">
+        </div>
+        <div class="btnrow">
+          <button class="btn solid" id="gshoot">Disparar</button>
+          <button class="btn" id="gnew">Nuevo hoyo</button>
+        </div>
+        <div class="golfmsg" id="gmsg">Elige tus valores y pulsa <b>Disparar</b>. La gravedad es $g=10$.</div>
+        <div class="ro" style="margin-top:6px"><span>Alcance teórico</span><b id="grange">—</b></div>
+        <div class="ro"><span>Disparos</span><b id="gshots">0</b></div>
+        <div class="ro"><span>Aciertos</span><b id="ghits">0</b></div>
+      </aside>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Movimiento parabólico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     13 · ÁNGULOS COMPLEMENTARIOS
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide" data-sim="comp">
+  <header class="ft"><h2>Ángulos complementarios</h2><span class="ftsub">Mismo alcance, distinta altura</span></header>
+  <main class="fc">
+    <div class="simwrap">
+      <div class="simstage"><svg id="comp" viewBox="0 0 760 450" aria-label="Comparación de ángulos complementarios"></svg></div>
+      <aside class="simpanel">
+        <div class="ctrl">
+          <label>Ángulo $\theta$ <b><span id="cthval">30</span>°</b></label>
+          <input id="cth" type="range" min="10" max="80" step="1" value="30">
+        </div>
+        <div class="ctrl">
+          <label>Rapidez $v_0$ <b><span id="cv0val">30</span> m/s</b></label>
+          <input id="cv0" type="range" min="15" max="45" step="1" value="30">
+        </div>
+        <div class="readout">
+          <div class="ro"><span>Alcance $R$</span><b id="c-r" class="hi">—</b></div>
+          <div class="ro"><span>$y_{\max}(\theta)$</span><b id="c-y1">—</b></div>
+          <div class="ro"><span>$y_{\max}(90^\circ-\theta)$</span><b id="c-y2">—</b></div>
+          <div class="ro"><span>$T_v(\theta)$</span><b id="c-t1">—</b></div>
+          <div class="ro"><span>$T_v(90^\circ-\theta)$</span><b id="c-t2">—</b></div>
+        </div>
+        <div class="cuadro extra" style="margin-top:9px">
+          <div class="ct">Para pensar</div>
+          <div class="cb" style="font-size:15.5px">¿Por qué el alcance no cambia si los ángulos son complementarios? ¿Qué tiro dura más?</div>
+        </div>
+      </aside>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Movimiento parabólico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     14 · DIVISOR EJERCICIOS
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide divisor">
+  <div class="dcontent">
+    <h2>Ejercicios</h2>
+    <p>Cuatro niveles: de la fórmula al diseño</p>
+  </div>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Movimiento parabólico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     15 · EJERCICIOS ★
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide exslide">
+  <header class="ft"><h2>Ejercicios para la pizarra <span style="color:#ffd9a8">★</span></h2><span class="ftsub">Aplicación directa</span></header>
+  <main class="fc">
+    <ol class="exlist two">
+      <li>Un balón sale a $20\ \text{m/s}$ con $\theta=37^\circ$. Halla $v_x$ y $v_y$.</li>
+      <li>Una pelota de golf sale a $30\ \text{m/s}$ con $30^\circ$. Calcula $T_{\max}$ y $T_v$.</li>
+      <li>Un batea a $24\ \text{m/s}$ con $30^\circ$. ¿Cuál es el alcance?</li>
+      <li>Una pelota sale a $20\ \text{m/s}$ con $60^\circ$. ¿Qué altura tiene a $1\ \text{s}$?</li>
+      <li>Un balón sale a $12\ \text{m/s}$ con $60^\circ$. ¿Rapidez en el punto más alto? ¿Altura máxima?</li>
+      <li>Dos tiros con $20\ \text{m/s}$ a $30^\circ$ y $60^\circ$: ¿cuál sube más y cuál llega más lejos?</li>
+    </ol>
+    <div class="reveal-row">
+      <button class="btn solid reveal" data-target="ansA">Mostrar respuestas</button>
+      <span class="hint">Intenta primero; después compara el procedimiento.</span>
+    </div>
+    <div class="answers" id="ansA">
+      <b>1.</b> $v_x=16\ \text{m/s}$, $v_y=12\ \text{m/s}$.
+      <b>2.</b> $v_y=15\ \text{m/s}$; $T_{\max}=1{,}5\ \text{s}$, $T_v=3\ \text{s}$.
+      <b>3.</b> $v_x=20{,}78$, $v_y=12$, $T_v=2{,}4\ \text{s}$; $R=49{,}88\ \text{m}$.
+      <b>4.</b> $y=17{,}32(1)-5(1)^2=12{,}32\ \text{m}$.
+      <b>5.</b> En el máximo $v_y=0$: $V=v_x=6\ \text{m/s}$; $y_{\max}=5{,}4\ \text{m}$.
+      <b>6.</b> Sube más el de $60^\circ$ ($15\ \text{m}$ vs. $5\ \text{m}$); ambos llegan a $34{,}64\ \text{m}$.
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Movimiento parabólico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     16 · EJERCICIOS ★★
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide exslide">
+  <header class="ft"><h2>Ejercicios para la pizarra <span style="color:#f6b08a">★★</span></h2><span class="ftsub">Aplicación combinada</span></header>
+  <main class="fc">
+    <ol class="exlist two">
+      <li>$v_0=25\ \text{m/s}$, $\theta=20^\circ$. ¿En qué instantes la altura es $3\ \text{m}$?</li>
+      <li>$v_0=30\ \text{m/s}$, $\theta=45^\circ$. A los $3\ \text{s}$: vector velocidad, rapidez y ángulo.</li>
+      <li>$v_0=40\ \text{m/s}$, $\theta=30^\circ$. Calcula $y_{\max}$ y el alcance.</li>
+      <li>$v_0=50\ \text{m/s}$, $\theta=37^\circ$. ¿A qué distancias horizontales está cuando $y=30\ \text{m}$?</li>
+      <li>La gráfica muestra un máximo de $20\ \text{m}$ a los $2\ \text{s}$ y un alcance de $40\ \text{m}$ a los $4\ \text{s}$. Halla $v_0$ y $\theta$.</li>
+    </ol>
+    <div class="reveal-row">
+      <button class="btn solid reveal" data-target="ansB">Mostrar respuestas</button>
+      <span class="hint">En la 5, primero lee $T_{\max}$ y $T_v$ de la gráfica.</span>
+    </div>
+    <div class="answers" id="ansB">
+      <b>1.</b> $5t^2-8{,}55t+3=0$: $t=0{,}49\ \text{s}$ y $t=1{,}22\ \text{s}$.
+      <b>2.</b> $v_x=21{,}21$, $v_y=21{,}21-30=-8{,}79\ \text{m/s}$; $V=22{,}96\ \text{m/s}$, $22{,}5^\circ$ por debajo de la horizontal.
+      <b>3.</b> $y_{\max}=20\ \text{m}$; $T_v=4\ \text{s}$; $R=34{,}64(4)=138{,}56\ \text{m}$.
+      <b>4.</b> $t=3\pm\sqrt3$: $1{,}27\ \text{s}$ y $4{,}73\ \text{s}$; $x=50{,}72\ \text{m}$ y $189{,}28\ \text{m}$.
+      <b>5.</b> $T_{\max}=2\ \text{s}\Rightarrow v_y=20$; $T_v=4\ \text{s}$ y $R=40\Rightarrow v_x=10$; $v_0=22{,}36\ \text{m/s}$, $\theta=63{,}43^\circ$.
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Movimiento parabólico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     17 · EJERCICIOS ★★★
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide exslide">
+  <header class="ft"><h2>Ejercicios para la pizarra <span style="color:#ffb3c0">★★★</span></h2><span class="ftsub">Lógica y varios pasos</span></header>
+  <main class="fc">
+    <ol class="exlist two">
+      <li>Desde $45\ \text{m}$ se lanza horizontalmente a $20\ \text{m/s}$. Tiempo de caída, alcance y rapidez de impacto.</li>
+      <li>Un cañón dispara a $30\ \text{m/s}$ con $45^\circ$ hacia un blanco a $90\ \text{m}$ que se aleja a $5\ \text{m/s}$. ¿Acierta?</li>
+      <li>Dos tiros tienen igual alcance, pero el primero dura el triple. Demuestra $\tg\theta=3$ y halla los ángulos.</li>
+      <li>Un jugador lanza a $15\ \text{m/s}$ con $30^\circ$. ¿Supera una valla de $2\ \text{m}$ a $10\ \text{m}$? ¿Por qué margen?</li>
+    </ol>
+    <div class="reveal-row">
+      <button class="btn solid reveal" data-target="ansC">Mostrar respuestas</button>
+      <span class="hint">En la 2, compara la posición del blanco con el alcance en $T_v$.</span>
+    </div>
+    <div class="answers" id="ansC">
+      <b>1.</b> $45=5t^2\Rightarrow t=3\ \text{s}$; $R=60\ \text{m}$; $v_y=30\ \text{m/s}$; $V=\sqrt{20^2+30^2}=36{,}06\ \text{m/s}$.
+      <b>2.</b> $T_v=4{,}24\ \text{s}$ y $R=90\ \text{m}$; el blanco está en $111{,}21\ \text{m}$: falla por $21{,}21\ \text{m}$. Si se acerca, está en $68{,}79\ \text{m}$: pasa de largo.
+      <b>3.</b> $\dfrac{T_{v1}}{T_{v2}}=\dfrac{\sen\theta}{\sen(90^\circ-\theta)}=\tg\theta=3$; $\theta=71{,}57^\circ$ y $18{,}43^\circ$.
+      <b>4.</b> $t=0{,}77\ \text{s}$; $y=2{,}81\ \text{m}$; supera la valla por $0{,}81\ \text{m}$.
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Movimiento parabólico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     18 · EJERCICIOS ★★★★
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide exslide">
+  <header class="ft"><h2>Ejercicios para la pizarra <span style="color:#e7b6ff">★★★★</span></h2><span class="ftsub">Diseño y análisis crítico</span></header>
+  <main class="fc">
+    <ol class="exlist two">
+      <li>Un golfista golpea a $32\ \text{m/s}$ y el hoyo está a $100\ \text{m}$. Halla los dos ángulos.</li>
+      <li>Cañón a $40\ \text{m/s}$: impactar un blanco a $100\ \text{m}$ y $20\ \text{m}$ de altura. Si hay un techo a $50\ \text{m}$, ¿cuál tiro conviene?</li>
+      <li>$v_0=30\ \text{m/s}$, blanco a $60\ \text{m}$ y muro de $8\ \text{m}$ a $30\ \text{m}$. ¿Qué ángulo acierta y supera el muro?</li>
+      <li>La trayectoria es $y=1{,}2x-0{,}05x^2$. Halla $\theta$, $v_0$, $y_{\max}$ y el alcance.</li>
+    </ol>
+    <div class="reveal-row">
+      <button class="btn solid reveal" data-target="ansD">Mostrar respuestas</button>
+      <span class="hint">En la 2 y la 3, primero resuelve el alcance; después evalúa la altura.</span>
+    </div>
+    <div class="answers" id="ansD">
+      <b>1.</b> $\sen2\theta=\dfrac{100(10)}{32^2}=0{,}9766$; $\theta=38{,}79^\circ$ y $51{,}21^\circ$.
+      <b>2.</b> $31{,}25T^2-100T+51{,}25=0$ con $T=\tg\theta$; $\theta=32{,}65^\circ$ y $68{,}66^\circ$. Alturas máximas: $23{,}3\ \text{m}$ y $69{,}4\ \text{m}$; con techo a $50\ \text{m}$ conviene $32{,}65^\circ$.
+      <b>3.</b> $\sen2\theta=0{,}6667$; $\theta=20{,}91^\circ$ o $69{,}09^\circ$. A $30\ \text{m}$: $y=5{,}73\ \text{m}$ (choca) o $y=39{,}27\ \text{m}$ (pasa). Solo sirve $69{,}09^\circ$.
+      <b>4.</b> $\tg\theta=1{,}2\Rightarrow\theta=50{,}19^\circ$; $0{,}05=\dfrac{10}{2v_0^2\cos^2\theta}\Rightarrow v_0=15{,}62\ \text{m/s}$; $y_{\max}=7{,}2\ \text{m}$; $R=24\ \text{m}$.
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Movimiento parabólico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     19 · QUIZ 1
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide quizslide">
+  <header class="ft"><h2>Quiz rápido · 1 de 3</h2><span class="ftsub">Elige una opción</span></header>
+  <main class="fc">
+    <div class="quizbox" data-exp="El alcance es $R=v_0^2\sen2\theta/g=400\sen60^\circ/10=34{,}64$ m. La opción 20 m usa $\sen\theta$ en lugar de $\sen2\theta$.">
+      <p class="qtext">Un balón sale a $20\ \text{m/s}$ con $\theta=30^\circ$. ¿Cuál es su alcance?</p>
+      <button class="opt" data-ok="0">$20\ \text{m}$</button>
+      <button class="opt" data-ok="1">$34{,}64\ \text{m}$</button>
+      <button class="opt" data-ok="0">$17{,}32\ \text{m}$</button>
+      <button class="opt" data-ok="0">$40\ \text{m}$</button>
+      <div class="fb"></div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Movimiento parabólico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     20 · QUIZ 2
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide quizslide">
+  <header class="ft"><h2>Quiz rápido · 2 de 3</h2><span class="ftsub">Punto más alto</span></header>
+  <main class="fc">
+    <div class="quizbox" data-exp="En el punto más alto la componente vertical se anula, pero la horizontal sigue valiendo $v_x=v_0\cos\theta$. Por eso la velocidad no es cero.">
+      <p class="qtext">Sin rozamiento, en el punto más alto de la trayectoria:</p>
+      <button class="opt" data-ok="0">la velocidad es cero.</button>
+      <button class="opt" data-ok="1">$v_y=0$ y $v_x$ sigue valiendo $v_0\cos\theta$.</button>
+      <button class="opt" data-ok="0">las dos componentes se anulan.</button>
+      <button class="opt" data-ok="0">la rapidez es máxima.</button>
+      <div class="fb"></div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Movimiento parabólico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     21 · QUIZ 3
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide quizslide">
+  <header class="ft"><h2>Quiz rápido · 3 de 3</h2><span class="ftsub">La trampa del tiempo</span></header>
+  <main class="fc">
+    <div class="quizbox" data-exp="La pelota dura $T_v=2(14{,}53)/10=2{,}91$ s. Dos segundos después del máximo ya pasaron $3{,}45$ s: el proyectil aterrizó. La altura negativa solo indica que el modelo se salió del intervalo físico válido.">
+      <p class="qtext">Una pelota de golf sale a $32\ \text{m/s}$ con $27^\circ$. ¿Dónde está <b>dos segundos después</b> del punto máximo?</p>
+      <button class="opt" data-ok="0">En el aire, a $10\ \text{m}$ de altura.</button>
+      <button class="opt" data-ok="1">Ya aterrizó: $T_v=2{,}91\ \text{s}$.</button>
+      <button class="opt" data-ok="0">Exactamente en el punto máximo.</button>
+      <button class="opt" data-ok="0">A $5{,}53\ \text{m}$ de altura.</button>
+      <div class="fb"></div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Movimiento parabólico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     22 · DETECTA EL ERROR
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Detecta el error</h2><span class="ftsub">Haz clic en cada frase</span></header>
+  <main class="fc">
+    <div id="errlist">
+      <div class="err" data-ok="0" data-exp="Falso. En el punto más alto $v_y=0$, pero $v_x=v_0\cos\theta$ sigue actuando.">
+        <div class="st">FRASE 1</div>
+        <div class="tx">«En el punto más alto la velocidad del proyectil es cero.»<div class="ex"></div></div>
+      </div>
+      <div class="err" data-ok="0" data-exp="Falso. $T_{\max}$ es solo la mitad del vuelo: $T_v=2T_{\max}$ cuando vuelve al mismo nivel.">
+        <div class="st">FRASE 2</div>
+        <div class="tx">«El tiempo de vuelo es igual al tiempo al punto máximo.»<div class="ex"></div></div>
+      </div>
+      <div class="err" data-ok="0" data-exp="Falso. $R\propto v_0^2$: si duplicas la rapidez, el alcance se multiplica por cuatro.">
+        <div class="st">FRASE 3</div>
+        <div class="tx">«Si duplico la rapidez inicial, duplico el alcance.»<div class="ex"></div></div>
+      </div>
+      <div class="err" data-ok="1" data-exp="Correcto. $\sen2\theta$ toma el mismo valor para $\theta$ y $90^\circ-\theta$.">
+        <div class="st">FRASE 4</div>
+        <div class="tx">«Con la misma rapidez, $30^\circ$ y $60^\circ$ tienen el mismo alcance.»<div class="ex"></div></div>
+      </div>
+      <div class="err" data-ok="0" data-exp="Falso. La gravedad solo actúa en la vertical. La componente horizontal es constante (MRU).">
+        <div class="st">FRASE 5</div>
+        <div class="tx">«La gravedad también frena la componente horizontal.»<div class="ex"></div></div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Movimiento parabólico</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     23 · CIERRE
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide">
+  <header class="ft"><h2>Cierre de la clase</h2><span class="ftsub">Checklist y tarea</span></header>
+  <main class="fc">
+    <div class="cols">
+      <div class="col">
+        <div class="cuadro teoria">
+          <div class="ct">Lo que te llevas</div>
+          <div class="cb">
+            <ul>
+              <li><b>Descomponer:</b> $v_x$ constante y $v_y$ con gravedad.</li>
+              <li><b>Calcular:</b> $T_{\max}$, $T_v$, $y_{\max}$ y $R$.</li>
+              <li><b>Interpretar:</b> dos raíces, alturas negativas y ángulos complementarios.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cuadro advertencia">
+          <div class="ct">Antes de entregar</div>
+          <div class="cb">
+            <ul>
+              <li>¿Escribí las unidades?</li>
+              <li>¿Comparé el tiempo con $T_v$?</li>
+              <li>¿Expliqué qué significa cada solución?</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="cuadro extra">
+          <div class="ct">Tarea</div>
+          <div class="cb">
+            Resuelve los ejercicios <b>15, 21, 31 y 43</b> de la guía. En cada uno, escribe primero el cuadro de datos y después la ecuación; no empieces por la calculadora.
+          </div>
+        </div>
+        <div class="cuadro info">
+          <div class="ct">Para practicar</div>
+          <div class="cb">
+            La <b>Guía de Ejercicios T3L1</b> trae 50 ejercicios en cuatro niveles y una clave comentada. Usa el simulador para comprobar tus resultados antes de mirar la clave.
+          </div>
+        </div>
+        <p class="center" style="margin-top:16px; font-family:var(--font-title); font-size:25px; color:var(--primario)">¡Buen trabajo! · Mathwizards</p>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T3L1 — Movimiento parabólico</span><span class="pn"></span></footer>
+</section>
+
+</div><!-- /#stage -->
+
+<div id="hud">
+  <button id="prev" title="Anterior (←)">‹</button>
+  <span class="nav-n" id="navN">1 / 1</span>
+  <button id="next" title="Siguiente (→)">›</button>
+  <button id="fs" class="wide" title="Pantalla completa (F)">Pantalla completa</button>
+</div>
+<div class="kbd-hint">← → navegar · F pantalla completa</div>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js"></script>
+<script>
+(function(){
+"use strict";
+
+/* ============================================================
+   0 · Utilidades
+   ============================================================ */
+var MACROS = {"\\sen":"\\operatorname{sen}", "\\tg":"\\operatorname{tg}"};
+function dec(v,n){ return (Math.abs(v)<5e-4?0:v).toFixed(n===undefined?2:n).replace(".",","); }
+function clamp(v,a,b){ return Math.max(a,Math.min(b,v)); }
+function $(id){ return document.getElementById(id); }
+
+if (window.renderMathInElement){
+  renderMathInElement(document.body, {
+    delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],
+    macros:MACROS, throwOnError:false
+  });
+}
+
+/* ============================================================
+   1 · Navegación
+   ============================================================ */
+var slides = Array.prototype.slice.call(document.querySelectorAll(".slide"));
+var cur = 0;
+function stopAll(){
+  if (state.sim.timer){ clearInterval(state.sim.timer); state.sim.timer = 0; }
+  if (state.sim.playing){
+    state.sim.playing = false;
+    var pb = $("play"); if (pb) pb.textContent = "▶ Reproducir";
+  }
+  if (state.golf.timer){ clearInterval(state.golf.timer); state.golf.timer = 0; }
+}
+function show(n){
+  n = clamp(n, 0, slides.length - 1);
+  if (n === cur) return;
+  slides[cur].classList.remove("active");
+  cur = n;
+  slides[cur].classList.add("active");
+  $("navN").textContent = (cur+1) + " / " + slides.length;
+  $("progress").style.width = ((cur+1)/slides.length*100) + "%";
+  stopAll();
+  if (slides[cur].dataset.sim === "mini") renderMini();
+  if (slides[cur].dataset.sim === "sim") renderSim();
+  if (slides[cur].dataset.sim === "golf") renderGolf();
+  if (slides[cur].dataset.sim === "comp") renderComp();
+}
+slides.forEach(function(s,i){ var pn=s.querySelector(".pn"); if(pn) pn.textContent=(i+1)+" / "+slides.length; });
+// Logo de la marca en cada barra de título
+Array.prototype.forEach.call(document.querySelectorAll(".ft"), function(h){
+  var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("class", "ftlogo");
+  svg.setAttribute("aria-hidden", "true");
+  var use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+  use.setAttribute("href", "#mwlogo");
+  svg.appendChild(use);
+  h.insertBefore(svg, h.firstChild);
+});
+
+$("next").addEventListener("click", function(){ show(cur+1); });
+$("prev").addEventListener("click", function(){ show(cur-1); });
+$("fs").addEventListener("click", function(){
+  if (document.fullscreenElement) document.exitFullscreen();
+  else document.documentElement.requestFullscreen();
+});
+document.addEventListener("keydown", function(e){
+  var t = e.target;
+  if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.tagName === "SELECT")) return;
+  if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " "){ e.preventDefault(); show(cur+1); }
+  else if (e.key === "ArrowLeft" || e.key === "PageUp"){ e.preventDefault(); show(cur-1); }
+  else if (e.key === "Home"){ e.preventDefault(); show(0); }
+  else if (e.key === "End"){ e.preventDefault(); show(slides.length-1); }
+  else if (e.key === "f" || e.key === "F"){
+    if (document.fullscreenElement) document.exitFullscreen();
+    else document.documentElement.requestFullscreen();
+  }
+});
+function fit(){
+  var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+  $("stage").style.transform = "scale(" + s + ")";
+}
+window.addEventListener("resize", fit); fit();
+$("progress").style.width = (1/slides.length*100) + "%";
+$("navN").textContent = "1 / " + slides.length;
+
+/* ============================================================
+   2 · Motor de dibujo
+   ============================================================ */
+var G = 10;
+function niceStep(span){
+  var raw = span/5, p = Math.pow(10, Math.floor(Math.log10(raw))), m = raw/p;
+  return (m<1.5?1:m<3?2:m<7?5:10)*p;
+}
+function makeFrame(svg, W, H, pad){
+  var w = 760, h = +svg.getAttribute("viewBox").split(" ")[3];
+  var x0 = pad.l, y0 = h - pad.b;
+  var sx = (w - pad.l - pad.r)/Math.max(W,1e-6);
+  var sy = (h - pad.t - pad.b)/Math.max(H,1e-6);
+  return {
+    w:w, h:h, x0:x0, y0:y0, sx:sx, sy:sy, W:W, H:H,
+    X:function(x){ return x0 + x*sx; },
+    Y:function(y){ return y0 - y*sy; }
+  };
+}
+function axesSVG(f, opts){
+  opts = opts || {};
+  var s = "";
+  var stepX = niceStep(f.W), stepY = niceStep(f.H);
+  var i;
+  s += '<line x1="'+f.x0+'" y1="'+f.y0+'" x2="'+(f.w-18)+'" y2="'+f.y0+'" stroke="#9a9aa2" stroke-width="2"/>';
+  s += '<line x1="'+f.x0+'" y1="'+f.y0+'" x2="'+f.x0+'" y2="18" stroke="#9a9aa2" stroke-width="2"/>';
+  s += '<text x="'+(f.w-14)+'" y="'+(f.y0-9)+'" font-size="14" fill="#8b8b93" text-anchor="end">x (m)</text>';
+  s += '<text x="'+(f.x0-8)+'" y="16" font-size="14" fill="#8b8b93" text-anchor="end">y (m)</text>';
+  for (i=0; i<=f.W+1e-9; i+=stepX){
+    if (i===0) continue;
+    var px = f.X(i);
+    s += '<line x1="'+px+'" y1="'+(f.y0-4)+'" x2="'+px+'" y2="'+(f.y0+4)+'" stroke="#b9b9c1" stroke-width="1.5"/>';
+    s += '<line x1="'+px+'" y1="'+(f.y0)+'" x2="'+px+'" y2="18" stroke="#ebebf0" stroke-width="1"/>';
+    s += '<text x="'+px+'" y="'+(f.y0+20)+'" font-size="12.5" fill="#8b8b93" text-anchor="middle">'+Math.round(i)+'</text>';
+  }
+  for (i=0; i<=f.H+1e-9; i+=stepY){
+    if (i===0) continue;
+    var py = f.Y(i);
+    s += '<line x1="'+(f.x0-4)+'" y1="'+py+'" x2="'+(f.x0+4)+'" y2="'+py+'" stroke="#b9b9c1" stroke-width="1.5"/>';
+    s += '<line x1="'+(f.x0)+'" y1="'+py+'" x2="'+(f.w-18)+'" y2="'+py+'" stroke="#ebebf0" stroke-width="1"/>';
+    s += '<text x="'+(f.x0-9)+'" y="'+(py+4)+'" font-size="12.5" fill="#8b8b93" text-anchor="end">'+Math.round(i)+'</text>';
+  }
+  s += '<text x="'+(f.x0-9)+'" y="'+(f.y0+20)+'" font-size="12.5" fill="#8b8b93" text-anchor="end">0</text>';
+  return s;
+}
+function pathSVG(f, v0, th, opts){
+  opts = opts || {};
+  var rad = th*Math.PI/180, vx = v0*Math.cos(rad), vy = v0*Math.sin(rad);
+  var tv = 2*vy/G, n = 180, pts = [], i;
+  for (i=0; i<=n; i++){
+    var t = tv*i/n, x = vx*t, y = vy*t-0.5*G*t*t;
+    pts.push(f.X(x).toFixed(2)+","+f.Y(y).toFixed(2));
+  }
+  return '<polyline points="'+pts.join(" ")+'" fill="none" stroke="'+(opts.color||"#E2232D")+
+         '" stroke-width="'+(opts.width||4)+'" stroke-linecap="round" stroke-linejoin="round" '+
+         (opts.dash?'stroke-dasharray="'+opts.dash+'"':'')+'/>';
+}
+function arrowSVG(x1,y1,x2,y2,color,width){
+  var dx=x2-x1, dy=y2-y1, len=Math.hypot(dx,dy)||1;
+  var ux=dx/len, uy=dy/len, head=9;
+  var bx=x2-ux*head, by=y2-uy*head;
+  var nx=-uy, ny=ux, hw=5;
+  return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+color+'" stroke-width="'+(width||2.5)+'"/>'+
+         '<polygon points="'+x2+','+y2+' '+(bx+nx*hw)+','+(by+ny*hw)+' '+(bx-nx*hw)+','+(by-ny*hw)+'" fill="'+color+'"/>';
+}
+function labelSVG(x,y,txt,color,anchor,size){
+  return '<text x="'+x+'" y="'+y+'" font-family="Cabin, Segoe UI, sans-serif" font-size="'+(size||14)+
+         '" font-weight="600" fill="'+(color||"#333")+'" text-anchor="'+(anchor||"middle")+'">'+txt+'</text>';
+}
+
+/* ============================================================
+   3 · Mini simulador (slide 4)
+   ============================================================ */
+function miniData(){
+  var v0 = +$("mv0").value, th = +$("mth").value, rad = th*Math.PI/180;
+  var vx = v0*Math.cos(rad), vy = v0*Math.sin(rad);
+  var tmax = vy/G, tv = 2*tmax, ymax = vy*vy/(2*G), R = vx*tv;
+  var t = (+$("mt").value/1000)*tv;
+  return {v0:v0, th:th, rad:rad, vx:vx, vy:vy, tmax:tmax, tv:tv, ymax:ymax, R:R,
+          t:t, x:vx*t, y:Math.max(vy*t-0.5*G*t*t, 0), vfy:vy-G*t};
+}
+function renderMini(){
+  var svg = $("concept"); if (!svg) return;
+  var d = miniData();
+  $("mv0v").textContent = d.v0;
+  $("mthv").textContent = d.th;
+  $("mtv").textContent = dec(d.t);
+  $("m-tmax").textContent = dec(d.tmax)+" s";
+  $("m-ymax").textContent = dec(d.ymax)+" m";
+  $("m-r").textContent = dec(d.R)+" m";
+
+  var W = Math.max(d.R*1.10, 8), H = Math.max(d.ymax*1.42, 5);
+  var f = makeFrame(svg, W, H, {l:48,r:26,t:30,b:42});
+  var s = axesSVG(f);
+
+  // trayectoria
+  s += pathSVG(f, d.v0, d.th, {width:3.5});
+
+  // punto máximo
+  var xA = d.vx*d.tmax;
+  s += '<line x1="'+f.X(xA)+'" y1="'+f.Y(0)+'" x2="'+f.X(xA)+'" y2="'+f.Y(d.ymax)+'" stroke="#9a9aa2" stroke-width="1.4" stroke-dasharray="5 5"/>';
+  s += '<line x1="'+f.X(0)+'" y1="'+f.Y(d.ymax)+'" x2="'+f.X(xA)+'" y2="'+f.Y(d.ymax)+'" stroke="#9a9aa2" stroke-width="1.4" stroke-dasharray="5 5"/>';
+  s += '<circle cx="'+f.X(xA)+'" cy="'+f.Y(d.ymax)+'" r="4" fill="none" stroke="#E2232D" stroke-width="2"/>';
+  s += labelSVG(f.X(xA), f.Y(d.ymax)-10, "ymáx = "+dec(d.ymax)+" m", "#E2232D", "middle", 12);
+
+  // componentes en el origen (escala constante: 62 px equivale a v0)
+  var k = 62/Math.max(d.v0, 1);
+  s += arrowSVG(f.X(0), f.Y(0), f.X(0)+d.vx*k, f.Y(0), "#E3229F", 2.5);
+  s += arrowSVG(f.X(0), f.Y(0), f.X(0), f.Y(0)-d.vy*k, "#E36322", 2.5);
+  s += arrowSVG(f.X(0), f.Y(0), f.X(0)+d.vx*k, f.Y(0)-d.vy*k, "#C922E3", 3);
+  s += labelSVG(f.X(0)+d.vx*k*0.55, f.Y(0)-8, "vx", "#E3229F", "middle", 12.5);
+  s += labelSVG(f.X(0)-7, f.Y(0)-d.vy*k*0.55, "vy", "#E36322", "end", 12.5);
+  s += labelSVG(f.X(0)+d.vx*k+8, f.Y(0)-d.vy*k-6, "v₀", "#C922E3", "start", 13.5);
+  s += '<path d="M '+(f.X(0)+30)+' '+f.Y(0)+' A 30 30 0 0 0 '+(f.X(0)+30*Math.cos(d.rad))+' '+(f.Y(0)-30*Math.sin(d.rad))+'" fill="none" stroke="#E36322" stroke-width="2"/>';
+  s += labelSVG(f.X(0)+44*Math.cos(d.rad/2), f.Y(0)-44*Math.sin(d.rad/2)+4, "θ", "#E36322", "middle", 13);
+
+  // punto actual con su vector velocidad (en t = 0 coincide con el origen)
+  if (d.t > 1e-6){
+    var px = f.X(d.x), py = f.Y(d.y), kv = 50/Math.max(d.v0, 1);
+    s += '<line x1="'+px+'" y1="'+py+'" x2="'+px+'" y2="'+f.Y(0)+'" stroke="#9a9aa2" stroke-width="1.5" stroke-dasharray="5 4"/>';
+    s += '<circle cx="'+px+'" cy="'+py+'" r="7" fill="rgba(226,35,45,.16)"/>';
+    s += '<circle cx="'+px+'" cy="'+py+'" r="4.5" fill="#E2232D" stroke="#fff" stroke-width="2"/>';
+    s += arrowSVG(px, py, px+d.vx*kv, py, "#E3229F", 2.2);
+    s += arrowSVG(px, py, px, py-d.vfy*kv, "#E36322", 2.2);
+    s += arrowSVG(px, py, px+d.vx*kv, py-d.vfy*kv, "#E2232D", 2.6);
+    s += labelSVG(px+d.vx*kv+7, py-d.vfy*kv-5, "v", "#E2232D", "start", 12.5);
+  }
+
+  // marca del alcance sobre el eje
+  s += '<line x1="'+f.X(d.R)+'" y1="'+f.Y(0)+'" x2="'+f.X(d.R)+'" y2="'+(f.Y(0)-14)+'" stroke="#8b8b93" stroke-width="1.5"/>';
+  s += labelSVG(f.X(d.R), f.Y(0)-20, "R", "#666", "middle", 12);
+
+  svg.innerHTML = s;
+}
+$("mv0").addEventListener("input", function(){ $("mt").value = 0; renderMini(); });
+$("mth").addEventListener("input", function(){ $("mt").value = 0; renderMini(); });
+$("mt").addEventListener("input", renderMini);
+
+/* ============================================================
+   4 · Simulador
+   ============================================================ */
+var state = {
+  sim:{playing:false, timer:0, last:0},
+  golf:{timer:0, target:60, shots:0, hits:0, attempts:0},
+  comp:{}
+};
+function simData(){
+  var v0 = +$("v0").value, th = +$("th").value, rad = th*Math.PI/180;
+  var vx = v0*Math.cos(rad), vy = v0*Math.sin(rad);
+  var tmax = vy/G, tv = 2*tmax, ymax = vy*vy/(2*G), R = vx*tv;
+  var frac = +$("tslider").value/1000;
+  var t = frac*tv, x = vx*t, y = vy*t-0.5*G*t*t, vfy = vy-G*t;
+  return {v0:v0, th:th, vx:vx, vy:vy, tmax:tmax, tv:tv, ymax:ymax, R:R, t:t, x:x, y:Math.max(y,0), vfy:vfy, V:Math.hypot(vx,vfy), frac:frac};
+}
+function renderSim(){
+  var svg = $("sim"); if (!svg) return;
+  var d = simData();
+  $("v0val").textContent = d.v0;
+  $("thval").textContent = d.th;
+  $("tval").textContent = dec(d.t);
+  var W = Math.max(d.R*1.12, 12), H = Math.max(d.ymax*1.30, 8);
+  var f = makeFrame(svg, W, H, {l:58,r:24,t:26,b:46});
+  var s = axesSVG(f);
+  // punto máximo
+  var xA = d.vx*d.tmax;
+  s += '<line x1="'+f.X(xA)+'" y1="'+f.Y(0)+'" x2="'+f.X(xA)+'" y2="'+f.Y(d.ymax)+'" stroke="#9a9aa2" stroke-width="1.4" stroke-dasharray="5 5"/>';
+  s += '<circle cx="'+f.X(xA)+'" cy="'+f.Y(d.ymax)+'" r="4.5" fill="none" stroke="#E2232D" stroke-width="2.5"/>';
+  s += labelSVG(f.X(xA), f.Y(d.ymax)-11, "ymáx = "+dec(d.ymax)+" m", "#E2232D", "middle", 13);
+  // trayectoria y zona recorrida
+  s += pathSVG(f,d.v0,d.th,{width:4});
+  // alcance
+  s += '<line x1="'+f.X(0)+'" y1="'+(f.Y(0)+30)+'" x2="'+f.X(d.R)+'" y2="'+(f.Y(0)+30)+'" stroke="#8b8b93" stroke-width="1.6" marker-start="url(#ar-gray)" marker-end="url(#ar-gray)"/>';
+  s += labelSVG((f.X(0)+f.X(d.R))/2, f.Y(0)+46, "R = "+dec(d.R)+" m", "#666", "middle", 13);
+  // posición actual
+  var px = f.X(d.x), py = f.Y(d.y);
+  s += '<line x1="'+px+'" y1="'+py+'" x2="'+px+'" y2="'+f.Y(0)+'" stroke="#C922E3" stroke-width="1.8" stroke-dasharray="6 5"/>';
+  s += '<line x1="'+px+'" y1="'+py+'" x2="'+f.X(0)+'" y2="'+py+'" stroke="#C922E3" stroke-width="1.8" stroke-dasharray="6 5"/>';
+  s += '<circle cx="'+px+'" cy="'+py+'" r="8" fill="rgba(226,35,45,.18)"/>';
+  s += '<circle cx="'+px+'" cy="'+py+'" r="5" fill="#E2232D" stroke="#fff" stroke-width="2"/>';
+  // vectores de velocidad (escala constante: 78 px equivale a v0)
+  var k = 78/Math.max(d.v0, 1);
+  s += arrowSVG(px,py,px+d.vx*k,py,"#E3229F",2.6);
+  s += arrowSVG(px,py,px,py-d.vfy*k,"#E36322",2.6);
+  s += arrowSVG(px,py,px+d.vx*k,py-d.vfy*k,"#E2232D",3);
+  s += labelSVG(px+d.vx*k+8, py+4, "vx", "#E3229F", "start", 13);
+  s += labelSVG(px+8, py-d.vfy*k-8, "vy", "#E36322", "start", 13);
+  s += labelSVG(px+d.vx*k+10, py-d.vfy*k-6, "v", "#E2232D", "start", 14);
+  svg.innerHTML = s;
+  // lecturas
+  $("ro-vx").textContent = dec(d.vx)+" m/s";
+  $("ro-vy").textContent = dec(d.vy)+" m/s";
+  $("ro-tmax").textContent = dec(d.tmax)+" s";
+  $("ro-tv").textContent = dec(d.tv)+" s";
+  $("ro-ymax").textContent = dec(d.ymax)+" m";
+  $("ro-r").textContent = dec(d.R)+" m";
+  $("ro-pos").textContent = "(" + dec(d.x) + ", " + dec(d.y) + ") m";
+  $("ro-v").textContent = dec(d.V)+" m/s";
+}
+$("v0").addEventListener("input", function(){ $("tslider").value=0; renderSim(); });
+$("th").addEventListener("input", function(){ $("tslider").value=0; renderSim(); });
+$("tslider").addEventListener("input", function(){ renderSim(); });
+$("reset").addEventListener("click", function(){
+  state.sim.playing=false; $("play").textContent="▶ Reproducir";
+  $("v0").value=25; $("th").value=45; $("tslider").value=0; renderSim();
+});
+$("play").addEventListener("click", function(){
+  if (state.sim.timer){ clearInterval(state.sim.timer); state.sim.timer = 0; }
+  state.sim.playing = !state.sim.playing;
+  this.textContent = state.sim.playing ? "❚❚ Pausar" : "▶ Reproducir";
+  if (!state.sim.playing) return;
+  if (+$("tslider").value >= 1000) $("tslider").value = 0;
+  var last = performance.now();
+  state.sim.timer = setInterval(function(){
+    var now = performance.now();
+    var dt = (now - last)/1000; last = now;
+    var d = simData();
+    var next = Math.min(1000, +$("tslider").value + (dt/Math.max(d.tv, 0.2))*1000);
+    $("tslider").value = next;
+    renderSim();
+    if (next >= 1000){
+      clearInterval(state.sim.timer); state.sim.timer = 0;
+      state.sim.playing = false;
+      $("play").textContent = "▶ Reproducir";
+    }
+  }, 16);
+});
+
+/* ============================================================
+   5 · Golf
+   ============================================================ */
+function newHole(){
+  state.golf.target = Math.round(45 + Math.random()*50);
+  state.golf.attempts = 0;
+  state.golf.landed = 0;
+  $("gdist").textContent = state.golf.target;
+  $("gmsg").className = "golfmsg";
+  $("gmsg").innerHTML = "Hoyo a <b>"+state.golf.target+" m</b>. Ajusta el tiro y pulsa <b>Disparar</b>.";
+  renderGolf();
+}
+function golfRange(v0,th){
+  var rad=th*Math.PI/180;
+  return v0*v0*Math.sin(2*rad)/G;
+}
+function renderGolf(shot){
+  var svg = $("golf"); if (!svg) return;
+  var th=+$("gth").value, v0=+$("gv0").value;
+  var R = golfRange(v0,th);
+  $("gthval").textContent = th;
+  $("gv0val").textContent = v0;
+  $("grange").textContent = dec(R)+" m";
+  var target = state.golf.target;
+  var W = Math.max(target*1.35, R*1.18, 55), H = Math.max(30, (v0*v0*Math.pow(Math.sin(th*Math.PI/180),2))/(2*G)*1.5);
+  var f = makeFrame(svg, W, H, {l:52,r:24,t:22,b:44});
+  var s = axesSVG(f);
+  // suelo
+  s += '<line x1="'+f.X(0)+'" y1="'+f.Y(0)+'" x2="'+(f.w-18)+'" y2="'+f.Y(0)+'" stroke="#333" stroke-width="2.5"/>';
+  // bandera
+  var fx=f.X(target);
+  s += '<line x1="'+fx+'" y1="'+f.Y(0)+'" x2="'+fx+'" y2="'+(f.Y(0)-70)+'" stroke="#333" stroke-width="3"/>';
+  s += '<polygon points="'+fx+','+(f.Y(0)-70)+' '+(fx+34)+','+(f.Y(0)-59)+' '+fx+','+(f.Y(0)-48)+'" fill="#E2232D"/>';
+  s += '<ellipse cx="'+fx+'" cy="'+f.Y(0)+'" rx="10" ry="4" fill="#333"/>';
+  s += labelSVG(fx, f.Y(0)+36, "hoyo: "+target+" m", "#333", "middle", 13);
+  // trayectoria
+  s += pathSVG(f,v0,th,{width:3.5});
+  // pelota
+  var bx, by;
+  if (shot){
+    var rad=th*Math.PI/180, vx=v0*Math.cos(rad), vy=v0*Math.sin(rad);
+    var tv=2*vy/G, t=shot.frac*tv;
+    bx=f.X(vx*t); by=f.Y(vy*t-0.5*G*t*t);
+  } else {
+    bx=f.X(0); by=f.Y(0);
+  }
+  s += '<circle cx="'+bx+'" cy="'+by+'" r="6" fill="#fff" stroke="#333" stroke-width="2"/>';
+  svg.innerHTML = s;
+}
+function shootGolf(){
+  var th=+$("gth").value, v0=+$("gv0").value;
+  var R = golfRange(v0,th), target = state.golf.target;
+  state.golf.shots++; state.golf.attempts++;
+  $("gshots").textContent = state.golf.shots;
+  var start=performance.now(), dur=1050;
+  if (state.golf.timer){ clearInterval(state.golf.timer); state.golf.timer = 0; }
+  state.golf.timer = setInterval(function(){
+    var frac = clamp((performance.now()-start)/dur,0,1);
+    renderGolf({frac:frac});
+    if (frac < 1) return;
+    clearInterval(state.golf.timer); state.golf.timer = 0;
+    var diff = R-target;
+    if (Math.abs(diff) <= 2.5){
+      state.golf.hits++; $("ghits").textContent = state.golf.hits;
+      $("gmsg").className = "golfmsg ok";
+      $("gmsg").innerHTML = "<b>¡Embocaste!</b> Alcance "+dec(R)+" m contra un hoyo a "+target+" m.";
+    } else {
+      $("gmsg").className = "golfmsg bad";
+      var txt = diff < 0 ? "Te quedaste corto por <b>"+dec(-diff)+" m</b>." : "Te pasaste por <b>"+dec(diff)+" m</b>.";
+      $("gmsg").innerHTML = txt + " Alcance "+dec(R)+" m. Ajusta el ángulo o la rapidez.";
+      if (state.golf.attempts >= 2){
+        $("gmsg").innerHTML += "<br><b>Pista:</b> $R=\\dfrac{v_0^2\\sen2\\theta}{g}$; con $g=10$, $R=\\dfrac{v_0^2\\sen2\\theta}{10}$.";
+        if (window.renderMathInElement){
+          renderMathInElement($("gmsg"), {delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}], macros:MACROS, throwOnError:false});
+        }
+      }
+    }
+  }, 16);
+}
+$("gth").addEventListener("input", function(){ renderGolf(); });
+$("gv0").addEventListener("input", function(){ renderGolf(); });
+$("gshoot").addEventListener("click", shootGolf);
+$("gnew").addEventListener("click", newHole);
+
+/* ============================================================
+   6 · Ángulos complementarios
+   ============================================================ */
+function renderComp(){
+  var svg = $("comp"); if (!svg) return;
+  var th=+$("cth").value, v0=+$("cv0").value, th2=90-th;
+  var r1=th*Math.PI/180, r2=th2*Math.PI/180;
+  var y1=v0*v0*Math.pow(Math.sin(r1),2)/(2*G), y2=v0*v0*Math.pow(Math.sin(r2),2)/(2*G);
+  var R=v0*v0*Math.sin(2*r1)/G;
+  $("cthval").textContent=th; $("cv0val").textContent=v0;
+  $("c-r").textContent=dec(R)+" m";
+  $("c-y1").textContent=dec(y1)+" m";
+  $("c-y2").textContent=dec(y2)+" m";
+  $("c-t1").textContent=dec(2*v0*Math.sin(r1)/G)+" s";
+  $("c-t2").textContent=dec(2*v0*Math.sin(r2)/G)+" s";
+  var W=Math.max(R*1.12,12), H=Math.max(y1,y2)*1.35+2;
+  var f=makeFrame(svg,W,H,{l:54,r:24,t:26,b:44});
+  var s=axesSVG(f);
+  s += pathSVG(f,v0,th,{color:"#E2232D",width:3.5});
+  s += pathSVG(f,v0,th2,{color:"#C922E3",width:3.5});
+  s += '<circle cx="'+f.X(R)+'" cy="'+f.Y(0)+'" r="4.5" fill="#333"/>';
+  s += labelSVG(f.X(R)/2, f.Y(0)+40, "mismo alcance: "+dec(R)+" m", "#333", "middle", 13);
+  s += '<circle cx="'+f.X(v0*v0*Math.sin(2*r1)/(2*G))+'" cy="'+f.Y(y1)+'" r="4" fill="#E2232D"/>';
+  s += labelSVG(f.X(v0*v0*Math.sin(2*r1)/(2*G)), f.Y(y1)-10, th+"°", "#E2232D", "middle", 14);
+  s += '<circle cx="'+f.X(v0*v0*Math.sin(2*r2)/(2*G))+'" cy="'+f.Y(y2)+'" r="4" fill="#C922E3"/>';
+  s += labelSVG(f.X(v0*v0*Math.sin(2*r2)/(2*G)), f.Y(y2)-10, th2+"°", "#C922E3", "middle", 14);
+  svg.innerHTML=s;
+}
+$("cth").addEventListener("input", renderComp);
+$("cv0").addEventListener("input", renderComp);
+
+/* ============================================================
+   7 · Quiz
+   ============================================================ */
+Array.prototype.forEach.call(document.querySelectorAll(".quizbox"), function(box){
+  var opts = Array.prototype.slice.call(box.querySelectorAll(".opt"));
+  var fb = box.querySelector(".fb");
+  opts.forEach(function(b){
+    b.addEventListener("click", function(){
+      var ok = b.dataset.ok === "1";
+      opts.forEach(function(o){
+        o.disabled = true;
+        if (o.dataset.ok === "1") o.classList.add("correct");
+      });
+      if (!ok){ b.classList.add("wrong"); b.classList.remove("correct"); }
+      fb.innerHTML = (ok ? "<b>¡Correcto!</b> " : "<b>Revisa:</b> ") + box.dataset.exp;
+      fb.classList.add("show");
+      if (window.renderMathInElement){
+        renderMathInElement(fb, {delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}], macros:MACROS, throwOnError:false});
+      }
+    });
+  });
+});
+
+/* ============================================================
+   8 · Detecta el error
+   ============================================================ */
+Array.prototype.forEach.call(document.querySelectorAll(".err"), function(card){
+  card.addEventListener("click", function(){
+    if (card.classList.contains("open")) return;
+    card.classList.add("open");
+    var ok = card.dataset.ok === "1";
+    card.classList.add(ok ? "good" : "bad");
+    card.querySelector(".st").textContent = ok ? "CORRECTO" : "ERROR";
+    var ex = card.querySelector(".ex");
+    ex.innerHTML = card.dataset.exp;
+    if (window.renderMathInElement){
+      renderMathInElement(ex, {delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}], macros:MACROS, throwOnError:false});
+    }
+  });
+});
+
+/* ============================================================
+   9 · Botones de respuestas
+   ============================================================ */
+Array.prototype.forEach.call(document.querySelectorAll(".reveal"), function(b){
+  b.addEventListener("click", function(){
+    var el = $(b.dataset.target); if (!el) return;
+    var open = el.classList.toggle("show");
+    b.textContent = open ? "Ocultar respuestas" : "Mostrar respuestas";
+  });
+});
+
+/* ============================================================
+   10 · Arranque
+   ============================================================ */
+renderMini();
+renderSim();
+newHole();
+renderComp();
+
+})();
+</script>
+</body>
+</html>

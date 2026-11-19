@@ -1,0 +1,320 @@
+% ============================================================
+%  GUÍA TEÓRICO-PRÁCTICA: ORBITALES Y NÚMEROS CUÁNTICOS
+%  Química — 4to Año
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+\usepackage{mathwizards-guia}
+\mwguia{Orbitales y números cuánticos}{Química $\cdot$ 4to Año}
+
+\begin{document}
+
+\mwportada{Guía Teórico-Práctica}{Orbitales y Números Cuánticos}{Configuración electrónica, diagramas de orbitales, iones y composición atómica}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} En esta guía estudiaremos cómo se describe el estado de los electrones en el modelo cuántico. Diferenciaremos órbitas y orbitales, validaremos números cuánticos, representaremos configuraciones electrónicas y determinaremos la composición de átomos e iones. Cada bloque combina conceptos y ejercicios de aplicación.
+  \\[4pt]
+  \textbf{Nivel de dificultad:}\quad
+  \facil{} Básico / Directo \quad
+  \medio{} Intermedio \quad
+  \dificil{} Desafiante
+\end{cuadroinfo}
+
+\vspace{8pt}
+
+\section{Orbitales y números cuánticos}
+
+\subsection{Órbita y orbital}
+\begin{cuadroteoria}
+  En el modelo de Bohr, una \textbf{órbita} es una trayectoria definida que se asigna al electrón alrededor del núcleo. En el modelo cuántico no se conoce una trayectoria exacta: un \textbf{orbital} es una región del espacio donde existe una alta probabilidad de encontrar un electrón. Cada orbital puede alojar como máximo dos electrones, que deben tener espines opuestos.
+\end{cuadroteoria}
+
+\subsection{Los cuatro números cuánticos}
+\begin{cuadroteoria}
+  El estado de un electrón se describe mediante $(n,l,m_l,m_s)$:
+  \begin{center}
+    \begin{tabular}{llll}
+      \toprule
+      Número & Nombre & Qué describe & Valores permitidos \\
+      \midrule
+      $n$ & Principal & Nivel de energía & $1,2,3,\ldots$ \\
+      $l$ & Azimutal & Subnivel & $0,1,\ldots,n-1$ \\
+      $m_l$ & Magnético & Orbital del subnivel & $-l,-l+1,\ldots,0,\ldots,+l$ \\
+      $m_s$ & Espín & Orientación del espín & $-\tfrac12$ o $+\tfrac12$ \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  La correspondencia de $l$ es $0=s$, $1=p$, $2=d$ y $3=f$. Por ejemplo, un electrón $3p$ tiene $n=3$, $l=1$ y puede ocupar orbitales con $m_l=-1,0,+1$.
+\end{cuadroteoria}
+
+\begin{cuadroteoria}
+  \textbf{Cantidad de orbitales y electrones por nivel:}
+  \begin{itemize}[leftmargin=*]
+    \item En un subnivel hay $2l+1$ orbitales; cada uno admite hasta 2 electrones.
+    \item En el nivel principal $n$ hay $n^2$ orbitales y caben hasta $2n^2$ electrones.
+    \item Por tanto, el nivel $n=4$ contiene 16 orbitales y puede alojar 32 electrones.
+  \end{itemize}
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}
+  \textbf{Errores frecuentes:}
+  \begin{itemize}[leftmargin=*]
+    \item $n$ nunca puede ser cero; además, $l$ debe ser menor que $n$.
+    \item Si $l=0$, el único valor posible de $m_l$ es 0.
+    \item $m_s$ solo puede valer $+\tfrac12$ o $-\tfrac12$; no debe confundirse con $m_l$.
+    \item Un subnivel $s$ admite 2 electrones, $p$ admite 6, $d$ admite 10 y $f$ admite 14.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\subsection{Configuración y diagramas de orbitales}
+\begin{cuadroteoria}
+  Para escribir una configuración se llenan primero los subniveles de menor energía (Aufbau). Cada orbital admite como máximo dos electrones con espines opuestos (Pauli). En orbitales de igual energía, se coloca primero un electrón en cada uno, con espines paralelos, antes de formar pares (regla de Hund).
+
+  \begin{center}
+    \begin{tabular}{ll}
+      \toprule
+      Subnivel & Número de orbitales \\
+      \midrule
+      $s$ & 1 \\
+      $p$ & 3 \\
+      $d$ & 5 \\
+      $f$ & 7 \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  La notación de un subnivel, por ejemplo $2p^4$, indica que hay cuatro electrones en ese subnivel; no señala un orbital individual.
+\end{cuadroteoria}
+
+\begin{cuadropasos}
+  \textbf{Para hallar los números cuánticos del electrón diferenciador:}
+  \begin{enumerate}[leftmargin=*]
+    \item Escribe la configuración electrónica del átomo o ion.
+    \item Identifica el último subnivel ocupado; de él se obtienen $n$ y $l$.
+    \item Distribuye los electrones en los orbitales siguiendo Hund.
+    \item Lee $m_l$ de izquierda a derecha, desde $-l$ hasta $+l$, y asigna primero $m_s=+\tfrac12$ y luego $m_s=-\tfrac12$ en cada orbital.
+  \end{enumerate}
+  Esta convención fija un orden para resolver ejercicios; en orbitales degenerados se podrían intercambiar las etiquetas $m_l$ sin cambiar la física.
+\end{cuadropasos}
+
+\subsection{Ejemplos resueltos}
+\textbf{Ejemplo R1.} ¿Es posible $(n,l,m_l,m_s)=(2,2,0,+\tfrac12)$?
+\begin{cuadrosolucion}
+  No. Para $n=2$, $l$ solo puede ser 0 o 1; el valor $l=2$ no está permitido.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R2.} Distribuye los electrones del oxígeno, $Z=8$, en orbitales.
+\begin{cuadrosolucion}
+  La configuración es $1s^2\,2s^2\,2p^4$. Aplicando Hund:
+  \[
+    1s:\ \boxed{\uparrow\downarrow}\qquad
+    2s:\ \boxed{\uparrow\downarrow}\qquad
+    2p:\ \boxed{\uparrow\downarrow}\ \boxed{\uparrow}\ \boxed{\uparrow}
+  \]
+  Tiene 2 electrones desapareados.
+\end{cuadrosolucion}
+
+\textbf{Ejemplo R3.} ¿Cuántos protones, neutrones y electrones tiene $^{35}_{17}\mathrm{Cl}^{-}$?
+\begin{cuadrosolucion}
+  Protones $=17$; neutrones $=35-17=18$; al tener carga $-1$, posee $17+1=18$ electrones.
+\end{cuadrosolucion}
+
+\newpage
+\section{Ejercicios propuestos}
+
+\subsection{Notación atómica y composición (1--10)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item \facil{} Para $^{23}_{11}\mathrm{Na}$ neutro, determina protones, neutrones y electrones.
+  \item \medio{} Para $^{115}_{49}\mathrm{In}$ neutro, determina protones, neutrones y electrones, e identifica el elemento.
+  \item \medio{} Para $^{14}_{6}\mathrm{C}$ neutro, determina protones, neutrones y electrones.
+  \item \medio{} Para $^{35}_{17}\mathrm{Cl}^{7-}$, determina protones, neutrones y electrones. Indica si es catión o anión.
+  \item \medio{} Para $^{107}_{46}\mathrm{Pd}^{+}$, determina protones, neutrones y electrones.
+  \item \facil{} Para $^{19}_{9}\mathrm{F}^{-}$, determina protones, neutrones y electrones.
+  \item \medio{} Escribe la notación $^{A}_{Z}X$ de un átomo neutro con 15 protones y 16 neutrones. Indica también su número de electrones.
+  \item \dificil{} Un ion tiene 26 protones, 30 neutrones y 24 electrones. Escribe su notación nuclear completa con carga e identifica el elemento.
+  \item \dificil{} Dos átomos tienen notaciones $^{35}_{17}\mathrm{Cl}$ y $^{37}_{17}\mathrm{Cl}$. Compara sus protones, neutrones y electrones; explica por qué son isótopos.
+  \item \dificil{} Un ion tiene 12 protones, 12 neutrones y 10 electrones. Escribe su notación completa, identifica el elemento y determina su carga. Representa el núcleo y distribuye sus electrones por niveles.
+\end{enumerate}
+
+\subsection{Átomos, iones y configuraciones (11--20)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{10}
+  \item \medio{} Escribe las configuraciones electrónicas de N, Ar, Mg y Co neutros, con $Z=7,18,12,27$, respectivamente.
+  \item \medio{} Escribe las configuraciones electrónicas de $\mathrm{N^{3-}}$ y $\mathrm{Mg^{2+}}$. ¿Son isoelectrónicos? ¿Con qué gas noble?
+  \item \dificil{} El cobalto neutro tiene $Z=27$. Escribe la configuración de $\mathrm{Co^{3+}}$, retirando primero los electrones del nivel principal más alto. ¿Cuántos electrones desapareados tiene el ion libre en la distribución de Hund?
+  \item \medio{} El azufre neutro tiene $Z=16$. Escribe la configuración de $\mathrm{S^{2-}}$ y compárala con la del argón.
+  \item \medio{} El magnesio tiene $Z=12$. Escribe la configuración de $\mathrm{Mg^{2+}}$ y determina cuántos electrones tiene.
+  \item \dificil{} El hierro neutro tiene $Z=26$. Escribe la configuración de $\mathrm{Fe^{2+}}$ y explica de qué subnivel se retiran primero los electrones.
+  \item \medio{} El cloro tiene $Z=17$. Escribe la configuración de $\mathrm{Cl^-}$ e indica cuántos electrones tiene.
+  \item \medio{} Un ion $X^{2+}$ tiene 18 electrones. Determina el número atómico de $X$ e identifica el elemento.
+  \item \dificil{} Un ion $Y^{3-}$ es isoelectrónico con el neón. Determina cuántos electrones tiene el átomo neutro $Y$ y qué elemento es.
+  \item \dificil{} Compara el número de electrones desapareados de $\mathrm{N^{3-}}$ y $\mathrm{Co^{3+}}$. Justifica mediante sus configuraciones y diagramas de orbitales.
+\end{enumerate}
+
+\subsection{Configuraciones electrónicas y reglas de llenado (21--30)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{20}
+  \item \facil{} Escribe la configuración electrónica del litio ($Z=3$) y señala su último subnivel ocupado.
+  \item \facil{} Escribe la configuración electrónica del flúor ($Z=9$) y determina cuántos electrones de valencia tiene.
+  \item \medio{} Escribe la configuración electrónica del potasio ($Z=19$) y señala el electrón diferenciador.
+  \item \medio{} Escribe la configuración electrónica del calcio ($Z=20$). ¿Qué subnivel se ocupa después de $3p$?
+  \item \medio{} Escribe la configuración electrónica del fósforo ($Z=15$) y representa únicamente el subnivel $3p$ con cajas y flechas.
+  \item \medio{} Escribe la configuración electrónica del azufre ($Z=16$) y determina cuántos electrones desapareados tiene.
+  \item \dificil{} Identifica el elemento cuya configuración termina en $3p^5$. Escribe la configuración completa, su número atómico y sus electrones de valencia.
+  \item \medio{} Revisa la configuración $1s^2\,2s^2\,2p^7$. ¿Es posible? Explica el límite pertinente y escribe la configuración correcta del elemento con esos 11 electrones.
+  \item \dificil{} Una configuración propuesta es $1s^2\,2s^2\,2p^6\,3s^2\,3p^6\,3d^2$. ¿Corresponde al estado fundamental de un átomo neutro? Si no, ordénala correctamente e identifica el elemento.
+  \item \medio{} Explica cómo se aplican Aufbau, Pauli y Hund al escribir una configuración electrónica y un diagrama de orbitales.
+\end{enumerate}
+
+\subsection{Diagramas de orbitales y electrones desapareados (31--40)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{30}
+  \item \facil{} Dibuja el diagrama de orbitales del helio y señala cuántos electrones desapareados tiene.
+  \item \medio{} Dibuja el diagrama de orbitales del carbono ($Z=6$) y determina sus electrones desapareados.
+  \item \medio{} Dibuja el diagrama del nitrógeno ($Z=7$) hasta $2p$. ¿Cómo se distribuyen los electrones en los tres orbitales $p$?
+  \item \medio{} Dibuja el diagrama del oxígeno ($Z=8$) hasta $2p$. Indica cuántos electrones desapareados tiene.
+  \item \medio{} Representa el subnivel $3p$ del cloro ($Z=17$) con cajas y flechas. ¿Cuántos electrones desapareados tiene el átomo?
+  \item \dificil{} Representa el subnivel $3d$ del hierro neutro ($Z=26$) aplicando Hund. ¿Cuántos electrones desapareados tiene en $3d$?
+  \item \medio{} Para el nitrógeno, identifica $(n,l,m_l,m_s)$ del último electrón usando el orden $m_l=-1,0,+1$ y colocando primero espines $+\tfrac12$.
+  \item \dificil{} Para el oxígeno, identifica los números cuánticos del cuarto electrón del subnivel $2p$ con la convención de la guía.
+  \item \medio{} Un subnivel $p$ contiene cinco electrones. Dibuja una distribución que cumpla Hund y Pauli e indica cuántos están desapareados.
+  \item \dificil{} Un átomo tiene configuración $1s^2\,2s^2\,2p^6\,3s^2\,3p^2$. Identifícalo, dibuja el diagrama del último subnivel y cuenta los electrones desapareados.
+\end{enumerate}
+
+\subsection{Conceptos y validez de números cuánticos (41--50)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{40}
+  \item \facil{} Establece al menos dos diferencias entre una órbita del modelo de Bohr y un orbital del modelo cuántico.
+  \item \medio{} Indica si cada combinación es posible. Justifica usando los valores permitidos de cada número cuántico:
+  \begin{enumerate}[label=\alph*)]
+    \item $(n,l,m_l,m_s)=(0,2,1,-\tfrac12)$.
+    \item $(1,0,0,-\tfrac12)$.
+    \item $(3,-2,1,+\tfrac12)$.
+    \item $(3,1,-1,-\tfrac12)$.
+  \end{enumerate}
+  \item \facil{} ¿Cuántos orbitales puede haber en el nivel $n=4$? ¿Cuántos electrones caben como máximo en ese nivel?
+  \item \medio{} Un átomo neutro tiene $Z=37$ y $A=85$. Escribe su configuración electrónica, determina protones, neutrones y electrones, e indica los cuatro números cuánticos del electrón diferenciador según la convención de la guía.
+  \item \facil{} Indica el subnivel y el orbital representados por cada conjunto $(n,l,m_l,m_s)$: a) $(1,0,0,+\tfrac12)$; b) $(2,1,-1,+\tfrac12)$.
+  \item \medio{} Para cada subnivel, escribe $(n,l)$ y todos los valores posibles de $m_l$: a) $4f$; b) $3d$; c) $5p$.
+  \item \facil{} ¿A qué subnivel pertenece un electrón con $n=4$, $l=3$ y $m_l=-1$? ¿Cuántos orbitales contiene ese subnivel?
+  \item \medio{} Determina cuáles configuraciones corresponden al estado fundamental de un átomo. Explica cualquier respuesta negativa:
+  \begin{enumerate}[label=\alph*)]
+    \item $1s^2\,2s^2\,2p^4$.
+    \item $1s^2\,2s^2\,2p^6\,3s^2$.
+    \item $1s^2\,3p^1$.
+    \item $1s^2\,2s^2\,2p^6\,3s^2\,3p^{10}$.
+  \end{enumerate}
+  \item \medio{} Dibuja los diagramas de orbitales de H, C, N y O. Indica la configuración electrónica y el número de electrones desapareados de cada átomo.
+  \item \dificil{} Para cada subnivel, indica el número de orbitales y su capacidad máxima de electrones: $2s$, $3p$, $3d$ y $4f$.
+\end{enumerate}
+
+\subsection{Subniveles y asignación de orbitales (51--60)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{50}
+  \item \facil{} Completa la correspondencia: $l=0,1,2,3$ corresponde a los subniveles \rule{2cm}{0.4pt}, \rule{2cm}{0.4pt}, \rule{2cm}{0.4pt} y \rule{2cm}{0.4pt}, respectivamente.
+  \item \medio{} Escribe todos los valores posibles de $m_l$ para un electrón en un subnivel $d$. ¿Cuántos orbitales son?
+  \item \medio{} ¿Cuál de estos conjuntos describe un electrón $3p$ posible? Justifica: a) $(3,1,0,+\tfrac12)$; b) $(3,2,0,+\tfrac12)$; c) $(3,1,2,-\tfrac12)$.
+  \item \facil{} ¿Cuántos orbitales hay en el nivel $n=3$? Verifica el resultado sumando los orbitales de sus subniveles $3s$, $3p$ y $3d$.
+  \item \medio{} Un electrón tiene $(n,l,m_l)=(5,1,0)$. Identifica el subnivel y el orbital concreto dentro de este subnivel.
+  \item \medio{} Escribe una combinación posible de números cuánticos para un electrón de cada subnivel: $2s$, $3p$, $4d$ y $5f$.
+  \item \dificil{} ¿Cuál es el máximo número de electrones que puede tener el nivel $n=5$? ¿Cuántos orbitales contiene?
+  \item \medio{} Un electrón tiene $n=4$ y $l=0$. Indica su subnivel, el único valor de $m_l$ posible y los valores posibles de $m_s$.
+  \item \medio{} ¿Pueden existir dos electrones de un mismo átomo con los cuatro números cuánticos iguales? Explica qué principio lo prohíbe.
+  \item \dificil{} Un orbital está definido por $n=3$, $l=2$ y $m_l=+1$. Indica el subnivel, el orbital entre los de ese subnivel y cuántos electrones como máximo puede contener.
+\end{enumerate}
+
+\newpage
+\ifmwclaves
+\section{Clave de respuestas}
+\subsection*{Ejercicios 1--10}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \item $11p^+$, $23-11=12n^0$, $11e^-$.
+  \item Indio (In): $49p^+$, $115-49=66n^0$, $49e^-$.
+  \item $6p^+$, $14-6=8n^0$, $6e^-$.
+  \item $17p^+$, $35-17=18n^0$, $17+7=24e^-$. Es un anión.
+  \item $46p^+$, $107-46=61n^0$, $46-1=45e^-$.
+  \item $9p^+$, $19-9=10n^0$, $9+1=10e^-$.
+  \item $Z=15$, $A=15+16=31$; fósforo: $^{31}_{15}\mathrm{P}$; 15 electrones.
+  \item $Z=26$, $A=26+30=56$, elemento Fe. Como tiene 24 electrones, carga $2+$: $^{56}_{26}\mathrm{Fe}^{2+}$.
+  \item Ambos tienen 17 protones y, neutros, 17 electrones. El primero tiene 18 neutrones y el segundo 20. Son isótopos porque tienen el mismo $Z$ y diferente número de neutrones (y de masa).
+  \item $Z=12$, $A=12+12=24$, elemento Mg. Tiene 10 electrones, por tanto carga $2+$: $^{24}_{12}\mathrm{Mg}^{2+}$. El núcleo tiene 12 protones y 12 neutrones; los 10 electrones se distribuyen $2,8$ por niveles.
+\end{enumerate}
+
+\subsection*{Ejercicios 11--20}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{10}
+  \item N: $1s^2\,2s^2\,2p^3$. Ar: $1s^2\,2s^2\,2p^6\,3s^2\,3p^6$. Mg: $1s^2\,2s^2\,2p^6\,3s^2$. Co: $[\mathrm{Ar}]\,4s^2\,3d^7$.
+  \item $\mathrm{N^{3-}}$ tiene 10 electrones y $\mathrm{Mg^{2+}}$ tiene 10; ambos son $1s^2\,2s^2\,2p^6$, isoelectrónicos con Ne.
+  \item Co neutro: $[\mathrm{Ar}]\,4s^2\,3d^7$. Se quitan primero los dos de $4s$ y luego uno de $3d$: $\mathrm{Co^{3+}}=[\mathrm{Ar}]\,3d^6$. Para el ion libre siguiendo Hund (alto espín), tiene 4 electrones desapareados.
+  \item $\mathrm{S^{2-}}$ tiene 18 electrones: $[\mathrm{Ar}]$, igual configuración electrónica que el argón.
+  \item $\mathrm{Mg^{2+}}:1s^2\,2s^2\,2p^6$; tiene 10 electrones.
+  \item Fe neutro: $[\mathrm{Ar}]\,4s^2\,3d^6$. $\mathrm{Fe^{2+}}=[\mathrm{Ar}]\,3d^6$; se retiran primero los electrones del nivel de mayor $n$, el $4s$.
+  \item $\mathrm{Cl^-}$ tiene 18 electrones: $1s^2\,2s^2\,2p^6\,3s^2\,3p^6$.
+  \item El átomo neutro $X$ tenía 20 electrones, así que $Z=20$: calcio (Ca).
+  \item Ne tiene 10 electrones. $Y^{3-}$ tiene 10, por lo que el átomo neutro tiene 7 electrones: nitrógeno (N).
+  \item $\mathrm{N^{3-}}$ tiene configuración $[\mathrm{Ne}]$ y 0 desapareados. $\mathrm{Co^{3+}}$ es $[\mathrm{Ar}]\,3d^6$ y tiene 4 desapareados en la distribución de ion libre de alto espín.
+\end{enumerate}
+
+\subsection*{Ejercicios 21--30}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{20}
+  \item $1s^2\,2s^1$; último subnivel $2s$.
+  \item $1s^2\,2s^2\,2p^5$; 7 electrones de valencia.
+  \item $1s^2\,2s^2\,2p^6\,3s^2\,3p^6\,4s^1$; el diferenciador está en $4s$.
+  \item $1s^2\,2s^2\,2p^6\,3s^2\,3p^6\,4s^2$; después de $3p$ se ocupa $4s$.
+  \item $1s^2\,2s^2\,2p^6\,3s^2\,3p^3$; $3p:\ \boxed{\uparrow}\ \boxed{\uparrow}\ \boxed{\uparrow}$.
+  \item $1s^2\,2s^2\,2p^6\,3s^2\,3p^4$; tiene 2 electrones desapareados.
+  \item Cloro, $Z=17$: $1s^2\,2s^2\,2p^6\,3s^2\,3p^5$; tiene 7 electrones de valencia.
+  \item No es posible: $p$ admite máximo 6. Para 11 electrones, la configuración correcta es $1s^2\,2s^2\,2p^6\,3s^1$ (Na).
+  \item No es estado fundamental porque $4s$ se llena antes que $3d$. Reordenada: $[\mathrm{Ar}]\,4s^2\,3d^2$; titanio, $Z=22$.
+  \item Aufbau ordena el llenado de menor a mayor energía; Pauli limita a dos electrones por orbital con espines opuestos; Hund distribuye primero uno por orbital degenerado con espines paralelos.
+\end{enumerate}
+
+\subsection*{Ejercicios 31--40}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{30}
+  \item $1s:\ \boxed{\uparrow\downarrow}$; 0 desapareados.
+  \item C: $1s:\boxed{\uparrow\downarrow}$, $2s:\boxed{\uparrow\downarrow}$, $2p:\boxed{\uparrow}\boxed{\uparrow}\boxed{\ }$; tiene 2 desapareados.
+  \item N: $1s^2\,2s^2\,2p^3$; $2p:\boxed{\uparrow}\boxed{\uparrow}\boxed{\uparrow}$, uno en cada orbital.
+  \item O: $1s^2\,2s^2\,2p^4$; $2p:\boxed{\uparrow\downarrow}\boxed{\uparrow}\boxed{\uparrow}$; 2 desapareados.
+  \item Cl: $[\mathrm{Ne}]\,3s^2\,3p^5$; $3p:\boxed{\uparrow\downarrow}\boxed{\uparrow\downarrow}\boxed{\uparrow}$; tiene 1 desapareado.
+  \item Fe: $[\mathrm{Ar}]\,4s^2\,3d^6$; $3d:\boxed{\uparrow\downarrow}\boxed{\uparrow}\boxed{\uparrow}\boxed{\uparrow}\boxed{\uparrow}$; 4 desapareados.
+  \item N: $(2,1,+1,+\tfrac12)$.
+  \item El cuarto electrón $2p$ se aparea en el primer orbital, $m_l=-1$: $(2,1,-1,-\tfrac12)$.
+  \item Una distribución válida es $\boxed{\uparrow\downarrow}\boxed{\uparrow\downarrow}\boxed{\uparrow}$; queda 1 electrón desapareado.
+  \item Es azufre ($Z=16$). $3p:\boxed{\uparrow}\boxed{\uparrow}\boxed{\ }$; tiene 2 desapareados.
+\end{enumerate}
+
+\subsection*{Ejercicios 41--50}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{40}
+  \item La órbita es una trayectoria definida del modelo de Bohr; el orbital es una región de probabilidad sin trayectoria exacta. Una órbita se representa como camino; un orbital como distribución espacial. Cada orbital admite hasta dos electrones.
+  \item a) Imposible: $n$ no puede ser 0 y además $l<n$. b) Posible: todos los valores cumplen las reglas. c) Imposible: $l$ no puede ser negativo. d) Posible: para $n=3$, $l=1$ es válido; $m_l=-1$ y $m_s=-\tfrac12$ también.
+  \item $n^2=16$ orbitales; capacidad máxima $2n^2=32$ electrones.
+  \item Rubidio (Rb). $37p^+$, $85-37=48n^0$, $37e^-$. Configuración: $1s^2\,2s^2\,2p^6\,3s^2\,3p^6\,4s^2\,3d^{10}\,4p^6\,5s^1$. Electrón diferenciador: $(5,0,0,+\tfrac12)$.
+  \item a) $1s$, orbital único ($m_l=0$). b) $2p$, orbital $m_l=-1$.
+  \item $4f$: $(n,l)=(4,3)$, $m_l=-3,-2,-1,0,+1,+2,+3$. $3d$: $(3,2)$, $m_l=-2,-1,0,+1,+2$. $5p$: $(5,1)$, $m_l=-1,0,+1$.
+  \item Subnivel $4f$; contiene $2l+1=7$ orbitales.
+  \item a) Posible para oxígeno. b) Posible para magnesio. c) No es estado fundamental: el electrón debe ocupar primero $2s$ y $2p$. d) Imposible: $p$ admite como máximo 6 electrones.
+  \item H: $1s^1$, 1 desapareado. C: $1s^2\,2s^2\,2p^2$, 2 desapareados. N: $1s^2\,2s^2\,2p^3$, 3 desapareados. O: $1s^2\,2s^2\,2p^4$, 2 desapareados. En todos se distribuyen las cajas según Pauli y Hund.
+  \item $2s$: 1 orbital, 2 electrones. $3p$: 3 orbitales, 6 electrones. $3d$: 5 orbitales, 10 electrones. $4f$: 7 orbitales, 14 electrones.
+\end{enumerate}
+
+\subsection*{Ejercicios 51--60}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+  \setcounter{enumi}{50}
+  \item $s,p,d,f$.
+  \item $m_l=-2,-1,0,+1,+2$; son 5 orbitales.
+  \item Solo a) describe un electrón $3p$: $n=3$, $l=1$, $m_l=0$ válido y espín válido. En b), $l=2$ identifica $3d$; en c), $m_l=2$ no se permite si $l=1$.
+  \item $1+3+5=9$ orbitales en el nivel 3; también $n^2=3^2=9$.
+  \item Subnivel $5p$; es el orbital con $m_l=0$.
+  \item Respuestas posibles: $2s:(2,0,0,+\tfrac12)$; $3p:(3,1,-1,+\tfrac12)$; $4d:(4,2,0,-\tfrac12)$; $5f:(5,3,+2,+\tfrac12)$.
+  \item $n^2=25$ orbitales; máximo $2n^2=50$ electrones.
+  \item Subnivel $4s$; $m_l=0$; $m_s=+\tfrac12$ o $-\tfrac12$.
+  \item No. El principio de exclusión de Pauli establece que no pueden coincidir los cuatro números cuánticos de dos electrones de un mismo átomo.
+  \item Subnivel $3d$, orbital de $m_l=+1$; puede alojar 2 electrones con espines opuestos.
+\end{enumerate}
+\fi
+\end{document}

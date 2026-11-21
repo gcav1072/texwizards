@@ -1,0 +1,552 @@
+% ============================================================
+%  PRESENTACIÓN TEÓRICO-PRÁCTICA — MATEMÁTICA II · GUÍA N.º 1
+%
+%  Material original (con autorización):
+%    Díaz L., Isabel (Prof.). «Guía de Ejercicios N.º 1 — Matemática II».
+%    Cátedra de Matemática de la Escuela de Economía,
+%    Universidad Central de Venezuela (UCV), enero de 2017.
+%
+%  Esta versión conserva el contenido y la identidad visual originales
+%  (tema Madrid, azul UCV). Solo se adaptó el preámbulo para compilar
+%  con XeLaTeX, como el resto del repositorio (fuente y babel).
+%
+%  Compilar (desde la raíz del repo):
+%    latexmk -cd -xelatex \
+%      tex_files/clases_genesis/clase_mat2_teorico_practica_guia1_genesis/presentacion_ucv_mat2_guia1.tex
+% ============================================================
+\documentclass[aspectratio=169, 10pt]{beamer}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+\setbeamertemplate{navigation symbols}{}
+
+\usepackage{fontspec}
+\usepackage[spanish, es-nodecimaldot]{babel}
+\AtBeginDocument{\shorthandoff{"}}
+% Noto Sans solo está instalada como fuente variable y xdvipdfmx no puede
+% incrustarla; se usa Liberation Sans, de métrica compatible.
+\babelfont{sf}{Liberation Sans}
+\babelfont{rm}{Liberation Sans}
+
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usetikzlibrary{babel}
+
+\definecolor{ucvblue}{RGB}{16, 55, 92}
+\definecolor{ucvaccent}{RGB}{32, 106, 138}
+\definecolor{ucvgray}{RGB}{240, 244, 248}
+
+\setbeamercolor{structure}{fg=ucvblue}
+\setbeamercolor{palette primary}{bg=ucvblue, fg=white}
+\setbeamercolor{palette secondary}{bg=ucvaccent, fg=white}
+\setbeamercolor{palette tertiary}{bg=ucvblue!85!black, fg=white}
+\setbeamercolor{titlelike}{bg=ucvblue, fg=white}
+\setbeamercolor{block title}{bg=ucvblue, fg=white}
+\setbeamercolor{block body}{bg=ucvgray, fg=black}
+
+\title[Matemática II — Guía N.º 1]{Funciones Reales de Varias Variables}
+\subtitle{Incrementos, Relaciones Funcionales, Dominio, Rango y Gráfica}
+\author[Cátedra de Matemática]{Cátedra de Matemática — Matemática II}
+\institute[UCV]{Universidad Central de Venezuela \\ Facultad de Ciencias Económicas y Sociales (FACES)}
+\date{}
+
+\begin{document}
+
+% ============================================================
+% PORTADA Y CONTENIDO
+% ============================================================
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Fuente y atribución}
+  \small
+  \begin{block}{Material original}
+    Díaz L., Isabel (Prof.). \emph{Guía de Ejercicios N.º 1 — Matemática II}.
+    Cátedra de Matemática de la Escuela de Economía,
+    Universidad Central de Venezuela (UCV), enero de 2017.
+  \end{block}
+  \begin{block}{Esta presentación}
+    Presentación teórico-práctica de la Cátedra de Matemática — Matemática II.
+    Edición y formato: Ing. Gabriel Astudillo
+    (Mathwizards Consultoría Educativa STEM).
+  \end{block}
+  \begin{block}{Uso del material}
+    Material didáctico reproducido con autorización de la fuente original.
+    Se cita la autoría y la institución de procedencia.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Estructura de la Sesión}
+  \tableofcontents
+\end{frame}
+
+% ============================================================
+% PARTE I: MARCO TEÓRICO
+% ============================================================
+\section{Parte Teórica: Funciones de Varias Variables e Incrementos}
+
+\begin{frame}{Función Real de Varias Variables Reales}
+  \begin{block}{Definición (Notación de Euler)}
+    Una \textbf{función real de $n$ variables reales independientes} es una regla de correspondencia
+    \[
+      f : H \subseteq \mathbb{R}^n \longrightarrow \mathbb{R}, \qquad w = f(x_1, x_2, \dots, x_n)
+    \]
+    que asigna a \textbf{cada} $n$-upla ordenada $(x_1, x_2, \dots, x_n) \in H$ un \textbf{único} número real $w \in \mathbb{R}$.
+  \end{block}
+
+  \vspace{0.3cm}
+  Para el caso de dos variables independientes ($n=2$):
+  \[
+    f : H \subseteq \mathbb{R}^2 \longrightarrow \mathbb{R}, \qquad z = f(x, y)
+  \]
+  \begin{itemize}
+    \item $x, y$: variables independientes.
+    \item $z$: variable dependiente.
+    \item $H = D_f$: dominio de la función (conjunto de partida efectivo).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Relación Binaria vs. Relación Funcional}
+  Dada una relación binaria $R : A \longrightarrow B$ definida mediante una ecuación entre $(x,y)$ y $z$, para que $R$ sea una \textbf{función} deben cumplirse simultáneamente dos condiciones:
+
+  \vspace{0.2cm}
+  \begin{block}{Condiciones de la definición de función}
+    \begin{enumerate}
+      \item \textbf{Existencia:} Todo elemento $(x,y)$ del conjunto de partida $A$ debe poseer al menos una imagen $z \in B$.
+      \item \textbf{Unicidad:} Cada elemento $(x,y) \in A$ debe poseer una \textbf{única} imagen $z \in B$.
+    \end{enumerate}
+  \end{block}
+
+  \vspace{0.2cm}
+  \textbf{¿Cómo transformar una relación no funcional en función?}
+  \begin{itemize}
+    \item \textbf{Falla la unicidad} (aparece $\pm$ al despejar potencias pares $z^{2k}$ o valores absolutos $|E(z)|$): se modifica la regla de correspondencia eligiendo una sola rama ($+$ o $-$).
+    \item \textbf{Falla la existencia} (hay puntos en $\mathbb{R}^2$ sin imagen real): se restringe el conjunto de partida $\mathbb{R}^2$ al subconjunto máximo $H = D_f \subset \mathbb{R}^2$ donde la expresión produzca un número real.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Modelos Económicos e Incrementos}
+  \begin{block}{Funciones económicas básicas}
+    \begin{itemize}
+      \item \textbf{Ingreso total ($I$):} suma del producto precio por cantidad de cada bien vendido: $I = \sum p_i q_i$.
+      \item \textbf{Costo total ($C$):} suma de costos variables y costos fijos: $C = C_V + C_F = \sum c_i q_i + C_F$.
+      \item \textbf{Beneficio total ($B$):} diferencia entre ingreso total y costo total: $B = I - C$.
+    \end{itemize}
+  \end{block}
+
+  \vspace{0.2cm}
+  \begin{block}{Incrementos parciales y totales}
+    Sea $w = f(x, y, z)$ y un punto inicial $(x_0, y_0, z_0)$:
+    \begin{itemize}
+      \item \textbf{Incremento parcial respecto a $x$} (variando solo $x$ en $\Delta x$):
+        \[
+          \Delta_x f(x_0, y_0, z_0) = f(x_0 + \Delta x,\, y_0,\, z_0) - f(x_0, y_0, z_0)
+        \]
+      \item \textbf{Incremento total} (variando varias variables simultáneamente):
+        \[
+          \Delta f(x_0, y_0, z_0) = f(x_0 + \Delta x,\, y_0 + \Delta y,\, z_0 + \Delta z) - f(x_0, y_0, z_0)
+        \]
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\section{Parte Teórica: Dominio, Rango, Gráfica y Restricciones}
+
+\begin{frame}{Dominio, Rango y Gráfica de $f : H \subseteq \mathbb{R}^n \to \mathbb{R}$}
+  \begin{table}
+    \centering
+    \small
+    \begin{tabular}{p{2.3cm} p{5.2cm} p{2.3cm} p{3.2cm}}
+      \toprule
+      \textbf{Concepto} & \textbf{Definición analítica} & \textbf{Espacio} & \textbf{Representación} \\
+      \midrule
+      \textbf{Dominio ($D_f$)} & $H = \{(x_1,\dots,x_n) \in \mathbb{R}^n \mid f(x_1,\dots,x_n) \in \mathbb{R}\}$ & $\mathbb{R}^n$ & Graficable si $n \le 3$ \\
+      \addlinespace
+      \textbf{Rango ($R_f$)} & $\{w \in \mathbb{R} \mid \exists\,(x_1,\dots,x_n) \in D_f,\; w = f(x_1,\dots,x_n)\}$ & $\mathbb{R}$ & Siempre (recta real) \\
+      \addlinespace
+      \textbf{Gráfica ($G_f$)} & $\{(x_1,\dots,x_n,w) \in \mathbb{R}^{n+1} \mid (x_1,\dots,x_n)\in D_f \wedge w = f(\dots)\}$ & $\mathbb{R}^{n+1}$ & Graficable si $n \le 2$ \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+
+  \vspace{0.3cm}
+  \textbf{Caso $n=2$ ($z = f(x,y)$):}
+  \begin{itemize}
+    \item $D_f \subseteq \mathbb{R}^2$: subconjunto de pares ordenados $(x,y)$, representable como una \textbf{región en el plano}.
+    \item $G_f \subseteq \mathbb{R}^3$: subconjunto de ternas ordenadas $(x,y,z)$, representable como una \textbf{superficie en el espacio}.
+    \item Si $D_f = \emptyset$, la expresión no define una función real.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Restricciones Algebraicas para Determinar el Dominio}
+  \begin{table}
+    \centering
+    \setlength{\tabcolsep}{3pt}
+    \footnotesize
+    \begin{tabular}{p{4.2cm} p{4.2cm} p{4.6cm}}
+      \toprule
+      \textbf{Expresión en $f(x,y)$} & \textbf{Restricción exigida} & \textbf{Observación clave} \\
+      \midrule
+      Cociente $\dfrac{P(x,y)}{Q(x,y)}$ & $Q(x,y) \neq 0$ & Se excluye la curva $Q(x,y)=0$ \\
+      \addlinespace
+      Raíz de índice par $\sqrt[2k]{P(x,y)}$ & $P(x,y) \ge 0$ & Si está en denominador: $P(x,y) > 0$ \\
+      \addlinespace
+      Raíz de índice impar $\sqrt[2k+1]{P(x,y)}$ & Sin restricción propia & Solo heredadas de $P(x,y)$ \\
+      \addlinespace
+      Logaritmo $\log_b(P(x,y))$ ($b>0, b\neq 1$) & $P(x,y) > 0$ & Si está en denominador: además $P(x,y) \neq 1$ \\
+      \addlinespace
+      Exponencial $a^{P(x,y)}$ ($a>0$) & Dominio de $P(x,y)$ & Siempre $a^{P(x,y)} > 0$ \\
+      \addlinespace
+      Potencial-exponencial $[u(x,y)]^{v(x,y)}$ & $u(x,y) > 0$ y $v(x,y) \in \mathbb{R}$ & Base estrictamente positiva \\
+      \addlinespace
+      Ecuación con $|E(z)| = K(x,y)$ & $K(x,y) \ge 0$ & El valor absoluto nunca es negativo \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+
+  \vspace{0.15cm}
+  \textbf{Regla de signos en productos y cocientes:}
+  \begin{itemize}
+    \item $A \cdot B \ge 0 \iff (A \ge 0 \wedge B \ge 0) \;\vee\; (A \le 0 \wedge B \le 0)$ \qquad (análogamente con $>$ estricto).
+    \item $\dfrac{A}{B} > 0 \iff (A > 0 \wedge B > 0) \;\vee\; (A < 0 \wedge B < 0)$.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Desigualdades con Valor Absoluto y Reglas de Frontera}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Inecuaciones con valor absoluto ($k > 0$)}
+        \begin{itemize}
+          \item $|u| < k \iff -k < u < k$
+          \item $|u| \le k \iff -k \le u \le k$
+          \item $|u| > k \iff u < -k \;\vee\; u > k$
+          \item $|u| \ge k \iff u \le -k \;\vee\; u \ge k$
+          \item $|u| \neq k \iff u \neq k \;\wedge\; u \neq -k$
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Convenciones gráficas en $\mathbb{R}^2$}
+        \begin{itemize}
+          \item \textbf{Trazo continuo} ($\le$ o $\ge$): la curva frontera \textbf{pertenece} al dominio.
+          \item \textbf{Trazo punteado} ($<$, $>$ o $\neq$): la curva frontera \textbf{no pertenece} al dominio.
+          \item \textbf{Intersección ($\wedge$):} región común donde se cumplen \textbf{todas} las condiciones simultáneamente.
+          \item \textbf{Unión ($\vee$):} región donde se cumple al menos una condición.
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+
+  \vspace{0.3cm}
+  \textbf{Método del punto de prueba:} una vez trazada la curva frontera $F(x,y) = 0$, se evalúa un punto $(x_0, y_0)$ que no pertenezca a la curva en la inecuación; si la satisface, se sombrea el semiplano o región que contiene a $(x_0, y_0)$.
+\end{frame}
+
+\section{Parte Teórica: Curvas Elementales y Problema Inverso}
+
+\begin{frame}{Catálogo de Curvas Elementales en $\mathbb{R}^2$}
+  \begin{table}
+    \centering
+    \setlength{\tabcolsep}{3pt}
+    \renewcommand{\arraystretch}{1.05}
+    \footnotesize
+    \begin{tabular}{p{3.0cm} p{3.8cm} p{6.2cm}}
+      \toprule
+      \textbf{Curva} & \textbf{Ecuación estándar} & \textbf{Elementos geométricos clave} \\
+      \midrule
+      Recta & $y = mx + b$ & Pendiente $m$, corte con $Y$ en $(0,b)$, corte con $X$ en $(-b/m, 0)$ \\
+      \addlinespace
+      Parábola vertical & $y = a(x-h)^2 + k$ & Vértice $(h,k)$; abre hacia arriba si $a>0$, abajo si $a<0$ \\
+      \addlinespace
+      Parábola horizontal & $x = a(y-k)^2 + h$ & Vértice $(h,k)$; abre a la derecha si $a>0$, izquierda si $a<0$ \\
+      \addlinespace
+      Valor absoluto & $y = a|x-h| + k$ & Vértice $(h,k)$ en forma de «V»; arriba si $a>0$, abajo si $a<0$ \\
+      \addlinespace
+      Raíz cuadrada & $y = k \pm \sqrt{\pm(x-h)}$ & Punto inicial $(h,k)$; dominio según radicando $\ge 0$ \\
+      \addlinespace
+      Función cúbica & $y = \pm(x-h)^3 + k$ & Punto de inflexión en $(h,k)$; creciente ($+$) o decreciente ($-$) \\
+      \addlinespace
+      Circunferencia & $(x-h)^2 + (y-k)^2 = r^2$ & Centro $(h,k)$, radio $r>0$; interior ($<r^2$), exterior ($>r^2$) \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\begin{frame}{Construcción de una Función a partir de su Dominio (Problema Inverso)}
+  Cuando se proporciona la \textbf{región sombreada} correspondiente al dominio $H \subset \mathbb{R}^2$:
+
+  \begin{enumerate}
+    \item \textbf{Identificar cada curva frontera} a partir de sus puntos característicos (vértices, cortes con los ejes, centro y radio, punto inicial o de inflexión).
+    \item \textbf{Determinar la inecuación de cada curva:}
+      \begin{itemize}
+        \item Si el trazo es \textbf{continuo}: usar $\le$ o $\ge$.
+        \item Si el trazo es \textbf{punteado}: usar $<$ o $>$ (o $\neq$ si solo se excluye la curva).
+        \item Verificar el sentido de la desigualdad con un punto interior a la región sombreada.
+      \end{itemize}
+    \item \textbf{Traducir cada inecuación a una expresión algebraica} en $z = f(x,y)$:
+      \begin{itemize}
+        \item $P(x,y) \ge 0 \;\Longrightarrow\; \sqrt{P(x,y)}$ en el numerador (o como sumando).
+        \item $P(x,y) > 0 \;\Longrightarrow\; \ln(P(x,y))$ en el numerador, o $\sqrt{P(x,y)}$ en el denominador.
+        \item $P(x,y) \neq 0 \;\Longrightarrow\; P(x,y)$ como factor en el denominador.
+      \end{itemize}
+    \item \textbf{Verificar} que la función construida no introduzca restricciones adicionales ni omita ninguna restricción de $H$.
+  \end{enumerate}
+\end{frame}
+
+% ============================================================
+% PARTE II: PRÁCTICA (EJERCICIOS)
+% ============================================================
+\section{Parte Práctica: Ejercicios}
+
+% --- EJERCICIO 34 ---
+\begin{frame}{Ejercicio 34 (Parte I)}
+  \small
+  En las próximas vacaciones escolares llegará a la ciudad un gran circo para presentar un espectáculo que ha tenido mucho éxito en otros países. Se estima que asistan a cada función un promedio de $x$ personas cuando el precio de la entrada es de $m$ dólares. Además, se ha previsto vender un combo de chucherías de tal manera que si $p$ es el precio de cada combo, las cantidades demandadas se calculan mediante:
+  \[
+    q = h(p) = 20\sqrt{29 - p}
+  \]
+  El empresario circense ha previsto que: (i) cada espectador le costará $5$ dólares; (ii) en la elaboración de cada combo debe invertir $1$ dólar; y (iii) deberá asumir un costo fijo de $820$ dólares por cada función presentada.
+
+  \medskip
+  \begin{enumerate}
+    \item[(A)] Determina la función de beneficio $B$ obtenido por el empresario en cada presentación del circo en términos de las variables $x$, $m$ y $p$.
+    \item[(B)] Halla el beneficio que obtendría el empresario si asisten $500$ personas a cada función cuando el precio de la entrada se fija en $10$ dólares y cada combo se vende a $4$ dólares.
+  \end{enumerate}
+  \vfill
+\end{frame}
+
+\begin{frame}{Ejercicio 34 (Parte II)}
+  \small
+  \begin{enumerate}
+    \item[(C)] Por la crisis económica del país, se estima que el número de espectadores pueda llegar a ser menor de lo previsto en un $40\%$. Si se desea obtener el mismo beneficio hallado en el ítem anterior, ¿cuál debería ser el precio de la entrada al circo para garantizar este beneficio si se sigue vendiendo el combo en $4$ dólares? Justifica tu respuesta. Resuelve este ejercicio utilizando incrementos. ¿De qué otra forma se puede resolver?
+  \end{enumerate}
+  \vfill
+\end{frame}
+
+% --- EJERCICIO 40 ---
+\begin{frame}{Ejercicio 40}
+  \small
+  Sea la relación definida por $f : \mathbb{R}^2 \longrightarrow \mathbb{R}$ tal que
+  \[
+    z = f(x,y) = \frac{\sqrt{xy}}{x^2 - y^2}
+  \]
+  \begin{enumerate}
+    \item[(A)] ¿Se puede afirmar que la relación $f$ define a $z$ como una función real de $x$ e $y$? Razona tu respuesta.
+    \item[(B)] Si tu respuesta a la pregunta anterior es negativa, realiza las restricciones necesarias para que $f$ sea efectivamente una función.
+    \item[(C)] Determina gráficamente el dominio de $f$. Expresa las restricciones en términos de $y$.
+  \end{enumerate}
+  \vfill
+\end{frame}
+
+% --- EJERCICIO 48 ---
+\begin{frame}{Ejercicio 48}
+  \small
+  Dada la ecuación:
+  \[
+    z = f(x,y) = \frac{\sqrt{\sqrt{x-2}-y} + \ln(2y - 3x + 6)}{\sqrt{16 - x^2 - y^2}} - \sqrt{y - |x+3|}
+  \]
+  \begin{enumerate}
+    \item[(A)] Halla el subconjunto $H$ de $\mathbb{R}^2$ para el cual $f(x,y) \in \mathbb{R}$. Siempre que sea conveniente, expresa las restricciones en términos de $x$.
+    \item[(B)] Representa gráficamente el conjunto $H$. ¿Qué observas?
+    \item[(C)] ¿Puede considerarse a $f$ como una función real de las variables $x$ e $y$? ¿Por qué? En caso negativo, ¿qué modificaciones harías en la ecuación dada para obtener una función real $g$ de las variables $x$ e $y$? ¿Cuál sería el dominio de definición de $g$?
+  \end{enumerate}
+  \vfill
+\end{frame}
+
+% --- EJERCICIO 51 ---
+\begin{frame}{Ejercicio 51}
+  \small
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      Sea la función $t : H \subseteq \mathbb{R}^2 \longrightarrow \mathbb{R}$ tal que $z = t(x,y)$. Se sabe que la representación gráfica del dominio $H$ de esta función viene dada por la región del plano sombreada en la figura.
+      \medskip
+      \begin{enumerate}
+        \item[(A)] Determina analíticamente el dominio de $t$. Siempre que sea conveniente, expresa las restricciones en términos de $x$.
+        \item[(B)] Construye una ecuación que defina la función $z = t(x,y)$.
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.52]
+        % Región sombreada (representación fiel a la guía)
+        \fill[ucvblue!30]
+          plot[domain=2:3.78, samples=40] (\x, {2*sqrt(\x-2)})
+          -- plot[domain=3.78:2, samples=20] (\x, {1.5*\x - 3}) -- cycle;
+        % Ejes
+        \draw[->, thick] (-6.5, 0) -- (6.5, 0) node[right] {$X$};
+        \draw[->, thick] (0, -4.8) -- (0, 5.2) node[above] {$Y$};
+        % Marcas en ejes
+        \foreach \x in {-4,-3,-2,-1,1,2,3,4} \draw (\x, 0.12) -- (\x, -0.12);
+        \foreach \y in {-4,-3,-2,-1,1,2,3,4} \draw (0.12, \y) -- (-0.12, \y);
+        \node[below left, font=\scriptsize] at (-4, 0) {$-4$};
+        \node[below, font=\scriptsize] at (-3, -0.1) {$-3$};
+        \node[below right, font=\scriptsize] at (2, 0) {$2$};
+        \node[below right, font=\scriptsize] at (4, 0) {$4$};
+        \node[left, font=\scriptsize] at (0, 3) {$3$};
+        \node[above left, font=\scriptsize] at (0, 4) {$4$};
+        \node[right, font=\scriptsize] at (0, -3) {$-3$};
+        \node[below right, font=\scriptsize] at (0, -4) {$-4$};
+        % Circunferencia punteada x^2+y^2=16
+        \draw[dashed, thick] (0,0) circle (4);
+        % Valor absoluto y=|x+3| continuo
+        \draw[<->, thick] (-6.2, 3.2) -- (-3, 0) -- (1.8, 4.8);
+        % Recta punteada y = (3/2)x - 3
+        \draw[<->, dashed, thick] (-0.8, -4.2) -- (5.2, 4.8);
+        % Curva raíz cuadrada continua desde (2,0)
+        \draw[->, thick] plot[domain=2:6.0, samples=60] (\x, {2*sqrt(\x-2)});
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+  \vfill
+\end{frame}
+
+% --- EJERCICIO 52 ---
+\begin{frame}{Ejercicio 52}
+  \small
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      Sea la función $f : H \subseteq \mathbb{R}^2 \longrightarrow \mathbb{R}$ tal que $z = f(x,y)$. La representación gráfica de $H$ es la región del plano sombreada en la figura. Además se sabe que las curvas de esta representación se corresponden con la de funciones elementales.
+      \medskip
+      \begin{enumerate}
+        \item[(A)] Determina analíticamente el dominio de $f$. Siempre que sea conveniente, expresa las restricciones en términos de $x$.
+        \item[(B)] Construye una ecuación para la función $f(x,y) = z$.
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.50\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.45]
+        % Región sombreada
+        \begin{scope}
+          \clip plot[domain=-3:3, samples=50] (\x, {9 - (\x)^2}) -- (3, -5) -- (-3, -5) -- cycle;
+          \clip (-5, -5) -- (-5, 5) -- plot[domain=-5:4, samples=60] (\x, {1 + sqrt(4 - \x)}) -- (4, -5) -- cycle;
+          \clip (-5, -5) -- (-5, 6) -- plot[domain=-1.9:1.7, samples=60] (\x, {-(\x)^3}) -- (1.7, -5) -- cycle;
+          \fill[ucvblue!30] (-5, 10) -- (-5, 2) -- (0, -3) -- (5, 2) -- (5, 10) -- cycle;
+        \end{scope}
+        % Ejes
+        \draw[->, thick] (-5.5, 0) -- (5.5, 0) node[right] {$X$};
+        \draw[->, thick] (0, -4.8) -- (0, 10.2) node[above] {$Y$};
+        % Marcas
+        \foreach \x in {-4,-3,-2,-1,1,2,3,4} \draw (\x, 0.14) -- (\x, -0.14);
+        \foreach \y in {-4,-3,-2,-1,1,2,3,4,5,6,7,8,9} \draw (0.14, \y) -- (-0.14, \y);
+        \node[below, font=\scriptsize] at (-3, -0.15) {$-3$};
+        \node[below, font=\scriptsize] at (-1, -0.15) {$-1$};
+        \node[below, font=\scriptsize] at (3, -0.15) {$3$};
+        \node[below, font=\scriptsize] at (4, -0.15) {$4$};
+        \node[left, font=\scriptsize] at (-0.1, 9) {$9$};
+        \node[left, font=\scriptsize] at (-0.1, 3) {$3$};
+        \node[left, font=\scriptsize] at (-0.1, 1) {$1$};
+        \node[right, font=\scriptsize] at (0.1, -3) {$-3$};
+        % Guías de (4,1)
+        \draw[dotted] (4,0) -- (4,1) -- (0,1);
+        % Parábola continua y = 9 - x^2
+        \draw[<->, thick] plot[domain=-3.1:3.1, samples=60] (\x, {9 - (\x)^2});
+        % Valor absoluto continuo y = |x| - 3
+        \draw[<->, thick] (-4.6, 1.6) -- (0, -3) -- (4.8, 1.8);
+        % Raíz cuadrada punteada y = 1 + sqrt(4-x)
+        \draw[->, dashed, thick] plot[domain=4:-5.2, samples=60] (\x, {1 + sqrt(4 - \x)});
+        % Cúbica punteada y = -x^3
+        \draw[<->, dashed, thick] plot[domain=-1.65:1.65, samples=60] (\x, {-(\x)^3});
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+  \vfill
+\end{frame}
+
+% --- EJERCICIO 53 ---
+\begin{frame}{Ejercicio 53 — Literales (A) y (B)}
+  \small
+  Las siguientes son funciones reales definidas en el conjunto $H \subseteq \mathbb{R}^2$. Para cada una de estas, determina analíticamente su dominio. Expresa las restricciones o condiciones del dominio de manera simplificada. Luego, representa gráficamente el dominio.
+
+  \medskip
+  \begin{enumerate}
+    \item[(A)] $z = f(x,y) = \dfrac{\log(-x^2 + 4 - y)}{\sqrt{y + \sqrt{x-1}}} + 10^{\sqrt{-y - |x-1| + 1}}$
+    \vspace{2.2cm}
+    \item[(B)] $z = f(x,y) = \dfrac{\ln(-x^2 + 4y + 16)}{\sqrt{|2x - 3y| - 6} - 1}$ \quad para $|x| \ge 3$
+  \end{enumerate}
+  \vfill
+\end{frame}
+
+\begin{frame}{Ejercicio 53 — Literales (C) y (D)}
+  \small
+  \begin{enumerate}
+    \item[(C)] $z = f(x,y) = \dfrac{\log(|2x - 3y| - 6)}{\sqrt[4]{-x^2 + 4y + 16}}$ \quad para $|y| < 3$
+    \vspace{2.6cm}
+    \item[(D)] $z = f(x,y) = \left[\dfrac{\ln(y + 9 - x^2)}{\sqrt{2 - (y + |x-3|)}}\right]^{\sqrt{y - (x-1)(x-5)}}$
+  \end{enumerate}
+  \vfill
+\end{frame}
+
+\begin{frame}{Ejercicio 53 — Literales (E) y (F)}
+  \small
+  \begin{enumerate}
+    \item[(E)] $z = f(x,y) = \dfrac{\sqrt{y - x^3}\,\ln(4 - |x| - y)}{\sqrt[6]{6 - |3x - 2y|}}$
+    \vspace{2.6cm}
+    \item[(F)] $z = f(x,y) = \dfrac{\ln\big(y(x^2 - 5x + 6)\big)}{\sqrt{x^2 - 5x + 4 - y}}$
+  \end{enumerate}
+  \vfill
+\end{frame}
+
+\begin{frame}{Ejercicio 53 — Literales (G) y (H)}
+  \small
+  \begin{enumerate}
+    \item[(G)] $z = g(x,y) = \dfrac{a^{\sqrt[4]{-y - x^2 + 16}}\,\ln(y + \sqrt{x+4})}{\sqrt{|y| - 2|x|}}$ \quad ($a$: constante real positiva)
+    \vspace{2.6cm}
+    \item[(H)] $z = h(x,y) = \dfrac{\log(||x| - y| - 3)}{\sqrt{\dfrac{y}{x^3}}}\,\sqrt{-y - x^2 + 9}$ \quad para $y \le -4$
+  \end{enumerate}
+  \vfill
+\end{frame}
+
+\begin{frame}{Ejercicio 53 — Literal (I)}
+  \small
+  \begin{enumerate}
+    \item[(I)] $z = f(x,y) = \dfrac{\ln\!\left(\sqrt{4 - x^2 - y^2}\,(4 - (x+2)^2 - (y+2)^2)^{1/4}\right)}{(x+2)^3 - y}$
+  \end{enumerate}
+  \vfill
+\end{frame}
+
+\begin{frame}{Ejercicio 53 — Literales (J) y (K)}
+  \small
+  \begin{enumerate}
+    \item[(J)] $z = g(x,y) = \dfrac{\ln(y - x^2 + 4x - 3) + a\left[1 - y^2 - (x-3)^2\right]^{1/2}}{\sqrt{-y - |x-2| + 1} + 1}$ \quad con $a \in \mathbb{R}^+$
+    \vspace{2.6cm}
+    \item[(K)] $z = f(x,y) = \dfrac{\sqrt[4]{2x - 7y}}{\ln\big((x-2)^2 + y^2 - 4\big) - 1} + \dfrac{e^{\sqrt{y^2 - x + 2}}}{\sqrt[4]{9 - |6x + 3y|}}$
+  \end{enumerate}
+  \vfill
+\end{frame}
+
+% --- EJERCICIO 55 ---
+\begin{frame}{Ejercicio 55}
+  \small
+  Sea $g$ una relación binaria establecida entre pares ordenados de números reales $(x,y)$ y números reales $z$ expresada por la siguiente ecuación:
+  \[
+    \left|az - \sqrt{y + |x| - 4}\right|\left(2^{\sqrt{y - x^2 + 4}} + a\right) = a\log_2(16 - x^2 - y^2) \qquad (a\text{: constante real positiva})
+  \]
+  \begin{enumerate}
+    \item[(A)] Despeja la variable $z$ en términos de las variables independientes $x$ e $y$. ¿Se puede afirmar que la relación $g$ es una función? Indica todas las razones que justifican tu respuesta.
+    \item[(B)] ¿Se requiere hacer alguna modificación en la ecuación obtenida en el ítem anterior para que la relación $g$ pueda ser una función tal que $g(x,y) = z$? ¿Cuál? ¿Por qué?
+    \item[(C)] ¿Se requiere hacer alguna restricción en el conjunto de partida para que la relación $g$ defina una función? ¿Por qué? En caso afirmativo, ¿cuál debe ser el dominio de esta función ($D_g$)? Define analíticamente este conjunto, expresando las restricciones en términos de $x$.
+    \item[(D)] Representa gráficamente el dominio de $g$. Identifica cada una de las curvas así como la región del plano correspondiente al $D_g$.
+  \end{enumerate}
+  \vfill
+\end{frame}
+
+% --- EJERCICIO 57 ---
+\begin{frame}{Ejercicio 57}
+  \small
+  Dada una relación binaria $W : \mathbb{R}^2 \longrightarrow \mathbb{R}$ que relaciona las variables independientes $x$ e $y$ con la variable dependiente $z$ mediante la expresión:
+  \[
+    (xy + y^2)(x^2 + y^2 - 1) = \left[z \ln(8 - x^2 - y^2)\right]^4
+  \]
+  \begin{enumerate}
+    \item[(A)] ¿Es la relación $W$ una función de $z$ en términos de $x$ e $y$? Indica todas las razones que avalan tu respuesta utilizando como base la definición de función.
+    \item[(B)] ¿Se requiere hacer alguna modificación en la expresión dada para que la relación $W$ pueda ser una función tal que $W(x,y) = z$? ¿Cuál? ¿Por qué?
+    \item[(C)] ¿Se requiere hacer alguna restricción en el conjunto de partida para que la relación $W$ defina una función? ¿Por qué? En caso afirmativo, ¿cuál debe ser el dominio de esta función ($D_W$)? Define analíticamente este conjunto, expresando las restricciones en términos de $x$.
+    \item[(D)] Representa gráficamente el dominio de $W$. Identifica cada una de las curvas así como la región del plano correspondiente a $D_W$.
+    \item[(E)] Utiliza la notación de Euler para expresar a $W$ como una función con las características establecidas en los ítems anteriores.
+    \item[(F)] ¿Cuál es la gráfica de $W$? Denota este conjunto como $G_W$. ¿A qué espacio dimensional pertenecen los elementos de este conjunto? ¿Es posible representarlo gráficamente? ¿Por qué?
+  \end{enumerate}
+  \vfill
+\end{frame}
+
+\end{document}

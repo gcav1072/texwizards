@@ -16,24 +16,36 @@ use Cwd qw(abs_path);
 use File::Basename qw(dirname);
 
 # Directorio del repo = directorio de este .latexmkrc (resuelve symlinks).
-my $repo_root = dirname(abs_path(__FILE__));
+# latexmk evalúa este archivo con `eval`, por lo que __FILE__ vale "(eval N)".
+# Usamos @rc_files_read, que latexmk rellena con la ruta del rc antes del eval.
+my $rc_file_path = (@rc_files_read && defined $rc_files_read[-1] && -e $rc_files_read[-1])
+    ? abs_path($rc_files_read[-1])
+    : undef;
+my $repo_root = defined($rc_file_path) ? dirname($rc_file_path) : abs_path('.');
 
 # Fallback: si el rc se copiara/simlinkeara fuera del repo, busca styles/
 # ascendiendo desde el directorio de trabajo.
-if (!-d "$repo_root/styles") {
+if (!defined($repo_root) || !-d "$repo_root/styles") {
     my $dir = abs_path('.');
-    while ($dir ne '/' && !-d "$dir/styles") {
-        $dir = dirname($dir);
+    while (defined($dir) && !-d "$dir/styles") {
+        my $parent = dirname($dir);
+        last if !defined($parent) || $parent eq $dir;
+        $dir = $parent;
     }
-    $repo_root = $dir if -d "$dir/styles";
+    $repo_root = $dir if defined($dir) && -d "$dir/styles";
 }
 
-my $styles = "$repo_root/styles";
+my $styles = defined($repo_root) ? "$repo_root/styles" : 'styles';
 if (-d $styles) {
-    my $existing = $ENV{'TEXINPUTS'} // '';
-    # Prepend solo si no estaba ya; el ":" final conserva las rutas por defecto.
-    if (index($existing, $styles) < 0) {
-        $ENV{'TEXINPUTS'} = "$styles//" . ($existing ne '' ? ":$existing" : '') . ":";
+    if (defined &ensure_path) {
+        ensure_path('TEXINPUTS', "$styles//");
+    } else {
+        my $sep = $search_path_separator // ($^O =~ /^(MSWin32|cygwin|msys)$/ ? ';' : ':');
+        my $existing = $ENV{'TEXINPUTS'} // '';
+        # Prepend solo si no estaba ya; el separador final conserva rutas por defecto.
+        if (index($existing, $styles) < 0) {
+            $ENV{'TEXINPUTS'} = "$styles//" . ($existing ne '' ? "$sep$existing" : '') . $sep;
+        }
     }
 } else {
     warn "[.latexmkrc] Aviso: no se encontró '$styles'. "
@@ -42,4 +54,4 @@ if (-d $styles) {
 
 $xelatex = 'xelatex -halt-on-error -file-line-error -synctex=1 %O %S';
 $pdf_mode = 5;            # 5 = xelatex
-$pdf_previewer = 'zathura';
+$pdf_previewer = 'zathura' if $^O eq 'linux';

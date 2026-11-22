@@ -9,11 +9,10 @@
   //  por lo que el .latexmkrc de la raíz no se usa al compilar documentos en
   //  subdirectorios.
   //
-  //  Solución PORTABLE: exponer styles/ vía TEXINPUTS usando el placeholder
-  //  %WORKSPACE_FOLDER%. Al estar commiteado, cualquier PC que clone el repo
-  //  compila con Ctrl+S sin configurar nada manualmente ni depender de ~/texmf.
-  //
-  //  Nota kpathsea: el ":" final en TEXINPUTS conserva las rutas por defecto.
+  //  Solución PORTABLE (Linux, macOS y Windows): pasar -r %WORKSPACE_FOLDER%/.latexmkrc
+  //  para que latexmk cargue el .latexmkrc de la raíz incluso desde subcarpetas.
+  //  Así .latexmkrc usa ensure_path('TEXINPUTS', ...), evitando hardcodear ':'
+  //  (que rompe kpathsea en Windows, donde el separador es ';').
   // ────────────────────────────────────────────────────────────────────────
   "latex-workshop.latex.tools": [
     {
@@ -24,11 +23,10 @@
         "-interaction=nonstopmode",
         "-file-line-error",
         "-xelatex",
+        "-r",
+        "%WORKSPACE_FOLDER%/.latexmkrc",
         "%DOC%"
-      ],
-      "env": {
-        "TEXINPUTS": "%WORKSPACE_FOLDER%/styles//:"
-      }
+      ]
     }
   ],
   "latex-workshop.latex.recipes": [

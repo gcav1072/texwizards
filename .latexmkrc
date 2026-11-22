@@ -52,6 +52,75 @@ if (-d $styles) {
        . "Ejecuta setup_texmf.sh o revisa que styles/ exista.\n";
 }
 
+# En Windows (TeX Live), fontconfig usa TEXMFSYSVAR/fonts/conf/fonts.conf, que
+# solo indexa C:/Windows/fonts y texmf-dist, ignorando assets/fonts/ y las
+# fuentes instaladas por usuario en %LOCALAPPDATA%\Microsoft\Windows\Fonts.
+if ($^O eq 'MSWin32' && (!defined $ENV{'FONTCONFIG_FILE'} || $ENV{'FONTCONFIG_FILE'} eq '')) {
+    require File::Path;
+    my @extra_font_dirs;
+    if (defined($repo_root) && -d "$repo_root/assets/fonts") {
+        (my $d = "$repo_root/assets/fonts") =~ s{\\}{/}g;
+        push @extra_font_dirs, $d;
+    }
+    if (defined($ENV{'LOCALAPPDATA'}) && $ENV{'LOCALAPPDATA'} ne '') {
+        (my $uf = "$ENV{'LOCALAPPDATA'}/Microsoft/Windows/Fonts") =~ s{\\}{/}g;
+        push @extra_font_dirs, $uf if -d $uf;
+    }
+
+    if (@extra_font_dirs) {
+        my $base_fc;
+        for my $var ('TEXMFSYSVAR', 'TEXMFVAR') {
+            my $val = $ENV{$var};
+            if (!defined($val) || $val eq '') {
+                $val = `kpsewhich --var-value=$var 2>NUL`;
+                $val =~ s/[\r\n]+$// if defined $val;
+            }
+            if (defined($val) && $val ne '' && -e "$val/fonts/conf/fonts.conf") {
+                ($base_fc = "$val/fonts/conf/fonts.conf") =~ s{\\}{/}g;
+                last;
+            }
+        }
+
+        if (defined($base_fc)) {
+            my $xml_esc = sub {
+                my ($s) = @_;
+                $s =~ s/&/&amp;/g;
+                $s =~ s/</&lt;/g;
+                $s =~ s/>/&gt;/g;
+                return $s;
+            };
+            my $xml = qq{<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE fontconfig SYSTEM "fonts.dtd">\n<fontconfig>\n};
+            $xml .= "  <include ignore_missing=\"no\">" . $xml_esc->($base_fc) . "</include>\n";
+            for my $d (@extra_font_dirs) {
+                $xml .= "  <dir>" . $xml_esc->($d) . "</dir>\n";
+            }
+            $xml .= "</fontconfig>\n";
+
+            my $tmp_dir = (defined($repo_root) && -d $repo_root)
+                ? "$repo_root/.mws_tmp"
+                : ($ENV{'TEMP'} // $ENV{'TMP'} // '.');
+            $tmp_dir =~ s{\\}{/}g;
+            eval { File::Path::make_path($tmp_dir) unless -d $tmp_dir; };
+            my $custom_fc = "$tmp_dir/fonts.conf";
+            my $existing_xml = '';
+            if (-e $custom_fc && open(my $rfh, '<', $custom_fc)) {
+                local $/;
+                $existing_xml = <$rfh> // '';
+                close($rfh);
+            }
+            if ($existing_xml ne $xml) {
+                my $stage = "$custom_fc.$$.tmp";
+                if (open(my $wfh, '>', $stage)) {
+                    print {$wfh} $xml;
+                    close($wfh);
+                    rename($stage, $custom_fc) or unlink($stage);
+                }
+            }
+            $ENV{'FONTCONFIG_FILE'} = $custom_fc if -e $custom_fc;
+        }
+    }
+}
+
 $xelatex = 'xelatex -halt-on-error -file-line-error -synctex=1 %O %S';
 $pdf_mode = 5;            # 5 = xelatex
 $pdf_previewer = 'zathura' if $^O eq 'linux';

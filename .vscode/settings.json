@@ -11,8 +11,8 @@
   //
   //  Solución PORTABLE (Linux, macOS y Windows): pasar -r %WORKSPACE_FOLDER%/.latexmkrc
   //  para que latexmk cargue el .latexmkrc de la raíz incluso desde subcarpetas.
-  //  Así .latexmkrc usa ensure_path('TEXINPUTS', ...), evitando hardcodear ':'
-  //  (que rompe kpathsea en Windows, donde el separador es ';').
+  //  Así .latexmkrc configura TEXINPUTS con ensure_path (respetando ';' en
+  //  Windows y ':' en Unix) y, en Windows, expone assets/fonts/ a fontconfig.
   // ────────────────────────────────────────────────────────────────────────
   "latex-workshop.latex.tools": [
     {
@@ -27,6 +27,21 @@
         "%WORKSPACE_FOLDER%/.latexmkrc",
         "%DOC%"
       ]
+    },
+    {
+      "name": "xelatexmk-scr",
+      "command": "latexmk",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-xelatex",
+        "-r",
+        "%WORKSPACE_FOLDER%/.latexmkrc",
+        "-usepretex=\\AtBeginDocument{\\mwclavesoff}",
+        "-jobname=%DOCFILE%_scr",
+        "%DOC%"
+      ]
     }
   ],
   "latex-workshop.latex.recipes": [
@@ -35,7 +50,60 @@
       "tools": [
         "xelatexmk"
       ]
+    },
+    {
+      "name": "latexmk (xelatex sin claves _scr)",
+      "tools": [
+        "xelatexmk-scr"
+      ]
+    },
+    {
+      "name": "latexmk (xelatex + _scr)",
+      "tools": [
+        "xelatexmk",
+        "xelatexmk-scr"
+      ]
     }
   ],
-  "latex-workshop.latex.recipe.default": "latexmk (xelatex)"
+  "latex-workshop.latex.recipe.default": "latexmk (xelatex)",
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.latex.clean.fileTypes": [
+    "%DOCFILE%.aux",
+    "%DOCFILE%.bbl",
+    "%DOCFILE%.blg",
+    "%DOCFILE%.idx",
+    "%DOCFILE%.ind",
+    "%DOCFILE%.lof",
+    "%DOCFILE%.lot",
+    "%DOCFILE%.out",
+    "%DOCFILE%.toc",
+    "%DOCFILE%.acn",
+    "%DOCFILE%.acr",
+    "%DOCFILE%.alg",
+    "%DOCFILE%.glg",
+    "%DOCFILE%.glo",
+    "%DOCFILE%.gls",
+    "%DOCFILE%.fls",
+    "%DOCFILE%.log",
+    "%DOCFILE%.fdb_latexmk",
+    "%DOCFILE%.snm",
+    "%DOCFILE%.synctex(busy)",
+    "%DOCFILE%.synctex.gz(busy)",
+    "%DOCFILE%.nav",
+    "%DOCFILE%.vrb",
+    "%DOCFILE%.xdv",
+    "%DOCFILE%_scr.aux",
+    "%DOCFILE%_scr.fls",
+    "%DOCFILE%_scr.log",
+    "%DOCFILE%_scr.fdb_latexmk",
+    "%DOCFILE%_scr.out",
+    "%DOCFILE%_scr.toc",
+    "%DOCFILE%_scr.snm",
+    "%DOCFILE%_scr.nav",
+    "%DOCFILE%_scr.vrb",
+    "%DOCFILE%_scr.xdv",
+    "%DOCFILE%_scr.synctex(busy)",
+    "%DOCFILE%_scr.synctex.gz(busy)"
+  ]
 }

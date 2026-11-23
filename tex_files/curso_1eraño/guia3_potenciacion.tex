@@ -15,6 +15,20 @@
 % ── Comandos propios de esta guía ───────────────────
 \newcommand{\Z}{\mathbb{Z}}
 
+% Pregunta y respuesta teórica para el cuestionario
+\newcounter{preguntateo}
+\newcommand{\preguntateo}[2]{%
+  \needspace{4\baselineskip}%
+  \stepcounter{preguntateo}%
+  \par\vspace{6pt}%
+  \noindent{\color{mwprimario}\textbf{Pregunta \thepreguntateo:}} \textbf{#1}%
+  \par\nopagebreak\vspace{2pt}%
+  \noindent{\color{mwmagenta}\textbf{Respuesta:}} #2%
+  \par\nopagebreak\vspace{5pt}%
+  \nointerlineskip{\color{mwgris!25}\hrule height 0.4pt}%
+  \par\vspace{4pt}%
+}
+
 \begin{document}
 % ============================================================
 
@@ -701,6 +715,211 @@ Escribimos todo en base $3$: $27 = 3^3$ y $9 = 3^2$. Entonces $27^2 = (3^3)^2 = 
 
   \item \muyDificil{} $\left[\dfrac{(m^2n^3)^2}{(mn^2)^3}\right]^{-1} =$
 \end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Cuestionario Teórico: Preguntas y Respuestas}
+% ============================================================
+
+\begin{cuadroinfo}
+  \small
+  \textbf{Cómo usar este cuestionario:} Esta sección reúne de forma completa toda la teoría de la guía en formato de \textbf{preguntas y respuestas}, desde la definición básica hasta las potencias con letras y el cambio de base. \textbf{Consejo de estudio:} tapa la respuesta, intenta explicarla con tus propias palabras y un ejemplo, y luego comprueba si tu razonamiento es correcto.
+\end{cuadroinfo}
+
+\subsection{Concepto, elementos y casos especiales}
+
+\preguntateo{\textquestiondown Qué es una potencia y qué operación matemática resume?}{%
+  Una \textbf{potencia} es una forma abreviada de escribir una \textbf{multiplicación repetida} de un mismo factor. Si $a$ es un número entero y $n$ es un número natural mayor o igual que $1$, se define como:
+  \[
+    a^n = \underbrace{a \cdot a \cdot a \cdots a}_{n \text{ veces}}
+  \]
+  Sirve para compactar multiplicaciones largas y describir crecimientos muy rápidos (como doblar una hoja de papel varias veces o el aumento de bacterias que se duplican cada hora). \textbf{Ojo:} nunca debe confundirse una potencia con una multiplicación normal: $2^3 = 2 \cdot 2 \cdot 2 = 8$, jamás $2 \cdot 3 = 6$.
+}
+
+\preguntateo{\textquestiondown Cuáles son las partes de una potencia, cómo se leen y qué representan el cuadrado y el cubo?}{%
+  En la expresión $a^n$ distinguimos tres elementos:
+  \begin{itemize}[leftmargin=*, itemsep=2pt, topsep=2pt]
+    \item \textbf{Base ($a$):} el número (o letra) que se multiplica por sí mismo.
+    \item \textbf{Exponente ($n$):} indica cuántas veces aparece la base como factor.
+    \item \textbf{Potencia:} el resultado de la operación (por ejemplo, en $3^2 = 9$, la potencia es $9$, aunque cotidianamente también se llama «potencia» a toda la expresión $3^2$).
+  \end{itemize}
+  Se lee «$a$ elevado a la $n$». Dos exponentes reciben nombres especiales por su relación con la geometría: el exponente $2$ se lee \textbf{«al cuadrado»} (área de un cuadrado de lado $l$: $l^2$) y el exponente $3$ se lee \textbf{«al cubo»} (volumen de un cubo de arista $l$: $l^3$).
+}
+
+\preguntateo{\textquestiondown Qué ocurre cuando el exponente es $1$? \textquestiondown Qué exponente tiene un número o una letra que aparece «sin exponente»?}{%
+  Todo número elevado a la $1$ es igual a sí mismo: $a^1 = a$, porque la base aparece una sola vez como factor (ejemplos: $7^1 = 7$ y $(-5)^1 = -5$). Cuando un número o una letra aparece escrito sin exponente visible (como $2$, $5$ o $x$), su exponente implícito es siempre $1$: $2 = 2^1$ y $x = x^1$. Recordarlo es indispensable para no perder factores al sumar exponentes: $x^4 \cdot x = x^4 \cdot x^1 = x^{4+1} = x^5$.
+}
+
+\preguntateo{\textquestiondown Por qué todo número distinto de cero elevado a la $0$ es igual a $1$ ($a^0 = 1$)?}{%
+  Porque se deduce directamente de la propiedad del \textbf{cociente de potencias de igual base}. Si dividimos una potencia distinta de cero entre sí misma, por ejemplo $\dfrac{5^3}{5^3}$: por un lado, todo número distinto de cero dividido entre sí mismo da $1$ ($\frac{125}{125} = 1$); por otro lado, al restar exponentes obtenemos $5^{3-3} = 5^0$. Como ambos resultados provienen de la misma división, concluimos que $a^0 = 1$ para todo $a \neq 0$. Ejemplos: $5^0 = 1$, $(-3)^0 = 1$ y $12^0 = 1$.
+}
+
+\preguntateo{\textquestiondown Cuánto vale $0^0$ y por qué es indispensable exigir $a \neq 0$ en la regla $a^0 = 1$?}{%
+  La expresión $0^0$ \textbf{no está definida}. La justificación anterior proviene de dividir una potencia entre sí misma ($\frac{a^n}{a^n}$), y en matemáticas \textbf{la división entre cero no existe}. Por esa razón, tanto en $a^0 = 1$ como en el cociente de potencias de igual base es obligatorio exigir que la base sea distinta de cero ($a \neq 0$).
+}
+
+\preguntateo{\textquestiondown Cómo se comportan las potencias cuando la base es $0$, $1$ o $-1$?}{%
+  Son tres bases especiales que aparecen constantemente en operaciones combinadas:
+  \begin{itemize}[leftmargin=*, itemsep=2pt, topsep=2pt]
+    \item \textbf{Base $0$:} $0^n = 0$ para todo exponente entero positivo $n \geq 1$ (ejemplo: $0^7 = 0$). No está definida para exponentes negativos ni para $0^0$, porque implicaría dividir entre $0$.
+    \item \textbf{Base $1$:} $1^n = 1$ para cualquier exponente entero $n$ (multiplicar o dividir $1$ por sí mismo siempre da $1$).
+    \item \textbf{Base $-1$:} alterna únicamente entre $1$ y $-1$ según la paridad del exponente: $(-1)^n = 1$ si $n$ es \textbf{par} (ej.: $(-1)^{100} = 1$), y $(-1)^n = -1$ si $n$ es \textbf{impar} (ej.: $(-1)^{2025} = -1$).
+  \end{itemize}
+}
+
+\preguntateo{Si sabemos que $n^2 = 49$ en $\Z$, \textquestiondown existe una sola base posible? \textquestiondown Qué cambia si el exponente es impar, como en $n^3 = -27$?}{%
+  Cuando el exponente es \textbf{par} y la potencia es positiva, existen \textbf{dos} bases enteras posibles (una positiva y su opuesta negativa): $n^2 = 49$ se cumple tanto para $n = 7$ ($7^2 = 49$) como para $n = -7$ ($(-7)^2 = 49$). Además, ninguna potencia entera con exponente par puede dar un número negativo. En cambio, cuando el exponente es \textbf{impar}, hay una \textbf{única} base entera posible, que conserva el signo del resultado: en $n^3 = -27$, la única solución es $n = -3$.
+}
+
+\subsection{Signos, paréntesis y jerarquía de operaciones}
+
+\preguntateo{\textquestiondown Cómo se determina el signo del resultado de una potencia en $\Z$?}{%
+  El signo depende del signo de la base y de si el exponente es par o impar:
+  \begin{itemize}[leftmargin=*, itemsep=2pt, topsep=2pt]
+    \item \textbf{Base positiva:} el resultado es \textbf{siempre positivo} ($2^5 = 32$, $3^4 = 81$).
+    \item \textbf{Base negativa y exponente par:} el resultado es \textbf{positivo}, porque los factores negativos se agrupan en parejas y $(-) \cdot (-) = (+)$. Ejemplo: $(-2)^4 = (-2)(-2)(-2)(-2) = 16$.
+    \item \textbf{Base negativa y exponente impar:} el resultado es \textbf{negativo}, porque al formar parejas sobra un signo negativo sin pareja. Ejemplo: $(-3)^3 = (-3)(-3)(-3) = -27$.
+  \end{itemize}
+}
+
+\preguntateo{\textquestiondown Cuál es la diferencia entre $(-a)^n$ y $-a^n$? \textquestiondown Siempre dan resultados distintos?}{%
+  En $(-a)^n$, el paréntesis indica que el signo menos \textbf{forma parte de la base} y se repite $n$ veces: $(-2)^4 = (-2)(-2)(-2)(-2) = 16$. En cambio, en $-a^n$ (sin paréntesis), el exponente solo afecta a $a$ y el signo menos queda afuera multiplicando al resultado: $-2^4 = -(2 \cdot 2 \cdot 2 \cdot 2) = -16$. Cuando el exponente es \textbf{par} (y $a \neq 0$), sus resultados son \textbf{opuestos} ($16$ frente a $-16$). Cuando el exponente es \textbf{impar}, ambos valores coinciden numéricamente (ej.: $(-3)^3 = -27$ y $-3^3 = -27$), aunque su estructura sigue siendo diferente. Asimismo, en expresiones como $-(-3)^2$, primero se resuelve la potencia $(-3)^2 = 9$ y al final se aplica el signo exterior: $-9$.
+}
+
+\preguntateo{\textquestiondown Por qué $3x^0 = 3$ mientras que $(3x)^0 = 1$ (con $x \neq 0$)?}{%
+  Porque un exponente afecta únicamente a la expresión que tiene inmediatamente a su izquierda, salvo que exista un paréntesis. En $3x^0$, el exponente $0$ solo actúa sobre $x$, de modo que $3x^0 = 3 \cdot x^0 = 3 \cdot 1 = 3$. En cambio, en $(3x)^0$, el paréntesis agrupa todo el producto $3x$, así que la base completa queda elevada a la $0$ y da $1$.
+}
+
+\preguntateo{\textquestiondown Qué jerarquía de operaciones se debe respetar al resolver expresiones combinadas con potencias?}{%
+  No se resuelve simplemente de izquierda a derecha; el orden obligatorio es: (1) operar dentro de los \textbf{signos de agrupación} (paréntesis, corchetes, llaves) de adentro hacia afuera; (2) calcular las \textbf{potencias}; (3) efectuar \textbf{multiplicaciones y divisiones} de izquierda a derecha; (4) realizar \textbf{sumas y restas} de izquierda a derecha. Por ejemplo, en $8 + 6^2 - 6^2 \cdot 2^3$, primero calculamos las potencias ($8 + 36 - 36 \cdot 8$), luego la multiplicación ($8 + 36 - 288$) y por último sumamos y restamos ($-244$).
+}
+
+\subsection{Propiedades de las potencias y errores frecuentes}
+
+\preguntateo{\textquestiondown Cómo se multiplican potencias de igual base y por qué funciona esta regla?}{%
+  \textbf{Producto de potencias de igual base:} se conserva la base y se \textbf{suman} los exponentes:
+  \[
+    a^m \cdot a^n = a^{m+n}
+  \]
+  Funciona porque multiplicar potencias de la misma base equivale a juntar todos los factores iguales en un solo producto: $2^3 \cdot 2^2 = (2 \cdot 2 \cdot 2) \cdot (2 \cdot 2) = 2^{3+2} = 2^5$. La regla se extiende a cualquier cantidad de factores ($x^4 \cdot x^5 \cdot x = x^{4+5+1} = x^{10}$) y también vale con exponentes negativos ($a^{-5} \cdot a = a^{-5+1} = a^{-4}$).
+}
+
+\preguntateo{\textquestiondown Cómo se dividen potencias de igual base y qué cuidado hay que tener cuando aparecen exponentes negativos?}{%
+  \textbf{Cociente de potencias de igual base:} con $a \neq 0$, se conserva la base y al exponente del numerador (dividendo) se le \textbf{resta} el exponente del denominador (divisor):
+  \[
+    \frac{a^m}{a^n} = a^m \div a^n = a^{m-n}
+  \]
+  Ejemplo: $\dfrac{3^5}{3^2} = 3^{5-2} = 3^3 = 27$. Si el denominador tiene exponente negativo, hay que respetar la regla de los signos al restar (restar un negativo equivale a sumar): $\dfrac{b^{-2}}{b^{-3}} = b^{-2 - (-3)} = b^{-2+3} = b^1 = b$.
+}
+
+\preguntateo{\textquestiondown Qué es la potencia de una potencia y cómo distinguirla del producto de potencias de igual base?}{%
+  \textbf{Potencia de una potencia:} cuando una potencia se eleva a otro exponente, se conserva la base y se \textbf{multiplican} los exponentes:
+  \[
+    (a^m)^n = a^{m \cdot n}
+  \]
+  Ejemplo: $(2^3)^2 = 2^3 \cdot 2^3 = 2^{3 \cdot 2} = 2^6 = 64$. Para no confundir ambas reglas: en el \textbf{producto} ($a^m \cdot a^n$) la base aparece repetida separada por un «$\cdot$» y los exponentes se \textbf{suman}; en la \textbf{potencia de potencia} ($(a^m)^n$) hay una sola base con dos exponentes separados por paréntesis y los exponentes se \textbf{multiplican}.
+}
+
+\preguntateo{\textquestiondown Cómo funcionan la potencia de un producto y la potencia de un cociente (tanto para desarrollar como para agrupar)?}{%
+  Cuando una multiplicación o una división completa se eleva a un exponente, dicho exponente se aplica a cada factor o término:
+  \[
+    (a \cdot b)^n = a^n \cdot b^n \qquad\qquad \left(\frac{a}{b}\right)^n = \frac{a^n}{b^n} \ \ (b \neq 0)
+  \]
+  Leídas de izquierda a derecha sirven para expandir: $(2 \cdot 5)^2 = 2^2 \cdot 5^2 = 100$. Leídas \textbf{al revés} (cuando las bases son distintas pero tienen \textbf{el mismo exponente}), permiten juntar las bases y simplificar cálculos grandes al instante: $2^{10} \cdot 5^{10} = (2 \cdot 5)^{10} = 10^{10}$ y $\dfrac{8^2}{2^2} = \left(\dfrac{8}{2}\right)^2 = 4^2 = 16$.
+}
+
+\preguntateo{\textquestiondown Se pueden juntar en una sola potencia expresiones con bases distintas y exponentes distintos, como $2^3 \cdot 5^2$ o $9^2 \cdot 4^3$?}{%
+  No directamente. Para sumar o restar exponentes se necesitan \textbf{bases iguales}, y para agrupar bases en un paréntesis se necesitan \textbf{exponentes iguales}. Por ejemplo, en $9^2 \cdot 4^3 = (3^2)^2 \cdot (2^2)^3 = 3^4 \cdot 2^6$, las bases primas ($3$ y $2$) son distintas y los exponentes ($4$ y $6$) tampoco coinciden. En ese caso, la expresión queda indicada como producto de potencias de bases primas distintas (o se calcula por separado: $81 \cdot 64 = 5184$).
+}
+
+\preguntateo{\textquestiondown La potencia se distribuye sobre una suma o una resta? Es decir, \textquestiondown se cumple que $(a + b)^n = a^n + b^n$?}{%
+  \textbf{Rotundamente no.} La potenciación \textbf{nunca} es distributiva respecto a la suma ni respecto a la resta. Basta comprobarlo con un contraejemplo numérico: $(2 + 3)^2 = 5^2 = 25$, mientras que $2^2 + 3^2 = 4 + 9 = 13$ ($25 \neq 13$). Siempre debe resolverse primero la suma o resta dentro del paréntesis y luego aplicar el exponente.
+}
+
+\preguntateo{\textquestiondown Es correcto sumar los exponentes cuando las potencias se están sumando, como en $2^2 + 2^3 = 2^5$?}{%
+  \textbf{No.} La regla $a^m \cdot a^n = a^{m+n}$ aplica exclusivamente a la \textbf{multiplicación}, nunca a la suma ni a la resta. Si probamos con números vemos el error: $2^2 + 2^3 = 4 + 8 = 12$, pero $2^5 = 32$ ($12 \neq 32$). Cuando las potencias se suman o se restan, se calcula cada una por separado.
+}
+
+\subsection{Exponentes negativos y cambio de base}
+
+\preguntateo{\textquestiondown Qué significa un exponente negativo ($a^{-n}$) y por qué se cumple esa regla?}{%
+  Para todo $a \neq 0$ y entero positivo $n$, un exponente negativo indica el \textbf{recíproco} (invierte la base pasándola al denominador con exponente positivo):
+  \[
+    a^{-n} = \frac{1}{a^n}
+  \]
+  Se justifica con el cociente de igual base y $a^0 = 1$: $\dfrac{1}{a^n} = \dfrac{a^0}{a^n} = a^{0-n} = a^{-n}$. Por ejemplo, $2^{-3} = \dfrac{1}{2^3} = \dfrac{1}{8}$ y $a^{-5} = \dfrac{1}{a^5}$.
+}
+
+\preguntateo{\textquestiondown Un exponente negativo hace que el resultado sea un número negativo?}{%
+  \textbf{No.} El signo del exponente no indica el signo del resultado, sino \textbf{inversión} (fracción). Por ejemplo, $2^{-2} = \dfrac{1}{2^2} = \dfrac{1}{4}$, que es un número \textbf{positivo}. El resultado solo será negativo si la \textbf{base} es negativa y el exponente (en valor absoluto) es impar, como $(-2)^{-3} = \dfrac{1}{(-2)^3} = -\dfrac{1}{8}$.
+}
+
+\preguntateo{\textquestiondown Cómo se simplifican fracciones con exponente negativo, como $\left(\dfrac{a}{b}\right)^{-n}$, o potencias con exponente negativo en el denominador, como $\dfrac{1}{a^{-n}}$?}{%
+  Cuando una fracción completa está elevada a un exponente negativo (con $a, b \neq 0$), se \textbf{invierte la fracción} y el exponente se vuelve positivo; del mismo modo, si una potencia con exponente negativo está en el denominador, sube al numerador con exponente positivo:
+  \[
+    \left(\frac{a}{b}\right)^{-n} = \left(\frac{b}{a}\right)^n = \frac{b^n}{a^n} \qquad\qquad \frac{1}{a^{-n}} = a^n
+  \]
+  Ejemplos: $\left(\dfrac{1}{2}\right)^{-1} = 2^1 = 2$ y $\dfrac{1}{x^{-4}} = x^4$. Además, todas las leyes de las potencias siguen valiendo igual con exponentes negativos: $(b^{-2})^{-8} = b^{(-2)(-8)} = b^{16}$ y $\dfrac{m^4}{m^{-1}} = m^{4 - (-1)} = m^5$.
+}
+
+\preguntateo{\textquestiondown En qué consiste el «cambio de base» (descomposición en factores primos) y cuáles son los pasos para aplicarlo?}{%
+  Consiste en reescribir números compuestos como potencias de una \textbf{base prima común} (por ejemplo, $4=2^2$, $8=2^3$, $16=2^4$, $32=2^5$, $64=2^6$, $128=2^7$; $9=3^2$, $27=3^3$, $81=3^4$; $25=5^2$, $125=5^3$; $49=7^2$, $343=7^3$) o como producto de primos ($12 = 2^2 \cdot 3$, $50 = 2 \cdot 5^2$). (No es el cambio de base de los logaritmos, sino una reescritura para poder usar las propiedades.) Los pasos son: (1) descomponer cada número en potencias de primos; (2) aplicar potencia de un producto y potencia de una potencia; (3) agrupar factores de igual base en numerador y denominador; (4) restar exponentes. Ejemplo: $\dfrac{4^5 \cdot 8^2}{16^3} = \dfrac{(2^2)^5 \cdot (2^3)^2}{(2^4)^3} = \dfrac{2^{10} \cdot 2^6}{2^{12}} = \dfrac{2^{16}}{2^{12}} = 2^4 = 16$.
+}
+
+\subsection{Potencias con letras (mini álgebra)}
+
+\preguntateo{\textquestiondown Cómo se comportan las potencias cuando la base es una letra y en qué se diferencia $2a$ de $a^2$?}{%
+  Una letra representa un número cualquiera, así que obedece exactamente las \textbf{mismas propiedades} que los números (en esta guía las letras van en la base y los exponentes son números enteros). Es clave distinguir:
+  \begin{itemize}[leftmargin=*, itemsep=2pt, topsep=2pt]
+    \item $2a$ significa $2 \cdot a = a + a$ (sumar $a$ dos veces).
+    \item $a^2$ significa $a \cdot a$ (multiplicar $a$ por sí misma).
+  \end{itemize}
+  Por ejemplo, si $a = 5$, entonces $2a = 10$ pero $a^2 = 25$; en general, $2a \neq a^2$.
+}
+
+\preguntateo{\textquestiondown Qué precauciones hay que tomar al sustituir (evaluar) letras por números en expresiones con potencias?}{%
+  Hay dos cuidados fundamentales: (1) encerrar el número sustituido entre \textbf{paréntesis}, sobre todo si es negativo (si $x = -3$, entonces $x^2 = (-3)^2 = 9$, no $-3^2 = -9$); y (2) respetar la \textbf{jerarquía de operaciones}: en $3a^2$ con $a = 2$, primero se resuelve la potencia ($2^2 = 4$) y luego se multiplica por $3$ ($3 \cdot 4 = 12$, jamás $(3 \cdot 2)^2 = 36$).
+}
+
+\preguntateo{\textquestiondown Cómo se simplifica un término con signo, coeficiente y varias letras elevado a una potencia, como $(-2p^3)^2$ o $(3mn^2)^4$?}{%
+  Se aplica la \textbf{potencia de un producto}: el exponente exterior se distribuye al \textbf{signo}, al \textbf{coeficiente numérico} y a \textbf{cada letra} (multiplicando sus exponentes por potencia de una potencia):
+  \[
+    (-2p^3)^2 = (-2)^2 \cdot (p^3)^2 = 4p^6 \qquad\qquad (3mn^2)^4 = 3^4 \cdot m^4 \cdot (n^2)^4 = 81m^4n^8
+  \]
+  Un error clásico es elevar las letras y olvidar elevar el coeficiente numérico o el signo.
+}
+
+\preguntateo{Al simplificar una fracción algebraica elevada a una potencia, \textquestiondown qué estrategia conviene seguir?}{%
+  Conviene trabajar \textbf{de adentro hacia afuera}: primero se simplifican los coeficientes y se restan los exponentes de las letras iguales dentro del paréntesis, y \textbf{después} se aplica el exponente exterior. Esto mantiene los exponentes pequeños y evita errores:
+  \[
+    \left(\frac{a^6}{a^2}\right)^3 = \left(a^{6-2}\right)^3 = \left(a^4\right)^3 = a^{12}
+  \]
+  Si al final queda algún exponente negativo y se pide la respuesta \textbf{sin exponentes negativos}, se traslada esa potencia al otro lado de la fracción cambiando el signo del exponente: $\left(\dfrac{p^3q^2}{pq^5}\right)^{-2} = \left(p^2q^{-3}\right)^{-2} = p^{-4}q^6 = \dfrac{q^6}{p^4}$.
+}
+
+\vspace{4pt}
+\begin{cuadroteoria}
+  \small
+  \textbf{Resumen maestro de potenciación (con $a, b \neq 0$ y $m, n \in \Z$):}
+  \begin{center}
+    \footnotesize
+    \renewcommand{\arraystretch}{1.75}
+    \begin{tabular}{@{}ll@{\hspace{14pt}}ll@{}}
+      \toprule
+      \textbf{Regla / Propiedad} & \textbf{Expresión} & \textbf{Regla / Propiedad} & \textbf{Expresión} \\
+      \midrule
+      Exponente uno & $a^1 = a$ & Potencia de una potencia & $(a^m)^n = a^{m \cdot n}$ \\
+      Exponente cero & $a^0 = 1$ & Potencia de un producto & $(a \cdot b)^n = a^n \cdot b^n$ \\[2pt]
+      Exponente negativo & $a^{-n} = \dfrac{1}{a^n}$ & Potencia de un cociente & $\left(\dfrac{a}{b}\right)^n = \dfrac{a^n}{b^n}$ \\[4pt]
+      Producto de igual base & $a^m \cdot a^n = a^{m+n}$ & Fracción con exp. negativo & $\left(\dfrac{a}{b}\right)^{-n} = \left(\dfrac{b}{a}\right)^n$ \\[4pt]
+      Cociente de igual base & $\dfrac{a^m}{a^n} = a^{m-n}$ & Exp. negativo en denominador & $\dfrac{1}{a^{-n}} = a^n$ \\[2pt]
+      \bottomrule
+    \end{tabular}
+    \\[8pt]
+    \textbf{Trampas prohibidas:}\quad $(a \pm b)^n \neq a^n \pm b^n$ \qquad$\cdot$\qquad $a^m + a^n \neq a^{m+n}$ \qquad$\cdot$\qquad $0^0$ no definido
+  \end{center}
+\end{cuadroteoria}
 
 \newpage
 

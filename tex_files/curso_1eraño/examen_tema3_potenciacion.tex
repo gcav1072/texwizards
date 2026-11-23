@@ -3,8 +3,9 @@
 %  Curso Introductorio de Matemáticas — 1er Año
 %  Autor: Ing. Gabriel Astudillo
 %  Sesiones cubiertas: Semana 3 (clases 9 a 12)
-%  Nota: enunciado limpio (sin pistas ni desarrollo). Las
-%  soluciones están en la "Clave de Respuestas" al final.
+%  Nota: enunciado limpio (sin pistas ni desarrollo). Incluye
+%  preguntas teóricas y ejercicios prácticos (sin exponentes
+%  negativos). Las soluciones están en "Clave de Respuestas".
 % ============================================================
 
 \documentclass[12pt, letterpaper]{article}
@@ -21,20 +22,20 @@
 % ============================================================
 
 % ── Portada / Título ─────────────────────────────────────────
-\mwportada{Examen del Tema 3}{Potenciación de Números Enteros}{Definición, Propiedades y Primeros Pasos en Álgebra}
+\mwportada{Examen del Tema 3}{Potenciación de Números Enteros}{Teoría, Propiedades, Cambio de Base y Primeros Pasos en Álgebra}
 
 \vspace{4pt}
 \begin{cuadroinfo}
   \small
   \textbf{Nombre:} \rule{0.55\linewidth}{0.4pt} \quad \textbf{Fecha:} \rule{0.15\linewidth}{0.4pt} \\[6pt]
-  \textbf{Tiempo sugerido:} 60 minutos \quad$\bullet$\quad \textbf{Puntaje total:} 100 puntos \\[4pt]
+  \textbf{Tiempo sugerido:} 75 minutos \quad$\bullet$\quad \textbf{Puntaje total:} 100 puntos \\[4pt]
   \textbf{Instrucciones:}
   \begin{enumerate}[leftmargin=*]
-    \item Lee cada ejercicio con calma antes de resolverlo.
-    \item Muestra \emph{todos} tus pasos: se evalúa cómo llegas a la respuesta, no solo la respuesta.
+    \item Lee cada pregunta o ejercicio con calma antes de responder.
+    \item En la \textbf{Parte Teórica}, redacta explicaciones claras e incluye ejemplos o contraejemplos cuando se soliciten; en los ejercicios, muestra \emph{todos} tus pasos.
     \item \textbf{Ojo con el signo}: recuerda la diferencia entre $(-a)^n$ y $-a^n$.
-    \item Aplica correctamente las \emph{propiedades de las potencias} (producto, cociente, potencia de potencia).
-    \item En este examen \textbf{solo las bases llevan letras}; todos los exponentes son números.
+    \item Aplica correctamente las \emph{propiedades de las potencias} y la \emph{jerarquía de operaciones}.
+    \item En este examen \textbf{solo las bases llevan letras} y los exponentes son enteros no negativos ($0, 1, 2, \dots$).
     \item No se permite el uso de calculadora.
   \end{enumerate}
 \end{cuadroinfo}
@@ -42,114 +43,128 @@
 \vspace{8pt}
 
 % ============================================================
-\section{Base, Exponente y Signo del Resultado}
+\section{Parte Teórica (20 pts)}
 % ============================================================
 
 \begin{enumerate}[leftmargin=*]
-  \item Calcule, distinguiendo el papel del paréntesis:
+  \item \textbf{(5 pts)} \textbf{Definición, elementos y exponente cero:}
+        \begin{enumerate}[label=\alph*)]
+          \item Explique qué es una potencia, identifique la \emph{base}, el \emph{exponente} y la \emph{potencia} en $4^3 = 64$, y aclare por qué $4^3$ no es igual a $4 \cdot 3$.
+          \item Demuestre, usando la propiedad del cociente de potencias de igual base, por qué $7^0 = 1$, e indique por qué la expresión $0^0$ no está definida.
+        \end{enumerate}
+
+  \item \textbf{(5 pts)} \textbf{Signos, paréntesis y bases posibles:}
+        \begin{enumerate}[label=\alph*)]
+          \item Explique la diferencia entre $(-5)^2$ y $-5^2$, y compare ese caso con $(-2)^3$ y $-2^3$.
+          \item Si $n^2 = 81$ en $\Z$, \textquestiondown qué valores puede tomar $n$? \textquestiondown Por qué en $n^3 = -27$ solo hay una solución entera?
+        \end{enumerate}
+
+  \item \textbf{(5 pts)} \textbf{Verdadero o Falso.} Indique si cada afirmación es verdadera (\textbf{V}) o falsa (\textbf{F}) y justifique con la regla correspondiente o un contraejemplo numérico:
+        \begin{enumerate}[label=\alph*)]
+          \item $(2 + 3)^2 = 2^2 + 3^2$.
+          \item $2^3 + 2^4 = 2^7$.
+          \item Si $x \neq 0$, entonces $5x^0 = 5$, pero $(5x)^0 = 1$.
+          \item Para todo entero $a$, siempre se cumple que $2a = a^2$.
+        \end{enumerate}
+
+  \item \textbf{(5 pts)} \textbf{Propiedades y cambio de base:}
+        \begin{enumerate}[label=\alph*)]
+          \item Explique cómo distinguir el producto de potencias de igual base ($a^m \cdot a^n$) de la potencia de una potencia ($(a^m)^n$).
+          \item Explique en qué consiste el «cambio de base» (descomposición en factores primos) y por qué permite simplificar $\dfrac{8^2}{4^3}$, pero no permite unir $9^2 \cdot 4^3$ en una sola potencia.
+        \end{enumerate}
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Base, Signos y Operaciones Combinadas (20 pts)}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{(5 pts)} Calcule, distinguiendo el papel del paréntesis y del signo exterior:
         \[
-          (-2)^4, \quad -2^4, \quad (-3)^3, \quad -3^3
+          (-2)^4, \qquad -2^4, \qquad (-3)^3, \qquad -(-3)^2
         \]
 
-  \item Calcule el valor exacto de:
+  \item \textbf{(5 pts)} Calcule el valor exacto:
         \[
-          (-1)^{2025} + (-1)^{2026} + 0^{7} + 10^{0}
+          (-1)^{2025} + (-1)^{2026} + 0^{7} + 10^{0} - (-5)^{1}
         \]
 
-  \item Determine si cada resultado es positivo, negativo o cero, y justifique según la paridad del exponente:
+  \item \textbf{(5 pts)} Determine si cada expresión da un resultado positivo o negativo y justifique según la paridad del exponente (sin calcular el número completo):
         \[
-          (-7)^{12}, \quad (-8)^{9}, \quad (-5)^{0}, \quad (-2)^{31}
+          \text{a) } (-7)^{12} \qquad \text{b) } (-8)^{9} \qquad \text{c) } (-5)^{0} \qquad \text{d) } -(-2)^{15}
         \]
 
-  \item Complete las potencias de base $2$ y $3$ y úselas para calcular:
+  \item \textbf{(5 pts)} Resuelva respetando la jerarquía de las operaciones:
         \[
-          2^{8} - 3^{3} + 2^{5} - 3^{2}
+          (-3)^{2} + \frac{6^{2} \cdot 2^{2}}{4^{2}} - (7 - 4)^{3} + 8 \cdot (1 + 2 + 3)^{0}
         \]
 \end{enumerate}
 
 \newpage
 
 % ============================================================
-\section{Propiedades de las Potencias}
+\section{Propiedades de las Potencias y Cambio de Base (30 pts)}
 % ============================================================
 
 \begin{enumerate}[leftmargin=*]
-  \item Simplifique aplicando la propiedad del producto de igual base:
-        \[
-          2^{6} \times 2^{4} \times 2^{7}
-        \]
+  \item \textbf{(10 pts)} Simplifique aplicando las propiedades de igual base:
+        \begin{enumerate}[label=\alph*)]
+          \item $2^{6} \times 2^{4} \times 2$
+          \item $\dfrac{9^{8} \times 9^{3}}{9^{6}}$
+          \item $\big[(2^{3})^{4}\big]^{2} \div 2^{19}$ \quad (calcule el valor final)
+        \end{enumerate}
 
-  \item Simplifique aplicando la propiedad del cociente de igual base:
-        \[
-          \frac{9^{8} \times 9^{3}}{9^{6}}
-        \]
+  \item \textbf{(10 pts)} Aplique la potencia de un producto y de un cociente:
+        \begin{enumerate}[label=\alph*)]
+          \item $(2 \times 5)^{3}$
+          \item $2^{7} \times 5^{7} \div 10^{4}$
+          \item $\dfrac{12^{3}}{4^{3}} + \dfrac{15^{2}}{3^{2} \cdot 5^{2}}$
+        \end{enumerate}
 
-  \item Simplifique aplicando la propiedad de la potencia de una potencia:
-        \[
-          \big[(2^{3})^{4}\big]^{2}
-        \]
+  \item \textbf{(5 pts)} Simplifique aplicando cambio de base (escriba en base $2$ o base $3$ según corresponda):
+        \begin{enumerate}[label=\alph*)]
+          \item $\dfrac{4^{5} \cdot 8^{2}}{16^{3}}$
+          \item $(27^{2} \cdot 9^{3})^{3}$
+          \item $(64^{3} \div 128^{2})^{4}$
+        \end{enumerate}
 
-  \item Calcule combinando varias propiedades:
-        \[
-          5^{4} \times 5^{2} \div 5^{3} \times 5^{0}
-        \]
+  \item \textbf{(5 pts)} Simplifique descomponiendo las bases en factores primos:
+        \begin{enumerate}[label=\alph*)]
+          \item $\dfrac{12^{4} \cdot 18^{2}}{6^{4} \cdot 3^{4}}$
+          \item $\dfrac{50^{3} \cdot 2^{2}}{10^{4} \cdot 5}$
+        \end{enumerate}
 \end{enumerate}
 
 \newpage
 
 % ============================================================
-\section{Potencias con Letras (Mini Álgebra)}
+\section{Potencias con Letras — Mini Álgebra (30 pts)}
 % ============================================================
 
 \begin{enumerate}[leftmargin=*]
-  \item Sustituya $a = 3$ y $b = 2$ en la expresión:
-        \[
-          2a^{2}b^{3} - 3a^{2}b^{2}
-        \]
 
-  \item Con $x = 5$, calcule:
-        \[
-          x^{3} + 2x^{2} - 4x + 7
-        \]
+  \item \textbf{(5 pts)} Simplifique aplicando las propiedades (considere $x \neq 0$):
+        \begin{enumerate}[label=\alph*)]
+          \item $(-2p^{3})^{2} \cdot (3p^{2})^{2}$
+          \item $(2x)^{3} \cdot 3x^{0}$
+          \item $\big[(3x)^{2} \cdot (2x^{3})^{2}\big]^{3}$
+        \end{enumerate}
 
-  \item Simplifique aplicando las propiedades:
-        \[
-          (m^{4} \cdot m^{5})^{2}
-        \]
+  \item \textbf{(10 pts)} Simplifique las siguientes fracciones algebraicas (con bases distintas de cero):
+        \begin{enumerate}[label=\alph*)]
+          \item $\left(\dfrac{a^{6}b^{5}}{a^{2}b^{2}}\right)^{3}$
+          \item $\dfrac{(3m^{2}n^{3})^{2} \cdot (2mn)^{3}}{6m^{5}n^{6}}$
+        \end{enumerate}
 
-  \item Simplifique:
+  \item \textbf{(10 pts)} Simplifique de adentro hacia afuera (con $m, n \neq 0$):
         \[
-          \big[(3x)^{2} \cdot (2x^{3})^{2}\big]^{3}
+          \left[\frac{(m^{2})^{3} \cdot (n^{3} \cdot m)^{2} \cdot (n^{3})^{6}}{(n^{2} \cdot m^{4})^{2}}\right]^{3}
         \]
 \end{enumerate}
 
 \newpage
-
-% ============================================================
-\section{Exponentes Negativos, Cocientes y Cambio de Base}
-% ============================================================
-
-\begin{enumerate}[leftmargin=*]
-  \item Simplifique la expresión:
-        \[
-          \left(\frac{a^{8}}{a^{2}}\right)^{-2}
-        \]
-
-  \item Calcule, recordando que un exponente negativo invierte la base:
-        \[
-          2^{-3} + 3^{-2} - \left(\frac{1}{2}\right)^{-1}
-        \]
-
-  \item Simplifique escribiendo todo en base $2$:
-        \[
-          (64^{3} \div 128^{2})^{4}
-        \]
-
-  \item Simplifique escribiendo todo en base $3$:
-        \[
-          (27^{2} \cdot 9^{3})^{3}
-        \]
-\end{enumerate}
 
 \newpage
 
@@ -158,46 +173,65 @@
   \section{Clave de Respuestas}
   % ============================================================
 
-  \subsection*{Base, Exponente y Signo del Resultado (Ejercicios 1--4)}
+  \subsection*{Parte Teórica (Preguntas 1--4)}
 
   \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-    \item $(-2)^4 = 16$; \ $-2^4 = -16$; \ $(-3)^3 = -27$; \ $-3^3 = -27$
-    \item $(-1)^{2025} = -1$; $(-1)^{2026} = 1$; $0^{7} = 0$; $10^{0} = 1$ \ $\Rightarrow$ $-1 + 1 + 0 + 1 = 1$
-    \item $(-7)^{12} > 0$ (exponente par); \ $(-8)^{9} < 0$ (exponente impar);
-          $(-5)^{0} = 1 > 0$; \ $(-2)^{31} < 0$ (exponente impar)
-    \item $2^{8} = 256$; $3^{3} = 27$; $2^{5} = 32$; $3^{2} = 9$ \ $\Rightarrow$ $256 - 27 + 32 - 9 = 252$
+    \item a) Una potencia abrevia una multiplicación repetida. En $4^{3} = 64$: base $= 4$, exponente $= 3$, potencia $= 64$. Es $4 \cdot 4 \cdot 4 = 64$, distinto de $4 \cdot 3 = 12$ (suma repetida).
+          \quad b) $\dfrac{7^{2}}{7^{2}} = \dfrac{49}{49} = 1$ y, restando exponentes, $\dfrac{7^{2}}{7^{2}} = 7^{2-2} = 7^{0}$, luego $7^{0} = 1$. La expresión $0^{0}$ no está definida porque la justificación requiere dividir entre cero, lo cual no existe.
+
+    \item a) $(-5)^{2} = (-5)(-5) = 25$ (el paréntesis incluye al signo) y $-5^{2} = -(5 \cdot 5) = -25$ (el signo queda afuera). En exponente impar coinciden numéricamente: $(-2)^{3} = -8$ y $-2^{3} = -8$, pero su estructura sigue siendo distinta.
+          \quad b) $n^{2} = 81$ tiene dos soluciones: $n = 9$ y $n = -9$ (exponente par da positivo en ambos). En $n^{3} = -27$, solo $n = -3$, pues el exponente impar conserva el signo de la base.
+
+    \item a) \textbf{F}: $(2+3)^{2} = 25 \neq 4 + 9 = 13$ (la potencia no se distribuye en la suma).
+          \quad b) \textbf{F}: $2^{3} + 2^{4} = 8 + 16 = 24 \neq 2^{7} = 128$ (solo se suman exponentes al multiplicar igual base).
+          \quad c) \textbf{V}: en $5x^{0}$ el $0$ afecta solo a $x$ ($5 \cdot 1 = 5$); en $(5x)^{0}$ afecta a todo el producto ($1$).
+          \quad d) \textbf{F}: $2a = a + a$ y $a^{2} = a \cdot a$. Contraejemplo ($a = 5$): $2(5) = 10 \neq 5^{2} = 25$.
+
+    \item a) En $a^{m} \cdot a^{n} = a^{m+n}$ hay dos potencias de igual base multiplicándose y se \textbf{suman} exponentes; en $(a^{m})^{n} = a^{m \cdot n}$ una potencia se eleva a otro exponente y se \textbf{multiplican} exponentes.
+          \quad b) Reescribe bases compuestas como potencias de un mismo primo: $\dfrac{8^{2}}{4^{3}} = \dfrac{(2^{3})^{2}}{(2^{2})^{3}} = \dfrac{2^{6}}{2^{6}} = 1$. En cambio, $9^{2} \cdot 4^{3} = 3^{4} \cdot 2^{6}$ tiene bases primas distintas ($3$ y $2$) y exponentes distintos ($4$ y $6$), por lo que no se puede juntar en una sola potencia.
   \end{enumerate}
 
-  \subsection*{Propiedades de las Potencias (Ejercicios 1--4)}
+  \subsection*{Base, Signos y Operaciones Combinadas (Ejercicios 1--4)}
 
   \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-    \item $2^{6+4+7} = 2^{17}$
-    \item $\dfrac{9^{8+3}}{9^{6}} = 9^{11-6} = 9^{5}$
-    \item $2^{3 \times 4 \times 2} = 2^{24}$
-    \item $5^{4+2-3+0} = 5^{3} = 125$
+    \item $(-2)^{4} = 16$; \ $-2^{4} = -16$; \ $(-3)^{3} = -27$; \ $-(-3)^{2} = -9$
+    \item $(-1)^{2025} = -1$; $(-1)^{2026} = 1$; $0^{7} = 0$; $10^{0} = 1$; $-(-5)^{1} = 5$ \ $\Rightarrow$ $-1 + 1 + 0 + 1 + 5 = 6$
+    \item a) $(-7)^{12} > 0$ (exponente par); \quad b) $(-8)^{9} < 0$ (exponente impar); \quad c) $(-5)^{0} = 1 > 0$; \quad d) $(-2)^{15} < 0$ (impar), pero el signo menos de afuera lo cambia a positivo: $-(-2)^{15} > 0$.
+    \item $9 + \dfrac{36 \cdot 4}{16} - 3^{3} + 8 \cdot 6^{0} = 9 + 9 - 27 + 8 = -1$
+  \end{enumerate}
+
+  \subsection*{Propiedades de las Potencias y Cambio de Base (Ejercicios 1--4)}
+
+  \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+    \item a) $2^{6+4+1} = 2^{11}$ \quad b) $\dfrac{9^{8+3}}{9^{6}} = 9^{11-6} = 9^{5}$ \quad c) $2^{24} \div 2^{19} = 2^{5} = 32$
+    \item a) $10^{3} = 1000$ \quad b) $10^{7} \div 10^{4} = 10^{3} = 1000$ \quad c) $\left(\dfrac{12}{4}\right)^{3} + \dfrac{15^{2}}{15^{2}} = 3^{3} + 1 = 28$
+    \item a) $\dfrac{2^{10} \cdot 2^{6}}{2^{12}} = \dfrac{2^{16}}{2^{12}} = 2^{4} = 16$ \quad b) $(3^{6} \cdot 3^{6})^{3} = (3^{12})^{3} = 3^{36}$ \quad c) $(2^{18} \div 2^{14})^{4} = (2^{4})^{4} = 2^{16} = 65\,536$
+    \item a) $\dfrac{(2^{2} \cdot 3)^{4} \cdot (2 \cdot 3^{2})^{2}}{(2 \cdot 3)^{4} \cdot 3^{4}} = \dfrac{2^{10} \cdot 3^{8}}{2^{4} \cdot 3^{8}} = 2^{6} = 64$
+          \quad b) $\dfrac{(2 \cdot 5^{2})^{3} \cdot 2^{2}}{(2 \cdot 5)^{4} \cdot 5} = \dfrac{2^{5} \cdot 5^{6}}{2^{4} \cdot 5^{5}} = 2 \cdot 5 = 10$
   \end{enumerate}
 
   \subsection*{Potencias con Letras — Mini Álgebra (Ejercicios 1--4)}
 
   \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-    \item $2 \times 3^{2} \times 2^{3} - 3 \times 3^{2} \times 2^{2}$ \ $\Rightarrow$ $2 \times 9 \times 8 - 3 \times 9 \times 4 = 144 - 108 = 36$
-    \item $5^{3} + 2 \times 5^{2} - 4 \times 5 + 7 = 125 + 50 - 20 + 7 = 162$
-    \item $(m^{4 + 5})^{2} = (m^{9})^{2} = m^{18}$
-    \item $(3x)^{2} = 9x^{2}$; $(2x^{3})^{2} = 4x^{6}$; producto $= 36x^{8}$; $\Rightarrow (36x^{8})^{3} = 36^{3}x^{24} = 46656\,x^{24}$
+    \item a) $2(-3)^{2}(2)^{3} - 3(-3)^{2}(2)^{2} = 2(9)(8) - 3(9)(4) = 144 - 108 = 36$
+          \quad b) $(-2)^{3} + 3(-2)^{2} - 5(-2) + 1 = -8 + 12 + 10 + 1 = 15$
+    \item a) $4p^{6} \cdot 9p^{4} = 36p^{10}$ \quad b) $8x^{3} \cdot 3(1) = 24x^{3}$ \quad c) $(9x^{2} \cdot 4x^{6})^{3} = (36x^{8})^{3} = 46\,656\,x^{24}$
+    \item a) $\left(a^{4}b^{3}\right)^{3} = a^{12}b^{9}$ \quad b) $\dfrac{9m^{4}n^{6} \cdot 8m^{3}n^{3}}{6m^{5}n^{6}} = \dfrac{72m^{7}n^{9}}{6m^{5}n^{6}} = 12m^{2}n^{3}$
+    \item Arriba: $m^{6} \cdot n^{6}m^{2} \cdot n^{18} = m^{8}n^{24}$; abajo: $n^{4}m^{8}$; fracción: $n^{20}$; al cubo: $(n^{20})^{3} = n^{60}$.
   \end{enumerate}
 
-  \subsection*{Exponentes Negativos, Cocientes y Cambio de Base (Ejercicios 1--4)}
+  \subsection*{Problemas de Aplicación y Razonamiento (Ejercicios 1--4)}
 
   \begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
-    \item $\left(\dfrac{a^{8}}{a^{2}}\right)^{-2} = (a^{6})^{-2} = a^{-12} = \dfrac{1}{a^{12}}$
-    \item $2^{-3} = \frac{1}{8}$; $3^{-2} = \frac{1}{9}$; $\left(\frac{1}{2}\right)^{-1} = 2$; \ $\frac{1}{8} + \frac{1}{9} - 2 = \frac{17}{72} - 2 = -\frac{127}{72}$
-    \item $64 = 2^{6}$; $128 = 2^{7}$ \ $\Rightarrow$ $(2^{6 \cdot 3} \div 2^{7 \cdot 2})^{4} = (2^{18} \div 2^{14})^{4} = (2^{4})^{4} = 2^{16} = 65\,536$
-    \item $27 = 3^{3}$; $9 = 3^{2}$ \ $\Rightarrow$ $(3^{3 \cdot 2} \cdot 3^{2 \cdot 3})^{3} = (3^{6} \cdot 3^{6})^{3} = (3^{12})^{3} = 3^{36}$
+    \item a) $2^{6} = 64$ bacterias \quad b) $2^{8} \div 2^{5} = 2^{3} = 8$ veces más bacterias
+    \item a) Área $= x^{2} = 10^{2} = 100$ cm$^{2}$; Volumen $= y^{3} = 4^{3} = 64$ cm$^{3}$ \quad b) $(2x)^{2} = 4x^{2}$: el área se \textbf{cuadruplica}.
+    \item a) $3^{n+2} = 3^{7} \Rightarrow n = 5$ \quad b) $2^{3n} = 2^{12} \Rightarrow n = 4$ \quad c) $n = 8$ o $n = -8$
+    \item $\dfrac{(40 - 40)^{5} + 36}{9} + (64 - 64)(25 + 10) = \dfrac{0 + 36}{9} + 0 \cdot 35 = 4$
   \end{enumerate}
 
   \vspace{10pt}
   \begin{cuadrosolucion}
-    \textbf{\textquestiondown Cómo te fue?} El secreto de este tema está en el \emph{signo} (paréntesis vs. sin paréntesis) y en aplicar las \emph{propiedades} con calma. Si lo dominas, \textquestiondown listo para el Tema 4!
+    \textbf{\textquestiondown Cómo te fue?} El secreto de este tema está en comprender el porqué de las reglas, cuidar el \emph{signo} (paréntesis vs. sin paréntesis) y aplicar las \emph{propiedades} con calma. Si lo dominas, \textquestiondown listo para el Tema 4!
   \end{cuadrosolucion}
 
 \fi

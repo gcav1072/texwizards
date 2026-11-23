@@ -33,27 +33,39 @@ latexmk -xelatex guia.tex
 ### Fuentes necesarias (instaladas en el sistema)
 
 - **Cabin** (OTF) — viene con TeX Live (`/usr/share/fonts/opentype/cabin/`)
-- **Nexa Heavy** y **Nexa Extra Light** (TTF) — instaladas en `~/.local/share/fonts/`
-  desde `assets/fonts/` (versiones gratuitas de Fontfabric)
+- **Nexa Heavy** y **Nexa Extra Light** (TTF) — en Linux, instaladas en
+  `~/.local/share/fonts/` desde `assets/fonts/`; en Windows (TeX Live),
+  `.latexmkrc` expone automáticamente `assets/fonts/` y
+  `%LOCALAPPDATA%\Microsoft\Windows\Fonts` a fontconfig vía `.mws_tmp/fonts.conf`.
 
 ## Herramientas del repo
 
 | Herramienta | Qué hace |
 |---|---|
-| `compile_all.sh` | Recompila todos los `.tex` de `tex_files/` (o un filtro de ruta) |
+| `compile_all.sh` | Recompila todos los `.tex` de `tex_files/` en Linux/macOS |
+| `compile_all.ps1` / `.cmd` | Recompila todos los `.tex` de `tex_files/` en Windows (PowerShell / CMD) |
 | `generate_scr.py` | Genera versiones **sin respuestas** (`_scr`) de las guías |
 | `setup_texmf.sh` | Enlaza los estilos en `~/texmf` para compilar desde cualquier carpeta |
-| `.latexmkrc` | Agrega `styles/` a `TEXINPUTS` al compilar desde la raíz |
-| `.vscode/settings.json` | Tool `xelatexmk` con `TEXINPUTS` portable (`%WORKSPACE_FOLDER%`) |
+| `.latexmkrc` | Agrega `styles/` a `TEXINPUTS` (y `assets/fonts/` a fontconfig en Windows) |
+| `.vscode/settings.json` | Recetas de LaTeX Workshop (`latexmk (xelatex)`, `_scr` y limpieza) |
 
-### `compile_all.sh`
+### `compile_all.sh` / `compile_all.ps1`
 
 ```bash
+# Linux / macOS
 ./compile_all.sh                 # Todo tex_files/ (normal + _scr)
 ./compile_all.sh curso_3eraño    # Solo lo que coincida con esa ruta
 ./compile_all.sh guia1           # guía1...tex y su variante guia1..._scr.tex
 ./compile_all.sh -f -j 4         # Forzado (latexmk -g) y con 4 hilos
 ./compile_all.sh -c              # Limpia auxiliares tras compilar
+```
+
+```powershell
+# Windows (PowerShell o CMD con compile_all.cmd)
+.\compile_all.ps1                # Todo tex_files\ (normal + _scr)
+.\compile_all.ps1 curso_3eraño   # Solo lo que coincida con esa ruta
+.\compile_all.ps1 -f -j 4        # Forzado (latexmk -g) y con 4 hilos
+.\compile_all.cmd -c             # Limpia auxiliares tras compilar (sin ExecutionPolicy)
 ```
 
 Cada guía que use `\ifmwclaves` se compila **dos veces desde el mismo fuente**

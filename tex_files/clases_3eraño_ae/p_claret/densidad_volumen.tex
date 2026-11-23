@@ -1,0 +1,759 @@
+% ============================================================
+%  EXAMEN: DENSIDAD, VOLUMEN Y CONVERSIÓN DE UNIDADES
+%  Curso: 3.er Año
+%  Modelos A, B y C — 20 puntos cada uno — 90 minutos
+%  Autor: Ing. Gabriel Astudillo
+%
+%  Contenidos:
+%    * Transformación de unidades (longitud, masa, volumen y
+%      temperatura).
+%    * Volumen de figuras regulares e irregulares.
+%    * Cálculo de densidad (d = m/V) y despejes.
+%
+%  Nota: la clave de respuestas está al final, dentro de
+%  \ifmwclaves ... \fi. Al compilar con compile_all.sh se genera
+%  además la variante _scr (versión del estudiante, sin clave).
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+\usepackage{mathwizards-guia}
+\mwguia{Examen — Densidad, Volumen y Unidades}{Ing. Gabriel Astudillo $\cdot$ 3er Año}
+\setlength{\emergencystretch}{2em}
+
+% ── Formulario común a los tres modelos ─────────────────────
+\newcommand{\mwformulario}{%
+\begin{cuadroteoria}
+  \small
+  \textbf{Formulario.}\quad
+  $d=\dfrac{m}{V}$ \quad $m=d\,V$ \quad $V=\dfrac{m}{d}$ \\[4pt]
+  $V_{\text{cubo}}=\ell^3$ \quad
+  $V_{\text{paralelepípedo}}=\ell\,a\,h$ \quad
+  $V_{\text{cilindro}}=\pi r^2 h$ \quad
+  $V_{\text{esfera}}=\dfrac{4}{3}\pi r^3$ \\[4pt]
+  $V_{\text{irregular}}=V_{\text{final}}-V_{\text{inicial}}$ \\[4pt]
+  $1\ \text{km}=1\,000\ \text{m}$ \quad
+  $1\ \text{kg}=1\,000\ \text{g}$ \quad
+  $1\ \text{m}^3=1\,000\ \text{L}$ \quad
+  $1\ \text{L}=1\,000\ \text{mL}=1\,000\ \text{cm}^3$ \\[4pt]
+  $T_K=T_C+273{,}15$ \quad
+  $T_F=\dfrac{9}{5}\,T_C+32$ \quad
+  $T_C=\dfrac{5}{9}\,(T_F-32)$
+\end{cuadroteoria}
+}
+
+% ── Tabla de densidades ─────────────────────────────────────
+\newcommand{\mwtabladensidades}{%
+\begin{center}
+  \small
+  \textbf{Tabla de densidades de referencia (a temperatura ambiente)}
+  \\[4pt]
+  \begin{tabular}{lc@{\qquad}lc@{\qquad}lc}
+    \toprule
+    \textbf{Material} & $\boldsymbol{d}$ \textbf{(g/cm$^3$)} &
+    \textbf{Material} & $\boldsymbol{d}$ \textbf{(g/cm$^3$)} &
+    \textbf{Material} & $\boldsymbol{d}$ \textbf{(g/cm$^3$)} \\
+    \midrule
+    Agua (4 °C) & 1,00 & Hierro/acero & 7,87 & Plata  & 10,50 \\
+    Aceite      & 0,90 & Cobre        & 8,96 & Plomo  & 11,30 \\
+    Aluminio    & 2,70 & Hielo        & 0,92 & Mercurio & 13,60 \\
+    Madera (pino) & 0,80 & Vidrio     & 2,50 & Oro    & 19,30 \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+}
+
+% ── Instrucciones de cada modelo ────────────────────────────
+\newcommand{\mwinstrucciones}{%
+\begin{cuadroinfo}
+  \small
+  \textbf{Nombre:} \rule{0.42\linewidth}{0.4pt} \hfill
+  \textbf{Fecha:} \rule{0.16\linewidth}{0.4pt} \hfill
+  \textbf{Puntaje:} \rule{0.7cm}{0.4pt} / 20 \\[4pt]
+  \textbf{Tiempo disponible:} 90 minutos \quad$\bullet$\quad
+  \textbf{Calculadora:} permitida \\[4pt]
+  \textbf{Instrucciones:}
+  \begin{enumerate}[leftmargin=*, nosep, topsep=2pt]
+    \item Muestra \emph{todos} los pasos y escribe la unidad en cada resultado.
+    \item Usa $\pi \approx 3{,}14$ y redondea a dos decimales cuando corresponda.
+    \item Recuerda que $1\ \text{mL}=1\ \text{cm}^3$ y $1\ \text{L}=1\,000\ \text{cm}^3$.
+    \item Justifica las afirmaciones que marques como falsas.
+  \end{enumerate}
+  {\footnotesize\textbf{Distribución:} Sección 1 (teórica) 5 pts $\cdot$
+  Sección 2 (ejercicios) 5 pts $\cdot$ Sección 3 (aplicación) 10 pts $\cdot$
+  \textbf{Total: 20 pts}.\par}
+\end{cuadroinfo}
+}
+
+% ── Encabezado de cada modelo ──────────────────────────────
+\newcommand{\mwencabezadomodelo}[2]{%
+  \newpage
+  \section*{Modelo #1}
+  \noindent{\color{mwgris}\textit{#2}}\hfill
+  {\color{mwprimario}\textbf{20 puntos $\cdot$ 90 minutos}}
+  \vspace{2pt}
+  \mwinstrucciones
+  \mwformulario
+  \mwtabladensidades
+  \begin{center}
+    \small
+    \textbf{Registro de puntaje}\\[4pt]
+    \begin{tabular}{lcc}
+      \toprule
+      \textbf{Sección} & \textbf{Puntaje ideal} & \textbf{Puntaje obtenido} \\
+      \midrule
+      1. Sección teórica        & 5  & \rule{2.2cm}{0.4pt} \\
+      2. Ejercicios             & 5  & \rule{2.2cm}{0.4pt} \\
+      3. Problemas de aplicación & 10 & \rule{2.2cm}{0.4pt} \\
+      \midrule
+      \textbf{Total}            & \textbf{20} & \rule{2.2cm}{0.4pt} \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \newpage
+}
+
+\begin{document}
+% ============================================================
+
+% ── Portada general ─────────────────────────────────────────
+\mwportada{Examen de Densidad, Volumen y Unidades}{Modelos A, B y C}{Conversión de unidades $\cdot$ Volumen $\cdot$ Densidad}
+
+\vspace{2pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} este documento contiene \textbf{tres modelos
+  equivalentes} del mismo examen. Cada modelo vale \textbf{20 puntos} y
+  debe resolverse en \textbf{90 minutos}. Los tres cubren los mismos
+  aprendizajes con datos distintos, de modo que pueden usarse para
+  evaluaciones paralelas o para practicar. \\[4pt]
+  \textbf{Temas:} transformación de unidades (longitud, masa, volumen y
+  temperatura), cálculo de volumen de figuras regulares e irregulares y
+  cálculo de densidad. \\[4pt]
+  \textbf{Estructura de cada modelo:}
+  \begin{enumerate}[leftmargin=*, nosep, topsep=2pt]
+    \item Sección teórica (selección múltiple, completación, verdadero/falso y desarrollo): \textbf{5 pts}.
+    \item Ejercicios: \textbf{5 pts}.
+    \item Problemas de aplicación: \textbf{10 pts}.
+  \end{enumerate}
+\end{cuadroinfo}
+
+\begin{cuadroadvertencia}
+  \small
+  \textbf{Errores frecuentes que conviene evitar:}
+  confundir masa con peso; olvidar que $1\ \text{mL}=1\ \text{cm}^3$;
+  usar $273$ en lugar de $273{,}15$ al convertir a kelvin; emplear el
+  diámetro como si fuera el radio; y calcular la densidad como $V/m$
+  en lugar de $m/V$.
+\end{cuadroadvertencia}
+
+% ============================================================
+%  MODELO A
+% ============================================================
+\mwencabezadomodelo{A}{Conversión de unidades, volumen y densidad}
+
+% ── Sección 1 ───────────────────────────────────────────────
+\subsection*{1. Sección teórica (5 puntos)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, itemsep=0.5em]
+
+  \item \textbf{Selección múltiple (2,0 pts; 0,5 cada una).} Encierra la alternativa correcta.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.25em]
+          \item ¿Cuál equivalencia es correcta?
+                \begin{enumerate}[label=\Alph*), leftmargin=1.6em, itemsep=0pt, topsep=2pt]
+                  \item $1\ \text{m}^3=100\ \text{L}$
+                  \item $1\ \text{L}=1\,000\ \text{cm}^3$
+                  \item $1\ \text{cm}^3=1\,000\ \text{mL}$
+                  \item $1\ \text{kg}=100\ \text{g}$
+                \end{enumerate}
+          \item La densidad del agua a 4 °C es:
+                \begin{enumerate}[label=\Alph*), leftmargin=1.6em, itemsep=0pt, topsep=2pt]
+                  \item $0{,}1\ \text{g/cm}^3$
+                  \item $1\ \text{g/cm}^3$
+                  \item $10\ \text{g/cm}^3$
+                  \item $1\,000\ \text{g/cm}^3$
+                \end{enumerate}
+          \item Un cuerpo de densidad $0{,}8\ \text{g/cm}^3$ colocado en agua:
+                \begin{enumerate}[label=\Alph*), leftmargin=1.6em, itemsep=0pt, topsep=2pt]
+                  \item se hunde
+                  \item flota
+                  \item se disuelve
+                  \item se evapora
+                \end{enumerate}
+          \item ¿Cuál unidad \textbf{no} corresponde a volumen?
+                \begin{enumerate}[label=\Alph*), leftmargin=1.6em, itemsep=0pt, topsep=2pt]
+                  \item $\text{cm}^3$
+                  \item mL
+                  \item L
+                  \item $\text{g/cm}^3$
+                \end{enumerate}
+        \end{enumerate}
+
+  \item \textbf{Completación (1,5 pts; 0,5 cada una).} Completa la igualdad o la fórmula.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.4em]
+          \item $1\ \text{m}^3 =$ \rule{2.2cm}{0.4pt} L
+          \item $25$ °C $=$ \rule{2.2cm}{0.4pt} K
+          \item La densidad se calcula como $d =$ \rule{2.2cm}{0.4pt}
+        \end{enumerate}
+
+  \item \textbf{Verdadero o falso (0,5 pts; 0,25 cada una).} Escribe V o F. Corrige las falsas.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.45em]
+          \item Al sumergir un objeto irregular en una probeta, su volumen es
+                $V_{\text{final}}-V_{\text{inicial}}$. \hfill (\rule{0.6cm}{0.4pt})
+          \item Si dos objetos tienen el mismo volumen, el de mayor masa tiene menor densidad.
+                \hfill (\rule{0.6cm}{0.4pt})
+        \end{enumerate}
+
+  \item \textbf{Desarrollo (1,0 pt).} Explica cómo medirías el volumen y la densidad
+        de una piedra. Indica los instrumentos, el procedimiento y las fórmulas.
+        \vspace{2.4cm}
+\end{enumerate}
+
+% ── Sección 2 ───────────────────────────────────────────────
+\newpage
+\subsection*{2. Ejercicios (5 puntos)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, itemsep=0.6em]
+
+  \item \textbf{Conversión de unidades (1,5 pts; 0,25 cada una).} Convierte.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.35em]
+          \item $3{,}5\ \text{km} =$ \rule{1.8cm}{0.4pt} m
+          \item $250\ \text{cm}^3 =$ \rule{1.8cm}{0.4pt} L
+          \item $4{,}5\ \text{kg} =$ \rule{1.8cm}{0.4pt} g
+          \item $2\ \text{L} =$ \rule{1.8cm}{0.4pt} $\text{cm}^3$
+          \item $68$ °F $=$ \rule{1.8cm}{0.4pt} °C
+          \item $300$ K $=$ \rule{1.8cm}{0.4pt} °C
+        \end{enumerate}
+
+  \item \textbf{Volumen de figuras regulares (1,0 pt; 0,5 cada una).} Calcula el volumen de:
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.3em]
+          \item un cubo de $4\ \text{cm}$ de arista;
+          \item un cilindro de radio $3\ \text{cm}$ y altura $10\ \text{cm}$.
+        \end{enumerate}
+        \textit{Usa $\pi \approx 3{,}14$.}
+        \vspace{1.2cm}
+
+  \item \textbf{Volumen de una figura irregular (0,5 pt).} Una probeta contiene
+        $50\ \text{mL}$ de agua. Al sumergir una piedra, el nivel sube a $68\ \text{mL}$.
+        ¿Cuál es el volumen de la piedra en $\text{cm}^3$?
+        \vspace{1.0cm}
+
+  \item \textbf{Cálculo de densidad (1,0 pt; 0,5 cada una).}
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.45em]
+          \item Un bloque tiene masa $270\ \text{g}$ y volumen $100\ \text{cm}^3$.
+                Calcula su densidad e identifica el material con la tabla.
+          \item ¿Cuál es la masa de $250\ \text{cm}^3$ de aceite ($d=0{,}90\ \text{g/cm}^3$)?
+        \end{enumerate}
+        \vspace{1.3cm}
+
+  \item \textbf{Despeje y cálculo (1,0 pt).} De la fórmula $d=\dfrac{m}{V}$, despeja $V$.
+        Luego calcula el volumen de $540\ \text{g}$ de aluminio
+        ($d=2{,}70\ \text{g/cm}^3$).
+        \vspace{1.2cm}
+\end{enumerate}
+
+% ── Sección 3 ───────────────────────────────────────────────
+\newpage
+\subsection*{3. Problemas de aplicación (10 puntos)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, itemsep=1.0em]
+
+  \item \textbf{(2 pts)} Un termómetro de laboratorio marca $95$ °F.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.3em]
+          \item Convierte esa temperatura a °C.
+          \item Exprésala en kelvin (K).
+        \end{enumerate}
+        \vspace{1.6cm}
+
+  \item \textbf{(2 pts)} Un acuario tiene forma de paralelepípedo de
+        $80\ \text{cm}\times40\ \text{cm}\times50\ \text{cm}$.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.3em]
+          \item Calcula su volumen en $\text{cm}^3$ y su capacidad en litros.
+          \item Si se llena hasta $\frac{3}{4}$ de su capacidad, ¿cuántos litros de agua contiene?
+        \end{enumerate}
+        \vspace{1.8cm}
+
+  \item \textbf{(2 pts)} Una probeta contiene $60\ \text{mL}$ de agua. Al sumergir
+        completamente una pieza metálica, el nivel sube a $85\ \text{mL}$.
+        La pieza tiene una masa de $224\ \text{g}$.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.3em]
+          \item Calcula el volumen de la pieza.
+          \item Calcula su densidad e identifica el metal con la tabla.
+        \end{enumerate}
+        \vspace{1.8cm}
+
+  \item \textbf{(2 pts)} Un bloque metálico tiene dimensiones
+        $10\ \text{cm}\times5\ \text{cm}\times4\ \text{cm}$ y una masa de $540\ \text{g}$.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.3em]
+          \item Calcula su volumen y su densidad.
+          \item ¿Flota en el agua? Justifica con el valor de la densidad.
+          \item ¿Qué masa tendría otro bloque del mismo material de $500\ \text{cm}^3$?
+        \end{enumerate}
+        \vspace{1.8cm}
+
+  \item \textbf{(2 pts)} Un recipiente cilíndrico tiene radio $10\ \text{cm}$ y
+        altura $20\ \text{cm}$.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.3em]
+          \item Calcula su volumen en $\text{cm}^3$ y en litros.
+          \item Si se llena con aceite ($d=0{,}90\ \text{g/cm}^3$), ¿cuál es la masa
+                del aceite en kilogramos?
+        \end{enumerate}
+        \vspace{1.8cm}
+\end{enumerate}
+
+% ============================================================
+%  MODELO B
+% ============================================================
+\mwencabezadomodelo{B}{Unidades, cuerpos geométricos y densidad}
+
+% ── Sección 1 ───────────────────────────────────────────────
+\subsection*{1. Sección teórica (5 puntos)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, itemsep=0.5em]
+
+  \item \textbf{Selección múltiple (2,0 pts; 0,5 cada una).} Encierra la alternativa correcta.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.25em]
+          \item $1\ \text{L}$ equivale a:
+                \begin{enumerate}[label=\Alph*), leftmargin=1.6em, itemsep=0pt, topsep=2pt]
+                  \item $10\ \text{cm}^3$
+                  \item $100\ \text{cm}^3$
+                  \item $1\,000\ \text{cm}^3$
+                  \item $10\,000\ \text{cm}^3$
+                \end{enumerate}
+          \item La temperatura $0$ °C equivale a:
+                \begin{enumerate}[label=\Alph*), leftmargin=1.6em, itemsep=0pt, topsep=2pt]
+                  \item $0$ K
+                  \item $32$ °F
+                  \item $273$ °F
+                  \item $100$ K
+                \end{enumerate}
+          \item Un objeto de densidad $2{,}5\ \text{g/cm}^3$ colocado en agua:
+                \begin{enumerate}[label=\Alph*), leftmargin=1.6em, itemsep=0pt, topsep=2pt]
+                  \item se hunde
+                  \item flota
+                  \item se disuelve
+                  \item se evapora
+                \end{enumerate}
+          \item En el Sistema Internacional, la densidad se mide en:
+                \begin{enumerate}[label=\Alph*), leftmargin=1.6em, itemsep=0pt, topsep=2pt]
+                  \item $\text{g/cm}^3$
+                  \item $\text{kg/m}^3$
+                  \item kg/L
+                  \item g/mL
+                \end{enumerate}
+        \end{enumerate}
+
+  \item \textbf{Completación (1,5 pts; 0,5 cada una).} Completa la igualdad o la fórmula.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.4em]
+          \item $1\ \text{kg} =$ \rule{2.2cm}{0.4pt} g
+          \item $100$ °C $=$ \rule{2.2cm}{0.4pt} K
+          \item La masa se calcula como $m = d \cdot$ \rule{2.2cm}{0.4pt}
+        \end{enumerate}
+
+  \item \textbf{Verdadero o falso (0,5 pts; 0,25 cada una).} Escribe V o F. Corrige las falsas.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.45em]
+          \item Un mililitro equivale a un centímetro cúbico.
+                \hfill (\rule{0.6cm}{0.4pt})
+          \item Al calentar un cuerpo, su masa aumenta.
+                \hfill (\rule{0.6cm}{0.4pt})
+        \end{enumerate}
+
+  \item \textbf{Desarrollo (1,0 pt).} Explica con tus palabras la diferencia entre
+        \textbf{masa} y \textbf{densidad}. Indica en qué unidades se mide cada una
+        y un ejemplo que muestre que no son lo mismo.
+        \vspace{2.4cm}
+\end{enumerate}
+
+% ── Sección 2 ───────────────────────────────────────────────
+\newpage
+\subsection*{2. Ejercicios (5 puntos)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, itemsep=0.6em]
+
+  \item \textbf{Conversión de unidades (1,5 pts; 0,25 cada una).} Convierte.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.35em]
+          \item $2{,}5\ \text{km} =$ \rule{1.8cm}{0.4pt} m
+          \item $750\ \text{mL} =$ \rule{1.8cm}{0.4pt} L
+          \item $3{,}2\ \text{kg} =$ \rule{1.8cm}{0.4pt} g
+          \item $1{,}5\ \text{L} =$ \rule{1.8cm}{0.4pt} $\text{cm}^3$
+          \item $20$ °C $=$ \rule{1.8cm}{0.4pt} °F
+          \item $400$ K $=$ \rule{1.8cm}{0.4pt} °C
+        \end{enumerate}
+
+  \item \textbf{Volumen de figuras regulares (1,0 pt; 0,5 cada una).} Calcula el volumen de:
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.3em]
+          \item un cubo de $5\ \text{cm}$ de arista;
+          \item una esfera de radio $3\ \text{cm}$.
+        \end{enumerate}
+        \textit{Usa $\pi \approx 3{,}14$.}
+        \vspace{1.2cm}
+
+  \item \textbf{Volumen de una figura irregular (0,5 pt).} Una probeta contiene
+        $40\ \text{mL}$ de agua. Al sumergir una llave, el nivel sube a $55\ \text{mL}$.
+        ¿Cuál es el volumen de la llave en $\text{cm}^3$?
+        \vspace{1.0cm}
+
+  \item \textbf{Cálculo de densidad (1,0 pt; 0,5 cada una).}
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.45em]
+          \item Un bloque de hielo tiene masa $460\ \text{g}$ y volumen $500\ \text{cm}^3$.
+                Calcula su densidad, identifícalo con la tabla e indica si flota en agua.
+          \item ¿Cuál es la masa de $300\ \text{cm}^3$ de hierro ($d=7{,}87\ \text{g/cm}^3$)?
+        \end{enumerate}
+        \vspace{1.3cm}
+
+  \item \textbf{Despeje y cálculo (1,0 pt).} De la fórmula $d=\dfrac{m}{V}$, despeja $m$.
+        Luego calcula la masa de $400\ \text{cm}^3$ de aluminio
+        ($d=2{,}70\ \text{g/cm}^3$).
+        \vspace{1.2cm}
+\end{enumerate}
+
+% ── Sección 3 ───────────────────────────────────────────────
+\newpage
+\subsection*{3. Problemas de aplicación (10 puntos)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, itemsep=1.0em]
+
+  \item \textbf{(2 pts)} La resistencia de un horno se regula a $392$ °F.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.3em]
+          \item Convierte esa temperatura a °C.
+          \item Exprésala en kelvin (K).
+        \end{enumerate}
+        \vspace{1.6cm}
+
+  \item \textbf{(2 pts)} Un estanque tiene forma de paralelepípedo de
+        $200\ \text{cm}\times100\ \text{cm}\times50\ \text{cm}$.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.3em]
+          \item Calcula su volumen en $\text{cm}^3$, en litros y en metros cúbicos.
+          \item Si se llena hasta $\frac{3}{4}$ de su capacidad, ¿cuántos litros de agua contiene?
+        \end{enumerate}
+        \vspace{1.8cm}
+
+  \item \textbf{(2 pts)} Una probeta contiene $80\ \text{mL}$ de agua. Al sumergir
+        completamente una pieza metálica, el nivel sube a $95\ \text{mL}$.
+        La pieza tiene una masa de $135\ \text{g}$.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.3em]
+          \item Calcula el volumen de la pieza.
+          \item Calcula su densidad e identifica el metal con la tabla.
+        \end{enumerate}
+        \vspace{1.8cm}
+
+  \item \textbf{(2 pts)} Un bloque metálico tiene dimensiones
+        $12\ \text{cm}\times5\ \text{cm}\times5\ \text{cm}$ y una masa de $810\ \text{g}$.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.3em]
+          \item Calcula su volumen y su densidad.
+          \item ¿Flota en el agua? Justifica con el valor de la densidad.
+          \item ¿Qué masa tendría $1\ \text{dm}^3$ del mismo material, en kilogramos?
+        \end{enumerate}
+        \vspace{1.8cm}
+
+  \item \textbf{(2 pts)} Un recipiente cilíndrico tiene radio $5\ \text{cm}$ y
+        altura $20\ \text{cm}$.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.3em]
+          \item Calcula su volumen en $\text{cm}^3$ y en litros.
+          \item Si se llena con agua ($d=1{,}00\ \text{g/cm}^3$), ¿cuál es la masa
+                del agua en kilogramos?
+        \end{enumerate}
+        \vspace{1.8cm}
+\end{enumerate}
+
+% ============================================================
+%  MODELO C
+% ============================================================
+\mwencabezadomodelo{C}{Medición, capacidad y densidad}
+
+% ── Sección 1 ───────────────────────────────────────────────
+\subsection*{1. Sección teórica (5 puntos)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, itemsep=0.5em]
+
+  \item \textbf{Selección múltiple (2,0 pts; 0,5 cada una).} Encierra la alternativa correcta.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.25em]
+          \item $1\ \text{m}^3$ equivale a:
+                \begin{enumerate}[label=\Alph*), leftmargin=1.6em, itemsep=0pt, topsep=2pt]
+                  \item $1\,000$ L
+                  \item $100$ L
+                  \item $10$ L
+                  \item $1$ L
+                \end{enumerate}
+          \item La temperatura $0$ K equivale a:
+                \begin{enumerate}[label=\Alph*), leftmargin=1.6em, itemsep=0pt, topsep=2pt]
+                  \item $-273{,}15$ °C
+                  \item $0$ °C
+                  \item $273{,}15$ °C
+                  \item $-32$ °C
+                \end{enumerate}
+          \item Un objeto de densidad $1{,}2\ \text{g/cm}^3$ colocado en agua:
+                \begin{enumerate}[label=\Alph*), leftmargin=1.6em, itemsep=0pt, topsep=2pt]
+                  \item se hunde
+                  \item flota
+                  \item se disuelve
+                  \item se evapora
+                \end{enumerate}
+          \item El instrumento más adecuado para medir el volumen de un líquido es:
+                \begin{enumerate}[label=\Alph*), leftmargin=1.6em, itemsep=0pt, topsep=2pt]
+                  \item la balanza
+                  \item la probeta
+                  \item el termómetro
+                  \item la regla
+                \end{enumerate}
+        \end{enumerate}
+
+  \item \textbf{Completación (1,5 pts; 0,5 cada una).} Completa la igualdad o la fórmula.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.4em]
+          \item $1\ \text{L} =$ \rule{2.2cm}{0.4pt} mL
+          \item $37$ °C $=$ \rule{2.2cm}{0.4pt} K
+          \item El volumen se calcula como $V =$ \rule{2.2cm}{0.4pt}
+        \end{enumerate}
+
+  \item \textbf{Verdadero o falso (0,5 pts; 0,25 cada una).} Escribe V o F. Corrige las falsas.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.45em]
+          \item La densidad de un material depende del tamaño del objeto.
+                \hfill (\rule{0.6cm}{0.4pt})
+          \item El volumen de un objeto irregular puede medirse por desplazamiento de agua.
+                \hfill (\rule{0.6cm}{0.4pt})
+        \end{enumerate}
+
+  \item \textbf{Desarrollo (1,0 pt).} Un clavo de acero se hunde en el agua, pero un
+        barco construido con acero flota. Explica esta diferencia usando la idea de
+        \textbf{densidad promedio} del cuerpo.
+        \vspace{2.4cm}
+\end{enumerate}
+
+% ── Sección 2 ───────────────────────────────────────────────
+\newpage
+\subsection*{2. Ejercicios (5 puntos)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, itemsep=0.6em]
+
+  \item \textbf{Conversión de unidades (1,5 pts; 0,25 cada una).} Convierte.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.35em]
+          \item $4{,}2\ \text{km} =$ \rule{1.8cm}{0.4pt} m
+          \item $1{,}25\ \text{L} =$ \rule{1.8cm}{0.4pt} mL
+          \item $500\ \text{mg} =$ \rule{1.8cm}{0.4pt} g
+          \item $2{,}5\ \text{m}^3 =$ \rule{1.8cm}{0.4pt} L
+          \item $50$ °C $=$ \rule{1.8cm}{0.4pt} °F
+          \item $250$ K $=$ \rule{1.8cm}{0.4pt} °C
+        \end{enumerate}
+
+  \item \textbf{Volumen de figuras regulares (1,0 pt; 0,5 cada una).} Calcula el volumen de:
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.3em]
+          \item un cubo de $6\ \text{cm}$ de arista;
+          \item un cilindro de radio $2\ \text{cm}$ y altura $15\ \text{cm}$.
+        \end{enumerate}
+        \textit{Usa $\pi \approx 3{,}14$.}
+        \vspace{1.2cm}
+
+  \item \textbf{Volumen de una figura irregular (0,5 pt).} Una probeta contiene
+        $30\ \text{mL}$ de agua. Al sumergir una moneda, el nivel sube a $42\ \text{mL}$.
+        ¿Cuál es el volumen de la moneda en $\text{cm}^3$?
+        \vspace{1.0cm}
+
+  \item \textbf{Cálculo de densidad (1,0 pt; 0,5 cada una).}
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.45em]
+          \item Un objeto tiene masa $96\ \text{g}$ y volumen $120\ \text{cm}^3$.
+                Calcula su densidad e identifica el material con la tabla.
+          \item ¿Cuál es el volumen de $1\,350\ \text{g}$ de aluminio
+                ($d=2{,}70\ \text{g/cm}^3$)?
+        \end{enumerate}
+        \vspace{1.3cm}
+
+  \item \textbf{Despeje y cálculo (1,0 pt).} De la fórmula $d=\dfrac{m}{V}$, despeja $V$.
+        Luego calcula el volumen de $405\ \text{g}$ de aluminio
+        ($d=2{,}70\ \text{g/cm}^3$).
+        \vspace{1.2cm}
+\end{enumerate}
+
+% ── Sección 3 ───────────────────────────────────────────────
+\newpage
+\subsection*{3. Problemas de aplicación (10 puntos)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, itemsep=1.0em]
+
+  \item \textbf{(2 pts)} El termostato de una cámara climática marca $104$ °F.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.3em]
+          \item Convierte esa temperatura a °C.
+          \item Exprésala en kelvin (K).
+        \end{enumerate}
+        \vspace{1.6cm}
+
+  \item \textbf{(2 pts)} Una caja tiene forma de paralelepípedo de
+        $60\ \text{cm}\times30\ \text{cm}\times40\ \text{cm}$.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.3em]
+          \item Calcula su volumen en $\text{cm}^3$ y su capacidad en litros.
+          \item Si se llena hasta $\frac{2}{3}$ de su capacidad, ¿cuántos litros contiene?
+        \end{enumerate}
+        \vspace{1.8cm}
+
+  \item \textbf{(2 pts)} Una probeta contiene $100\ \text{mL}$ de agua. Al sumergir
+        completamente una pieza metálica, el nivel sube a $118\ \text{mL}$.
+        La pieza tiene una masa de $48{,}6\ \text{g}$.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.3em]
+          \item Calcula el volumen de la pieza.
+          \item Calcula su densidad e identifica el metal con la tabla.
+        \end{enumerate}
+        \vspace{1.8cm}
+
+  \item \textbf{(2 pts)} Un bloque metálico tiene dimensiones
+        $20\ \text{cm}\times10\ \text{cm}\times5\ \text{cm}$ y una masa de $7\,800\ \text{g}$.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.3em]
+          \item Calcula su volumen y su densidad.
+          \item ¿Flota en el agua? Justifica con el valor de la densidad.
+          \item ¿Qué masa tendrían $2\ \text{dm}^3$ del mismo material, en kilogramos?
+        \end{enumerate}
+        \vspace{1.8cm}
+
+  \item \textbf{(2 pts)} Un tanque cilíndrico tiene radio $20\ \text{cm}$ y
+        altura $50\ \text{cm}$.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.3em]
+          \item Calcula su volumen en $\text{cm}^3$ y en litros.
+          \item Si se llena hasta la mitad con agua ($d=1{,}00\ \text{g/cm}^3$),
+                ¿cuál es la masa del agua en kilogramos?
+        \end{enumerate}
+        \vspace{1.8cm}
+\end{enumerate}
+
+% ============================================================
+%  CLAVE DE RESPUESTAS
+% ============================================================
+\newpage
+\ifmwclaves
+\section{Clave de Respuestas}
+
+% ── Modelo A ────────────────────────────────────────────────
+\subsection*{Modelo A}
+
+\subsubsection*{1. Sección teórica (5 pts)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, itemsep=0.35em]
+  \item a) B. \quad b) B. \quad c) B (su densidad es menor que la del agua). \quad
+        d) D ($\text{g/cm}^3$ mide densidad, no volumen).
+  \item a) $1\,000$ L. \quad b) $25+273{,}15=298{,}15$ K. \quad
+        c) $d=\dfrac{m}{V}$.
+  \item a) V. \quad b) F: a igual volumen, el de mayor masa tiene \emph{mayor} densidad.
+  \item Se pesa la piedra en una balanza y se mide su volumen por desplazamiento
+        en una probeta: $V=V_{\text{final}}-V_{\text{inicial}}$. Luego se calcula
+        $d=\dfrac{m}{V}$ y se expresa en $\text{g/cm}^3$.
+\end{enumerate}
+
+\subsubsection*{2. Ejercicios (5 pts)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, itemsep=0.35em]
+  \item a) $3\,500$ m; \quad b) $0{,}25$ L; \quad c) $4\,500$ g; \quad
+        d) $2\,000\ \text{cm}^3$; \quad e) $20$ °C; \quad f) $26{,}85$ °C.
+  \item a) $V=4^3=64\ \text{cm}^3$; \quad
+        b) $V=\pi(3)^2(10)=90\pi\approx282{,}6\ \text{cm}^3$.
+  \item $V=68-50=18\ \text{cm}^3$.
+  \item a) $d=\dfrac{270}{100}=2{,}70\ \text{g/cm}^3$: aluminio. \quad
+        b) $m=d\,V=0{,}90(250)=225\ \text{g}$.
+  \item $V=\dfrac{m}{d}=\dfrac{540}{2{,}70}=200\ \text{cm}^3$.
+\end{enumerate}
+
+\subsubsection*{3. Problemas de aplicación (10 pts)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, itemsep=0.35em]
+  \item a) $T_C=\frac{5}{9}(95-32)=35$ °C. \quad
+        b) $T_K=35+273{,}15=308{,}15$ K.
+  \item a) $V=80\cdot40\cdot50=160\,000\ \text{cm}^3=160$ L. \quad
+        b) $\frac{3}{4}(160)=120$ L.
+  \item a) $V=85-60=25\ \text{cm}^3$. \quad
+        b) $d=\dfrac{224}{25}=8{,}96\ \text{g/cm}^3$: cobre.
+  \item a) $V=10\cdot5\cdot4=200\ \text{cm}^3$;
+        $d=\dfrac{540}{200}=2{,}70\ \text{g/cm}^3$. \quad
+        b) No flota: $2{,}70>1{,}00\ \text{g/cm}^3$. \quad
+        c) $m=2{,}70(500)=1\,350$ g.
+  \item a) $V=\pi(10)^2(20)=2\,000\pi\approx6\,280\ \text{cm}^3=6{,}28$ L. \quad
+        b) $m=0{,}90(6\,280)=5\,652$ g $\approx5{,}65$ kg.
+\end{enumerate}
+
+% ── Modelo B ────────────────────────────────────────────────
+\subsection*{Modelo B}
+
+\subsubsection*{1. Sección teórica (5 pts)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, itemsep=0.35em]
+  \item a) C. \quad b) B ($0$ °C $=32$ °F). \quad
+        c) A (su densidad es mayor que la del agua). \quad d) B.
+  \item a) $1\,000$ g. \quad b) $100+273{,}15=373{,}15$ K. \quad c) $V$.
+  \item a) V. \quad b) F: la masa se conserva; lo que cambia es el volumen
+        (y, por lo tanto, la densidad).
+  \item La masa es la cantidad de materia de un cuerpo y se mide en kg o g
+        con una balanza. La densidad es la masa por unidad de volumen
+        ($d=m/V$) y se mide en $\text{g/cm}^3$ o $\text{kg/m}^3$. Ejemplo:
+        $1\ \text{kg}$ de plumas y $1\ \text{kg}$ de hierro tienen la misma masa,
+        pero el hierro ocupa mucho menos volumen porque su densidad es mayor.
+\end{enumerate}
+
+\subsubsection*{2. Ejercicios (5 pts)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, itemsep=0.35em]
+  \item a) $2\,500$ m; \quad b) $0{,}75$ L; \quad c) $3\,200$ g; \quad
+        d) $1\,500\ \text{cm}^3$; \quad e) $68$ °F; \quad f) $126{,}85$ °C.
+  \item a) $V=5^3=125\ \text{cm}^3$; \quad
+        b) $V=\dfrac{4}{3}\pi(3)^3=36\pi\approx113{,}04\ \text{cm}^3$.
+  \item $V=55-40=15\ \text{cm}^3$.
+  \item a) $d=\dfrac{460}{500}=0{,}92\ \text{g/cm}^3$: hielo; flota. \quad
+        b) $m=7{,}87(300)=2\,361$ g.
+  \item $m=d\,V=2{,}70(400)=1\,080$ g.
+\end{enumerate}
+
+\subsubsection*{3. Problemas de aplicación (10 pts)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, itemsep=0.35em]
+  \item a) $T_C=\frac{5}{9}(392-32)=200$ °C. \quad
+        b) $T_K=200+273{,}15=473{,}15$ K.
+  \item a) $V=200\cdot100\cdot50=1\,000\,000\ \text{cm}^3=1\,000$ L $=1\ \text{m}^3$. \quad
+        b) $\frac{3}{4}(1\,000)=750$ L.
+  \item a) $V=95-80=15\ \text{cm}^3$. \quad
+        b) $d=\dfrac{135}{15}=9{,}00\ \text{g/cm}^3$: cobre (valor aproximado).
+  \item a) $V=12\cdot5\cdot5=300\ \text{cm}^3$;
+        $d=\dfrac{810}{300}=2{,}70\ \text{g/cm}^3$. \quad
+        b) No flota: $2{,}70>1{,}00\ \text{g/cm}^3$. \quad
+        c) $1\ \text{dm}^3=1\,000\ \text{cm}^3$; $m=2{,}70(1\,000)=2\,700$ g $=2{,}7$ kg.
+  \item a) $V=\pi(5)^2(20)=500\pi\approx1\,570\ \text{cm}^3=1{,}57$ L. \quad
+        b) $m=1{,}00(1\,570)=1\,570$ g $=1{,}57$ kg.
+\end{enumerate}
+
+% ── Modelo C ────────────────────────────────────────────────
+\subsection*{Modelo C}
+
+\subsubsection*{1. Sección teórica (5 pts)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, itemsep=0.35em]
+  \item a) A. \quad b) A. \quad
+        c) A (su densidad es mayor que la del agua). \quad d) B.
+  \item a) $1\,000$ mL. \quad b) $37+273{,}15=310{,}15$ K. \quad
+        c) $V=\dfrac{m}{d}$.
+  \item a) F: la densidad es una propiedad intensiva; no depende del tamaño
+        del objeto. \quad b) V.
+  \item El clavo es macizo y su densidad es la del acero
+        ($7{,}87\ \text{g/cm}^3$), mayor que la del agua, por lo que se hunde.
+        El barco también es de acero, pero su volumen total incluye grandes
+        espacios de aire; su \emph{densidad promedio} (masa total entre volumen
+        total) es menor que $1\ \text{g/cm}^3$, por lo que flota.
+\end{enumerate}
+
+\subsubsection*{2. Ejercicios (5 pts)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, itemsep=0.35em]
+  \item a) $4\,200$ m; \quad b) $1\,250$ mL; \quad c) $0{,}5$ g; \quad
+        d) $2\,500$ L; \quad e) $122$ °F; \quad f) $-23{,}15$ °C.
+  \item a) $V=6^3=216\ \text{cm}^3$; \quad
+        b) $V=\pi(2)^2(15)=60\pi\approx188{,}4\ \text{cm}^3$.
+  \item $V=42-30=12\ \text{cm}^3$.
+  \item a) $d=\dfrac{96}{120}=0{,}80\ \text{g/cm}^3$: madera (pino). \quad
+        b) $V=\dfrac{1\,350}{2{,}70}=500\ \text{cm}^3$.
+  \item $V=\dfrac{m}{d}=\dfrac{405}{2{,}70}=150\ \text{cm}^3$.
+\end{enumerate}
+
+\subsubsection*{3. Problemas de aplicación (10 pts)}
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, itemsep=0.35em]
+  \item a) $T_C=\frac{5}{9}(104-32)=40$ °C. \quad
+        b) $T_K=40+273{,}15=313{,}15$ K.
+  \item a) $V=60\cdot30\cdot40=72\,000\ \text{cm}^3=72$ L. \quad
+        b) $\frac{2}{3}(72)=48$ L.
+  \item a) $V=118-100=18\ \text{cm}^3$. \quad
+        b) $d=\dfrac{48{,}6}{18}=2{,}70\ \text{g/cm}^3$: aluminio.
+  \item a) $V=20\cdot10\cdot5=1\,000\ \text{cm}^3$;
+        $d=\dfrac{7\,800}{1\,000}=7{,}80\ \text{g/cm}^3$. \quad
+        b) No flota: $7{,}80>1{,}00\ \text{g/cm}^3$. \quad
+        c) $2\ \text{dm}^3=2\,000\ \text{cm}^3$;
+        $m=7{,}80(2\,000)=15\,600$ g $=15{,}6$ kg.
+  \item a) $V=\pi(20)^2(50)=20\,000\pi\approx62\,800\ \text{cm}^3=62{,}8$ L. \quad
+        b) La mitad es $31{,}4$ L; $m=1{,}00(31\,400)=31\,400$ g $=31{,}4$ kg.
+\end{enumerate}
+
+\fi
+\end{document}

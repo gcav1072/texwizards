@@ -1,0 +1,1905 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T4L1 — Estequiometría de las Reacciones Químicas · Diapositivas · Mathwizards</title>
+<!-- Funciona offline dentro del repo (../assets/katex) y autocontenida vía CDN -->
+<link rel="stylesheet" href="../assets/katex/katex.min.css"
+      onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css';">
+<style>
+/* ============================================================
+   Diapositivas T4L1 — Estequiometría de las Reacciones Químicas
+   Estética mathwizards-beamer · Paleta mathwizards-palette
+   ============================================================ */
+:root{
+  --primario:#E2232D; --magenta:#E3229F; --rojonaranja:#E34122;
+  --violeta:#C922E3; --naranja:#E36322; --verde:#2E9E4F;
+  --azul:#2563EB;
+  --grisclaro:#F5F5F8; --gris:#666666; --grisoscuro:#333333;
+  --font-body:'Cabin','Segoe UI',system-ui,sans-serif;
+  --font-title:'Nexa Heavy','Cabin','Arial Black',sans-serif;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html,body{height:100%;}
+body{background:#26262b; font-family:var(--font-body); color:#111; overflow:hidden;}
+
+#stage{
+  position:absolute; left:50%; top:50%; width:1280px; height:720px;
+  margin:-360px 0 0 -640px; transform-origin:center center;
+  background:#fff; box-shadow:0 18px 60px rgba(0,0,0,.55);
+}
+.slide{position:absolute; inset:0; background:#fff; display:none; flex-direction:column;}
+.slide.active{display:flex;}
+
+/* ── Barras de título y pie ───────────────────────────────── */
+.ft{height:64px; background:var(--primario); color:#fff; flex:0 0 auto;
+    display:flex; align-items:center; padding:0 40px; gap:16px;}
+.ft h2{font-family:var(--font-title); font-size:27px; font-weight:normal; letter-spacing:.2px;}
+.ft .ftsub{margin-left:auto; font-size:15px; color:rgba(255,255,255,.88);}
+.fc{flex:1 1 auto; padding:20px 42px 10px; overflow:hidden; display:flex; flex-direction:column;}
+.ff{height:34px; background:var(--primario); color:#fff; flex:0 0 auto;
+    display:flex; align-items:center; font-size:11.5px; letter-spacing:.3px;}
+.ff span{flex:1; padding:0 18px;}
+.ff span:nth-child(2){text-align:center;}
+.ff span:nth-child(3){text-align:right;}
+
+/* ── Logo de la marca ─────────────────────────────────────── */
+.portada-logo{width:104px; height:116px; color:#fff; margin-bottom:14px;}
+.ftlogo{width:23px; height:26px; color:#fff; flex:0 0 auto;}
+
+/* ── Portada y divisores ──────────────────────────────────── */
+.slide.portada{background:var(--primario);}
+.portada .band{position:absolute; left:0; right:0; bottom:0; height:176px; background:#bf1c25;}
+.portada .pcontent{position:absolute; inset:0; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; color:#fff; text-align:center; z-index:2; padding:0 50px;}
+.portada h1{font-family:var(--font-title); font-size:48px; font-weight:normal; line-height:1.12;}
+.portada h3{font-family:var(--font-title); font-size:24px; font-weight:normal; margin-top:12px; color:rgba(255,255,255,.94);}
+.portada .lema{font-size:19px; font-style:italic; margin-top:14px; color:rgba(255,255,255,.9);}
+.portada .meta{margin-top:26px; font-size:16px; color:rgba(255,255,255,.94);}
+.portada .meta .small{font-size:13.5px; color:rgba(255,255,255,.82); margin-top:4px;}
+
+.slide.divisor{background:var(--primario);}
+.divisor .dcontent{flex:1; display:flex; flex-direction:column; align-items:center;
+  justify-content:center; color:#fff; text-align:center; gap:12px; padding:0 60px;}
+.divisor .dkicker{font-family:var(--font-title); font-size:15px; letter-spacing:2px;
+  text-transform:uppercase; padding:5px 16px; border-radius:99px;
+  background:rgba(255,255,255,.16); color:#fff;}
+.divisor h2{font-family:var(--font-title); font-size:52px; font-weight:normal; line-height:1.1;}
+.divisor p{font-size:22px; color:rgba(255,255,255,.9);}
+
+/* ── Cuadros ──────────────────────────────────────────────── */
+.cuadro{border-radius:8px; overflow:hidden; margin:0 0 12px; font-size:18.5px; line-height:1.42;}
+.cuadro .ct{padding:6px 16px; color:#fff; font-family:var(--font-title); font-size:18.5px; display:flex; align-items:center; gap:10px;}
+.cuadro .cb{padding:10px 16px; background:#fff;}
+.cuadro .cb p{margin:0 0 6px;}
+.cuadro .cb p:last-child{margin-bottom:0;}
+.cuadro .cb ul,.cuadro .cb ol{margin:3px 0 3px 1.25em;}
+.cuadro .cb li{margin:3px 0;}
+.teoria .ct{background:var(--primario);} .teoria .cb{background:rgba(226,35,45,.07);}
+.solucion .ct{background:var(--magenta);} .solucion .cb{background:rgba(227,34,159,.07);}
+.pasos .ct{background:var(--naranja);} .pasos .cb{background:rgba(227,99,34,.08);}
+.advertencia .ct{background:var(--rojonaranja);} .advertencia .cb{background:rgba(227,65,34,.07);}
+.extra .ct{background:var(--violeta);} .extra .cb{background:rgba(201,34,227,.07);}
+.info .ct{background:var(--gris);} .info .cb{background:var(--grisclaro);}
+.verde .ct{background:var(--verde);} .verde .cb{background:rgba(46,158,79,.09);}
+
+/* ── Tablas ───────────────────────────────────────────────── */
+table.tabla{border-collapse:collapse; width:100%; font-size:17px;}
+table.tabla th{font-family:var(--font-title); font-weight:normal; padding:6px 8px;
+  border-bottom:1.8px solid var(--grisoscuro); text-align:center;}
+table.tabla td{padding:5px 8px; text-align:center; border-bottom:1px solid #e3e3e8;}
+table.tabla tr:last-child td{border-bottom:1.8px solid var(--grisoscuro);}
+table.tabla td:first-child,table.tabla th:first-child{text-align:left;}
+table.tabla.tight td,table.tabla.tight th{padding:4px 7px; font-size:15.5px;}
+table.tabla.center-all td,table.tabla.center-all th{text-align:center;}
+
+/* ── Utilidades ───────────────────────────────────────────── */
+.cols{display:flex; gap:20px; align-items:stretch;}
+.cols.top{align-items:flex-start;}
+.cols>.col{flex:1; min-width:0;}
+.center{text-align:center;}
+.small{font-size:15.5px;}
+.mt{margin-top:8px;} .mb{margin-bottom:8px;}
+.pill{display:inline-block; border-radius:99px; padding:2px 11px; font-size:12.5px;
+  font-family:var(--font-title); color:#fff; background:var(--gris);}
+.pill.red{background:var(--primario);} .pill.orange{background:var(--naranja);}
+.pill.mag{background:var(--magenta);} .pill.vio{background:var(--violeta);}
+.pill.green{background:var(--verde);}
+
+/* ── Botones ──────────────────────────────────────────────── */
+.btn{font-family:var(--font-title); font-size:14px; color:var(--primario);
+  background:#fff; border:2px solid var(--primario); border-radius:8px;
+  padding:6px 13px; cursor:pointer; transition:background .15s, color .15s, transform .1s;}
+.btn:hover{background:var(--primario); color:#fff;}
+.btn:active{transform:translateY(1px);}
+.btn.solid{background:var(--primario); color:#fff;}
+.btn.solid:hover{background:#bf1c25;}
+.btn.mag{color:var(--magenta); border-color:var(--magenta);}
+.btn.mag:hover,.btn.mag.active{background:var(--magenta); color:#fff;}
+.btn.orange{color:var(--naranja); border-color:var(--naranja);}
+.btn.orange:hover,.btn.orange.active{background:var(--naranja); color:#fff;}
+.btn.green{color:var(--verde); border-color:var(--verde);}
+.btn.green:hover,.btn.green.active{background:var(--verde); color:#fff;}
+.btn.ghost{color:var(--grisoscuro); border-color:#cfd0d8;}
+.btn.ghost:hover,.btn.ghost.active{background:var(--grisoscuro); color:#fff; border-color:var(--grisoscuro);}
+.btn:focus-visible{outline:3px solid rgba(226,35,45,.35); outline-offset:2px;}
+
+/* ── Ecuación interactiva anatomía (Slide 4) ──────────────── */
+.anat-bar{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px;}
+.anat-eq{display:flex; align-items:center; justify-content:center; gap:10px;
+  background:var(--grisclaro); border-radius:10px; padding:16px 14px; font-size:27px;
+  border:2px solid #e2e2ea; min-height:88px;}
+.anat-part{padding:5px 10px; border-radius:8px; transition:.2s; border:2px solid transparent;}
+.anat-part.hi-react{background:rgba(226,35,45,.14); border-color:var(--primario);}
+.anat-part.hi-prod{background:rgba(227,34,159,.14); border-color:var(--magenta);}
+.anat-part.hi-coef .ac{background:var(--naranja); color:#fff; border-radius:5px; padding:0 5px;}
+.anat-part.hi-state .as{background:var(--violeta); color:#fff; border-radius:5px; padding:0 4px;}
+.anat-msg{margin-top:8px; padding:10px 14px; border-radius:8px; background:#fff;
+  border-left:5px solid var(--primario); font-size:17px; min-height:54px;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);}
+
+/* ── Pasos revelables en ejemplos ─────────────────────────── */
+.step-panel{display:none; animation:fadeIn .22s ease;}
+.step-panel.show{display:block;}
+@keyframes fadeIn{from{opacity:0; transform:translateY(4px);}to{opacity:1; transform:none;}}
+.step-controls{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:10px;}
+.step-badge{margin-left:auto; font-size:14px; color:var(--gris); font-family:var(--font-title);}
+
+/* ── Balanceador interactivo (Slide 6) ────────────────────── */
+.bal-tabs{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;}
+.bal-eq-box{display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap;
+  background:var(--grisclaro); border:2px solid #e2e2ea; border-radius:12px;
+  padding:18px 20px; margin-bottom:14px; min-height:112px;}
+.bal-term{display:flex; align-items:center; gap:6px; background:#fff;
+  padding:8px 12px; border-radius:10px; border:1.5px solid #d9dae3;
+  box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.bal-spin{display:flex; flex-direction:column; align-items:center; gap:2px;}
+.bal-spin button{width:28px; height:22px; border:none; border-radius:5px;
+  background:var(--grisclaro); color:var(--grisoscuro); font-weight:700; cursor:pointer; font-size:15px;}
+.bal-spin button:hover{background:var(--primario); color:#fff;}
+.bal-coef{font-family:var(--font-title); font-size:26px; color:var(--primario); min-width:30px; text-align:center;}
+.bal-formula{font-size:24px; font-weight:600; color:var(--grisoscuro);}
+.bal-op{font-size:26px; font-weight:700; color:var(--gris);}
+.bal-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:18px; flex:1; min-height:0;}
+.atom-row{display:grid; grid-template-columns:64px 1fr 48px 1fr; align-items:center; gap:10px;
+  padding:8px 12px; border-radius:8px; background:#fff; border:1.5px solid #e5e5ec; margin-bottom:8px;}
+.atom-row.ok{border-color:var(--verde); background:#edf9f0;}
+.atom-row.no{border-color:#f3b5b9; background:#fff7f7;}
+.atom-sym{font-family:var(--font-title); font-size:20px; color:var(--grisoscuro); text-align:center;}
+.atom-bar-wrap{display:flex; align-items:center; gap:8px;}
+.atom-bar{height:16px; border-radius:99px; transition:width .25s ease;}
+.atom-bar.left{background:var(--primario);}
+.atom-bar.right{background:var(--magenta);}
+.atom-status{font-family:var(--font-title); font-size:20px; text-align:center;}
+.atom-row.ok .atom-status{color:var(--verde);}
+.atom-row.no .atom-status{color:var(--primario);}
+.bal-banner{padding:12px 16px; border-radius:10px; font-size:17px; line-height:1.4;
+  background:var(--grisclaro); border-left:5px solid var(--naranja);}
+.bal-banner.done{background:#e8f7ec; border-left-color:var(--verde);}
+
+/* ── Simulador Puente Molar (Slide 10) ────────────────────── */
+.bridge-cards{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:10px 0 12px;}
+.bcard{border-radius:10px; padding:12px 14px; border:2px solid #e0e0e8; background:#fff; position:relative;}
+.bcard .bstep{font-family:var(--font-title); font-size:11.5px; text-transform:uppercase;
+  letter-spacing:.5px; color:var(--gris); margin-bottom:4px;}
+.bcard .bval{font-family:var(--font-title); font-size:23px; color:var(--grisoscuro); margin:2px 0;}
+.bcard .bsub{font-size:14px; color:var(--gris); line-height:1.3;}
+.bcard.c1{border-color:var(--gris);} .bcard.c2{border-color:var(--primario); background:rgba(226,35,45,.04);}
+.bcard.c2 .bval{color:var(--primario);}
+.bcard.c3{border-color:var(--magenta); background:rgba(227,34,159,.05);}
+.bcard.c3 .bval{color:var(--magenta);}
+.bcard.c4{border-color:var(--naranja); background:rgba(227,99,34,.05);}
+.bcard.c4 .bval{color:var(--naranja);}
+
+/* ── Controles slider & inputs ────────────────────────────── */
+.ctrl{margin:0 0 10px;}
+.ctrl label{display:flex; justify-content:space-between; align-items:baseline;
+  font-family:var(--font-title); font-size:13px; color:var(--grisoscuro);
+  text-transform:uppercase; letter-spacing:.4px; margin-bottom:3px;}
+.ctrl label b{font-family:var(--font-body); font-size:17px; color:var(--primario); text-transform:none;}
+input[type=range]{width:100%; accent-color:var(--primario); cursor:pointer;}
+.readout{background:var(--grisclaro); border-radius:9px; padding:8px 12px;}
+.ro{display:flex; justify-content:space-between; gap:8px; padding:4px 0;
+  border-bottom:1px solid #e4e4ea; font-size:15.5px;}
+.ro:last-child{border-bottom:none;}
+.ro span:first-child{color:var(--gris); font-family:var(--font-title); font-size:12px;
+  text-transform:uppercase; letter-spacing:.3px;}
+.ro b{color:var(--grisoscuro); font-weight:700;}
+.ro b.hi{color:var(--primario);}
+.ro b.ok{color:var(--verde);}
+.ro b.mag{color:var(--magenta);}
+
+/* ── Laboratorio Reactivo Límite (Slide 14) ───────────────── */
+.lim-layout{display:grid; grid-template-columns:330px 1fr; gap:18px; flex:1; min-height:0;}
+.lim-svg-box{background:var(--grisclaro); border:2px solid #e2e2ea; border-radius:12px;
+  padding:10px; display:flex; flex-direction:column; gap:8px;}
+.lim-svg-box svg{width:100%; height:290px; display:block;}
+.lim-verdict{padding:10px 14px; border-radius:9px; background:#fff;
+  border-left:5px solid var(--primario); font-size:16px; line-height:1.4;}
+
+/* ── Laboratorio Rendimiento (Slide 17) ───────────────────── */
+.yield-layout{display:grid; grid-template-columns:350px 1fr; gap:18px; flex:1; min-height:0;}
+.yield-stage{background:var(--grisclaro); border:2px solid #e2e2ea; border-radius:12px;
+  padding:12px 16px; display:flex; flex-direction:column; justify-content:space-between;}
+.yield-stage svg{width:100%; height:305px; display:block;}
+
+/* ── Ejercicios revelables ────────────────────────────────── */
+ol.exlist{margin:4px 0 0 24px;}
+ol.exlist li{font-size:18.5px; line-height:1.4; margin:0 0 12px;}
+.answers{display:none; margin-top:8px; padding:10px 14px; border-radius:9px;
+  background:var(--grisclaro); border-left:5px solid var(--magenta); font-size:15.5px; line-height:1.48;}
+.answers.show{display:block;}
+.answers b{color:var(--magenta);}
+
+/* ── Quiz interactivo ─────────────────────────────────────── */
+.quiz-head{display:flex; align-items:center; gap:10px; margin-bottom:12px;}
+.quiz-score{margin-left:auto; font-family:var(--font-title); font-size:16px;
+  padding:5px 14px; border-radius:99px; background:var(--grisclaro); color:var(--grisoscuro);}
+.qcard{display:none;}
+.qcard.active{display:block;}
+.qtext{font-size:21.5px; line-height:1.4; margin-bottom:12px;}
+.opt{display:block; width:100%; text-align:left; padding:11px 16px; margin:7px 0;
+  border:2px solid #dddde4; border-radius:9px; background:#fff; font-family:var(--font-body);
+  font-size:18px; cursor:pointer; transition:.15s;}
+.opt:hover:not(:disabled){border-color:var(--primario); background:#fffafa;}
+.opt.correct{background:#e8f7ec; border-color:var(--verde);}
+.opt.wrong{background:#fdeaea; border-color:var(--primario);}
+.opt:disabled{cursor:default;}
+.fb{display:none; margin-top:10px; padding:11px 15px; border-radius:9px;
+  background:var(--grisclaro); border-left:5px solid var(--magenta); font-size:17px; line-height:1.42;}
+.fb.show{display:block;}
+
+/* ── Detecta el error ─────────────────────────────────────── */
+.err{display:flex; gap:12px; align-items:flex-start; padding:10px 14px; margin-bottom:9px;
+  border:2px solid #e0e0e6; border-radius:9px; cursor:pointer; background:#fff; transition:.15s;}
+.err:hover{border-color:var(--naranja);}
+.err .st{flex:0 0 88px; font-family:var(--font-title); font-size:12.5px; color:#fff;
+  background:var(--gris); border-radius:6px; padding:4px 6px; text-align:center;}
+.err .tx{flex:1; font-size:17.5px; line-height:1.36;}
+.err .ex{display:none; margin-top:5px; font-size:15px; color:var(--grisoscuro);}
+.err.open .ex{display:block;}
+.err.good{border-color:var(--verde); background:#e8f7ec;}
+.err.bad{border-color:var(--primario); background:#fdeaea;}
+.err.good .st{background:var(--verde);} .err.bad .st{background:var(--primario);}
+
+/* ── HUD e Índice rápido ──────────────────────────────────── */
+#hud{position:fixed; right:16px; bottom:12px; display:flex; gap:7px; align-items:center; z-index:50;}
+#hud button{font-family:var(--font-title); font-size:14px; min-width:38px; height:34px;
+  border:none; border-radius:8px; background:rgba(255,255,255,.15); color:#fff; cursor:pointer; padding:0 10px;}
+#hud button:hover{background:rgba(255,255,255,.32);}
+#hud .nav-n{color:#e2e2e8; font-size:13px; min-width:58px; text-align:center;}
+#progress{position:fixed; left:0; top:0; height:4px; background:var(--magenta);
+  z-index:60; width:0; transition:width .25s ease;}
+.kbd-hint{position:fixed; left:16px; bottom:12px; color:#9a9aa4; font-size:12px; z-index:50;}
+
+#toc{position:fixed; right:16px; bottom:54px; width:340px; max-height:70vh; overflow-y:auto;
+  background:#1f1f24; color:#f2f2f6; border:1px solid rgba(255,255,255,.14);
+  border-radius:12px; padding:10px; z-index:70; display:none; box-shadow:0 14px 40px rgba(0,0,0,.6);}
+#toc.open{display:block;}
+#toc .toc-title{font-family:var(--font-title); font-size:13px; color:#b6b6c2;
+  text-transform:uppercase; letter-spacing:.8px; padding:4px 8px 8px; border-bottom:1px solid rgba(255,255,255,.1);}
+#toc button{display:flex; width:100%; text-align:left; gap:8px; padding:6px 8px;
+  background:transparent; border:none; border-radius:6px; color:#e6e6ee; font-family:var(--font-body);
+  font-size:13.5px; cursor:pointer;}
+#toc button:hover{background:rgba(255,255,255,.1);}
+#toc button.cur{background:var(--primario); color:#fff; font-weight:700;}
+#toc button span.tn{opacity:.7; min-width:22px;}
+
+@media print{
+  body{overflow:visible; background:#fff;}
+  #hud,.kbd-hint,#progress,#toc{display:none !important;}
+  #stage{position:static; margin:0; transform:none !important; width:1280px; height:auto;}
+  .slide{display:flex !important; position:relative; width:1280px; height:720px; page-break-after:always;}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <!-- Logo oficial Mathwizards -->
+  <symbol id="mwlogo" viewBox="0 0 71.073341 79.334137">
+    <g transform="translate(-110.09765,-11.845238)">
+      <path fill="currentColor" d="m 111.68947,73.045737 14.59223,-8.42653 -0.12183,16.93518 z m 23.02126,17.91433 -24.24534,-13.7674 c 0,0 -1.1465,6.82039 0.60918,10.17327 1.75568,3.35288 6.76189,3.71597 6.76189,3.71597 z m 21.84717,0.09747 24.24533,-13.76741 c 0,0 1.1465,6.8204 -0.60918,10.17327 -1.75568,3.35289 -6.76189,3.71598 -6.76189,3.71598 z m -13.19664,0.0725 -14.07204,-8.04112 0.24367,-17.11793 14.13296,8.163 z m 4.42446,-0.01158 14.07204,-8.04112 -0.24367,-17.11794 -14.13296,8.163 z m 0.48735,-28.0222 20.04199,-11.69624 11.08706,21.7477 -13.21919,7.55382 -0.18275,-21.86953 -17.84895,10.05146 z m 15.59873,-20.316383 2.43927,4.666437 -23.01402,13.362986 0.10605,8.16626 -11.8782,-7.10571 z m -16.3312,-8.451603 11.77216,6.999658 -45.28568,26.513858 4.24223,-8.48444 29.05919,-16.968864 z m -20.68214,8.875823 15.6962,-8.696546 0.10606,5.408829 -20.04448,11.66609 z m 20.44264,-14.066933 13.31439,7.62703 -3.59964,-7.03059 V 16.216244 c 0,0 2.24158,-0.148111 2.2779,-2.212279 0.0363,-2.064167 -2.12791,-2.137286 -2.12791,-2.137286 l -9.7051,0.04393 z m -3.86639,-0.02141 -13.31437,7.626992 3.59964,-7.030546 V 16.194804 c 0,0 -2.24158,-0.148111 -2.2779,-2.212279 -0.0363,-2.064167 2.12791,-2.137286 2.12791,-2.137286 l 9.70509,0.04393 z"/>
+    </g>
+  </symbol>
+</defs></svg>
+
+<div id="progress"></div>
+
+<div id="stage">
+
+<!-- ══════════════════════════════════════════════════════════
+     1 · PORTADA
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide portada active" data-title="Portada">
+  <div class="band"></div>
+  <div class="pcontent">
+    <svg class="portada-logo" role="img" aria-label="Mathwizards"><use href="#mwlogo"/></svg>
+    <h1>T4L1 · Estequiometría de las Reacciones</h1>
+    <h3>Del balanceo por tanteo al reactivo límite y el rendimiento real</h3>
+    <div class="lema">«Primero balancear, luego calcular»</div>
+    <div class="meta">
+      Ing. Gabriel Astudillo · Mathwizards Consultoría Educativa STEM
+      <div class="small">4to Año — Química · Clases del 16 al 25 de noviembre de 2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     2 · PRESENTACIÓN Y MASAS ATÓMICAS
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide" data-title="Presentación y masas atómicas">
+  <header class="ft"><h2>Presentación — Ruta de la clase</h2><span class="ftsub">T4L1 · Estequiometría</span></header>
+  <main class="fc">
+    <div class="cols top">
+      <div class="col">
+        <div class="cuadro teoria">
+          <div class="ct">¿Qué vas a dominar hoy?</div>
+          <div class="cb">
+            <ul>
+              <li>Leer una <b>ecuación química</b> (estados físicos y moles).</li>
+              <li><b>Balancear por tanteo</b> (metales $\to$ no metales $\to$ H $\to$ O) y usar <b>fracción auxiliar</b>.</li>
+              <li>Recorrer el <b>puente molar</b> con tabla y factor de conversión.</li>
+              <li>Identificar <b>reactivo límite ($R.L.$)</b>, <b>exceso</b> y sobrante.</li>
+              <li>Calcular <b>rendimiento teórico ($R.T.$)</b>, <b>real ($R.R.$)</b> y $\%$.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="cuadro pasos">
+          <div class="ct">Laboratorios interactivos incluidos</div>
+          <div class="cb">
+            <ul>
+              <li><b>Balanceador en vivo</b> con conteo de átomos en tiempo real.</li>
+              <li><b>Explorador del puente molar</b> (gramos $\leftrightarrow$ moles).</li>
+              <li><b>Laboratorio visual de $R.L.$</b> con moléculas antes y después.</li>
+              <li><b>Simulador de rendimiento</b> tipo laboratorio.</li>
+              <li><b>Quiz interactivo</b> y <b>Detecta el error</b> para el taller.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cuadro info" style="margin-top:2px;">
+      <div class="ct">Masas atómicas de referencia (g/mol)</div>
+      <div class="cb" style="padding:8px 14px;">
+        <table class="tabla tight center-all">
+          <tr>
+            <th>H</th><th>C</th><th>N</th><th>O</th><th>Na</th><th>Mg</th><th>Al</th><th>S</th><th>Cl</th><th>K</th><th>Ca</th><th>Fe</th><th>Cu</th><th>Zn</th>
+          </tr>
+          <tr>
+            <td>1</td><td>12</td><td>14</td><td>16</td><td>23</td><td>24,3</td><td>27</td><td>32</td><td>35,5</td><td>39</td><td>40</td><td>56</td><td>63,5</td><td>65</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T4L1 — Estequiometría de las Reacciones</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     3 · DIVISOR 1
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide divisor" data-title="Bloque 1 · Fundamentos y Balanceo">
+  <div class="dcontent">
+    <div class="dkicker">Bloque 1</div>
+    <h2>Reacciones y Balanceo</h2>
+    <p>Anatomía de una ecuación química y ajuste por tanteo</p>
+  </div>
+  <footer class="ff"><span>Mathwizards</span><span>T4L1 — Estequiometría de las Reacciones</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     4 · REACCIÓN, ECUACIÓN Y ESTADOS FÍSICOS (INTERACTIVO ANATOMÍA)
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide" data-title="Anatomía de la ecuación química">
+  <header class="ft"><h2>Reacción química, ecuación y estados físicos</h2><span class="ftsub">Conceptos fundamentales</span></header>
+  <main class="fc">
+    <div class="cols top">
+      <div class="col" style="flex:0 0 520px;">
+        <div class="cuadro teoria">
+          <div class="ct">Definiciones de clase</div>
+          <div class="cb">
+            <p><b>Estequiometría:</b> parte de la Química que estudia las <b>relaciones cuantitativas</b> (moles y masas) en una reacción química.</p>
+            <p><b>Reacción química:</b> proceso donde unas sustancias iniciales (<b>reactivos</b>) se transforman en nuevas sustancias (<b>productos</b>) con propiedades totalmente distintas.</p>
+            <p><b>Ecuación química:</b> representación simbólica con sustancias, estado físico y átomos ajustados.</p>
+          </div>
+        </div>
+        <div class="cuadro info">
+          <div class="ct">Estados físicos en una ecuación</div>
+          <div class="cb" style="padding:7px 14px;">
+            <table class="tabla tight">
+              <tr><th>Símbolo</th><th>Estado</th><th>Ejemplo</th></tr>
+              <tr><td><b>(s)</b></td><td>Sólido</td><td>$\text{Mg}_{(s)}$, $\text{CaCl}_{2(s)}$</td></tr>
+              <tr><td><b>(l)</b></td><td>Líquido</td><td>$\text{H}_2\text{O}_{(l)}$</td></tr>
+              <tr><td><b>(g)</b></td><td>Gaseoso</td><td>$\text{O}_{2(g)}$, $\text{H}_{2(g)}$</td></tr>
+              <tr><td><b>(ac)</b></td><td>Disolución acuosa</td><td>$\text{HCl}_{(ac)}$, $\text{NaCl}_{(ac)}$</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="cuadro pasos">
+          <div class="ct">Inspector interactivo — Haz clic en cada parte</div>
+          <div class="cb">
+            <div class="anat-bar" id="anatBar">
+              <button class="btn solid" data-mode="react">Reactivos</button>
+              <button class="btn mag" data-mode="prod">Productos</button>
+              <button class="btn orange" data-mode="coef">Coeficientes (moles)</button>
+              <button class="btn ghost" data-mode="state">Estados físicos</button>
+            </div>
+            <div class="anat-eq" id="anatEq">
+              <span class="anat-part" data-role="react"><span class="ac">1</span> Mg<sub class="as">(s)</sub></span>
+              <span>+</span>
+              <span class="anat-part" data-role="react"><span class="ac">2</span> HCl<sub class="as">(ac)</sub></span>
+              <span style="color:var(--primario); font-weight:700;">&#10230;</span>
+              <span class="anat-part" data-role="prod"><span class="ac">1</span> MgCl<sub>2</sub><sub class="as">(ac)</sub></span>
+              <span>+</span>
+              <span class="anat-part" data-role="prod"><span class="ac">1</span> H<sub>2</sub><sub class="as">(g)</sub></span>
+            </div>
+            <div class="anat-msg" id="anatMsg"></div>
+          </div>
+        </div>
+        <div class="cuadro extra">
+          <div class="ct">Otros ejemplos de clase (lectura en moles)</div>
+          <div class="cb">
+            <p>$\text{C}_6\text{H}_{12}\text{O}_{6(s)} + 6\,\text{O}_{2(g)} \longrightarrow 6\,\text{CO}_{2(g)} + 6\,\text{H}_2\text{O}_{(g)}$ &nbsp;<span class="pill vio">1 : 6 : 6 : 6</span></p>
+            <p>$2\,\text{NH}_{3(g)} \longrightarrow \text{N}_{2(g)} + 3\,\text{H}_{2(g)}$ &nbsp;<span class="pill vio">2 : 1 : 3</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T4L1 — Estequiometría de las Reacciones</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     5 · BALANCEO POR TANTEO Y FRACCIÓN AUXILIAR
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide" data-title="Balanceo por tanteo y fracción auxiliar">
+  <header class="ft"><h2>Balanceo por tanteo y truco de la fracción auxiliar</h2><span class="ftsub">Conservación de la masa</span></header>
+  <main class="fc">
+    <div class="cols top">
+      <div class="col">
+        <div class="cuadro pasos">
+          <div class="ct">Orden recomendado para ajustar</div>
+          <div class="cb">
+            <ol style="font-size:20px; line-height:1.55;">
+              <li><b>Metales</b> ($\text{Na, K, Ca, Mg, Al, Fe, Zn}\dots$)</li>
+              <li><b>No metales</b> distintos de H y O ($\text{C, N, S, P, Cl}\dots$)</li>
+              <li><b>Hidrógeno (H)</b></li>
+              <li><b>Oxígeno (O)</b> <i>(sirve de comprobación final)</i></li>
+            </ol>
+          </div>
+        </div>
+        <div class="cuadro advertencia">
+          <div class="ct">Errores que nunca debes cometer</div>
+          <div class="cb">
+            <ul>
+              <li><b>Nunca cambies subíndices:</b> $\text{MgO}$ no puede pasar a $\text{MgO}_2$. Solo se colocan <b>coeficientes</b> delante.</li>
+              <li><b>Ojo con paréntesis:</b> en $3\,\text{Ca(OH)}_2$ hay $3$ Ca, $6$ O y $6$ H.</li>
+              <li><b>Al quitar fracciones:</b> multiplica <b>toda</b> la ecuación.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="cuadro extra">
+          <div class="ct">Truco de clase: fracción auxiliar (octano)</div>
+          <div class="cb">
+            <p>Ajustar: $\text{C}_8\text{H}_{18} + \text{O}_2 \longrightarrow \text{CO}_2 + \text{H}_2\text{O}$</p>
+            <ul>
+              <li><b>C:</b> $8 \Rightarrow 8\,\text{CO}_2$ &nbsp;·&nbsp; <b>H:</b> $18 \Rightarrow 9\,\text{H}_2\text{O}$</li>
+              <li><b>O a la derecha:</b> $8(2) + 9(1) = 25$ (¡impar!) $\Rightarrow \frac{25}{2}\,\text{O}_2$</li>
+            </ul>
+            <div style="background:#fff; border-radius:8px; padding:10px 12px; margin-top:8px; text-align:center; border:1.5px solid rgba(201,34,227,.3);">
+              $$2\times\!\left[\,\text{C}_8\text{H}_{18} + \tfrac{25}{2}\,\text{O}_2 \longrightarrow 8\,\text{CO}_2 + 9\,\text{H}_2\text{O}\,\right]$$
+              $$\Downarrow$$
+              $$2\,\text{C}_8\text{H}_{18} + 25\,\text{O}_2 \longrightarrow 16\,\text{CO}_2 + 18\,\text{H}_2\text{O}$$
+            </div>
+            <p class="center small" style="margin-top:6px; color:var(--verde);"><b>Comprobación:</b> C = 16 · H = 36 · O = 50 en ambos lados ✓</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T4L1 — Estequiometría de las Reacciones</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     6 · INTERACTIVO 1 — BALANCEADOR EN VIVO
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide" data-sim="balance" data-title="Laboratorio: Balanceador en vivo">
+  <header class="ft"><h2>Laboratorio 1 — Balanceador de ecuaciones en vivo</h2><span class="ftsub">Ajusta los coeficientes hasta igualar cada átomo</span></header>
+  <main class="fc">
+    <div class="bal-tabs" id="balTabs"></div>
+    <div class="bal-eq-box" id="balEq"></div>
+    <div class="bal-grid">
+      <div>
+        <div style="display:flex; justify-content:space-between; font-family:var(--font-title); font-size:13px; color:var(--gris); text-transform:uppercase; padding:0 12px 6px;">
+          <span>Elemento</span>
+          <span style="color:var(--primario);">Reactivos (izq.)</span>
+          <span>Estado</span>
+          <span style="color:var(--magenta);">Productos (der.)</span>
+        </div>
+        <div id="balAtoms"></div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div class="bal-banner" id="balBanner"></div>
+        <div class="cuadro info" style="margin:0;">
+          <div class="ct">Pista de tanteo</div>
+          <div class="cb" id="balHint" style="font-size:16px;"></div>
+        </div>
+        <div style="display:flex; gap:8px; margin-top:auto;">
+          <button class="btn ghost" id="balReset">Reiniciar (1)</button>
+          <button class="btn mag" id="balSolve">Ver solución</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T4L1 — Estequiometría de las Reacciones</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     7 · DIVISOR 2
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide divisor" data-title="Bloque 2 · Puente Molar y Factores">
+  <div class="dcontent">
+    <div class="dkicker">Bloque 2</div>
+    <h2>El Puente Molar</h2>
+    <p>Tabla estequiométrica, factores de conversión y cálculos mol–mol / masa–masa</p>
+  </div>
+  <footer class="ff"><span>Mathwizards</span><span>T4L1 — Estequiometría de las Reacciones</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     8 · PUENTE MOLAR Y EJEMPLO DE TABLA (KClO3)
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide" data-title="El puente molar y la tabla de clase">
+  <header class="ft"><h2>El puente molar y la tabla estequiométrica</h2><span class="ftsub">Relación mol–mol</span></header>
+  <main class="fc">
+    <div class="cuadro teoria" style="margin-bottom:10px;">
+      <div class="ct">Regla de oro: una ecuación balanceada relaciona MOLES, nunca gramos directos</div>
+      <div class="cb" style="padding:8px 14px;">
+        <svg viewBox="0 0 1120 84" style="width:100%; height:76px; display:block;" aria-label="Diagrama del puente molar">
+          <defs>
+            <marker id="pm-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker>
+            <marker id="pm-mag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#E3229F"/></marker>
+          </defs>
+          <rect x="20" y="14" width="190" height="56" rx="10" fill="#F5F5F8" stroke="#666" stroke-width="2"/>
+          <text x="115" y="38" text-anchor="middle" font-family="Nexa Heavy, Cabin, sans-serif" font-size="16" fill="#333">Masa de A</text>
+          <text x="115" y="58" text-anchor="middle" font-size="14" fill="#666">(gramos)</text>
+
+          <line x1="216" y1="42" x2="314" y2="42" stroke="#333" stroke-width="2.5" marker-end="url(#pm-arr)"/>
+          <text x="265" y="32" text-anchor="middle" font-size="14" font-weight="700" fill="#E2232D">÷ M(A)</text>
+
+          <rect x="322" y="14" width="190" height="56" rx="10" fill="#fdeaea" stroke="#E2232D" stroke-width="2.5"/>
+          <text x="417" y="38" text-anchor="middle" font-family="Nexa Heavy, Cabin, sans-serif" font-size="16" fill="#E2232D">Moles de A</text>
+          <text x="417" y="58" text-anchor="middle" font-size="14" fill="#666">(n<tspan dy="3" font-size="10">A</tspan><tspan dy="-3">)</tspan></text>
+
+          <line x1="518" y1="42" x2="626" y2="42" stroke="#E3229F" stroke-width="3.5" marker-end="url(#pm-mag)"/>
+          <text x="572" y="25" text-anchor="middle" font-family="Nexa Heavy, Cabin, sans-serif" font-size="13" fill="#E3229F">FACTOR MOLAR</text>
+          <text x="572" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#E3229F">coef. B / coef. A</text>
+
+          <rect x="634" y="14" width="190" height="56" rx="10" fill="#fce8f5" stroke="#E3229F" stroke-width="2.5"/>
+          <text x="729" y="38" text-anchor="middle" font-family="Nexa Heavy, Cabin, sans-serif" font-size="16" fill="#E3229F">Moles de B</text>
+          <text x="729" y="58" text-anchor="middle" font-size="14" fill="#666">(n<tspan dy="3" font-size="10">B</tspan><tspan dy="-3">)</tspan></text>
+
+          <line x1="830" y1="42" x2="904" y2="42" stroke="#333" stroke-width="2.5" marker-end="url(#pm-arr)"/>
+          <text x="867" y="32" text-anchor="middle" font-size="14" font-weight="700" fill="#E36322">× M(B)</text>
+
+          <rect x="912" y="14" width="190" height="56" rx="10" fill="#fff0e8" stroke="#E36322" stroke-width="2.5"/>
+          <text x="1007" y="38" text-anchor="middle" font-family="Nexa Heavy, Cabin, sans-serif" font-size="16" fill="#E36322">Masa de B</text>
+          <text x="1007" y="58" text-anchor="middle" font-size="14" fill="#666">(gramos)</text>
+        </svg>
+      </div>
+    </div>
+    <div class="cuadro solucion" style="flex:1; margin:0;">
+      <div class="ct">Ejemplo de clase (18/11) — Tabla de clorato de potasio ($\text{KClO}_3$)</div>
+      <div class="cb">
+        <table class="tabla tight center-all" style="margin-bottom:10px;">
+          <tr><th>Ecuación</th><th>$6\,\text{KOH}_{(ac)}$</th><th>$3\,\text{Cl}_{2(g)}$</th><th>$\text{KClO}_{3(s)}$</th><th>$5\,\text{KCl}_{(ac)}$</th><th>$3\,\text{H}_2\text{O}_{(l)}$</th></tr>
+          <tr><td><b>Estequiometría</b></td><td>$6\text{ mol}$</td><td>$3\text{ mol}$</td><td>$1\text{ mol}$</td><td>$5\text{ mol}$</td><td>$3\text{ mol}$</td></tr>
+          <tr><td><b>Caso a)</b></td><td><b>$5\text{ mol}$</b></td><td>exceso</td><td><span class="pill mag">?</span></td><td>—</td><td>—</td></tr>
+          <tr><td><b>Caso b)</b></td><td>—</td><td><span class="pill orange">?</span></td><td>—</td><td><b>$2{,}80\text{ mol}$</b></td><td>—</td></tr>
+        </table>
+        <div class="cols">
+          <div class="col" style="background:#fff; padding:10px 14px; border-radius:8px; border:1px solid #e6d5e0;">
+            <b>a) Moles de $\text{KClO}_3$ desde $5\text{ mol KOH}$:</b>
+            $$n_{\text{KClO}_3} = 5\,\cancel{\text{mol KOH}}\times\frac{1\text{ mol KClO}_3}{6\,\cancel{\text{mol KOH}}} = \mathbf{0{,}83\text{ mol}}$$
+          </div>
+          <div class="col" style="background:#fff; padding:10px 14px; border-radius:8px; border:1px solid #e6d5e0;">
+            <b>b) Moles de $\text{Cl}_2$ para $2{,}80\text{ mol KCl}$:</b>
+            $$n_{\text{Cl}_2} = 2{,}80\,\cancel{\text{mol KCl}}\times\frac{3\text{ mol Cl}_2}{5\,\cancel{\text{mol KCl}}} = \mathbf{1{,}68\text{ mol}}$$
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T4L1 — Estequiometría de las Reacciones</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     9 · EJEMPLO PASO A PASO (MASA -> MOLES, Mg + HCl)
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide" data-title="Ejemplo paso a paso: gramos a moles">
+  <header class="ft"><h2>Ejemplo de clase — De gramos a moles paso a paso</h2><span class="ftsub">16/11 · Mg + HCl</span></header>
+  <main class="fc">
+    <div class="cuadro info">
+      <div class="ct">Enunciado</div>
+      <div class="cb">
+        <b>$1{,}5\text{ g}$ de $\text{Mg}_{(s)}$</b> reaccionan totalmente con $\text{HCl}_{(ac)}$ en exceso según $\text{Mg}_{(s)} + \text{HCl}_{(ac)} \longrightarrow \text{MgCl}_{2(ac)} + \text{H}_{2(g)}$. Calcule: <b>a)</b> moles de $\text{HCl}$ utilizados; <b>b)</b> moles de $\text{H}_2$ formados. <i>($M(\text{Mg}) = 24{,}3\text{ g/mol}$)</i>
+      </div>
+    </div>
+    <div class="step-controls" data-stepper="st-mg">
+      <button class="btn solid" data-action="next">Siguiente paso ›</button>
+      <button class="btn ghost" data-action="all">Mostrar todo</button>
+      <button class="btn ghost" data-action="reset">Reiniciar</button>
+      <span class="step-badge" id="st-mg-badge">Paso 0 / 3</span>
+    </div>
+    <div id="st-mg" style="display:flex; flex-direction:column; gap:10px;">
+      <div class="cuadro pasos step-panel" style="margin:0;">
+        <div class="ct">Paso 1 — Balancear y leer la proporción molar</div>
+        <div class="cb">
+          $$\text{Mg}_{(s)} + 2\,\text{HCl}_{(ac)} \longrightarrow \text{MgCl}_{2(ac)} + \text{H}_{2(g)} \qquad (\text{relación } 1 : 2 : 1 : 1)$$
+        </div>
+      </div>
+      <div class="cuadro teoria step-panel" style="margin:0;">
+        <div class="ct">Paso 2 — Convertir los gramos de Mg a moles</div>
+        <div class="cb">
+          $$n_{\text{Mg}} = 1{,}5\,\cancel{\text{g Mg}} \times \left(\frac{1\text{ mol Mg}}{24{,}3\,\cancel{\text{g Mg}}}\right) = 0{,}0617\text{ mol} \approx \mathbf{0{,}06\text{ mol Mg}}$$
+        </div>
+      </div>
+      <div class="cuadro solucion step-panel" style="margin:0;">
+        <div class="ct">Paso 3 — Aplicar los factores de conversión molares</div>
+        <div class="cb">
+          <div class="cols">
+            <div class="col center"><b>a)</b> $n_{\text{HCl}} = 0{,}06\,\cancel{\text{mol Mg}} \times \dfrac{2\text{ mol HCl}}{1\,\cancel{\text{mol Mg}}} = \mathbf{0{,}12\text{ mol HCl}}$</div>
+            <div class="col center"><b>b)</b> $n_{\text{H}_2} = 0{,}06\,\cancel{\text{mol Mg}} \times \dfrac{1\text{ mol H}_2}{1\,\cancel{\text{mol Mg}}} = \mathbf{0{,}06\text{ mol H}_2}$</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T4L1 — Estequiometría de las Reacciones</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     10 · INTERACTIVO 2 — EXPLORADOR DEL PUENTE MOLAR
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide" data-sim="bridge" data-title="Laboratorio: Explorador del puente molar">
+  <header class="ft"><h2>Laboratorio 2 — Explorador del puente molar</h2><span class="ftsub">Cambia la masa inicial y observa cada eslabón en vivo</span></header>
+  <main class="fc">
+    <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px;" id="brTabs"></div>
+    <div style="background:var(--grisclaro); border:2px solid #e2e2ea; border-radius:10px; padding:12px 18px; display:flex; align-items:center; gap:24px;">
+      <div style="flex:1;">
+        <div style="font-size:13px; font-family:var(--font-title); color:var(--gris); text-transform:uppercase;">Reacción balanceada</div>
+        <div id="brEq" style="font-size:23px; font-weight:700; color:var(--grisoscuro); margin-top:2px;"></div>
+      </div>
+      <div style="flex:0 0 340px;">
+        <div class="ctrl" style="margin:0;">
+          <label><span id="brSliderLbl">Masa de A</span> <b><span id="brMassVal">48</span> g</b></label>
+          <input id="brMass" type="range" min="10" max="300" step="2" value="48" aria-label="Masa del reactivo inicial">
+        </div>
+      </div>
+    </div>
+
+    <div class="bridge-cards">
+      <div class="bcard c1">
+        <div class="bstep">1 · Dato inicial</div>
+        <div class="bval" id="brC1">48 g</div>
+        <div class="bsub" id="brC1s">Masa de reactivo A</div>
+      </div>
+      <div class="bcard c2">
+        <div class="bstep">2 · Gramos $\to$ Moles</div>
+        <div class="bval" id="brC2">3,00 mol</div>
+        <div class="bsub" id="brC2s">$\div M_A$</div>
+      </div>
+      <div class="bcard c3">
+        <div class="bstep">3 · Factor molar</div>
+        <div class="bval" id="brC3">6,00 mol</div>
+        <div class="bsub" id="brC3s">Moles de producto B</div>
+      </div>
+      <div class="bcard c4">
+        <div class="bstep">4 · Moles $\to$ Gramos</div>
+        <div class="bval" id="brC4">108,00 g</div>
+        <div class="bsub" id="brC4s">$\times M_B$</div>
+      </div>
+    </div>
+
+    <div class="cuadro solucion" style="flex:1; margin:0;">
+      <div class="ct">Desarrollo completo con factores de conversión</div>
+      <div class="cb" id="brSteps" style="font-size:18px; line-height:1.6;"></div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T4L1 — Estequiometría de las Reacciones</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     11 · DIVISOR 3
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide divisor" data-title="Bloque 3 · Reactivo Límite y Exceso">
+  <div class="dcontent">
+    <div class="dkicker">Bloque 3</div>
+    <h2>Reactivo Límite y Exceso</h2>
+    <p>¿Cuál sustancia se agota primero y cuánto sobra al terminar?</p>
+  </div>
+  <footer class="ff"><span>Mathwizards</span><span>T4L1 — Estequiometría de las Reacciones</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     12 · TEORÍA REACTIVO LÍMITE Y EXCESO
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide" data-title="Teoría: Reactivo límite y en exceso">
+  <header class="ft"><h2>Reactivo límite ($R.L.$) y reactivo en exceso ($R.\text{Exc.}$)</h2><span class="ftsub">23/11 · Método de clase</span></header>
+  <main class="fc">
+    <div class="cols top">
+      <div class="col">
+        <div class="cuadro teoria">
+          <div class="ct">Definiciones clave</div>
+          <div class="cb">
+            <p><b>Reactivo límite ($R.L.$):</b> es el reactivo que se consume <b>totalmente</b> en la reacción. <b>Con él se calculan todos los productos.</b></p>
+            <p><b>Reactivo en exceso ($R.\text{Exc.}$):</b> es el reactivo que <b>no</b> se consume por completo; una parte de él sobra al final.</p>
+          </div>
+        </div>
+        <div class="cuadro advertencia">
+          <div class="ct">¡Cuidado con la trampa clásica!</div>
+          <div class="cb">
+            <p>Tener <b>menos moles o menos gramos</b> de una sustancia <b>NO</b> garantiza que sea el $R.L.$ Siempre manda la <b>proporción estequiométrica</b>.</p>
+            <p class="small">Ej.: en $\text{CH}_4 + 2\,\text{O}_2$, con $3\text{ mol CH}_4$ y $2{,}5\text{ mol O}_2$, necesitamos $6\text{ mol O}_2 \Rightarrow R.L. = \text{O}_2$.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="cuadro pasos">
+          <div class="ct">Método de clase: Necesito vs. Tengo</div>
+          <div class="cb">
+            <ol>
+              <li><b>Balancea</b> y pasa ambos reactivos a <b>moles</b>.</li>
+              <li>Elige el reactivo $A$ y calcula cuánto <b>necesitas</b> de $B$:
+                $$n_B\text{ necesarios} = n_A\text{ que tengo}\times\frac{\text{coef. }B}{\text{coef. }A}$$
+              </li>
+              <li><b>Compara con lo que tienes de $B$:</b>
+                <ul>
+                  <li>Si $\text{Tengo }B < \text{Necesito }B \implies \mathbf{R.L. = B}$</li>
+                  <li>Si $\text{Tengo }B > \text{Necesito }B \implies \mathbf{R.L. = A}$</li>
+                </ul>
+              </li>
+              <li>Calcula los <b>productos</b> usando solo el $R.L.$</li>
+              <li><b>Sobrante:</b> calcula cuánto $R.\text{Exc.}$ reacciona con el $R.L.$ y resta: $\text{Sobra} = \text{Tengo} - \text{Reacciona}$.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T4L1 — Estequiometría de las Reacciones</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     13 · EJEMPLO PASO A PASO REACTIVO LÍMITE (Zn + 2 HCl)
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide" data-title="Ejemplo paso a paso: Reactivo límite">
+  <header class="ft"><h2>Ejemplo de clase — Reactivo límite y sobrante</h2><span class="ftsub">25/11 · Zn + 2 HCl</span></header>
+  <main class="fc">
+    <div class="cuadro info">
+      <div class="ct">Enunciado</div>
+      <div class="cb">
+        En la reacción $\text{Zn}_{(s)} + 2\,\text{HCl}_{(ac)} \longrightarrow \text{ZnCl}_{2(ac)} + \text{H}_{2(g)}$ se colocan <b>$6\text{ mol}$ de $\text{Zn}$</b> y <b>$5\text{ mol}$ de $\text{HCl}$</b>. Determine $R.L.$, $R.\text{Exc.}$ y cuántos moles de exceso quedan sin reaccionar.
+      </div>
+    </div>
+    <div class="step-controls" data-stepper="st-zn">
+      <button class="btn solid" data-action="next">Siguiente paso ›</button>
+      <button class="btn ghost" data-action="all">Mostrar todo</button>
+      <button class="btn ghost" data-action="reset">Reiniciar</button>
+      <span class="step-badge" id="st-zn-badge">Paso 0 / 3</span>
+    </div>
+    <div id="st-zn" style="display:flex; flex-direction:column; gap:10px;">
+      <div class="cuadro pasos step-panel" style="margin:0;">
+        <div class="ct">Paso 1 — Calcular cuánto HCl se necesita para gastar todo el Zn</div>
+        <div class="cb">
+          $$n_{\text{HCl necesarios}} = 6\,\cancel{\text{mol Zn}} \times \left(\frac{2\text{ mol HCl}}{1\,\cancel{\text{mol Zn}}}\right) = \mathbf{12\text{ mol HCl necesarios}}$$
+        </div>
+      </div>
+      <div class="cuadro teoria step-panel" style="margin:0;">
+        <div class="ct">Paso 2 — Comparar Necesito vs. Tengo</div>
+        <div class="cb">
+          Necesito $12\text{ mol HCl}$, pero solo <b>tengo $5\text{ mol HCl}$</b> ($5 < 12$). El ácido se acaba primero:
+          &nbsp;<span class="pill red">R.L. = HCl</span> &nbsp;<span class="pill orange">R.Exc. = Zn</span>
+        </div>
+      </div>
+      <div class="cuadro solucion step-panel" style="margin:0;">
+        <div class="ct">Paso 3 — Calcular cuánto Zn reacciona y cuánto sobra (partiendo del R.L.)</div>
+        <div class="cb">
+          $$n_{\text{Zn reaccionan}} = 5\,\cancel{\text{mol HCl}} \times \left(\frac{1\text{ mol Zn}}{2\,\cancel{\text{mol HCl}}}\right) = 2{,}5\text{ mol Zn} \quad\Longrightarrow\quad \text{Sobran } 6 - 2{,}5 = \mathbf{3{,}5\text{ mol Zn}}$$
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T4L1 — Estequiometría de las Reacciones</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     14 · INTERACTIVO 3 — LABORATORIO VISUAL DE REACTIVO LÍMITE
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide" data-sim="limit" data-title="Laboratorio: Simulador de reactivo límite">
+  <header class="ft"><h2>Laboratorio 3 — Simulador visual de reactivo límite</h2><span class="ftsub">Mueve los moles iniciales y observa qué sobra</span></header>
+  <main class="fc">
+    <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px;" id="limTabs"></div>
+    <div class="lim-layout">
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div class="cuadro info" style="margin:0;">
+          <div class="ct">Cantidades iniciales (Tengo)</div>
+          <div class="cb">
+            <div class="ctrl">
+              <label><span id="limLblA">Moles de A</span> <b><span id="limValA">3</span> mol</b></label>
+              <input id="limA" type="range" min="1" max="10" step="0.5" value="3" aria-label="Moles del reactivo A">
+            </div>
+            <div class="ctrl" style="margin-bottom:4px;">
+              <label><span id="limLblB">Moles de B</span> <b><span id="limValB">2,5</span> mol</b></label>
+              <input id="limB" type="range" min="1" max="10" step="0.5" value="2.5" aria-label="Moles del reactivo B">
+            </div>
+            <button class="btn ghost" id="limPreset" style="width:100%; margin-top:6px;">Cargar datos del cuaderno</button>
+          </div>
+        </div>
+        <div class="readout" style="flex:1;">
+          <div class="ro"><span>Reactivo límite</span><b class="hi" id="limRL">—</b></div>
+          <div class="ro"><span>Reactivo en exceso</span><b id="limRE">—</b></div>
+          <div class="ro"><span>Producto formado</span><b class="ok" id="limProd">—</b></div>
+          <div class="ro"><span>Masa de producto</span><b class="mag" id="limProdG">—</b></div>
+          <div class="ro"><span>Exceso que sobra</span><b id="limLeft">—</b></div>
+        </div>
+      </div>
+      <div class="lim-svg-box">
+        <div id="limEqHead" style="font-family:var(--font-title); font-size:18px; text-align:center; color:var(--grisoscuro);"></div>
+        <svg id="limSvg" viewBox="0 0 820 290" aria-label="Visualización de reactivo límite y exceso"></svg>
+        <div class="lim-verdict" id="limVerdict"></div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T4L1 — Estequiometría de las Reacciones</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     15 · DIVISOR 4
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide divisor" data-title="Bloque 4 · Rendimiento de Reacción">
+  <div class="dcontent">
+    <div class="dkicker">Bloque 4</div>
+    <h2>Rendimiento de una Reacción</h2>
+    <p>Del cálculo ideal en papel ($R.T.$) al resultado real de laboratorio ($R.R.$)</p>
+  </div>
+  <footer class="ff"><span>Mathwizards</span><span>T4L1 — Estequiometría de las Reacciones</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     16 · TEORÍA RENDIMIENTO + EJEMPLO Na2SO4
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide" data-title="Teoría y ejemplo de rendimiento">
+  <header class="ft"><h2>Rendimiento teórico, real y porcentaje</h2><span class="ftsub">23/11 · Teoría y ejemplo</span></header>
+  <main class="fc">
+    <div class="cols top">
+      <div class="col">
+        <div class="cuadro teoria">
+          <div class="ct">Conceptos y fórmulas</div>
+          <div class="cb">
+            <p><b>Rendimiento Teórico ($R.T.$):</b> cantidad máxima de producto predicha por los cálculos estequiométricos.</p>
+            <p><b>Rendimiento Real ($R.R.$):</b> cantidad obtenida experimentalmente en el laboratorio. <b>Siempre $R.R. \le R.T.$</b></p>
+            <div style="background:#fff; border-radius:8px; padding:8px; margin-top:6px; border:1.5px solid rgba(226,35,45,.3); text-align:center;">
+              $$\%\,\text{Rend} = \frac{R.R.}{R.T.}\times 100$$
+              $$R.R. = \frac{R.T.\times\%\,\text{Rend}}{100} \qquad R.T. = \frac{R.R.\times 100}{\%\,\text{Rend}}$$
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="cuadro solucion">
+          <div class="ct">Ejemplo de clase — $250\text{ g}$ de $\text{Na}_2\text{SO}_4$ al $92\,\%$</div>
+          <div class="cb">
+            <p>$\text{Na}_2\text{SO}_{4(ac)} + \text{CaCl}_{2(ac)} \longrightarrow \text{CaSO}_{4(s)} + 2\,\text{NaCl}_{(ac)}$</p>
+            <ol>
+              <li><b>Masa molar:</b> $M(\text{Na}_2\text{SO}_4) = 2(23)+32+4(16) = 142\text{ g/mol}$.</li>
+              <li><b>Moles iniciales:</b> $n = \dfrac{250\text{ g}}{142\text{ g/mol}} = 1{,}76\text{ mol Na}_2\text{SO}_4$.</li>
+              <li><b>$R.T.$ de NaCl:</b> $1{,}76 \times \dfrac{2}{1} = \mathbf{3{,}52\text{ mol NaCl}}$.</li>
+              <li><b>$R.R.$ al $92\,\%$:</b>
+                $$R.R. = \frac{3{,}52\text{ mol}\times 92}{100} = \mathbf{3{,}24\text{ mol NaCl}}$$
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div class="cuadro advertencia" style="margin:0;">
+          <div class="ct">Ojo con las unidades</div>
+          <div class="cb">$R.R.$ y $R.T.$ deben estar en la <b>misma unidad</b> (ambos en moles o ambos en gramos).</div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T4L1 — Estequiometría de las Reacciones</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     17 · INTERACTIVO 4 — SIMULADOR INTEGRADOR DE RENDIMIENTO
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide" data-sim="yield" data-title="Laboratorio: Simulador de rendimiento">
+  <header class="ft"><h2>Laboratorio 4 — Simulador integrador ($R.L.$ + Rendimiento)</h2><span class="ftsub">25/11 · $2\,\text{HCl} + \text{Ca(OH)}_2 \to \text{CaCl}_2 + 2\,\text{H}_2\text{O}$</span></header>
+  <main class="fc">
+    <div class="yield-layout">
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div class="cuadro info" style="margin:0;">
+          <div class="ct">Condiciones del reactor</div>
+          <div class="cb">
+            <div class="ctrl">
+              <label>Moles de HCl <b><span id="yHclV">8</span> mol</b></label>
+              <input id="yHcl" type="range" min="1" max="14" step="1" value="8" aria-label="Moles de HCl">
+            </div>
+            <div class="ctrl">
+              <label>Moles de Ca(OH)₂ <b><span id="yCaV">5</span> mol</b></label>
+              <input id="yCa" type="range" min="1" max="10" step="1" value="5" aria-label="Moles de hidróxido de calcio">
+            </div>
+            <div class="ctrl" style="margin-bottom:6px;">
+              <label>% de Rendimiento <b><span id="yPctV">92</span> %</b></label>
+              <input id="yPct" type="range" min="50" max="100" step="1" value="92" aria-label="Porcentaje de rendimiento">
+            </div>
+            <button class="btn solid" id="yPreset" style="width:100%;">Repaso de clase (8 · 5 · 92%)</button>
+          </div>
+        </div>
+        <div class="readout" style="flex:1;">
+          <div class="ro"><span>Reactivo límite</span><b class="hi" id="yRL">HCl</b></div>
+          <div class="ro"><span>Exceso que sobra</span><b id="yExc">1 mol Ca(OH)₂</b></div>
+          <div class="ro"><span>R.T. CaCl₂ (111 g/mol)</span><b id="yRT">444,00 g</b></div>
+          <div class="ro"><span>R.R. obtenido</span><b class="ok" id="yRR">408,48 g</b></div>
+          <div class="ro"><span>Pérdida experimental</span><b class="mag" id="yLoss">35,52 g</b></div>
+        </div>
+      </div>
+      <div class="yield-stage">
+        <div style="font-family:var(--font-title); font-size:17px; color:var(--grisoscuro); text-align:center;">
+          $2\,\text{HCl}_{(ac)} + \text{Ca(OH)}_{2(s)} \longrightarrow \text{CaCl}_{2(s)} + 2\,\text{H}_2\text{O}_{(l)}$ &nbsp;·&nbsp; $M(\text{CaCl}_2)=111\text{ g/mol}$
+        </div>
+        <svg id="yieldSvg" viewBox="0 0 760 305" aria-label="Comparación visual entre rendimiento teórico y rendimiento real"></svg>
+        <div id="yFormula" style="background:#fff; padding:10px 14px; border-radius:8px; border-left:5px solid var(--magenta); font-size:16.5px;"></div>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T4L1 — Estequiometría de las Reacciones</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     18 · DIVISOR 5
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide divisor" data-title="Bloque 5 · Práctica, Quiz y Cierre">
+  <div class="dcontent">
+    <div class="dkicker">Bloque 5</div>
+    <h2>Entrenamiento para el Taller</h2>
+    <p>Ejercicios en vivo, quiz interactivo y detección de errores</p>
+  </div>
+  <footer class="ff"><span>Mathwizards</span><span>T4L1 — Estequiometría de las Reacciones</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     19 · EJERCICIOS RÁPIDOS DE PIZARRA (CON RESPUESTAS REVELABLES)
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide" data-title="Ejercicios rápidos en clase">
+  <header class="ft"><h2>Práctica guiada — 4 ejercicios tipo taller</h2><span class="ftsub">Resuelve primero y luego comprueba</span></header>
+  <main class="fc">
+    <div class="cuadro info" style="margin-bottom:10px;">
+      <div class="ct">Reto de pizarra</div>
+      <div class="cb">
+        <ol class="exlist">
+          <li><b>Balanceo:</b> Ajuste $\text{C}_4\text{H}_{10(g)} + \text{O}_{2(g)} \longrightarrow \text{CO}_{2(g)} + \text{H}_2\text{O}_{(g)}$ con coeficientes enteros.</li>
+          <li><b>Masa–masa:</b> Al quemar $48\text{ g}$ de $\text{CH}_4$ ($\text{CH}_4 + 2\,\text{O}_2 \to \text{CO}_2 + 2\,\text{H}_2\text{O}$), ¿cuántos gramos de $\text{H}_2\text{O}$ se producen?</li>
+          <li><b>Reactivo límite:</b> Se mezclan $4\text{ mol N}_2$ y $9\text{ mol H}_2$ ($\text{N}_2 + 3\,\text{H}_2 \to 2\,\text{NH}_3$). Halle $R.L.$, moles de $\text{NH}_3$ y exceso sobrante.</li>
+          <li><b>Integrador:</b> Con $6\text{ mol HCl}$ y $4\text{ mol Ca(OH)}_2$ ($2\,\text{HCl} + \text{Ca(OH)}_2 \to \text{CaCl}_2 + 2\,\text{H}_2\text{O}$) y rendimiento del $85\,\%$, halle $R.T.$ y $R.R.$ de $\text{CaCl}_2$ en gramos.</li>
+        </ol>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; gap:14px;">
+      <button class="btn solid reveal" data-target="ans-prac">Mostrar respuestas</button>
+      <span class="small" style="color:var(--gris); font-style:italic;">Trabaja cada paso con tabla y factor de conversión antes de revelar.</span>
+    </div>
+    <div class="answers" id="ans-prac">
+      <p><b>1.</b> $2\,\text{C}_4\text{H}_{10(g)} + 13\,\text{O}_{2(g)} \longrightarrow 8\,\text{CO}_{2(g)} + 10\,\text{H}_2\text{O}_{(g)}$ (se obtiene $\frac{13}{2}\,\text{O}_2$ y se multiplica por $2$).</p>
+      <p><b>2.</b> $n_{\text{CH}_4} = 48/16 = 3\text{ mol} \implies 6\text{ mol H}_2\text{O} = 6(18) = \mathbf{108\text{ g H}_2\text{O}}$.</p>
+      <p><b>3.</b> Para $4\text{ mol N}_2$ se necesitan $12\text{ mol H}_2$ (tengo $9$) $\implies \mathbf{R.L. = \text{H}_2}$; se forman $\mathbf{6\text{ mol NH}_3}$ y sobra $\mathbf{1\text{ mol N}_2}$.</p>
+      <p><b>4.</b> $R.L. = \text{HCl}$ ($6 < 8$); $R.T. = 3\text{ mol CaCl}_2 = \mathbf{333\text{ g}}$; $R.R. = 333\times 0{,}85 = \mathbf{283{,}05\text{ g CaCl}_2}$.</p>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T4L1 — Estequiometría de las Reacciones</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     20 · QUIZ INTERACTIVO (3 PREGUNTAS)
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide" data-title="Quiz interactivo">
+  <header class="ft"><h2>Quiz rápido — Pon a prueba tu criterio</h2><span class="ftsub">Retroalimentación inmediata</span></header>
+  <main class="fc">
+    <div class="quiz-head">
+      <button class="btn solid qtab" data-q="0">Pregunta 1</button>
+      <button class="btn ghost qtab" data-q="1">Pregunta 2</button>
+      <button class="btn ghost qtab" data-q="2">Pregunta 3</button>
+      <div class="quiz-score">Aciertos: <span id="qScore">0</span> / 3</div>
+    </div>
+
+    <div class="qcard active" data-qidx="0" data-exp="Para $4\text{ mol CH}_4$ se necesitan $4\times 2 = 8\text{ mol O}_2$, pero solo hay $6\text{ mol}$. Por tanto el $\text{O}_2$ se acaba primero ($R.L.$) y se forman $6\times\frac{1}{2}=3\text{ mol CO}_2$.">
+      <div class="qtext"><b>1.</b> Se mezclan $4\text{ mol}$ de $\text{CH}_4$ y $6\text{ mol}$ de $\text{O}_2$ según $\text{CH}_4 + 2\,\text{O}_2 \longrightarrow \text{CO}_2 + 2\,\text{H}_2\text{O}$. ¿Cuál es el reactivo límite y cuántos moles de $\text{CO}_2$ se forman?</div>
+      <button class="opt" data-ok="0">A) $R.L. = \text{CH}_4$ (porque $4 < 6$), se forman $4\text{ mol CO}_2$.</button>
+      <button class="opt" data-ok="1">B) $R.L. = \text{O}_2$, se forman $3\text{ mol CO}_2$ y sobra $1\text{ mol CH}_4$.</button>
+      <button class="opt" data-ok="0">C) $R.L. = \text{O}_2$, se forman $6\text{ mol CO}_2$.</button>
+      <button class="opt" data-ok="0">D) Ambos se consumen exactamente sin sobrar nada.</button>
+      <div class="fb"></div>
+    </div>
+
+    <div class="qcard" data-qidx="1" data-exp="Primero se balancea: $2\,\text{KClO}_3 \to 2\,\text{KCl} + 3\,\text{O}_2$. Luego $6\,\cancel{\text{mol KClO}_3}\times\frac{3\text{ mol O}_2}{2\,\cancel{\text{mol KClO}_3}} = 9\text{ mol O}_2$.">
+      <div class="qtext"><b>2.</b> Al descomponer $6\text{ mol}$ de $\text{KClO}_3$ según $\text{KClO}_3 \longrightarrow \text{KCl} + \text{O}_2$ <i>(sin ajustar)</i>, ¿cuántos moles de $\text{O}_2$ se producen?</div>
+      <button class="opt" data-ok="0">A) $6\text{ mol O}_2$</button>
+      <button class="opt" data-ok="0">B) $4\text{ mol O}_2$</button>
+      <button class="opt" data-ok="1">C) $9\text{ mol O}_2$</button>
+      <button class="opt" data-ok="0">D) $12\text{ mol O}_2$</button>
+      <div class="fb"></div>
+    </div>
+
+    <div class="qcard" data-qidx="2" data-exp="El rendimiento real siempre es una fracción del teórico: $R.R. = \frac{200\times 85}{100} = 170\text{ g}$. Dividir entre $0{,}85$ daría $235{,}3\text{ g} > R.T.$, lo cual es imposible.">
+      <div class="qtext"><b>3.</b> En una reacción el rendimiento teórico calculado es $R.T. = 200\text{ g}$ de producto, pero el rendimiento experimental es del $85\,\%$. ¿Cuántos gramos reales se obtienen?</div>
+      <button class="opt" data-ok="0">A) $235{,}3\text{ g}$ (dividiendo $200 / 0{,}85$)</button>
+      <button class="opt" data-ok="1">B) $170\text{ g}$ (multiplicando $200 \times 85 / 100$)</button>
+      <button class="opt" data-ok="0">C) $115\text{ g}$ (restando $200 - 85$)</button>
+      <button class="opt" data-ok="0">D) $85\text{ g}$ (igual al porcentaje)</button>
+      <div class="fb"></div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T4L1 — Estequiometría de las Reacciones</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     21 · DETECTA EL ERROR
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide" data-title="Detecta el error">
+  <header class="ft"><h2>Detecta el error — Haz clic en cada afirmación</h2><span class="ftsub">Verdadero o trampa de examen</span></header>
+  <main class="fc" style="justify-content:center;">
+    <div class="err" data-ok="0" data-exp="<b>Error.</b> Cambiar subíndices altera la identidad química de la sustancia ($\text{MgO}_2$ no es óxido de magnesio). Solo se modifican coeficientes.">
+      <div class="st">FRASE 1</div>
+      <div class="tx">«Para ajustar $\text{Mg} + \text{O}_2 \to \text{MgO}$ basta escribir $\text{Mg} + \text{O}_2 \to \text{MgO}_2$.»<div class="ex"></div></div>
+    </div>
+    <div class="err" data-ok="0" data-exp="<b>Error.</b> Los coeficientes representan proporciones en <b>moles</b>, nunca en gramos directos. Si hay gramos, primero se pasa a moles usando $M$.">
+      <div class="st">FRASE 2</div>
+      <div class="tx">«En $2\,\text{H}_2 + \text{O}_2 \to 2\,\text{H}_2\text{O}$, $2\text{ g}$ de $\text{H}_2$ reaccionan con $1\text{ g}$ de $\text{O}_2$.»<div class="ex"></div></div>
+    </div>
+    <div class="err" data-ok="1" data-exp="<b>Correcto.</b> El reactivo límite se agota por completo y detiene la reacción; por eso define el rendimiento teórico de todos los productos.">
+      <div class="st">FRASE 3</div>
+      <div class="tx">«Siempre se deben calcular los productos partiendo del reactivo límite ($R.L.$).»<div class="ex"></div></div>
+    </div>
+    <div class="err" data-ok="0" data-exp="<b>Error.</b> El rendimiento real nunca puede superar al teórico ($R.R. \le R.T.$). Si da más de $100\,\%$, se invirtió la fórmula o se midió mal.">
+      <div class="st">FRASE 4</div>
+      <div class="tx">«Si el rendimiento es del $92\,\%$ y el $R.T. = 444\text{ g}$, entonces $R.R. = 444 / 0{,}92 = 482{,}6\text{ g}$.»<div class="ex"></div></div>
+    </div>
+    <div class="err" data-ok="1" data-exp="<b>Correcto.</b> Primero se calcula cuánto del reactivo en exceso reaccionó realmente con el $R.L.$, y luego se resta de la cantidad inicial.">
+      <div class="st">FRASE 5</div>
+      <div class="tx">«Para saber cuánto sobra del reactivo en exceso se resta $\text{Tengo} - \text{Reacciona}$.»<div class="ex"></div></div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T4L1 — Estequiometría de las Reacciones</span><span class="pn"></span></footer>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     22 · CIERRE Y CHECKLIST PARA EL TALLER
+     ══════════════════════════════════════════════════════════ -->
+<section class="slide" data-title="Cierre y checklist para el taller">
+  <header class="ft"><h2>Cierre de la clase — Checklist para el taller</h2><span class="ftsub">Prepárate para sacar 20/20</span></header>
+  <main class="fc">
+    <div class="cols top">
+      <div class="col">
+        <div class="cuadro teoria">
+          <div class="ct">Los 4 pilares que te llevas</div>
+          <div class="cb">
+            <ol>
+              <li><b>Ajustar primero:</b> Metales $\to$ No metales $\to$ H $\to$ O (y fracción auxiliar si hace falta).</li>
+              <li><b>Puente molar:</b> gramos $\xrightarrow{\div M}$ moles $\xrightarrow{\text{factor}}$ moles $\xrightarrow{\times M}$ gramos.</li>
+              <li><b>Reactivo límite:</b> comparar <i>Necesito</i> vs. <i>Tengo</i>; calcular productos con el $R.L.$</li>
+              <li><b>Rendimiento:</b> $R.R. = \frac{R.T.\times\%}{100}$, siempre verificando $R.R. \le R.T.$</li>
+            </ol>
+          </div>
+        </div>
+        <div class="cuadro advertencia">
+          <div class="ct">Checklist antes de entregar tu hoja</div>
+          <div class="cb">
+            <ul>
+              <li>¿Verifiqué que la ecuación esté bien balanceada?</li>
+              <li>¿Taché las unidades y sustancias en cada factor?</li>
+              <li>¿Comprobé que $R.R. \le R.T.$ y escribí la unidad final?</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="cuadro extra">
+          <div class="ct">Tarea recomendada (Guía Temática T4L1)</div>
+          <div class="cb">
+            <p>Resuelve en tu cuaderno los ejercicios:</p>
+            <ul>
+              <li><b>Bloque A (Balanceo):</b> 8 y 9</li>
+              <li><b>Bloque B (Puente molar):</b> 19 y 22</li>
+              <li><b>Bloque C (Reactivo límite):</b> 30 y 35</li>
+              <li><b>Bloque D (Rendimiento):</b> 40 y 44</li>
+              <li><b>Bloque E (Integradores):</b> 45, 46 y 50</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cuadro info">
+          <div class="ct">Cómo practicar mejor</div>
+          <div class="cb">Usa los <b>4 laboratorios</b> de estas diapositivas para comprobar tus cálculos paso a paso antes de consultar la clave comentada de la guía.</div>
+        </div>
+        <p class="center" style="margin-top:10px; font-family:var(--font-title); font-size:24px; color:var(--primario);">¡Éxito en el taller! · Mathwizards</p>
+      </div>
+    </div>
+  </main>
+  <footer class="ff"><span>Mathwizards</span><span>T4L1 — Estequiometría de las Reacciones</span><span class="pn"></span></footer>
+</section>
+
+</div><!-- /#stage -->
+
+<!-- Índice rápido -->
+<nav id="toc" aria-label="Índice de diapositivas">
+  <div class="toc-title">Índice de diapositivas</div>
+  <div id="tocList"></div>
+</nav>
+
+<!-- HUD -->
+<div id="hud">
+  <button id="tocBtn" title="Índice de diapositivas (M)">☰ Índice</button>
+  <button id="prev" title="Anterior (←)">‹</button>
+  <span class="nav-n" id="navN">1 / 22</span>
+  <button id="next" title="Siguiente (→)">›</button>
+  <button id="fs" title="Pantalla completa (F)">Pantalla completa</button>
+</div>
+<div class="kbd-hint">← → navegar · M índice · F pantalla completa</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ============================================================
+   0 · Carga de KaTeX (local offline con respaldo CDN)
+   ============================================================ */
+var KATEX_OPTS = {
+  delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],
+  throwOnError:false
+};
+function typeset(el){
+  if (window.renderMathInElement) renderMathInElement(el || document.body, KATEX_OPTS);
+}
+function loadScript(src, fallback, onload){
+  var s = document.createElement("script");
+  s.src = src;
+  s.onload = onload;
+  s.onerror = function(){
+    if (!fallback) return;
+    var f = document.createElement("script");
+    f.src = fallback;
+    f.onload = onload;
+    document.body.appendChild(f);
+  };
+  document.body.appendChild(s);
+}
+loadScript(
+  "../assets/katex/katex.min.js",
+  "https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js",
+  function(){
+    loadScript(
+      "../assets/katex/auto-render.min.js",
+      "https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js",
+      function(){ typeset(document.body); }
+    );
+  }
+);
+
+/* ============================================================
+   1 · Utilidades y Navegación
+   ============================================================ */
+function $(id){ return document.getElementById(id); }
+function clamp(v,a,b){ return Math.max(a, Math.min(b, v)); }
+function dec(v,n){
+  var d = n === undefined ? 2 : n;
+  var r = Math.abs(v) < 1e-6 ? 0 : v;
+  return r.toFixed(d).replace(".", ",");
+}
+
+var slides = Array.prototype.slice.call(document.querySelectorAll(".slide"));
+var cur = 0;
+
+// Insertar logo en barras de título y numeración de pie
+slides.forEach(function(s, i){
+  var pn = s.querySelector(".pn");
+  if (pn) pn.textContent = (i + 1) + " / " + slides.length;
+  var ft = s.querySelector(".ft");
+  if (ft){
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("class", "ftlogo");
+    svg.setAttribute("aria-hidden", "true");
+    var use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+    use.setAttribute("href", "#mwlogo");
+    svg.appendChild(use);
+    ft.insertBefore(svg, ft.firstChild);
+  }
+});
+
+// Construir índice
+var tocList = $("tocList");
+slides.forEach(function(s, i){
+  var b = document.createElement("button");
+  b.innerHTML = '<span class="tn">' + (i + 1) + '.</span><span>' + (s.dataset.title || ("Diapositiva " + (i + 1))) + '</span>';
+  b.addEventListener("click", function(){ show(i); $("toc").classList.remove("open"); });
+  tocList.appendChild(b);
+});
+
+function updateToc(){
+  Array.prototype.forEach.call(tocList.children, function(btn, idx){
+    btn.classList.toggle("cur", idx === cur);
+  });
+}
+
+function show(n){
+  n = clamp(n, 0, slides.length - 1);
+  if (n === cur) return;
+  slides[cur].classList.remove("active");
+  cur = n;
+  slides[cur].classList.add("active");
+  $("navN").textContent = (cur + 1) + " / " + slides.length;
+  $("progress").style.width = ((cur + 1) / slides.length * 100) + "%";
+  updateToc();
+  var sim = slides[cur].dataset.sim;
+  if (sim === "balance") renderBalance();
+  if (sim === "bridge") renderBridge();
+  if (sim === "limit") renderLimit();
+  if (sim === "yield") renderYield();
+}
+
+$("next").addEventListener("click", function(){ show(cur + 1); });
+$("prev").addEventListener("click", function(){ show(cur - 1); });
+$("tocBtn").addEventListener("click", function(e){
+  e.stopPropagation();
+  $("toc").classList.toggle("open");
+});
+document.addEventListener("click", function(e){
+  var toc = $("toc");
+  if (toc.classList.contains("open") && !toc.contains(e.target) && e.target !== $("tocBtn")){
+    toc.classList.remove("open");
+  }
+});
+$("fs").addEventListener("click", function(){
+  if (document.fullscreenElement) document.exitFullscreen();
+  else document.documentElement.requestFullscreen();
+});
+
+document.addEventListener("keydown", function(e){
+  var t = e.target;
+  if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.tagName === "SELECT")) return;
+  if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " "){ e.preventDefault(); show(cur + 1); }
+  else if (e.key === "ArrowLeft" || e.key === "PageUp"){ e.preventDefault(); show(cur - 1); }
+  else if (e.key === "Home"){ e.preventDefault(); show(0); }
+  else if (e.key === "End"){ e.preventDefault(); show(slides.length - 1); }
+  else if (e.key === "m" || e.key === "M"){ $("toc").classList.toggle("open"); }
+  else if (e.key === "Escape"){ $("toc").classList.remove("open"); }
+  else if (e.key === "f" || e.key === "F"){
+    if (document.fullscreenElement) document.exitFullscreen();
+    else document.documentElement.requestFullscreen();
+  }
+});
+
+function fit(){
+  var s = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
+  $("stage").style.transform = "scale(" + s + ")";
+}
+window.addEventListener("resize", fit);
+fit();
+$("progress").style.width = (1 / slides.length * 100) + "%";
+$("navN").textContent = "1 / " + slides.length;
+updateToc();
+
+/* ============================================================
+   2 · Inspector de anatomía (Slide 4)
+   ============================================================ */
+var ANAT_INFO = {
+  react: "<b>Reactivos (sustancias iniciales):</b> están a la izquierda de la flecha. Aquí reaccionan magnesio sólido y ácido clorhídrico acuoso.",
+  prod:  "<b>Productos (sustancias finales):</b> están a la derecha de la flecha. Se forman cloruro de magnesio acuoso e hidrógeno gaseoso, con propiedades nuevas.",
+  coef:  "<b>Coeficientes estequiométricos (1, 2, 1, 1):</b> van delante de cada fórmula e indican la proporción en <b>moles</b>: 1 mol Mg + 2 moles HCl → 1 mol MgCl₂ + 1 mol H₂.",
+  state: "<b>Estados físicos:</b> (s) sólido, (ac) disolución acuosa y (g) gaseoso. Indican en qué fase participa cada sustancia."
+};
+function setAnat(mode){
+  var eq = $("anatEq");
+  Array.prototype.forEach.call(eq.querySelectorAll(".anat-part"), function(p){
+    p.classList.remove("hi-react","hi-prod","hi-coef","hi-state");
+    if (mode === "react" && p.dataset.role === "react") p.classList.add("hi-react");
+    if (mode === "prod" && p.dataset.role === "prod") p.classList.add("hi-prod");
+    if (mode === "coef") p.classList.add("hi-coef");
+    if (mode === "state") p.classList.add("hi-state");
+  });
+  $("anatMsg").innerHTML = ANAT_INFO[mode];
+}
+Array.prototype.forEach.call($("anatBar").querySelectorAll("button"), function(b){
+  b.addEventListener("click", function(){ setAnat(b.dataset.mode); });
+});
+setAnat("react");
+
+/* ============================================================
+   3 · Pasos revelables en ejemplos (Slides 9 y 13)
+   ============================================================ */
+Array.prototype.forEach.call(document.querySelectorAll(".step-controls"), function(ctrl){
+  var id = ctrl.dataset.stepper;
+  var wrap = $(id);
+  var panels = Array.prototype.slice.call(wrap.querySelectorAll(".step-panel"));
+  var badge = $(id + "-badge");
+  var step = 0;
+  function sync(){
+    panels.forEach(function(p, idx){ p.classList.toggle("show", idx < step); });
+    if (badge) badge.textContent = "Paso " + step + " / " + panels.length;
+  }
+  ctrl.querySelector('[data-action="next"]').addEventListener("click", function(){
+    if (step < panels.length) step++;
+    sync();
+  });
+  ctrl.querySelector('[data-action="all"]').addEventListener("click", function(){
+    step = panels.length; sync();
+  });
+  ctrl.querySelector('[data-action="reset"]').addEventListener("click", function(){
+    step = 0; sync();
+  });
+  sync();
+});
+
+/* ============================================================
+   4 · Laboratorio 1: Balanceador en vivo (Slide 6)
+   ============================================================ */
+var BAL_RXNS = [
+  {
+    name: "Mg + HCl",
+    hint: "Orden: primero Mg (ya está 1=1), luego Cl (hay 2 a la derecha → pon 2 en HCl) y comprueba H.",
+    terms: [
+      {side:0, html:"Mg<sub>(s)</sub>", atoms:{Mg:1}, sol:1},
+      {side:0, html:"HCl<sub>(ac)</sub>", atoms:{H:1, Cl:1}, sol:2},
+      {side:1, html:"MgCl<sub>2(ac)</sub>", atoms:{Mg:1, Cl:2}, sol:1},
+      {side:1, html:"H<sub>2(g)</sub>", atoms:{H:2}, sol:1}
+    ],
+    elements: ["Mg","Cl","H"]
+  },
+  {
+    name: "Síntesis NH₃",
+    hint: "Empieza por N (no metal): hay 2 N a la izquierda → coloca 2 en NH₃. Luego ajusta los 6 H con 3 H₂.",
+    terms: [
+      {side:0, html:"N<sub>2(g)</sub>", atoms:{N:2}, sol:1},
+      {side:0, html:"H<sub>2(g)</sub>", atoms:{H:2}, sol:3},
+      {side:1, html:"NH<sub>3(g)</sub>", atoms:{N:1, H:3}, sol:2}
+    ],
+    elements: ["N","H"]
+  },
+  {
+    name: "Combustión CH₄",
+    hint: "Orden: C (1=1), H (4 a la izquierda → 2 H₂O), y al final O (2+2 = 4 a la derecha → 2 O₂).",
+    terms: [
+      {side:0, html:"CH<sub>4(g)</sub>", atoms:{C:1, H:4}, sol:1},
+      {side:0, html:"O<sub>2(g)</sub>", atoms:{O:2}, sol:2},
+      {side:1, html:"CO<sub>2(g)</sub>", atoms:{C:1, O:2}, sol:1},
+      {side:1, html:"H<sub>2</sub>O<sub>(g)</sub>", atoms:{H:2, O:1}, sol:2}
+    ],
+    elements: ["C","H","O"]
+  },
+  {
+    name: "Etano C₂H₆ (fracción)",
+    hint: "Con 1 C₂H₆ salen 2 CO₂ y 3 H₂O (7 O → 7/2 O₂). ¡Multiplica toda la ecuación por 2 para usar enteros!",
+    terms: [
+      {side:0, html:"C<sub>2</sub>H<sub>6(g)</sub>", atoms:{C:2, H:6}, sol:2},
+      {side:0, html:"O<sub>2(g)</sub>", atoms:{O:2}, sol:7},
+      {side:1, html:"CO<sub>2(g)</sub>", atoms:{C:1, O:2}, sol:4},
+      {side:1, html:"H<sub>2</sub>O<sub>(g)</sub>", atoms:{H:2, O:1}, sol:6}
+    ],
+    elements: ["C","H","O"]
+  },
+  {
+    name: "HCl + Ca(OH)₂",
+    hint: "Ca está igualado (1=1). Hay 2 Cl en CaCl₂ → pon 2 en HCl. Luego cuenta H: 2+2 = 4 → 2 H₂O. ¡O cuadra solo!",
+    terms: [
+      {side:0, html:"HCl<sub>(ac)</sub>", atoms:{H:1, Cl:1}, sol:2},
+      {side:0, html:"Ca(OH)<sub>2(s)</sub>", atoms:{Ca:1, O:2, H:2}, sol:1},
+      {side:1, html:"CaCl<sub>2(s)</sub>", atoms:{Ca:1, Cl:2}, sol:1},
+      {side:1, html:"H<sub>2</sub>O<sub>(l)</sub>", atoms:{H:2, O:1}, sol:2}
+    ],
+    elements: ["Ca","Cl","H","O"]
+  }
+];
+var balIdx = 0;
+var balCoefs = [1,1,1,1];
+
+function gcd(a,b){ return b ? gcd(b, a % b) : a; }
+
+function initBalanceTabs(){
+  var wrap = $("balTabs");
+  wrap.innerHTML = "";
+  BAL_RXNS.forEach(function(r, i){
+    var b = document.createElement("button");
+    b.className = "btn " + (i === balIdx ? "solid" : "ghost");
+    b.textContent = (i + 1) + ". " + r.name;
+    b.addEventListener("click", function(){
+      balIdx = i;
+      balCoefs = r.terms.map(function(){ return 1; });
+      initBalanceTabs();
+      renderBalance();
+    });
+    wrap.appendChild(b);
+  });
+}
+
+function renderBalance(){
+  var rxn = BAL_RXNS[balIdx];
+  var eqBox = $("balEq");
+  eqBox.innerHTML = "";
+  rxn.terms.forEach(function(t, idx){
+    if (idx > 0){
+      var prevSide = rxn.terms[idx - 1].side;
+      var op = document.createElement("span");
+      op.className = "bal-op";
+      op.innerHTML = prevSide !== t.side ? "&#10230;" : "+";
+      if (prevSide !== t.side) op.style.color = "var(--primario)";
+      eqBox.appendChild(op);
+    }
+    var card = document.createElement("div");
+    card.className = "bal-term";
+    card.innerHTML =
+      '<div class="bal-spin">' +
+        '<button type="button" data-i="' + idx + '" data-d="1" aria-label="Aumentar coeficiente">+</button>' +
+        '<button type="button" data-i="' + idx + '" data-d="-1" aria-label="Disminuir coeficiente">−</button>' +
+      '</div>' +
+      '<span class="bal-coef">' + balCoefs[idx] + '</span>' +
+      '<span class="bal-formula">' + t.html + '</span>';
+    eqBox.appendChild(card);
+  });
+  Array.prototype.forEach.call(eqBox.querySelectorAll("button"), function(btn){
+    btn.addEventListener("click", function(){
+      var i = +btn.dataset.i, d = +btn.dataset.d;
+      balCoefs[i] = clamp(balCoefs[i] + d, 1, 15);
+      renderBalance();
+    });
+  });
+
+  // Contar átomos por elemento
+  var atomsWrap = $("balAtoms");
+  atomsWrap.innerHTML = "";
+  var allEqual = true;
+  var maxCnt = 1;
+  var counts = rxn.elements.map(function(el){
+    var L = 0, R = 0;
+    rxn.terms.forEach(function(t, i){
+      var n = (t.atoms[el] || 0) * balCoefs[i];
+      if (t.side === 0) L += n; else R += n;
+    });
+    maxCnt = Math.max(maxCnt, L, R);
+    if (L !== R) allEqual = false;
+    return {el: el, L: L, R: R};
+  });
+
+  counts.forEach(function(c){
+    var ok = c.L === c.R;
+    var row = document.createElement("div");
+    row.className = "atom-row " + (ok ? "ok" : "no");
+    var wL = Math.max(12, Math.round(c.L / maxCnt * 100));
+    var wR = Math.max(12, Math.round(c.R / maxCnt * 100));
+    row.innerHTML =
+      '<div class="atom-sym">' + c.el + '</div>' +
+      '<div class="atom-bar-wrap" style="justify-content:flex-end;"><b>' + c.L + '</b><div class="atom-bar left" style="width:' + wL + '%"></div></div>' +
+      '<div class="atom-status">' + (ok ? "=" : "≠") + '</div>' +
+      '<div class="atom-bar-wrap"><div class="atom-bar right" style="width:' + wR + '%"></div><b>' + c.R + '</b></div>';
+    atomsWrap.appendChild(row);
+  });
+
+  var g = balCoefs.reduce(function(acc, v){ return gcd(acc, v); });
+  var banner = $("balBanner");
+  if (allEqual && g === 1){
+    banner.className = "bal-banner done";
+    banner.innerHTML = "<b>¡Ecuación balanceada correctamente! ✓</b> Todos los elementos coinciden con los coeficientes enteros mínimos.";
+  } else if (allEqual && g > 1){
+    banner.className = "bal-banner";
+    banner.innerHTML = "<b>Los átomos coinciden, pero puedes simplificar:</b> todos los coeficientes son divisibles entre <b>" + g + "</b>.";
+  } else {
+    banner.className = "bal-banner";
+    banner.innerHTML = "<b>Aún no está balanceada.</b> Ajusta los coeficientes con <b>+</b> y <b>−</b> hasta que todos los elementos muestren <b>=</b>.";
+  }
+  $("balHint").textContent = rxn.hint;
+}
+$("balReset").addEventListener("click", function(){
+  balCoefs = BAL_RXNS[balIdx].terms.map(function(){ return 1; });
+  renderBalance();
+});
+$("balSolve").addEventListener("click", function(){
+  balCoefs = BAL_RXNS[balIdx].terms.map(function(t){ return t.sol; });
+  renderBalance();
+});
+
+/* ============================================================
+   5 · Laboratorio 2: Explorador del Puente Molar (Slide 10)
+   ============================================================ */
+var BR_RXNS = [
+  {
+    label: "Combustión CH₄ → H₂O",
+    eq: "CH₄(g) + 2 O₂(g) → CO₂(g) + 2 H₂O(g)",
+    A: "CH₄", At: "\\text{CH}_4", cA: 1, mA: 16,
+    B: "H₂O", Bt: "\\text{H}_2\\text{O}", cB: 2, mB: 18,
+    defMass: 48, min: 8, max: 160, step: 4
+  },
+  {
+    label: "Descomposición CaCO₃ → CaO",
+    eq: "CaCO₃(s) → CaO(s) + CO₂(g)",
+    A: "CaCO₃", At: "\\text{CaCO}_3", cA: 1, mA: 100,
+    B: "CaO", Bt: "\\text{CaO}", cB: 1, mB: 56,
+    defMass: 250, min: 50, max: 500, step: 10
+  },
+  {
+    label: "Síntesis N₂ → NH₃",
+    eq: "N₂(g) + 3 H₂(g) → 2 NH₃(g)",
+    A: "N₂", At: "\\text{N}_2", cA: 1, mA: 28,
+    B: "NH₃", Bt: "\\text{NH}_3", cB: 2, mB: 17,
+    defMass: 84, min: 14, max: 280, step: 7
+  },
+  {
+    label: "Neutralización H₂SO₄ → Na₂SO₄",
+    eq: "H₂SO₄(ac) + 2 NaOH(ac) → Na₂SO₄(ac) + 2 H₂O(l)",
+    A: "H₂SO₄", At: "\\text{H}_2\\text{SO}_4", cA: 1, mA: 98,
+    B: "Na₂SO₄", Bt: "\\text{Na}_2\\text{SO}_4", cB: 1, mB: 142,
+    defMass: 196, min: 49, max: 490, step: 49
+  }
+];
+var brIdx = 0;
+
+function initBridgeTabs(){
+  var wrap = $("brTabs");
+  wrap.innerHTML = "";
+  BR_RXNS.forEach(function(r, i){
+    var b = document.createElement("button");
+    b.className = "btn " + (i === brIdx ? "solid" : "ghost");
+    b.textContent = r.label;
+    b.addEventListener("click", function(){
+      brIdx = i;
+      var sl = $("brMass");
+      sl.min = r.min; sl.max = r.max; sl.step = r.step; sl.value = r.defMass;
+      initBridgeTabs();
+      renderBridge();
+    });
+    wrap.appendChild(b);
+  });
+}
+
+function renderBridge(){
+  var r = BR_RXNS[brIdx];
+  var massA = +$("brMass").value;
+  var nA = massA / r.mA;
+  var nB = nA * (r.cB / r.cA);
+  var massB = nB * r.mB;
+
+  $("brEq").textContent = r.eq;
+  $("brSliderLbl").textContent = "Masa inicial de " + r.A;
+  $("brMassVal").textContent = dec(massA, 0);
+
+  $("brC1").textContent = dec(massA, 0) + " g";
+  $("brC1s").textContent = "Masa dada de " + r.A + " (M = " + r.mA + " g/mol)";
+  $("brC2").textContent = dec(nA) + " mol";
+  $("brC2s").textContent = dec(massA, 0) + " ÷ " + r.mA + " = " + dec(nA) + " mol de " + r.A;
+  $("brC3").textContent = dec(nB) + " mol";
+  $("brC3s").textContent = "Proporción " + r.cB + " mol " + r.B + " / " + r.cA + " mol " + r.A;
+  $("brC4").textContent = dec(massB) + " g";
+  $("brC4s").textContent = dec(nB) + " × " + r.mB + " g/mol de " + r.B;
+
+  $("brSteps").innerHTML =
+    "<p><b>1) Gramos a moles:</b> $n_{" + r.At + "} = " + dec(massA,0) + "\\,\\cancel{\\text{g}} \\times \\dfrac{1\\text{ mol}}{" + r.mA + "\\,\\cancel{\\text{g}}} = " + dec(nA) + "\\text{ mol }" + r.At + "$</p>" +
+    "<p><b>2) Factor molar:</b> $n_{" + r.Bt + "} = " + dec(nA) + "\\,\\cancel{\\text{mol }" + r.At + "} \\times \\dfrac{" + r.cB + "\\text{ mol }" + r.Bt + "}{" + r.cA + "\\,\\cancel{\\text{mol }" + r.At + "}} = " + dec(nB) + "\\text{ mol }" + r.Bt + "$</p>" +
+    "<p><b>3) Moles a gramos:</b> $m_{" + r.Bt + "} = " + dec(nB) + "\\,\\cancel{\\text{mol}} \\times \\dfrac{" + r.mB + "\\text{ g}}{1\\,\\cancel{\\text{mol}}} = \\mathbf{" + dec(massB) + "\\text{ g }" + r.Bt + "}$</p>";
+  typeset($("brSteps"));
+}
+$("brMass").addEventListener("input", renderBridge);
+
+/* ============================================================
+   6 · Laboratorio 3: Simulador visual Reactivo Límite (Slide 14)
+   ============================================================ */
+var LIM_RXNS = [
+  {
+    label: "CH₄ + 2 O₂ → CO₂ + 2 H₂O",
+    eq: "CH₄(g) + 2 O₂(g) → CO₂(g) + 2 H₂O(g)",
+    A: "CH₄", cA: 1, colA: "#E2232D",
+    B: "O₂",  cB: 2, colB: "#2563EB",
+    P: "CO₂", cP: 1, mP: 44, colP: "#2E9E4F",
+    defA: 3, defB: 2.5
+  },
+  {
+    label: "Zn + 2 HCl → ZnCl₂ + H₂",
+    eq: "Zn(s) + 2 HCl(ac) → ZnCl₂(ac) + H₂(g)",
+    A: "Zn",  cA: 1, colA: "#E36322",
+    B: "HCl", cB: 2, colB: "#C922E3",
+    P: "ZnCl₂", cP: 1, mP: 136, colP: "#2E9E4F",
+    defA: 6, defB: 5
+  },
+  {
+    label: "N₂ + 3 H₂ → 2 NH₃",
+    eq: "N₂(g) + 3 H₂(g) → 2 NH₃(g)",
+    A: "N₂",  cA: 1, colA: "#2563EB",
+    B: "H₂",  cB: 3, colB: "#E2232D",
+    P: "NH₃", cP: 2, mP: 17, colP: "#2E9E4F",
+    defA: 4, defB: 9
+  }
+];
+var limIdx = 0;
+
+function initLimTabs(){
+  var wrap = $("limTabs");
+  wrap.innerHTML = "";
+  LIM_RXNS.forEach(function(r, i){
+    var b = document.createElement("button");
+    b.className = "btn " + (i === limIdx ? "solid" : "ghost");
+    b.textContent = r.label;
+    b.addEventListener("click", function(){
+      limIdx = i;
+      $("limA").value = r.defA;
+      $("limB").value = r.defB;
+      initLimTabs();
+      renderLimit();
+    });
+    wrap.appendChild(b);
+  });
+}
+
+function drawMolDots(x0, y0, count, color, label){
+  var full = Math.floor(count + 1e-6);
+  var half = (count - full) >= 0.25;
+  var s = '<text x="' + x0 + '" y="' + (y0 - 8) + '" font-family="Nexa Heavy, Cabin, sans-serif" font-size="13.5" fill="#333">' + label + ': ' + dec(count, 1) + ' mol</text>';
+  var cols = 5, r = 12, gap = 30;
+  for (var i = 0; i < full; i++){
+    var cx = x0 + 14 + (i % cols) * gap;
+    var cy = y0 + 16 + Math.floor(i / cols) * gap;
+    s += '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="' + color + '" opacity="0.9"/>';
+  }
+  if (half){
+    var j = full;
+    var hcx = x0 + 14 + (j % cols) * gap;
+    var hcy = y0 + 16 + Math.floor(j / cols) * gap;
+    s += '<path d="M ' + hcx + ' ' + (hcy - r) + ' A ' + r + ' ' + r + ' 0 0 0 ' + hcx + ' ' + (hcy + r) + ' Z" fill="' + color + '" opacity="0.9"/>';
+    s += '<circle cx="' + hcx + '" cy="' + hcy + '" r="' + r + '" fill="none" stroke="' + color + '" stroke-width="2" stroke-dasharray="3 2"/>';
+  }
+  if (full === 0 && !half){
+    s += '<text x="' + (x0 + 4) + '" y="' + (y0 + 22) + '" font-size="13.5" font-style="italic" fill="#888">0 mol (agotado)</text>';
+  }
+  return s;
+}
+
+function renderLimit(){
+  var r = LIM_RXNS[limIdx];
+  var nA = +$("limA").value, nB = +$("limB").value;
+  $("limLblA").textContent = "Moles de " + r.A;
+  $("limLblB").textContent = "Moles de " + r.B;
+  $("limValA").textContent = dec(nA, 1);
+  $("limValB").textContent = dec(nB, 1);
+  $("limEqHead").textContent = r.eq;
+
+  var needB = nA * (r.cB / r.cA);
+  var rl, re, nP, leftA = 0, leftB = 0, verdictHtml = "";
+
+  if (Math.abs(nB - needB) < 1e-6){
+    rl = "Exactos (ambos)"; re = "Ninguno";
+    nP = nA * (r.cP / r.cA);
+    verdictHtml = "<b>¡Proporción estequiométrica exacta!</b> Para " + dec(nA,1) + " mol de " + r.A + " se necesitan exactamente " + dec(needB,1) + " mol de " + r.B + ". No sobra ningún reactivo.";
+  } else if (nB < needB){
+    rl = r.B; re = r.A;
+    nP = nB * (r.cP / r.cB);
+    var usedA = nB * (r.cA / r.cB);
+    leftA = nA - usedA;
+    verdictHtml = "<b>Necesito vs. Tengo:</b> para " + dec(nA,1) + " mol de " + r.A + " necesito <b>" + dec(needB,1) + " mol de " + r.B + "</b>, pero solo tengo <b>" + dec(nB,1) + " mol</b>. Por eso <b>R.L. = " + r.B + "</b>; reaccionan " + dec(usedA,2) + " mol de " + r.A + " y sobran <b>" + dec(leftA,2) + " mol de " + r.A + "</b>.";
+  } else {
+    rl = r.A; re = r.B;
+    nP = nA * (r.cP / r.cA);
+    var usedB = needB;
+    leftB = nB - usedB;
+    verdictHtml = "<b>Necesito vs. Tengo:</b> para " + dec(nA,1) + " mol de " + r.A + " necesito <b>" + dec(needB,1) + " mol de " + r.B + "</b>, y tengo <b>" + dec(nB,1) + " mol</b> (me sobra). Por eso <b>R.L. = " + r.A + "</b> y sobran <b>" + dec(leftB,2) + " mol de " + r.B + "</b>.";
+  }
+
+  var massP = nP * r.mP;
+  $("limRL").textContent = rl;
+  $("limRE").textContent = re;
+  $("limProd").textContent = dec(nP) + " mol " + r.P;
+  $("limProdG").textContent = dec(massP) + " g " + r.P;
+  $("limLeft").textContent = leftA > 1e-6 ? (dec(leftA) + " mol " + r.A) : (leftB > 1e-6 ? (dec(leftB) + " mol " + r.B) : "0 mol");
+  $("limVerdict").innerHTML = verdictHtml;
+
+  var svg = $("limSvg");
+  var s = "";
+  // Panel izquierdo: Antes
+  s += '<rect x="10" y="10" width="350" height="270" rx="12" fill="#fff" stroke="#d9dae3" stroke-width="2"/>';
+  s += '<text x="185" y="34" text-anchor="middle" font-family="Nexa Heavy, Cabin, sans-serif" font-size="15" fill="#666">ANTES DE REACCIONAR</text>';
+  s += drawMolDots(32, 66, nA, r.colA, r.A);
+  s += drawMolDots(32, 178, nB, r.colB, r.B);
+
+  // Flecha central
+  s += '<line x1="372" y1="145" x2="438" y2="145" stroke="#E2232D" stroke-width="5" stroke-linecap="round"/>';
+  s += '<polygon points="446,145 432,135 432,155" fill="#E2232D"/>';
+  s += '<text x="406" y="128" text-anchor="middle" font-family="Nexa Heavy, Cabin, sans-serif" font-size="12" fill="#E2232D">REACCIÓN</text>';
+
+  // Panel derecho: Después
+  s += '<rect x="460" y="10" width="350" height="270" rx="12" fill="#fff" stroke="#2E9E4F" stroke-width="2"/>';
+  s += '<text x="635" y="34" text-anchor="middle" font-family="Nexa Heavy, Cabin, sans-serif" font-size="15" fill="#2E9E4F">DESPUÉS DE REACCIONAR</text>';
+  s += drawMolDots(482, 66, nP, r.colP, "Producto " + r.P);
+  if (leftA > 1e-6){
+    s += drawMolDots(482, 178, leftA, r.colA, "Sobra " + r.A);
+  } else if (leftB > 1e-6){
+    s += drawMolDots(482, 178, leftB, r.colB, "Sobra " + r.B);
+  } else {
+    s += '<text x="482" y="198" font-family="Nexa Heavy, Cabin, sans-serif" font-size="14" fill="#2E9E4F">✓ Sin exceso sobrante</text>';
+  }
+  svg.innerHTML = s;
+}
+$("limA").addEventListener("input", renderLimit);
+$("limB").addEventListener("input", renderLimit);
+$("limPreset").addEventListener("click", function(){
+  var r = LIM_RXNS[limIdx];
+  $("limA").value = r.defA;
+  $("limB").value = r.defB;
+  renderLimit();
+});
+
+/* ============================================================
+   7 · Laboratorio 4: Simulador de Rendimiento (Slide 17)
+   ============================================================ */
+function renderYield(){
+  var nHcl = +$("yHcl").value;
+  var nCa  = +$("yCa").value;
+  var pct  = +$("yPct").value;
+  $("yHclV").textContent = nHcl;
+  $("yCaV").textContent  = nCa;
+  $("yPctV").textContent = pct;
+
+  // 2 HCl + Ca(OH)2 -> CaCl2 + 2 H2O; M(CaCl2) = 111 g/mol
+  var needHcl = nCa * 2;
+  var rl, excTxt, nRT;
+  if (nHcl === needHcl){
+    rl = "Exactos"; excTxt = "0 mol"; nRT = nCa;
+  } else if (nHcl < needHcl){
+    rl = "HCl";
+    nRT = nHcl / 2;
+    excTxt = dec(nCa - nRT, 1) + " mol Ca(OH)₂";
+  } else {
+    rl = "Ca(OH)₂";
+    nRT = nCa;
+    excTxt = dec(nHcl - 2 * nCa, 1) + " mol HCl";
+  }
+
+  var mRT = nRT * 111;
+  var mRR = mRT * pct / 100;
+  var loss = mRT - mRR;
+
+  $("yRL").textContent = rl;
+  $("yExc").textContent = excTxt;
+  $("yRT").textContent = dec(mRT) + " g (" + dec(nRT,1) + " mol)";
+  $("yRR").textContent = dec(mRR) + " g";
+  $("yLoss").textContent = dec(loss) + " g";
+
+  $("yFormula").innerHTML =
+    "<b>Cálculo en vivo:</b> $R.R. = \\dfrac{R.T. \\times \\%}{100} = \\dfrac{" + dec(mRT) + "\\text{ g} \\times " + pct + "}{100} = \\mathbf{" + dec(mRR) + "\\text{ g CaCl}_2}$";
+  typeset($("yFormula"));
+
+  // SVG comparativo: barras + vaso de precipitado
+  var maxBar = Math.max(mRT, 100);
+  var hMax = 210;
+  var hRT = hMax;
+  var hRR = Math.round(hMax * (pct / 100));
+  var yBase = 262;
+  var s = "";
+
+  // Barra 1: Rendimiento Teórico (100%)
+  s += '<rect x="70" y="' + (yBase - hRT) + '" width="140" height="' + hRT + '" rx="10" fill="rgba(226,35,45,.15)" stroke="#E2232D" stroke-width="2.5"/>';
+  s += '<text x="140" y="' + (yBase - hRT - 10) + '" text-anchor="middle" font-family="Nexa Heavy, Cabin, sans-serif" font-size="16" fill="#E2232D">' + dec(mRT) + ' g</text>';
+  s += '<text x="140" y="' + (yBase + 24) + '" text-anchor="middle" font-family="Nexa Heavy, Cabin, sans-serif" font-size="14" fill="#333">R.T. (100%)</text>';
+
+  // Barra 2: Rendimiento Real (%)
+  s += '<rect x="270" y="' + (yBase - hRT) + '" width="140" height="' + hRT + '" rx="10" fill="#fff" stroke="#ccc" stroke-width="2" stroke-dasharray="6 4"/>';
+  s += '<rect x="270" y="' + (yBase - hRR) + '" width="140" height="' + hRR + '" rx="10" fill="#2E9E4F" opacity="0.88"/>';
+  s += '<text x="340" y="' + (yBase - hRR - 10) + '" text-anchor="middle" font-family="Nexa Heavy, Cabin, sans-serif" font-size="16" fill="#2E9E4F">' + dec(mRR) + ' g</text>';
+  s += '<text x="340" y="' + (yBase + 24) + '" text-anchor="middle" font-family="Nexa Heavy, Cabin, sans-serif" font-size="14" fill="#333">R.R. (' + pct + '%)</text>';
+
+  // Línea guía 100%
+  s += '<line x1="50" y1="' + (yBase - hRT) + '" x2="430" y2="' + (yBase - hRT) + '" stroke="#E2232D" stroke-width="1.3" stroke-dasharray="4 4"/>';
+
+  // Vaso de laboratorio a la derecha
+  var bx = 525, bw = 155, by = 52, bh = 210;
+  var fillH = Math.round((bh - 18) * (pct / 100));
+  s += '<rect x="' + (bx + 6) + '" y="' + (by + bh - fillH - 4) + '" width="' + (bw - 12) + '" height="' + fillH + '" rx="6" fill="rgba(46,158,79,.28)"/>';
+  // Borde del vaso
+  s += '<path d="M ' + (bx - 8) + ' ' + by + ' L ' + bx + ' ' + (by + 10) + ' L ' + bx + ' ' + (by + bh) + ' Q ' + bx + ' ' + (by + bh + 8) + ' ' + (bx + 12) + ' ' + (by + bh + 8) + ' L ' + (bx + bw - 12) + ' ' + (by + bh + 8) + ' Q ' + (bx + bw) + ' ' + (by + bh + 8) + ' ' + (bx + bw) + ' ' + (by + bh) + ' L ' + (bx + bw) + ' ' + by + '" fill="none" stroke="#333" stroke-width="3.5" stroke-linejoin="round"/>';
+  // Marcas de graduación
+  for (var m = 25; m <= 100; m += 25){
+    var my = by + bh - Math.round((bh - 18) * (m / 100)) - 4;
+    s += '<line x1="' + (bx + bw - 18) + '" y1="' + my + '" x2="' + (bx + bw) + '" y2="' + my + '" stroke="#666" stroke-width="1.5"/>';
+    s += '<text x="' + (bx + bw + 8) + '" y="' + (my + 4) + '" font-size="12" fill="#666">' + m + '%</text>';
+  }
+  s += '<text x="' + (bx + bw/2) + '" y="' + (by + bh/2 + 8) + '" text-anchor="middle" font-family="Nexa Heavy, Cabin, sans-serif" font-size="28" fill="#1f6f37">' + pct + '%</text>';
+  s += '<text x="' + (bx + bw/2) + '" y="' + (yBase + 28) + '" text-anchor="middle" font-family="Nexa Heavy, Cabin, sans-serif" font-size="14" fill="#333">Producto recogido</text>';
+
+  $("yieldSvg").innerHTML = s;
+}
+$("yHcl").addEventListener("input", renderYield);
+$("yCa").addEventListener("input", renderYield);
+$("yPct").addEventListener("input", renderYield);
+$("yPreset").addEventListener("click", function(){
+  $("yHcl").value = 8; $("yCa").value = 5; $("yPct").value = 92;
+  renderYield();
+});
+
+/* ============================================================
+   8 · Quiz interactivo (Slide 20)
+   ============================================================ */
+var qScore = 0;
+var qCards = Array.prototype.slice.call(document.querySelectorAll(".qcard"));
+var qTabs  = Array.prototype.slice.call(document.querySelectorAll(".qtab"));
+
+qTabs.forEach(function(tab){
+  tab.addEventListener("click", function(){
+    var idx = +tab.dataset.q;
+    qTabs.forEach(function(t, i){
+      t.className = "btn qtab " + (i === idx ? "solid" : "ghost");
+    });
+    qCards.forEach(function(c, i){ c.classList.toggle("active", i === idx); });
+  });
+});
+
+qCards.forEach(function(card){
+  var opts = Array.prototype.slice.call(card.querySelectorAll(".opt"));
+  var fb = card.querySelector(".fb");
+  opts.forEach(function(b){
+    b.addEventListener("click", function(){
+      var ok = b.dataset.ok === "1";
+      if (ok) qScore++;
+      $("qScore").textContent = qScore;
+      opts.forEach(function(o){
+        o.disabled = true;
+        if (o.dataset.ok === "1") o.classList.add("correct");
+      });
+      if (!ok){ b.classList.add("wrong"); b.classList.remove("correct"); }
+      fb.innerHTML = (ok ? "<b>¡Correcto!</b> " : "<b>Revisa:</b> ") + card.dataset.exp;
+      fb.classList.add("show");
+      typeset(fb);
+    });
+  });
+});
+
+/* ============================================================
+   9 · Detecta el error (Slide 21) y Botones revelables (Slide 19)
+   ============================================================ */
+Array.prototype.forEach.call(document.querySelectorAll(".err"), function(card){
+  card.addEventListener("click", function(){
+    if (card.classList.contains("open")) return;
+    card.classList.add("open");
+    var ok = card.dataset.ok === "1";
+    card.classList.add(ok ? "good" : "bad");
+    card.querySelector(".st").textContent = ok ? "CORRECTO" : "ERROR";
+    var ex = card.querySelector(".ex");
+    ex.innerHTML = card.dataset.exp;
+    typeset(ex);
+  });
+});
+
+Array.prototype.forEach.call(document.querySelectorAll(".reveal"), function(b){
+  b.addEventListener("click", function(){
+    var el = $(b.dataset.target); if (!el) return;
+    var open = el.classList.toggle("show");
+    b.textContent = open ? "Ocultar respuestas" : "Mostrar respuestas";
+    if (open) typeset(el);
+  });
+});
+
+/* ============================================================
+   10 · Arranque inicial de laboratorios
+   ============================================================ */
+initBalanceTabs();
+renderBalance();
+initBridgeTabs();
+renderBridge();
+initLimTabs();
+renderLimit();
+renderYield();
+
+})();
+</script>
+</body>
+</html>

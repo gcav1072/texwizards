@@ -1,0 +1,488 @@
+% ============================================================
+%  EXAMEN — MOVIMIENTO RECTILÍNEO UNIFORME (MRU)
+%  Curso: 3er Año — Física (CELAM)
+%  Autor: Ing. Gabriel Astudillo
+%  Duración: 90 minutos  |  Ponderación: 20 puntos
+%  Estructura:
+%    * Sección 1: Teoría (6 pts)
+%    * Sección 2: Práctica — Conversiones y cálculos básicos (4 pts)
+%    * Sección 3: Práctica — Problemas de MRU (6 pts)
+%    * Sección 4: Práctica — Gráficas del movimiento (4 pts)
+%
+%  Nota: la clave de respuestas y criterios de corrección están
+%  al final, dentro de \ifmwclaves ... \fi. Al compilar con
+%  _scr se genera además MRU_exam_scr.pdf (versión estudiante).
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+\usepackage{mathwizards-guia}
+\mwguia{Examen — Movimiento Rectilíneo Uniforme (MRU)}{Ing. Gabriel Astudillo $\cdot$ 3er Año — CELAM}
+\setlength{\emergencystretch}{2em}
+
+% ── Gráfica x-t del ejercicio 9 ──────────────────────────────
+\newcommand{\mwgraficaxt}{%
+\begin{tikzpicture}[x=0.80cm, y=0.064cm, baseline=(current bounding box.center), line join=round]
+  % Cuadrícula
+  \draw[very thin, gray!28] (0,0) grid[xstep=1, ystep=10] (12,60);
+
+  % Guías punteadas de los vértices (detrás de ejes y marcas)
+  \draw[dashed, gray!75] (4,0) -- (4,50) -- (0,50);
+  \draw[dashed, gray!75] (6,0) -- (6,50);
+  \draw[dashed, gray!75] (11,0) -- (11,10) -- (0,10);
+
+  % Ejes
+  \draw[-{Stealth}, thick] (-0.3,0) -- (12.6,0)
+    node[right, font=\small\bfseries] {$t\ (\text{s})$};
+  \draw[-{Stealth}, thick] (0,-3) -- (0,64)
+    node[above, font=\small\bfseries] {$x\ (\text{m})$};
+
+  % Marcas en el eje t
+  \foreach \t in {1,2,...,12} {
+    \draw[thick] (\t, 1.3) -- (\t, -1.3)
+      node[below, font=\scriptsize] {$\t$};
+  }
+  % Marcas en el eje x
+  \foreach \x in {10,20,30,40,50,60} {
+    \draw[thick] (0.14, \x) -- (-0.14, \x)
+      node[left, font=\scriptsize] {$\x$};
+  }
+  \node[below left, font=\scriptsize] at (0,0) {$0$};
+
+  % Poligonal x-t
+  \draw[ultra thick, mwprimario]
+    (0,10) -- (4,50) -- (6,50) -- (11,10);
+
+  % Puntos clave
+  \foreach \P in {(0,10), (4,50), (6,50), (11,10)} {
+    \filldraw[mwprimario] \P circle (2.2pt);
+  }
+
+  % Etiquetas de tramos
+  \node[font=\scriptsize\bfseries, mwprimario, fill=white, inner sep=1.5pt] at (1.8, 35) {I};
+  \node[font=\scriptsize\bfseries, mwprimario, above=3pt] at (5.0, 50) {II};
+  \node[font=\scriptsize\bfseries, mwprimario, fill=white, inner sep=1.5pt] at (8.8, 35) {III};
+\end{tikzpicture}}
+
+% ── Plano vacío v-t del ejercicio 10 ─────────────────────────
+\newcommand{\mwplanovt}{%
+\begin{tikzpicture}[x=0.86cm, y=0.095cm, baseline=(current bounding box.center)]
+  % Cuadrícula
+  \draw[very thin, gray!35] (0,-15) grid[xstep=1, ystep=5] (10,25);
+
+  % Ejes
+  \draw[-{Stealth}, thick] (-0.3,0) -- (10.6,0)
+    node[right, font=\small\bfseries] {$t\ (\text{s})$};
+  \draw[-{Stealth}, thick] (0,-17) -- (0,28)
+    node[above, font=\small\bfseries] {$v\ (\text{m/s})$};
+
+  % Marcas en el eje t
+  \foreach \t in {1,2,...,10} {
+    \draw[thick] (\t, 1.0) -- (\t, -1.0)
+      node[below, font=\scriptsize] {$\t$};
+  }
+  % Marcas en el eje v
+  \foreach \v in {-15,-10,-5,5,10,15,20,25} {
+    \draw[thick] (0.12, \v) -- (-0.12, \v)
+      node[left, font=\scriptsize] {$\v$};
+  }
+  \node[below left, font=\scriptsize] at (0,0) {$0$};
+\end{tikzpicture}}
+
+% ── Gráfica v-t resuelta para la clave ───────────────────────
+\newcommand{\mwplanovtsol}{%
+\begin{tikzpicture}[x=0.86cm, y=0.105cm, baseline=(current bounding box.center)]
+  % Cuadrícula y áreas sombreadas (detrás de ejes y etiquetas)
+  \draw[very thin, gray!28] (0,-15) grid[xstep=1, ystep=5] (10,25);
+  \fill[mwmagenta!14] (0,0) rectangle (4,20);
+  \fill[mwrojonaranja!14] (6,0) rectangle (9,-10);
+
+  % Guías punteadas verticales (detrás de marcas numéricas)
+  \draw[dashed, thick, gray!75] (4,20) -- (4,0);
+  \draw[dashed, thick, gray!75] (6,0) -- (6,-10);
+  \draw[dashed, thick, gray!75] (9,-10) -- (9,0);
+
+  % Ejes
+  \draw[-{Stealth}, thick] (-0.3,0) -- (10.6,0)
+    node[right, font=\small\bfseries] {$t\ (\text{s})$};
+  \draw[-{Stealth}, thick] (0,-17) -- (0,28)
+    node[above, font=\small\bfseries] {$v\ (\text{m/s})$};
+
+  % Marcas en el eje t (misma línea base para 1..10; fondo blanco en 6 y 9)
+  \foreach \t in {1,2,3,4,5,7,8,10} {
+    \draw[thick] (\t, 1.0) -- (\t, -1.0)
+      node[below, font=\scriptsize] {$\t$};
+  }
+  \foreach \t in {6,9} {
+    \draw[thick] (\t, 1.0) -- (\t, -1.0)
+      node[below, font=\scriptsize, fill=white, inner sep=1pt, yshift=-1pt] {$\t$};
+  }
+  \foreach \v in {-15,-10,-5,5,10,15,20,25} {
+    \draw[thick] (0.12, \v) -- (-0.12, \v)
+      node[left, font=\scriptsize] {$\v$};
+  }
+  \node[below left, font=\scriptsize] at (0,0) {$0$};
+
+  % Segmentos de velocidad
+  \draw[ultra thick, mwmagenta] (0,20) -- (4,20);
+  \draw[ultra thick, mwmagenta] (4,0) -- (6,0);
+  \draw[ultra thick, mwrojonaranja] (6,-10) -- (9,-10);
+
+  % Etiquetas de área
+  \node[mwmagenta, font=\scriptsize\bfseries] at (2,10) {$+80\;\text{m}$};
+  \node[mwrojonaranja, font=\scriptsize\bfseries] at (7.5,-6.2) {$-30\;\text{m}$};
+\end{tikzpicture}}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Encabezado del Examen ──────────────────────────
+\begin{center}
+  \includegraphics[height=1.2cm]{l_hires.png}\\[3pt]
+  {\huge\nxheav\color{mwprimario}Examen de Física — MRU}\\[1pt]
+  {\large\nxlight\color{mwgrisoscuro}Movimiento Rectilíneo Uniforme}\\[1pt]
+  {\small\color{mwgris}Teoría $\cdot$ Conversión de Unidades $\cdot$ Problemas $\cdot$ Gráficas}\\[3pt]
+  \color{mwprimario}\rule{0.65\linewidth}{1.1pt}
+\end{center}
+\vspace{-8pt}
+
+\begin{cuadroinfo}
+  \small
+  \textbf{Nombre y Apellido:} \rule{0.46\linewidth}{0.4pt} \hfill
+  \textbf{Fecha:} \rule{0.17\linewidth}{0.4pt} \\[3pt]
+  \textbf{Año / Sección:} \rule{0.22\linewidth}{0.4pt} \hfill
+  \textbf{Tiempo:} 90 minutos \quad$\bullet$\quad
+  \textbf{Puntaje:} \rule{1.0cm}{0.4pt} / \textbf{20 pts} \\[3pt]
+  \textbf{Instrucciones generales:}
+  \begin{enumerate}[leftmargin=*, nosep, topsep=1pt]
+    \item Lea con atención cada pregunta antes de responder.
+    \item En la \textbf{Sección 1 (Teoría)} responda en la hoja y \textbf{justifique} toda afirmación falsa.
+    \item En las \textbf{Secciones 2, 3 y 4 (Práctica)} muestre todo el procedimiento: \emph{datos, fórmula, conversión (si aplica), sustitución y respuesta}.
+    \item \textbf{Escriba siempre las unidades} en sus resultados finales; no use teléfono ni calculadora.
+  \end{enumerate}
+\end{cuadroinfo}
+
+\begin{center}
+  \vspace{-6pt}
+  \small
+  \renewcommand{\arraystretch}{1.0}
+  \begin{tabular}{@{}l cc@{}}
+    \toprule
+    \textbf{Sección de la Evaluación} & \textbf{Puntaje máximo} & \textbf{Puntaje obtenido} \\
+    \midrule
+    1. Teoría (selección múltiple, V/F, completación y desarrollo) & 6,0 pts  & \rule{2.0cm}{0.4pt} \\
+    2. Práctica: conversión de unidades y cálculos básicos         & 4,0 pts  & \rule{2.0cm}{0.4pt} \\
+    3. Práctica: problemas de aplicación de MRU                    & 6,0 pts  & \rule{2.0cm}{0.4pt} \\
+    4. Práctica: análisis y construcción de gráficas ($x$-$t$ y $v$-$t$) & 4,0 pts & \rule{2.0cm}{0.4pt} \\
+    \midrule
+    \textbf{Total}                                                 & \textbf{20,0 pts} & \rule{2.0cm}{0.4pt} \\
+    \bottomrule
+  \end{tabular}
+  \vspace{-8pt}
+\end{center}
+
+% ============================================================
+\section{Teoría (6 puntos)}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, itemsep=0.2em]
+
+  \item \textbf{Selección múltiple (2,0 pts; 0,5 pts c/u).} Encierre la letra de la opción correcta.
+        \setlength{\multicolsep}{2pt}
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.14em]
+          \item ¿Cuál de las siguientes características define al Movimiento Rectilíneo Uniforme (MRU)?
+                \begin{multicols}{2}
+                  \begin{enumerate}[label=\Alph*), leftmargin=1.5em, nosep]
+                    \item Trayectoria curva, rapidez variable.
+                    \item Recta y aceleración constante no nula.
+                    \item Recta y velocidad constante ($a = 0$).
+                    \item Recta y rapidez creciente por segundo.
+                  \end{enumerate}
+                \end{multicols}
+          \item Una persona camina $100\;\text{m}$ al este y regresa $100\;\text{m}$ al punto inicial. Su \textbf{distancia recorrida} y su \textbf{desplazamiento} son:
+                \begin{multicols}{2}
+                  \begin{enumerate}[label=\Alph*), leftmargin=1.5em, nosep]
+                    \item $0\;\text{m}$ y $200\;\text{m}$
+                    \item $200\;\text{m}$ y $0\;\text{m}$
+                    \item $200\;\text{m}$ y $200\;\text{m}$
+                    \item $100\;\text{m}$ y $0\;\text{m}$
+                  \end{enumerate}
+                \end{multicols}
+          \item En una gráfica posición vs.\ tiempo ($x$-$t$), un tramo horizontal indica que el móvil:
+                \begin{multicols}{2}
+                  \begin{enumerate}[label=\Alph*), leftmargin=1.5em, nosep]
+                    \item avanza con velocidad positiva.
+                    \item retrocede hacia el origen.
+                    \item aumenta su velocidad.
+                    \item permanece en reposo ($v = 0$).
+                  \end{enumerate}
+                \end{multicols}
+          \item En una gráfica velocidad vs.\ tiempo ($v$-$t$) de un MRU, el \textbf{área} bajo la gráfica representa:
+                \begin{multicols}{2}
+                  \begin{enumerate}[label=\Alph*), leftmargin=1.5em, nosep]
+                    \item la aceleración del móvil.
+                    \item el desplazamiento del móvil.
+                    \item la posición inicial $x_0$.
+                    \item el marco de referencia.
+                  \end{enumerate}
+                \end{multicols}
+        \end{enumerate}
+
+\newpage
+
+  \item \textbf{Verdadero o Falso (2,0 pts; 0,5 pts c/u).} Escriba \textbf{V} o \textbf{F} entre los paréntesis. Si marca \textbf{F}, escriba la justificación debajo de la afirmación.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.75em]
+          \item En el MRU, un cuerpo realiza desplazamientos iguales en intervalos de tiempo iguales. \hfill (\rule{0.7cm}{0.4pt}) \\[4pt]
+                \textit{Justificación:} \rule{0.82\linewidth}{0.4pt}
+          \item La rapidez y la velocidad son exactamente la misma magnitud física, por lo que ninguna puede ser negativa. \hfill (\rule{0.7cm}{0.4pt}) \\[4pt]
+                \textit{Justificación:} \rule{0.82\linewidth}{0.4pt}
+          \item Para afirmar si un cuerpo está en reposo o en movimiento es indispensable establecer primero un sistema o marco de referencia. \hfill (\rule{0.7cm}{0.4pt}) \\[4pt]
+                \textit{Justificación:} \rule{0.82\linewidth}{0.4pt}
+          \item En una gráfica $x$-$t$, una línea recta inclinada con pendiente negativa indica que el móvil está frenando. \hfill (\rule{0.7cm}{0.4pt}) \\[4pt]
+                \textit{Justificación:} \rule{0.82\linewidth}{0.4pt}
+        \end{enumerate}
+
+  \vspace{6pt}
+
+  \item \textbf{Completación y desarrollo breve (2,0 pts).}
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.7em]
+          \item \textbf{(1,0 pt; 0,25 pts c/u)} Complete cada enunciado con la expresión o unidad correspondiente:
+                \begin{enumerate}[label=\roman*), leftmargin=1.6em, itemsep=0.6em, topsep=4pt]
+                  \item La ecuación general de posición del MRU es $x_f =$ \rule{3.4cm}{0.4pt}.
+                  \item A partir de $v = \dfrac{d}{t}$, al despejar el tiempo se obtiene $t =$ \rule{2.6cm}{0.4pt}.
+                  \item En el Sistema Internacional (SI), la velocidad se expresa en \rule{2.6cm}{0.4pt}.
+                  \item El desplazamiento de un móvil se define como $\Delta x =$ \rule{3.0cm}{0.4pt}.
+                \end{enumerate}
+          \item \textbf{(1,0 pt)} Explique con sus palabras la diferencia entre \textbf{trayectoria} y \textbf{desplazamiento}, e ilústrela con un ejemplo cotidiano breve. \\[10pt]
+                \noindent\rule{\linewidth}{0.4pt}\\[18pt]
+                \noindent\rule{\linewidth}{0.4pt}\\[18pt]
+                \noindent\rule{\linewidth}{0.4pt}\\[18pt]
+                \noindent\rule{\linewidth}{0.4pt}
+        \end{enumerate}
+
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Práctica: Conversión de Unidades y Cálculos Básicos (4 puntos)}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=4, itemsep=0.8em]
+
+  \item \textbf{Conversión de unidades (2,0 pts; 0,5 pts c/u).} Realice las siguientes conversiones mostrando el método del \textbf{factor de conversión} (fracciones unitarias):
+        \begin{multicols}{2}
+          \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=2.2cm]
+            \item $72\;\text{km/h} \longrightarrow \text{m/s}$
+            \item $15\;\text{m/s} \longrightarrow \text{km/h}$
+            \item $2{,}5\;\text{h} \longrightarrow \text{s}$
+            \item $45\;\text{min} \longrightarrow \text{h}$
+          \end{enumerate}
+        \end{multicols}
+        \vspace{2.2cm}
+
+  \item \textbf{Cálculos directos de MRU (2,0 pts; 1,0 pt c/u).} Resuelva cada situación indicando datos, fórmula, conversión (cuando haga falta), sustitución y respuesta con unidad:
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.8em]
+          \item Un ciclista avanza por una pista recta con rapidez constante de $12\;\text{m/s}$ durante $5\;\text{min}$. ¿Qué distancia recorre, expresada en \textbf{metros} y en \textbf{kilómetros}?
+                \vspace{3.5cm}
+          \item Un automóvil recorre una carretera recta de $162\;\text{km}$ en $1\;\text{h}\ 30\;\text{min}$. ¿Cuál es su rapidez constante en $\text{km/h}$ y en $\text{m/s}$?
+                \vspace{3.5cm}
+        \end{enumerate}
+
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Práctica: Problemas de Aplicación de MRU (6 puntos)}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=6, itemsep=0.8em]
+
+  \item \textbf{(2,0 pts) Ecuación de posición y sentido del movimiento.}
+        Un tren se desplaza sobre una vía recta con MRU. En el instante $t = 0\;\text{s}$ pasa por la posición inicial $x_0 = 120\;\text{m}$, con una velocidad constante $v = -15\;\text{m/s}$.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.25em]
+          \item \textbf{(0,5 pt)} Escriba la ecuación de posición $x_f(t)$ del tren.
+          \item \textbf{(0,75 pt)} ¿En qué instante $t$ pasa el tren por el origen ($x_f = 0\;\text{m}$)?
+          \item \textbf{(0,75 pt)} ¿Cuál es su posición a los $14\;\text{s}$? Interprete físicamente el signo obtenido.
+        \end{enumerate}
+        \vspace{4.0cm}
+
+  \item \textbf{(2,0 pts) Movimiento por tramos y rapidez media.}
+        Una atleta corre en línea recta durante dos tramos consecutivos: en el primer tramo recorre $360\;\text{m}$ a una rapidez constante de $9\;\text{m/s}$; inmediatamente después recorre $240\;\text{m}$ en el mismo sentido a una rapidez constante de $4\;\text{m/s}$.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.25em]
+          \item \textbf{(1,0 pt)} Calcule el tiempo empleado en cada tramo y el tiempo total del recorrido.
+          \item \textbf{(1,0 pt)} Determine la rapidez media de todo el trayecto. ¿Por qué no coincide con el promedio aritmético $\dfrac{9 + 4}{2} = 6{,}5\;\text{m/s}$?
+        \end{enumerate}
+        \vspace{4.0cm}
+
+  \item \textbf{(2,0 pts) Problema de encuentro.}
+        Dos ciudades $A$ y $B$ están separadas por $360\;\text{km}$ en una autopista recta. A las 8:00\,a.\,m.\ parten simultáneamente dos automóviles uno al encuentro del otro: el móvil $1$ sale de $A$ hacia $B$ a $70\;\text{km/h}$ y el móvil $2$ sale de $B$ hacia $A$ a $50\;\text{km/h}$.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.25em]
+          \item \textbf{(1,0 pt)} ¿Cuántas horas tardan en encontrarse y a qué hora ocurre el encuentro?
+          \item \textbf{(1,0 pt)} ¿A qué distancia de la ciudad $A$ se produce el encuentro?
+        \end{enumerate}
+        \vspace{4.0cm}
+
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+\section{Práctica: Gráficas del Movimiento (4 puntos)}
+% ============================================================
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=9, itemsep=0.5em]
+
+  \item \textbf{(2,0 pts) Lectura e interpretación de gráfica posición-tiempo ($x$-$t$).}
+        La gráfica muestra la posición $x$ de un móvil en función del tiempo $t$:
+        \begin{center}
+          \vspace{-4pt}
+          \mwgraficaxt
+          \vspace{-4pt}
+        \end{center}
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.25em]
+          \item \textbf{(0,5 pt)} Describa qué hace el móvil en cada tramo: I ($0\text{--}4\;\text{s}$), II ($4\text{--}6\;\text{s}$) y III ($6\text{--}11\;\text{s}$).
+          \item \textbf{(1,0 pt)} Calcule la velocidad en cada tramo a partir de la pendiente de la recta.
+          \item \textbf{(0,5 pt)} Determine la \textbf{distancia total recorrida} y el \textbf{desplazamiento total} entre $t = 0\;\text{s}$ y $t = 11\;\text{s}$.
+        \end{enumerate}
+        \vspace{0.6cm}
+
+  \item \textbf{(2,0 pts) Construcción de gráfica velocidad-tiempo ($v$-$t$) y áreas.}
+        Un vehículo en línea recta se mueve a $20\;\text{m/s}$ durante $4\;\text{s}$, luego permanece detenido ($0\;\text{m/s}$) durante $2\;\text{s}$ y finalmente retrocede a $-10\;\text{m/s}$ durante $3\;\text{s}$.
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, itemsep=0.25em]
+          \item \textbf{(1,0 pt)} Trace la gráfica velocidad vs.\ tiempo ($v$-$t$) sobre el plano cartesiano:
+                \begin{center}
+                  \vspace{-4pt}
+                  \mwplanovt
+                  \vspace{-4pt}
+                \end{center}
+          \item \textbf{(1,0 pt)} Calcule, usando las áreas bajo la gráfica, el \textbf{desplazamiento total} y la \textbf{distancia total recorrida} en los $9\;\text{s}$.
+        \end{enumerate}
+
+\end{enumerate}
+
+% ============================================================
+%  CLAVE DE RESPUESTAS Y RÚBRICA (oculta en versión _scr)
+% ============================================================
+\ifmwclaves
+\newpage
+\section{Clave de Respuestas y Criterios de Corrección}
+
+\begin{cuadroinfo}
+  \small
+  \textbf{Nota para el docente:} la evaluación suma exactamente \textbf{20,0 puntos}.
+  Se recomienda otorgar puntaje parcial por el planteamiento correcto (datos, conversión
+  y fórmula), penalizando únicamente el paso donde ocurra el error aritmético o la omisión de unidad.
+\end{cuadroinfo}
+
+\subsection*{Sección 1 — Teoría (6,0 puntos)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, itemsep=0.35em]
+  \item \textbf{Selección múltiple (2,0 pts; 0,5 c/u):}
+        \textbf{a)} C \quad
+        \textbf{b)} B ($d = 100 + 100 = 200\;\text{m}$; $\Delta x = 0\;\text{m}$) \quad
+        \textbf{c)} D \quad
+        \textbf{d)} B.
+
+  \item \textbf{Verdadero o Falso (2,0 pts; 0,5 c/u):}
+        \begin{enumerate}[label=\alph*), leftmargin=1.6em, nosep]
+          \item \textbf{V.}
+          \item \textbf{F.} La rapidez es escalar (solo módulo, siempre $\ge 0$); la velocidad es vectorial (módulo, dirección y sentido, por lo que puede ser negativa según el eje de referencia).
+          \item \textbf{V.}
+          \item \textbf{F.} En una gráfica $x$-$t$, una recta con pendiente negativa indica velocidad \textbf{constante} en sentido negativo (el móvil retrocede); no está frenando.
+        \end{enumerate}
+
+  \item \textbf{Completación y desarrollo breve (2,0 pts):}
+        \begin{enumerate}[label=\alph*), leftmargin=1.6em, nosep]
+          \item \textbf{(1,0 pt; 0,25 c/u)}
+                i. $x_0 + v \cdot t$; \quad
+                ii. $\dfrac{d}{v}$; \quad
+                iii. $\text{m/s}$ (metro por segundo); \quad
+                iv. $x_f - x_0$.
+          \item \textbf{(1,0 pt)} La \textbf{trayectoria} es el camino real que sigue el cuerpo al moverse (puede ser recto o curvo), mientras que el \textbf{desplazamiento} es el segmento dirigido desde la posición inicial hasta la posición final ($\Delta x = x_f - x_0$). \textit{Ejemplo:} dar una vuelta completa a una pista circular tiene una trayectoria igual al perímetro, pero desplazamiento nulo ($0\;\text{m}$).
+        \end{enumerate}
+\end{enumerate}
+
+\subsection*{Sección 2 — Conversiones y Cálculos Básicos (4,0 puntos)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=4, itemsep=0.35em]
+  \item \textbf{Conversiones (2,0 pts; 0,5 c/u):}
+        \begin{multicols}{2}
+          \begin{enumerate}[label=\alph*), leftmargin=1.6em, itemsep=0.35em]
+            \item $72\;\dfrac{\text{km}}{\text{h}} \times \dfrac{1\,000\;\text{m}}{1\;\text{km}} \times \dfrac{1\;\text{h}}{3\,600\;\text{s}} = \mathbf{20\;\text{m/s}}$.
+            \item $15\;\dfrac{\text{m}}{\text{s}} \times \dfrac{1\;\text{km}}{1\,000\;\text{m}} \times \dfrac{3\,600\;\text{s}}{1\;\text{h}} = \mathbf{54\;\text{km/h}}$.
+            \item $2{,}5\;\text{h} \times \dfrac{3\,600\;\text{s}}{1\;\text{h}} = \mathbf{9\,000\;\text{s}}$.
+            \item $45\;\text{min} \times \dfrac{1\;\text{h}}{60\;\text{min}} = \mathbf{0{,}75\;\text{h}}$.
+          \end{enumerate}
+        \end{multicols}
+
+  \item \textbf{Cálculos directos (2,0 pts; 1,0 c/u):}
+        \begin{enumerate}[label=\alph*), leftmargin=1.6em, itemsep=0.25em]
+          \item Conversión: $t = 5\;\text{min} \times \dfrac{60\;\text{s}}{1\;\text{min}} = 300\;\text{s}$. \quad
+                Distancia: $d = 12\;\text{m/s} \times 300\;\text{s} = \mathbf{3\,600\;\text{m}} = \mathbf{3{,}6\;\text{km}}$.
+          \item Tiempo: $t = 1\;\text{h} + 0{,}5\;\text{h} = 1{,}5\;\text{h}$. \quad
+                Rapidez: $v = \dfrac{162\;\text{km}}{1{,}5\;\text{h}} = \mathbf{108\;\text{km/h}}$; \quad
+                $108\;\text{km/h} \div 3{,}6 = \mathbf{30\;\text{m/s}}$.
+        \end{enumerate}
+\end{enumerate}
+
+\subsection*{Sección 3 — Problemas de Aplicación de MRU (6,0 puntos)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=6, itemsep=0.4em]
+  \item \textbf{(2,0 pts)}
+        \begin{enumerate}[label=\alph*), leftmargin=1.6em, nosep]
+          \item \textbf{(0,5 pt)} $x_f(t) = 120 - 15t$ \ ($x_f$ en $\text{m}$, $t$ en $\text{s}$).
+          \item \textbf{(0,75 pt)} $0 = 120 - 15t \implies 15t = 120 \implies \mathbf{t = 8\;\text{s}}$.
+          \item \textbf{(0,75 pt)} $x_f(14) = 120 - 15(14) = 120 - 210 = \mathbf{-90\;\text{m}}$. El signo negativo indica que el tren ya pasó por el origen y está a $90\;\text{m}$ en el sentido negativo del eje.
+        \end{enumerate}
+
+  \item \textbf{(2,0 pts)}
+        \begin{enumerate}[label=\alph*), leftmargin=1.6em, nosep]
+          \item \textbf{(1,0 pt)} $t_1 = \dfrac{360\;\text{m}}{9\;\text{m/s}} = \mathbf{40\;\text{s}}$; \quad
+                $t_2 = \dfrac{240\;\text{m}}{4\;\text{m/s}} = \mathbf{60\;\text{s}}$; \quad
+                $t_{\text{total}} = 40 + 60 = \mathbf{100\;\text{s}}$.
+          \item \textbf{(1,0 pt)} $d_{\text{total}} = 360 + 240 = 600\;\text{m}$, luego
+                $v_{\text{media}} = \dfrac{600\;\text{m}}{100\;\text{s}} = \mathbf{6\;\text{m/s}}$.
+                No coincide con $6{,}5\;\text{m/s}$ porque la atleta emplea más tiempo ($60\;\text{s}$) en el tramo lento que en el rápido ($40\;\text{s}$); el promedio aritmético solo valdría si ambos intervalos de tiempo fuesen iguales.
+        \end{enumerate}
+
+  \item \textbf{(2,0 pts)}
+        \begin{enumerate}[label=\alph*), leftmargin=1.6em, nosep]
+          \item \textbf{(1,0 pt)} Ubicando el origen en $A$: $x_1(t) = 70t$ y $x_2(t) = 360 - 50t$.
+                En el encuentro, $x_1 = x_2 \implies 70t = 360 - 50t \implies 120t = 360 \implies \mathbf{t = 3\;\text{h}}$.
+                Hora del encuentro: $8{:}00\;\text{a.\,m.} + 3\;\text{h} = \mathbf{11{:}00\;\text{a.\,m.}}$
+          \item \textbf{(1,0 pt)} $x_1(3) = 70\;\text{km/h} \times 3\;\text{h} = \mathbf{210\;\text{km}}$ desde la ciudad $A$ (y a $150\;\text{km}$ de $B$).
+        \end{enumerate}
+\end{enumerate}
+
+\newpage
+\subsection*{Sección 4 — Gráficas del Movimiento (4,0 puntos)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=9, itemsep=0.45em]
+  \item \textbf{(2,0 pts)}
+        \begin{enumerate}[label=\alph*), leftmargin=1.6em, nosep]
+          \item \textbf{(0,5 pt)} Tramo I ($0\text{--}4\;\text{s}$): avanza alejándose del origen desde $10\;\text{m}$ hasta $50\;\text{m}$. Tramo II ($4\text{--}6\;\text{s}$): permanece en reposo en $x = 50\;\text{m}$. Tramo III ($6\text{--}11\;\text{s}$): retrocede con velocidad constante desde $50\;\text{m}$ hasta $10\;\text{m}$.
+          \item \textbf{(1,0 pt)}
+                $v_{\text{I}} = \dfrac{50 - 10}{4 - 0} = \mathbf{10\;\text{m/s}}$; \quad
+                $v_{\text{II}} = \dfrac{50 - 50}{6 - 4} = \mathbf{0\;\text{m/s}}$; \\
+                $v_{\text{III}} = \dfrac{10 - 50}{11 - 6} = \dfrac{-40}{5} = \mathbf{-8\;\text{m/s}}$.
+          \item \textbf{(0,5 pt)} Distancia total: $d = 40 + 0 + 40 = \mathbf{80\;\text{m}}$. \quad
+                Desplazamiento total: $\Delta x = x(11) - x(0) = 10 - 10 = \mathbf{0\;\text{m}}$.
+        \end{enumerate}
+
+  \item \textbf{(2,0 pts)}
+        \begin{enumerate}[label=\alph*), leftmargin=1.6em, itemsep=0.3em]
+          \item \textbf{(1,0 pt)} Gráfica $v$-$t$ (escalón en $20\;\text{m/s}$ de $0$ a $4\;\text{s}$, sobre el eje en $0\;\text{m/s}$ de $4$ a $6\;\text{s}$, y escalón en $-10\;\text{m/s}$ de $6$ a $9\;\text{s}$):
+                \begin{center}
+                  \mwplanovtsol
+                \end{center}
+          \item \textbf{(1,0 pt)} Áreas: $A_1 = 20 \times 4 = 80\;\text{m}$, $A_2 = 0 \times 2 = 0\;\text{m}$, $A_3 = (-10) \times 3 = -30\;\text{m}$. \\
+                Desplazamiento total: $\Delta x = 80 + 0 - 30 = \mathbf{50\;\text{m}}$. \\
+                Distancia total recorrida: $d = |80| + 0 + |-30| = \mathbf{110\;\text{m}}$.
+        \end{enumerate}
+\end{enumerate}
+
+\fi
+\end{document}

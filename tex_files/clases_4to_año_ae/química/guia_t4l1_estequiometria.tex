@@ -1,0 +1,722 @@
+% ============================================================
+%  GUÍA TEMÁTICA — T4L1
+%  ESTEQUIOMETRÍA DE LAS REACCIONES QUÍMICAS
+%  Curso: 4to Año — Química
+%  Autor: Ing. Gabriel Astudillo
+%  Fuente de las clases: apuntes del 16/11 al 25/11 de 2026
+%
+%  CONTENIDO
+%    §1 Marco Teórico (Reacciones, balanceo, factor molar, R.L., rendimiento)
+%    §2 Ejemplos Resueltos Paso a Paso (6 modelos completos)
+%    §3 50 Ejercicios Propuestos en 5 bloques con numeración continua:
+%         A) Conceptos y balanceo por tanteo .............. 1–12
+%         B) Estequiometría simple (mol-mol y masa-masa) ... 13–24
+%         C) Reactivo límite, exceso y sobrante ............ 25–36
+%         D) Rendimiento de reacción (R.T., R.R. y %) ...... 37–44
+%         E) Problemas integradores tipo taller ............ 45–50
+%    §4 Clave de Respuestas Comentada (dentro de \ifmwclaves)
+%
+%  Compilar desde esta carpeta:
+%    latexmk -xelatex guia_t4l1_estequiometria.tex
+%  O desde la raíz con:
+%    ./compile_all.sh guia_t4l1
+% ============================================================
+
+\documentclass[12pt, letterpaper]{article}
+
+% ── Paquetes ─────────────────────────────────────────────────
+\usepackage{mathwizards-guia}
+\mwguia{Guía Temática — T4L1}{Ing. Gabriel Astudillo $\cdot$ 4to Año — Química}
+% babel-spanish redefine \% y falla dentro de modo matemático
+% ("Incompatible glue units"): se usa \pc para el signo % en fórmulas.
+\newcommand{\pc}{\text{\%}}
+\setlength{\emergencystretch}{2em}
+
+% ── Macros de apoyo visual ───────────────────────────────────
+\newcommand{\mwpuentemolar}{%
+\begin{tikzpicture}[scale=0.95, >=Stealth, node distance=0.45cm, every node/.style={font=\small}]
+  \node[draw=mwgris, fill=mwgrisclaro, rounded corners=4pt, inner sep=6pt, align=center] (gA)
+    {\textbf{Masa de A}\\(gramos)};
+  \node[draw=mwprimario, fill=mwprimario!10, rounded corners=4pt, inner sep=6pt, align=center, right=1.35cm of gA] (nA)
+    {\textbf{Moles de A}\\($n_A$)};
+  \node[draw=mwmagenta, fill=mwmagenta!10, rounded corners=4pt, inner sep=6pt, align=center, right=1.85cm of nA] (nB)
+    {\textbf{Moles de B}\\($n_B$)};
+  \node[draw=mwnaranja, fill=mwnaranja!10, rounded corners=4pt, inner sep=6pt, align=center, right=1.35cm of nB] (gB)
+    {\textbf{Masa de B}\\(gramos)};
+
+  \draw[->, thick, mwprimario] (gA) -- node[above, font=\scriptsize, color=mwgrisoscuro] {$\div\,M_A$} (nA);
+  \draw[->, very thick, mwmagenta] (nA) -- node[above, font=\scriptsize, align=center, color=mwmagenta] {\textbf{Factor molar}\\$\frac{\text{coef. B}}{\text{coef. A}}$} (nB);
+  \draw[->, thick, mwnaranja] (nB) -- node[above, font=\scriptsize, color=mwgrisoscuro] {$\times\,M_B$} (gB);
+\end{tikzpicture}}
+
+\begin{document}
+% ============================================================
+
+% ── Portada / Título ─────────────────────────────────────────
+\mwportada{Guía Temática — T4L1}{Estequiometría de las Reacciones Químicas}{Del balanceo por tanteo al reactivo límite y el rendimiento real}
+
+\vspace{4pt}
+\begin{cuadroinfo}
+  \small
+  \textbf{Presentación:} En el tema anterior (T1L2) aprendiste a trabajar con \emph{un solo compuesto} a la vez: su masa molar y la proporción de sus átomos. Ahora damos el siguiente paso: estudiar qué ocurre cuando varias sustancias \textbf{reaccionan entre sí}. Esta guía recoge toda la teoría, la tabla de trabajo y los métodos explicados en clases (del 16 al 25 de noviembre) para que domines el ajuste de ecuaciones, los cálculos mol--mol y masa--masa, el reactivo límite y el rendimiento de reacción.
+  \\[4pt]
+  \textbf{Organización:} en la \textbf{Sección 1} tienes el marco teórico y las rutas de resolución; en la \textbf{Sección 2}, seis ejemplos resueltos paso a paso siguiendo el esquema de clase; en la \textbf{Sección 3}, \textbf{50 ejercicios propuestos} en cinco bloques con dificultad progresiva; y al final, la clave comentada para comprobar tu trabajo.
+  \\[4pt]
+  \textbf{Nivel de Dificultad:}\quad
+  \facil{}\hspace{0.45em}Básico / Directo \quad
+  \medio{}\hspace{0.45em}Intermedio \quad
+  \dificil{}\hspace{0.45em}Desafiante \quad
+  \muyDificil{}\hspace{0.45em}Integrador
+\end{cuadroinfo}
+
+\vspace{4pt}
+\noindent\textbf{Masas atómicas de referencia para esta guía} (en u; numéricamente equivalen a g/mol):\par\nobreak
+\vspace{2pt}\nobreak
+\begin{center}
+  \small
+  \setlength{\tabcolsep}{7pt}
+  \begin{tabular}{lcccccccc}
+    \toprule
+    \textbf{Elemento} & H & C & N & O & Na & Mg & Al & S \\
+    \textbf{Masa atómica (g/mol)} & 1 & 12 & 14 & 16 & 23 & 24,3 & 27 & 32 \\
+    \midrule
+    \textbf{Elemento} & Cl & K & Ca & Fe & Cu & Zn & Ag & \\
+    \textbf{Masa atómica (g/mol)} & 35,5 & 39 & 40 & 56 & 63,5 & 65 & 108 & \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+
+\vspace{4pt}
+
+\newpage
+% ============================================================
+\section{Marco Teórico}
+% ============================================================
+
+\subsection{Reacción química, ecuación química y estados físicos}
+
+\begin{cuadroteoria}[nobreak=true]
+  \textbf{Estequiometría:} es la parte de la Química que estudia las relaciones cuantitativas involucradas en una reacción química. Toma en cuenta todos los aspectos relacionados con las cantidades (moles y masas) de las sustancias que participan.\\[4pt]
+  \textbf{Reacción química:} es un proceso mediante el cual unas sustancias iniciales llamadas \textbf{reactivos} se transforman en unas nuevas sustancias llamadas \textbf{productos}. Las propiedades físicas y químicas de cada producto son totalmente diferentes a las de las sustancias iniciales.
+  \[
+    \underbrace{A \;+\; B}_{\substack{\text{Reactivos}\\(\text{sustancias iniciales})}}
+    \;\longrightarrow\;
+    \underbrace{C \;+\; D}_{\substack{\text{Productos}\\(\text{sustancias finales})}}
+  \]
+  \textbf{Ecuación química:} es la representación simbólica de una reacción química. En ella se muestran todas las sustancias presentes, el \emph{estado físico} en que se encuentran y la igualdad de átomos ajustada mediante \emph{coeficientes estequiométricos}.
+\end{cuadroteoria}
+
+\noindent\textbf{Ejemplo de lectura estequiométrica} (visto en clase):
+\[
+  \underbrace{\text{Mg}_{(s)}}_{1\text{ mol}} \;+\; \underbrace{2\,\text{HCl}_{(ac)}}_{2\text{ moles}}
+  \;\longrightarrow\;
+  \underbrace{\text{MgCl}_{2(ac)}}_{1\text{ mol}} \;+\; \underbrace{\text{H}_{2(g)}}_{1\text{ mol}}
+\]
+Los números delante de cada fórmula ($1, 2, 1, 1$) son los \textbf{coeficientes estequiométricos}: indican en qué proporción de \textbf{moles} se combinan los reactivos y se forman los productos (cuando no aparece número escrito, el coeficiente es $1$). Los subíndices entre paréntesis indican el \textbf{estado físico}:
+
+\begin{center}
+  \small
+  \setlength{\tabcolsep}{10pt}
+  \begin{tabular}{cll}
+    \toprule
+    \textbf{Símbolo} & \textbf{Estado físico} & \textbf{Significado} \\
+    \midrule
+    $(s)$  & Sólido            & Sustancia en fase sólida (metal, sal precipitada, etc.). \\
+    $(l)$  & Líquido           & Sustancia líquida pura (por ejemplo, $\text{H}_2\text{O}_{(l)}$). \\
+    $(g)$  & Gaseoso           & Sustancia en forma de gas o vapor (ej., $\text{O}_{2(g)}$, $\text{CO}_{2(g)}$). \\
+    $(ac)$ & Disolución acuosa & Sustancia disuelta en agua (también se abrevia $(aq)$). \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+
+\subsection{Balanceo de ecuaciones por tanteo}
+
+\begin{cuadroteoria}[nobreak=true]
+  En toda reacción química se cumple la \textbf{ley de conservación de la masa} (Lavoisier): la cantidad total de átomos de cada elemento en los reactivos debe ser exactamente igual a la de los productos. Balancear (o ajustar) por tanteo consiste en encontrar los coeficientes estequiométricos más pequeños enteros que igualen ambos lados.
+\end{cuadroteoria}
+
+\begin{cuadropasos}[nobreak=true]
+  \textbf{Orden recomendado para ajustar por tanteo:}
+  \begin{enumerate}[leftmargin=*, nosep, topsep=3pt]
+    \item \textbf{Metales} (Na, K, Ca, Mg, Al, Fe, Zn, etc.).
+    \item \textbf{No metales} distintos de H y O (C, N, S, P, Cl, etc.).
+    \item \textbf{Hidrógeno (H)}.
+    \item \textbf{Oxígeno (O)} (si los tres primeros están bien, suele servir de verificación final).
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroextra}[nobreak=true]
+  \textbf{Truco de la fracción auxiliar (muy útil en combustiones):} si al ajustar el oxígeno obtienes un número impar de átomos en un lado y tienes $\text{O}_2$ en el otro, coloca temporalmente una fracción $\frac{n}{2}$ y luego multiplica \emph{toda} la ecuación por $2$ para obtener coeficientes enteros.
+  \\[3pt]
+  \emph{Ejemplo de clase (octano):}
+  \[
+    \text{C}_8\text{H}_{18} + \tfrac{25}{2}\,\text{O}_2 \longrightarrow 8\,\text{CO}_2 + 9\,\text{H}_2\text{O}
+    \quad\xrightarrow{\times\,2}\quad
+    2\,\text{C}_8\text{H}_{18} + 25\,\text{O}_2 \longrightarrow 16\,\text{CO}_2 + 18\,\text{H}_2\text{O}
+  \]
+  Verificación: C $=16$, H $=36$, O $=50$ en ambos lados \checkmark
+\end{cuadroextra}
+
+\begin{cuadroadvertencia}[nobreak=true]
+  \textbf{Errores clásicos al balancear:}
+  \begin{itemize}[leftmargin=*, nosep, topsep=2pt]
+    \item \textbf{Cambiar los subíndices internos.} Nunca transformes $\text{H}_2\text{O}$ en $\text{H}_2\text{O}_2$ o $\text{MgO}$ en $\text{MgO}_2$: cambiarías la sustancia por otra distinta. Solo se cambian los \emph{coeficientes} delante de cada fórmula.
+    \item \textbf{Multiplicar mal los paréntesis.} En $3\,\text{Ca(OH)}_2$ hay $3$ Ca, $3\times 2 = 6$ O y $6$ H.
+    \item \textbf{Olvidar multiplicar un término al quitar fracciones.} El factor $2$ afecta a \emph{todos} los reactivos y productos.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\subsection{Cálculos estequiométricos simples: el puente molar}
+
+\begin{cuadroteoria}[nobreak=true]
+  Una ecuación balanceada relaciona directamente \textbf{moles}, \emph{nunca gramos directos}. Si un problema entrega o pide gramos, siempre debes pasar primero por el \textbf{mol} utilizando la masa molar ($M$):
+  \begin{center}
+    \mwpuentemolar
+  \end{center}
+\end{cuadroteoria}
+
+\begin{cuadropasos}[nobreak=true]
+  \textbf{Ruta fija de resolución (esquema de tabla y factor de conversión):}
+  \begin{enumerate}[leftmargin=*, nosep, topsep=3pt]
+    \item \textbf{Balancea la ecuación} y arma una tabla con dos filas debajo: en la primera escribe los \emph{moles estequiométricos} (los coeficientes); en la segunda, lo que \emph{tienes} y la incógnita ($?$).
+    \item \textbf{Convierte gramos a moles} si el dato inicial es una masa:
+          $n = m \times \left(\dfrac{1\text{ mol}}{M\text{ g}}\right)$.
+    \item \textbf{Aplica el factor de conversión molar} cancelando la unidad dada arriba y abajo:
+          \[
+            \text{moles buscados} \;=\; \text{moles dados} \times \left(\frac{\text{coef. sustancia buscada}}{\text{coef. sustancia dada}}\right)
+          \]
+    \item \textbf{Convierte moles a gramos} si el problema pide la masa del producto o reactivo:
+          $m = n \times \left(\dfrac{M\text{ g}}{1\text{ mol}}\right)$.
+  \end{enumerate}
+\end{cuadropasos}
+
+\subsection{Reactivo límite ($R.L.$) y reactivo en exceso ($R.\text{Exc.}$)}
+
+\begin{cuadroteoria}[nobreak=true]
+  Cuando un problema te da cantidades iniciales de \textbf{dos reactivos a la vez} (sin decir que uno está «en exceso»), uno de ellos suele agotarse primero y detiene la reacción:
+  \begin{itemize}[leftmargin=*, nosep, topsep=3pt]
+    \item \textbf{Reactivo límite ($R.L.$):} es el reactivo que se consume \emph{totalmente} en la reacción. Determina la cantidad máxima de producto que puede formarse; \textbf{todos los cálculos de productos se hacen con él}.
+    \item \textbf{Reactivo en exceso ($R.\text{Exc.}$):} es el reactivo que \emph{no} se consume totalmente; una parte de él sobra al finalizar el proceso.
+  \end{itemize}
+\end{cuadroteoria}
+
+\begin{cuadropasos}[nobreak=true]
+  \textbf{Cómo identificar el $R.L.$ y calcular el sobrante (método de clase):}
+  \begin{enumerate}[leftmargin=*, nosep, topsep=3pt]
+    \item \textbf{Pasa ambos reactivos a moles} (si alguno viene en gramos, divide entre su $M$).
+    \item \textbf{Elige un reactivo (A) y calcula cuánto necesitas del otro (B)} usando el factor molar:
+          \[
+            n_B\text{ necesarios} \;=\; n_A\text{ que tengo} \times \left(\frac{\text{coef. B}}{\text{coef. A}}\right)
+          \]
+    \item \textbf{Compara lo que necesitas con lo que tienes de B:}
+          \begin{itemize}[leftmargin=*, nosep, topsep=2pt]
+            \item Si $\text{Tengo } B < \text{Necesito } B$ $\Longrightarrow$ B no alcanza, se agota primero: $\mathbf{R.L. = B}$ y $\mathbf{R.\text{Exc.} = A}$.
+            \item Si $\text{Tengo } B > \text{Necesito } B$ $\Longrightarrow$ B sobra: $\mathbf{R.L. = A}$ y $\mathbf{R.\text{Exc.} = B}$.
+          \end{itemize}
+    \item \textbf{Calcula los productos usando únicamente los moles del $R.L.$}
+    \item \textbf{Si te piden cuánto sobra del $R.\text{Exc.}$:} calcula con el $R.L.$ los moles del $R.\text{Exc.}$ que realmente reaccionan y resta:
+          $\text{Sobra} = \text{Tengo} - \text{Reacciona}$.
+  \end{enumerate}
+\end{cuadropasos}
+
+\begin{cuadroadvertencia}[nobreak=true]
+  \textbf{Trampa número 1 en reactivo límite:} pensar que el reactivo con \emph{menor cantidad} inicial (menos moles o menos gramos) es automáticamente el limitante. \textbf{¡Falso!} Depende de la proporción estequiométrica y de las masas molares. Por ejemplo, si $1\text{ mol}$ de A necesita $2\text{ mol}$ de B y tienes $4\text{ mol}$ de A y $6\text{ mol}$ de B, ¡el limitante es B ($6 < 8$), aunque tengas más moles de B que de A!
+\end{cuadroadvertencia}
+
+\subsection{Rendimiento de una reacción ($R.T.$, $R.R.$ y $\pc\,\text{Rendimiento}$)}
+
+\begin{cuadroteoria}[nobreak=true]
+  En la práctica de laboratorio rara vez se obtiene el $100\,\pc$ de lo que predice el papel (por reacciones secundarias, pérdidas al filtrar o reacciones incompletas). Distinguimos dos cantidades para el \textbf{producto}:
+  \begin{itemize}[leftmargin=*, nosep, topsep=3pt]
+    \item \textbf{Rendimiento Teórico ($R.T.$):} es la cantidad máxima de producto que se obtiene mediante los cálculos estequiométricos (suponiendo consumo completo del $R.L.$ sin pérdidas).
+    \item \textbf{Rendimiento Real ($R.R.$):} es la cantidad de producto que se obtiene experimentalmente; siempre cumple $R.R. \le R.T.$
+  \end{itemize}
+  \begin{gather*}
+    \boxed{\pc\,\text{Rendimiento} \;=\; \frac{\text{Rendimiento Real }(R.R.)}{\text{Rendimiento Teórico }(R.T.)}\times 100} \\[4pt]
+    \boxed{R.R. \;=\; \frac{R.T.\times \pc\,\text{Rendimiento}}{100}}
+    \qquad\text{y}\qquad
+    \boxed{R.T. \;=\; \frac{R.R.\times 100}{\pc\,\text{Rendimiento}}}
+  \end{gather*}
+\end{cuadroteoria}
+
+\begin{cuadroadvertencia}[nobreak=true]
+  \textbf{Ojo con las unidades y el porcentaje:}
+  \begin{itemize}[leftmargin=*, nosep, topsep=2pt]
+    \item $R.R.$ y $R.T.$ deben estar en las \textbf{mismas unidades} (ambos en gramos o ambos en moles) y corresponder al \textbf{mismo producto}.
+    \item El rendimiento real \textbf{nunca} puede ser mayor que el teórico ($R.R. \le R.T.$): si te da mayor que el $100\,\pc$, invertiste la fracción o multiplicaste cuando debías dividir.
+  \end{itemize}
+\end{cuadroadvertencia}
+
+\newpage
+% ============================================================
+\section{Ejemplos Resueltos Paso a Paso}
+% ============================================================
+
+\noindent\textbf{Ejemplo 1 (balanceo por tanteo con fracción auxiliar).} Ajuste por tanteo las siguientes ecuaciones químicas:
+\begin{enumerate}[label=\alph*), leftmargin=1.8em, nosep, topsep=2pt]
+  \item $\text{C}_8\text{H}_{18(l)} + \text{O}_{2(g)} \longrightarrow \text{CO}_{2(g)} + \text{H}_2\text{O}_{(g)}$
+  \item $\text{N}_{2(g)} + \text{H}_{2(g)} \longrightarrow \text{NH}_{3(g)}$
+\end{enumerate}
+
+\begin{cuadrosolucion}[nobreak=true]
+  \small
+  \textbf{a)} Seguimos el orden: no metal ($\text{C}$) $\to$ $\text{H}$ $\to$ $\text{O}$.
+  \begin{itemize}[leftmargin=*, nosep, topsep=2pt]
+    \item Carbono: hay $8$ a la izquierda $\Rightarrow$ colocamos $8$ en $\text{CO}_2$.
+    \item Hidrógeno: hay $18$ a la izquierda $\Rightarrow$ colocamos $9$ en $\text{H}_2\text{O}$ ($9\times 2 = 18$).
+    \item Oxígeno: a la derecha hay $8(2) + 9(1) = 25$ átomos de O. En $\text{O}_2$ necesitamos $\frac{25}{2}$ moléculas:
+          \begin{gather*}
+            2\times\left[\,\text{C}_8\text{H}_{18(l)} + \tfrac{25}{2}\,\text{O}_{2(g)} \longrightarrow 8\,\text{CO}_{2(g)} + 9\,\text{H}_2\text{O}_{(g)}\,\right] \\[3pt]
+            \Longrightarrow\quad
+            \boxed{2\,\text{C}_8\text{H}_{18(l)} + 25\,\text{O}_{2(g)} \longrightarrow 16\,\text{CO}_{2(g)} + 18\,\text{H}_2\text{O}_{(g)}}
+          \end{gather*}
+  \end{itemize}
+  \textbf{b)} Hay $2$ N a la izquierda $\Rightarrow$ ponemos $2$ delante de $\text{NH}_3$, lo que deja $6$ H a la derecha $\Rightarrow$ ponemos $3$ delante de $\text{H}_2$:
+  \[
+    \boxed{\text{N}_{2(g)} + 3\,\text{H}_{2(g)} \longrightarrow 2\,\text{NH}_{3(g)}}
+    \qquad (\text{N}:2=2,\ \text{H}:6=6\ \checkmark)
+  \]
+\end{cuadrosolucion}
+
+\medskip
+\noindent\textbf{Ejemplo 2 (cálculos mol--mol con tabla estequiométrica).} El clorato de potasio ($\text{KClO}_3$) se obtiene según la reacción balanceada:
+\[
+  6\,\text{KOH}_{(ac)} + 3\,\text{Cl}_{2(g)} \longrightarrow \text{KClO}_{3(s)} + 5\,\text{KCl}_{(ac)} + 3\,\text{H}_2\text{O}_{(l)}
+\]
+Calcule: \textbf{a)} moles de $\text{KClO}_3$ formados a partir de $5\text{ mol}$ de $\text{KOH}$ y exceso de $\text{Cl}_2$; \textbf{b)} moles de $\text{Cl}_2$ necesarios para obtener $2{,}80\text{ mol}$ de $\text{KCl}$.
+
+\begin{cuadrosolucion}[nobreak=true]
+  \small
+  Organizamos los coeficientes estequiométricos y los datos en la tabla de clase:
+  \begin{center}
+    \setlength{\tabcolsep}{7pt}
+    \begin{tabular}{l|ccccc}
+      \toprule
+      \textbf{Ecuación} & $6\,\text{KOH}$ & $3\,\text{Cl}_2$ & $\text{KClO}_3$ & $5\,\text{KCl}$ & $3\,\text{H}_2\text{O}$ \\
+      \midrule
+      \textbf{Estequiometría} & $6\text{ mol}$ & $3\text{ mol}$ & $1\text{ mol}$ & $5\text{ mol}$ & $3\text{ mol}$ \\
+      \textbf{Caso a)} & $5\text{ mol}$ & exceso & $?$ & — & — \\
+      \textbf{Caso b)} & — & $?$ & — & $2{,}80\text{ mol}$ & — \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \textbf{a)} Factor de conversión desde $\text{KOH}$ hasta $\text{KClO}_3$:
+  \[
+    n_{\text{KClO}_3} = 5\,\cancel{\text{mol KOH}} \times \left(\frac{1\text{ mol KClO}_3}{6\,\cancel{\text{mol KOH}}}\right) = \boxed{0{,}83\text{ mol KClO}_3}
+  \]
+  \textbf{b)} Factor de conversión desde $\text{KCl}$ hasta $\text{Cl}_2$:
+  \[
+    n_{\text{Cl}_2} = 2{,}80\,\cancel{\text{mol KCl}} \times \left(\frac{3\text{ mol Cl}_2}{5\,\cancel{\text{mol KCl}}}\right) = \boxed{1{,}68\text{ mol Cl}_2\text{ necesarios}}
+  \]
+\end{cuadrosolucion}
+
+\newpage
+\noindent\textbf{Ejemplo 3 (masa inicial a moles).} $1{,}5\text{ g}$ de $\text{Mg}_{(s)}$ reaccionan totalmente con $\text{HCl}_{(ac)}$ en exceso según: $\text{Mg}_{(s)} + \text{HCl}_{(ac)} \longrightarrow \text{MgCl}_{2(ac)} + \text{H}_{2(g)}$. Calcule: \textbf{a)} moles de $\text{HCl}$ utilizados; \textbf{b)} moles de $\text{H}_2$ formados.
+
+\begin{cuadrosolucion}[nobreak=true]
+  \small
+  \textbf{Paso 1 (ajustar y pasar gramos a moles):} la ecuación balanceada es $\text{Mg}_{(s)} + 2\,\text{HCl}_{(ac)} \longrightarrow \text{MgCl}_{2(ac)} + \text{H}_{2(g)}$ (proporción $1:2:1:1$). Con $M(\text{Mg}) = 24{,}3\text{ g/mol}$:
+  \[
+    n_{\text{Mg}} = 1{,}5\,\cancel{\text{g Mg}} \times \left(\frac{1\text{ mol Mg}}{24{,}3\,\cancel{\text{g Mg}}}\right) = 0{,}0617\text{ mol} \approx 0{,}06\text{ mol Mg}
+  \]
+  \textbf{Paso 2 (factores molares usando $0{,}06\text{ mol Mg}$):}
+  \begin{align*}
+    \textbf{a)}\ n_{\text{HCl}} &= 0{,}06\,\cancel{\text{mol Mg}} \times \left(\frac{2\text{ mol HCl}}{1\,\cancel{\text{mol Mg}}}\right) = \boxed{0{,}12\text{ mol HCl}} \\[3pt]
+    \textbf{b)}\ n_{\text{H}_2} &= 0{,}06\,\cancel{\text{mol Mg}} \times \left(\frac{1\text{ mol H}_2}{1\,\cancel{\text{mol Mg}}}\right) = \boxed{0{,}06\text{ mol H}_2}
+  \end{align*}
+  \emph{Nota de precisión:} si en cálculos posteriores conservas todos los decimales ($0{,}0617\text{ mol}$), resulta $0{,}123\text{ mol HCl}$ y $0{,}062\text{ mol H}_2$. En clase trabajaremos redondeando a dos decimales.
+\end{cuadrosolucion}
+
+\medskip
+\noindent\textbf{Ejemplo 4 (reactivo límite y cálculo del exceso sobrante).} En la reacción $\text{Zn}_{(s)} + 2\,\text{HCl}_{(ac)} \longrightarrow \text{ZnCl}_{2(ac)} + \text{H}_{2(g)}$ se colocan $6\text{ mol}$ de $\text{Zn}$ y $5\text{ mol}$ de $\text{HCl}$. Determine el reactivo límite, el reactivo en exceso y cuántos moles del reactivo en exceso quedan sin reaccionar.
+
+\begin{cuadrosolucion}[nobreak=true]
+  \small
+  \textbf{Tabla:} $\text{Zn}\ (1\text{ mol}) + 2\,\text{HCl}\ (2\text{ mol}) \longrightarrow \text{ZnCl}_2\ (1\text{ mol}) + \text{H}_2\ (1\text{ mol})$. Tengo: $6\text{ mol Zn}$ y $5\text{ mol HCl}$.\\[3pt]
+  \textbf{1) Determinar el $R.L.$:} calculamos cuánto $\text{HCl}$ se necesita para gastar todo el $\text{Zn}$:
+  \[
+    n_{\text{HCl necesarios}} = 6\,\cancel{\text{mol Zn}} \times \left(\frac{2\text{ mol HCl}}{1\,\cancel{\text{mol Zn}}}\right) = 12\text{ mol HCl necesarios}
+  \]
+  Como solo tengo $5\text{ mol HCl}$ ($5 < 12$), el $\text{HCl}$ se agota primero:
+  \[
+    \boxed{R.L. = \text{HCl}} \qquad \boxed{R.\text{Exc.} = \text{Zn}}
+  \]
+  \textbf{2) Calcular cuánto $\text{Zn}$ reacciona y cuánto sobra} (partiendo del $R.L.$):
+  \[
+    n_{\text{Zn reaccionan}} = 5\,\cancel{\text{mol HCl}} \times \left(\frac{1\text{ mol Zn}}{2\,\cancel{\text{mol HCl}}}\right) = 2{,}5\text{ mol Zn}
+  \]
+  \[
+    n_{\text{Zn sobran}} = \text{Tengo} - \text{Reacciona} = 6 - 2{,}5 = \boxed{3{,}5\text{ mol Zn en exceso}}
+  \]
+\end{cuadrosolucion}
+
+\newpage
+\noindent\textbf{Ejemplo 5 (rendimiento teórico y real desde gramos).} $250\text{ g}$ de $\text{Na}_2\text{SO}_4$ reaccionan con un exceso de $\text{CaCl}_2$ según: $\text{Na}_2\text{SO}_{4(ac)} + \text{CaCl}_{2(ac)} \longrightarrow \text{CaSO}_{4(s)} + \text{NaCl}_{(ac)}$. Determine: \textbf{a)} moles de $\text{NaCl}$ que se forman teóricamente; \textbf{b)} moles de $\text{NaCl}$ obtenidos realmente si el rendimiento es del $92\,\pc$.
+
+\begin{cuadrosolucion}[nobreak=true]
+  \small
+  \textbf{1) Balancear:} $\text{Na}_2\text{SO}_{4(ac)} + \text{CaCl}_{2(ac)} \longrightarrow \text{CaSO}_{4(s)} + 2\,\text{NaCl}_{(ac)}$ (relación $1:1:1:2$).\\[3pt]
+  \textbf{2) Masa molar y moles de $\text{Na}_2\text{SO}_4$:} $M = 2(23) + 32 + 4(16) = 46 + 32 + 64 = 142\text{ g/mol}$.
+  \[
+    n_{\text{Na}_2\text{SO}_4} = 250\,\cancel{\text{g}} \times \left(\frac{1\text{ mol}}{142\,\cancel{\text{g}}}\right) = 1{,}76\text{ mol Na}_2\text{SO}_4
+  \]
+  \textbf{a) Rendimiento teórico ($R.T.$):}
+  \[
+    n_{\text{NaCl}}\ (R.T.) = 1{,}76\,\cancel{\text{mol Na}_2\text{SO}_4} \times \left(\frac{2\text{ mol NaCl}}{1\,\cancel{\text{mol Na}_2\text{SO}_4}}\right) = \boxed{3{,}52\text{ mol NaCl}}
+  \]
+  \textbf{b) Rendimiento real ($R.R.$) al $92\,\pc$:}
+  \[
+    n_{\text{NaCl}}\ (R.R.) = \frac{R.T.\times \pc\,\text{Rend}}{100} = \frac{3{,}52\text{ mol}\times 92}{100} = \boxed{3{,}24\text{ mol NaCl}}
+  \]
+\end{cuadrosolucion}
+
+\newpage
+\noindent\textbf{Ejemplo 6 (problema integrador completo — repaso de clase).} En un recipiente se colocan $8\text{ mol}$ de $\text{HCl}$ y $5\text{ mol}$ de $\text{Ca(OH)}_2$ según: $\text{HCl}_{(ac)} + \text{Ca(OH)}_{2(s)} \longrightarrow \text{CaCl}_{2(s)} + \text{H}_2\text{O}_{(l)}$. Responda: \textbf{a)} ajuste la reacción; \textbf{b)} identifique $R.L.$ y $R.\text{Exc.}$; \textbf{c)} gramos de $\text{CaCl}_2$ formados teóricamente; \textbf{d)} gramos reales de $\text{CaCl}_2$ con un rendimiento del $92\,\pc$.
+
+\begin{cuadrosolucion}[nobreak=true]
+  \small
+  \textbf{a) Ecuación ajustada y tabla:}
+  \begin{center}
+    \setlength{\tabcolsep}{7pt}
+    \begin{tabular}{l|cccc}
+      \toprule
+      \textbf{Ecuación} & $2\,\text{HCl}_{(ac)}$ & $\text{Ca(OH)}_{2(s)}$ & $\text{CaCl}_{2(s)}$ & $2\,\text{H}_2\text{O}_{(l)}$ \\
+      \midrule
+      \textbf{Estequiometría} & $2\text{ mol}$ & $1\text{ mol}$ & $1\text{ mol}$ & $2\text{ mol}$ \\
+      \textbf{Tengo} & $8\text{ mol}$ & $5\text{ mol}$ & $?$ & — \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \textbf{b) Reactivo límite:} para consumir $5\text{ mol}$ de $\text{Ca(OH)}_2$ se necesitan:
+  \[
+    n_{\text{HCl necesarios}} = 5\,\cancel{\text{mol Ca(OH)}_2} \times \left(\frac{2\text{ mol HCl}}{1\,\cancel{\text{mol Ca(OH)}_2}}\right) = 10\text{ mol HCl necesarios}
+  \]
+  Como solo tengo $8\text{ mol HCl}$ ($8 < 10$): \quad $\boxed{R.L. = \text{HCl}}$ \quad y \quad $\boxed{R.\text{Exc.} = \text{Ca(OH)}_2}$.\\[3pt]
+  \textbf{c) Rendimiento teórico ($R.T.$) en gramos:} partiendo del $R.L.$ ($8\text{ mol HCl}$), hallamos los moles de $\text{CaCl}_2$ y usamos $M(\text{CaCl}_2) = 40 + 2(35{,}5) = 40 + 71 = 111\text{ g/mol}$:
+  \begin{align*}
+    n_{\text{CaCl}_2} &= 8\,\cancel{\text{mol HCl}} \times \left(\frac{1\text{ mol CaCl}_2}{2\,\cancel{\text{mol HCl}}}\right) = 4\text{ mol CaCl}_2 \\[3pt]
+    m_{\text{CaCl}_2}\ (R.T.) &= 4\,\cancel{\text{mol}} \times \left(\frac{111\text{ g}}{1\,\cancel{\text{mol}}}\right) = \boxed{444\text{ g CaCl}_2}
+  \end{align*}
+  \textbf{d) Rendimiento real ($R.R.$) al $92\,\pc$:}
+  \[
+    R.R. = \frac{444\text{ g}\times 92}{100} = \boxed{408{,}48\text{ g CaCl}_2}
+  \]
+\end{cuadrosolucion}
+
+\newpage
+% ============================================================
+\section{Ejercicios Propuestos}
+% ============================================================
+
+\noindent En todos los ejercicios utilice las masas atómicas de la tabla inicial, trabaje con dos decimales cuando haya redondeo y escriba siempre las unidades y la sustancia en cada factor de conversión.
+
+% ------------------------------------------------------------
+\subsection{Bloque A — Conceptos y balanceo por tanteo (1 a 12)}
+% ------------------------------------------------------------
+
+\noindent Los ejercicios 1--5 $(\bigstar)$ trabajan conceptos básicos y ecuaciones directas; 6--9 $(\bigstar\bigstar)$ incluyen paréntesis y fracciones auxiliares; 10--12 $(\bigstar\bigstar\bigstar)$ exigen lectura crítica y traducción de enunciados.
+
+\begin{enumerate}[leftmargin=*, start=1]
+
+  % ── ★ (1–5) ──────────────────────────────────────────────
+  \item \facil{}\hspace{0.55em}Explique con sus palabras qué diferencia existe entre los \textbf{reactivos} y los \textbf{productos} de una reacción química, y por qué la estequiometría exige trabajar con ecuaciones balanceadas.
+
+  \item \facil{}\hspace{0.55em}Indique qué representan los símbolos $(s)$, $(l)$, $(g)$ y $(ac)$ en una ecuación química, y qué significado tienen los \textbf{coeficientes estequiométricos} delante de cada fórmula.
+
+  \item \facil{}\hspace{0.55em}Al ajustar una ecuación química por tanteo: ¿en qué orden conviene balancear los elementos y por qué nunca deben cambiarse los subíndices de las fórmulas?
+
+  \item \facil{}\hspace{0.55em}Ajuste por tanteo las siguientes ecuaciones químicas sencillas:
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, nosep, topsep=2pt]
+          \item $\text{Mg}_{(s)} + \text{O}_{2(g)} \longrightarrow \text{MgO}_{(s)}$
+          \item $\text{H}_{2(g)} + \text{Cl}_{2(g)} \longrightarrow \text{HCl}_{(g)}$
+          \item $\text{Na}_{(s)} + \text{H}_2\text{O}_{(l)} \longrightarrow \text{NaOH}_{(ac)} + \text{H}_{2(g)}$
+        \end{enumerate}
+
+  \item \facil{}\hspace{0.55em}Ajuste por tanteo e indique la proporción en moles (reactivos y productos) de:
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, nosep, topsep=2pt]
+          \item $\text{KClO}_{3(s)} \longrightarrow \text{KCl}_{(s)} + \text{O}_{2(g)}$
+          \item $\text{Al}_{(s)} + \text{O}_{2(g)} \longrightarrow \text{Al}_2\text{O}_{3(s)}$
+          \item $\text{Fe}_{(s)} + \text{HCl}_{(ac)} \longrightarrow \text{FeCl}_{3(ac)} + \text{H}_{2(g)}$
+        \end{enumerate}
+
+  % ── ★★ (6–9) ─────────────────────────────────────────────
+  \item \medio{}\hspace{0.55em}Ajuste las siguientes reacciones que contienen grupos entre paréntesis:
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, nosep, topsep=2pt]
+          \item $\text{Ca(OH)}_{2(s)} + \text{H}_3\text{PO}_{4(ac)} \longrightarrow \text{Ca}_3(\text{PO}_4)_{2(s)} + \text{H}_2\text{O}_{(l)}$
+          \item $\text{Al(OH)}_{3(s)} + \text{H}_2\text{SO}_{4(ac)} \longrightarrow \text{Al}_2(\text{SO}_4)_{3(ac)} + \text{H}_2\text{O}_{(l)}$
+        \end{enumerate}
+
+  \item \medio{}\hspace{0.55em}Ajuste por tanteo las siguientes ecuaciones:
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, nosep, topsep=2pt]
+          \item $\text{Fe}_2\text{O}_{3(s)} + \text{CO}_{(g)} \longrightarrow \text{Fe}_{(s)} + \text{CO}_{2(g)}$
+          \item $\text{Al}_{(s)} + \text{H}_2\text{SO}_{4(ac)} \longrightarrow \text{Al}_2(\text{SO}_4)_{3(ac)} + \text{H}_{2(g)}$
+          \item $\text{NH}_{3(g)} + \text{O}_{2(g)} \longrightarrow \text{NO}_{(g)} + \text{H}_2\text{O}_{(g)}$
+        \end{enumerate}
+
+  \item \medio{}\hspace{0.55em}Ajuste estas reacciones de combustión aplicando el método de la fracción auxiliar cuando sea necesario y expresando el resultado final con números enteros:
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, nosep, topsep=2pt]
+          \item $\text{C}_2\text{H}_{6(g)} + \text{O}_{2(g)} \longrightarrow \text{CO}_{2(g)} + \text{H}_2\text{O}_{(g)}$
+          \item $\text{C}_3\text{H}_{8(g)} + \text{O}_{2(g)} \longrightarrow \text{CO}_{2(g)} + \text{H}_2\text{O}_{(g)}$
+          \item $\text{C}_4\text{H}_{10(g)} + \text{O}_{2(g)} \longrightarrow \text{CO}_{2(g)} + \text{H}_2\text{O}_{(g)}$
+        \end{enumerate}
+
+  \item \medio{}\hspace{0.55em}Ajuste las siguientes reacciones de combustión de etanol y de tostación de pirita:
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, nosep, topsep=2pt]
+          \item $\text{C}_2\text{H}_5\text{OH}_{(l)} + \text{O}_{2(g)} \longrightarrow \text{CO}_{2(g)} + \text{H}_2\text{O}_{(g)}$
+          \item $\text{FeS}_{2(s)} + \text{O}_{2(g)} \longrightarrow \text{Fe}_2\text{O}_{3(s)} + \text{SO}_{2(g)}$
+        \end{enumerate}
+
+  % ── ★★★ (10–12) ──────────────────────────────────────────
+  \item \dificil{}\hspace{0.55em}Dada la ecuación balanceada $2\,\text{C}_4\text{H}_{10(g)} + 13\,\text{O}_{2(g)} \longrightarrow 8\,\text{CO}_{2(g)} + 10\,\text{H}_2\text{O}_{(g)}$:
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, nosep, topsep=2pt]
+          \item Cuente los átomos de C, H y O en reactivos y productos para comprobar el ajuste.
+          \item Si reaccionan $2\text{ mol}$ de $\text{C}_4\text{H}_{10}$, ¿cuántos moles de $\text{O}_2$ se consumen y cuántos moles de $\text{CO}_2$ y $\text{H}_2\text{O}$ se producen?
+        \end{enumerate}
+
+  \item \dificil{}\hspace{0.55em}\textbf{Detección de errores:} Para balancear $\text{Mg}_{(s)} + \text{O}_{2(g)} \longrightarrow \text{MgO}_{(s)}$, un alumno escribió $\text{Mg} + \text{O}_2 \longrightarrow \text{MgO}_2$. Para balancear $\text{Al}_{(s)} + \text{Cl}_{2(g)} \longrightarrow \text{AlCl}_{3(s)}$, otro escribió $\text{Al} + 1{,}5\,\text{Cl}_2 \longrightarrow \text{AlCl}_3$. Explique qué error cometió el primero y qué le falta hacer al segundo.
+
+  \item \dificil{}\hspace{0.55em}Escriba y ajuste las ecuaciones químicas completas (con estados físicos) a partir de los enunciados:
+        \begin{enumerate}[label=\alph*), leftmargin=1.8em, nosep, topsep=2pt]
+          \item El carbonato de calcio sólido ($\text{CaCO}_3$) se descompone en óxido de calcio sólido ($\text{CaO}$) y dióxido de carbono gaseoso ($\text{CO}_2$).
+          \item El zinc sólido ($\text{Zn}$) reacciona con ácido clorhídrico acuoso ($\text{HCl}$) para producir cloruro de zinc acuoso ($\text{ZnCl}_2$) e hidrógeno gaseoso ($\text{H}_2$).
+        \end{enumerate}
+
+\end{enumerate}
+
+% ------------------------------------------------------------
+\subsection{Bloque B — Estequiometría simple: mol--mol y masa--masa (13 a 24)}
+% ------------------------------------------------------------
+
+\noindent Los ejercicios 13--16 $(\bigstar)$ son cálculos directos mol--mol; 17--20 $(\bigstar\bigstar)$ combinan gramos con moles; 21--24 $(\bigstar\bigstar\bigstar)$ recorren el puente molar completo masa--masa.
+
+\begin{enumerate}[leftmargin=*, start=13]
+
+  % ── ★ (13–16) ────────────────────────────────────────────
+  \item \facil{}\hspace{0.55em}En la síntesis del amoniaco, $\text{N}_{2(g)} + 3\,\text{H}_{2(g)} \longrightarrow 2\,\text{NH}_{3(g)}$, si reaccionan completamente $4\text{ mol}$ de $\text{N}_2$ con exceso de $\text{H}_2$, ¿cuántos moles de $\text{NH}_3$ se forman y cuántos moles de $\text{H}_2$ se consumen?
+
+  \item \facil{}\hspace{0.55em}El clorato de potasio se descompone por calor según $\text{KClO}_{3(s)} \longrightarrow \text{KCl}_{(s)} + \text{O}_{2(g)}$ \emph{(sin ajustar)}. Calcule cuántos moles de $\text{O}_2$ se producen a partir de $6\text{ mol}$ de $\text{KClO}_3$.
+
+  \item \facil{}\hspace{0.55em}En la combustión del propano, $\text{C}_3\text{H}_{8(g)} + 5\,\text{O}_{2(g)} \longrightarrow 3\,\text{CO}_{2(g)} + 4\,\text{H}_2\text{O}_{(g)}$, si se queman $2{,}5\text{ mol}$ de $\text{C}_3\text{H}_8$, ¿cuántos moles de $\text{O}_2$ se necesitan y cuántos moles de $\text{CO}_2$ se obtienen?
+
+  \item \facil{}\hspace{0.55em}Para la oxidación del hierro, $4\,\text{Fe}_{(s)} + 3\,\text{O}_{2(g)} \longrightarrow 2\,\text{Fe}_2\text{O}_{3(s)}$, ¿cuántos moles de $\text{Fe}$ y de $\text{O}_2$ son necesarios para formar $7{,}5\text{ mol}$ de $\text{Fe}_2\text{O}_3$?
+
+  % ── ★★ (17–20) ───────────────────────────────────────────
+  \item \medio{}\hspace{0.55em}$54\text{ g}$ de aluminio sólido reaccionan totalmente con exceso de ácido clorhídrico acuoso:
+        \[
+          \text{Al}_{(s)} + \text{HCl}_{(ac)} \longrightarrow \text{AlCl}_{3(ac)} + \text{H}_{2(g)} \qquad \text{(sin ajustar)}
+        \]
+        Determine: \textbf{a)} moles de $\text{HCl}$ consumidos; \textbf{b)} moles de $\text{H}_2$ liberados.
+
+  \item \medio{}\hspace{0.55em}Al descomponer $250\text{ g}$ de carbonato de calcio según $\text{CaCO}_{3(s)} \longrightarrow \text{CaO}_{(s)} + \text{CO}_{2(g)}$, ¿cuántos moles de $\text{CO}_2$ y cuántos gramos de $\text{CaO}$ se forman?
+
+  \item \medio{}\hspace{0.55em}Se queman completamente $48\text{ g}$ de metano ($\text{CH}_4$) en presencia de oxígeno en exceso según $\text{CH}_{4(g)} + 2\,\text{O}_{2(g)} \longrightarrow \text{CO}_{2(g)} + 2\,\text{H}_2\text{O}_{(g)}$. Calcule los gramos de $\text{O}_2$ consumidos y los gramos de $\text{H}_2\text{O}$ producidos.
+
+  \item \medio{}\hspace{0.55em}$92\text{ g}$ de sodio metálico reaccionan con agua en exceso: $2\,\text{Na}_{(s)} + 2\,\text{H}_2\text{O}_{(l)} \longrightarrow 2\,\text{NaOH}_{(ac)} + \text{H}_{2(g)}$. Calcule cuántos gramos de $\text{H}_2$ y cuántos gramos de $\text{NaOH}$ se obtienen.
+
+  % ── ★★★ (21–24) ──────────────────────────────────────────
+  \item \dificil{}\hspace{0.55em}¿Cuántos gramos de óxido de magnesio ($\text{MgO}$) se producen al quemar completamente $12{,}15\text{ g}$ de cinta de magnesio ($\text{Mg}$) con oxígeno en exceso? (Plantee y ajuste primero la ecuación.)
+
+  \item \dificil{}\hspace{0.55em}$196\text{ g}$ de ácido sulfúrico ($\text{H}_2\text{SO}_4$) reaccionan completamente con hidróxido de sodio ($\text{NaOH}$) según $\text{H}_2\text{SO}_{4(ac)} + \text{NaOH}_{(ac)} \longrightarrow \text{Na}_2\text{SO}_{4(ac)} + \text{H}_2\text{O}_{(l)}$ \emph{(sin ajustar)}. Calcule los gramos de $\text{NaOH}$ necesarios y los gramos de $\text{Na}_2\text{SO}_4$ formados.
+
+  \item \dificil{}\hspace{0.55em}En la neutralización $\text{Al(OH)}_{3(s)} + \text{H}_2\text{SO}_{4(ac)} \longrightarrow \text{Al}_2(\text{SO}_4)_{3(ac)} + \text{H}_2\text{O}_{(l)}$ \emph{(sin ajustar)}, si reaccionan $156\text{ g}$ de $\text{Al(OH)}_3$ con ácido en exceso, ¿cuántos gramos de sulfato de aluminio se producen y cuántos gramos de ácido reaccionaron?
+
+  \item \dificil{}\hspace{0.55em}En el proceso industrial para fabricar ácido nítrico ocurre la reacción $4\,\text{NH}_{3(g)} + 5\,\text{O}_{2(g)} \longrightarrow 4\,\text{NO}_{(g)} + 6\,\text{H}_2\text{O}_{(g)}$. ¿Cuántos gramos de $\text{NH}_3$ y cuántos gramos de $\text{O}_2$ se requieren para producir $90\text{ g}$ de $\text{NO}$?
+
+\end{enumerate}
+
+% ------------------------------------------------------------
+\subsection{Bloque C — Reactivo límite, exceso y sobrante (25 a 36)}
+% ------------------------------------------------------------
+
+\noindent Los ejercicios 25--29 $(\bigstar\bigstar)$ entregan los reactivos en moles; 30--36 $(\bigstar\bigstar\bigstar)$ los entregan en gramos y piden además producto formado y sobrante.
+
+\begin{enumerate}[leftmargin=*, start=25]
+
+  % ── ★★ (25–29) ───────────────────────────────────────────
+  \item \medio{}\hspace{0.55em}Se mezclan $5\text{ mol}$ de $\text{H}_2$ y $4\text{ mol}$ de $\text{O}_2$ para formar agua según $2\,\text{H}_{2(g)} + \text{O}_{2(g)} \longrightarrow 2\,\text{H}_2\text{O}_{(g)}$. Indique el $R.L.$, el $R.\text{Exc.}$, los moles de agua formados y los moles que sobran del reactivo en exceso.
+
+  \item \medio{}\hspace{0.55em}En la síntesis del amoniaco, $\text{N}_{2(g)} + 3\,\text{H}_{2(g)} \longrightarrow 2\,\text{NH}_{3(g)}$, se introducen $4\text{ mol}$ de $\text{N}_2$ y $9\text{ mol}$ de $\text{H}_2$. Determine el $R.L.$, el $R.\text{Exc.}$, los moles de $\text{NH}_3$ producidos y el sobrante de exceso.
+
+  \item \medio{}\hspace{0.55em}Se hacen reaccionar $7\text{ mol}$ de $\text{CO}$ y $3\text{ mol}$ de $\text{O}_2$ según $2\,\text{CO}_{(g)} + \text{O}_{2(g)} \longrightarrow 2\,\text{CO}_{2(g)}$. Determine el $R.L.$, el $R.\text{Exc.}$, los moles de $\text{CO}_2$ formados y los moles que sobran.
+
+  \item \medio{}\hspace{0.55em}En un horno reaccionan $10\text{ mol}$ de $\text{Fe}$ y $9\text{ mol}$ de $\text{O}_2$ según $4\,\text{Fe}_{(s)} + 3\,\text{O}_{2(g)} \longrightarrow 2\,\text{Fe}_2\text{O}_{3(s)}$. Indique el $R.L.$, los moles de $\text{Fe}_2\text{O}_3$ formados y cuánto sobra del reactivo en exceso.
+
+  \item \medio{}\hspace{0.55em}Se mezclan $3\text{ mol}$ de $\text{CaCO}_3$ con $5\text{ mol}$ de $\text{HCl}$ según $\text{CaCO}_{3(s)} + \text{HCl}_{(ac)} \longrightarrow \text{CaCl}_{2(ac)} + \text{CO}_{2(g)} + \text{H}_2\text{O}_{(l)}$ \emph{(sin ajustar)}. Determine el $R.L.$, los moles de $\text{CO}_2$ liberados y los moles de reactivo que sobran.
+
+  % ── ★★★ (30–36) ──────────────────────────────────────────
+  \item \dificil{}\hspace{0.55em}Se queman $88\text{ g}$ de propano ($\text{C}_3\text{H}_8$) con $256\text{ g}$ de $\text{O}_2$ según $\text{C}_3\text{H}_{8(g)} + 5\,\text{O}_{2(g)} \longrightarrow 3\,\text{CO}_{2(g)} + 4\,\text{H}_2\text{O}_{(g)}$. Calcule los gramos de $\text{CO}_2$ formados y los gramos del reactivo en exceso que quedan sin reaccionar.
+
+  \item \dificil{}\hspace{0.55em}$54\text{ g}$ de aluminio reaccionan con $284\text{ g}$ de cloro gaseoso según $\text{Al}_{(s)} + \text{Cl}_{2(g)} \longrightarrow \text{AlCl}_{3(s)}$ \emph{(sin ajustar)}. Determine el $R.L.$, los gramos de $\text{AlCl}_3$ obtenidos y los gramos de exceso sobrantes.
+
+  \item \dificil{}\hspace{0.55em}Se mezclan $120\text{ g}$ de $\text{NaOH}$ y $146\text{ g}$ de $\text{HCl}$ según $\text{NaOH}_{(ac)} + \text{HCl}_{(ac)} \longrightarrow \text{NaCl}_{(ac)} + \text{H}_2\text{O}_{(l)}$. ¿Qué reactivo es el limitante, cuántos gramos de $\text{NaCl}$ se forman y cuántos gramos de exceso quedan?
+
+  \item \dificil{}\hspace{0.55em}Se colocan $112\text{ g}$ de hierro en una disolución con $239{,}25\text{ g}$ de sulfato de cobre(II): $\text{Fe}_{(s)} + \text{CuSO}_{4(ac)} \longrightarrow \text{FeSO}_{4(ac)} + \text{Cu}_{(s)}$. Calcule la masa de cobre metálico depositado y la masa del reactivo en exceso que no reacciona.
+
+  \item \dificil{}\hspace{0.55em}Reaccionan $69\text{ g}$ de sodio con $71\text{ g}$ de cloro según $2\,\text{Na}_{(s)} + \text{Cl}_{2(g)} \longrightarrow 2\,\text{NaCl}_{(s)}$. Indique el $R.L.$, los gramos de $\text{NaCl}$ producidos y los gramos de reactivo sobrante.
+
+  \item \dificil{}\hspace{0.55em}Se tratan $195\text{ g}$ de zinc con $182{,}5\text{ g}$ de $\text{HCl}$ según $\text{Zn}_{(s)} + 2\,\text{HCl}_{(ac)} \longrightarrow \text{ZnCl}_{2(ac)} + \text{H}_{2(g)}$. Calcule los gramos de $\text{ZnCl}_2$ y de $\text{H}_2$ producidos, así como los gramos de exceso que quedan sin reaccionar.
+
+  \item \dificil{}\hspace{0.55em}Al mezclar $85\text{ g}$ de nitrato de plata ($\text{AgNO}_3$) con $58{,}5\text{ g}$ de $\text{NaCl}$ precipita cloruro de plata: $\text{AgNO}_{3(ac)} + \text{NaCl}_{(ac)} \longrightarrow \text{AgCl}_{(s)} + \text{NaNO}_{3(ac)}$. Determine la masa de $\text{AgCl}$ precipitada y los gramos de reactivo en exceso sobrantes.
+
+\end{enumerate}
+
+% ------------------------------------------------------------
+\subsection{Bloque D — Rendimiento de reacción (37 a 44)}
+% ------------------------------------------------------------
+
+\noindent Los ejercicios 37--39 $(\bigstar\bigstar)$ calculan $\pc\,\text{Rendimiento}$ o $R.R.$ en moles; 40--43 $(\bigstar\bigstar\bigstar)$ trabajan desde masas iniciales en gramos; 44 $(\bigstar\bigstar\bigstar\bigstar)$ plantea el cálculo inverso.
+
+\begin{enumerate}[leftmargin=*, start=37]
+
+  % ── ★★ (37–39) ───────────────────────────────────────────
+  \item \medio{}\hspace{0.55em}En una síntesis química se calculó que debían obtenerse $80\text{ g}$ de producto ($R.T.$), pero al pesar el sólido seco en el laboratorio solo se recogieron $68\text{ g}$ ($R.R.$). Calcule el porcentaje de rendimiento de la reacción.
+
+  \item \medio{}\hspace{0.55em}Si $4\text{ mol}$ de $\text{KClO}_3$ se descomponen según $2\,\text{KClO}_{3(s)} \longrightarrow 2\,\text{KCl}_{(s)} + 3\,\text{O}_{2(g)}$ con un rendimiento del $85\,\pc$, calcule el rendimiento teórico y el rendimiento real de $\text{O}_2$ en moles.
+
+  \item \medio{}\hspace{0.55em}Al calentar $200\text{ g}$ de $\text{CaCO}_3$ ($\text{CaCO}_{3(s)} \longrightarrow \text{CaO}_{(s)} + \text{CO}_{2(g)}$) se recogieron experimentalmente $95{,}2\text{ g}$ de $\text{CaO}$. Determine el $R.T.$ de $\text{CaO}$ y el porcentaje de rendimiento.
+
+  % ── ★★★ (40–43) ──────────────────────────────────────────
+  \item \dificil{}\hspace{0.55em}En un alto horno se reducen $320\text{ g}$ de óxido de hierro(III) con exceso de monóxido de carbono: $\text{Fe}_2\text{O}_{3(s)} + 3\,\text{CO}_{(g)} \longrightarrow 2\,\text{Fe}_{(s)} + 3\,\text{CO}_{2(g)}$. Si el rendimiento del proceso es del $90\,\pc$, ¿cuántos gramos de hierro metálico se obtienen realmente?
+
+  \item \dificil{}\hspace{0.55em}Al hacer reaccionar $84\text{ g}$ de $\text{N}_2$ con exceso de $\text{H}_2$ ($\text{N}_{2(g)} + 3\,\text{H}_{2(g)} \longrightarrow 2\,\text{NH}_{3(g)}$) se obtuvieron $76{,}5\text{ g}$ reales de $\text{NH}_3$. ¿Cuál fue el porcentaje de rendimiento de la síntesis?
+
+  \item \dificil{}\hspace{0.55em}$160\text{ g}$ de $\text{NaOH}$ reaccionan con exceso de ácido sulfúrico según la reacción $2\,\text{NaOH}_{(ac)} + \text{H}_2\text{SO}_{4(ac)} \longrightarrow \text{Na}_2\text{SO}_{4(ac)} + 2\,\text{H}_2\text{O}_{(l)}$. Si el rendimiento de la reacción es del $88\,\pc$, calcule la masa real de $\text{Na}_2\text{SO}_4$ formada.
+
+  \item \dificil{}\hspace{0.55em}Se hacen reaccionar $48{,}6\text{ g}$ de $\text{Mg}$ con exceso de $\text{HCl}$ ($\text{Mg}_{(s)} + 2\,\text{HCl}_{(ac)} \longrightarrow \text{MgCl}_{2(ac)} + \text{H}_{2(g)}$) y se recuperan $152{,}48\text{ g}$ de $\text{MgCl}_2$. Calcule el porcentaje de rendimiento obtenido.
+
+  % ── ★★★★ (44) ────────────────────────────────────────────
+  \item \muyDificil{}\hspace{0.55em}\textbf{Cálculo inverso:} Una planta industrial necesita obtener $224\text{ g}$ \emph{reales} de óxido de calcio ($\text{CaO}$) por descomposición de piedra caliza ($\text{CaCO}_{3(s)} \longrightarrow \text{CaO}_{(s)} + \text{CO}_{2(g)}$). Sabiendo que el horno trabaja con un rendimiento del $80\,\pc$, ¿cuántos gramos de $\text{CaCO}_3$ debe cargar como mínimo?
+
+\end{enumerate}
+
+% ------------------------------------------------------------
+\subsection{Bloque E — Problemas integradores tipo taller (45 a 50)}
+% ------------------------------------------------------------
+
+\noindent Estos problemas integran ajuste, reactivo límite, sobrante, masa molar y porcentaje de rendimiento, tal como se evalúa en el taller del tema.
+
+\begin{enumerate}[leftmargin=*, start=45]
+
+  \item \muyDificil{}\hspace{0.55em}En un recipiente se mezclan $6\text{ mol}$ de $\text{HCl}$ y $4\text{ mol}$ de $\text{Ca(OH)}_2$ según:
+        \[
+          \text{HCl}_{(ac)} + \text{Ca(OH)}_{2(s)} \longrightarrow \text{CaCl}_{2(s)} + \text{H}_2\text{O}_{(l)} \qquad \text{(sin ajustar)}
+        \]
+        \textbf{a)} Ajuste la ecuación; \textbf{b)} identifique $R.L.$ y $R.\text{Exc.}$ y calcule los gramos de exceso que sobran; \textbf{c)} halle el $R.T.$ de $\text{CaCl}_2$ en gramos; \textbf{d)} determine el $R.R.$ si el rendimiento es del $85\,\pc$.
+
+  \item \muyDificil{}\hspace{0.55em}Se hacen reaccionar $135\text{ g}$ de aluminio con $588\text{ g}$ de ácido sulfúrico según:
+        \[
+          \text{Al}_{(s)} + \text{H}_2\text{SO}_{4(ac)} \longrightarrow \text{Al}_2(\text{SO}_4)_{3(ac)} + \text{H}_{2(g)} \qquad \text{(sin ajustar)}
+        \]
+        Determine: \textbf{a)} ecuación ajustada; \textbf{b)} reactivo límite y gramos del reactivo en exceso que sobran; \textbf{c)} gramos teóricos de $\text{Al}_2(\text{SO}_4)_3$; \textbf{d)} gramos reales de $\text{Al}_2(\text{SO}_4)_3$ con un $90\,\pc$ de rendimiento.
+
+  \item \muyDificil{}\hspace{0.55em}En la obtención de hierro, $480\text{ g}$ de $\text{Fe}_2\text{O}_3$ reaccionan con $168\text{ g}$ de $\text{CO}$ según $\text{Fe}_2\text{O}_{3(s)} + \text{CO}_{(g)} \longrightarrow \text{Fe}_{(s)} + \text{CO}_{2(g)}$ \emph{(sin ajustar)}. Calcule: \textbf{a)} el $R.L.$ y el $R.\text{Exc.}$; \textbf{b)} los gramos de exceso sin reaccionar; \textbf{c)} los gramos teóricos de $\text{Fe}$; \textbf{d)} los gramos reales de $\text{Fe}$ si el rendimiento es del $85\,\pc$.
+
+  \item \muyDificil{}\hspace{0.55em}Para capturar $\text{CO}_2$, se hacen pasar $132\text{ g}$ de $\text{CO}_2$ sobre $160\text{ g}$ de $\text{NaOH}$ según:
+        \[
+          2\,\text{NaOH}_{(ac)} + \text{CO}_{2(g)} \longrightarrow \text{Na}_2\text{CO}_{3(ac)} + \text{H}_2\text{O}_{(l)}
+        \]
+        Al finalizar, se recogen $190{,}8\text{ g}$ reales de $\text{Na}_2\text{CO}_3$. Calcule: \textbf{a)} el $R.L.$ y la masa sobrante del $R.\text{Exc.}$; \textbf{b)} el rendimiento teórico de $\text{Na}_2\text{CO}_3$; \textbf{c)} el porcentaje de rendimiento de la reacción.
+
+  \item \muyDificil{}\hspace{0.55em}Al tostar $480\text{ g}$ de pirita ($\text{FeS}_2$) con $384\text{ g}$ de $\text{O}_2$ según la reacción $\text{FeS}_{2(s)} + \text{O}_{2(g)} \longrightarrow \text{Fe}_2\text{O}_{3(s)} + \text{SO}_{2(g)}$ \emph{(sin ajustar)}: \textbf{a)} ajuste la ecuación; \textbf{b)} determine el $R.L.$ y los gramos del reactivo en exceso que sobran; \textbf{c)} halle el $R.T.$ de $\text{SO}_2$ en gramos; \textbf{d)} calcule el $R.R.$ de $\text{SO}_2$ si el rendimiento es del $80\,\pc$.
+
+  \item \muyDificil{}\hspace{0.55em}\textbf{Análisis crítico (detecta los errores):} Un estudiante mezcla $4\text{ mol}$ de $\text{CH}_4$ con $6\text{ mol}$ de $\text{O}_2$ según $\text{CH}_{4(g)} + 2\,\text{O}_{2(g)} \longrightarrow \text{CO}_{2(g)} + 2\,\text{H}_2\text{O}_{(g)}$ y razona así:
+        \emph{«Como $4 < 6$, el reactivo límite es el $\text{CH}_4$; por tanto se forman $4\text{ mol}$ de $\text{CO}_2$ teóricos, y con un $90\,\pc$ de rendimiento se obtienen realmente $4 / 0{,}90 = 4{,}44\text{ mol}$ de $\text{CO}_2$».}
+        Señale los \textbf{dos errores conceptuales} que cometió el estudiante y realice el cálculo correcto hasta obtener los gramos reales de $\text{CO}_2$.
+
+\end{enumerate}
+
+% ============================================================
+\ifmwclaves
+\newpage
+\section{Clave de Respuestas Comentada}
+% ============================================================
+
+\begin{cuadroinfo}
+  \small
+  \textbf{Cómo usar esta clave:} revisa primero el ajuste de la ecuación y la identificación del reactivo límite; casi todos los fallos en estequiometría ocurren antes de multiplicar.
+\end{cuadroinfo}
+
+\subsection*{Bloque A — Conceptos y balanceo (1 a 12)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=1]
+  \item Los \textbf{reactivos} son las sustancias iniciales y los \textbf{productos} son las sustancias finales, con propiedades físicas y químicas distintas. Una ecuación debe estar balanceada porque la masa (y la cantidad de átomos de cada elemento) se conserva, y los coeficientes fijan las proporciones molares exactas.
+  \item $(s)$ sólido, $(l)$ líquido, $(g)$ gas, $(ac)$ disolución acuosa. Los \textbf{coeficientes estequiométricos} indican la proporción en moles (o moléculas) de cada sustancia en la reacción.
+  \item Orden: 1) Metales, 2) No metales (salvo H y O), 3) Hidrógeno, 4) Oxígeno. Nunca se cambian los subíndices porque eso alteraría la identidad química de la sustancia.
+  \item \textbf{a)} $2\,\text{Mg}_{(s)} + \text{O}_{2(g)} \longrightarrow 2\,\text{MgO}_{(s)}$; \quad \textbf{b)} $\text{H}_{2(g)} + \text{Cl}_{2(g)} \longrightarrow 2\,\text{HCl}_{(g)}$; \quad \textbf{c)} $2\,\text{Na}_{(s)} + 2\,\text{H}_2\text{O}_{(l)} \longrightarrow 2\,\text{NaOH}_{(ac)} + \text{H}_{2(g)}$.
+  \item \textbf{a)} $2\,\text{KClO}_{3(s)} \longrightarrow 2\,\text{KCl}_{(s)} + 3\,\text{O}_{2(g)}$ (2 : 2 : 3); \quad \textbf{b)} $4\,\text{Al}_{(s)} + 3\,\text{O}_{2(g)} \longrightarrow 2\,\text{Al}_2\text{O}_{3(s)}$ (4 : 3 : 2); \quad \textbf{c)} $2\,\text{Fe}_{(s)} + 6\,\text{HCl}_{(ac)} \longrightarrow 2\,\text{FeCl}_{3(ac)} + 3\,\text{H}_{2(g)}$ (2 : 6 : 2 : 3).
+  \item \textbf{a)} $3\,\text{Ca(OH)}_{2(s)} + 2\,\text{H}_3\text{PO}_{4(ac)} \longrightarrow \text{Ca}_3(\text{PO}_4)_{2(s)} + 6\,\text{H}_2\text{O}_{(l)}$; \quad \textbf{b)} $2\,\text{Al(OH)}_{3(s)} + 3\,\text{H}_2\text{SO}_{4(ac)} \longrightarrow \text{Al}_2(\text{SO}_4)_{3(ac)} + 6\,\text{H}_2\text{O}_{(l)}$.
+  \item \textbf{a)} $\text{Fe}_2\text{O}_{3(s)} + 3\,\text{CO}_{(g)} \longrightarrow 2\,\text{Fe}_{(s)} + 3\,\text{CO}_{2(g)}$; \quad \textbf{b)} $2\,\text{Al}_{(s)} + 3\,\text{H}_2\text{SO}_{4(ac)} \longrightarrow \text{Al}_2(\text{SO}_4)_{3(ac)} + 3\,\text{H}_{2(g)}$; \quad \textbf{c)} $4\,\text{NH}_{3(g)} + 5\,\text{O}_{2(g)} \longrightarrow 4\,\text{NO}_{(g)} + 6\,\text{H}_2\text{O}_{(g)}$.
+  \item \textbf{a)} $\text{C}_2\text{H}_6 + \frac{7}{2}\,\text{O}_2 \longrightarrow 2\,\text{CO}_2 + 3\,\text{H}_2\text{O} \;\Rightarrow\; 2\,\text{C}_2\text{H}_{6(g)} + 7\,\text{O}_{2(g)} \longrightarrow 4\,\text{CO}_{2(g)} + 6\,\text{H}_2\text{O}_{(g)}$; \quad \textbf{b)} $\text{C}_3\text{H}_{8(g)} + 5\,\text{O}_{2(g)} \longrightarrow 3\,\text{CO}_{2(g)} + 4\,\text{H}_2\text{O}_{(g)}$; \quad \textbf{c)} $2\,\text{C}_4\text{H}_{10(g)} + 13\,\text{O}_{2(g)} \longrightarrow 8\,\text{CO}_{2(g)} + 10\,\text{H}_2\text{O}_{(g)}$.
+  \item \textbf{a)} $\text{C}_2\text{H}_5\text{OH}_{(l)} + 3\,\text{O}_{2(g)} \longrightarrow 2\,\text{CO}_{2(g)} + 3\,\text{H}_2\text{O}_{(g)}$; \quad \textbf{b)} $2\,\text{FeS}_2 + \frac{11}{2}\,\text{O}_2 \longrightarrow \text{Fe}_2\text{O}_3 + 4\,\text{SO}_2 \;\Rightarrow\; 4\,\text{FeS}_{2(s)} + 11\,\text{O}_{2(g)} \longrightarrow 2\,\text{Fe}_2\text{O}_{3(s)} + 8\,\text{SO}_{2(g)}$.
+  \item \textbf{a)} En ambos lados hay $8$ C, $20$ H y $26$ O ($8\times 2 + 10 = 26$); \textbf{b)} Se consumen $13\text{ mol O}_2$ y se producen $8\text{ mol CO}_2$ y $10\text{ mol H}_2\text{O}$.
+  \item El primer estudiante cambió el subíndice del oxígeno y convirtió el óxido de magnesio ($\text{MgO}$) en otra sustancia ($\text{MgO}_2$); lo correcto es $2\,\text{Mg} + \text{O}_2 \longrightarrow 2\,\text{MgO}$. Al segundo le falta multiplicar toda la ecuación por $2$ para eliminar el coeficiente decimal $1{,}5$: $2\,\text{Al}_{(s)} + 3\,\text{Cl}_{2(g)} \longrightarrow 2\,\text{AlCl}_{3(s)}$.
+  \item \textbf{a)} $\text{CaCO}_{3(s)} \longrightarrow \text{CaO}_{(s)} + \text{CO}_{2(g)}$ (ya ajustada $1:1:1$); \quad \textbf{b)} $\text{Zn}_{(s)} + 2\,\text{HCl}_{(ac)} \longrightarrow \text{ZnCl}_{2(ac)} + \text{H}_{2(g)}$.
+\end{enumerate}
+
+\subsection*{Bloque B — Estequiometría simple (13 a 24)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=13]
+  \item $4\text{ mol N}_2 \times \frac{2\text{ mol NH}_3}{1\text{ mol N}_2} = 8\text{ mol NH}_3$; \quad $4\text{ mol N}_2 \times \frac{3\text{ mol H}_2}{1\text{ mol N}_2} = 12\text{ mol H}_2$.
+  \item Ecuación ajustada: $2\,\text{KClO}_{3(s)} \longrightarrow 2\,\text{KCl}_{(s)} + 3\,\text{O}_{2(g)}$. Luego $6 \times \frac{3}{2} = 9\text{ mol O}_2$.
+  \item $2{,}5 \times 5 = 12{,}5\text{ mol O}_2$; \quad $2{,}5 \times 3 = 7{,}5\text{ mol CO}_2$.
+  \item $7{,}5 \times \frac{4}{2} = 15\text{ mol Fe}$; \quad $7{,}5 \times \frac{3}{2} = 11{,}25\text{ mol O}_2$.
+  \item Ajustada: $2\,\text{Al} + 6\,\text{HCl} \longrightarrow 2\,\text{AlCl}_3 + 3\,\text{H}_2$. Como $n_{\text{Al}} = 54/27 = 2\text{ mol}$: \textbf{a)} $2 \times \frac{6}{2} = 6\text{ mol HCl}$; \textbf{b)} $2 \times \frac{3}{2} = 3\text{ mol H}_2$.
+  \item $M(\text{CaCO}_3) = 100\text{ g/mol} \Rightarrow n = 250/100 = 2{,}5\text{ mol CaCO}_3$. Se forman $2{,}5\text{ mol CO}_2$ y $2{,}5 \times 56 = 140\text{ g CaO}$.
+  \item $M(\text{CH}_4) = 16\text{ g/mol} \Rightarrow n = 48/16 = 3\text{ mol CH}_4$. Se consumen $3\times 2 = 6\text{ mol O}_2 = 6(32) = 192\text{ g O}_2$; se forman $6\text{ mol H}_2\text{O} = 6(18) = 108\text{ g H}_2\text{O}$.
+  \item $n_{\text{Na}} = 92/23 = 4\text{ mol}$. Se forman $4\times\frac{1}{2} = 2\text{ mol H}_2 = 4\text{ g H}_2$ y $4\text{ mol NaOH} = 4(40) = 160\text{ g NaOH}$.
+  \item $2\,\text{Mg}_{(s)} + \text{O}_{2(g)} \longrightarrow 2\,\text{MgO}_{(s)}$. $n_{\text{Mg}} = 12{,}15/24{,}3 = 0{,}5\text{ mol} \Rightarrow 0{,}5\text{ mol MgO} \times 40{,}3\text{ g/mol} = 20{,}15\text{ g MgO}$.
+  \item Ajustada: $\text{H}_2\text{SO}_4 + 2\,\text{NaOH} \longrightarrow \text{Na}_2\text{SO}_4 + 2\,\text{H}_2\text{O}$. $n_{\text{H}_2\text{SO}_4} = 196/98 = 2\text{ mol}$. Se necesitan $4\text{ mol NaOH} = 160\text{ g NaOH}$ y se forman $2\text{ mol Na}_2\text{SO}_4 = 2(142) = 284\text{ g Na}_2\text{SO}_4$.
+  \item Ajustada: $2\,\text{Al(OH)}_3 + 3\,\text{H}_2\text{SO}_4 \longrightarrow \text{Al}_2(\text{SO}_4)_3 + 6\,\text{H}_2\text{O}$. $M(\text{Al(OH)}_3) = 78\text{ g/mol} \Rightarrow n = 156/78 = 2\text{ mol}$. Se forman $1\text{ mol Al}_2(\text{SO}_4)_3 = 342\text{ g}$ y reaccionan $3\text{ mol H}_2\text{SO}_4 = 294\text{ g}$.
+  \item $n_{\text{NO}} = 90/30 = 3\text{ mol NO}$. Se requieren $3\times\frac{4}{4} = 3\text{ mol NH}_3 = 3(17) = 51\text{ g NH}_3$ y $3\times\frac{5}{4} = 3{,}75\text{ mol O}_2 = 3{,}75(32) = 120\text{ g O}_2$.
+\end{enumerate}
+
+\subsection*{Bloque C — Reactivo límite, exceso y sobrante (25 a 36)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=25]
+  \item Para $5\text{ mol H}_2$ se necesitan $2{,}5\text{ mol O}_2$ (tengo $4$): $R.L. = \text{H}_2$, $R.\text{Exc.} = \text{O}_2$. Se forman $5\text{ mol H}_2\text{O}$ y sobran $4 - 2{,}5 = 1{,}5\text{ mol O}_2$.
+  \item Para $4\text{ mol N}_2$ se necesitan $12\text{ mol H}_2$ (tengo $9$): $R.L. = \text{H}_2$, $R.\text{Exc.} = \text{N}_2$. Se forman $9\times\frac{2}{3} = 6\text{ mol NH}_3$; reaccionan $3\text{ mol N}_2$ y sobra $1\text{ mol N}_2$.
+  \item Para $7\text{ mol CO}$ se necesitan $3{,}5\text{ mol O}_2$ (tengo $3$): $R.L. = \text{O}_2$, $R.\text{Exc.} = \text{CO}$. Se forman $6\text{ mol CO}_2$; reaccionan $6\text{ mol CO}$ y sobra $1\text{ mol CO}$.
+  \item Para $10\text{ mol Fe}$ se necesitan $7{,}5\text{ mol O}_2$ (tengo $9$): $R.L. = \text{Fe}$, $R.\text{Exc.} = \text{O}_2$. Se forman $5\text{ mol Fe}_2\text{O}_3$ y sobran $9 - 7{,}5 = 1{,}5\text{ mol O}_2$.
+  \item Ajustada: $\text{CaCO}_3 + 2\,\text{HCl} \longrightarrow \text{CaCl}_2 + \text{CO}_2 + \text{H}_2\text{O}$. Para $3\text{ mol CaCO}_3$ se necesitan $6\text{ mol HCl}$ (tengo $5$): $R.L. = \text{HCl}$, $R.\text{Exc.} = \text{CaCO}_3$. Se forman $2{,}5\text{ mol CO}_2$ y sobran $3 - 2{,}5 = 0{,}5\text{ mol CaCO}_3$.
+  \item $n_{\text{C}_3\text{H}_8} = 88/44 = 2\text{ mol}$; $n_{\text{O}_2} = 256/32 = 8\text{ mol}$. Para $2\text{ mol C}_3\text{H}_8$ necesito $10\text{ mol O}_2$ (tengo $8$) $\Rightarrow R.L. = \text{O}_2$. $\text{CO}_2 = 8\times\frac{3}{5} = 4{,}8\text{ mol} = 211{,}2\text{ g CO}_2$. Reacciona $1{,}6\text{ mol C}_3\text{H}_8$ ($70{,}4\text{ g}$); sobran $0{,}4\text{ mol} = 17{,}6\text{ g C}_3\text{H}_8$.
+  \item Ajustada: $2\,\text{Al} + 3\,\text{Cl}_2 \longrightarrow 2\,\text{AlCl}_3$. $n_{\text{Al}} = 54/27 = 2\text{ mol}$; $n_{\text{Cl}_2} = 284/71 = 4\text{ mol}$. Para $2\text{ mol Al}$ necesito $3\text{ mol Cl}_2$ (tengo $4$) $\Rightarrow R.L. = \text{Al}$. Se forman $2\text{ mol AlCl}_3 = 2(133{,}5) = 267\text{ g AlCl}_3$; sobra $1\text{ mol Cl}_2 = 71\text{ g Cl}_2$.
+  \item $n_{\text{NaOH}} = 120/40 = 3\text{ mol}$; $n_{\text{HCl}} = 146/36{,}5 = 4\text{ mol}$. Relación $1:1 \Rightarrow R.L. = \text{NaOH}$. Se forman $3\text{ mol NaCl} = 3(58{,}5) = 175{,}5\text{ g NaCl}$; sobra $1\text{ mol HCl} = 36{,}5\text{ g HCl}$.
+  \item $n_{\text{Fe}} = 112/56 = 2\text{ mol}$; $n_{\text{CuSO}_4} = 239{,}25/159{,}5 = 1{,}5\text{ mol}$. Relación $1:1 \Rightarrow R.L. = \text{CuSO}_4$. Se depositan $1{,}5\text{ mol Cu} = 1{,}5(63{,}5) = 95{,}25\text{ g Cu}$; sobran $0{,}5\text{ mol Fe} = 28\text{ g Fe}$.
+  \item $n_{\text{Na}} = 69/23 = 3\text{ mol}$; $n_{\text{Cl}_2} = 71/71 = 1\text{ mol}$. Para $3\text{ mol Na}$ necesito $1{,}5\text{ mol Cl}_2$ (tengo $1$) $\Rightarrow R.L. = \text{Cl}_2$. Se forman $2\text{ mol NaCl} = 117\text{ g NaCl}$; reaccionan $2\text{ mol Na}$ y sobra $1\text{ mol Na} = 23\text{ g Na}$.
+  \item $n_{\text{Zn}} = 195/65 = 3\text{ mol}$; $n_{\text{HCl}} = 182{,}5/36{,}5 = 5\text{ mol}$. Para $3\text{ mol Zn}$ necesito $6\text{ mol HCl}$ (tengo $5$) $\Rightarrow R.L. = \text{HCl}$. Se forman $2{,}5\text{ mol ZnCl}_2 = 2{,}5(136) = 340\text{ g ZnCl}_2$ y $2{,}5\text{ mol H}_2 = 5\text{ g H}_2$; reaccionan $2{,}5\text{ mol Zn}$ y sobran $0{,}5\text{ mol Zn} = 32{,}5\text{ g Zn}$.
+  \item $n_{\text{AgNO}_3} = 85/170 = 0{,}5\text{ mol}$; $n_{\text{NaCl}} = 58{,}5/58{,}5 = 1\text{ mol}$. Relación $1:1 \Rightarrow R.L. = \text{AgNO}_3$. Precipitan $0{,}5\text{ mol AgCl} = 0{,}5(143{,}5) = 71{,}75\text{ g AgCl}$; sobran $0{,}5\text{ mol NaCl} = 29{,}25\text{ g NaCl}$.
+\end{enumerate}
+
+\subsection*{Bloque D — Rendimiento de reacción (37 a 44)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=37]
+  \item $\pc\,\text{Rend} = \frac{68}{80}\times 100 = 85\,\pc$.
+  \item $R.T. = 4\times\frac{3}{2} = 6\text{ mol O}_2$; \quad $R.R. = \frac{6\times 85}{100} = 5{,}10\text{ mol O}_2$.
+  \item $n_{\text{CaCO}_3} = 200/100 = 2\text{ mol} \Rightarrow R.T. = 2\text{ mol CaO} = 2(56) = 112\text{ g CaO}$. $\pc\,\text{Rend} = \frac{95{,}2}{112}\times 100 = 85\,\pc$.
+  \item $M(\text{Fe}_2\text{O}_3) = 160\text{ g/mol} \Rightarrow n = 320/160 = 2\text{ mol}$. $R.T. = 4\text{ mol Fe} = 4(56) = 224\text{ g Fe}$; \quad $R.R. = \frac{224\times 90}{100} = 201{,}6\text{ g Fe}$.
+  \item $n_{\text{N}_2} = 84/28 = 3\text{ mol} \Rightarrow R.T. = 6\text{ mol NH}_3 = 6(17) = 102\text{ g NH}_3$. $\pc\,\text{Rend} = \frac{76{,}5}{102}\times 100 = 75\,\pc$.
+  \item $n_{\text{NaOH}} = 160/40 = 4\text{ mol} \Rightarrow R.T. = 2\text{ mol Na}_2\text{SO}_4 = 2(142) = 284\text{ g}$. $R.R. = \frac{284\times 88}{100} = 249{,}92\text{ g Na}_2\text{SO}_4$.
+  \item $n_{\text{Mg}} = 48{,}6/24{,}3 = 2\text{ mol} \Rightarrow R.T. = 2\text{ mol MgCl}_2 = 2(95{,}3) = 190{,}6\text{ g}$. $\pc\,\text{Rend} = \frac{152{,}48}{190{,}6}\times 100 = 80\,\pc$.
+  \item $R.T.\text{ necesario} = \frac{224\times 100}{80} = 280\text{ g CaO} \Rightarrow n = 280/56 = 5\text{ mol CaO}$. Por relación $1:1$, se requieren $5\text{ mol CaCO}_3 = 5(100) = 500\text{ g CaCO}_3$.
+\end{enumerate}
+
+\subsection*{Bloque E — Integradores tipo taller (45 a 50)}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, start=45]
+  \item \textbf{a)} $2\,\text{HCl}_{(ac)} + \text{Ca(OH)}_{2(s)} \longrightarrow \text{CaCl}_{2(s)} + 2\,\text{H}_2\text{O}_{(l)}$; \textbf{b)} para $4\text{ mol Ca(OH)}_2$ necesito $8\text{ mol HCl}$ (tengo $6$) $\Rightarrow R.L. = \text{HCl}$, $R.\text{Exc.} = \text{Ca(OH)}_2$. Reaccionan $3\text{ mol Ca(OH)}_2$, sobra $1\text{ mol} = 74\text{ g Ca(OH)}_2$; \textbf{c)} $R.T. = 3\text{ mol CaCl}_2 = 3(111) = 333\text{ g CaCl}_2$; \textbf{d)} $R.R. = \frac{333\times 85}{100} = 283{,}05\text{ g CaCl}_2$.
+  \item \textbf{a)} $2\,\text{Al}_{(s)} + 3\,\text{H}_2\text{SO}_{4(ac)} \longrightarrow \text{Al}_2(\text{SO}_4)_{3(ac)} + 3\,\text{H}_{2(g)}$; \textbf{b)} $n_{\text{Al}} = 135/27 = 5\text{ mol}$, $n_{\text{H}_2\text{SO}_4} = 588/98 = 6\text{ mol}$. Para $5\text{ mol Al}$ necesito $7{,}5\text{ mol H}_2\text{SO}_4$ (tengo $6$) $\Rightarrow R.L. = \text{H}_2\text{SO}_4$; reaccionan $4\text{ mol Al}$ ($108\text{ g}$) y sobra $1\text{ mol} = 27\text{ g Al}$; \textbf{c)} $R.T. = 2\text{ mol Al}_2(\text{SO}_4)_3 = 2(342) = 684\text{ g}$; \textbf{d)} $R.R. = \frac{684\times 90}{100} = 615{,}6\text{ g Al}_2(\text{SO}_4)_3$.
+  \item Ajustada: $\text{Fe}_2\text{O}_3 + 3\,\text{CO} \longrightarrow 2\,\text{Fe} + 3\,\text{CO}_2$. $n_{\text{Fe}_2\text{O}_3} = 480/160 = 3\text{ mol}$, $n_{\text{CO}} = 168/28 = 6\text{ mol}$. \textbf{a)} Para $3\text{ mol Fe}_2\text{O}_3$ necesito $9\text{ mol CO}$ (tengo $6$) $\Rightarrow R.L. = \text{CO}$, $R.\text{Exc.} = \text{Fe}_2\text{O}_3$; \textbf{b)} reaccionan $2\text{ mol Fe}_2\text{O}_3$, sobra $1\text{ mol} = 160\text{ g Fe}_2\text{O}_3$; \textbf{c)} $R.T. = 6\times\frac{2}{3} = 4\text{ mol Fe} = 224\text{ g Fe}$; \textbf{d)} $R.R. = \frac{224\times 85}{100} = 190{,}4\text{ g Fe}$.
+  \item $n_{\text{NaOH}} = 160/40 = 4\text{ mol}$; $n_{\text{CO}_2} = 132/44 = 3\text{ mol}$. \textbf{a)} Para $4\text{ mol NaOH}$ necesito $2\text{ mol CO}_2$ (tengo $3$) $\Rightarrow R.L. = \text{NaOH}$, $R.\text{Exc.} = \text{CO}_2$; sobra $1\text{ mol} = 44\text{ g CO}_2$; \textbf{b)} $R.T. = 2\text{ mol Na}_2\text{CO}_3 = 2(106) = 212\text{ g}$; \textbf{c)} $\pc\,\text{Rend} = \frac{190{,}8}{212}\times 100 = 90\,\pc$.
+  \item \textbf{a)} $4\,\text{FeS}_{2(s)} + 11\,\text{O}_{2(g)} \longrightarrow 2\,\text{Fe}_2\text{O}_{3(s)} + 8\,\text{SO}_{2(g)}$; \textbf{b)} $n_{\text{FeS}_2} = 480/120 = 4\text{ mol}$, $n_{\text{O}_2} = 384/32 = 12\text{ mol}$. Para $4\text{ mol FeS}_2$ necesito $11\text{ mol O}_2$ (tengo $12$) $\Rightarrow R.L. = \text{FeS}_2$; sobra $1\text{ mol O}_2 = 32\text{ g O}_2$; \textbf{c)} $R.T. = 8\text{ mol SO}_2 = 8(64) = 512\text{ g SO}_2$; \textbf{d)} $R.R. = \frac{512\times 80}{100} = 409{,}6\text{ g SO}_2$.
+  \item \textbf{Errores:} (1) Comparó los moles iniciales ($4 < 6$) sin usar los coeficientes estequiométricos: $4\text{ mol CH}_4$ requieren $8\text{ mol O}_2$, pero solo hay $6\text{ mol}$, así que el $R.L.$ es $\text{O}_2$, no $\text{CH}_4$. (2) Dividió entre $0{,}90$ en vez de multiplicar, obteniendo $R.R. > R.T.$, lo cual es imposible. \textbf{Cálculo correcto:} $R.T. = 6\times\frac{1}{2} = 3\text{ mol CO}_2$; $R.R. = 3\times 0{,}90 = 2{,}70\text{ mol CO}_2 = 2{,}70(44) = 118{,}8\text{ g CO}_2$.
+\end{enumerate}
+
+\vspace{6pt}
+\begin{cuadroextra}
+  \small
+  \textbf{Autoevaluación y reto final:} Si resolviste correctamente al menos 40 de 50 ejercicios, estás listo para el taller. Como reto, vuelve al Ejemplo 6 e inventa una segunda parte donde cambies las cantidades iniciales a $120\text{ g}$ de $\text{HCl}$ y $148\text{ g}$ de $\text{Ca(OH)}_2$: verifica qué reactivo pasa a ser el limitante, cuánto exceso sobra y cuántos gramos de $\text{CaCl}_2$ se obtienen al $85\,\pc$ de rendimiento.
+\end{cuadroextra}
+
+\fi
+
+\end{document}
